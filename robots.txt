@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /login
+Disallow: /login.html
+Disallow: /PERSONAL
+Disallow: /PERSONAL.html
+
+Sitemap: https://stargazer-9m9.pages.dev/sitemap.xml

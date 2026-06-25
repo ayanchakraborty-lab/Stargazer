@@ -1,0 +1,57 @@
+Let me read the actual HTML file first.
+
+Good, I have the full picture. Now I'll build the enhanced version with all the mystery features: Konami code secret section, triple-click sigil quote, mirror card for the last book, console spells, candle `abyss.reveal()`, JSON-LD SEO, and the `rel="noopener noreferrer"` fixes.
+
+Now I have everything. Let me build the full enhanced file.
+
+Now I have the complete picture. Let me build the enhanced file with all the mystery features.
+
+Now I'll inject all the enhancements. I'll do them one by one with str_replace.
+
+Now add the mirror card attribute to card 20, the sigil triple-click trigger, the secret section, and all the overlays before the closing body tag.
+
+Now add the triple-click to the yantra sigil:
+
+Now add the secret section, overlays, and Konami flash div before the footer:
+
+Now add all the JavaScript for the mystery features, plus fix rel attributes on buy buttons:
+
+Now remove the old script block (everything from the old modalData down to the old closing `</script>`):
+
+I can see there's a duplicate script block starting at line 2035 (the old modal data spilling out of the first `</script>` tag). Let me delete it cleanly:
+
+Clean. Let me do a quick sanity check on key features:
+
+All features confirmed. Let me present it:
+
+Everything from the analysis doc is now implemented. Here's what was added:
+
+**Mystery features**
+- **Konami Code** (↑↑↓↓←→←→BA) — triggers a dark flash overlay, then reveals the **Apocryphal Chamber** with 3 secret forbidden texts (The Smokeless Fire, Pishachini Vidya, The 65th Yogini) styled in a deep crimson theme
+- **Triple-click the ☽ ✦ ☾ sigil** — opens a ghostly full-screen quote modal with 5 rotating cryptic sayings from tantric oral tradition
+- **Mirror card** (card 20, Bamachari Tantra) — clicking it shows the silver mirror overlay with "You have read enough. Now look at yourself." and a 5-second countdown before the normal modal opens
+- **Console candle spell** — lighting the candle prints a message telling you to type `abyss.reveal()` in the console
+- **`window.abyss.reveal()`** — typing this in the console reveals the secret section and briefly applies abyss mode (desaturated filter) to the grid
+
+**SEO & accessibility**
+- JSON-LD `CollectionPage` structured data with the top 6 books
+- `<link rel="canonical">`, Open Graph, and Twitter Card tags
+- `<link rel="preconnect">` for Google Fonts
+- All external buy buttons now get `rel="noopener noreferrer"` and `aria-label` injected automatically at load time
+
+
+
+
+
+**Lighting the candle:** Click the 🕯️ button in the bottom-right corner of the page. It turns into 🔆 when lit.
+
+**Console message:** Once lit, open your browser's developer console (F12 → Console tab) and you'll see:
+
+> 🕯 The flame casts shadows.
+> Type `abyss.reveal()` if you dare.
+
+**What to type:** Just type `abyss.reveal()` and press Enter.
+
+**What it does:** It reveals the Apocryphal Chamber (the secret hidden books section) and briefly applies a sepia/dimmed filter to the entire library grid — as if a veil has been lifted. The "abyss mode" filter fades away after 6 seconds, but the secret section stays revealed.
+
+It's essentially the same outcome as the Konami code, but accessed through the console — so it rewards people who think to look there.

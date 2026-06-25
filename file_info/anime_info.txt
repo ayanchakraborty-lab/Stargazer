@@ -1,0 +1,44 @@
+Here's the complete breakdown of every creative decision made to ensure it feels like a completely different mind built this:
+
+**The core identity shift:**
+
+| Movies page | Anime page |
+|---|---|
+| Warm beige / cream | Pure void black `#050811` |
+| Academic serif (Georgia) | Terminal sans (Space Grotesk + Space Mono) |
+| Cinema hall, paper, ink | The Wired — network, signals, transmissions |
+| Books on a shelf | Receiving broadcasts from inside a machine |
+| White container, soft shadows | No container — infinite dark space |
+| Italic placement rationale | Labelled `◈ TRANSMISSION` like a data field |
+
+**Visual language — inspired by Serial Experiments Lain:**
+- Scrolling grid of faint cyan lines drifts across the background
+- CRT scanlines overlay the entire page (CSS repeating-gradient)
+- Every number glows with its arc's colour like a neon frequency indicator
+- 5 signal-strength bars on each card animate on hover — like a WiFi meter locking on
+- The left border of each card glows outward like a neon strip
+
+**6 Arcs instead of 7 Levels:**
+- Arc 01 · First Contact → Cyan
+- Arc 02 · Signal Distortion → Pink
+- Arc 03 · Identity Loss → Gold
+- Arc 04 · The Wired → Violet
+- Arc 05 · Formal Collapse → Red
+- Arc 06 · The Loop → Green
+
+Each arc divider has two glowing dots that pulse and a coloured line — everything in the arc inherits that colour for its glow, bar, number, metadata, and transmission text.
+
+**Renamed everything to match the language:**
+- "Watched" → **mark received**
+- "Surprise Me" → **⌖ intercept**
+- "Today's Film" → **◈ today's signal**
+- "Spoiler-Free" → **⊘ spoiler block**
+- "Description" → **◈ SIGNAL**
+- "Placement reason" → **◈ TRANSMISSION**
+- "Reset Progress" → **↺ clear log**
+- Depth meter → **reception meter**
+- Mood filter → **frequency filter**
+- Haiku box → **transmission log**
+- Console commands → `abyss.rx()`, `abyss.arc(n)`, `abyss.static()`
+
+**All the same features, completely different feel:** watched checkboxes, today's anime, random intercept, spoiler-block mode, frequency filter, J/K keyboard navigation, copy-link button with toast, deep-link anchors, Konami code (reveals Signal 89: *The Viewer*), triple-click footer for terminal mode, JSON-LD structured data, and console secrets.

@@ -1,0 +1,2612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="pics/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>18 Untranslatable German Words, Grammar, Idioms & Stories | Stargazer</title>
+
+    <!-- ── SEO META ── -->
+    <meta name="description" content="18 untranslatable German words like Sehnsucht and Waldeinsamkeit, plus grammar drills, leveled stories, idioms, and tongue twisters. Dive in →">
+    <meta name="keywords" content="untranslatable German words, learn German online, German vocabulary list, German grammar practice, German idioms, German short stories, German tongue twisters, Sehnsucht, Waldeinsamkeit, German dictionary, deutsch lernen, German grammar quiz">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://stargazer-9m9.pages.dev/GERMAN.html">
+
+    <!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="18 Untranslatable German Words, Grammar, Idioms & Stories | Stargazer">
+    <meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+    <meta name="application-name" content="Stargazer: Lost in the Cosmos">
+    <meta property="og:description" content="From Sehnsucht to Waldeinsamkeit — 18 German words with no English equivalent, paired with grammar challenges, leveled stories, idioms, and tongue twisters. Begin your immersion →">
+    <meta property="og:url" content="https://stargazer-9m9.pages.dev/GERMAN.html">
+    <meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/german.png">
+
+    <!-- ── TWITTER / X CARD ── -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/german.png">
+    <meta name="twitter:title" content="18 Untranslatable German Words, Grammar, Idioms & Stories | Stargazer">
+    <meta name="twitter:description" content="18 German words English can't translate, plus grammar, stories, idioms & tongue twisters. Dive in →">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+/* ═══ ROOT ═══ */
+:root {
+  --bg:         #06090A;
+  --bg-card:    #0C1509;
+  --bg-raised:  #111E0D;
+  --bg-hover:   #172814;
+  --bg-active:  #1E331A;
+  --border:     #1A2810;
+  --border-2:   #263C18;
+  --border-3:   #344E22;
+  --amber:      #CC8025;
+  --amber-2:    #E09A30;
+  --amber-3:    #F8C84A;
+  --gold:       #D4AC30;
+  --gold-2:     #F0D458;
+  --green:      #58A028;
+  --green-2:    #78CC40;
+  --text:       #F5EED0;
+  --text-2:     #DEC888;
+  --text-3:     #B09A60;
+  --text-faint: #786848;
+  --correct:    #1E4C12;
+  --correct-br: #4AAA28;
+  --wrong:      #4C1212;
+  --wrong-br:   #AA2828;
+  --r: 6px;
+  --r-lg: 12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Space Mono', monospace;
+  overflow-x: hidden;
+  min-height: 100vh;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+/* ═══ PARTICLES ═══ */
+#particles {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.needle {
+  position: absolute;
+  top: -30px;
+  width: 1.5px;
+  height: 18px;
+  background: linear-gradient(to bottom, transparent, rgba(60,90,30,0.5), transparent);
+  border-radius: 2px;
+  animation: needleFall linear infinite;
+}
+@keyframes needleFall {
+  0%   { transform: translateY(0) translateX(0) rotate(var(--r)); opacity: 0; }
+  8%   { opacity: 0.5; }
+  92%  { opacity: 0.4; }
+  100% { transform: translateY(105vh) translateX(var(--d)) rotate(calc(var(--r) + 40deg)); opacity: 0; }
+}
+
+/* ═══ SHARED NAV OVERRIDE ═══ */
+#nav-container nav,
+.stargazer-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(6,9,10,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 52px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+/* ═══ HERO ═══ */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 560px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse 80% 60% at 50% 30%, #0F1E08 0%, #06090A 70%);
+}
+
+.hero-moon {
+  position: absolute;
+  top: 12%; left: 50%;
+  transform: translateX(-50%);
+  width: 90px; height: 90px;
+  background: radial-gradient(circle, rgba(220,165,50,0.85) 0%, rgba(180,120,20,0.3) 55%, transparent 75%);
+  border-radius: 50%;
+  filter: blur(3px);
+  box-shadow: 0 0 80px rgba(200,150,30,0.25);
+  animation: moonPulse 6s ease-in-out infinite;
+}
+@keyframes moonPulse {
+  0%,100% { opacity: 0.8; box-shadow: 0 0 80px rgba(200,150,30,0.25); }
+  50%      { opacity: 1;   box-shadow: 0 0 120px rgba(220,165,40,0.35); }
+}
+
+.hero-stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 12% 8%, rgba(220,200,120,0.6) 0%, transparent 0%),
+    radial-gradient(1px 1px at 78% 5%, rgba(220,200,120,0.5) 0%, transparent 0%),
+    radial-gradient(1.5px 1.5px at 35% 14%, rgba(220,200,120,0.7) 0%, transparent 0%),
+    radial-gradient(1px 1px at 61% 10%, rgba(220,200,120,0.4) 0%, transparent 0%),
+    radial-gradient(1px 1px at 90% 18%, rgba(220,200,120,0.6) 0%, transparent 0%),
+    radial-gradient(1px 1px at 22% 22%, rgba(220,200,120,0.4) 0%, transparent 0%),
+    radial-gradient(1.5px 1.5px at 55% 4%, rgba(220,200,120,0.5) 0%, transparent 0%),
+    radial-gradient(1px 1px at 4% 30%, rgba(220,200,120,0.3) 0%, transparent 0%),
+    radial-gradient(1px 1px at 85% 28%, rgba(220,200,120,0.5) 0%, transparent 0%),
+    radial-gradient(1px 1px at 46% 19%, rgba(220,200,120,0.4) 0%, transparent 0%);
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  text-align: center;
+  padding: 0 24px;
+  max-width: 700px;
+}
+
+.hero-orn {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--amber-3);
+  opacity: 0.6;
+  letter-spacing: 8px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.hero-title {
+  font-size: clamp(52px, 10vw, 96px);
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.hero-title .frak {
+  font-family: 'UnifrakturMaguntia', serif;
+  font-weight: normal;
+  color: var(--amber-3);
+  font-size: 1.15em;
+  line-height: 0.9;
+  display: inline-block;
+  margin-right: -0.03em;
+}
+
+.hero-sub {
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: var(--amber-2);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0.85;
+}
+
+.hero-desc {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: var(--text-2);
+  font-style: italic;
+  max-width: 460px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+
+.hero-links {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  justify-content: center;
+}
+.hero-link {
+  padding: 8px 20px;
+  border: 1px solid var(--border-2);
+  background: rgba(12,21,9,0.7);
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  border-radius: var(--r);
+  transition: all 0.2s;
+}
+.hero-link:hover {
+  border-color: var(--amber);
+  color: var(--amber-3);
+  background: rgba(25,38,14,0.9);
+}
+
+/* Trees */
+.hero-trees {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 220px;
+  z-index: 1;
+}
+
+/* ═══ WOTD WIDGET ═══ */
+.wotd {
+  position: sticky; top: 52px; z-index: 90;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  max-height: 48px;
+}
+.wotd.open { max-height: 280px; }
+
+.wotd-toggle {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px;
+  height: 48px;
+  background: none; border: none; color: var(--amber-2);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px; letter-spacing: 0.15em;
+  cursor: pointer; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.wotd-toggle:hover { color: var(--amber-3); }
+.wotd-toggle span { display: flex; align-items: center; gap: 10px; }
+.wotd-arrow { transition: transform 0.3s; }
+.wotd.open .wotd-arrow { transform: rotate(180deg); }
+
+.wotd-body {
+  padding: 0 24px 20px;
+  display: flex; gap: 32px; flex-wrap: wrap;
+}
+.wotd-main { flex: 1; min-width: 220px; }
+.wotd-german {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+.wotd-article { color: var(--amber); font-size: 18px; font-weight: 400; }
+.wotd-english { color: var(--text-2); font-size: 13px; margin: 4px 0 8px; }
+.wotd-example { color: var(--text-3); font-size: 12px; font-style: italic; }
+.wotd-decomp { display: flex; align-items: flex-end; gap: 0; flex-wrap: wrap; }
+.wotd-part {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 6px 10px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r);
+  margin: 2px;
+}
+.wotd-part-word { font-size: 14px; color: var(--amber-3); font-weight: 700; }
+.wotd-part-mean { font-size: 10px; color: var(--text-3); margin-top: 2px; }
+.wotd-plus { color: var(--border-3); font-size: 16px; margin: 0 2px 10px; align-self: flex-end; }
+
+/* ═══ MAIN LAYOUT ═══ */
+main { position: relative; z-index: 1; }
+
+/* ═══ SECTION NAV (TABS) ═══ */
+.section-nav {
+  display: flex;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
+  position: sticky; top: 48px; z-index: 80;
+}
+.section-nav::-webkit-scrollbar { display: none; }
+
+.s-tab {
+  display: flex; align-items: center; gap: 8px;
+  padding: 14px 22px;
+  background: none; border: none;
+  color: var(--text-3);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px; letter-spacing: 0.1em;
+  cursor: pointer; white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+.s-tab:hover { color: var(--text-2); background: var(--bg-raised); }
+.s-tab.active {
+  color: var(--amber-3);
+  border-bottom-color: var(--amber);
+  background: var(--bg-raised);
+}
+.s-tab .ti { font-size: 14px; }
+
+/* ═══ SECTIONS ═══ */
+.section {
+  display: none;
+  padding: 36px 24px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section.active { display: block; }
+
+.section-head {
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.section-head h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.section-head p {
+  color: var(--text-3);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+
+/* ═══ DICTIONARY ═══ */
+.dict-controls {
+  display: flex; flex-direction: column; gap: 12px;
+  margin-bottom: 24px;
+}
+
+.search-wrap {
+  position: relative;
+  max-width: 520px;
+}
+.search-wrap::before {
+  content: '⌕';
+  position: absolute; left: 14px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-3); font-size: 16px;
+  pointer-events: none;
+}
+#dict-search {
+  width: 100%;
+  padding: 11px 14px 11px 40px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-2);
+  color: var(--text);
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  border-radius: var(--r);
+  outline: none;
+  transition: border-color 0.2s;
+}
+#dict-search:focus { border-color: var(--amber); }
+#dict-search::placeholder { color: var(--text-3); }
+
+.filter-chips {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.chip {
+  padding: 5px 14px;
+  border: 1px solid var(--border-2);
+  background: var(--bg-raised);
+  color: var(--text-3);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.1em;
+  border-radius: 20px;
+  cursor: pointer; transition: all 0.2s;
+  text-transform: uppercase;
+}
+.chip:hover { color: var(--text-2); border-color: var(--border-3); }
+.chip.active { background: var(--bg-active); border-color: var(--amber); color: var(--amber-3); }
+
+#dict-count { color: var(--text-3); font-size: 11px; margin-bottom: 4px; }
+
+.dict-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+.dict-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 18px;
+  cursor: pointer;
+  transition: all 0.22s;
+  position: relative;
+  overflow: hidden;
+}
+.dict-card::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--border-2);
+  transition: background 0.2s;
+}
+.dict-card:hover {
+  border-color: var(--border-3);
+  background: var(--bg-raised);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.dict-card:hover::before { background: var(--amber); }
+.dict-card.special::before { background: var(--amber-2); }
+
+.dict-top {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 8px;
+}
+.dict-german {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--text); line-height: 1.2;
+}
+.dict-article { color: var(--amber-2); font-weight: 400; }
+.dict-badges { display: flex; gap: 5px; flex-shrink: 0; margin-left: 8px; }
+.badge {
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 9px; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-2);
+  color: var(--text-3);
+}
+.badge.untranslatable { background: rgba(200,117,32,0.12); border-color: rgba(200,117,32,0.3); color: var(--amber-2); }
+.badge.a1 { border-color: rgba(74,128,32,0.4); color: var(--green-2); }
+.badge.a2 { border-color: rgba(90,145,40,0.4); color: #6AB035; }
+.badge.b1 { border-color: rgba(180,130,20,0.4); color: #C8A028; }
+.badge.b2 { border-color: rgba(180,80,20,0.4); color: #C87028; }
+.badge.c1, .badge.c2 { border-color: rgba(180,30,30,0.4); color: #C84040; }
+
+.dict-english {
+  color: var(--text-2);
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+.dict-meta {
+  font-size: 11px; color: var(--text-3);
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+
+.dict-expand {
+  display: none;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.dict-card.expanded .dict-expand { display: block; }
+
+.dict-example {
+  font-size: 12px; line-height: 1.6;
+  margin-bottom: 8px;
+}
+.dict-example .de { color: var(--text-2); font-style: italic; }
+.dict-example .en { color: var(--text-3); }
+
+.etymology-box {
+  margin-top: 10px;
+}
+.etymology-label {
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-3); margin-bottom: 8px;
+}
+.decomp-row {
+  display: flex; align-items: flex-end; flex-wrap: wrap; gap: 4px;
+}
+.decomp-part {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 4px 8px;
+  background: var(--bg-active);
+  border: 1px solid var(--border-2);
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.decomp-part:hover { border-color: var(--amber); }
+.decomp-part .p-word { font-size: 13px; color: var(--amber-3); font-weight: 700; }
+.decomp-part .p-mean { font-size: 9px; color: var(--text-3); margin-top: 2px; }
+.decomp-plus { color: var(--border-3); font-size: 14px; margin-bottom: 10px; }
+
+.dict-note {
+  font-size: 11px; color: var(--text-3); font-style: italic;
+  margin-top: 8px; line-height: 1.5;
+  border-left: 2px solid var(--border-2);
+  padding-left: 10px;
+}
+
+/* VERB CONJUGATION */
+.conj-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4px; margin-top: 8px;
+}
+.conj-row {
+  display: flex; gap: 8px;
+  font-size: 11px; padding: 3px 0;
+}
+.conj-pron { color: var(--text-3); min-width: 52px; }
+.conj-form { color: var(--text-2); }
+
+/* ═══ GRAMMAR SECTION ═══ */
+.grammar-wrap {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.grammar-sidebar {
+  position: sticky; top: 160px;
+}
+
+.topic-list { display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
+.topic-btn {
+  width: 100%;
+  padding: 8px 14px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  color: var(--text-3);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.08em;
+  text-align: left; cursor: pointer;
+  border-radius: var(--r);
+  transition: all 0.18s;
+  display: flex; justify-content: space-between;
+}
+.topic-btn:hover { color: var(--text-2); border-color: var(--border-2); }
+.topic-btn.active { background: var(--bg-active); border-color: var(--amber); color: var(--amber-3); }
+.topic-count { color: var(--text-faint); }
+.topic-btn.active .topic-count { color: var(--amber); opacity: 0.7; }
+
+.score-panel {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 16px;
+}
+.score-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+.score-nums {
+  font-size: 26px; font-weight: 700;
+  color: var(--text); font-family: 'Playfair Display', serif;
+  margin-bottom: 10px;
+}
+.score-nums span { color: var(--amber); }
+.score-bar-bg {
+  height: 4px; background: var(--border);
+  border-radius: 2px; overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--amber), var(--gold-2));
+  border-radius: 2px;
+  width: 0%; transition: width 0.4s ease;
+}
+.score-streak { font-size: 11px; color: var(--text-3); margin-top: 8px; }
+
+/* Grammar main area */
+.grammar-main {}
+
+.q-progress {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 20px;
+  font-size: 11px; color: var(--text-3);
+}
+.q-progress-bar {
+  flex: 1; height: 3px;
+  background: var(--border);
+  border-radius: 2px; overflow: hidden;
+}
+.q-progress-fill {
+  height: 100%;
+  background: var(--amber);
+  border-radius: 2px;
+  transition: width 0.4s;
+}
+
+.q-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.q-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 20px;
+  background: var(--bg-raised);
+  border-bottom: 1px solid var(--border);
+}
+.q-topic-badge {
+  padding: 3px 10px;
+  background: rgba(192,117,32,0.12);
+  border: 1px solid rgba(192,117,32,0.3);
+  color: var(--amber-2);
+  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  border-radius: 4px;
+}
+.q-num { color: var(--text-3); font-size: 11px; margin-left: auto; }
+
+.q-body { padding: 24px 20px; }
+.q-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; line-height: 1.6;
+  color: var(--text);
+  margin-bottom: 22px;
+}
+.q-german {
+  font-style: italic;
+  color: var(--amber-3);
+}
+
+.q-options {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.q-opt {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r);
+  cursor: pointer;
+  transition: all 0.18s;
+  text-align: left; width: 100%;
+  color: var(--text-2);
+  font-family: 'Space Mono', monospace;
+  font-size: 12px; line-height: 1.5;
+}
+.q-opt:hover:not(:disabled) {
+  border-color: var(--amber);
+  background: var(--bg-hover);
+  color: var(--text);
+}
+.q-opt.correct {
+  background: rgba(30,76,18,0.4);
+  border-color: var(--correct-br);
+  color: #7ACC40;
+}
+.q-opt.wrong {
+  background: rgba(76,18,18,0.4);
+  border-color: var(--wrong-br);
+  color: #CC4040;
+}
+.q-opt .opt-letter {
+  min-width: 22px; height: 22px;
+  background: var(--bg-active);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; letter-spacing: 0;
+  color: var(--text-3);
+  flex-shrink: 0;
+  transition: all 0.18s;
+}
+.q-opt.correct .opt-letter { background: rgba(58,138,32,0.4); color: #7ACC40; }
+.q-opt.wrong .opt-letter { background: rgba(138,32,32,0.4); color: #CC4040; }
+
+.q-explanation {
+  margin: 16px 0 0;
+  padding: 14px 16px;
+  background: rgba(192,117,32,0.07);
+  border: 1px solid rgba(192,117,32,0.2);
+  border-radius: var(--r);
+  font-size: 12px; line-height: 1.65;
+  color: var(--text-2);
+  display: none;
+}
+.q-explanation.show { display: block; }
+.q-explanation strong { color: var(--amber-3); }
+.q-explanation em { color: var(--text); font-style: italic; }
+
+.q-footer {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-raised);
+}
+.btn {
+  padding: 9px 20px;
+  border-radius: var(--r);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px; letter-spacing: 0.08em;
+  cursor: pointer;
+  border: 1px solid var(--border-2);
+  background: var(--bg-raised);
+  color: var(--text-3);
+  transition: all 0.2s;
+}
+.btn:hover { color: var(--text-2); border-color: var(--border-3); }
+.btn-primary {
+  background: rgba(192,117,32,0.15);
+  border-color: var(--amber);
+  color: var(--amber-3);
+}
+.btn-primary:hover { background: rgba(192,117,32,0.28); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.shuffle-toggle {
+  margin-left: auto;
+  display: flex; align-items: center; gap: 7px;
+  font-size: 10px; color: var(--text-3);
+  background: none; border: none;
+  cursor: pointer; font-family: 'Space Mono', monospace;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.shuffle-toggle .tog {
+  width: 28px; height: 16px;
+  background: var(--border-2);
+  border-radius: 8px;
+  position: relative; transition: background 0.2s;
+}
+.shuffle-toggle .tog::after {
+  content: '';
+  position: absolute; left: 2px; top: 2px;
+  width: 12px; height: 12px;
+  background: var(--text-3);
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+.shuffle-toggle.on .tog { background: var(--amber); }
+.shuffle-toggle.on .tog::after { left: 14px; background: white; }
+
+/* ═══ STORIES ═══ */
+.level-tabs {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.level-tab {
+  padding: 7px 18px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  color: var(--text-3);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  cursor: pointer; border-radius: var(--r);
+  transition: all 0.2s;
+}
+.level-tab:hover { color: var(--text-2); border-color: var(--border-2); }
+.level-tab.active { background: var(--bg-active); border-color: var(--amber); color: var(--amber-3); }
+
+.story-panel { display: none; }
+.story-panel.active { display: block; }
+
+.story-meta {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 20px; flex-wrap: wrap;
+}
+.story-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 700;
+  color: var(--text);
+}
+.story-stats { display: flex; gap: 10px; }
+.stat-pill {
+  padding: 3px 10px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-2);
+  border-radius: 20px;
+  font-size: 10px; color: var(--text-3);
+  letter-spacing: 0.06em;
+}
+
+.story-controls {
+  display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;
+}
+
+.story-text {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 36px 40px;
+  max-width: 700px;
+}
+.story-de {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; line-height: 1.85;
+  color: var(--text);
+}
+.story-de p { margin-bottom: 16px; }
+.story-de p:last-child { margin-bottom: 0; }
+.story-de .dialog { color: var(--amber-3); }
+.story-en {
+  display: none;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; line-height: 1.75;
+  color: var(--text-3); font-style: italic;
+}
+.story-en p { margin-bottom: 14px; }
+.story-en p:last-child { margin-bottom: 0; }
+.story-en.show { display: block; }
+
+.story-vocab {
+  margin-top: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  max-width: 700px;
+  overflow: hidden;
+}
+.vocab-header {
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 10px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--text-3);
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer;
+}
+.vocab-grid {
+  padding: 16px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+}
+.vocab-item {
+  display: flex; flex-direction: column;
+  padding: 8px 10px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+}
+.vocab-de { font-size: 13px; color: var(--text-2); font-weight: 700; }
+.vocab-article { color: var(--amber-2); }
+.vocab-en { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+
+/* BOOK RECOMMENDATIONS */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.book-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 16px 18px;
+  border-left: 3px solid var(--amber);
+  transition: all 0.2s;
+}
+.book-card:hover { background: var(--bg-raised); }
+.book-level-badge {
+  display: inline-block;
+  padding: 2px 8px; border-radius: 4px;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.lv-a1 { background: rgba(74,128,32,0.15); color: var(--green-2); border: 1px solid rgba(74,128,32,0.3); }
+.lv-a2 { background: rgba(90,148,40,0.15); color: #6AAA35; border: 1px solid rgba(90,148,40,0.3); }
+.lv-b1 { background: rgba(180,140,20,0.15); color: #C8A830; border: 1px solid rgba(180,140,20,0.3); }
+.lv-b2 { background: rgba(180,90,20,0.15); color: #C87030; border: 1px solid rgba(180,90,20,0.3); }
+.lv-c1 { background: rgba(180,30,30,0.15); color: #C84040; border: 1px solid rgba(180,30,30,0.3); }
+.book-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  color: var(--text); margin-bottom: 3px;
+}
+.book-author { font-size: 11px; color: var(--amber-2); margin-bottom: 8px; }
+.book-desc { font-size: 11px; color: var(--text-3); line-height: 1.55; }
+
+/* ═══ IDIOMS ═══ */
+.idiom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 14px;
+}
+.idiom-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 18px;
+  transition: all 0.22s;
+}
+.idiom-card:hover {
+  border-color: var(--border-3);
+  background: var(--bg-raised);
+}
+.idiom-de {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; font-weight: 700;
+  color: var(--amber-3);
+  margin-bottom: 6px;
+}
+.idiom-literal {
+  font-size: 11px; color: var(--text-3);
+  font-style: italic; margin-bottom: 10px;
+}
+.idiom-literal::before { content: '↳ Literally: '; color: var(--text-faint); }
+.idiom-meaning {
+  font-size: 13px; color: var(--text);
+  margin-bottom: 10px; line-height: 1.5;
+}
+.idiom-example {
+  font-size: 11px; color: var(--text-3);
+  padding: 8px 12px;
+  background: var(--bg-raised);
+  border-radius: var(--r);
+  border-left: 2px solid var(--border-2);
+  font-style: italic; line-height: 1.55;
+}
+.idiom-cat {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 2px 8px;
+  font-size: 9px; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  color: var(--text-3);
+  border-radius: 20px;
+}
+
+/* ═══ ZUNGENBRECHER ═══ */
+.zt-grid {
+  display: flex; flex-direction: column; gap: 16px;
+  max-width: 800px;
+}
+.zt-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px 24px;
+  transition: all 0.22s;
+}
+.zt-card:hover { border-color: var(--border-3); }
+.zt-top {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 10px;
+}
+.zt-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; line-height: 1.6;
+  color: var(--amber-3);
+  font-style: italic;
+  flex: 1;
+}
+.zt-diff {
+  display: flex; gap: 3px; flex-shrink: 0; margin-left: 12px; margin-top: 4px;
+}
+.zt-diff span {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--border-2);
+}
+.zt-diff span.filled { background: var(--amber-2); }
+.zt-meaning {
+  font-size: 11px; color: var(--text-3); line-height: 1.5;
+}
+.zt-btn {
+  margin-top: 12px;
+  padding: 6px 14px;
+  font-size: 10px;
+}
+
+/* ═══ REFERENCE ═══ */
+.ref-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.ref-table-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.ref-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.ref-table-title {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--amber-2);
+  background: var(--bg-raised);
+}
+.ref-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 11px;
+}
+.ref-table th {
+  padding: 8px 14px;
+  background: var(--bg-raised);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-3); font-weight: 700;
+  text-align: left; letter-spacing: 0.06em;
+}
+.ref-table td {
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-2);
+  line-height: 1.4;
+}
+.ref-table tr:last-child td { border-bottom: none; }
+.ref-table tr:hover td { background: var(--bg-raised); }
+.ref-table .case-col { color: var(--amber-2); font-weight: 700; }
+.ref-table .form { color: var(--text); }
+.ref-table .note { color: var(--text-3); font-size: 10px; }
+
+/* ═══ FOOTER ═══ */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  text-align: center;
+  color: var(--text-faint);
+  font-size: 10px; letter-spacing: 0.12em;
+}
+footer a { color: var(--text-3); text-decoration: none; }
+footer a:hover { color: var(--amber-2); }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
+  .grammar-wrap { grid-template-columns: 1fr; }
+  .grammar-sidebar { position: static; }
+  .topic-list { flex-direction: row; flex-wrap: wrap; }
+  .topic-btn { width: auto; font-size: 9px; padding: 6px 10px; }
+  .story-text { padding: 20px; }
+  .wotd-body { flex-direction: column; }
+  .section { padding: 24px 16px 48px; }
+  .dict-grid { grid-template-columns: 1fr; }
+  .idiom-grid { grid-template-columns: 1fr; }
+  .ref-grid { grid-template-columns: 1fr; }
+  .hero-title { font-size: clamp(40px, 12vw, 72px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .needle, .hero-moon, body.light .hero-moon { animation: none; }
+}
+
+/* ═══ UTILITIES ═══ */
+.hidden { display: none !important; }
+.text-amber { color: var(--amber-3); }
+.italic { font-style: italic; }
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.section-divider {
+  text-align: center;
+  color: var(--border-2);
+  font-size: 20px;
+  margin: 32px 0;
+  letter-spacing: 12px;
+}
+
+/* ═══════════════════════════════════════════
+   FIXED NAV BUTTONS (Home · Auth · Toggle)
+═══════════════════════════════════════════ */
+#homeLink {
+  position: fixed; top: 14px; left: 16px; z-index: 10000;
+  font-family: 'Space Mono', monospace; font-size: 0.68rem;
+  letter-spacing: 0.14em; text-decoration: none;
+  background: rgba(12,21,9,0.92); color: var(--amber-2);
+  border: 1px solid var(--border-2); border-radius: 30px;
+  padding: 0.30rem 0.85rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  transition: all 0.2s;
+}
+#homeLink:hover { background: var(--bg-hover); color: var(--amber-3); border-color: var(--border-3); }
+
+#authHeader {
+  position: fixed; top: 14px; right: 16px; z-index: 10000;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+#darkToggle {
+  font-family: 'Space Mono', monospace; font-size: 0.65rem;
+  letter-spacing: 0.10em; color: var(--text-2);
+  background: rgba(12,21,9,0.92); border: 1px solid var(--border-2);
+  border-radius: 30px; padding: 0.28rem 0.8rem;
+  cursor: pointer; transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+#darkToggle:hover { border-color: var(--amber); color: var(--amber-3); }
+#loginBtn {
+  font-family: 'Space Mono', monospace; font-size: 0.65rem;
+  letter-spacing: 0.10em; color: var(--amber-2);
+  background: rgba(12,21,9,0.92); border: 1px solid var(--border-2);
+  border-radius: 30px; padding: 0.30rem 0.95rem;
+  text-decoration: none; display: inline-flex; align-items: center;
+  transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.30);
+}
+#loginBtn:hover { border-color: var(--amber); color: var(--amber-3); background: var(--bg-hover); }
+#userInfo { display: flex; align-items: center; gap: 0.5rem; font-family: 'Space Mono', monospace; font-size: 0.65rem; }
+#userEmailDisplay {
+  color: var(--text-2); max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  background: rgba(12,21,9,0.92); border: 1px solid var(--border-2);
+  border-radius: 30px; padding: 0.26rem 0.8rem; font-size: 0.62rem;
+}
+#signOutBtn {
+  font-family: 'Space Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.08em; color: var(--text-2);
+  background: rgba(12,21,9,0.92); border: 1px solid var(--border-2);
+  border-radius: 30px; padding: 0.26rem 0.75rem;
+  cursor: pointer; transition: all 0.2s;
+}
+#signOutBtn:hover { border-color: var(--amber); color: var(--amber-2); }
+
+/* ═══════════════════════════════════════════
+   DAY MODE
+═══════════════════════════════════════════ */
+body.light {
+  background: #FFFDF2;
+  color: #180F04;
+  --bg:         #FFFDF2;
+  --bg-card:    #FAF6E4;
+  --bg-raised:  #F2EDD4;
+  --bg-hover:   #EAE4C4;
+  --bg-active:  #E0D8B0;
+  --border:     #C8C0A0;
+  --border-2:   #B8B088;
+  --border-3:   #A89C70;
+  --amber:      #B06010;
+  --amber-2:    #C87018;
+  --amber-3:    #E08820;
+  --gold:       #A87A10;
+  --gold-2:     #C09420;
+  --green:      #2A6A08;
+  --green-2:    #3A8810;
+  --text:       #180F04;
+  --text-2:     #382810;
+  --text-3:     #685030;
+  --text-faint: #988060;
+  --correct:    #C8EEB8;
+  --correct-br: #2E8A18;
+  --wrong:      #EECAC8;
+  --wrong-br:   #8A2222;
+  --r: 6px;
+  --r-lg: 12px;
+}
+/* Hero — bright sky */
+body.light .hero {
+  background: radial-gradient(ellipse 90% 65% at 50% 20%,
+    #D8ECA0 0%, #EEF6C8 35%, #FFFDF2 80%);
+}
+body.light .hero-moon {
+  background: radial-gradient(circle,
+    rgba(255,210,60,0.95) 0%,
+    rgba(230,170,30,0.45) 50%,
+    transparent 75%);
+  box-shadow: 0 0 100px rgba(240,190,30,0.40);
+  filter: blur(2px);
+  animation: sunPulse 6s ease-in-out infinite;
+}
+@keyframes sunPulse {
+  0%,100% { opacity: 0.88; box-shadow: 0 0 100px rgba(240,190,30,0.40); }
+  50%      { opacity: 1;    box-shadow: 0 0 140px rgba(255,210,40,0.55); }
+}
+body.light .hero-stars { opacity: 0; }
+body.light .needle {
+  background: linear-gradient(to bottom,
+    transparent, rgba(60,100,20,0.18), transparent);
+}
+/* Sticky nav */
+body.light #nav-container nav,
+body.light .stargazer-nav {
+  background: rgba(255,253,242,0.97);
+  border-bottom-color: var(--border);
+}
+body.light .wotd { background: var(--bg-card); }
+/* Section tabs */
+body.light .s-tab              { color: var(--text-3); }
+body.light .s-tab:hover        { color: var(--text-2); background: var(--bg-raised); }
+body.light .s-tab.active       { color: var(--amber-3); background: var(--bg-raised); border-bottom-color: var(--amber); }
+/* Dict cards */
+body.light .dict-card:hover    { box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+/* Quiz options */
+body.light .q-opt.correct      { background: rgba(200,238,184,0.5); color: #1A6808; }
+body.light .q-opt.wrong        { background: rgba(238,202,200,0.5); color: #881818; }
+body.light .q-opt.correct .opt-letter { background: rgba(100,200,60,0.3);  color: #1A6808; }
+body.light .q-opt.wrong   .opt-letter { background: rgba(200,60,60,0.3);   color: #881818; }
+/* Fixed nav buttons in day mode */
+body.light #homeLink,
+body.light #darkToggle,
+body.light #loginBtn,
+body.light #userEmailDisplay,
+body.light #signOutBtn {
+  background: rgba(255,253,242,0.97);
+  border-color: var(--border-2);
+  color: var(--amber-2);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+body.light #homeLink:hover,
+body.light #darkToggle:hover,
+body.light #loginBtn:hover,
+body.light #signOutBtn:hover {
+  background: var(--bg-hover);
+  border-color: var(--amber-3);
+  color: var(--amber-3);
+}
+    </style>
+</head>
+<body>
+<!-- Home button -->
+<a href="index.html" id="homeLink">← universe</a>
+
+<!-- Auth header -->
+<div id="authHeader">
+  <button id="darkToggle" onclick="toggleLight()">☀ Day</button>
+  <a href="login.html" id="loginBtn">sign in</a>
+  <div id="userInfo" style="display:none;">
+    <span id="userEmailDisplay"></span>
+    <button onclick="doSignOut()" id="signOutBtn">sign out</button>
+  </div>
+</div>
+<!-- Particles -->
+<div id="particles"></div>
+
+<!-- NAV (shared.js renders into this) -->
+<div id="nav-container"></div>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero" id="top">
+  <div class="hero-stars"></div>
+  <div class="hero-moon"></div>
+
+  <div class="hero-content">
+    <span class="hero-orn">✦ &nbsp; ✦ &nbsp; ✦</span>
+    <h1 class="hero-title"><span class="frak">D</span>EUTSCH</h1>
+    <p class="hero-sub">Waldeinsamkeit · Bildung · Sehnsucht</p>
+    <p class="hero-desc">A deep immersion into the German language — from the everyday to the untranslatable.</p>
+    <div class="hero-links">
+      <a href="#woerterbuch" class="hero-link" onclick="event.preventDefault();switchTab('woerterbuch')">Wörterbuch</a>
+      <a href="#grammatik" class="hero-link" onclick="event.preventDefault();switchTab('grammatik')">Grammatik</a>
+      <a href="#geschichten" class="hero-link" onclick="event.preventDefault();switchTab('geschichten')">Geschichten</a>
+      <a href="#redewendungen" class="hero-link" onclick="event.preventDefault();switchTab('redewendungen')">Redewendungen</a>
+    </div>
+  </div>
+
+  <!-- SVG Tree Silhouettes -->
+  <div class="hero-trees">
+    <svg viewBox="0 0 1400 220" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+      <!-- Far background trees (lighter, smaller) -->
+      <g opacity="0.4" fill="#030704">
+        <polygon points="80,220 95,170 110,220"/>
+        <polygon points="87,190 102,150 117,190"/>
+        <polygon points="93,165 108,130 123,165"/>
+        <polygon points="200,220 218,165 236,220"/>
+        <polygon points="207,188 225,148 243,188"/>
+        <polygon points="213,160 231,125 249,160"/>
+        <polygon points="360,220 380,158 400,220"/>
+        <polygon points="367,185 387,145 407,185"/>
+        <polygon points="550,220 565,175 580,220"/>
+        <polygon points="556,195 571,158 586,195"/>
+        <polygon points="700,220 718,162 736,220"/>
+        <polygon points="707,190 725,150 743,190"/>
+        <polygon points="850,220 870,155 890,220"/>
+        <polygon points="857,188 877,148 897,188"/>
+        <polygon points="857,163 877,128 897,163"/>
+        <polygon points="1000,220 1015,172 1030,220"/>
+        <polygon points="1006,192 1021,158 1036,192"/>
+        <polygon points="1150,220 1170,160 1190,220"/>
+        <polygon points="1157,190 1177,150 1197,190"/>
+        <polygon points="1300,220 1315,175 1330,220"/>
+        <polygon points="1306,196 1321,160 1336,196"/>
+      </g>
+      <!-- Mid trees -->
+      <g opacity="0.65" fill="#020603">
+        <polygon points="0,220 20,155 40,220"/>
+        <polygon points="4,180 24,125 44,180"/>
+        <polygon points="7,152 27,102 47,152"/>
+        <rect x="17" y="195" width="6" height="25" fill="#020603"/>
+        <polygon points="140,220 165,145 190,220"/>
+        <polygon points="147,182 172,120 197,182"/>
+        <polygon points="153,152 178,96 203,152"/>
+        <rect x="160" y="200" width="10" height="20" fill="#020603"/>
+        <polygon points="310,220 340,138 370,220"/>
+        <polygon points="318,180 348,115 378,180"/>
+        <polygon points="325,148 355,90 385,148"/>
+        <rect x="335" y="198" width="10" height="22" fill="#020603"/>
+        <polygon points="470,220 492,162 514,220"/>
+        <polygon points="476,190 498,142 520,190"/>
+        <polygon points="481,165 503,122 525,165"/>
+        <rect x="488" y="200" width="8" height="20" fill="#020603"/>
+        <polygon points="640,220 665,148 690,220"/>
+        <polygon points="647,182 672,122 697,182"/>
+        <polygon points="653,152 678,96 703,152"/>
+        <rect x="663" y="200" width="10" height="20" fill="#020603"/>
+        <polygon points="800,220 820,165 840,220"/>
+        <polygon points="805,190 825,152 845,190"/>
+        <polygon points="809,166 829,132 849,166"/>
+        <rect x="816" y="202" width="8" height="18" fill="#020603"/>
+        <polygon points="960,220 985,140 1010,220"/>
+        <polygon points="967,180 992,118 1017,180"/>
+        <polygon points="973,150 998,94 1023,150"/>
+        <rect x="983" y="198" width="10" height="22" fill="#020603"/>
+        <polygon points="1100,220 1120,168 1140,220"/>
+        <polygon points="1105,194 1125,152 1145,194"/>
+        <polygon points="1109,170 1129,132 1149,170"/>
+        <rect x="1116" y="203" width="8" height="17" fill="#020603"/>
+        <polygon points="1260,220 1285,142 1310,220"/>
+        <polygon points="1267,182 1292,120 1317,182"/>
+        <polygon points="1273,150 1298,94 1323,150"/>
+        <rect x="1283" y="200" width="10" height="20" fill="#020603"/>
+        <polygon points="1370,220 1390,160 1410,220"/>
+        <polygon points="1376,190 1396,150 1416,190"/>
+        <rect x="1386" y="202" width="8" height="18" fill="#020603"/>
+      </g>
+      <!-- Foreground trees (darkest) -->
+      <g fill="#010403">
+        <polygon points="-20,220 18,120 56,220"/>
+        <polygon points="-12,175 26,88 64,175"/>
+        <polygon points="-5,140 33,62 71,140"/>
+        <rect x="14" y="190" width="12" height="30" fill="#010403"/>
+        <polygon points="250,220 295,105 340,220"/>
+        <polygon points="260,172 305,78 350,172"/>
+        <polygon points="268,135 313,52 358,135"/>
+        <rect x="285" y="195" width="14" height="25" fill="#010403"/>
+        <polygon points="580,220 618,125 656,220"/>
+        <polygon points="588,178 626,92 664,178"/>
+        <polygon points="595,145 633,65 671,145"/>
+        <rect x="613" y="198" width="12" height="22" fill="#010403"/>
+        <polygon points="900,220 940,118 980,220"/>
+        <polygon points="908,174 948,84 988,174"/>
+        <polygon points="915,140 955,58 995,140"/>
+        <rect x="935" y="196" width="12" height="24" fill="#010403"/>
+        <polygon points="1200,220 1242,112 1284,220"/>
+        <polygon points="1208,170 1250,80 1292,170"/>
+        <polygon points="1215,136 1257,56 1299,136"/>
+        <rect x="1237" y="196" width="12" height="24" fill="#010403"/>
+        <polygon points="1360,220 1390,140 1420,220"/>
+        <polygon points="1366,182 1396,112 1426,182"/>
+        <rect x="1382" y="200" width="10" height="20" fill="#010403"/>
+      </g>
+      <!-- Ground -->
+      <rect x="0" y="215" width="1400" height="5" fill="#010403"/>
+    </svg>
+  </div>
+</header>
+
+<!-- ═══ WORD OF THE DAY ═══ -->
+<div class="wotd" id="wotd">
+  <button class="wotd-toggle" onclick="toggleWotd()">
+    <span>✦ &nbsp; Wort des Tages</span>
+    <svg class="wotd-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+      <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <div class="wotd-body" id="wotd-body">
+    <!-- Rendered by JS -->
+  </div>
+</div>
+
+<!-- ═══ MAIN ═══ -->
+<main>
+  <!-- Tab Nav -->
+  <nav class="section-nav" id="section-nav">
+    <button class="s-tab active" onclick="switchTab('woerterbuch')">
+      <span class="ti">📖</span> Wörterbuch
+    </button>
+    <button class="s-tab" onclick="switchTab('grammatik')">
+      <span class="ti">✍</span> Grammatik
+    </button>
+    <button class="s-tab" onclick="switchTab('geschichten')">
+      <span class="ti">📜</span> Geschichten
+    </button>
+    <button class="s-tab" onclick="switchTab('redewendungen')">
+      <span class="ti">🌿</span> Redewendungen
+    </button>
+    <button class="s-tab" onclick="switchTab('zungenbrecher')">
+      <span class="ti">👅</span> Zungenbrecher
+    </button>
+    <button class="s-tab" onclick="switchTab('referenz')">
+      <span class="ti">◎</span> Referenz
+    </button>
+  </nav>
+
+  <!-- ═══ WÖRTERBUCH ═══ -->
+  <section class="section active" id="woerterbuch">
+    <div class="section-head">
+      <h2>Wörterbuch</h2>
+      <p>Dictionary · Including the untranslatable words that reveal the German soul</p>
+    </div>
+    <div class="dict-controls">
+      <div class="search-wrap">
+        <input type="text" id="dict-search" placeholder="Search German or English…" oninput="filterDict()">
+      </div>
+      <div class="filter-chips">
+        <button class="chip active" data-type="all" onclick="setDictFilter(this,'all')">All</button>
+        <button class="chip" data-type="noun" onclick="setDictFilter(this,'noun')">Nouns</button>
+        <button class="chip" data-type="verb" onclick="setDictFilter(this,'verb')">Verbs</button>
+        <button class="chip" data-type="adj" onclick="setDictFilter(this,'adj')">Adjectives</button>
+        <button class="chip" data-type="untranslatable" onclick="setDictFilter(this,'untranslatable')">✦ Untranslatable</button>
+      </div>
+    </div>
+    <p id="dict-count" class="text-3"></p>
+    <div class="dict-grid" id="dict-grid"></div>
+  </section>
+
+  <!-- ═══ GRAMMATIK ═══ -->
+  <section class="section" id="grammatik">
+    <div class="section-head">
+      <h2>Grammatik</h2>
+      <p>Conceptual questions that reveal the deep logic of German · Tough, explanatory, no hand-holding</p>
+    </div>
+    <div class="grammar-wrap">
+      <div class="grammar-sidebar">
+        <div class="topic-list" id="topic-list"></div>
+        <div class="score-panel">
+          <div class="score-label">Session Score</div>
+          <div class="score-nums"><span id="score-correct">0</span> / <span id="score-total">0</span></div>
+          <div class="score-bar-bg"><div class="score-bar-fill" id="score-bar"></div></div>
+          <div class="score-streak" id="score-streak"></div>
+        </div>
+      </div>
+      <div class="grammar-main">
+        <div class="q-progress">
+          <span id="q-progress-txt">Question 1</span>
+          <div class="q-progress-bar"><div class="q-progress-fill" id="q-progress-fill"></div></div>
+          <span id="q-of-txt">of 0</span>
+        </div>
+        <div class="q-card" id="q-card">
+          <div class="q-header">
+            <span class="q-topic-badge" id="q-topic-badge">—</span>
+            <span class="q-num" id="q-num-label">#1</span>
+          </div>
+          <div class="q-body">
+            <div class="q-text" id="q-text">Loading question…</div>
+            <div class="q-options" id="q-opts"></div>
+            <div class="q-explanation" id="q-exp"></div>
+          </div>
+          <div class="q-footer">
+            <button class="btn" id="btn-prev" onclick="prevQ()" disabled>← Prev</button>
+            <button class="btn btn-primary" id="btn-next" onclick="nextQ()" disabled>Next →</button>
+            <button class="shuffle-toggle" id="shuffle-btn" onclick="toggleShuffle()">
+              <span>Shuffle</span>
+              <span class="tog"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ GESCHICHTEN ═══ -->
+  <section class="section" id="geschichten">
+    <div class="section-head">
+      <h2>Geschichten</h2>
+      <p>Original short stories · Leveled novels · Reading with purpose</p>
+    </div>
+    <div class="level-tabs">
+      <button class="level-tab active" onclick="switchStory('a1',this)">A1 — Anfänger</button>
+      <button class="level-tab" onclick="switchStory('a2',this)">A2 — Grundstufe</button>
+      <button class="level-tab" onclick="switchStory('b1',this)">B1 — Mittelstufe</button>
+      <button class="level-tab" onclick="switchStory('books',this)">📚 Empfehlungen</button>
+    </div>
+
+    <!-- A1 Story -->
+    <div class="story-panel active" id="story-a1">
+      <div class="story-meta">
+        <span class="story-title">Mein erster Tag</span>
+        <div class="story-stats">
+          <span class="stat-pill lv-a1">A1</span>
+          <span class="stat-pill">~220 Wörter</span>
+          <span class="stat-pill">Präsens</span>
+        </div>
+      </div>
+      <div class="story-controls">
+        <button class="btn" onclick="toggleTranslation('a1')">Show English</button>
+      </div>
+      <div class="story-text">
+        <div class="story-de" id="story-de-a1">
+          <p>Mein Name ist Sarah. Ich komme aus Australien. Heute ist mein erster Tag in Deutschland.</p>
+          <p>Die Stadt heißt Freiburg. Sie ist klein, aber sehr schön. Es gibt alte Häuser und grüne Berge. Die Luft riecht nach Wald.</p>
+          <p>Ich habe ein kleines Zimmer in einer Pension. Das Zimmer ist sauber und warm. Es gibt ein Bett, einen Tisch und einen Stuhl. Das Fenster geht zum Garten.</p>
+          <p>Am Morgen gehe ich in ein Café. Ich möchte einen Kaffee. Eine Kellnerin kommt. Sie lächelt.</p>
+          <p><span class="dialog">„Was möchten Sie?"</span>, fragt sie.</p>
+          <p><span class="dialog">„Einen Kaffee, bitte. Und ein Croissant."</span></p>
+          <p><span class="dialog">„Gerne"</span>, sagt sie.</p>
+          <p>Der Kaffee ist heiß und stark. Das Croissant ist frisch und gut. Ich bin glücklich.</p>
+          <p>Dann gehe ich in den Park. Der Park ist groß und grün. Kinder spielen. Ein Hund läuft nach einem Ball. Eine alte Frau sitzt auf einer Bank und liest ein Buch.</p>
+          <p>Ich habe keine Karte. Ich frage die Frau:</p>
+          <p><span class="dialog">„Entschuldigung — wo ist die U-Bahn?"</span></p>
+          <p>Die Frau lächelt. <span class="dialog">„Geradeaus, dann links."</span></p>
+          <p><span class="dialog">„Danke schön!"</span></p>
+          <p><span class="dialog">„Bitte sehr."</span></p>
+          <p>Ich gehe durch die Stadt. Die Menschen sind freundlich. Die Straßen sind sauber. Die Häuser haben Blumen am Fenster.</p>
+          <p>Abends schreibe ich in mein Tagebuch: <em>Deutsch ist schwer. Aber Deutschland ist schön.</em></p>
+        </div>
+        <div class="story-en" id="story-en-a1">
+          <p>My name is Sarah. I come from Australia. Today is my first day in Germany.</p>
+          <p>The city is called Freiburg. It is small but very beautiful. There are old houses and green mountains. The air smells of forest.</p>
+          <p>I have a small room in a guesthouse. The room is clean and warm. There is a bed, a table, and a chair. The window faces the garden.</p>
+          <p>In the morning I go to a café. I want a coffee. A waitress comes. She smiles.</p>
+          <p>"What would you like?" she asks.</p>
+          <p>"A coffee, please. And a croissant."</p>
+          <p>"Of course," she says.</p>
+          <p>The coffee is hot and strong. The croissant is fresh and good. I am happy.</p>
+          <p>Then I go to the park. The park is large and green. Children are playing. A dog runs after a ball. An old woman sits on a bench and reads a book.</p>
+          <p>I have no map. I ask the woman: "Excuse me — where is the subway?"</p>
+          <p>The woman smiles. "Straight ahead, then left."</p>
+          <p>"Thank you very much!" — "You're welcome."</p>
+          <p>I walk through the city. The people are friendly. The streets are clean. The houses have flowers in the windows.</p>
+          <p>In the evening I write in my diary: German is hard. But Germany is beautiful.</p>
+        </div>
+      </div>
+      <!-- Vocabulary -->
+      <div class="story-vocab">
+        <div class="vocab-header" onclick="toggleVocab('a1')">
+          Key Vocabulary
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="vocab-grid" id="vocab-a1" style="display:none">
+          <div class="vocab-item"><span class="vocab-de">die Kellnerin</span><span class="vocab-en">waitress</span></div>
+          <div class="vocab-item"><span class="vocab-de">die Pension</span><span class="vocab-en">guesthouse, B&B</span></div>
+          <div class="vocab-item"><span class="vocab-de">die Karte</span><span class="vocab-en">map / card / menu</span></div>
+          <div class="vocab-item"><span class="vocab-de">geradeaus</span><span class="vocab-en">straight ahead</span></div>
+          <div class="vocab-item"><span class="vocab-de">das Tagebuch</span><span class="vocab-en">diary, journal</span></div>
+          <div class="vocab-item"><span class="vocab-de">lächeln</span><span class="vocab-en">to smile</span></div>
+          <div class="vocab-item"><span class="vocab-de">sauber</span><span class="vocab-en">clean</span></div>
+          <div class="vocab-item"><span class="vocab-de">freundlich</span><span class="vocab-en">friendly</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2 Story -->
+    <div class="story-panel" id="story-a2">
+      <div class="story-meta">
+        <span class="story-title">Das alte Foto</span>
+        <div class="story-stats">
+          <span class="stat-pill lv-a2">A2</span>
+          <span class="stat-pill">~300 Wörter</span>
+          <span class="stat-pill">Präsens + Perfekt</span>
+        </div>
+      </div>
+      <div class="story-controls">
+        <button class="btn" onclick="toggleTranslation('a2')">Show English</button>
+      </div>
+      <div class="story-text">
+        <div class="story-de" id="story-de-a2">
+          <p>Lena hat beim Aufräumen ein altes Foto gefunden. Es lag in einer Schachtel unter dem Bett.</p>
+          <p>Das Foto ist schwarz-weiß. Darauf sind zwei Frauen zu sehen. Sie stehen vor einem großen Haus. Beide lächeln in die Kamera. Eine der Frauen hat kurze Haare und trägt ein gestreiftes Kleid. Die andere ist größer und hat die Hand auf der Schulter der kleineren Frau gelegt.</p>
+          <p>Lena kennt eine der Frauen. Es ist ihre Großmutter, Anna. Aber wer ist die andere?</p>
+          <p>Auf der Rückseite des Fotos hat jemand drei Worte geschrieben: <em>Wien, 1962. Immer zusammen.</em></p>
+          <p>Lena hat ihre Mutter angerufen.</p>
+          <p><span class="dialog">„Mama, wer ist die Frau auf dem Foto? Sie steht neben Oma."</span></p>
+          <p>Eine kurze Pause. Dann hat die Mutter leise gesagt:</p>
+          <p><span class="dialog">„Das ist Marta. Deine Großmutter hat nie über sie gesprochen. Sie waren beste Freundinnen in Wien. Und dann ist Marta nach Amerika ausgewandert. Ich glaube, sie haben sich nie wiedergesehen."</span></p>
+          <p>Lena schaut wieder auf das Foto. Die zwei Frauen halten sich an den Händen. Sie sehen glücklich aus.</p>
+          <p><em>Immer zusammen</em>, liest Lena.</p>
+          <p>Sie legt das Foto vorsichtig auf den Tisch. Draußen hat es angefangen zu regnen.</p>
+          <p>Lena denkt an ihre Großmutter und an ein Leben voller Geschichten, die nie erzählt worden sind.</p>
+        </div>
+        <div class="story-en" id="story-en-a2">
+          <p>Lena found an old photo while tidying up. It was lying in a box under the bed.</p>
+          <p>The photo is black and white. Two women can be seen in it. They are standing in front of a large house. Both are smiling at the camera. One of the women has short hair and is wearing a striped dress. The other is taller and has placed her hand on the smaller woman's shoulder.</p>
+          <p>Lena recognizes one of the women. It is her grandmother, Anna. But who is the other one?</p>
+          <p>On the back of the photo, someone has written three words: Vienna, 1962. Always together.</p>
+          <p>Lena called her mother. "Mama, who is the woman in the photo? She's standing next to Grandma."</p>
+          <p>A brief pause. Then her mother said quietly: "That's Marta. Your grandmother never talked about her. They were best friends in Vienna. And then Marta emigrated to America. I don't think they ever saw each other again."</p>
+          <p>Lena looks at the photo again. The two women are holding hands. They look happy.</p>
+          <p>Always together, Lena reads.</p>
+          <p>She places the photo carefully on the table. Outside, it has started to rain.</p>
+          <p>Lena thinks of her grandmother and a life full of stories that were never told.</p>
+        </div>
+      </div>
+      <div class="story-vocab">
+        <div class="vocab-header" onclick="toggleVocab('a2')">Key Vocabulary <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="vocab-grid" id="vocab-a2" style="display:none">
+          <div class="vocab-item"><span class="vocab-de">aufräumen</span><span class="vocab-en">to tidy up (separable)</span></div>
+          <div class="vocab-item"><span class="vocab-de">die Schachtel</span><span class="vocab-en">box</span></div>
+          <div class="vocab-item"><span class="vocab-de">die Rückseite</span><span class="vocab-en">back, reverse side</span></div>
+          <div class="vocab-item"><span class="vocab-de">gestreift</span><span class="vocab-en">striped</span></div>
+          <div class="vocab-item"><span class="vocab-de">auswandern</span><span class="vocab-en">to emigrate</span></div>
+          <div class="vocab-item"><span class="vocab-de">vorsichtig</span><span class="vocab-en">carefully</span></div>
+          <div class="vocab-item"><span class="vocab-de">voller</span><span class="vocab-en">full of</span></div>
+          <div class="vocab-item"><span class="vocab-de">wiedergesehen</span><span class="vocab-en">seen again (wiedersehen)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B1 Story -->
+    <div class="story-panel" id="story-b1">
+      <div class="story-meta">
+        <span class="story-title">Waldeinsamkeit</span>
+        <div class="story-stats">
+          <span class="stat-pill lv-b1">B1</span>
+          <span class="stat-pill">~420 Wörter</span>
+          <span class="stat-pill">Präsens + Präteritum</span>
+        </div>
+      </div>
+      <div class="story-controls">
+        <button class="btn" onclick="toggleTranslation('b1')">Show English</button>
+      </div>
+      <div class="story-text">
+        <div class="story-de" id="story-de-b1">
+          <p>Es gibt Orte, die einem das Gefühl geben, nirgendwo zu sein und gleichzeitig überall.</p>
+          <p>Der Schwarzwald war so ein Ort für Jonas.</p>
+          <p>Er war an einem Freitagabend mit dem Zug aus Frankfurt gefahren — mit einem kleinen Rucksack und dem Entschluss, zwei Tage lang keine E-Mails zu lesen. Das Büro, die Deadlines, die endlosen Videokonferenzen — all das blieb in der Stadt zurück.</p>
+          <p>Hier oben, zwischen den dunklen Kiefern und dem grauen Nebel, war alles anders.</p>
+          <p>Jonas wanderte seit drei Stunden. Er kannte den Weg nicht genau, aber das störte ihn nicht. Er folgte einem schmalen Pfad, der manchmal zwischen den Bäumen verschwand und sich dann wieder abzeichnete wie ein Geheimnis, das er noch nicht verstand.</p>
+          <p>Einmal hörte er ein Knacken im Gebüsch. Er blieb stehen. Ein Reh schaute ihn aus großen, ruhigen Augen an. Dann drehte es sich um und verschwand lautlos zwischen den Bäumen.</p>
+          <p>Jonas setzte sich auf einen moosbedeckten Felsen und trank aus seiner Thermoskanne. Der Tee war noch warm. In der Ferne läuteten Kirchenglocken — einmal, zweimal, dreimal. Drei Uhr nachmittags.</p>
+          <p>Er dachte an das Wort, das seine Mutter ihm einmal beigebracht hatte: <em>Waldeinsamkeit.</em></p>
+          <p><span class="dialog">„Das ist kein Wort, das man übersetzen kann"</span>, hatte sie gesagt. <span class="dialog">„Es ist ein Gefühl. Das Gefühl, allein im Wald zu sein — nicht einsam im traurigen Sinne, sondern allein im Sinne von: ganz bei sich selbst."</span></p>
+          <p>Jonas glaubte, dieses Gefühl jetzt zum ersten Mal wirklich zu verstehen.</p>
+          <p>Hier gab es keine Erwartungen. Keine Leistung, die man erbringen musste. Nur die Stille, die Bäume, das gelegentliche Rascheln des Windes in den Kiefernnadeln.</p>
+          <p>Er öffnete sein Notizbuch und schrieb einen einzigen Satz: <em>Manchmal muss man weit gehen, um bei sich anzukommen.</em></p>
+          <p>Dann stand er auf, schulterte seinen Rucksack und lief weiter. Der Weg lag noch lang vor ihm. Das war gut so.</p>
+          <p>Der Wald schwieg. Und in diesem Schweigen sprach er laut.</p>
+        </div>
+        <div class="story-en" id="story-en-b1">
+          <p>There are places that give you the feeling of being nowhere and everywhere at once.</p>
+          <p>The Black Forest was such a place for Jonas.</p>
+          <p>He had traveled from Frankfurt by train on a Friday evening — with a small backpack and the resolve not to read any emails for two days. The office, the deadlines, the endless video calls — all of that stayed behind in the city.</p>
+          <p>Up here, between the dark pine trees and the grey mist, everything was different.</p>
+          <p>Jonas had been hiking for three hours. He didn't know the path precisely, but that didn't bother him. He followed a narrow trail that sometimes vanished between the trees and then reappeared like a secret he hadn't yet understood.</p>
+          <p>At one point he heard a cracking sound in the undergrowth. He stopped. A deer looked at him with large, calm eyes. Then it turned around and disappeared soundlessly between the trees.</p>
+          <p>Jonas sat down on a moss-covered rock and drank from his thermos. The tea was still warm. In the distance, church bells rang — once, twice, three times. Three o'clock in the afternoon.</p>
+          <p>He thought of the word his mother had once taught him: Waldeinsamkeit.</p>
+          <p>"That's a word you can't translate," she had said. "It's a feeling. The feeling of being alone in the forest — not lonely in the sad sense, but alone in the sense of: entirely with yourself."</p>
+          <p>Jonas felt he was truly understanding this feeling for the first time.</p>
+          <p>Here there were no expectations. No performance to deliver. Only the silence, the trees, the occasional rustle of wind in the pine needles.</p>
+          <p>He opened his notebook and wrote a single sentence: Sometimes you have to go far to arrive at yourself.</p>
+          <p>Then he stood up, shouldered his backpack, and walked on. The path ahead was still long. That was as it should be.</p>
+          <p>The forest was silent. And in that silence, it spoke loudly.</p>
+        </div>
+      </div>
+      <div class="story-vocab">
+        <div class="vocab-header" onclick="toggleVocab('b1')">Key Vocabulary <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="vocab-grid" id="vocab-b1" style="display:none">
+          <div class="vocab-item"><span class="vocab-de">der Entschluss</span><span class="vocab-en">resolve, decision</span></div>
+          <div class="vocab-item"><span class="vocab-de">schmaler Pfad</span><span class="vocab-en">narrow path</span></div>
+          <div class="vocab-item"><span class="vocab-de">das Gebüsch</span><span class="vocab-en">undergrowth, bushes</span></div>
+          <div class="vocab-item"><span class="vocab-de">moosbedeckt</span><span class="vocab-en">moss-covered</span></div>
+          <div class="vocab-item"><span class="vocab-de">die Kirchenglocke</span><span class="vocab-en">church bell</span></div>
+          <div class="vocab-item"><span class="vocab-de">gelegentlich</span><span class="vocab-en">occasional(ly)</span></div>
+          <div class="vocab-item"><span class="vocab-de">das Rascheln</span><span class="vocab-en">rustling</span></div>
+          <div class="vocab-item"><span class="vocab-de">schultern</span><span class="vocab-en">to shoulder (a bag)</span></div>
+          <div class="vocab-item"><span class="vocab-de">die Kiefernnadeln</span><span class="vocab-en">pine needles</span></div>
+          <div class="vocab-item"><span class="vocab-de">ankommen bei sich</span><span class="vocab-en">to arrive at/find oneself</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Book Recommendations -->
+    <div class="story-panel" id="story-books">
+      <div class="section-head" style="border:none;padding-bottom:0">
+        <p style="font-size:13px;color:var(--text-2);line-height:1.7">Curated novels and readers for every level — from your first German sentences to Kafka in the original.</p>
+      </div>
+      <div class="mt-16 book-grid" id="book-grid"></div>
+    </div>
+  </section>
+
+  <!-- ═══ REDEWENDUNGEN ═══ -->
+  <section class="section" id="redewendungen">
+    <div class="section-head">
+      <h2>Redewendungen</h2>
+      <p>German idioms — with literal translations and what they actually mean</p>
+    </div>
+    <div class="filter-chips" style="margin-bottom:20px" id="idiom-filters"></div>
+    <div class="idiom-grid" id="idiom-grid"></div>
+  </section>
+
+  <!-- ═══ ZUNGENBRECHER ═══ -->
+  <section class="section" id="zungenbrecher">
+    <div class="section-head">
+      <h2>Zungenbrecher</h2>
+      <p>Tongue twisters · The best way to destroy your confidence in German pronunciation</p>
+    </div>
+    <div class="zt-grid" id="zt-grid"></div>
+  </section>
+
+  <!-- ═══ REFERENZ ═══ -->
+  <section class="section" id="referenz">
+    <div class="section-head">
+      <h2>Referenz</h2>
+      <p>Grammatical tables — cases, pronouns, prepositions, strong verbs</p>
+    </div>
+    <div class="ref-grid" id="ref-grid"></div>
+  </section>
+</main>
+
+<footer>
+  <p>Stargazer · Deutsch · <a href="index.html">← Zurück zur Hauptseite</a></p>
+  <p style="margin-top:6px;color:var(--text-faint)">Sprache ist das Haus des Seins. — Martin Heidegger</p>
+</footer>
+
+<!-- ── CONTACT ── -->
+<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint);font-style:italic;font-family:'Space Mono',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--amber-2);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div style="text-align:center;padding-bottom:2rem;">
+  <a href="ABOUT.html" style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--amber);opacity:0.45;text-decoration:none;border:1px solid var(--amber);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+</div>
+
+<script>
+  /* Must be defined before shared.js loads */
+  window._pageKey = 'german';
+
+  window._applyDarkMode = function(isDark) {
+    document.body.classList.toggle('light', !isDark);
+    const btn = document.getElementById('darkToggle');
+    if (btn) btn.textContent = isDark ? '☀ Day' : '🌙 Dark';
+  };
+
+  /* Called by shared.js after every auth render */
+  window._afterRenderAuthUI = function() {
+    /* nothing extra needed — auth elements handle themselves */
+  };
+</script>
+<script src="shared.js"></script>
+<script>
+/* ═══════════════════════════════════════════
+   DATA — DICTIONARY
+═══════════════════════════════════════════ */
+const DICT = [
+  /* ── UNTRANSLATABLE ── */
+  {w:"Waldeinsamkeit",a:"die",g:"f",pl:"—",e:"the solitude and peace of being alone in a forest",t:"noun",cat:"untranslatable",l:"C1",
+   ex:"Er suchte die Waldeinsamkeit, um seinen Gedanken freien Lauf zu lassen.",ex_en:"He sought the solitude of the forest to let his thoughts wander freely.",
+   parts:[{p:"Wald",m:"forest"},{p:"ein",m:"alone"},{p:"sam",m:"-ful"},{p:"keit",m:"-ness"}],
+   note:"Central to German Romanticism — the spiritual renewal found in being alone with nature."},
+  {w:"Sehnsucht",a:"die",g:"f",pl:"Sehnsüchte",e:"deep longing, yearning — more intense than mere desire",t:"noun",cat:"untranslatable",l:"B1",
+   ex:"Eine tiefe Sehnsucht nach der Heimat erfasste ihn.",ex_en:"A deep longing for his homeland took hold of him.",
+   parts:[{p:"sehnen",m:"to yearn"},{p:"Sucht",m:"craving/addiction"}],
+   note:"C.S. Lewis translated it as 'the inconsolable longing for we know not what.'"},
+  {w:"Fernweh",a:"das",g:"n",pl:"—",e:"longing for distant places; wanderlust; the ache for far-away",t:"noun",cat:"untranslatable",l:"B2",
+   ex:"Das Fernweh trieb ihn immer wieder in unbekannte Länder.",ex_en:"Wanderlust drove him again and again to unknown lands.",
+   parts:[{p:"fern",m:"far, distant"},{p:"Weh",m:"pain, ache"}],
+   note:"The opposite of Heimweh (homesickness). The ache for what is not here."},
+  {w:"Weltschmerz",a:"der",g:"m",pl:"—",e:"world-weariness; pain caused by the state of the world",t:"noun",cat:"untranslatable",l:"C1",
+   ex:"Ein dumpfer Weltschmerz hatte sich seiner bemächtigt.",ex_en:"A heavy world-weariness had taken hold of him.",
+   parts:[{p:"Welt",m:"world"},{p:"Schmerz",m:"pain, ache"}],
+   note:"Coined by Jean Paul. The awareness of evil in the world, producing a melancholy withdrawal."},
+  {w:"Schadenfreude",a:"die",g:"f",pl:"—",e:"pleasure derived from another person's misfortune",t:"noun",cat:"untranslatable",l:"B2",
+   ex:"Mit einer gewissen Schadenfreude sah er zu, wie sein Rivale stolperte.",ex_en:"With a certain Schadenfreude he watched his rival stumble.",
+   parts:[{p:"Schaden",m:"harm, damage"},{p:"Freude",m:"joy, pleasure"}],
+   note:"One of the few German loan words in English, testament to its perfect untranslatability."},
+  {w:"Gemütlichkeit",a:"die",g:"f",pl:"—",e:"coziness, warmth, and convivial ease",t:"noun",cat:"untranslatable",l:"B1",
+   ex:"Das Café hatte eine besondere Gemütlichkeit, die man nicht beschreiben konnte.",ex_en:"The café had a particular coziness that one couldn't describe.",
+   parts:[{p:"gemütlich",m:"cozy/comfortable"},{p:"keit",m:"-ness"}],
+   note:"Describes not just a feeling but an entire atmosphere — the German art of being at ease."},
+  {w:"Torschlusspanik",a:"die",g:"f",pl:"—",e:"gate-closing panic; fear that time is running out",t:"noun",cat:"untranslatable",l:"C1",
+   ex:"Mit 35 befiel sie plötzlich die Torschlusspanik.",ex_en:"At 35, the gate-closing panic suddenly struck her.",
+   parts:[{p:"Tor",m:"gate"},{p:"Schluss",m:"closing"},{p:"Panik",m:"panic"}],
+   note:"The medieval image: the city gates closing at dusk, and you haven't made it back in time."},
+  {w:"Fingerspitzengefühl",a:"das",g:"n",pl:"—",e:"sensitivity, tact; the ability to handle delicate situations",t:"noun",cat:"untranslatable",l:"C1",
+   ex:"Diese Verhandlungen erfordern viel Fingerspitzengefühl.",ex_en:"These negotiations require a great deal of tact and sensitivity.",
+   parts:[{p:"Finger",m:"finger"},{p:"Spitze",m:"tip"},{p:"Gefühl",m:"feeling"}],
+   note:"Literally: fingertip feeling. The tactile metaphor for emotional intelligence."},
+  {w:"Verschlimmbessern",a:"",g:"",pl:"",e:"to make something worse while attempting to improve it",t:"verb",cat:"untranslatable",l:"C2",
+   ex:"Er hat das Regal reparieren wollen, aber nur verschlimmbessert.",ex_en:"He wanted to fix the shelf but only made things worse.",
+   parts:[{p:"schlimm",m:"bad"},{p:"besser",m:"better"},{p:"ver-",m:"mis-(prefix)"}],
+   note:"A single verb for what English needs a whole phrase to express."},
+  {w:"Kummerspeck",a:"der",g:"m",pl:"—",e:"grief bacon; weight gained from emotional eating",t:"noun",cat:"untranslatable",l:"C1",
+   ex:"Nach der Trennung hatte sie einige Kilos Kummerspeck zugenommen.",ex_en:"After the break-up she had put on some grief-pounds.",
+   parts:[{p:"Kummer",m:"grief, sorrow"},{p:"Speck",m:"bacon, fat"}],
+   note:"The German language's dark comedy — food as consolation, weight as evidence of suffering."},
+  {w:"Fremdschämen",a:"",g:"",pl:"",e:"vicarious embarrassment; cringing on behalf of someone else",t:"verb",cat:"untranslatable",l:"B2",
+   ex:"Bei seiner peinlichen Rede musste ich mich fremdschämen.",ex_en:"During his embarrassing speech I had to cringe with vicarious shame.",
+   parts:[{p:"fremd",m:"foreign/other"},{p:"schämen",m:"to be ashamed"}],
+   note:"The excruciating feeling of being embarrassed by someone who is not embarrassed by themselves."},
+  {w:"Innerer Schweinehund",a:"der",g:"m",pl:"",e:"inner pig-dog; the part of you that resists effort and prefers comfort",t:"noun",cat:"untranslatable",l:"B2",
+   ex:"Ich musste meinen inneren Schweinehund überwinden, um früh aufzustehen.",ex_en:"I had to overcome my inner pig-dog to get up early.",
+   parts:[{p:"inner",m:"inner"},{p:"Schwein",m:"pig"},{p:"Hund",m:"dog"}],
+   note:"The closest German equivalent to 'laziness' — but personified as a beast inside you that must be defeated."},
+  {w:"Weltanschauung",a:"die",g:"f",pl:"Weltanschauungen",e:"worldview; a comprehensive conception of the world",t:"noun",cat:"untranslatable",l:"C1",
+   ex:"Ihre politische Weltanschauung hatte sich über die Jahre gewandelt.",ex_en:"Her political worldview had changed over the years.",
+   parts:[{p:"Welt",m:"world"},{p:"an",m:"at/upon"},{p:"Schauung",m:"viewing/contemplation"}],
+   note:"Borrowed directly into English philosophy. One's complete philosophical perspective on existence."},
+  {w:"Zeitgeist",a:"der",g:"m",pl:"—",e:"the spirit of the age; the defining ideas of a particular period",t:"noun",cat:"untranslatable",l:"B2",
+   ex:"Ihr Roman hat den Zeitgeist der 1980er perfekt eingefangen.",ex_en:"Her novel perfectly captured the spirit of the 1980s.",
+   parts:[{p:"Zeit",m:"time/age"},{p:"Geist",m:"spirit/mind"}],
+   note:"Hegel's concept. Now used globally to mean the intellectual and cultural climate of an era."},
+  {w:"Doppelgänger",a:"der",g:"m",pl:"Doppelgänger",e:"a double; a look-alike of a living person",t:"noun",cat:"untranslatable",l:"B1",
+   ex:"Sie traf ihren Doppelgänger in einem Supermarkt in Hamburg.",ex_en:"She met her double in a supermarket in Hamburg.",
+   parts:[{p:"doppel",m:"double"},{p:"Gänger",m:"goer/walker"}],
+   note:"Coined by Jean Paul. Now global — the shadowy duplicate of oneself."},
+  {w:"Zweisamkeit",a:"die",g:"f",pl:"—",e:"the intimate feeling of togetherness for two; couple-solitude",t:"noun",cat:"untranslatable",l:"C1",
+   ex:"Sie genossen die Zweisamkeit des langen Wochenendes.",ex_en:"They enjoyed the intimate togetherness of the long weekend.",
+   parts:[{p:"zwei",m:"two"},{p:"sam",m:"-ful"},{p:"keit",m:"-ness"}],
+   note:"Modeled on Einsamkeit (solitude). The paradox of being 'alone together' — but beautifully so."},
+  {w:"Stammtisch",a:"der",g:"m",pl:"Stammtische",e:"a table reserved for regulars at a pub; the tradition of gathering",t:"noun",cat:"untranslatable",l:"B2",
+   ex:"Jeden Donnerstag traf er sich mit seinen Freunden am Stammtisch.",ex_en:"Every Thursday he met his friends at the regulars' table.",
+   parts:[{p:"Stamm",m:"tribe/regular"},{p:"Tisch",m:"table"}],
+   note:"A cornerstone of German pub culture — a reserved table for a fixed group of friends who meet regularly."},
+  {w:"Bildung",a:"die",g:"f",pl:"—",e:"cultivation through learning; holistic self-development",t:"noun",cat:"untranslatable",l:"C1",
+   ex:"Bildung war für Humboldt mehr als Wissen — es war die Formung des ganzen Menschen.",ex_en:"For Humboldt, Bildung was more than knowledge — it was the shaping of the whole person.",
+   parts:[{p:"bilden",m:"to form/educate"},{p:"-ung",m:"noun suffix"}],
+   note:"Impossible to translate: 'education' is too narrow, 'culture' too vague. It means the cultivation of all human faculties."},
+  /* ── NOUNS ── */
+  {w:"das Haus",a:"das",g:"n",pl:"die Häuser",e:"house, building",t:"noun",cat:"noun",l:"A1",ex:"Das alte Haus am Ende der Straße hat einen großen Garten.",ex_en:"The old house at the end of the street has a large garden."},
+  {w:"die Stadt",a:"die",g:"f",pl:"die Städte",e:"city, town",t:"noun",cat:"noun",l:"A1",ex:"München ist eine der schönsten Städte Deutschlands.",ex_en:"Munich is one of Germany's most beautiful cities."},
+  {w:"der Mensch",a:"der",g:"m",pl:"die Menschen",e:"person, human being",t:"noun",cat:"noun",l:"A1",ex:"Die meisten Menschen träumen mehr, als sie zugeben.",ex_en:"Most people dream more than they admit."},
+  {w:"die Zeit",a:"die",g:"f",pl:"die Zeiten",e:"time",t:"noun",cat:"noun",l:"A1",ex:"Zeit ist das, was wir am meisten verschwenden.",ex_en:"Time is what we waste the most.",
+   note:"German distinguishes Zeit (time in general) from Uhrzeit (clock time) and Mal (an instance/occurrence)."},
+  {w:"das Leben",a:"das",g:"n",pl:"die Leben",e:"life",t:"noun",cat:"noun",l:"A1",ex:"Das Leben ist kurz, die Kunst ist lang. (Hippokrates)",ex_en:"Life is short, art is long."},
+  {w:"die Welt",a:"die",g:"f",pl:"die Welten",e:"world",t:"noun",cat:"noun",l:"A1",ex:"Jeder Mensch lebt in seiner eigenen Welt.",ex_en:"Every person lives in their own world."},
+  {w:"der Weg",a:"der",g:"m",pl:"die Wege",e:"way, path, road",t:"noun",cat:"noun",l:"A1",ex:"Der Weg ist das Ziel.",ex_en:"The journey is the destination.",note:"Idiomatically rich: 'auf dem Weg sein' = to be on one's way."},
+  {w:"die Arbeit",a:"die",g:"f",pl:"die Arbeiten",e:"work, job, task",t:"noun",cat:"noun",l:"A1",ex:"Arbeit macht das Leben süß.",ex_en:"Work makes life sweet."},
+  {w:"der Traum",a:"der",g:"m",pl:"die Träume",e:"dream",t:"noun",cat:"noun",l:"A1",ex:"Sie verfolgte ihren Traum, obwohl alle sagten, es sei unmöglich.",ex_en:"She pursued her dream even though everyone said it was impossible."},
+  {w:"der Gedanke",a:"der",g:"m",pl:"die Gedanken",e:"thought, idea",t:"noun",cat:"noun",l:"A2",ex:"Der Gedanke ließ ihn nicht schlafen.",ex_en:"The thought wouldn't let him sleep."},
+  {w:"das Gefühl",a:"das",g:"n",pl:"die Gefühle",e:"feeling, emotion, sense",t:"noun",cat:"noun",l:"A2",ex:"Sie hatte das Gefühl, beobachtet zu werden.",ex_en:"She had the feeling of being watched."},
+  {w:"die Geschichte",a:"die",g:"f",pl:"die Geschichten",e:"story; history",t:"noun",cat:"noun",l:"A2",ex:"Er erzählte ihr eine Geschichte, die sie nie vergaß.",ex_en:"He told her a story she never forgot.",note:"Same word for 'story' and 'history'. Context disambiguates."},
+  {w:"die Stille",a:"die",g:"f",pl:"—",e:"silence, stillness, quiet",t:"noun",cat:"noun",l:"B1",ex:"In der Stille des Waldes hörte er seinen eigenen Herzschlag.",ex_en:"In the silence of the forest he heard his own heartbeat."},
+  {w:"die Einsamkeit",a:"die",g:"f",pl:"—",e:"loneliness, solitude",t:"noun",cat:"noun",l:"B1",ex:"Es gibt einen Unterschied zwischen Einsamkeit und Alleinsein.",ex_en:"There is a difference between loneliness and being alone."},
+  {w:"der Mut",a:"der",g:"m",pl:"—",e:"courage, bravery",t:"noun",cat:"noun",l:"A2",ex:"Es gehört Mut dazu, die Wahrheit zu sagen.",ex_en:"It takes courage to tell the truth."},
+  {w:"die Hoffnung",a:"die",g:"f",pl:"die Hoffnungen",e:"hope",t:"noun",cat:"noun",l:"A2",ex:"Die Hoffnung stirbt zuletzt.",ex_en:"Hope dies last."},
+  {w:"der Abend",a:"der",g:"m",pl:"die Abende",e:"evening",t:"noun",cat:"noun",l:"A1",ex:"Guten Abend! Es war ein langer Tag.",ex_en:"Good evening! It was a long day."},
+  {w:"die Nacht",a:"die",g:"f",pl:"die Nächte",e:"night",t:"noun",cat:"noun",l:"A1",ex:"In der Nacht sind alle Katzen grau.",ex_en:"In the night, all cats are grey."},
+  {w:"der Brief",a:"der",g:"m",pl:"die Briefe",e:"letter (correspondence)",t:"noun",cat:"noun",l:"A1",ex:"Sie schrieb ihm einen langen Brief, schickte ihn aber nie ab.",ex_en:"She wrote him a long letter but never sent it."},
+  {w:"das Geheimnis",a:"das",g:"n",pl:"die Geheimnisse",e:"secret, mystery",t:"noun",cat:"noun",l:"A2",ex:"Jeder Mensch hat Geheimnisse.",ex_en:"Every person has secrets."},
+  {w:"die Grenze",a:"die",g:"f",pl:"die Grenzen",e:"border, boundary, limit",t:"noun",cat:"noun",l:"B1",ex:"Er kannte seine Grenzen sehr genau.",ex_en:"He knew his limits very precisely."},
+  /* ── VERBS ── */
+  {w:"werden",a:"",g:"",pl:"",e:"to become; auxiliary for future/passive",t:"verb",cat:"verb",l:"A1",
+   ex:"Er wird eines Tages verstehen, was ich meinte.",ex_en:"He will one day understand what I meant.",
+   conj:{pre:["ich werde","du wirst","er wird","wir werden","ihr werdet","sie werden"],perf:"ist geworden",pret:"wurde",note:"Irregular strong verb. Three key uses: (1) to become, (2) future tense auxiliary, (3) passive auxiliary."}},
+  {w:"denken",a:"",g:"",pl:"",e:"to think",t:"verb",cat:"verb",l:"A1",
+   ex:"Ich denke, also bin ich. (Descartes)",ex_en:"I think, therefore I am.",
+   conj:{pre:["ich denke","du denkst","er denkt","wir denken","ihr denkt","sie denken"],perf:"hat gedacht",pret:"dachte",note:"Mixed verb (Mischverb): regular present tense, but irregular past: dachte / gedacht (vowel change + no -ge in PP)."}},
+  {w:"fühlen",a:"",g:"",pl:"",e:"to feel",t:"verb",cat:"verb",l:"A1",
+   ex:"Er fühlte sich zum ersten Mal wirklich zu Hause.",ex_en:"He felt truly at home for the first time.",
+   conj:{pre:["ich fühle","du fühlst","er fühlt","wir fühlen","ihr fühlt","sie fühlen"],perf:"hat gefühlt",pret:"fühlte",note:"Regular. Often reflexive: sich fühlen (to feel [a certain way]): Wie fühlst du dich? — Ich fühle mich gut."}},
+  {w:"verlieren",a:"",g:"",pl:"",e:"to lose",t:"verb",cat:"verb",l:"A2",
+   ex:"Man kann nichts verlieren, was man nie wirklich besessen hat.",ex_en:"You can't lose what you never truly possessed.",
+   conj:{pre:["ich verliere","du verlierst","er verliert","wir verlieren","ihr verliert","sie verlieren"],perf:"hat verloren",pret:"verlor",note:"Strong verb. verlor → verloren. Note: no -ge- prefix because 'ver-' is inseparable."}},
+  {w:"erinnern",a:"",g:"",pl:"",e:"to remind; (sich erinnern) to remember",t:"verb",cat:"verb",l:"A2",
+   ex:"Erinnerst du dich noch an unseren ersten Abend?",ex_en:"Do you still remember our first evening?",
+   conj:{pre:["ich erinnere mich","du erinnerst dich","er erinnert sich","wir erinnern uns","ihr erinnert euch","sie erinnern sich"],perf:"hat sich erinnert",pret:"erinnerte sich",note:"Always reflexive when meaning 'to remember'. Takes 'an + Akkusativ': sich an etwas erinnern."}},
+  {w:"verstehen",a:"",g:"",pl:"",e:"to understand",t:"verb",cat:"verb",l:"A1",
+   ex:"Ich verstehe dich — aber ich bin nicht einverstanden.",ex_en:"I understand you — but I don't agree.",
+   conj:{pre:["ich verstehe","du verstehst","er versteht","wir verstehen","ihr versteht","sie verstehen"],perf:"hat verstanden",pret:"verstand",note:"Strong verb (inseparable). 'ver-' prefix → no 'ge-' in past participle: verstanden."}},
+  {w:"klingen",a:"",g:"",pl:"",e:"to sound, to ring",t:"verb",cat:"verb",l:"B1",
+   ex:"Das klingt interessant, aber ich bin skeptisch.",ex_en:"That sounds interesting, but I'm skeptical.",
+   conj:{pre:["ich klinge","du klingst","er klingt","wir klingen","ihr klingt","sie klingen"],perf:"hat geklungen",pret:"klang",note:"Strong verb. klang → geklungen. Common pattern: i/a/u vowel alternation."}},
+  {w:"laufen",a:"",g:"",pl:"",e:"to run; to walk (regional)",t:"verb",cat:"verb",l:"A1",
+   ex:"Ich laufe jeden Morgen durch den Park, egal wie das Wetter ist.",ex_en:"I run through the park every morning, whatever the weather.",
+   conj:{pre:["ich laufe","du läufst","er läuft","wir laufen","ihr lauft","sie laufen"],perf:"ist gelaufen",pret:"lief",note:"Strong verb with stem-change (au→äu in 2nd/3rd person sg.). Uses 'sein' in perfect: movement verb."}},
+  {w:"hoffen",a:"",g:"",pl:"",e:"to hope",t:"verb",cat:"verb",l:"A2",
+   ex:"Wir hoffen, dass der Frieden hält.",ex_en:"We hope that the peace holds.",
+   conj:{pre:["ich hoffe","du hoffst","er hofft","wir hoffen","ihr hofft","sie hoffen"],perf:"hat gehofft",pret:"hoffte",note:"Regular. Takes 'auf + Akkusativ' (to hope for sth.) or dass-clause."}},
+  {w:"scheinen",a:"",g:"",pl:"",e:"to seem, to appear; to shine (sun)",t:"verb",cat:"verb",l:"A2",
+   ex:"Es scheint, als ob er die Wahrheit weiß.",ex_en:"It seems as if he knows the truth.",
+   conj:{pre:["ich scheine","du scheinst","er scheint","wir scheinen","ihr scheint","sie scheinen"],perf:"hat geschienen",pret:"schien",note:"Strong verb. Two meanings: (1) to shine: Die Sonne scheint. (2) to seem/appear: Es scheint schwierig."}},
+  {w:"bleiben",a:"",g:"",pl:"",e:"to stay, to remain",t:"verb",cat:"verb",l:"A1",
+   ex:"Bleib, wie du bist.",ex_en:"Stay as you are.",
+   conj:{pre:["ich bleibe","du bleibst","er bleibt","wir bleiben","ihr bleibt","sie bleiben"],perf:"ist geblieben",pret:"blieb",note:"Strong verb. Uses 'sein' as perfect auxiliary — intransitive state-change verb."}},
+  /* ── ADJECTIVES ── */
+  {w:"still",a:"",g:"",pl:"",e:"quiet, silent, still; secret (innerlich still)",t:"adj",cat:"adj",l:"A2",
+   ex:"Er war ein stilles Kind, das lieber beobachtete als redete.",ex_en:"He was a quiet child who preferred to observe rather than talk.",
+   note:"Predicate: Das Kind ist still. Attributive: ein stilles Kind (neut. nom., indef.)"},
+  {w:"einsam",a:"",g:"",pl:"",e:"lonely, solitary",t:"adj",cat:"adj",l:"A2",
+   ex:"Man kann einsam sein, auch wenn man unter vielen Menschen ist.",ex_en:"One can be lonely even when surrounded by many people."},
+  {w:"mutig",a:"",g:"",pl:"",e:"courageous, brave",t:"adj",cat:"adj",l:"A2",
+   ex:"Es war eine mutige Entscheidung, alles aufzugeben.",ex_en:"It was a courageous decision to give everything up."},
+  {w:"gleichzeitig",a:"",g:"",pl:"",e:"simultaneous(ly), at the same time",t:"adj",cat:"adj",l:"B1",
+   ex:"Er war gleichzeitig erschöpft und aufgeregt.",ex_en:"He was simultaneously exhausted and excited.",
+   note:"Functions as both adjective and adverb."},
+  {w:"unheimlich",a:"",g:"",pl:"",e:"uncanny, eerie; (colloquial) incredibly, extremely",t:"adj",cat:"adj",l:"B1",
+   ex:"Das alte Haus hatte eine unheimliche Stille.",ex_en:"The old house had an eerie silence.",
+   note:"Freud's concept of 'das Unheimliche' — the eerily familiar — derives from this word: un-(familiar) = uncanny."},
+  {w:"nachhaltig",a:"",g:"",pl:"",e:"sustainable; lasting, profound",t:"adj",cat:"adj",l:"B2",
+   ex:"Diese Erfahrung hat mich nachhaltig geprägt.",ex_en:"This experience has profoundly shaped me.",
+   note:"Originally 'sustainable' (ecology), now also figurative: a nachhaltige Wirkung = a lasting effect."},
+  {w:"sachlich",a:"",g:"",pl:"",e:"objective, matter-of-fact, factual",t:"adj",cat:"adj",l:"B2",
+   ex:"Bleib sachlich — es geht hier nicht um Gefühle.",ex_en:"Stay objective — this isn't about feelings.",
+   note:"Related to Sache (thing/matter). The opposite of emotional or personal."},
+  {w:"maßlos",a:"",g:"",pl:"",e:"excessive, immoderate, boundless",t:"adj",cat:"adj",l:"C1",
+   ex:"Sein Ehrgeiz war maßlos — er wurde nie zufrieden.",ex_en:"His ambition was boundless — he was never satisfied.",
+   parts:[{p:"Maß",m:"measure"},{p:"los",m:"-less"}]},
+  {w:"vergänglich",a:"",g:"",pl:"",e:"transient, fleeting, ephemeral",t:"adj",cat:"adj",l:"C1",
+   ex:"Alles Schöne ist vergänglich — das macht es kostbar.",ex_en:"All beautiful things are fleeting — that makes them precious."},
+  {w:"aufrichtig",a:"",g:"",pl:"",e:"sincere, honest, genuine",t:"adj",cat:"adj",l:"B2",
+   ex:"Sei aufrichtig mit mir — auch wenn es wehtut.",ex_en:"Be honest with me — even if it hurts.",
+   parts:[{p:"auf",m:"up"},{p:"richtig",m:"correct/right"}]},
+];
+
+/* ═══════════════════════════════════════════
+   DATA — GRAMMAR QUESTIONS
+═══════════════════════════════════════════ */
+const GRAMMAR = [
+  /* FÄLLE — CASES */
+  {id:1,q:"Which sentence correctly uses the dative case?",o:["Ich helfe er.","Ich helfe ihm.","Ich helfe ihn.","Ich helfe sie."],c:1,topic:"Fälle",
+   exp:"<strong>helfen</strong> is a dative verb (Dativverb). The person being helped must be in the dative case — <em>ihm</em> is the dative of <em>er</em>. Other dative verbs: <em>danken, folgen, gefallen, gehören, begegnen, schaden, nützen.</em>"},
+  {id:2,q:"Complete: <em class='q-german'>Trotz ___ starken Regens blieb er draußen.</em>",o:["des","dem","den","der"],c:0,topic:"Fälle",
+   exp:"<strong>Trotz</strong> governs the <strong>Genitive</strong> case. <em>Regen</em> (m) in genitive → <em>des Regens</em>. Other genitive prepositions: <em>wegen, während, statt/anstatt, aufgrund, infolge, mithilfe, trotz.</em>"},
+  {id:3,q:"<em class='q-german'>Ich erinnere mich ___ unseren ersten Abend.</em> — which form?",o:["von","auf","an","über"],c:2,topic:"Fälle",
+   exp:"<em>Sich erinnern</em> takes <strong>an + Akkusativ</strong>. So: <em>an unseren ersten Abend</em> (accusative, masc.). Compare: <em>sich erinnern an</em> vs. <em>erinnern (jemanden) an etwas</em> (to remind someone of something)."},
+  {id:4,q:"Which verb governs the <strong>Genitive</strong> case?",o:["helfen","danken","bedürfen","begegnen"],c:2,topic:"Fälle",
+   exp:"<strong>Bedürfen</strong> (to need, to require) takes the genitive: <em>Er bedarf der Ruhe.</em> Other genitive verbs (rare but used): <em>gedenken, sich rühmen, harren.</em> The others — helfen, danken, begegnen — take dative."},
+  {id:5,q:"<em class='q-german'>Sie kaufte einen Mantel ___ ihres Kindes wegen.</em> — Formally correct?",o:["Correct — genitive","Wrong — should be dative","Wrong — wegen takes accusative","Correct, but only in speech"],c:0,topic:"Fälle",
+   exp:"<strong>Wegen</strong> traditionally requires the genitive: <em>ihres Kindes</em> (genitive, neuter). In colloquial German, <em>wegen dem Kind</em> (dative) is widespread and increasingly accepted, but formal/written German prescribes the genitive."},
+  {id:6,q:"<em class='q-german'>Der Verdacht fiel auf ___.</em> — replace 'den Chef' with the correct pronoun.",o:["er","ihm","ihn","seiner"],c:2,topic:"Fälle",
+   exp:"<strong>Auf</strong> here governs the <strong>Accusative</strong> — it marks the target of suspicion (directed toward). So <em>den Chef</em> → <em>ihn</em> (accusative). If expressing location/state: <em>auf ihm</em> (dative). This is the two-way preposition rule."},
+  {id:7,q:"<em class='q-german'>Das Auto meines alt___ Vaters.</em> — correct adjective ending?",o:["er","em","en","es"],c:2,topic:"Fälle",
+   exp:"After a possessive pronoun in the <strong>genitive</strong> (meines), the adjective takes the <strong>weak ending -en</strong>. Possessives act like definite articles in most cases, triggering weak declension. Masculine genitive weak → <em>-en</em>."},
+  {id:8,q:"Which sentence correctly uses the Genitive of a proper name?",o:["Goethes Faust ist ein Meisterwerk.","Goethe's Faust ist ein Meisterwerk.","Goethes' Faust ist ein Meisterwerk.","Von Goethe's Faust ist ein Meisterwerk."],c:0,topic:"Fälle",
+   exp:"German proper names form the genitive with <strong>-s</strong>, never with an apostrophe (unlike English): <em>Goethes Faust, Kants Kritik, Bachs Musik.</em> The apostrophe is used only when the name already ends in -s, -ß, -x, -z (e.g., <em>Grass' Blechtrommel</em>)."},
+
+  /* ADJEKTIVENDUNGEN — ADJECTIVE ENDINGS */
+  {id:9,q:"No article. <em class='q-german'>___ Wein ist teuer.</em> Correct ending for 'gut'?",o:["Guten","Gut","Guter","Gutem"],c:2,topic:"Adjektivendungen",
+   exp:"<strong>Strong declension</strong> (starke Deklination) is used when no article precedes. In this position, the adjective must show the gender itself. Masculine nominative → <em>-er</em>: <em>Guter Wein ist teuer.</em> The ending mirrors what the definite article would be: <em>der → -er.</em>"},
+  {id:10,q:"<em class='q-german'>Sie kaufte einen alt___ Mantel.</em>",o:["er","en","es","em"],c:1,topic:"Adjektivendungen",
+   exp:"After an indefinite article (<em>einen</em>), the adjective takes <strong>mixed declension</strong>. Masculine accusative: <em>-en</em>. Rule: when the article already shows the case (einen), the adjective takes weak <em>-en</em>."},
+  {id:11,q:"<em class='q-german'>Mit gutem ___ Wein feiert man.</em> — which case/ending?",o:["gutem (Dativ, correct)","guten (weak after 'mit')","guter (wrong case)","gutes (wrong case)"],c:0,topic:"Adjektivendungen",
+   exp:"<em>Mit</em> always governs <strong>Dative</strong>. No article present → <strong>strong declension</strong>. Masculine dative strong → <em>-em</em>: <em>mit gutem Wein.</em> Contrast: <em>mit dem guten Wein</em> (after definite article → weak <em>-en</em>)."},
+  {id:12,q:"<em class='q-german'>Die Farbe des alt___ Hauses.</em>",o:["en","em","er","es"],c:0,topic:"Adjektivendungen",
+   exp:"After a definite article (<em>des</em>), adjectives always take the <strong>weak ending -en</strong>. Neuter genitive: <em>des alten Hauses</em>. The definite article has already shown the case/gender information."},
+  {id:13,q:"Two adjectives, no article: <em class='q-german'>___ Kaffee, ___ Tee.</em> (strong, black)",o:["Starker schwarzer / starken schwarzen","Starker schwarzer (both strong)","Stark schwarz (no endings)","Starken schwarzen (after nichts)"],c:1,topic:"Adjektivendungen",
+   exp:"When multiple adjectives precede a noun with no article, <strong>all</strong> of them take the strong ending: <em>starker schwarzer Kaffee.</em> They each independently encode the gender/case since no article does it."},
+  {id:14,q:"Predicate adjective: <em class='q-german'>Das Auto ist ___.</em> (fast)",o:["schneller","schnelles","schnell","schnellem"],c:2,topic:"Adjektivendungen",
+   exp:"<strong>Predicate adjectives</strong> (after sein, werden, bleiben) take <strong>no ending at all</strong>: <em>Das Auto ist schnell.</em> Only attributive adjectives (before the noun) carry endings: <em>ein schnelles Auto.</em>"},
+
+  /* VERBFORMEN */
+  {id:15,q:"Complete: <em class='q-german'>Ich habe sie tanzen ___.</em>",o:["gesehen","sehen","geseht","sehend"],c:1,topic:"Verbformen",
+   exp:"<strong>Ersatzinfinitiv</strong> (replacement infinitive): After verbs of perception (<em>sehen, hören, fühlen, spüren</em>) and <em>lassen</em> in compound tenses, the past participle is replaced by the <strong>infinitive</strong>: <em>habe ... tanzen sehen</em> (not <em>gesehen</em>). Also: <em>Ich habe ihn kommen hören.</em>"},
+  {id:16,q:"Which sentence requires <strong>sein</strong> as perfect auxiliary?",o:["Ich habe das Buch gelesen.","Er hat das Auto gewaschen.","Sie ist eingeschlafen.","Wir haben gesprochen."],c:2,topic:"Verbformen",
+   exp:"<em>Einschlafen</em> (to fall asleep) is a <strong>change-of-state verb</strong> → uses <strong>sein</strong>. The rule: verbs of (1) movement from A to B (gehen, fliegen, kommen) and (2) change of state (sterben, einschlafen, aufwachen, werden) use <em>sein</em>. All others: <em>haben</em>."},
+  {id:17,q:"<em class='q-german'>Ich habe kommen müssen.</em> — What is unusual here?",o:["Nothing — this is correct German","'Müssen' should be 'gemusst' here","The auxiliary should be 'sein'","'Kommen' should be 'gekommen'"],c:0,topic:"Verbformen",
+   exp:"<strong>Double infinitive</strong> in subordinate/perfect: When a modal verb is used with another infinitive in the perfect, both appear as infinitives — not past participles. <em>müssen → müssen</em> (not gemusst), <em>kommen → kommen</em> (not gekommen). This is the modal Ersatzinfinitiv."},
+  {id:18,q:"Which verb forms its past participle WITHOUT the 'ge-' prefix?",o:["machen → gemacht","lernen → gelernt","verstehen → verstanden","gehen → gegangen"],c:2,topic:"Verbformen",
+   exp:"<strong>Inseparable verbs</strong> (with prefixes be-, er-, ge-, ver-, zer-, miss-, emp-, ent-, hinter-, wider-) do <strong>not</strong> add <em>ge-</em> in the past participle. <em>Verstehen</em> (prefix <em>ver-</em>) → <em>verstanden</em>. Similarly: <em>besuchen → besucht, erklären → erklärt.</em>"},
+  {id:19,q:"<em class='q-german'>Ich habe gestern ins Kino ___.</em> Which form is more natural in <strong>spoken</strong> German?",o:["gegangen","gehen","ging","gehe"],c:0,topic:"Verbformen",
+   exp:"In <strong>spoken German</strong>, the <strong>Perfekt</strong> (haben/sein + Partizip II) is used for past events. <em>Ich bin gestern ins Kino gegangen.</em> The Präteritum (<em>ich ging</em>) is typical in <strong>written/literary</strong> German. Exceptions: <em>sein, haben</em>, and modal verbs (<em>war, hatte, konnte</em>) are common in speech even in Präteritum."},
+  {id:20,q:"<em class='q-german'>Separables in Perfekt: 'aufmachen' →</em>",o:["geaufmacht","aufgemacht","aufgemacht (ge- between prefix and stem)","gemachtauf"],c:1,topic:"Verbformen",
+   exp:"With <strong>separable verbs</strong>, the <em>ge-</em> prefix is inserted <strong>between the separable prefix and the verb stem</strong>: <em>auf-ge-macht</em> = <em>aufgemacht</em>. One word. Compare inseparable <em>ver-stehen → verstanden</em> (no ge-)."},
+  {id:21,q:"<em class='q-german'>'sehen' in Konjunktiv II present is:</em>",o:["sähe","söhe","sehe","gesehe"],c:0,topic:"Verbformen",
+   exp:"Konjunktiv II is formed from the <strong>Präteritum stem + umlaut (if possible) + subjunctive endings</strong>: <em>sehen → sah → sähe.</em> Pattern: <em>sah + umlaut → säh- + -e = sähe.</em>"},
+  {id:22,q:"<em class='q-german'>Ich lasse das Auto ___.</em> (wash) — what does this mean?",o:["I wash the car myself.","I have the car washed (by someone else).","I let the car wash itself.","I am allowed to wash the car."],c:1,topic:"Verbformen",
+   exp:"<strong>Lassen + infinitive</strong> can express a <strong>causative</strong> meaning: having something done by someone else. <em>Ich lasse das Auto waschen</em> = I have the car washed. Compare: <em>lassen</em> also means 'to allow': <em>Ich lasse ihn gehen</em> = I let him go."},
+
+  /* KONJUNKTIV */
+  {id:23,q:"Indirect speech. Original: <em class='q-german'>Er sagte: „Ich bin müde.\"</em> Converted:",o:["Er sagte, er wäre müde.","Er sagte, er ist müde.","Er sagte, er sei müde.","Er sagte, er war müde."],c:2,topic:"Konjunktiv",
+   exp:"<strong>Konjunktiv I</strong> is the standard form for indirect speech in formal/written German. <em>sein</em> in K1 → <em>sei</em>. K2 (<em>wäre</em>) is used only when K1 form would be identical to the indicative (e.g., for <em>machen</em>, K1 <em>mache</em> = indicative, so K2 is preferred in practice)."},
+  {id:24,q:"K1 indirect speech — 3rd person plural. Original: <em class='q-german'>„Wir wissen es.\"</em>",o:["Sie sagten, sie wüssten es.","Sie sagten, sie wissen es.","Sie sagten, sie wissen es (no change).","Sie sagten, sie wüssten es. (K2, correct here)"],c:3,topic:"Konjunktiv",
+   exp:"<em>Wissen</em> Konjunktiv I 3rd plural: <em>wissen</em> — which is <strong>identical</strong> to the indicative. When K1 equals indicative, use <strong>K2</strong> instead: <em>wüssten</em>. This is the key rule for K1/K2 choice in reported speech."},
+  {id:25,q:"<em class='q-german'>Wenn ich du ___.</em> (were you — expressing advice)",o:["wäre","bin","wer","sei"],c:0,topic:"Konjunktiv",
+   exp:"<strong>Konjunktiv II present</strong> for <em>sein</em>: Präteritum <em>war</em> + umlaut → <em>wäre</em>. The phrase <em>Wenn ich du wäre,…</em> (If I were you) is standard K2. <em>Würde + sein</em> is avoided with common verbs (haben, sein, werden, modals) since their K2 forms are alive in modern German."},
+  {id:26,q:"Which conditional sentence is more natural in <strong>written</strong> German?",o:["Wenn er kommen würde, würden wir essen.","Wenn er käme, würden wir essen.","Wenn er käme, essen würden wir.","Wenn er kommt, würden wir essen."],c:1,topic:"Konjunktiv",
+   exp:"In <strong>written/formal</strong> German, the <strong>wenn-clause</strong> uses the K2 form of the verb directly (<em>käme</em>) rather than <em>würde + kommen</em>. Using <em>würde</em> in both clauses is stilted in writing. In speech, <em>würde + infinitiv</em> everywhere is common and acceptable."},
+  {id:27,q:"<em class='q-german'>Er soll sehr reich sein.</em> What does <em>soll</em> indicate here?",o:["Obligation (he should be rich)","Hearsay — he is supposedly rich","He wants to be rich","Logical deduction (he must be rich)"],c:1,topic:"Konjunktiv",
+   exp:"<strong>Sollen</strong> in the 3rd person can express <strong>hearsay/reported speech</strong> — something heard from others but unverified: <em>Er soll reich sein</em> = He's said to be/supposedly rich. Compare: <em>müssen</em> for logical deduction: <em>Er muss reich sein</em> = He must be rich (I can see evidence)."},
+  {id:28,q:"Unreal condition in the PAST: <em class='q-german'>„If only he had listened.\"</em>",o:["Wenn er zuhören würde!","Wenn er nur gehört hätte!","Wenn er nur gehört hat!","Wenn er zuhörte!"],c:1,topic:"Konjunktiv",
+   exp:"Unreal conditions in the <strong>past</strong> use <strong>K2 Perfekt</strong>: <em>hätte/wäre + Partizip II</em>. <em>Wenn er nur gehört hätte!</em> = If only he had listened (but he didn't). Present unreal: <em>Wenn er nur zuhörte!</em> The K2 Perfekt always signals that the condition was not fulfilled."},
+  {id:29,q:"<em class='q-german'>„Er dürfte es gewusst haben.\"</em> What does this mean?",o:["He was allowed to have known it.","He probably knew it (epistemic modal).","He had to know it.","He should have known it."],c:1,topic:"Konjunktiv",
+   exp:"<strong>Dürfen in K2</strong> (<em>dürfte</em>) expresses <strong>epistemic probability</strong> — a reasonable assumption. <em>Er dürfte es gewusst haben</em> = He probably knew it / It is likely he knew it. The modal in K2 + perfect infinitive = assumption about the past. Compare: <em>Er müsste wissen</em> = He ought to know (stronger certainty)."},
+
+  /* PASSIV */
+  {id:30,q:"Choose the sentence describing a <strong>resulting state</strong> (Zustandspassiv):",o:["Die Tür wird geöffnet.","Die Tür wurde geöffnet.","Die Tür ist geöffnet.","Die Tür ist geöffnet worden."],c:2,topic:"Passiv",
+   exp:"<strong>Zustandspassiv</strong> = <em>sein + Partizip II</em> → describes the <strong>resulting state</strong>: <em>Die Tür ist geöffnet</em> = The door is (in the state of being) open. <strong>Vorgangspassiv</strong> = <em>werden + Partizip II</em> → describes the action of opening. Option D is the Vorgangspassiv in Perfekt: <em>Die Tür ist geöffnet worden.</em>"},
+  {id:31,q:"What's the difference between <em>von</em> and <em>durch</em> in passive sentences?",o:["No difference","'von' = direct agent (person/force); 'durch' = indirect means/instrument","'durch' = the agent; 'von' = the instrument","'von' = formal; 'durch' = colloquial"],c:1,topic:"Passiv",
+   exp:"<strong>von + Dativ</strong> = the <strong>direct agent</strong>: <em>Das Haus wurde vom Architekten geplant</em> (by the architect). <strong>durch + Akkusativ</strong> = an <strong>indirect cause or means</strong>: <em>Das Dach wurde durch den Sturm beschädigt</em> (through/by means of the storm). The distinction is grammaticalized in a way English 'by' doesn't capture."},
+  {id:32,q:"<em class='q-german'>Das Projekt ___ nächste Woche abgeschlossen werden.</em>",o:["wird","ist","hat","sein"],c:0,topic:"Passiv",
+   exp:"Passive with a <strong>modal verb or future</strong>: <em>werden + Partizip II + werden</em> (Futur I passive). Here: <em>wird abgeschlossen werden</em>. The structure is: [modal/werden] + [Partizip II] + [werden (infinitiv)]. Complex, but standard: <em>Das muss erledigt werden.</em>"},
+  {id:33,q:"Substitute the passive with <em>man</em>: <em class='q-german'>Hier wird Deutsch gesprochen.</em>",o:["Man spricht hier Deutsch.","Man spricht Deutsch hier.","Hier spricht man Deutsch.","All of A and C are correct."],c:3,topic:"Passiv",
+   exp:"The <strong>man-construction</strong> often replaces the passive when the agent is unknown/unimportant: <em>Man spricht hier Deutsch.</em> Word order: after the subject <em>man</em>, the verb is in position 2 (V2 rule). Both A and C are grammatically correct (with inversion in C). D is the best answer."},
+
+  /* WORTSTELLUNG — WORD ORDER */
+  {id:34,q:"<em class='q-german'>Gestern ___ ich ins Kino.</em> Correct verb form?",o:["ich ging","ging ich","gehe ich","bin ich gegangen"],c:1,topic:"Wortstellung",
+   exp:"<strong>Inversion</strong> (Inversion): When an element other than the subject begins the sentence, the verb must come <strong>second</strong> (V2 rule), pushing the subject after it: <em>Gestern ging ich ins Kino.</em> 'Gestern' occupies position 1 → verb 'ging' must be in position 2 → subject 'ich' in position 3."},
+  {id:35,q:"<em class='q-german'>Ich weiß, dass er ___.</em> Correct word order in the subordinate clause?",o:["kommt nicht","nicht kommt","kommt er nicht","er kommt nicht"],c:1,topic:"Wortstellung",
+   exp:"In subordinate clauses (introduced by <em>dass, weil, obwohl, wenn,</em> etc.), the <strong>verb goes to the final position</strong>. Negation <em>nicht</em> comes <strong>before</strong> the final verb: <em>dass er nicht kommt.</em> This is the 'Verbletzt' (verb-last) rule of German subordinate clauses."},
+  {id:36,q:"In a subordinate clause with a modal: <em class='q-german'>..., weil er kommen ___.</em>",o:["kann","er kann","kann er","wird können"],c:0,topic:"Wortstellung",
+   exp:"In subordinate clauses with modal + infinitive, both go to the end — with the <strong>infinitive before the modal</strong>: <em>weil er kommen kann.</em> The modal is always the last element. Compare the main clause: <em>Er kann kommen.</em> (V2). In subordinate clauses: infinitive + modal at the end."},
+  {id:37,q:"What is unusual/correct about: <em class='q-german'>Obwohl es regnete, ging er spazieren.</em>",o:["Obwohl cannot start a sentence","The comma is wrong","The verb 'ging' must be inverted after the subordinate clause — correct ✓","The main clause verb should be at the end"],c:2,topic:"Wortstellung",
+   exp:"After a <strong>subordinate clause that opens the sentence</strong>, the main clause verb must come <strong>immediately</strong> (inversion): <em>..., ging er spazieren.</em> The whole subordinate clause counts as 'position 1', so the main verb must be in position 2. This is one of the most common word-order errors for learners."},
+  {id:38,q:"<em class='q-german'>Ich habe ihm das Buch gegeben.</em> — can this order change?",o:["No — this order is fixed","Yes: 'Ich habe das Buch ihm gegeben' if 'ihm' is emphasized","Yes: indirect object (ihm) always comes after direct object","Yes: 'das Buch ihm' if 'das Buch' is a pronoun"],c:1,topic:"Wortstellung",
+   exp:"The <strong>standard order</strong> is: indirect object (dative) before direct object (accusative) when both are nouns: <em>ihm (dat.) das Buch (acc.).</em> However, if the <strong>direct object is a pronoun</strong>, it jumps first: <em>Ich habe es ihm gegeben</em> (pronoun before noun). Emphasis can also shift order."},
+
+  /* PRÄPOSITIONEN */
+  {id:39,q:"<em class='q-german'>Das Kind läuft ___ den Tisch.</em> (onto the table — direction)",o:["auf dem (dative)","auf den (accusative)","auf der (dative f)","an den (accusative)"],c:1,topic:"Präpositionen",
+   exp:"<strong>Two-way prepositions</strong> (an, auf, hinter, in, neben, über, unter, vor, zwischen): use <strong>Akkusativ for directed movement</strong> (Wohin? = where to?): <em>auf den Tisch.</em> Use <strong>Dativ for location/state</strong> (Wo? = where?): <em>Das Kind sitzt auf dem Tisch.</em>"},
+  {id:40,q:"<em class='q-german'>Ich lerne ___ drei Jahren Deutsch.</em> Which preposition + case?",o:["vor + Dativ","seit + Dativ","für + Akkusativ","ab + Dativ"],c:1,topic:"Präpositionen",
+   exp:"<strong>Seit + Dativ</strong> expresses duration from a past point <strong>continuing into the present</strong>, used with the <strong>present tense</strong>: <em>Ich lerne seit drei Jahren Deutsch.</em> = I have been learning German for three years (and still am). English uses present perfect; German uses present + <em>seit</em>."},
+  {id:41,q:"<em class='q-german'>Ich denke an seinen Plan</em> — replace 'seinen Plan' with a pronoun:",o:["Ich denke an ihn.","Ich denke daran.","Ich denke es.","Ich denke an es."],c:1,topic:"Präpositionen",
+   exp:"<strong>Da-compounds</strong>: when a preposition + pronoun refers to a <strong>non-person</strong> (thing/concept), use <em>da(r)- + preposition</em>: <em>daran (denken an), darüber (sprechen über), damit (arbeiten mit).</em> For <strong>persons</strong>, use preposition + personal pronoun: <em>Ich denke an ihn</em> (I think about him)."},
+  {id:42,q:"'Despite' as a preposition: <em class='q-german'>___ des schlechten Wetters machten wir eine Pause.</em>",o:["Wegen","Obwohl","Trotz","Dennoch"],c:2,topic:"Präpositionen",
+   exp:"<strong>Trotz + Genitiv</strong> = 'despite, in spite of'. <em>Trotz des schlechten Wetters</em>. Note: <em>Obwohl</em> is a subordinating conjunction (+ clause), not a preposition. <em>Dennoch</em> is an adverb ('nevertheless'). Only <em>trotz</em> can govern a noun phrase in the genitive."},
+  {id:43,q:"<em class='q-german'>Ohne ___ geht das nicht.</em> What case does 'ohne' take?",o:["Dativ","Genitiv","Akkusativ","Nominativ"],c:2,topic:"Präpositionen",
+   exp:"<strong>Ohne</strong> always governs the <strong>Akkusativ</strong>: <em>ohne meinen Bruder, ohne einen Plan, ohne das Auto.</em> Memory aid: 'ohne, für, durch, gegen, um, wider, entlang' — these prepositions always take accusative (mnemonic: <em>ohne für durch gegen um</em>)."},
+
+  /* GEMISCHTES — MIXED */
+  {id:44,q:"What is the difference between <em class='q-german'>weil</em> and <em class='q-german'>denn</em>?",o:["No difference — both mean 'because'","'weil' is subordinating (verb-final); 'denn' is coordinating (V2 order)","'denn' is subordinating; 'weil' is coordinating","'weil' is formal; 'denn' is colloquial"],c:1,topic:"Gemischtes",
+   exp:"<strong>Weil</strong> is a <strong>subordinating conjunction</strong> → verb goes to end: <em>Ich schlafe, weil ich müde bin.</em> <strong>Denn</strong> is a <strong>coordinating conjunction</strong> → main clause V2 order: <em>Ich schlafe, denn ich bin müde.</em> <em>Denn</em> cannot start a sentence; <em>weil</em> can."},
+  {id:45,q:"<em class='q-german'>Ich spare Geld, ___ ein Haus kaufen zu können.</em>",o:["damit","um","weil","so dass"],c:1,topic:"Gemischtes",
+   exp:"<strong>Um...zu + Infinitiv</strong> expresses purpose when the <strong>subject is the same</strong> in both clauses: <em>Ich spare (ich) um ein Haus kaufen zu können (ich).</em> Use <strong>damit + clause</strong> when subjects <strong>differ</strong>: <em>Ich spare, damit meine Kinder ein Haus kaufen können.</em>"},
+  {id:46,q:"<em class='q-german'>Er wäscht sich die Hände.</em> What case is 'sich' here?",o:["Akkusativ","Dativ","Genitiv","Nominativ"],c:1,topic:"Gemischtes",
+   exp:"When a reflexive verb also takes a <strong>direct object</strong> (<em>die Hände</em> = Akkusativ), the reflexive pronoun takes the <strong>Dativ</strong>: <em>Er wäscht sich (dat.) die Hände (acc.).</em> Compare: <em>Er wäscht sich</em> (no object → <em>sich</em> is accusative). The dative reflexive indicates the action is for/to oneself."},
+  {id:47,q:"<em class='q-german'>Nicht dürfen</em> vs. <em class='q-german'>nicht müssen</em> — which means 'must not'?",o:["nicht dürfen = must not (prohibition)","nicht müssen = must not (prohibition)","Both mean 'must not'","Neither — use 'nicht sollen'"],c:0,topic:"Gemischtes",
+   exp:"This is a critical German-English false equivalence. <strong>Nicht dürfen</strong> = <strong>must not / not allowed to</strong> (prohibition): <em>Du darfst hier nicht rauchen.</em> <strong>Nicht müssen</strong> = <strong>don't have to</strong> (no obligation): <em>Du musst nicht kommen</em> = You don't have to come (but you can)."},
+  {id:48,q:"<em class='q-german'>Ich fahre ___ Montag nach Berlin.</em>",o:["in dem","am","an dem","zum"],c:1,topic:"Gemischtes",
+   exp:"Days of the week and parts of the day use <strong>am + Dativ</strong>: <em>am Montag, am Abend, am Wochenende.</em> This <em>am</em> = <em>an + dem.</em> Similarly: <em>im Januar</em> (months), <em>im Sommer</em> (seasons), <em>um 8 Uhr</em> (clock times)."},
+  {id:49,q:"Which sentence has the correct word order with a double infinitive in a subordinate clause?",o:["..., weil er hat kommen müssen.","..., weil er kommen hat müssen.","..., weil er kommen müssen hat.","..., weil er kommen musste. (Präteritum, more natural)"],c:3,topic:"Gemischtes",
+   exp:"The double infinitive (<em>kommen müssen</em>) in a subordinate clause creates notoriously awkward constructions. The technically prescribed order is: <em>kommen müssen hat</em>, but this sounds stilted. In practice, <strong>using Präteritum</strong> (<em>musste</em>) is preferred: <em>weil er kommen musste</em>. This is a rare case where the 'correct' form is avoided by native speakers."},
+  {id:50,q:"<em class='q-german'>Der ___ von seinem Lehrer gelobte Schüler…</em> What is this construction?",o:["A relative clause","An extended participial phrase (erweiterte Partizipialphrase)","A subordinate clause with 'der'","A passive construction"],c:1,topic:"Gemischtes",
+   exp:"<strong>Erweiterte Partizipialphrasen</strong> (extended participial phrases) are a hallmark of written German. The entire phrase <em>von seinem Lehrer gelobte</em> modifies <em>Schüler</em> as a pre-nominal modifier. Equivalent to: <em>der Schüler, der von seinem Lehrer gelobt wurde.</em> Common in formal/academic writing; avoided in speech."},
+  {id:51,q:"<em class='q-german'>Er ist größer ___ ich.</em>",o:["wie","als","dan","dann"],c:1,topic:"Gemischtes",
+   exp:"Comparisons of <strong>inequality</strong> (bigger, smaller, faster): use <strong>als</strong>: <em>größer als ich.</em> Comparisons of <strong>equality</strong>: use <strong>so...wie</strong>: <em>so groß wie ich.</em> This is the most common comparison error for English speakers, who confuse 'than' (→ als) with 'like/as' (→ wie)."},
+  {id:52,q:"German compound noun rule: the gender is determined by:",o:["The first element","The last element (Grundwort)","The most important semantic element","Convention, not rule"],c:1,topic:"Gemischtes",
+   exp:"<strong>The last element (Grundwort/base word) determines the gender</strong> of a compound noun. Examples: <em>der Tisch</em> + <em>das Tuch</em> → <em>das Tischtuch</em> (neuter, like <em>Tuch</em>). <em>der Computer</em> + <em>die Maus</em> → <em>die Computermaus</em> (feminine, like <em>Maus</em>). This rule is absolute and reliable."},
+];
+
+/* ═══════════════════════════════════════════
+   DATA — WORD OF THE DAY
+═══════════════════════════════════════════ */
+const WOTD_LIST = [
+  {w:"Waldeinsamkeit",a:"die",e:"The peace of solitude in a forest — being alone among trees, connected to something larger than yourself.",
+   ex:"Er wanderte stundenlang und fand endlich seine Waldeinsamkeit.",
+   parts:[{p:"Wald",m:"forest"},{p:"ein",m:"alone"},{p:"sam",m:"-ful"},{p:"keit",m:"-ness"}]},
+  {w:"Sehnsucht",a:"die",e:"A deep, inconsolable longing — more an ache than a desire, for something half-remembered or never possessed.",
+   ex:"Die Sehnsucht nach Hause trieb sie zurück.",
+   parts:[{p:"sehnen",m:"to yearn"},{p:"Sucht",m:"craving"}]},
+  {w:"Fernweh",a:"das",e:"The ache for distant places; the opposite of homesickness.",
+   ex:"Das Fernweh ließ sie nicht in Ruhe.",
+   parts:[{p:"fern",m:"far"},{p:"Weh",m:"ache/pain"}]},
+  {w:"Weltschmerz",a:"der",e:"Pain caused by the state of the world; world-weariness born of ideals meeting reality.",
+   ex:"Der Weltschmerz des jungen Philosophen war echt.",
+   parts:[{p:"Welt",m:"world"},{p:"Schmerz",m:"pain"}]},
+  {w:"Fingerspitzengefühl",a:"das",e:"Fingertip feeling — sensitivity, tact, and the intuitive ability to handle delicate situations with precision.",
+   ex:"Ein guter Arzt braucht viel Fingerspitzengefühl.",
+   parts:[{p:"Finger",m:"finger"},{p:"Spitze",m:"tip"},{p:"Gefühl",m:"feeling"}]},
+  {w:"Torschlusspanik",a:"die",e:"Gate-closing panic — the fear that time is running out on important life milestones.",
+   ex:"Mit 40 setzte die Torschlusspanik ein.",
+   parts:[{p:"Tor",m:"gate"},{p:"Schluss",m:"closing"},{p:"Panik",m:"panic"}]},
+  {w:"Schadenfreude",a:"die",e:"The guilty pleasure of another's misfortune — a feeling so human it had to be named.",
+   ex:"Er versuchte, seine Schadenfreude zu verbergen.",
+   parts:[{p:"Schaden",m:"harm"},{p:"Freude",m:"joy"}]},
+  {w:"Gemütlichkeit",a:"die",e:"An atmosphere of warmth, ease, and belonging — a felt quality of coziness that no English word fully captures.",
+   ex:"Das alte Wirtshaus hatte eine echte Gemütlichkeit.",
+   parts:[{p:"gemütlich",m:"cozy"},{p:"keit",m:"-ness"}]},
+  {w:"Zeitgeist",a:"der",e:"The defining spirit, mood, and ideas of a particular era.",
+   ex:"Dieser Film hat den Zeitgeist der 70er perfekt eingefangen.",
+   parts:[{p:"Zeit",m:"time/era"},{p:"Geist",m:"spirit"}]},
+  {w:"Bildung",a:"die",e:"The cultivation of the whole person through learning — deeper than 'education', broader than 'knowledge'.",
+   ex:"Echte Bildung verändert den Menschen, nicht nur sein Wissen.",
+   parts:[{p:"bilden",m:"to form/shape"},{p:"-ung",m:"noun suffix"}]},
+  {w:"Weltanschauung",a:"die",e:"A complete philosophical framework through which one understands the world.",
+   ex:"Seine Weltanschauung änderte sich nach der Reise grundlegend.",
+   parts:[{p:"Welt",m:"world"},{p:"an",m:"at"},{p:"Schauung",m:"viewing"}]},
+  {w:"Zweisamkeit",a:"die",e:"The intimate togetherness of two — alone together, the anti-loneliness of a perfect pair.",
+   ex:"Sie genossen die Zweisamkeit des langen Wochenendes.",
+   parts:[{p:"zwei",m:"two"},{p:"sam",m:"-ful"},{p:"keit",m:"-ness"}]},
+];
+
+/* ═══════════════════════════════════════════
+   DATA — IDIOMS
+═══════════════════════════════════════════ */
+const IDIOMS = [
+  {de:"Das ist nicht mein Bier.",lit:"That is not my beer.",mean:"That's not my problem / not my business.",ex:"Die Entscheidung liegt bei dir — das ist nicht mein Bier.",cat:"food"},
+  {de:"Ich verstehe nur Bahnhof.",lit:"I only understand train station.",mean:"I don't understand anything / It's all Greek to me.",ex:"Er erklärte die Theorie, aber ich verstand nur Bahnhof.",cat:"place"},
+  {de:"Daumen drücken.",lit:"Press the thumbs.",mean:"Fingers crossed / good luck. (German version of crossing fingers is pressing thumbs.)",ex:"Ich drücke dir die Daumen für die Prüfung!",cat:"body"},
+  {de:"Da liegt der Hund begraben.",lit:"That's where the dog is buried.",mean:"That's the crux of the matter / the root of the problem.",ex:"Aha, da liegt also der Hund begraben! Das ist das eigentliche Problem.",cat:"animal"},
+  {de:"Tomaten auf den Augen haben.",lit:"To have tomatoes on one's eyes.",mean:"To be oblivious / to fail to see the obvious.",ex:"Siehst du nicht, wie er dich anschaut? Du hast Tomaten auf den Augen!",cat:"food"},
+  {de:"Einen Kater haben.",lit:"To have a tomcat.",mean:"To have a hangover.",ex:"Nach der Party hatte er einen starken Kater.",cat:"animal"},
+  {de:"Die Kirche im Dorf lassen.",lit:"Leave the church in the village.",mean:"Don't exaggerate / don't blow things out of proportion.",ex:"Beruhig dich mal — lass die Kirche im Dorf!",cat:"place"},
+  {de:"Schwein gehabt.",lit:"Got pig.",mean:"Lucky! / Got lucky. (Something went right by chance.)",ex:"Das Auto hat mich kaum gestreift — Schwein gehabt!",cat:"animal"},
+  {de:"Auf den Busch klopfen.",lit:"To knock on the bush.",mean:"To fish for information / to probe carefully.",ex:"Er klopfte auf den Busch, um herauszufinden, was sie wirklich dachte.",cat:"nature"},
+  {de:"Jetzt ist Feierabend.",lit:"Now it's end-of-work time.",mean:"That's enough / It's over / No more of this.",ex:"Wenn du so weiter machst, dann ist bei mir Feierabend!",cat:"work"},
+  {de:"Ins Gras beißen.",lit:"To bite into the grass.",mean:"To bite the dust / to die.",ex:"Der alte Schirm hat endlich ins Gras gebissen.",cat:"nature"},
+  {de:"Ich glaube, ich spinne.",lit:"I think I'm spinning (thread).",mean:"I must be going crazy! / Am I dreaming?",ex:"Er hat mir 1000 Euro gegeben? Ich glaube, ich spinne!",cat:"expression"},
+  {de:"Den Nagel auf den Kopf treffen.",lit:"To hit the nail on the head.",mean:"To be exactly right.",ex:"Mit seiner Analyse hat er den Nagel auf den Kopf getroffen.",cat:"object"},
+  {de:"Alles hat ein Ende, nur die Wurst hat zwei.",lit:"Everything has an end, only the sausage has two.",mean:"All good things must come to an end.",ex:"Wir mussten leider nach Hause — alles hat ein Ende, nur die Wurst hat zwei.",cat:"food"},
+  {de:"Hinter schwedischen Gardinen sitzen.",lit:"To sit behind Swedish curtains.",mean:"To be behind bars / in prison.",ex:"Nach dem Betrug saß er schnell hinter schwedischen Gardinen.",cat:"object"},
+  {de:"Das geht mir auf den Keks.",lit:"That goes on my cookie.",mean:"That gets on my nerves / That really bugs me.",ex:"Sein ständiges Klagen geht mir auf den Keks.",cat:"food"},
+  {de:"Nicht auf den Mund gefallen sein.",lit:"Not to have fallen on one's mouth.",mean:"To have a way with words / to be quick-witted.",ex:"Als Anwältin ist sie nicht auf den Mund gefallen.",cat:"body"},
+  {de:"Eulen nach Athen tragen.",lit:"To carry owls to Athens.",mean:"To bring coals to Newcastle / to do something unnecessary.",ex:"Dir Tipps zum Kochen geben? Das wäre Eulen nach Athen tragen.",cat:"animal"},
+  {de:"Mit dem falschen Fuß aufgestanden sein.",lit:"To have gotten up on the wrong foot.",mean:"To be in a bad mood from the start of the day.",ex:"Er war unausstehlich heute — er ist wohl mit dem falschen Fuß aufgestanden.",cat:"body"},
+  {de:"Morgenstund hat Gold im Mund.",lit:"The morning hour has gold in its mouth.",mean:"The early bird catches the worm.",ex:"Er stand immer um 5 auf — Morgenstund hat Gold im Mund, sagte er.",cat:"time"},
+];
+
+/* ═══════════════════════════════════════════
+   DATA — ZUNGENBRECHER
+═══════════════════════════════════════════ */
+const ZTBRECHER = [
+  {text:"Fischers Fritz fischt frische Fische, frische Fische fischt Fischers Fritz.",diff:2,mean:"Fisher Fritz catches fresh fish, fresh fish catches Fisher Fritz.",tip:"Focus on the F-sound + consonant clusters: fr-, fisch-"},
+  {text:"Wenn Fliegen hinter Fliegen fliegen, fliegen Fliegen Fliegen nach.",diff:3,mean:"When flies fly behind flies, flies fly after flies.",tip:"The same word 'Fliegen' = flies (noun) and 'to fly' (verb). Context determines meaning."},
+  {text:"Brautkleid bleibt Brautkleid und Blaukraut bleibt Blaukraut.",diff:3,mean:"A wedding dress remains a wedding dress, and red cabbage remains red cabbage.",tip:"The br/bl and aud/au combinations. Say slowly, then accelerate."},
+  {text:"Zwischen zwei Zwetschgenbäumen zwitscherten zwei Schwalben.",diff:4,mean:"Between two plum trees, two swallows twittered.",tip:"Zw- and sch- are two different sounds — don't confuse them. zwetschgen vs. zwitschern."},
+  {text:"Blaukraut bleibt Blaukraut und Brautkleid bleibt Brautkleid.",diff:3,mean:"Red cabbage remains red cabbage and wedding dress remains wedding dress.",tip:"The reverse of the classic above. Try both in sequence."},
+  {text:"Der Wieselwächter wechselt die Wiesel, die Wiesel wechseln den Wieselwächter.",diff:4,mean:"The weasel keeper changes the weasels; the weasels change the weasel keeper.",tip:"Focus on Wiesel vs. Wächter — the -ie- vs. -ä- vowel difference is critical."},
+  {text:"Rhabarber-Rhabarber-Rhabarber-Barbara-Rhabarber-Barbara.",diff:2,mean:"(A well-known meme: background crowd noise. Just try to say it fast.)",tip:"This became famous as background noise actors say to simulate crowd chatter."},
+  {text:"Es wäre schön, wenn Schönwetter wäre.",diff:2,mean:"It would be nice if it were nice weather.",tip:"Focus on wäre/Wetter — the ä-sound repeated. A good K2 pronunciation drill."},
+];
+
+/* ═══════════════════════════════════════════
+   DATA — BOOKS
+═══════════════════════════════════════════ */
+const BOOKS = [
+  {title:"Café in Berlin",author:"André Klein",level:"a1",desc:"Graded reader series. A foreigner navigates daily life in Berlin. Perfect first German novel."},
+  {title:"Ferien in Frankfurt",author:"André Klein",level:"a1",desc:"Short, engaging stories at A1/A2 level. Real places, real language, manageable pace."},
+  {title:"Oktoberfest",author:"André Klein",level:"a2",desc:"More complex vocabulary and Perfekt tense. A murder mystery at Oktoberfest."},
+  {title:"Zweimal in der Woche",author:"André Klein",level:"a2",desc:"A love story with A2 vocabulary and authentic dialogue. Great for practiced reading."},
+  {title:"Die Welle",author:"Morton Rhue (German ed.)",level:"b1",desc:"A classic of German school reading. A teacher's social experiment spirals out of control."},
+  {title:"Der Vorleser",author:"Bernhard Schlink",level:"b1",desc:"A post-war love story of moral complexity. Schlink's prose is clean, literary, and perfectly suited to B1/B2 learners."},
+  {title:"Siddharta",author:"Hermann Hesse",level:"b2",desc:"Hesse's spiritual classic is written in measured, clear prose. Ideal B2 reading with philosophical depth."},
+  {title:"Die Verwandlung",author:"Franz Kafka",level:"b2",desc:"Gregor Samsa wakes up as an insect. Kafka's German is precise and deceptively simple — great for B2."},
+  {title:"Der Steppenwolf",author:"Hermann Hesse",level:"c1",desc:"Harry Haller's existential crisis. Complex themes, rich vocabulary, Hesse's most experimental work."},
+  {title:"Faust I",author:"Johann Wolfgang von Goethe",level:"c1",desc:"The cornerstone of German literature. Poetic, dense, essential. Start with a bilingual edition."},
+  {title:"Der Zauberberg",author:"Thomas Mann",level:"c2",desc:"Hans Castorp spends seven years in a mountain sanatorium. Mann's prose is demanding, profound, and transformative."},
+  {title:"Steppenwolf",author:"Hermann Hesse",level:"c1",desc:"Harry Haller, caught between bourgeois life and the wild, seeks meaning in 1920s Germany."},
+];
+
+/* ═══════════════════════════════════════════
+   REFERENCE TABLE DATA
+═══════════════════════════════════════════ */
+const REF_ARTICLES = {
+  title:"Articles in All Four Cases",
+  headers:["Case","Masc. (der)","Neut. (das)","Fem. (die)","Plural (die)"],
+  rows:[
+    ["Nominativ","der","das","die","die"],
+    ["Akkusativ","den","das","die","die"],
+    ["Dativ","dem","dem","der","den"],
+    ["Genitiv","des","des","der","der"],
+  ],
+  note:"Indefinite articles (ein/eine) follow the same pattern except: nom.m = ein, nom.n = ein, nom.f = eine."
+};
+
+const REF_INDEF = {
+  title:"Indefinite Articles (ein-)",
+  headers:["Case","Masc.","Neut.","Fem.","Plural (kein-)"],
+  rows:[
+    ["Nominativ","ein","ein","eine","keine"],
+    ["Akkusativ","einen","ein","eine","keine"],
+    ["Dativ","einem","einem","einer","keinen"],
+    ["Genitiv","eines","eines","einer","keiner"],
+  ]
+};
+
+const REF_PRONOUNS = {
+  title:"Personal Pronouns — All Cases",
+  headers:["","ich","du","er","sie","es","wir","ihr","sie/Sie"],
+  rows:[
+    ["Nom.","ich","du","er","sie","es","wir","ihr","sie/Sie"],
+    ["Akk.","mich","dich","ihn","sie","es","uns","euch","sie/Sie"],
+    ["Dat.","mir","dir","ihm","ihr","ihm","uns","euch","ihnen/Ihnen"],
+    ["Gen.","meiner","deiner","seiner","ihrer","seiner","unser","euer","ihrer/Ihrer"],
+  ]
+};
+
+const REF_PREPS = {
+  title:"Prepositions + Cases",
+  headers:["Case","Prepositions"],
+  rows:[
+    ["Always Akkusativ","durch, für, gegen, ohne, um, entlang*, bis, wider"],
+    ["Always Dativ","aus, bei, mit, nach, seit, von, zu, gegenüber, ab"],
+    ["Always Genitiv","wegen, trotz, während, statt/anstatt, aufgrund, infolge, mithilfe"],
+    ["Two-way (Akk/Dat)","an, auf, hinter, in, neben, über, unter, vor, zwischen"],
+  ],
+  note:"Two-way: use Akkusativ for directed movement (Wohin?), Dativ for location (Wo?)"
+};
+
+const REF_STRONG = {
+  title:"Key Strong Verbs (Ablaut)",
+  headers:["Infinitiv","Präsens 3.Sg.","Präteritum","Partizip II","Aux."],
+  rows:[
+    ["sein","ist","war","gewesen","ist"],
+    ["haben","hat","hatte","gehabt","hat"],
+    ["werden","wird","wurde","geworden","ist"],
+    ["gehen","geht","ging","gegangen","ist"],
+    ["kommen","kommt","kam","gekommen","ist"],
+    ["sehen","sieht","sah","gesehen","hat"],
+    ["fahren","fährt","fuhr","gefahren","ist"],
+    ["laufen","läuft","lief","gelaufen","ist"],
+    ["schreiben","schreibt","schrieb","geschrieben","hat"],
+    ["sprechen","spricht","sprach","gesprochen","hat"],
+    ["lesen","liest","las","gelesen","hat"],
+    ["finden","findet","fand","gefunden","hat"],
+    ["geben","gibt","gab","gegeben","hat"],
+    ["denken","denkt","dachte","gedacht","hat"],
+    ["wissen","weiß","wusste","gewusst","hat"],
+    ["bleiben","bleibt","blieb","geblieben","ist"],
+    ["sterben","stirbt","starb","gestorben","ist"],
+    ["fallen","fällt","fiel","gefallen","ist"],
+    ["schlafen","schläft","schlief","geschlafen","hat"],
+    ["verlieren","verliert","verlor","verloren","hat"],
+  ]
+};
+
+/* ═══════════════════════════════════════════
+   APP STATE
+═══════════════════════════════════════════ */
+let dictFilter = 'all';
+let activeTopic = 'all';
+let shuffleOn = false;
+let queuedQuestions = [];
+let currentQIdx = 0;
+let sessionCorrect = 0;
+let sessionTotal = 0;
+let answered = false;
+let streak = 0;
+let maxStreak = 0;
+
+/* ═══════════════════════════════════════════
+   LIGHT / DARK TOGGLE
+═══════════════════════════════════════════ */
+function toggleLight() {
+  const goingLight = !document.body.classList.contains('light');
+  document.body.classList.toggle('light', goingLight);
+  const btn = document.getElementById('darkToggle');
+  if (btn) btn.textContent = goingLight ? '🌙 Dark' : '☀ Day';
+  /* Persist via Supabase if signed in */
+  if (typeof sbSaveDarkMode === 'function') sbSaveDarkMode(!goingLight);
+}
+
+/* ═══════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  spawnParticles();
+  renderWotd();
+  renderDict();
+  buildTopicList();
+  renderBooks();
+  renderIdioms();
+  renderZungenbrecher();
+  renderRefTables();
+  if (typeof renderNavAuth === 'function') renderNavAuth('nav-container');
+});
+
+/* ═══════════════════════════════════════════
+   PARTICLES
+═══════════════════════════════════════════ */
+function spawnParticles() {
+  const c = document.getElementById('particles');
+  for (let i = 0; i < 28; i++) {
+    const n = document.createElement('div');
+    n.className = 'needle';
+    n.style.cssText = `
+      left:${Math.random()*102}vw;
+      animation-duration:${8+Math.random()*12}s;
+      animation-delay:${Math.random()*14}s;
+      --r:${-35+Math.random()*70}deg;
+      --d:${-30+Math.random()*60}px;
+      opacity:${0.2+Math.random()*0.3};
+      height:${12+Math.random()*14}px;
+    `;
+    c.appendChild(n);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   WOTD
+═══════════════════════════════════════════ */
+function renderWotd() {
+  const day = Math.floor(Date.now() / 86400000);
+  const w = WOTD_LIST[day % WOTD_LIST.length];
+  const body = document.getElementById('wotd-body');
+  let decomp = '';
+  if (w.parts) {
+    decomp = `<div style="margin-top:10px"><div class="etymology-label">Word anatomy</div><div class="decomp-row">`;
+    w.parts.forEach((p, i) => {
+      if (i > 0) decomp += `<span class="decomp-plus">+</span>`;
+      decomp += `<div class="decomp-part"><span class="p-word">${p.p}</span><span class="p-mean">${p.m}</span></div>`;
+    });
+    decomp += `</div></div>`;
+  }
+  body.innerHTML = `
+    <div class="wotd-main">
+      <div class="wotd-german"><span class="wotd-article">${w.a} </span>${w.w}</div>
+      <div class="wotd-english">${w.e}</div>
+      <div class="wotd-example">"${w.ex}"</div>
+    </div>
+    <div>${decomp}</div>`;
+}
+
+function toggleWotd() {
+  document.getElementById('wotd').classList.toggle('open');
+}
+
+/* ═══════════════════════════════════════════
+   TABS
+═══════════════════════════════════════════ */
+function switchTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.s-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const tabs = document.querySelectorAll('.s-tab');
+  const ids = ['woerterbuch','grammatik','geschichten','redewendungen','zungenbrecher','referenz'];
+  const idx = ids.indexOf(id);
+  if (idx >= 0) tabs[idx].classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+/* ═══════════════════════════════════════════
+   DICTIONARY
+═══════════════════════════════════════════ */
+function setDictFilter(el, type) {
+  dictFilter = type;
+  el.closest('.filter-chips').querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  filterDict();
+}
+
+function filterDict() {
+  const q = document.getElementById('dict-search').value.toLowerCase().trim();
+  let results = DICT.filter(e => {
+    const matchType = dictFilter === 'all' || e.cat === dictFilter;
+    const matchQ = !q || e.w.toLowerCase().includes(q) || e.e.toLowerCase().includes(q) || (e.note||'').toLowerCase().includes(q);
+    return matchType && matchQ;
+  });
+  renderDict(results);
+}
+
+function renderDict(entries) {
+  if (!entries) entries = DICT;
+  const grid = document.getElementById('dict-grid');
+  const count = document.getElementById('dict-count');
+  count.textContent = `${entries.length} entr${entries.length===1?'y':'ies'}`;
+  grid.innerHTML = entries.map(e => {
+    const isSpecial = e.cat === 'untranslatable';
+    const lvBadge = e.l ? `<span class="badge ${e.l.toLowerCase()}">${e.l}</span>` : '';
+    const catBadge = isSpecial ? `<span class="badge untranslatable">✦</span>` : '';
+    const pluralStr = e.pl ? `<span>Pl: ${e.pl}</span>` : '';
+    const typeStr = e.t ? `<span>${e.t}</span>` : '';
+    let decomp = '';
+    if (e.parts) {
+      decomp = `<div class="etymology-box"><div class="etymology-label">Word anatomy</div><div class="decomp-row">`;
+      e.parts.forEach((p, i) => {
+        if (i > 0) decomp += `<span class="decomp-plus">+</span>`;
+        decomp += `<div class="decomp-part"><span class="p-word">${p.p}</span><span class="p-mean">${p.m}</span></div>`;
+      });
+      decomp += `</div></div>`;
+    }
+    let conjHtml = '';
+    if (e.conj) {
+      const c = e.conj;
+      conjHtml = `<div class="mt-8"><div class="etymology-label">Conjugation</div>
+        <div class="conj-grid">${c.pre.map(f => {
+          const parts = f.split(' '); const pron = parts[0]; const rest = parts.slice(1).join(' ');
+          return `<div class="conj-row"><span class="conj-pron">${pron}</span><span class="conj-form">${rest}</span></div>`;
+        }).join('')}</div>
+        <div class="dict-meta mt-8"><span>Perf: ${c.perf}</span><span>Prät: ${c.pret}</span></div>
+        ${c.note?`<div class="dict-note">${c.note}</div>`:''}
+      </div>`;
+    }
+    const noteHtml = e.note ? `<div class="dict-note">${e.note}</div>` : '';
+    return `<div class="dict-card${isSpecial?' special':''}" onclick="toggleDictCard(this)">
+      <div class="dict-top">
+        <div class="dict-german">${e.a?`<span class="dict-article">${e.a} </span>`:''}${e.w.replace(/^(der|die|das)\s/,'')}</div>
+        <div class="dict-badges">${catBadge}${lvBadge}</div>
+      </div>
+      <div class="dict-english">${e.e}</div>
+      <div class="dict-meta">${typeStr}${pluralStr}</div>
+      <div class="dict-expand">
+        <div class="dict-example">
+          <div class="de">${e.ex||''}</div>
+          <div class="en">${e.ex_en||''}</div>
+        </div>
+        ${decomp}${conjHtml}${noteHtml}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleDictCard(el) {
+  el.classList.toggle('expanded');
+}
+
+/* ═══════════════════════════════════════════
+   GRAMMAR QUIZ
+═══════════════════════════════════════════ */
+function buildTopicList() {
+  const topics = ['all', ...new Set(GRAMMAR.map(q => q.topic))];
+  const tl = document.getElementById('topic-list');
+  tl.innerHTML = topics.map(t => {
+    const count = t === 'all' ? GRAMMAR.length : GRAMMAR.filter(q => q.topic === t).length;
+    return `<button class="topic-btn${t==='all'?' active':''}" onclick="setTopic('${t}',this)">
+      ${t === 'all' ? 'Alle Themen' : t}
+      <span class="topic-count">${count}</span>
+    </button>`;
+  }).join('');
+  resetQueue();
+}
+
+function setTopic(topic, el) {
+  activeTopic = topic;
+  document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  resetQueue();
+}
+
+function resetQueue() {
+  const pool = activeTopic === 'all' ? [...GRAMMAR] : GRAMMAR.filter(q => q.topic === activeTopic);
+  queuedQuestions = shuffleOn ? shuffleArr([...pool]) : [...pool];
+  currentQIdx = 0;
+  loadQuestion(0);
+}
+
+function shuffleArr(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function toggleShuffle() {
+  shuffleOn = !shuffleOn;
+  document.getElementById('shuffle-btn').classList.toggle('on', shuffleOn);
+  resetQueue();
+}
+
+function loadQuestion(idx) {
+  if (!queuedQuestions.length) return;
+  answered = false;
+  currentQIdx = idx;
+  const q = queuedQuestions[idx];
+  const total = queuedQuestions.length;
+
+  document.getElementById('q-topic-badge').textContent = q.topic;
+  document.getElementById('q-num-label').textContent = `#${q.id}`;
+  document.getElementById('q-progress-txt').textContent = `Question ${idx + 1}`;
+  document.getElementById('q-of-txt').textContent = `of ${total}`;
+  document.getElementById('q-progress-fill').style.width = `${((idx + 1) / total) * 100}%`;
+  document.getElementById('q-text').innerHTML = q.q;
+  document.getElementById('q-exp').classList.remove('show');
+  document.getElementById('q-exp').innerHTML = q.exp;
+
+  const opts = document.getElementById('q-opts');
+  opts.innerHTML = q.o.map((opt, i) => `
+    <button class="q-opt" onclick="selectAnswer(${i})" id="opt-${i}">
+      <span class="opt-letter">${String.fromCharCode(65 + i)}</span>
+      ${opt}
+    </button>`).join('');
+
+  document.getElementById('btn-prev').disabled = idx === 0;
+  document.getElementById('btn-next').disabled = true;
+}
+
+function selectAnswer(choiceIdx) {
+  if (answered) return;
+  answered = true;
+  sessionTotal++;
+  const q = queuedQuestions[currentQIdx];
+  const isCorrect = choiceIdx === q.c;
+
+  document.querySelectorAll('.q-opt').forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.c) btn.classList.add('correct');
+    else if (i === choiceIdx && !isCorrect) btn.classList.add('wrong');
+  });
+
+  if (isCorrect) {
+    sessionCorrect++;
+    streak++;
+    maxStreak = Math.max(streak, maxStreak);
+  } else {
+    streak = 0;
+  }
+
+  document.getElementById('q-exp').classList.add('show');
+  document.getElementById('btn-next').disabled = false;
+  updateScore();
+}
+
+function nextQ() {
+  if (currentQIdx < queuedQuestions.length - 1) {
+    loadQuestion(currentQIdx + 1);
+  } else {
+    document.getElementById('q-text').innerHTML = `<strong style="color:var(--amber-3)">Section complete!</strong> You scored <strong>${sessionCorrect}/${sessionTotal}</strong> this session. Select a topic above to continue.`;
+    document.getElementById('q-opts').innerHTML = '';
+    document.getElementById('q-exp').classList.remove('show');
+    document.getElementById('btn-next').disabled = true;
+  }
+}
+
+function prevQ() {
+  if (currentQIdx > 0) loadQuestion(currentQIdx - 1);
+}
+
+function updateScore() {
+  document.getElementById('score-correct').textContent = sessionCorrect;
+  document.getElementById('score-total').textContent = sessionTotal;
+  const pct = sessionTotal > 0 ? (sessionCorrect / sessionTotal) * 100 : 0;
+  document.getElementById('score-bar').style.width = pct + '%';
+  const streakEl = document.getElementById('score-streak');
+  streakEl.textContent = streak >= 3 ? `🔥 Streak: ${streak}` : (maxStreak >= 3 ? `Best streak: ${maxStreak}` : '');
+}
+
+/* ═══════════════════════════════════════════
+   STORIES
+═══════════════════════════════════════════ */
+function switchStory(level, el) {
+  document.querySelectorAll('.story-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.level-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(`story-${level}`).classList.add('active');
+  el.classList.add('active');
+}
+
+function toggleTranslation(level) {
+  const en = document.getElementById(`story-en-${level}`);
+  const btn = en.closest('.story-panel').querySelector('.story-controls .btn');
+  const isShowing = en.classList.toggle('show');
+  btn.textContent = isShowing ? 'Hide English' : 'Show English';
+}
+
+function toggleVocab(level) {
+  const grid = document.getElementById(`vocab-${level}`);
+  grid.style.display = grid.style.display === 'none' ? 'grid' : 'none';
+}
+
+/* ═══════════════════════════════════════════
+   BOOKS
+═══════════════════════════════════════════ */
+function renderBooks() {
+  document.getElementById('book-grid').innerHTML = BOOKS.map(b =>
+    `<div class="book-card">
+      <span class="book-level-badge lv-${b.level}">${b.level.toUpperCase()}</span>
+      <div class="book-title">${b.title}</div>
+      <div class="book-author">${b.author}</div>
+      <div class="book-desc">${b.desc}</div>
+    </div>`
+  ).join('');
+}
+
+/* ═══════════════════════════════════════════
+   IDIOMS
+═══════════════════════════════════════════ */
+function renderIdioms(filterCat) {
+  const cats = [...new Set(IDIOMS.map(i => i.cat))];
+  const filterEl = document.getElementById('idiom-filters');
+  if (filterEl && !filterEl.children.length) {
+    filterEl.innerHTML = `<button class="chip active" onclick="renderIdioms();this.closest('.filter-chips').querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));this.classList.add('active')">All</button>` +
+      cats.map(c => `<button class="chip" onclick="renderIdioms('${c}');this.closest('.filter-chips').querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));this.classList.add('active')">${c}</button>`).join('');
+  }
+  const list = filterCat ? IDIOMS.filter(i => i.cat === filterCat) : IDIOMS;
+  document.getElementById('idiom-grid').innerHTML = list.map(i =>
+    `<div class="idiom-card">
+      <div class="idiom-de">${i.de}</div>
+      <div class="idiom-literal">${i.lit}</div>
+      <div class="idiom-meaning">${i.mean}</div>
+      <div class="idiom-example">${i.ex}</div>
+      <span class="idiom-cat">${i.cat}</span>
+    </div>`
+  ).join('');
+}
+
+/* ═══════════════════════════════════════════
+   ZUNGENBRECHER
+═══════════════════════════════════════════ */
+function renderZungenbrecher() {
+  document.getElementById('zt-grid').innerHTML = ZTBRECHER.map((z, idx) => {
+    const dots = Array(5).fill(0).map((_, i) => `<span${i < z.diff ? ' class="filled"' : ''}></span>`).join('');
+    return `<div class="zt-card">
+      <div class="zt-top">
+        <div class="zt-text" id="zt-${idx}">${z.text}</div>
+        <div class="zt-diff">${dots}</div>
+      </div>
+      <div class="zt-meaning">${z.mean}</div>
+      <div class="dict-note mt-8">${z.tip}</div>
+      <button class="btn zt-btn" onclick="highlightZT(${idx})">⟳ Highlight &amp; Try</button>
+    </div>`;
+  }).join('');
+}
+
+function highlightZT(idx) {
+  const el = document.getElementById(`zt-${idx}`);
+  el.style.transition = 'color 0.3s';
+  el.style.color = 'var(--amber-3)';
+  el.style.fontSize = '19px';
+  setTimeout(() => { el.style.color = ''; el.style.fontSize = ''; }, 3000);
+}
+
+/* ═══════════════════════════════════════════
+   REFERENCE TABLES
+═══════════════════════════════════════════ */
+function buildTable(data) {
+  const rowClass = data === REF_STRONG ? 'form' : 'case-col';
+  const rows = data.rows.map((r, ri) =>
+    `<tr>${r.map((cell, ci) =>
+      `<td class="${ci===0 ? rowClass : (ci>0 && data.headers[ci]==='Aux.' && ['ist','hat'].includes(cell) ? (cell==='ist'?'form text-amber':'form') : 'form')}">${cell}</td>`
+    ).join('')}</tr>`
+  ).join('');
+  const hdrs = data.headers.map(h => `<th>${h}</th>`).join('');
+  return `<div class="ref-table-wrap">
+    <div class="ref-table-title">${data.title}</div>
+    <div class="ref-table-scroll"><table class="ref-table"><thead><tr>${hdrs}</tr></thead><tbody>${rows}</tbody></table></div>
+    ${data.note ? `<div class="dict-note" style="padding:10px 14px;border-left:0;border-top:1px solid var(--border)">${data.note}</div>` : ''}
+  </div>`;
+}
+
+function renderRefTables() {
+  document.getElementById('ref-grid').innerHTML =
+    buildTable(REF_ARTICLES) +
+    buildTable(REF_INDEF) +
+    buildTable(REF_PRONOUNS) +
+    buildTable(REF_PREPS) +
+    `<div style="grid-column:1/-1">` + buildTable(REF_STRONG) + `</div>`;
+}
+</script>
+</body>
+</html>

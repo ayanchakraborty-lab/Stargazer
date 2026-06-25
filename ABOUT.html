@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Stargazer: Ten Territories Through a Curious Mind</title>
+<meta name="description" content="Stargazer is ten curated territories — 133 films, 121 books, 88 anime, all of mathematics, tantra texts, a complete chess history, statistics, German, Japanese, and a private vault. Discover what each contains and how they connect.">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/ABOUT.html"/>
+<link rel="icon" type="image/png" href="pics/logo.png">
+<meta property="og:title" content="About Stargazer — Ten Territories Through Everything"/>
+<meta property="og:description" content="Ten curated territories: film, books, anime, mathematics, tantra, chess, statistics, German, Japanese, and a private vault. One cosmos. Begin exploring →"/>
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/ABOUT.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/preview.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Stargazer — Ten Territories · One Cosmos"/>
+<meta name="twitter:description" content="Films, books, anime, maths, tantra, chess, statistics, German, Japanese, and a private vault. Ten paths through one mind. Begin →"/>
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/preview.jpg"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About Stargazer",
+  "url": "https://stargazer-9m9.pages.dev/ABOUT.html",
+  "description": "Ten territories through one mind: films, books, anime, mathematics, tantra, chess, statistics, German, Japanese, and a personal vault.",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,300;1,400;1,500&family=Cormorant+Garamond:ital,wght@1,300;1,400&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+/* ── TOKENS ─────────────────────────────────────────────────────── */
+:root {
+  --font:  'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+  --mono:  'Space Mono', 'Courier New', monospace;
+  --gold:  #c9a84c;
+  --gold2: #e8d09a;
+  --text:  #f0ead8;
+  --text2: #cfc5ad;
+  --text3: rgba(200,185,155,0.50);
+  --bdr:   rgba(201,168,76,0.13);
+  --bdr2:  rgba(201,168,76,0.24);
+}
+
+/* ── RESET ──────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ── BODY + BACKGROUND ──────────────────────────────────────────── */
+body {
+  font-family: var(--font);
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text);
+  background-color: #04020c;
+  background-image: url('pics/about.png');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: linear-gradient(to bottom,
+    rgba(2,1,8,0.65) 0%, rgba(3,1,10,0.18) 22%,
+    rgba(3,1,10,0.14) 55%, rgba(2,1,8,0.48) 100%);
+}
+
+/* ── TOP NAV ────────────────────────────────────────────────────── */
+#topNav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9000;
+  height: 52px; display: flex; align-items: center;
+  justify-content: space-between; padding: 0 18px;
+  background: rgba(4,2,12,0.84);
+  border-bottom: 1px solid rgba(201,168,76,0.10);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  gap: 0.5rem;
+}
+.nav-btn {
+  font-family: var(--mono); font-size: 0.67rem; letter-spacing: 0.08em;
+  font-style: italic; text-decoration: none; cursor: pointer;
+  background: rgba(12,6,26,0.7); border: 1px solid var(--bdr2);
+  border-radius: 20px; padding: 0.3rem 1.05rem; color: var(--text2);
+  transition: all 0.2s; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 0.3rem;
+}
+.nav-btn:hover { border-color: var(--gold); color: var(--gold); }
+.nav-left  { display:flex; align-items:center; gap:0.4rem; }
+.nav-right { display:flex; align-items:center; gap:0.4rem; }
+#navUserEmail {
+  font-family: var(--mono); font-size: 0.6rem; color: var(--text3);
+  max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  background: rgba(12,6,26,0.7); border: 1px solid var(--bdr2);
+  border-radius: 2px 12px 2px 12px; padding: 0.26rem 0.7rem; display: none;
+}
+#navSignOutBtn { display: none; }
+#navLoginBtn   { display: flex; }
+
+/* ── MAIN ───────────────────────────────────────────────────────── */
+main { position: relative; z-index: 1; padding-top: 52px; }
+
+/* ── HERO ───────────────────────────────────────────────────────── */
+.cosmo-hero {
+  text-align: center; padding: 4.5rem 1.5rem 1.5rem;
+  opacity: 0; animation: fadeUp 1.1s ease 0.2s forwards;
+}
+.hero-eyebrow {
+  font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.28em;
+  text-transform: uppercase; color: rgba(201,168,76,0.58);
+  margin-bottom: 0.9rem;
+}
+.hero-title {
+  font-family: var(--font); font-size: clamp(2.3rem, 5.5vw, 3.9rem);
+  font-weight: 400; font-style: italic; letter-spacing: 0.02em; line-height: 1.12;
+  background: linear-gradient(135deg, #e8c87a 0%, #c9a84c 28%, #9b72cf 58%, #4db8b0 78%, #e8d09a 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; background-size: 220% 220%;
+  animation: enchant 12s ease-in-out infinite alternate; margin-bottom: 0.9rem;
+}
+@keyframes enchant {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 30% 80%; }
+}
+.hero-sub {
+  font-size: 1rem; font-style: italic; font-weight: 300;
+  color: rgba(230,215,185,0.62); max-width: 480px;
+  margin: 0 auto 2.5rem; line-height: 1.85;
+}
+
+/* ── ORRERY ─────────────────────────────────────────────────────── */
+.orrery-wrap { max-width: 560px; margin: 0 auto 0.5rem; }
+.orrery-svg  { width: 100%; height: auto; overflow: visible; }
+.orrery-node { cursor: pointer; }
+.orrery-node circle {
+  transition: filter 0.25s, r 0.25s;
+  transform-box: fill-box; transform-origin: center;
+}
+.orrery-node:hover circle:first-child { filter: brightness(1.4) drop-shadow(0 0 6px currentColor); }
+.orrery-node text { pointer-events: none; }
+
+/* ── STATS STRIP ─────────────────────────────────────────────────── */
+.stats-strip {
+  display: flex; justify-content: center; flex-wrap: wrap;
+  padding: 1.5rem 1rem 1.8rem; max-width: 820px; margin: 0 auto;
+  opacity: 0; animation: fadeUp 1s ease 0.55s forwards;
+}
+.stat-item {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0.45rem 1.1rem; text-decoration: none;
+  border-right: 1px solid var(--bdr); transition: all 0.2s;
+}
+.stat-item:last-child { border-right: none; }
+.stat-item:hover .stat-num { color: var(--gold); }
+.stat-num {
+  font-family: var(--mono); font-size: 0.82rem; color: var(--text2);
+  transition: color 0.2s;
+}
+.stat-lbl {
+  font-family: var(--mono); font-size: 0.4rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--text3);
+}
+
+/* ── CONTENT WELL ────────────────────────────────────────────────── */
+.content-well { max-width: 880px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+/* ── SECTION LABELS ──────────────────────────────────────────────── */
+.sec-eyebrow {
+  font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.26em;
+  text-transform: uppercase; color: rgba(201,168,76,0.48); margin-bottom: 0.5rem;
+}
+.sec-title {
+  font-family: var(--font); font-size: 1.55rem; font-weight: 400;
+  font-style: italic; color: var(--gold2); letter-spacing: 0.01em; margin-bottom: 0.35rem;
+}
+.sec-intro {
+  font-family: var(--mono); font-size: 0.48rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--text3); margin-bottom: 1.8rem;
+}
+
+/* ── DIVIDER ─────────────────────────────────────────────────────── */
+.divider {
+  display: flex; align-items: center; gap: 1rem; margin: 3.2rem 0;
+}
+.divider::before, .divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,168,76,0.16), transparent);
+}
+.divider span { font-size: 0.62rem; color: rgba(201,168,76,0.32); }
+
+/* ── MANIFESTO ───────────────────────────────────────────────────── */
+.manifesto p {
+  font-size: 1.04rem; color: var(--text2); line-height: 1.9; margin-bottom: 1.15rem;
+}
+.manifesto p:last-child { margin-bottom: 0; }
+.pull {
+  font-style: italic; font-size: 1.1rem; color: rgba(232,210,170,0.86);
+  border-left: 2px solid rgba(201,168,76,0.42);
+  padding-left: 1.2rem; margin: 1.4rem 0; line-height: 1.78;
+}
+
+/* ── DOMAIN CARDS GRID ───────────────────────────────────────────── */
+.domains-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem; margin-top: 0.5rem;
+}
+
+/* ── DOMAIN CARD ─────────────────────────────────────────────────── */
+.d-card {
+  position: relative;
+  background: rgba(6,3,16,0.70);
+  border: 1px solid rgba(255,255,255,0.045);
+  border-left: 4px solid var(--acc, #c9a84c);
+  border-radius: 0 13px 13px 0;
+  padding: 1.3rem 1.4rem 1.3rem 1.5rem;
+  display: flex; flex-direction: column;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  /* reveal state */
+  opacity: 0; transform: translateY(16px);
+  text-decoration: none;
+}
+.d-card.visible {
+  opacity: 1; transform: translateY(0);
+  transition: opacity 0.65s ease, transform 0.65s ease,
+              border-left-color 0.2s, box-shadow 0.25s, transform 0.25s;
+}
+.d-card.visible:hover {
+  transform: translateX(3px) translateY(-2px);
+  box-shadow: 0 10px 36px rgba(0,0,0,0.45);
+}
+.d-num {
+  font-family: var(--mono); font-size: 0.44rem; letter-spacing: 0.22em;
+  color: var(--acc, #c9a84c); opacity: 0.55; margin-bottom: 0.65rem;
+}
+.d-head { display: flex; align-items: flex-start; gap: 0.55rem; margin-bottom: 0.65rem; }
+.d-icon { font-size: 1.15rem; line-height: 1; flex-shrink: 0; margin-top: 0.08rem; }
+.d-title {
+  font-family: var(--font); font-size: 1.18rem; font-weight: 400;
+  font-style: italic; color: var(--acc, #e8d09a); line-height: 1.2; margin-bottom: 0.1rem;
+}
+.d-tag {
+  font-family: var(--mono); font-size: 0.45rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--text3);
+}
+.d-body {
+  font-size: 0.9rem; color: var(--text2); line-height: 1.74;
+  margin-bottom: 0.9rem; flex: 1;
+}
+.d-link {
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--acc, #c9a84c); opacity: 0.65;
+  text-decoration: none; align-self: flex-start; transition: opacity 0.2s;
+}
+.d-card.visible:hover .d-link { opacity: 1; }
+
+/* ── PHILOSOPHY ──────────────────────────────────────────────────── */
+.philo p {
+  font-size: 1.04rem; color: var(--text2); line-height: 1.88; margin-bottom: 1.1rem;
+}
+.philo p:last-child { margin-bottom: 0; }
+
+/* ── CLOSING ─────────────────────────────────────────────────────── */
+.closing { text-align: center; padding: 3rem 2rem 2.5rem; }
+.closing-glyph {
+  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.28em;
+  text-transform: uppercase; color: rgba(201,168,76,0.32);
+  display: block; margin-bottom: 0.9rem;
+}
+.closing-text {
+  font-family: var(--font); font-size: 1.1rem; font-style: italic; font-weight: 300;
+  color: rgba(230,210,170,0.50); line-height: 1.75; max-width: 420px; margin: 0 auto;
+}
+
+/* ── CREATOR NOTE ────────────────────────────────────────────────── */
+.creator-note {
+  text-align: center; padding: 1.5rem 2rem 2rem;
+  border-top: 1px solid var(--bdr);
+}
+.creator-avatar { font-size: 1.25rem; color: var(--gold); margin-bottom: 0.5rem; }
+.creator-name { font-family: var(--font); font-size: 1rem; font-style: italic; color: var(--gold2); margin-bottom: 0.3rem; }
+.creator-meta { font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.16em; color: var(--text3); text-transform: uppercase; margin-bottom: 0.9rem; }
+.creator-links { display: flex; align-items: center; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }
+.creator-link {
+  font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.1em;
+  color: var(--text3); text-decoration: none;
+  border: 1px solid rgba(201,168,76,0.15); border-radius: 20px;
+  padding: 0.24rem 0.75rem; transition: all 0.22s;
+}
+.creator-link:hover { border-color: rgba(201,168,76,0.42); color: var(--gold); }
+
+/* ── FULL NAV ────────────────────────────────────────────────────── */
+.full-nav { padding: 2rem 1.5rem 4.5rem; max-width: 880px; margin: 0 auto; }
+.full-nav-label {
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--text3); text-align: center; margin-bottom: 1.1rem;
+}
+.full-nav-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.55rem; }
+.fnl {
+  display: flex; flex-direction: column; align-items: center; gap: 0.22rem;
+  padding: 0.85rem 0.4rem;
+  background: rgba(8,4,20,0.68); border: 1px solid var(--bdr);
+  border-radius: 4px 14px 4px 14px; text-decoration: none; transition: all 0.22s;
+}
+.fnl:hover { border-color: var(--bdr2); background: rgba(14,8,32,0.78); transform: translateY(-2px); }
+.fnl-icon { font-size: 1rem; line-height: 1; }
+.fnl-name { font-family: var(--font); font-size: 0.82rem; font-style: italic; color: var(--gold2); text-align: center; line-height: 1.2; }
+.fnl-sub  { font-family: var(--mono); font-size: 0.4rem; letter-spacing: 0.1em; color: var(--text3); text-align: center; }
+
+/* ── SCROLL-REVEAL BASE ──────────────────────────────────────────── */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── ANIMATIONS ──────────────────────────────────────────────────── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────── */
+@media (max-width: 680px) {
+  .cosmo-hero { padding: 4rem 1.2rem 1rem; }
+  .domains-grid { grid-template-columns: 1fr; }
+  .full-nav-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-item { padding: 0.4rem 0.7rem; }
+  .content-well { padding: 0 1.1rem 4rem; }
+}
+@media (max-width: 360px) {
+  .full-nav-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+<!-- Required by shared.js -->
+<a id="loginBtn" href="login.html" aria-hidden="true" tabindex="-1"
+   style="position:absolute;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none;"></a>
+
+<!-- ── TOP NAV ── -->
+<nav id="topNav">
+  <div class="nav-left">
+    <a href="index.html" class="nav-btn">← universe</a>
+  </div>
+  <div class="nav-right">
+    <a href="login.html" class="nav-btn" id="navLoginBtn">Sign in</a>
+    <span id="navUserEmail"></span>
+    <button class="nav-btn" id="navSignOutBtn"
+      onclick="typeof doSignOut==='function'?doSignOut():void 0">Sign out</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ══════════════════════════════════════════════════════════════
+     HERO + ORRERY CONSTELLATION
+══════════════════════════════════════════════════════════════ -->
+<section class="cosmo-hero">
+  <p class="hero-eyebrow">stargazer &nbsp;·&nbsp; about</p>
+  <h1 class="hero-title">Ten&nbsp;Territories.<br>One&nbsp;Mind.</h1>
+  <p class="hero-sub">Not a collection of lists — a topology of a curious mind.<br>Ten paths through the same cosmos.</p>
+
+  <!--
+    ORRERY — SVG constellation of all 10 domains
+    Center: 280, 260 · Ring radius: 170
+    Nodes at angles: -90°, -54°, -18°, 18°, 54°, 90°, 126°, 162°, 198°, 234°
+  -->
+  <div class="orrery-wrap">
+    <svg class="orrery-svg" viewBox="0 0 560 520" xmlns="http://www.w3.org/2000/svg"
+         role="img" aria-label="Ten-domain constellation map of Stargazer">
+
+      <!-- Ambient guide rings -->
+      <circle cx="280" cy="260" r="170" fill="none" stroke="rgba(201,168,76,0.06)" stroke-width="1"/>
+      <circle cx="280" cy="260" r="170" fill="none" stroke="rgba(201,168,76,0.025)" stroke-width="0.5" stroke-dasharray="2 9"/>
+      <circle cx="280" cy="260" r="44"  fill="none" stroke="rgba(201,168,76,0.10)"  stroke-width="0.5" stroke-dasharray="2 5"/>
+
+      <!-- Decagon outline connecting all 10 nodes -->
+      <polygon
+        points="280,90 380,122 442,208 442,312 380,398 280,430 180,398 118,312 118,208 180,122"
+        fill="none" stroke="rgba(201,168,76,0.045)" stroke-width="0.5"/>
+
+      <!-- Spokes from centre to each node -->
+      <g stroke="rgba(201,168,76,0.07)" stroke-width="0.5">
+        <line x1="280" y1="260" x2="280" y2="90"/>
+        <line x1="280" y1="260" x2="380" y2="122"/>
+        <line x1="280" y1="260" x2="442" y2="208"/>
+        <line x1="280" y1="260" x2="442" y2="312"/>
+        <line x1="280" y1="260" x2="380" y2="398"/>
+        <line x1="280" y1="260" x2="280" y2="430"/>
+        <line x1="280" y1="260" x2="180" y2="398"/>
+        <line x1="280" y1="260" x2="118" y2="312"/>
+        <line x1="280" y1="260" x2="118" y2="208"/>
+        <line x1="280" y1="260" x2="180" y2="122"/>
+      </g>
+
+      <!-- ── CENTRAL NODE ── -->
+      <circle cx="280" cy="260" r="40" fill="rgba(201,168,76,0.055)" stroke="rgba(201,168,76,0.26)" stroke-width="1"/>
+      <circle cx="280" cy="260" r="33" fill="none" stroke="rgba(201,168,76,0.10)" stroke-width="0.5"/>
+      <text x="280" y="255" text-anchor="middle" dominant-baseline="middle"
+            font-family="'Space Mono',monospace" font-size="7.5" fill="rgba(201,168,76,0.68)" letter-spacing="0.2em">STARGAZER</text>
+      <text x="280" y="269" text-anchor="middle" dominant-baseline="middle"
+            font-family="serif" font-size="12" fill="#c9a84c">✦</text>
+
+      <!-- ── 01 FILMS  (top, -90°)  ── -->
+      <a href="MOVIES.html">
+        <g class="orrery-node">
+          <circle cx="280" cy="90" r="23" fill="rgba(224,85,85,0.13)" stroke="#e05555" stroke-width="1.4"/>
+          <text x="280" y="91" text-anchor="middle" dominant-baseline="middle"
+                font-family="'Space Mono',monospace" font-size="8.5" fill="#e05555" font-weight="bold">01</text>
+          <text x="280" y="55" text-anchor="middle"
+                font-family="'Space Mono',monospace" font-size="6.5" fill="#e05555" letter-spacing="0.18em">FILMS</text>
+        </g>
+      </a>
+
+      <!-- ── 02 BOOKS  (upper-right, -54°) ── -->
+      <a href="BOOKS.html">
+        <g class="orrery-node">
+          <circle cx="380" cy="122" r="23" fill="rgba(212,149,42,0.13)" stroke="#d4952a" stroke-width="1.4"/>
+          <text x="380" y="123" text-anchor="middle" dominant-baseline="middle"
+                font-family="'Space Mono',monospace" font-size="8.5" fill="#d4952a" font-weight="bold">02</text>
+          <text x="410" y="111" text-anchor="start"
+                font-family="'Space Mono',monospace" font-size="6.5" fill="#d4952a" letter-spacing="0.18em">BOOKS</text>
+        </g>
+      </a>
+
+      <!-- ── 03 ANIME  (right, -18°) ── -->
+      <a href="ANIME.html">
+        <g class="orrery-node">
+          <circle cx="442" cy="208" r="23" fill="rgba(232,127,212,0.13)" stroke="#e87fd4" stroke-width="1.4"/>
+          <text x="442" y="209" text-anchor="middle" dominant-baseline="middle"
+                font-family="'Space Mono',monospace" font-size="8.5" fill="#e87fd4" font-weight="bold">03</text>
+          <text x="472" y="211" text-anchor="start"
+                font-family="'Space Mono',monospace" font-size="6.5" fill="#e87fd4" letter-spacing="0.18em">ANIME</text>
+        </g>
+      </a>
+
+      <!-- ── 04 MATHS  (lower-right, 18°) ── -->
+      <a href="MATHS.html">
+        <g class="orrery-node">
+          <circle cx="442" cy="312" r="23" fill="rgba(45,212,191,0.13)" stroke="#2dd4bf" stroke-width="1.4"/>
+          <text x="442" y="313" text-anchor="middle" dominant-baseline="middle"
+                font-family="'Space Mono',monospace" font-size="8.5" fill="#2dd4bf" font-weight="bold">04</text>
+          <text x="472" y="315" text-anchor="start"
+                font-family="'Space Mono',monospace" font-size="6.5" fill="#2dd4bf" letter-spacing="0.18em">MATHS</text>
+        </g>
+      </a>
+
+      <!-- ── 05 TANTRA  (lower-right, 54°) ── -->
+      <a href="TANTRA.html">
+        <g class="orrery-node">
+          <circle cx="380" cy="398" r="23" fill="rgba(155,114,207,0.13)" stroke="#9b72cf" stroke-width="1.4"/>
+          <text x="380" y="399" text-anchor="middle" dominant-baseline="middle"
+                font-family="'Space Mono',monospace" font-size="8.5" fill="#9b72cf" font-weight="bold">05</text>
+          <text x="380" y="435" text-anchor="middle"
+                font-family="'Space Mono',monospace" font-size="6.5" fill="#9b72cf" letter-spacing="0.18em">TANTRA</text>
+        </g>
+      </a>
+
+      <!-- ── 06 CHESS  (bottom, 90°) ── -->
+      <a href="CHESS.html">
+        <g class="orrery-node">
+          <circle cx="280" cy="430" r="23" fill="rgba(96,165,250,0.13)" stroke="#60a5fa" stroke-width="1.4"/>
+          <text x="280" y="431" text-anchor="middle" dominant-baseline="middle"
+                font-family="'Space Mono',monospace" font-size="8.5" fill="#60a5fa" font-weight="bold">06</text>
+          <text x="280" y="466" text-anchor="middle"
+                font-family="'Space Mono',monospace" font-size="6.5" fill="#60a5fa" letter-spacing="0.18em">CHESS</text>
+        </g>
+      </a>
+
+      <!-- ── 07 STATS  (lower-left, 126°) ── -->
+      <a href="STATS.html">
+        <g class="orrery-node">
+          <circle cx="180" cy="398" r="23" fill="rgba(74,222,128,0.13)" stroke="#4ade80" stroke-width="1.4"/>
+          <text x="180" y="399" text-anchor="middle" dominant-baseline="middle"
+                font-family="'Space Mono',monospace" font-size="8.5" fill="#4ade80" font-weight="bold">07</text>
+          <text x="180" y="435" text-anchor="middle"
+                font-family="'Space Mono',monospace" font-size="6.5" fill="#4ade80" letter-spacing="0.18em">STATS</text>
+        </g>
+      </a>
+
+      <!-- ── 08 GERMAN  (left, 162°) ── -->
+      <a href="GERMAN.html">
+        <g class="orrery-node">
+          <circle cx="118" cy="312" r="23" fill="rgba(251,146,60,0.13)" stroke="#fb923c" stroke-width="1.4"/>
+          <text x="118" y="313" text-anchor="middle" dominant-baseline="middle"
+                font-family="'Space Mono',monospace" font-size="8.5" fill="#fb923c" font-weight="bold">08</text>
+          <text x="88" y="315" text-anchor="end"
+                font-family="'Space Mono',monospace" font-size="6.5" fill="#fb923c" letter-spacing="0.18em">GERMAN</text>
+        </g>
+      </a>
+
+      <!-- ── 09 JAPANESE  (upper-left, 198°) ── -->
+      <a href="JAPANESE.html">
+        <g class="orrery-node">
+          <circle cx="118" cy="208" r="23" fill="rgba(251,113,133,0.13)" stroke="#fb7185" stroke-width="1.4"/>
+          <text x="118" y="209" text-anchor="middle" dominant-baseline="middle"
+                font-family="'Space Mono',monospace" font-size="8.5" fill="#fb7185" font-weight="bold">09</text>
+          <text x="88" y="211" text-anchor="end"
+                font-family="'Space Mono',monospace" font-size="6.5" fill="#fb7185" letter-spacing="0.18em">JPN</text>
+        </g>
+      </a>
+
+      <!-- ── 10 PERSONAL  (upper-left, 234°) ── -->
+      <a href="PERSONAL.html">
+        <g class="orrery-node">
+          <circle cx="180" cy="122" r="23" fill="rgba(148,163,184,0.13)" stroke="#94a3b8" stroke-width="1.4"/>
+          <text x="180" y="123" text-anchor="middle" dominant-baseline="middle"
+                font-family="'Space Mono',monospace" font-size="8.5" fill="#94a3b8" font-weight="bold">10</text>
+          <text x="150" y="111" text-anchor="end"
+                font-family="'Space Mono',monospace" font-size="6.5" fill="#94a3b8" letter-spacing="0.18em">VAULT</text>
+        </g>
+      </a>
+
+    </svg>
+  </div>
+</section>
+
+<!-- ── STATS STRIP ── -->
+<div class="stats-strip">
+  <a href="MOVIES.html"   class="stat-item"><div class="stat-num">133</div><div class="stat-lbl">films</div></a>
+  <a href="BOOKS.html"    class="stat-item"><div class="stat-num">121</div><div class="stat-lbl">books</div></a>
+  <a href="ANIME.html"    class="stat-item"><div class="stat-num">88</div> <div class="stat-lbl">anime</div></a>
+  <a href="MATHS.html"    class="stat-item"><div class="stat-num">∞</div>  <div class="stat-lbl">maths</div></a>
+  <a href="TANTRA.html"   class="stat-item"><div class="stat-num">∞</div>  <div class="stat-lbl">texts</div></a>
+  <a href="CHESS.html"    class="stat-item"><div class="stat-num">∞</div>  <div class="stat-lbl">chess</div></a>
+  <a href="STATS.html"    class="stat-item"><div class="stat-num">∞</div>  <div class="stat-lbl">stats</div></a>
+  <a href="GERMAN.html"   class="stat-item"><div class="stat-num">18</div> <div class="stat-lbl">words</div></a>
+  <a href="JAPANESE.html" class="stat-item"><div class="stat-num">∞</div>  <div class="stat-lbl">日本語</div></a>
+  <a href="PERSONAL.html" class="stat-item"><div class="stat-num">?</div>  <div class="stat-lbl">vault</div></a>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     CONTENT WELL
+══════════════════════════════════════════════════════════════ -->
+<div class="content-well">
+
+
+  <!-- ─── I · UNIFIED MANIFESTO ─────────────────────────────── -->
+  <section class="manifesto reveal">
+    <p class="sec-eyebrow">I &nbsp;·&nbsp; the cosmos within</p>
+    <h2 class="sec-title">What All of This Is, Together</h2>
+    <p class="sec-intro">before the ten — one thing</p>
+
+    <p>Stargazer was not built around themes. It was built around a mind that refused to stop at any border — one that found the same quality of attention demanded by a Satoshi Kon film and a Steinitz endgame and a Bengali Tantric verse and a chapter of Gödel Escher Bach. A mind that sees no natural wall between the grammar of German and the structure of a mathematical proof, between the symbol-systems of Tantra and those of formal logic, between a probability paradox and the ambiguity at the end of a great film. These are not different interests. They are different angles of incidence on the same underlying light.</p>
+
+    <p>Ten territories, ten paths, one continuous journey. The mathematics here illuminates the uncertainty baked into a film's ambiguous ending. German — with its words for feelings that have no English name — unlocks philosophical concepts that other languages have been reaching for without the vocabulary to hold them. The symbolic architecture of Tantric texts shares deep structure with the vocabulary of formal logic. The greatest anime reaches toward the same questions that literature has always reached toward, only faster, more violently, more visually. Chess is geometry made war made meditation. Statistics is the practice of not lying to yourself about what the world is telling you. Japanese is a writing system that encodes poetry in the act of inscription itself.</p>
+
+    <blockquote class="pull">A proof has the same internal necessity as a great film. The symbol at the centre of a Tantra text has the same architecture as a mathematical space. An anime depicting a mind unravelling is doing the same work as a difficult novel.</blockquote>
+
+    <p>Every path here is infinite. You cannot finish any of them. The film list grows. The mathematics expands. The chess history stretches from ancient India to the present. None of this is a syllabus — it is a topology, a map of how certain kinds of knowledge illuminate each other from unexpected angles. Begin anywhere. The only mistake is to stay in one place.</p>
+  </section>
+
+
+  <div class="divider"><span>✦</span></div>
+
+
+  <!-- ─── II · TEN TERRITORIES ──────────────────────────────── -->
+  <section>
+    <p class="sec-eyebrow reveal">II &nbsp;·&nbsp; the ten territories</p>
+    <h2 class="sec-title reveal">Each Separately. Each in Full.</h2>
+    <p class="sec-intro reveal">what lives inside each door</p>
+
+    <div class="domains-grid">
+
+      <!-- 01 FILMS -->
+      <article class="d-card" style="--acc:#e05555;">
+        <div class="d-num">01 / 10</div>
+        <div class="d-head">
+          <span class="d-icon">🎬</span>
+          <div>
+            <div class="d-title">Films</div>
+            <div class="d-tag">Cinema Abyss &nbsp;·&nbsp; 133 transmissions</div>
+          </div>
+        </div>
+        <p class="d-body">133 world films arranged not by genre but by what they demand — from the gently unsettling to the irreversibly strange. Night and dawn mode toggle, mood filters, watch-state tracking. Each film carries not a review but a placement note: why it belongs exactly here, and what capacity it builds in the viewer for what comes next. The Cinema Abyss begins with films that require nothing and ends with films that require everything the earlier ones have built.</p>
+        <a href="MOVIES.html" class="d-link">enter cinema abyss →</a>
+      </article>
+
+      <!-- 02 BOOKS -->
+      <article class="d-card" style="--acc:#d4952a;">
+        <div class="d-num">02 / 10</div>
+        <div class="d-head">
+          <span class="d-icon">📚</span>
+          <div>
+            <div class="d-title">Books</div>
+            <div class="d-tag">Reading Universe &nbsp;·&nbsp; 121 volumes</div>
+          </div>
+        </div>
+        <p class="d-body">121 books placed in a deliberate order: 86 in the main reading sequence and 35 companion volumes. Fiction, science fiction, philosophy, horror, strange corners of literature. Difficulty-rated. Each entry explains not what the book is about, but why it belongs at exactly this point in the sequence and what it builds in the reader for what follows. The sequence is the argument — begin at one and resist the urge to skip.</p>
+        <a href="BOOKS.html" class="d-link">enter reading universe →</a>
+      </article>
+
+      <!-- 03 ANIME -->
+      <article class="d-card" style="--acc:#e87fd4;">
+        <div class="d-num">03 / 10</div>
+        <div class="d-head">
+          <span class="d-icon">📡</span>
+          <div>
+            <div class="d-title">Anime</div>
+            <div class="d-tag">Anime Abyss &nbsp;·&nbsp; 88 transmissions</div>
+          </div>
+        </div>
+        <p class="d-body">88 anime ranked from clever to consciousness-shattering. Serial Experiments Lain, Neon Genesis Evangelion, the films of Satoshi Kon and Masaaki Yuasa, and beyond. Each placed for a specific reason within a specific sequence. Filter by depth and mood, track your descent, and follow the path that was built to take you somewhere you have not been before.</p>
+        <a href="ANIME.html" class="d-link">enter anime abyss →</a>
+      </article>
+
+      <!-- 04 MATHEMATICS -->
+      <article class="d-card" style="--acc:#2dd4bf;">
+        <div class="d-num">04 / 10</div>
+        <div class="d-head">
+          <span class="d-icon" style="font-style:normal; font-family:serif; font-size:1.4rem; color:#2dd4bf;">∞</span>
+          <div>
+            <div class="d-title">Mathematics</div>
+            <div class="d-tag">The Infinite Path &nbsp;·&nbsp; all of it</div>
+          </div>
+        </div>
+        <p class="d-body">Everything: school arithmetic through Millennium Prize Problems, olympiad training, recreational puzzles, beautiful theorems, great expository texts — Men of Mathematics, Gödel Escher Bach, A Mathematician's Apology — career paths through the infinite, and the open problems that remain unsolved. The territory that never ends. Every other path here connects to it somehow, from somewhere unexpected.</p>
+        <a href="MATHS.html" class="d-link">enter the infinite path →</a>
+      </article>
+
+      <!-- 05 TANTRA -->
+      <article class="d-card" style="--acc:#9b72cf;">
+        <div class="d-num">05 / 10</div>
+        <div class="d-head">
+          <span class="d-icon">🜂</span>
+          <div>
+            <div class="d-title">Tantra</div>
+            <div class="d-tag">The Hidden Library &nbsp;·&nbsp; ancient texts</div>
+          </div>
+        </div>
+        <p class="d-body">A curated library of Tantric texts, Puranas, Shakti traditions, and Bengali occult literature. The Sixty-Four Yoginis. Cremation-ground sadhana. Texts chosen not for scholarly completeness but for what they do to the person who reads them carefully — which is not the same as merely reading them. The library is hidden because not everything should be found too easily.</p>
+        <a href="TANTRA.html" class="d-link">enter the hidden library →</a>
+      </article>
+
+      <!-- 06 CHESS -->
+      <article class="d-card" style="--acc:#60a5fa;">
+        <div class="d-num">06 / 10</div>
+        <div class="d-head">
+          <span class="d-icon">♟</span>
+          <div>
+            <div class="d-title">Chess</div>
+            <div class="d-tag">A Complete History &nbsp;·&nbsp; India to AI</div>
+          </div>
+        </div>
+        <p class="d-body">The complete history of chess from its origins in ancient India through every era: Romantic brilliancies and the age of attack, the Classical school of Steinitz, Soviet dominance, the Fischer era, Kasparov's two-decade reign, and into the age of artificial intelligence. Annotated immortal games, world champion profiles, opening theory, endgame studies, tactical puzzles, and the silent philosophy of the board.</p>
+        <a href="CHESS.html" class="d-link">enter chess history →</a>
+      </article>
+
+      <!-- 07 STATISTICS -->
+      <article class="d-card" style="--acc:#4ade80;">
+        <div class="d-num">07 / 10</div>
+        <div class="d-head">
+          <span class="d-icon">📊</span>
+          <div>
+            <div class="d-title">Statistics</div>
+            <div class="d-tag">The Atlas of Uncertainty</div>
+          </div>
+        </div>
+        <p class="d-body">Statistics from school probability to Bayesian inference — the Monty Hall problem, Simpson's Paradox, distributions, hypothesis testing, the Central Limit Theorem, p-values, open research problems, and 12 essential textbooks. The art of drawing meaning from noise, and of not lying to yourself about what the data is telling you. Statistics is not calculation; it is the discipline of honest inference.</p>
+        <a href="STATS.html" class="d-link">enter the uncertainty atlas →</a>
+      </article>
+
+      <!-- 08 GERMAN -->
+      <article class="d-card" style="--acc:#fb923c;">
+        <div class="d-num">08 / 10</div>
+        <div class="d-head">
+          <span class="d-icon">🏰</span>
+          <div>
+            <div class="d-title">German</div>
+            <div class="d-tag">The Language of Goethe and Kafka</div>
+          </div>
+        </div>
+        <p class="d-body">18 German words that English cannot translate: Sehnsucht, Waldeinsamkeit, Weltschmerz, Schadenfreude, Verschlimmbessern, and more — each a concept entire civilisations have needed and found no single name for. Grammar deep-dives, leveled short stories, idioms, tongue twisters, and the architecture of thought in one of history's most philosophically precise languages. The word is not the concept; the language is the thinking.</p>
+        <a href="GERMAN.html" class="d-link">enter the german cosmos →</a>
+      </article>
+
+      <!-- 09 JAPANESE -->
+      <article class="d-card" style="--acc:#fb7185;">
+        <div class="d-num">09 / 10</div>
+        <div class="d-head">
+          <span class="d-icon">⛩️</span>
+          <div>
+            <div class="d-title">Japanese</div>
+            <div class="d-tag">日本 &nbsp;·&nbsp; History, Language & The Written Word</div>
+          </div>
+        </div>
+        <p class="d-body">Japan through two lenses: the historical — ink-and-paper civilisation, ancient courts, the Meiji transformation — and the contemporary — neon-lit, algorithm-dense, quietly poetic. From kana to kanji, immersion methods, grammar paths, and the extraordinary richness hidden inside the act of writing in Japanese itself. Two eras, three writing systems, one endlessly layered people.</p>
+        <a href="JAPANESE.html" class="d-link">enter the japan cosmos →</a>
+      </article>
+
+      <!-- 10 PERSONAL -->
+      <article class="d-card" style="--acc:#94a3b8;">
+        <div class="d-num">10 / 10</div>
+        <div class="d-head">
+          <span class="d-icon">🗝️</span>
+          <div>
+            <div class="d-title">Creator's Corner</div>
+            <div class="d-tag">The Cartographer's Vault</div>
+          </div>
+        </div>
+        <p class="d-body">The private territory behind the ten territories. The creator's vault — notes, maps, and reflections that don't fit anywhere else in the cosmos. Personal, partial, not fully public. A door that is there and visible. Whether to open it, and what you do with what you find behind it, is entirely your decision. Some rooms aren't described in advance.</p>
+        <a href="PERSONAL.html" class="d-link">approach the vault →</a>
+      </article>
+
+    </div><!-- /domains-grid -->
+  </section>
+
+
+  <div class="divider"><span>✦</span></div>
+
+
+  <!-- ─── III · CURATION PHILOSOPHY ────────────────────────── -->
+  <section class="philo reveal">
+    <p class="sec-eyebrow">III &nbsp;·&nbsp; the curation</p>
+    <h2 class="sec-title">How Things Are Selected</h2>
+    <p class="sec-intro">the single criterion that applies across all ten paths</p>
+
+    <p class="pull">An entry earns its place by being irreplaceable. Not: is it good? But: could it be removed without leaving a gap that nothing else could fill?</p>
+
+    <p>This criterion applies identically across all ten paths. A film either belongs here or it does not. A chess game, a probability paradox, a German word, a Tantric text, an anime, a book — the same question in every case. Whether removing it would leave the sequence intact or would leave a wound that nothing adjacent could close. Most things fail this test. Many excellent things were left out. The things that passed are here.</p>
+
+    <p>Every path is also ordered — not by popularity, not by critical standing, but by what each entry builds in the person moving through it. The position is the argument. The order is where the meaning lives.</p>
+
+    <p>The lists are not finished. They are never finished. They are always in the state of being more accurate than they were yesterday.</p>
+  </section>
+
+
+  <!-- ─── CLOSING ────────────────────────────────────────────── -->
+  <div class="closing reveal">
+    <span class="closing-glyph">✦ &nbsp; transmission ends &nbsp; ✦</span>
+    <p class="closing-text">The cosmos is not something you find at the end. It is what you are already inside — you just need a map of the parts you haven't seen yet.</p>
+  </div>
+
+  <!-- ─── CREATOR NOTE ───────────────────────────────────────── -->
+  <div class="creator-note reveal">
+    <div class="creator-avatar">✦</div>
+    <div class="creator-name">Ayan Chakraborty</div>
+    <div class="creator-meta">curator · stargazer project</div>
+    <div class="creator-links">
+      <a href="mailto:ayan.chakraborty6174@gmail.com" class="creator-link">✉ contact</a>
+      <a href="MOVIES.html"   class="creator-link">🎬 films</a>
+      <a href="BOOKS.html"    class="creator-link">📚 books</a>
+      <a href="ANIME.html"    class="creator-link">📡 anime</a>
+      <a href="TANTRA.html"   class="creator-link">🜂 tantra</a>
+      <a href="MATHS.html"    class="creator-link">∞ maths</a>
+      <a href="CHESS.html"    class="creator-link">♟ chess</a>
+      <a href="STATS.html"    class="creator-link">📊 stats</a>
+      <a href="GERMAN.html"   class="creator-link">🏰 german</a>
+      <a href="JAPANESE.html" class="creator-link">⛩ japanese</a>
+    </div>
+  </div>
+
+</div><!-- /content-well -->
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     FULL NAVIGATION GRID — all 10 territories
+══════════════════════════════════════════════════════════════ -->
+<nav class="full-nav reveal" aria-label="All territories">
+  <div class="full-nav-label">explore the cosmos</div>
+  <div class="full-nav-grid">
+    <a href="MOVIES.html"   class="fnl"><span class="fnl-icon">🎬</span><span class="fnl-name">Films</span>      <span class="fnl-sub">133 entries</span></a>
+    <a href="BOOKS.html"    class="fnl"><span class="fnl-icon">📚</span><span class="fnl-name">Books</span>      <span class="fnl-sub">121 volumes</span></a>
+    <a href="ANIME.html"    class="fnl"><span class="fnl-icon">📡</span><span class="fnl-name">Anime</span>      <span class="fnl-sub">88 transmissions</span></a>
+    <a href="MATHS.html"    class="fnl"><span class="fnl-icon" style="font-family:serif;font-size:1.2rem;">∞</span><span class="fnl-name">Mathematics</span><span class="fnl-sub">the infinite path</span></a>
+    <a href="TANTRA.html"   class="fnl"><span class="fnl-icon">🜂</span><span class="fnl-name">Tantra</span>     <span class="fnl-sub">hidden library</span></a>
+    <a href="CHESS.html"    class="fnl"><span class="fnl-icon">♟</span><span class="fnl-name">Chess</span>      <span class="fnl-sub">complete history</span></a>
+    <a href="STATS.html"    class="fnl"><span class="fnl-icon">📊</span><span class="fnl-name">Statistics</span> <span class="fnl-sub">atlas of uncertainty</span></a>
+    <a href="GERMAN.html"   class="fnl"><span class="fnl-icon">🏰</span><span class="fnl-name">German</span>     <span class="fnl-sub">18 untranslatable words</span></a>
+    <a href="JAPANESE.html" class="fnl"><span class="fnl-icon">⛩️</span><span class="fnl-name">Japanese</span>   <span class="fnl-sub">日本 · Japan</span></a>
+    <a href="PERSONAL.html" class="fnl"><span class="fnl-icon">🗝️</span><span class="fnl-name">Personal</span>   <span class="fnl-sub">the vault</span></a>
+  </div>
+</nav>
+
+</main>
+
+<script>
+window._pageKey = 'about';
+
+/* ── INTERSECTION OBSERVER — scroll-reveal ──────────────────────── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+
+/* Stagger domain cards slightly; handle reveal & d-card independently */
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = (i * 0.07) + 's';
+  revealObserver.observe(el);
+});
+
+document.querySelectorAll('.d-card').forEach((el, i) => {
+  el.style.transitionDelay = (i * 0.06) + 's';
+  revealObserver.observe(el);
+});
+
+/* ── AUTH SYNC (shared.js integration) ─────────────────────────── */
+window._afterRenderAuthUI = function(user) {
+  const login   = document.getElementById('navLoginBtn');
+  const email   = document.getElementById('navUserEmail');
+  const signout = document.getElementById('navSignOutBtn');
+  if (!login) return;
+  if (user) {
+    login.style.display   = 'none';
+    signout.style.display = 'flex';
+    if (email) {
+      email.textContent = user.user_metadata?.display_name
+                       || user.user_metadata?.full_name
+                       || user.email;
+      email.style.display = 'block';
+    }
+  } else {
+    login.style.display   = 'flex';
+    signout.style.display = 'none';
+    if (email) email.style.display = 'none';
+  }
+};
+</script>
+
+<script src="/shared.js"></script>
+</body>
+</html>

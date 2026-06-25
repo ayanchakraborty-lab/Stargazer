@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="pics/logo.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<title>Sign In | Stargazer: Lost in the Cosmos</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+
+/* ── RESET ── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+/* ── BASE ── */
+:root {
+  --gold:  #c9a84c;
+  --gold2: #f0d090;
+  --purple: #a78bfa;
+}
+html { scroll-behavior: smooth; }
+body {
+  min-height: 100vh;
+  background: #050508;
+  color: #fff;
+  font-family: 'Cormorant Garamond', serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  overflow-x: hidden;
+}
+
+/* ── GRID OVERLAY ── */
+body::after {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* ── NEBULAE ── */
+.neb {
+  position: fixed; border-radius: 50%;
+  pointer-events: none; z-index: 0;
+  animation: neb-drift 20s ease-in-out infinite alternate;
+}
+.neb-1 { width:600px;height:500px;background:radial-gradient(ellipse,rgba(80,30,180,0.22) 0%,transparent 70%);top:-160px;left:-160px;filter:blur(80px);animation-duration:22s; }
+.neb-2 { width:500px;height:500px;background:radial-gradient(ellipse,rgba(160,30,80,0.14) 0%,transparent 70%);bottom:-160px;right:-80px;filter:blur(80px);animation-duration:28s;animation-delay:-10s; }
+.neb-3 { width:400px;height:300px;background:radial-gradient(ellipse,rgba(100,60,220,0.12) 0%,transparent 70%);top:50%;left:50%;filter:blur(100px);animation-duration:18s;animation-delay:-5s; }
+@keyframes neb-drift { from{transform:translate(-50%,-50%) scale(1) translateY(0)} to{transform:translate(-50%,-50%) scale(1.1) translateY(-18px)} }
+
+/* ── CANVAS ── */
+#starfield { position:fixed;inset:0;z-index:0;pointer-events:none; }
+
+/* ── CARD ── */
+.login-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255,255,255,0.028);
+  border: 1px solid rgba(201,168,76,0.18);
+  border-radius: 20px;
+  padding: 2.8rem 2.4rem 2.4rem;
+  box-shadow:
+    0 0 60px rgba(100,60,200,0.12),
+    0 0 30px rgba(201,168,76,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+  animation: card-in 0.7s ease both;
+}
+@keyframes card-in { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
+
+/* Top gold bar */
+.login-card::before {
+  content: '';
+  position: absolute; top:0; left:10%; right:10%; height:1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.8;
+}
+
+/* ── BACK LINK ── */
+.back-link {
+  position: fixed; top:16px; left:18px; z-index:10;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 30px;
+  padding: 0.28rem 0.8rem;
+}
+.back-link:hover { color: rgba(201,168,76,0.8); border-color: rgba(201,168,76,0.3); }
+
+/* ── SIGIL ── */
+.sigil {
+  display: flex; justify-content: center;
+  margin-bottom: 1.2rem;
+}
+.sigil svg { animation: sigil-spin 20s linear infinite; filter: drop-shadow(0 0 8px rgba(255,210,60,0.7)) drop-shadow(0 0 20px rgba(201,168,76,0.4)); }
+@keyframes sigil-spin { to { transform: rotate(360deg); } }
+
+/* ── HEADING ── */
+.login-title {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-align: center;
+  margin-bottom: 0.3rem;
+  background: linear-gradient(135deg, #fff8e7 0%, var(--gold2) 40%, #fff 65%, var(--gold) 100%);
+  background-size: 250% 250%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gold-shimmer 6s ease-in-out infinite;
+}
+@keyframes gold-shimmer { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+.login-sub {
+  font-style: italic; font-size: 0.88rem; font-weight: 300;
+  color: rgba(255,255,255,0.75); text-align: center;
+  letter-spacing: 0.06em; margin-bottom: 1.8rem;
+}
+
+/* ── GOOGLE BUTTON ── */
+.btn-google {
+  width: 100%; padding: 0.75rem 1rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  cursor: pointer; font-family: inherit;
+  font-size: 0.92rem; font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  display: flex; align-items: center; justify-content: center; gap: 0.65rem;
+  transition: all 0.22s;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.03em;
+}
+.btn-google:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(201,168,76,0.3);
+  box-shadow: 0 0 20px rgba(201,168,76,0.08);
+}
+
+/* ── DIVIDER ── */
+.divider {
+  display: flex; align-items: center; gap: 0.9rem;
+  margin-bottom: 1.2rem;
+}
+.div-line { flex:1; height:1px; background:rgba(255,255,255,0.07); }
+.div-text { font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.22em; color:rgba(255,255,255,0.6); }
+
+/* ── INPUTS ── */
+.field-group { margin-bottom: 0.8rem; }
+.field-label {
+  display: block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(201,168,76,0.9);
+  margin-bottom: 0.4rem;
+}
+.field-input {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 0.7rem 0.95rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem; font-weight: 300;
+  color: rgba(255,255,255,0.88);
+  transition: border-color 0.22s, box-shadow 0.22s;
+  outline: none;
+}
+.field-input::placeholder { color: rgba(255,255,255,0.2); }
+.field-input:focus {
+  border-color: rgba(201,168,76,0.45);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.07);
+}
+
+/* ── OPTIONAL NAME ── */
+#nameGroup { margin-bottom: 0.8rem; display: none; }
+
+/* ── ERROR / SUCCESS ── */
+#authMsg {
+  min-height: 1.3em;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.06em;
+  text-align: center; margin-bottom: 0.9rem;
+  color: #ff6b6b;
+  transition: color 0.2s;
+}
+#authMsg.success { color: #6bcb77; }
+
+/* ── ACTION BUTTONS ── */
+.btn-row { display: flex; gap: 0.6rem; margin-bottom: 1rem; }
+.btn-primary {
+  flex: 1; padding: 0.72rem 0.9rem;
+  background: linear-gradient(135deg, rgba(201,168,76,0.22), rgba(201,168,76,0.12));
+  border: 1px solid rgba(201,168,76,0.4);
+  border-radius: 10px; cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem; font-weight: 400;
+  color: var(--gold2); letter-spacing: 0.08em;
+  transition: all 0.22s;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, rgba(201,168,76,0.35), rgba(201,168,76,0.2));
+  box-shadow: 0 0 24px rgba(201,168,76,0.2);
+}
+.btn-secondary {
+  flex: 1; padding: 0.72rem 0.9rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem; font-weight: 400;
+  color: rgba(255,255,255,0.45); letter-spacing: 0.06em;
+  transition: all 0.22s;
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); }
+
+/* ── TOGGLE LINK ── */
+.toggle-link {
+  text-align: center;
+  font-size: 0.82rem; font-style: italic;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 0.4rem;
+}
+.toggle-link button {
+  background: none; border: none; cursor: pointer;
+  color: rgba(201,168,76,0.6); font-family: inherit;
+  font-size: 0.82rem; font-style: italic;
+  text-decoration: underline; padding: 0;
+  transition: color 0.2s;
+}
+.toggle-link button:hover { color: var(--gold); }
+
+/* ── RESET LINK ── */
+.reset-link {
+  text-align: center; margin-top: 0.5rem;
+}
+.reset-link button {
+  background: none; border: none; cursor: pointer;
+  color: rgba(255,255,255,0.55); font-family: 'Space Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0; transition: color 0.2s; text-decoration: underline;
+}
+.reset-link button:hover { color: rgba(255,255,255,0.5); }
+
+/* ── NOTE ── */
+.login-note {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.57rem; letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.6);
+  text-align: center; margin-top: 1.4rem;
+  text-transform: uppercase;
+}
+
+/* ── LOGGED IN STATE ── */
+#loggedInBox { display: none; text-align: center; }
+#loggedInBox .li-avatar {
+  width: 54px; height: 54px; border-radius: 50%;
+  background: linear-gradient(135deg, rgba(201,168,76,0.3), rgba(167,139,250,0.3));
+  border: 1px solid rgba(201,168,76,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; margin: 0 auto 1rem;
+}
+#loggedInBox .li-name {
+  font-size: 1.2rem; font-weight: 300; letter-spacing: 0.1em;
+  color: rgba(255,255,255,1); margin-bottom: 0.3rem;
+}
+#loggedInBox .li-email {
+  font-family: 'Space Mono', monospace; font-size: 0.65rem;
+  letter-spacing: 0.1em; color: rgba(201,168,76,0.9);
+  margin-bottom: 1.4rem;
+}
+#loggedInBox .li-btns { display: flex; flex-direction: column; gap: 0.6rem; }
+.btn-goto {
+  width: 100%; padding: 0.65rem 1rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 10px; cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem; font-weight: 300;
+  color: rgba(255,255,255,0.9); letter-spacing: 0.06em;
+  text-decoration: none; display: block;
+  transition: all 0.2s; text-align: center;
+}
+.btn-goto:hover { background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.4); color: var(--gold2); }
+.btn-signout {
+  width: 100%; padding: 0.55rem 1rem;
+  background: none; border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px; cursor: pointer;
+  font-family: 'Space Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.2); transition: all 0.2s;
+}
+.btn-signout:hover { border-color: rgba(255,100,100,0.3); color: rgba(255,120,120,0.6); }
+
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+<div class="neb neb-1"></div>
+<div class="neb neb-2"></div>
+<div class="neb neb-3"></div>
+
+<a href="index.html" class="back-link">← universe</a>
+
+<div class="login-card">
+
+  <!-- Rotating sigil -->
+  <div class="sigil">
+    <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer glow ring -->
+      <circle cx="48" cy="48" r="45" stroke="rgba(201,168,76,0.18)" stroke-width="0.6"/>
+      <!-- Outer solid ring -->
+      <circle cx="48" cy="48" r="45" stroke="rgba(255,220,100,0.75)" stroke-width="1.2"/>
+      <!-- Dashed ring -->
+      <circle cx="48" cy="48" r="45" stroke="rgba(255,220,100,0.35)" stroke-width="0.8" stroke-dasharray="4 8"/>
+      <!-- Middle ring -->
+      <circle cx="48" cy="48" r="34" stroke="rgba(255,210,80,0.55)" stroke-width="0.9" stroke-dasharray="2 5"/>
+      <!-- Inner ring -->
+      <circle cx="48" cy="48" r="20" stroke="rgba(255,220,100,0.65)" stroke-width="1"/>
+      <!-- Tiny center ring -->
+      <circle cx="48" cy="48" r="6" stroke="rgba(255,230,120,0.9)" stroke-width="1.2"/>
+      <!-- Center dot -->
+      <circle cx="48" cy="48" r="2.2" fill="rgba(255,240,150,1)"/>
+
+      <!-- Cardinal tick marks outer -->
+      <line x1="48" y1="3" x2="48" y2="12" stroke="rgba(255,220,100,0.95)" stroke-width="1.8"/>
+      <line x1="48" y1="84" x2="48" y2="93" stroke="rgba(255,220,100,0.95)" stroke-width="1.8"/>
+      <line x1="3" y1="48" x2="12" y2="48" stroke="rgba(255,220,100,0.95)" stroke-width="1.8"/>
+      <line x1="84" y1="48" x2="93" y2="48" stroke="rgba(255,220,100,0.95)" stroke-width="1.8"/>
+
+      <!-- Diagonal tick marks outer -->
+      <line x1="16.5" y1="16.5" x2="22.5" y2="22.5" stroke="rgba(255,220,100,0.7)" stroke-width="1.2"/>
+      <line x1="79.5" y1="16.5" x2="73.5" y2="22.5" stroke="rgba(255,220,100,0.7)" stroke-width="1.2"/>
+      <line x1="16.5" y1="79.5" x2="22.5" y2="73.5" stroke="rgba(255,220,100,0.7)" stroke-width="1.2"/>
+      <line x1="79.5" y1="79.5" x2="73.5" y2="73.5" stroke="rgba(255,220,100,0.7)" stroke-width="1.2"/>
+
+      <!-- 16-pointed star -->
+      <polygon points="
+        48,14  50.8,29  56,20  54.4,35
+        62,24  56.6,37.5  68,34  59.2,43
+        82,48  67,50.8  76,56  61,54.4
+        72,62  58.5,56.6  62,68  53,59.2
+        48,82  45.2,67  40,76  41.6,61
+        34,72  39.4,58.5  28,62  36.8,53
+        14,48  29,45.2  20,40  34.6,41.6
+        24,34  37.4,39.4  34,28  42.8,36.8"
+        stroke="rgba(255,215,80,0.9)" stroke-width="0.9" fill="none"/>
+
+      <!-- Inner 8-pointed star -->
+      <polygon points="48,28 50.5,38 58,32 52.5,41 64,48 52.5,55 58,64 50.5,58 48,68 45.5,58 38,64 43.5,55 32,48 43.5,41 38,32 45.5,38"
+        stroke="rgba(255,230,120,0.85)" stroke-width="1" fill="none"/>
+
+      <!-- Hexagram / Star of David inner -->
+      <polygon points="48,30 55,42 69,42 62,54 69,66 55,66 48,78 41,66 27,66 34,54 27,42 41,42"
+        stroke="rgba(255,210,60,0.35)" stroke-width="0.7" fill="none"/>
+
+      <!-- Fine web lines from center to inner ring -->
+      <line x1="48" y1="48" x2="48" y2="28" stroke="rgba(255,220,100,0.25)" stroke-width="0.6"/>
+      <line x1="48" y1="48" x2="48" y2="68" stroke="rgba(255,220,100,0.25)" stroke-width="0.6"/>
+      <line x1="48" y1="48" x2="28" y2="48" stroke="rgba(255,220,100,0.25)" stroke-width="0.6"/>
+      <line x1="48" y1="48" x2="68" y2="48" stroke="rgba(255,220,100,0.25)" stroke-width="0.6"/>
+      <line x1="48" y1="48" x2="34" y2="34" stroke="rgba(255,220,100,0.18)" stroke-width="0.5"/>
+      <line x1="48" y1="48" x2="62" y2="34" stroke="rgba(255,220,100,0.18)" stroke-width="0.5"/>
+      <line x1="48" y1="48" x2="34" y2="62" stroke="rgba(255,220,100,0.18)" stroke-width="0.5"/>
+      <line x1="48" y1="48" x2="62" y2="62" stroke="rgba(255,220,100,0.18)" stroke-width="0.5"/>
+
+      <!-- Small diamond at cardinal points on middle ring -->
+      <polygon points="48,14.5 49.5,17 48,19.5 46.5,17" fill="rgba(255,230,120,0.9)"/>
+      <polygon points="48,76.5 49.5,79 48,81.5 46.5,79" fill="rgba(255,230,120,0.9)"/>
+      <polygon points="14.5,48 17,49.5 19.5,48 17,46.5" fill="rgba(255,230,120,0.9)"/>
+      <polygon points="76.5,48 79,49.5 81.5,48 79,46.5" fill="rgba(255,230,120,0.9)"/>
+    </svg>
+  </div>
+
+  <!-- ── AUTH FORM ── -->
+  <div id="authBox">
+    <h1 class="login-title">Stargazer</h1>
+    <p class="login-sub" id="loginSub">sign in to continue your descent</p>
+
+    <!-- Google -->
+    <button class="btn-google" onclick="doGoogle()">
+      <svg width="18" height="18" viewBox="0 0 48 48">
+        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+      </svg>
+      Continue with Google
+    </button>
+
+    <div class="divider">
+      <div class="div-line"></div>
+      <span class="div-text">or</span>
+      <div class="div-line"></div>
+    </div>
+
+    <!-- Name (sign up only) -->
+    <div class="field-group" id="nameGroup">
+      <label class="field-label" for="nameInput">Display name</label>
+      <input class="field-input" id="nameInput" type="text" placeholder="How you appear to others" autocomplete="name">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="emailInput">Email</label>
+      <input class="field-input" id="emailInput" type="email" placeholder="your@email.com" autocomplete="email">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="pwInput">Password</label>
+      <input class="field-input" id="pwInput" type="password" placeholder="••••••••" autocomplete="current-password">
+    </div>
+
+    <div id="authMsg"></div>
+
+    <div class="btn-row">
+      <button class="btn-primary" id="mainBtn" onclick="doAction()">Sign in</button>
+      <button class="btn-secondary" id="altBtn" onclick="switchMode()">Register</button>
+    </div>
+
+    <div class="toggle-link" id="toggleLine">
+      New here? <button onclick="switchMode()">Create an account</button>
+    </div>
+
+    <div class="reset-link">
+      <button onclick="doReset()">forgot password</button>
+    </div>
+
+    <p class="login-note">keep it civil · walk with curiosity · stargazer</p>
+  </div>
+
+  <!-- ── LOGGED IN STATE ── -->
+  <div id="loggedInBox">
+    <h1 class="login-title" style="margin-bottom:1.6rem;">Welcome back</h1>
+    <div class="li-avatar">✦</div>
+    <div class="li-name" id="liName"></div>
+    <div class="li-email" id="liEmail"></div>
+    <div class="li-btns">
+      <a href="index.html" class="btn-goto">← Back to the Universe</a>
+      <a href="MOVIES.html" class="btn-goto">Cinema Abyss</a>
+      <a href="BOOKS.html" class="btn-goto">Reading Universe</a>
+      <a href="ANIME.html" class="btn-goto">Anime Abyss</a>
+      <a href="TANTRA.html" class="btn-goto">Tantra Archive</a>
+      <a href="MATHS.html" class="btn-goto">Mathematics</a>
+      <a href="CHESS.html" class="btn-goto">Chess</a>
+      <a href="STATS.html" class="btn-goto">Statistics</a>
+      <a href="GERMAN.html" class="btn-goto">German</a>
+      <a href="JAPANESE.html" class="btn-goto">Japanese</a>
+      <a href="ABOUT.html" class="btn-goto">About</a>
+      <button class="btn-signout" onclick="doSignOut()">Sign out</button>
+    </div>
+  </div>
+
+  <!-- ── NAME SETUP — shown after Google sign-in for users with no display_name ── -->
+  <div id="nameSetupBox" style="display:none; text-align:center;">
+    <h1 class="login-title" style="margin-bottom:0.6rem;">One last thing</h1>
+    <p style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.14em;color:rgba(255,255,255,0.38);margin-bottom:1.8rem;">How should the universe call you?</p>
+    <div class="field-group">
+      <label class="field-label" for="newNameInput">Display name</label>
+      <input class="field-input" id="newNameInput" type="text" placeholder="Your name" autocomplete="name" maxlength="40"
+        onkeydown="if(event.key==='Enter')saveDisplayName()">
+    </div>
+    <div id="nameSetupMsg" style="min-height:1.3em;font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;color:#ff6b6b;text-align:center;margin-bottom:0.9rem;"></div>
+    <button class="btn-primary" style="width:100%;margin-top:0.3rem;" onclick="saveDisplayName()">Enter the universe →</button>
+  </div>
+
+</div>
+
+<!-- ── CONTACT ── -->
+<div style="text-align:center;padding:2.5rem 1rem 1.5rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.28);font-style:italic;font-family:'Space Mono',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.82rem;color:rgba(201,168,76,0.65);text-decoration:none;" onmouseover="this.style.color='rgba(201,168,76,1)';this.style.textDecoration='underline'" onmouseout="this.style.color='rgba(201,168,76,0.65)';this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+
+<script>
+/* ── STAR CANVAS ── */
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [];
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+function mkStar() { return { x:Math.random()*W, y:Math.random()*H, r:Math.random()*1.2+0.1, a:Math.random()*0.6+0.1, sp:Math.random()*0.004+0.001, ph:Math.random()*Math.PI*2, dr:(Math.random()-0.5)*0.03, gold:Math.random()<0.07 }; }
+function initStars() { resize(); stars = Array.from({length:280},mkStar); }
+let last=0;
+function tick(t) {
+  const dt=Math.min(t-last,50); last=t; ctx.clearRect(0,0,W,H);
+  for(const s of stars) {
+    s.ph+=s.sp*(dt/16); s.x+=s.dr*(dt/16);
+    if(s.x<-2)s.x=W+2; if(s.x>W+2)s.x=-2;
+    const a=(Math.sin(s.ph)*0.45+0.55)*s.a;
+    ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fillStyle=s.gold?`rgba(255,215,130,${a})`:`rgba(210,218,255,${a})`; ctx.fill();
+  }
+  requestAnimationFrame(tick);
+}
+window.addEventListener('resize',resize);
+initStars(); requestAnimationFrame(tick);
+
+/* ── SUPABASE (implicit flow - correct for static HTML sites) ── */
+const sb = supabase.createClient(
+  'https://daqxabswnrhqpjyfdbwx.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhcXhhYnN3bnJocXBqeWZkYnd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1ODczMDMsImV4cCI6MjA5NTE2MzMwM30.NqHPJZkDsawSJRSjDMNS4-c5KZDxTNxWBoMF_a6bSuc',
+  { auth: { flowType: 'implicit', detectSessionInUrl: true, persistSession: true } }
+);
+
+/* ── HELPERS ── */
+function showLoggedIn(user) {
+  const isGoogle = (user.app_metadata?.provider === 'google' || user.app_metadata?.providers?.includes('google'));
+  const hasName  = !!(user.user_metadata?.display_name || '').trim();
+  if (isGoogle && !hasName) { showNameSetup(); return; }
+  document.getElementById('authBox').style.display      = 'none';
+  document.getElementById('loggedInBox').style.display  = 'block';
+  document.getElementById('nameSetupBox').style.display = 'none';
+  document.getElementById('liName').textContent  = user.user_metadata?.display_name || user.email.split('@')[0];
+  document.getElementById('liEmail').textContent = user.email;
+  window.history.replaceState({}, document.title, window.location.pathname);
+}
+function showNameSetup() {
+  document.getElementById('authBox').style.display      = 'none';
+  document.getElementById('loggedInBox').style.display  = 'none';
+  document.getElementById('nameSetupBox').style.display = 'block';
+  setTimeout(() => document.getElementById('newNameInput')?.focus(), 80);
+}
+async function saveDisplayName() {
+  const input  = document.getElementById('newNameInput');
+  const msgEl  = document.getElementById('nameSetupMsg');
+  const name   = (input?.value || '').trim();
+  if (!name || name.length < 2) { msgEl.textContent = 'Please enter at least 2 characters.'; return; }
+  if (name.length > 40)         { msgEl.textContent = 'Name must be 40 characters or fewer.'; return; }
+  msgEl.textContent = '';
+  try {
+    const { error } = await sb.auth.updateUser({ data: { display_name: name } });
+    if (error) { msgEl.textContent = error.message; return; }
+    const { data: { session } } = await sb.auth.getSession();
+    if (session?.user) showLoggedIn(session.user);
+  } catch(e) { msgEl.textContent = 'Something went wrong. Try again.'; }
+}
+function showLoggedOut() {
+  document.getElementById('authBox').style.display      = 'block';
+  document.getElementById('loggedInBox').style.display  = 'none';
+  document.getElementById('nameSetupBox').style.display = 'none';
+}
+
+/* ── AUTH LISTENER ── */
+// With implicit flow, Supabase detects #access_token in URL automatically
+// and fires SIGNED_IN here - no manual token handling needed
+sb.auth.onAuthStateChange((event, session) => {
+  if (event === 'SIGNED_IN' && session?.user) {
+    showLoggedIn(session.user);
+  } else if (event === 'SIGNED_OUT') {
+    showLoggedOut();
+  }
+});
+
+/* ── CHECK SESSION ON LOAD ── */
+(async () => {
+  const { data: { session } } = await sb.auth.getSession();
+  if (session?.user) showLoggedIn(session.user);
+  else showLoggedOut();
+})();
+
+/* ── MODE SWITCH ── */
+let mode = 'signin'; // 'signin' | 'signup'
+
+function switchMode() {
+  mode = mode === 'signin' ? 'signup' : 'signin';
+  const isSignup = mode === 'signup';
+  document.getElementById('nameGroup').style.display = isSignup ? 'block' : 'none';
+  document.getElementById('mainBtn').textContent = isSignup ? 'Create account' : 'Sign in';
+  document.getElementById('altBtn').textContent   = isSignup ? 'Sign in' : 'Register';
+  document.getElementById('loginSub').textContent  = isSignup ? 'create your account to begin' : 'sign in to continue your descent';
+  document.getElementById('toggleLine').innerHTML  = isSignup
+    ? 'Already have an account? <button onclick="switchMode()">Sign in</button>'
+    : 'New here? <button onclick="switchMode()">Create an account</button>';
+  setMsg('','');
+  document.getElementById('pwInput').setAttribute('autocomplete', isSignup ? 'new-password' : 'current-password');
+}
+
+function setMsg(text, type) {
+  const el = document.getElementById('authMsg');
+  el.textContent = text;
+  el.className = type === 'success' ? 'success' : '';
+}
+
+/* ── GOOGLE ── */
+async function doGoogle() {
+  setMsg('Redirecting to Google…', 'success');
+  const { error } = await sb.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: 'https://stargazer-9m9.pages.dev/login.html',
+      queryParams: { prompt: 'select_account' }
+    }
+  });
+  if (error) setMsg('Error: ' + error.message, '');
+}
+
+/* ── EMAIL ACTION ── */
+async function doAction() {
+  const email = document.getElementById('emailInput').value.trim();
+  const pw    = document.getElementById('pwInput').value;
+  const name  = document.getElementById('nameInput').value.trim();
+  const btn   = document.getElementById('mainBtn');
+
+  if (!email || !pw) { setMsg('Please fill in email and password.',''); return; }
+  if (mode === 'signup' && pw.length < 6) { setMsg('Password must be at least 6 characters.',''); return; }
+
+  btn.disabled = true; btn.textContent = mode === 'signup' ? 'Creating…' : 'Signing in…';
+  setMsg('','');
+
+  if (mode === 'signup') {
+    const { error } = await sb.auth.signUp({
+      email, password: pw,
+      options: { data: { display_name: name || email.split('@')[0] } }
+    });
+    if (error) { setMsg(error.message,''); }
+    else { setMsg('Account created — check your email to confirm.','success'); }
+  } else {
+    const { error } = await sb.auth.signInWithPassword({ email, password: pw });
+    if (error) {
+      if (error.message.toLowerCase().includes('confirm')) {
+        setMsg('Please confirm your email first — check your inbox.', '');
+      } else {
+        setMsg(error.message, '');
+      }
+    }
+    // onAuthStateChange handles success
+  }
+  btn.disabled = false;
+  btn.textContent = mode === 'signup' ? 'Create account' : 'Sign in';
+}
+
+/* ── PASSWORD RESET ── */
+async function doReset() {
+  const email = document.getElementById('emailInput').value.trim();
+  if (!email) { setMsg('Enter your email first.',''); return; }
+  setMsg('Sending reset link…','');
+  const { error } = await sb.auth.resetPasswordForEmail(email, {
+    redirectTo: window.location.origin + '/login.html'
+  });
+  if (error) setMsg(error.message,'');
+  else setMsg('Password reset email sent. Check your inbox.','success');
+}
+
+/* ── SIGN OUT ── */
+async function doSignOut() {
+  await sb.auth.signOut();
+}
+
+/* ── ENTER KEY ── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.activeElement?.classList.contains('field-input')) doAction();
+});
+
+
+</script>
+</body>
+</html>
