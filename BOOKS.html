@@ -24,6 +24,20 @@
 <meta name="application-name" content="Stargazer: Lost in the Cosmos">
 <meta property="og:locale" content="en_US">
 
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "121 Mind-Bending Books Ranked by Depth",
+  "description": "86 sequence books and 35 companions, each placed for a deliberate reason. Difficulty ratings, reading order rationale, and progress tracking.",
+  "url": "https://stargazer-9m9.pages.dev/BOOKS.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Books", "sameAs": "https://en.wikipedia.org/wiki/Book" }
+}
+</script>
+
 <!-- ── TWITTER / X CARD ── -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="121 Mind-Bending Books Ranked by Depth | Stargazer">
@@ -2405,8 +2419,8 @@ window._applyTheme = function(theme) {
   localStorage.setItem('rl_dark', theme === 'dark' ? '1' : theme === 'ocean' ? '2' : '0');
 
   if (darkToggle) {
-    const labels = { light: '🌙 Dark', dark: '🌊 Ocean', ocean: '☀️ Light' };
-    const aria   = { light: 'Switch to dark mode', dark: 'Switch to ocean mode', ocean: 'Switch to light mode' };
+    const labels = { light: '🌙 Dark', dark: '🌊 Ocean', ocean: '☀️ Day' };
+    const aria   = { light: 'Switch to dark mode', dark: 'Switch to ocean mode', ocean: 'Switch to day mode' };
     darkToggle.textContent = labels[theme];
     darkToggle.setAttribute('aria-label', aria[theme]);
   }
@@ -2415,8 +2429,14 @@ window._applyTheme = function(theme) {
   const canvas = document.getElementById('oceanCanvas');
   if (canvas) {
     canvas.style.display = (theme === 'ocean') ? 'block' : 'none';
-    if (theme === 'ocean' && window._startOceanCanvas) window._startOceanCanvas();
-    if (theme === 'ocean' && window._startJellyfish) window._startJellyfish();
+    /* try/catch: a failure starting either animation must never prevent
+       the button-label / music-button sync a few lines below from running. */
+    if (theme === 'ocean') {
+      try { if (window._startOceanCanvas) window._startOceanCanvas(); }
+      catch(e) { console.error('Ocean canvas failed to start:', e); }
+      try { if (window._startJellyfish) window._startJellyfish(); }
+      catch(e) { console.error('Jellyfish canvas failed to start:', e); }
+    }
   }
 
   /* Keep the ocean-music button in sync with every theme change */
@@ -2436,12 +2456,12 @@ window._getTheme = function() {
 
 /* Hook for shared.js dark mode sync.
    shared.js only knows a boolean light/dark — it has no concept of this
-   page's third "ocean" theme. If this device is already showing Ocean and
-   the synced value is still "dark-like" (true), keep Ocean instead of
-   downgrading it to plain Dark. Only an explicit "light" (false) should
-   ever pull the page out of Ocean. */
+   page's third "ocean" theme. Ocean is a standalone mode: cross-device
+   sync must NEVER pull the page out of it in either direction (isDark=true
+   would downgrade to plain dark; isDark=false would downgrade to light —
+   both wrong). Only an explicit user click on the theme button exits ocean. */
 window._applyDarkMode = function(isDark) {
-  if (isDark && window._getTheme() === 'ocean') return;
+  if (document.body.classList.contains('ocean')) return;   // guard both directions — reads body directly so shared.js override of _getTheme can't bypass it
   window._applyTheme(isDark ? 'dark' : 'light');
 };
 
@@ -2941,11 +2961,12 @@ renderAll();
 
   const NEXT_THEME  = { light: 'dark', dark: 'ocean', ocean: 'light' };
   // Icon shown = what mode you'll GO TO next
-  const NEXT_ICONS  = { light: '🌙', dark: '🌊', ocean: '☀' };
-  const NEXT_LABELS = { light: 'Dark', dark: 'Ocean', ocean: 'Light' };
+  const NEXT_ICONS  = { light: '🌙', dark: '🌊', ocean: '☀️' };
+  const NEXT_LABELS = { light: 'Dark', dark: 'Ocean', ocean: 'Day' };
 
   function updateDm() {
-    const theme = window._getTheme ? window._getTheme() : 'light';
+    const theme = document.body.classList.contains('dark') ? 'dark' :
+                  document.body.classList.contains('ocean') ? 'ocean' : 'light';
     dmBtn.innerHTML =
       '<span style="font-size:1rem;line-height:1;margin-right:3px">' + NEXT_ICONS[theme]  + '</span>' +
       '<span style="font-size:0.68rem;font-weight:700;letter-spacing:0.05em;font-family:var(--font-body)">' + NEXT_LABELS[theme] + '</span>';
@@ -2956,14 +2977,18 @@ renderAll();
       dmBtn.style.color      = '#ffffff';
       dmBtn.style.border     = '1.5px solid transparent';
     } else if (theme === 'dark') {
-      dmBtn.style.background = 'var(--surface3)';
+      /* solid — was var(--surface3) which is ~6% opacity, nearly invisible */
+      dmBtn.style.background = 'rgba(22,16,8,0.95)';
       dmBtn.style.color      = 'var(--text)';
-      dmBtn.style.border     = '1.5px solid rgba(255,235,170,0.35)';
+      dmBtn.style.border     = '1.5px solid rgba(255,235,170,0.60)';
     } else {
-      /* ocean */
-      dmBtn.style.background = 'rgba(4,20,44,0.90)';
-      dmBtn.style.color      = '#28c8c0';
-      dmBtn.style.border     = '1.5px solid rgba(40,200,192,0.40)';
+      /* ocean — button says "☀️ Day"; warm amber so it reads as "day",
+         not another ocean element (old ocean-dark colours caused it to
+         look identical to the music button, making users count it as a
+         second "Ocean" button instead of the "Day" button). */
+      dmBtn.style.background = 'rgba(196,127,10,0.95)';
+      dmBtn.style.color      = '#fff8e4';
+      dmBtn.style.border     = '1.5px solid rgba(220,160,30,0.70)';
     }
   }
   /* Exposed so _applyTheme() can keep this visible button in sync no matter
@@ -2986,22 +3011,31 @@ renderAll();
   dmBtn.onmouseout  = () => { dmBtn.style.transform='';                  dmBtn.style.boxShadow='0 4px 16px rgba(0,0,0,0.22)'; };
 
   dmBtn.addEventListener('click', () => {
-    const cur  = window._getTheme ? window._getTheme() : 'light';
+    const cur  = document.body.classList.contains('dark') ? 'dark' :
+                 document.body.classList.contains('ocean') ? 'ocean' : 'light';
     const next = NEXT_THEME[cur];
-    if (window._applyTheme) window._applyTheme(next);
-    updateDm();
-    updateMusicBtn();
-    /* Sync the hidden original button */
-    const orig = document.getElementById('darkToggle');
-    const ariaMap = { light: 'Switch to dark mode', dark: 'Switch to ocean mode', ocean: 'Switch to light mode' };
-    if (orig) orig.setAttribute('aria-label', ariaMap[next]);
-    /* Persist the choice cross-device. This call was missing here entirely —
-       the button everyone actually taps was never saving to Supabase, so a
-       refresh would eventually pull back whatever stale boolean was last
-       stored (usually "light") and silently override the real choice.
-       Ocean counts as dark-like; only plain "light" saves as false. */
-    if (typeof window.sbSaveDarkMode === 'function') {
-      window.sbSaveDarkMode(next !== 'light');
+    /* try/finally: updateDm()/updateMusicBtn()/the cross-device save must
+       always run, even if window._applyTheme throws for some unrelated
+       reason — otherwise the visible button silently freezes on the old
+       label (which is exactly what the ocean-canvas TDZ bug above used
+       to cause before it was fixed; this is the second line of defence). */
+    try {
+      if (window._applyTheme) window._applyTheme(next);
+    } finally {
+      updateDm();
+      updateMusicBtn();
+      /* Sync the hidden original button */
+      const orig = document.getElementById('darkToggle');
+      const ariaMap = { light: 'Switch to dark mode', dark: 'Switch to ocean mode', ocean: 'Switch to day mode' };
+      if (orig) orig.setAttribute('aria-label', ariaMap[next]);
+      /* Persist the choice cross-device. This call was missing here entirely —
+         the button everyone actually taps was never saving to Supabase, so a
+         refresh would eventually pull back whatever stale boolean was last
+         stored (usually "light") and silently override the real choice.
+         Ocean counts as dark-like; only plain "light" saves as false. */
+      if (typeof window.sbSaveDarkMode === 'function') {
+        window.sbSaveDarkMode(next !== 'light');
+      }
     }
   });
 
@@ -3048,7 +3082,7 @@ renderAll();
   });
 
   function updateMusicBtn(){
-    const inOcean = (window._getTheme ? window._getTheme() : 'light') === 'ocean';
+    const inOcean = document.body.classList.contains('ocean');
     musicBtn.style.display = inOcean ? 'flex' : 'none';
     if (!inOcean && musicPlaying) {
       oceanAudio.pause();
@@ -3174,19 +3208,82 @@ window._applyProgressData = function(data) {
 (function(){
   let started = false;
 
+  /* These used to be declared with `let`/`function` INSIDE
+     window._startOceanCanvas itself, below the `if (started) return`
+     early-exit. That's fine on the very first call — but on every call
+     after that (i.e. every time the user re-enters ocean mode after the
+     first), `started` is already true, so execution hits the early-exit
+     branch BEFORE reaching those declarations. Referencing a `let`
+     variable before its own declaration — even via `typeof` — throws a
+     ReferenceError (the "temporal dead zone"), not a harmless
+     "undefined". That uncaught error silently aborted the rest of
+     _applyTheme(), which is why switching INTO ocean mode a second time
+     left the theme button's label stuck and the music button hidden —
+     the visual switch into ocean (background/jellyfish) still happened
+     because it runs earlier in _applyTheme, but everything after the
+     crash never ran. Hoisting this shared state to the outer closure
+     (matching how the jellyfish canvas below already does it) fixes it. */
+  let canvas = null, ctx = null;
+  let particles = [];
+  let lastFrame = 0;
+  let _planktonRafId = null;
+  const FRAME_MS = 1000 / 30; /* 30 fps cap */
+
+  function draw(now) {
+    /* Stop the loop entirely when canvas is hidden — restart via _startOceanCanvas.
+       Previously the loop fired 60x/sec even in light/dark mode, competing
+       with the scroll compositor. */
+    if (canvas.style.display === 'none') { _planktonRafId = null; return; }
+    _planktonRafId = requestAnimationFrame(draw);
+    if (now - lastFrame < FRAME_MS) return;
+    lastFrame = now;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (const p of particles) {
+      p.phase += p.pSpeed;
+      const pulse = p.base * (0.38 + 0.62 * Math.sin(p.phase));
+
+      /* Core dot */
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${p.hue},80%,74%,${pulse})`;
+      ctx.fill();
+
+      /* Glow halo — only for larger particles */
+      if (p.large && pulse > 0.18) {
+        const gr = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 6);
+        gr.addColorStop(0, `hsla(${p.hue},75%,78%,${pulse * 0.22})`);
+        gr.addColorStop(1, `hsla(${p.hue},75%,78%,0)`);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * 6, 0, Math.PI * 2);
+        ctx.fillStyle = gr;
+        ctx.fill();
+      }
+
+      /* Drift — slow upward with gentle horizontal sway */
+      p.x += p.vx + Math.sin(p.phase * 0.4) * p.sway;
+      p.y += p.vy;
+
+      /* Wrap */
+      if (p.y < -8)  { p.y = canvas.height + 8; p.x = Math.random() * canvas.width; }
+      if (p.x < -8)  p.x = canvas.width  + 8;
+      if (p.x > canvas.width + 8) p.x = -8;
+    }
+  }
+
   window._startOceanCanvas = function() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const canvas = document.getElementById('oceanCanvas');
+    canvas = document.getElementById('oceanCanvas');
     if (!canvas) return;
     if (started) {
       /* Already initialised — just restart the RAF if it stopped */
-      if (typeof _planktonRafId !== 'undefined' && !_planktonRafId)
-        _planktonRafId = requestAnimationFrame(draw);
+      if (!_planktonRafId) _planktonRafId = requestAnimationFrame(draw);
       return;
     }
     started = true;
 
-    const ctx = canvas.getContext('2d');
+    ctx = canvas.getContext('2d');
 
     function resize() {
       canvas.width  = window.innerWidth;
@@ -3197,7 +3294,6 @@ window._applyProgressData = function(data) {
 
     /* Two layers: 90 tiny plankton + 14 larger glowing organisms */
     const SMALL = 90, LARGE = 14;
-    const particles = [];
 
     for (let i = 0; i < SMALL + LARGE; i++) {
       const isLarge = i >= SMALL;
@@ -3214,53 +3310,6 @@ window._applyProgressData = function(data) {
         base  : isLarge ? (Math.random() * 0.55 + 0.20) : (Math.random() * 0.50 + 0.12),
         large : isLarge,
       });
-    }
-
-    let lastFrame = 0;
-    const FRAME_MS = 1000 / 30; /* 30 fps cap */
-    let _planktonRafId = null;
-
-    function draw(now) {
-      /* Stop the loop entirely when canvas is hidden — restart via _startOceanCanvas.
-         Previously the loop fired 60x/sec even in light/dark mode, competing
-         with the scroll compositor. */
-      if (canvas.style.display === 'none') { _planktonRafId = null; return; }
-      _planktonRafId = requestAnimationFrame(draw);
-      if (now - lastFrame < FRAME_MS) return;
-      lastFrame = now;
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      for (const p of particles) {
-        p.phase += p.pSpeed;
-        const pulse = p.base * (0.38 + 0.62 * Math.sin(p.phase));
-
-        /* Core dot */
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${p.hue},80%,74%,${pulse})`;
-        ctx.fill();
-
-        /* Glow halo — only for larger particles */
-        if (p.large && pulse > 0.18) {
-          const gr = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 6);
-          gr.addColorStop(0, `hsla(${p.hue},75%,78%,${pulse * 0.22})`);
-          gr.addColorStop(1, `hsla(${p.hue},75%,78%,0)`);
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r * 6, 0, Math.PI * 2);
-          ctx.fillStyle = gr;
-          ctx.fill();
-        }
-
-        /* Drift — slow upward with gentle horizontal sway */
-        p.x += p.vx + Math.sin(p.phase * 0.4) * p.sway;
-        p.y += p.vy;
-
-        /* Wrap */
-        if (p.y < -8)  { p.y = canvas.height + 8; p.x = Math.random() * canvas.width; }
-        if (p.x < -8)  p.x = canvas.width  + 8;
-        if (p.x > canvas.width + 8) p.x = -8;
-      }
     }
 
     /* Start the loop (only reaches here when canvas IS visible) */

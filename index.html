@@ -6,6 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Books, Anime, Films, Maths, Chess, Statistics, German, Japanese &amp; Tantra — Stargazer: Lost in the Cosmos</title>
 <meta name="description" content="A personal cosmos of ten territories — books, anime, world cinema, mathematics, chess, statistics, German, Japanese, and esoteric tantra. From school arithmetic to research frontiers and beyond. Built from curiosity and countless strange nights. Enter →">
+<meta name="keywords" content="books reading list, anime list, world cinema films, mathematics olympiad, chess history, statistics explained, learn German, learn Japanese, Tantra texts, curated knowledge">
+<meta name="robots" content="index, follow">
 
 <!-- Canonical -->
 <link rel="canonical" href="https://stargazer-9m9.pages.dev/">
@@ -18,6 +20,7 @@
 <meta property="og:url"         content="https://stargazer-9m9.pages.dev/">
 <meta property="og:site_name"   content="Stargazer: Lost in the Cosmos">
 <meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale"    content="en_US">
 
 <!-- Twitter / X Cards -->
 <meta name="twitter:card"        content="summary_large_image">
@@ -658,6 +661,138 @@ footer {
 }
 #signOutBtn:hover { color: #f0d090; border-color: rgba(201,168,76,0.4); }
 
+/* ── ACCOUNT SETTINGS MODAL ── */
+#accountModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+#accountModal.open { display: flex; }
+
+.acct-card {
+  position: relative;
+  z-index: 1;
+  background: #07070f;
+  border: 1px solid rgba(201,168,76,0.22);
+  border-radius: 18px;
+  padding: 36px 32px 32px;
+  width: 100%;
+  max-width: 390px;
+  box-shadow:
+    0 0 90px rgba(0,0,0,0.9),
+    0 0 50px rgba(201,168,76,0.04),
+    inset 0 1px 0 rgba(201,168,76,0.07);
+  animation: acct-in 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes acct-in {
+  from { opacity: 0; transform: translateY(18px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)     scale(1);   }
+}
+.acct-divider {
+  height: 1px;
+  margin: 22px 0;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.25), transparent);
+}
+.acct-divider.red {
+  background: linear-gradient(90deg, transparent, rgba(255,80,80,0.22), transparent);
+}
+.acct-label {
+  display: block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 9px;
+}
+.acct-input {
+  width: 100%;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201,168,76,0.18);
+  border-radius: 8px;
+  padding: 0.58rem 0.9rem;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+.acct-input:focus {
+  border-color: rgba(201,168,76,0.48);
+  box-shadow: 0 0 14px rgba(201,168,76,0.07);
+}
+.acct-input.red-input {
+  border-color: rgba(255,80,80,0.18);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+}
+.acct-input.red-input:focus {
+  border-color: rgba(255,80,80,0.45);
+  box-shadow: 0 0 14px rgba(255,60,60,0.07);
+}
+.acct-btn {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.57rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  border-radius: 30px;
+  padding: 0.38rem 1.05rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid;
+}
+.acct-btn.gold {
+  color: rgba(201,168,76,0.82);
+  background: rgba(201,168,76,0.07);
+  border-color: rgba(201,168,76,0.26);
+}
+.acct-btn.gold:hover {
+  color: #f0d090;
+  background: rgba(201,168,76,0.15);
+  border-color: rgba(201,168,76,0.5);
+}
+.acct-btn.danger {
+  color: rgba(255,90,90,0.65);
+  background: rgba(255,50,50,0.05);
+  border-color: rgba(255,60,60,0.18);
+}
+.acct-btn.danger:hover {
+  color: rgba(255,115,115,0.95);
+  background: rgba(255,50,50,0.12);
+  border-color: rgba(255,60,60,0.35);
+}
+.acct-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.acct-msg {
+  font-size: 0.68rem;
+  margin-top: 7px;
+  min-height: 1rem;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.04em;
+}
+#acctSettingsBtn {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: rgba(201,168,76,0.5);
+  background: rgba(201,168,76,0.06);
+  border: 1px solid rgba(201,168,76,0.18);
+  border-radius: 30px;
+  padding: 0.22rem 0.62rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1;
+}
+#acctSettingsBtn:hover {
+  color: #f0d090;
+  border-color: rgba(201,168,76,0.4);
+  background: rgba(201,168,76,0.12);
+}
+
 /* ── CLOSING LIGHT RULE ── */
 
 </style>
@@ -668,12 +803,55 @@ footer {
   <a href="login.html" id="loginBtn" style="font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(201,168,76,0.75);border:1px solid rgba(201,168,76,0.28);padding:0.32rem 0.9rem;border-radius:3px;text-decoration:none;background:rgba(5,5,8,0.65);backdrop-filter:blur(6px);transition:all 0.25s;display:inline-flex;align-items:center;" onmouseover="this.style.color='#c9a84c';this.style.borderColor='rgba(201,168,76,0.7)'" onmouseout="this.style.color='rgba(201,168,76,0.75)';this.style.borderColor='rgba(201,168,76,0.28)'">sign in</a>
   <div id="userInfo" style="display:none;align-items:center;gap:0.5rem;font-family:'Space Mono',monospace;font-size:0.6rem;">
     <span id="userEmailDisplay" style="color:rgba(201,168,76,0.6);background:rgba(5,5,8,0.65);border:1px solid rgba(201,168,76,0.2);border-radius:3px;padding:0.28rem 0.8rem;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:0.08em;backdrop-filter:blur(6px);"></span>
+    <button id="acctSettingsBtn" onclick="acctOpenModal()" title="Account settings">⚙</button>
     <button onclick="doSignOut()" id="signOutBtn" style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(201,168,76,0.55);background:rgba(5,5,8,0.65);border:1px solid rgba(201,168,76,0.18);border-radius:3px;padding:0.28rem 0.8rem;cursor:pointer;backdrop-filter:blur(6px);transition:all 0.2s;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(201,168,76,0.55)'">sign out</button>
   </div>
 </div>
 
 <button class="scroll-btn" id="scrollTop" title="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <button class="scroll-btn" id="scrollBot" title="Scroll to bottom" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">↓</button>
+<!-- ── ACCOUNT SETTINGS MODAL ── -->
+<div id="accountModal" role="dialog" aria-modal="true" aria-label="Account settings">
+  <div id="acctBg" style="position:absolute;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(7px);"></div>
+  <div class="acct-card">
+
+    <!-- Header -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+      <span style="font-family:'Space Mono',monospace;font-size:0.55rem;letter-spacing:0.26em;text-transform:uppercase;color:rgba(201,168,76,0.65);">✦ account settings</span>
+      <button id="closeAcctBtn" aria-label="Close" style="background:none;border:none;color:rgba(255,255,255,0.32);font-size:1rem;cursor:pointer;padding:3px 7px;border-radius:4px;transition:color 0.2s;line-height:1;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.32)'">✕</button>
+    </div>
+
+    <div class="acct-divider" style="margin-top:0;"></div>
+
+    <!-- Change display name -->
+    <div>
+      <label class="acct-label" for="acctNameInput">display name</label>
+      <input id="acctNameInput" class="acct-input" type="text" placeholder="enter a display name" autocomplete="off" />
+      <div id="acctNameMsg" class="acct-msg"></div>
+      <button class="acct-btn gold" id="acctSaveNameBtn" style="margin-top:8px;" onclick="acctSaveName()">save name</button>
+    </div>
+
+    <div class="acct-divider red" style="margin-top:28px;"></div>
+
+    <!-- Danger zone -->
+    <div>
+      <div style="font-family:'Space Mono',monospace;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,88,88,0.52);margin-bottom:9px;">danger zone</div>
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.28);line-height:1.65;margin-bottom:14px;">Permanently delete your account and all associated data. This action cannot be undone.</p>
+
+      <!-- Confirm block — hidden until user clicks Delete Account -->
+      <div id="acctDeleteConfirm" style="display:none;margin-bottom:14px;">
+        <p style="font-size:0.7rem;color:rgba(255,108,108,0.72);margin-bottom:8px;font-family:'Space Mono',monospace;letter-spacing:0.04em;">Type <strong style="color:rgba(255,130,130,0.9);">DELETE</strong> to confirm:</p>
+        <input id="acctDeleteInput" class="acct-input red-input" type="text" placeholder="DELETE" autocomplete="off" />
+        <div id="acctDeleteMsg" class="acct-msg"></div>
+        <button class="acct-btn danger" id="acctConfirmDeleteBtn" style="margin-top:8px;" onclick="acctConfirmDelete()">confirm deletion</button>
+      </div>
+
+      <button class="acct-btn danger" id="acctDeleteBtn" onclick="acctShowDeleteConfirm()">delete account</button>
+    </div>
+
+  </div>
+</div>
+
 <canvas id="starfield" aria-hidden="true"></canvas>
 <div class="neb neb-1" aria-hidden="true"></div>
 <div class="neb neb-2" aria-hidden="true"></div>
@@ -995,6 +1173,154 @@ console.log(
   '%cYou found the void behind the void.\nCuriosity is the only compass that never lies.',
   'color: rgba(255,255,255,0.55); font-family: serif; font-style: italic;'
 );
+
+/* ── ACCOUNT SETTINGS MODAL ─────────────────────────────────────── */
+(function () {
+  const modal = document.getElementById('accountModal');
+
+  /* Get the Supabase client created in shared.js.
+     IMPORTANT: shared.js must expose the client on window, e.g.:
+       window.supabase = createClient(url, key);
+     Using `const supabase = createClient(...)` in shared.js does NOT work —
+     `const` in a classic <script> is block-scoped to that script and does NOT
+     write to window. Meanwhile the CDN at the top of this page sets
+     window.supabase to the library namespace { createClient, … } which has no
+     .auth, so _sb() would return null and every action shows "not signed in". */
+  function _sb() {
+    try {
+      /* shared.js stores the Supabase client as window.sb (see initShared, line 33).
+         window.supabase is just the CDN library namespace and has no .auth. */
+      if (window.sb && window.sb.auth && typeof window.sb.auth.getUser === 'function') return window.sb;
+    } catch (e) {}
+    return null;
+  }
+
+  /* Open & pre-fill ------------------------------------------------- */
+  window.acctOpenModal = async function () {
+    modal.classList.add('open');
+    document.getElementById('acctNameMsg').textContent    = '';
+    document.getElementById('acctDeleteMsg').textContent  = '';
+    document.getElementById('acctDeleteInput').value      = '';
+    document.getElementById('acctDeleteConfirm').style.display = 'none';
+    document.getElementById('acctDeleteBtn').style.display     = '';
+
+    const client = _sb();
+    if (client) {
+      const { data: { user } } = await client.auth.getUser();
+      if (user) {
+        const saved = user.user_metadata?.display_name
+                   || user.user_metadata?.full_name
+                   || '';
+        document.getElementById('acctNameInput').value = saved;
+      }
+    }
+    document.getElementById('acctNameInput').focus();
+  };
+
+  /* Close ------------------------------------------------------------ */
+  function closeModal() { modal.classList.remove('open'); }
+  document.getElementById('closeAcctBtn').addEventListener('click', closeModal);
+  document.getElementById('acctBg').addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  /* Enter key shortcut on name field --------------------------------- */
+  document.getElementById('acctNameInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') acctSaveName();
+  });
+
+  /* Save display name ------------------------------------------------ */
+  window.acctSaveName = async function () {
+    const name = document.getElementById('acctNameInput').value.trim();
+    const msg  = document.getElementById('acctNameMsg');
+    const btn  = document.getElementById('acctSaveNameBtn');
+
+    if (!name) {
+      msg.style.color = 'rgba(255,110,110,0.8)';
+      msg.textContent = '✦ name cannot be empty';
+      return;
+    }
+    const client = _sb();
+    if (!client) {
+      msg.style.color = 'rgba(255,110,110,0.8)';
+      msg.textContent = '✦ not signed in';
+      return;
+    }
+
+    btn.textContent = 'saving…';
+    btn.disabled    = true;
+
+    const { error } = await client.auth.updateUser({ data: { display_name: name } });
+
+    btn.textContent = 'save name';
+    btn.disabled    = false;
+
+    if (error) {
+      msg.style.color = 'rgba(255,110,110,0.8)';
+      msg.textContent = '✦ ' + error.message;
+    } else {
+      msg.style.color = 'rgba(90,215,110,0.88)';
+      msg.textContent = '✦ name updated';
+      setTimeout(() => { msg.textContent = ''; }, 3000);
+    }
+  };
+
+  /* Reveal the DELETE confirmation step ------------------------------ */
+  window.acctShowDeleteConfirm = function () {
+    document.getElementById('acctDeleteConfirm').style.display = 'block';
+    document.getElementById('acctDeleteBtn').style.display     = 'none';
+    document.getElementById('acctDeleteInput').focus();
+  };
+
+  /* Final account deletion ------------------------------------------- */
+  window.acctConfirmDelete = async function () {
+    const val = document.getElementById('acctDeleteInput').value.trim();
+    const msg = document.getElementById('acctDeleteMsg');
+    const btn = document.getElementById('acctConfirmDeleteBtn');
+
+    if (val !== 'DELETE') {
+      msg.style.color = 'rgba(255,110,110,0.8)';
+      msg.textContent = '✦ type DELETE exactly';
+      return;
+    }
+    const client = _sb();
+    if (!client) {
+      msg.style.color = 'rgba(255,110,110,0.8)';
+      msg.textContent = '✦ not connected';
+      return;
+    }
+
+    btn.textContent = 'deleting…';
+    btn.disabled    = true;
+
+    /*  Requires this stored procedure in your Supabase SQL editor:
+        ──────────────────────────────────────────────────────────
+        CREATE OR REPLACE FUNCTION public.delete_user()
+        RETURNS void LANGUAGE plpgsql SECURITY DEFINER AS $$
+        BEGIN
+          DELETE FROM auth.users WHERE id = auth.uid();
+        END;
+        $$;
+        ──────────────────────────────────────────────────────────  */
+    const { error } = await client.rpc('delete_user');
+
+    if (error) {
+      btn.textContent = 'confirm deletion';
+      btn.disabled    = false;
+      msg.style.color = 'rgba(255,110,110,0.8)';
+      msg.textContent = '✦ ' + error.message;
+    } else {
+      msg.style.color = 'rgba(90,215,110,0.88)';
+      msg.textContent = '✦ account deleted — signing out…';
+      setTimeout(async () => {
+        try { await client.auth.signOut(); } catch (e) {}
+        localStorage.clear();
+        window.location.href = '/';
+      }, 1800);
+    }
+  };
+})();
 
 /* ── shared.js handles auth, renderAuthUI, doSignOut ── */
 window._pageKey = 'index';   /* Fix #14: ensures comments are keyed correctly if a section is added */

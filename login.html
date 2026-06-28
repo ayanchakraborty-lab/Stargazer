@@ -569,6 +569,21 @@ sb.auth.onAuthStateChange((event, session) => {
   else showLoggedOut();
 })();
 
+/* ── SURFACE OAUTH ERRORS ──
+   Supabase appends #error=...&error_description=... to the redirect
+   when the provider exchange fails server-side. Previously this was
+   never checked, so a failed Google sign-in just looked like nothing
+   happened. */
+(function showOAuthErrorIfAny() {
+  const raw = window.location.hash ? window.location.hash.slice(1) : window.location.search.slice(1);
+  const params = new URLSearchParams(raw);
+  const desc = params.get('error_description') || params.get('error');
+  if (desc) {
+    setMsg(decodeURIComponent(desc.replace(/\+/g, ' ')), '');
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+})();
+
 /* ── MODE SWITCH ── */
 let mode = 'signin'; // 'signin' | 'signup'
 

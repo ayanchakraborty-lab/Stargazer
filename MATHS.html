@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="pics/logo.png">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Mathematics Explored: Olympiads, Proofs & Unsolved Puzzles | Stargazer</title>
+<title>All of Mathematics - Olympiad, Puzzles, Research, Open Problems & Career Options | Stargazer</title>
 
 <!-- ── SEO META ── -->
-<meta name="description" content="Olympiads, research, career paths, and open problems — mathematics at every depth. Puzzles, theorems, and ideas that will haunt you. Explore →">
+<meta name="description" content="All of mathematics in one place - olympiad problems, puzzles, research, unsolved open problems, and career paths. Begin exploring →">
 <meta name="keywords" content="mathematics olympiad, math puzzles, undergraduate mathematics, graduate math topics, open problems in mathematics, math career, number theory, calculus, algebra, mathematical proofs, competitive math, beautiful mathematics, math resources, unsolved problems">
 <meta name="robots" content="index, follow">
 <meta name="author" content="The Mathematics Universe">
@@ -15,7 +15,7 @@
 
 <!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Mathematics Explored: Olympiads, Proofs & Unsolved Puzzles | Stargazer">
+<meta property="og:title" content="All of Mathematics - Olympiad, Puzzles, Research, Open Problems & Career Options | Stargazer">
 <meta property="og:description" content="From olympiad problems to graduate-level research — mathematics at every depth. Career roadmaps, beautiful theorems, unsolved problems, and puzzles that will haunt you. Begin exploring →">
 <meta property="og:url" content="https://stargazer-9m9.pages.dev/MATHS.html">
 <meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
@@ -26,9 +26,23 @@
 
 <!-- ── TWITTER / X CARD ── -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mathematics Explored: Olympiads, Proofs & Unsolved Puzzles | Stargazer">
+<meta name="twitter:title" content="All of Mathematics - Olympiad, Puzzles, Research, Open Problems & Career Options | Stargazer">
+<meta name="twitter:description" content="Olympiad to research-level mathematics. Beautiful theorems, career paths, unsolved problems, and puzzles that rewire how you think. Explore the math universe →">
 <meta name="twitter:description" content="Olympiad to research-level mathematics. Beautiful theorems, career paths, unsolved problems, and puzzles that rewire how you think. Explore the math universe →">
 
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Mathematics Explored: Olympiads, Proofs & Unsolved Puzzles",
+  "description": "Olympiads, research, career paths, and open problems — mathematics at every depth. Puzzles, theorems, and ideas that will haunt you.",
+  "url": "https://stargazer-9m9.pages.dev/MATHS.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Mathematics", "sameAs": "https://en.wikipedia.org/wiki/Mathematics" }
+}
+</script>
 <script>
 // Apply theme immediately to prevent flash
 (function(){
@@ -47,18 +61,35 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;background:#030012;color:#f1f5f9;overflow-x:hidden;line-height:1.7;font-size:17px}
+body{font-family:'Inter',system-ui,sans-serif;background:#030012;color:#f1f5f9;overflow-x:hidden;line-height:1.7;font-size:18px}
 ::-webkit-scrollbar{width:7px}
 ::-webkit-scrollbar-track{background:#0a001a}
 ::-webkit-scrollbar-thumb{background:#4c1d95;border-radius:99px}
 ::-webkit-scrollbar-thumb:hover{background:#7c3aed}
 /* NAV */
-#nav{position:fixed;top:36px;left:0;right:0;z-index:1000;height:52px;display:flex;align-items:center;gap:3px;padding:0 1.25rem;overflow-x:auto;background:rgba(3,0,18,0.9);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(139,92,246,0.15)}
-#nav::-webkit-scrollbar{height:0}
-.nav-brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.95rem;white-space:nowrap;margin-right:0.5rem;background:linear-gradient(90deg,#a855f7,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;flex-shrink:0}
-.nav-a{font-family:'Space Grotesk',sans-serif;font-size:0.67rem;font-weight:500;color:#94a3b8;text-decoration:none;white-space:nowrap;padding:0.2rem 0.55rem;border-radius:5px;transition:all 0.2s;letter-spacing:0.01em}
-.nav-a:hover{color:#e2e8f0;background:rgba(139,92,246,0.15)}
-.nav-a.active{color:#e9d5ff;background:rgba(139,92,246,0.22);font-weight:600}
+#nav{position:fixed;top:36px;left:0;right:0;z-index:1000;height:52px;display:flex;align-items:center;gap:.5rem;padding:0 1.25rem;background:rgba(3,0,18,0.9);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(139,92,246,0.15)}
+.nav-brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;white-space:nowrap;background:linear-gradient(90deg,#a855f7,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;flex-shrink:0}
+.nav-cur-section{font-family:'JetBrains Mono',monospace;font-size:0.74rem;color:#64748b;letter-spacing:.12em;text-transform:uppercase;opacity:.7;flex:1;padding-left:.75rem}
+/* Hamburger button */
+#hamburger-btn{font-size:1.25rem;color:#94a3b8;background:none;border:1px solid rgba(139,92,246,0.3);border-radius:7px;padding:.18rem .52rem;cursor:pointer;transition:all .2s;line-height:1;flex-shrink:0}
+#hamburger-btn:hover,#hamburger-btn.open{color:#a855f7;border-color:#a855f7;background:rgba(168,85,247,0.12)}
+/* Search button in nav */
+.nav-search-btn{font-family:'Space Grotesk',sans-serif;font-size:.74rem;color:#94a3b8;background:none;border:1px solid rgba(139,92,246,0.2);border-radius:99px;padding:.2rem .65rem;cursor:pointer;display:inline-flex;align-items:center;gap:.3rem;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.nav-search-btn:hover{color:#e2e8f0;background:rgba(139,92,246,0.15)}
+/* Hamburger dropdown */
+#hamburger-menu{position:fixed;top:88px;right:0;width:235px;max-height:calc(100vh - 88px);overflow-y:auto;background:rgba(3,0,18,0.97);backdrop-filter:blur(28px) saturate(200%);border-left:1px solid rgba(139,92,246,0.2);border-bottom:1px solid rgba(139,92,246,0.2);border-radius:0 0 0 14px;z-index:999;padding:.45rem 0;display:none;flex-direction:column;box-shadow:-6px 6px 32px rgba(0,0,0,.45)}
+#hamburger-menu.open{display:flex;animation:hmIn .18s ease}
+@keyframes hmIn{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
+#hamburger-menu .hm-item{font-family:'Space Grotesk',sans-serif;font-size:.84rem;font-weight:500;color:#94a3b8;background:none;border:none;text-align:left;padding:.55rem 1.2rem;cursor:pointer;transition:all .18s;white-space:nowrap;display:flex;align-items:center;gap:.55rem}
+#hamburger-menu .hm-item:hover{color:#e2e8f0;background:rgba(139,92,246,0.15)}
+#hamburger-menu .hm-item.active{color:#e9d5ff;background:rgba(139,92,246,0.22);font-weight:600}
+#hamburger-menu .hm-divider{height:1px;background:rgba(139,92,246,0.12);margin:.3rem .8rem}
+body.light-mode #hamburger-menu{background:rgba(250,247,242,0.98)!important;border-color:rgba(124,58,237,0.15)!important}
+body.light-mode #hamburger-menu .hm-item{color:#44403c!important}
+body.light-mode #hamburger-menu .hm-item:hover{color:#1c1410!important;background:rgba(124,58,237,0.08)!important}
+body.light-mode #hamburger-menu .hm-item.active{color:#5b21b6!important;background:rgba(124,58,237,0.12)!important}
+body.light-mode #hamburger-btn{color:#44403c!important;border-color:rgba(124,58,237,0.25)!important}
+body.light-mode #hamburger-btn.open,body.light-mode #hamburger-btn:hover{color:#5b21b6!important;border-color:#7c3aed!important;background:rgba(124,58,237,0.1)!important}
 /* HERO */
 #hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#000008}
 #starCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
@@ -73,32 +104,32 @@ body{font-family:'Inter',system-ui,sans-serif;background:#030012;color:#f1f5f9;o
 .section{padding:5.5rem 1.5rem}
 .s-inner{max-width:1180px;margin:0 auto}
 .s-head{text-align:center;margin-bottom:3.5rem}
-.s-eyebrow{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.3em;text-transform:uppercase;margin-bottom:0.75rem;padding:0.2rem 0.75rem;border-radius:99px}
-.s-title{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.15;margin-bottom:0.9rem}
-.s-desc{font-size:1rem;max-width:680px;margin:0 auto;line-height:1.8;color:#dde6f0}
+.s-eyebrow{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.76rem;letter-spacing:0.3em;text-transform:uppercase;margin-bottom:0.75rem;padding:0.2rem 0.75rem;border-radius:99px}
+.s-title{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.15;margin-bottom:0.9rem}
+.s-desc{font-size:1.07rem;max-width:680px;margin:0 auto;line-height:1.8;color:#dde6f0}
 /* GRIDS */
-.g3{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem}
-.g4{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
-.g2{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:1.5rem}
+.g3{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem;align-items:start}
+.g4{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;align-items:start}
+.g2{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:1.5rem;align-items:start}
 /* INTRO */
 #intro{background:linear-gradient(160deg,#0f0a2e 0%,#180a3a 50%,#0a1828 100%)}
 .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
-.intro-prose p{font-size:1.05rem;line-height:1.9;color:#dde6f0;margin-bottom:1.2rem}
+.intro-prose p{font-size:1.1rem;line-height:1.9;color:#dde6f0;margin-bottom:1.2rem}
 .intro-prose p:first-child::first-letter{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:700;float:left;line-height:0.85;margin:0.2rem 0.15rem 0 0;color:#a855f7}
 .myth-card{background:rgba(124,58,237,0.07);border:1px solid rgba(124,58,237,0.18);border-radius:11px;padding:1.25rem;margin-bottom:0.85rem}
-.myth-label{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#f59e0b;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem}
-.myth-truth{font-size:0.88rem;color:#dde6f0;line-height:1.7}
+.myth-label{font-family:'JetBrains Mono',monospace;font-size:0.76rem;color:#f59e0b;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem}
+.myth-truth{font-size:0.93rem;color:#dde6f0;line-height:1.7}
 /* BOOKS */
 #books{background:#0d0800}
 #books .s-eyebrow{background:rgba(217,119,6,0.12);color:#fbbf24;border:1px solid rgba(217,119,6,0.25)}
 #books .s-title{color:#fef3c7}
 .book-card{background:rgba(217,119,6,0.09);border:1px solid rgba(217,119,6,0.22);border-radius:13px;padding:1.3rem;transition:all 0.22s}
 .book-card:hover{background:rgba(217,119,6,0.15);border-color:rgba(217,119,6,0.45);transform:translateY(-4px);box-shadow:0 12px 36px rgba(217,119,6,0.22)}
-.book-title{font-family:'Playfair Display',serif;font-weight:700;font-size:0.97rem;color:#fef3c7;margin-bottom:0.2rem;line-height:1.4}
-.book-author{font-size:0.78rem;color:#f59e0b;margin-bottom:0.2rem;font-style:italic}
-.book-year{font-family:'JetBrains Mono',monospace;font-size:0.67rem;color:#6b5239;margin-bottom:0.45rem}
-.book-desc{font-size:0.82rem;color:#d6d3d1;line-height:1.65}
-.book-cat{display:inline-block;font-size:0.63rem;padding:0.12rem 0.45rem;border-radius:99px;margin-top:0.45rem;font-family:'Space Grotesk',sans-serif;background:rgba(217,119,6,0.18);color:#fbbf24;letter-spacing:0.04em}
+.book-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;color:#fef3c7;margin-bottom:0.2rem;line-height:1.4}
+.book-author{font-size:0.84rem;color:#f59e0b;margin-bottom:0.2rem;font-style:italic}
+.book-year{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#6b5239;margin-bottom:0.45rem}
+.book-desc{font-size:0.88rem;color:#d6d3d1;line-height:1.68}
+.book-cat{display:inline-block;font-size:0.68rem;padding:0.12rem 0.45rem;border-radius:99px;margin-top:0.45rem;font-family:'Space Grotesk',sans-serif;background:rgba(217,119,6,0.18);color:#fbbf24;letter-spacing:0.04em}
 /* PUZZLES */
 #puzzles{background:#001212}
 #puzzles .s-eyebrow{background:rgba(6,182,212,0.08);color:#22d3ee;border:1px solid rgba(6,182,212,0.22)}
@@ -106,66 +137,65 @@ body{font-family:'Inter',system-ui,sans-serif;background:#030012;color:#f1f5f9;o
 .puz-card{background:rgba(6,182,212,0.04);border:1px solid rgba(6,182,212,0.13);border-radius:11px;overflow:hidden;transition:all 0.22s}
 .puz-card:hover{border-color:rgba(6,182,212,0.35);box-shadow:0 4px 20px rgba(6,182,212,0.08)}
 .puz-hdr{padding:1.1rem 1.15rem;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:0.75rem}
-.puz-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.93rem;color:#cffafe;margin-bottom:0.3rem}
+.puz-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.0rem;color:#cffafe;margin-bottom:0.3rem}
 .puz-meta{display:flex;gap:0.4rem;align-items:center;flex-wrap:wrap}
-.puz-src{font-size:0.67rem;color:#06b6d4;background:rgba(6,182,212,0.1);padding:0.1rem 0.4rem;border-radius:99px;font-family:'Space Grotesk',sans-serif}
-.puz-diff{font-size:0.73rem;color:#22d3ee}
-.puz-arr{color:#06b6d4;font-size:0.85rem;flex-shrink:0;transition:transform 0.3s;margin-top:0.15rem}
+.puz-src{font-size:0.72rem;color:#06b6d4;background:rgba(6,182,212,0.1);padding:0.1rem 0.4rem;border-radius:99px;font-family:'Space Grotesk',sans-serif}
+.puz-diff{font-size:0.78rem;color:#22d3ee}
+.puz-arr{color:#06b6d4;font-size:0.9rem;flex-shrink:0;transition:transform 0.3s;margin-top:0.15rem}
 .puz-body{display:none;padding:0 1.15rem 1.15rem}
-.puz-q{font-size:0.87rem;color:#a5f3fc;line-height:1.72;margin-bottom:0.85rem;padding:0.7rem 0.85rem;background:rgba(6,182,212,0.05);border-radius:7px;border-left:3px solid #06b6d4}
-.puz-hint{font-size:0.8rem;color:#7dd3fc;margin-bottom:0.65rem;line-height:1.6}
-.puz-ans{font-size:0.8rem;color:#d1fae5;background:rgba(16,185,129,0.07);padding:0.7rem 0.85rem;border-radius:7px;border-left:3px solid #10b981;line-height:1.65}
+.puz-q{font-size:0.95rem;color:#a5f3fc;line-height:1.8;margin-bottom:0.85rem;padding:0.7rem 0.85rem;background:rgba(6,182,212,0.05);border-radius:7px;border-left:3px solid #06b6d4}
+.puz-hint{font-size:0.87rem;color:#7dd3fc;margin-bottom:0.65rem;line-height:1.65}
+.puz-ans{font-size:0.87rem;color:#d1fae5;background:rgba(16,185,129,0.07);padding:0.7rem 0.85rem;border-radius:7px;border-left:3px solid #10b981;line-height:1.7}
 /* PRE-COLLEGE */
 #precollege{background:#000e1a}
 #precollege .s-eyebrow{background:rgba(59,130,246,0.08);color:#60a5fa;border:1px solid rgba(59,130,246,0.22)}
 #precollege .s-title{color:#dbeafe}
 .pc-card{background:rgba(59,130,246,0.04);border:1px solid rgba(59,130,246,0.13);border-radius:11px;padding:1.2rem;transition:all 0.22s}
 .pc-card:hover{border-color:rgba(59,130,246,0.35);transform:translateY(-2px)}
-.pc-grade{font-family:'JetBrains Mono',monospace;font-size:0.63rem;color:#3b82f6;background:rgba(59,130,246,0.1);padding:0.1rem 0.4rem;border-radius:4px;display:inline-block;margin-bottom:0.45rem}
-.pc-topic{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#93c5fd;font-size:0.93rem;margin-bottom:0.25rem}
-.pc-sub{font-size:0.78rem;color:#94a3b8;margin-bottom:0.65rem;line-height:1.55}
-.pc-book{font-size:0.79rem;color:#bfdbfe;margin-bottom:0.2rem}
-.pc-book span{color:#94a3b8;font-size:0.74rem}
+.pc-grade{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:#3b82f6;background:rgba(59,130,246,0.1);padding:0.1rem 0.4rem;border-radius:4px;display:inline-block;margin-bottom:0.45rem}
+.pc-topic{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#93c5fd;font-size:1.0rem;margin-bottom:0.25rem}
+.pc-sub{font-size:0.85rem;color:#94a3b8;margin-bottom:0.65rem;line-height:1.62}
+.pc-book{font-size:0.86rem;color:#bfdbfe;margin-bottom:0.2rem}
+.pc-book span{color:#94a3b8;font-size:0.8rem}
 /* OLYMPIAD */
 #olympiad{background:#0c0600}
 #olympiad .s-eyebrow{background:rgba(245,158,11,0.08);color:#fcd34d;border:1px solid rgba(245,158,11,0.22)}
 #olympiad .s-title{color:#fef9c3}
-.oly-tabs{display:flex;gap:0.45rem;flex-wrap:wrap;margin-bottom:2rem;justify-content:center}
-.oly-tab{font-family:'Space Grotesk',sans-serif;font-size:0.78rem;font-weight:600;padding:0.38rem 0.95rem;border-radius:99px;border:1px solid rgba(245,158,11,0.18);background:rgba(245,158,11,0.05);color:#b45309;cursor:pointer;transition:all 0.2s}
+.oly-tab{font-family:'Space Grotesk',sans-serif;font-size:0.84rem;font-weight:600;padding:0.38rem 0.95rem;border-radius:99px;border:1px solid rgba(245,158,11,0.18);background:rgba(245,158,11,0.05);color:#b45309;cursor:pointer;transition:all 0.2s}
 .oly-tab:hover{background:rgba(245,158,11,0.13);border-color:rgba(245,158,11,0.38);color:#fcd34d}
 .oly-tab.active{background:rgba(245,158,11,0.18);border-color:#f59e0b;color:#fef08a;box-shadow:0 0 14px rgba(245,158,11,0.25)}
 .oly-panel{display:none}
 .oly-panel.active{display:block}
 .oly-phd{display:grid;grid-template-columns:1.7fr 1fr;gap:2rem;margin-bottom:1.75rem;align-items:start}
-.oly-desc{font-size:0.92rem;color:#d6d3d1;line-height:1.78;margin-bottom:0.75rem}
+.oly-desc{font-size:0.97rem;color:#d6d3d1;line-height:1.82;margin-bottom:0.75rem}
 .oly-bk-box{background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.14);border-radius:10px;padding:1rem}
-.oly-bk-lbl{font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:#f59e0b;margin-bottom:0.7rem}
+.oly-bk-lbl{font-family:'JetBrains Mono',monospace;font-size:0.67rem;text-transform:uppercase;letter-spacing:0.12em;color:#f59e0b;margin-bottom:0.7rem}
 .oly-bk-item{margin-bottom:0.65rem;padding-bottom:0.65rem;border-bottom:1px solid rgba(245,158,11,0.08)}
 .oly-bk-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
-.oly-bk-t{font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;color:#fcd34d}
-.oly-bk-a{font-size:0.73rem;color:#b45309;margin-bottom:0.1rem}
-.oly-bk-n{font-size:0.7rem;color:#78716c;font-style:italic}
+.oly-bk-t{font-family:'Space Grotesk',sans-serif;font-size:0.87rem;font-weight:600;color:#fcd34d}
+.oly-bk-a{font-size:0.78rem;color:#b45309;margin-bottom:0.1rem}
+.oly-bk-n{font-size:0.75rem;color:#78716c;font-style:italic}
 .prob-list{display:flex;flex-direction:column;gap:0.65rem}
 .prob-card{background:rgba(245,158,11,0.03);border:1px solid rgba(245,158,11,0.1);border-radius:9px;overflow:hidden}
 .prob-hdr{padding:0.8rem 0.95rem;cursor:pointer;display:flex;align-items:center;gap:0.65rem}
-.prob-num{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:#f59e0b;background:rgba(245,158,11,0.1);padding:0.18rem 0.42rem;border-radius:4px;flex-shrink:0;margin-top:0.1rem}
-.prob-ttl{font-size:0.88rem;font-weight:600;color:#fef3c7;flex:1;font-family:'Space Grotesk',sans-serif;line-height:1.4}
-.prob-dif{font-size:0.82rem;flex-shrink:0;letter-spacing:-0.05em}
-.prob-src-lbl{font-size:0.67rem;color:#78716c;font-family:'JetBrains Mono',monospace;text-align:right}
+.prob-num{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#f59e0b;background:rgba(245,158,11,0.1);padding:0.18rem 0.42rem;border-radius:4px;flex-shrink:0;margin-top:0.1rem}
+.prob-ttl{font-size:0.95rem;font-weight:600;color:#fef3c7;flex:1;font-family:'Space Grotesk',sans-serif;line-height:1.4}
+.prob-dif{font-size:0.87rem;flex-shrink:0;letter-spacing:-0.05em}
+.prob-src-lbl{font-size:0.72rem;color:#78716c;font-family:'JetBrains Mono',monospace;text-align:right}
 .prob-body{display:none;padding:0 0.95rem 0.95rem}
-.prob-stmt{font-size:0.87rem;color:#fef3c7;line-height:1.72;margin-bottom:0.7rem;padding:0.7rem 0.85rem;background:rgba(245,158,11,0.05);border-radius:7px;border-left:3px solid #f59e0b}
-.prob-insight{font-size:0.83rem;color:#d6d3d1;line-height:1.72;background:rgba(16,185,129,0.05);padding:0.7rem 0.85rem;border-radius:7px;border-left:3px solid #10b981}
-.ins-lbl{font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:#10b981;margin-bottom:0.3rem}
+.prob-stmt{font-size:0.93rem;color:#fef3c7;line-height:1.78;margin-bottom:0.7rem;padding:0.7rem 0.85rem;background:rgba(245,158,11,0.05);border-radius:7px;border-left:3px solid #f59e0b}
+.prob-insight{font-size:0.89rem;color:#d6d3d1;line-height:1.78;background:rgba(16,185,129,0.05);padding:0.7rem 0.85rem;border-radius:7px;border-left:3px solid #10b981}
+.ins-lbl{font-family:'JetBrains Mono',monospace;font-size:0.67rem;text-transform:uppercase;letter-spacing:0.12em;color:#10b981;margin-bottom:0.3rem}
 /* UNDERGRAD */
 #undergrad{background:#00050e}
 #undergrad .s-eyebrow{background:rgba(99,102,241,0.08);color:#a5b4fc;border:1px solid rgba(99,102,241,0.22)}
 #undergrad .s-title{color:#e0e7ff}
 .ug-card{background:rgba(99,102,241,0.04);border:1px solid rgba(99,102,241,0.13);border-radius:11px;padding:1.2rem;transition:all 0.22s}
 .ug-card:hover{border-color:rgba(99,102,241,0.35);transform:translateY(-2px);box-shadow:0 6px 20px rgba(99,102,241,0.08)}
-.ug-tag{display:inline-block;font-size:0.63rem;padding:0.12rem 0.42rem;border-radius:4px;background:rgba(99,102,241,0.14);color:#818cf8;font-family:'Space Grotesk',sans-serif;margin-bottom:0.45rem}
-.ug-topic{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#c7d2fe;font-size:0.93rem;margin-bottom:0.35rem}
-.ug-desc{font-size:0.79rem;color:#94a3b8;line-height:1.6;margin-bottom:0.65rem}
-.ug-book{font-size:0.79rem;color:#a5b4fc;margin-bottom:0.22rem;line-height:1.5}
+.ug-tag{display:inline-block;font-size:0.68rem;padding:0.12rem 0.42rem;border-radius:4px;background:rgba(99,102,241,0.14);color:#818cf8;font-family:'Space Grotesk',sans-serif;margin-bottom:0.45rem}
+.ug-topic{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#c7d2fe;font-size:1.0rem;margin-bottom:0.35rem}
+.ug-desc{font-size:0.87rem;color:#94a3b8;line-height:1.65;margin-bottom:0.65rem}
+.ug-book{font-size:0.87rem;color:#a5b4fc;margin-bottom:0.22rem;line-height:1.5}
 .ug-book b{color:#c7d2fe}
 .ug-book i{color:#6366f1;font-style:normal}
 /* GRADUATE */
@@ -174,9 +204,9 @@ body{font-family:'Inter',system-ui,sans-serif;background:#030012;color:#f1f5f9;o
 #graduate .s-title{color:#f3e8ff}
 .grad-card{background:rgba(168,85,247,0.04);border:1px solid rgba(168,85,247,0.13);border-radius:11px;padding:1.2rem;transition:all 0.22s}
 .grad-card:hover{border-color:rgba(168,85,247,0.35);transform:translateY(-2px);box-shadow:0 6px 20px rgba(168,85,247,0.08)}
-.grad-topic{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#e9d5ff;font-size:0.93rem;margin-bottom:0.35rem}
-.grad-desc{font-size:0.79rem;color:#94a3b8;line-height:1.6;margin-bottom:0.65rem}
-.grad-book{font-size:0.79rem;color:#c4b5fd;margin-bottom:0.25rem;line-height:1.5}
+.grad-topic{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#e9d5ff;font-size:1.0rem;margin-bottom:0.35rem}
+.grad-desc{font-size:0.87rem;color:#94a3b8;line-height:1.65;margin-bottom:0.65rem}
+.grad-book{font-size:0.87rem;color:#c4b5fd;margin-bottom:0.25rem;line-height:1.5}
 .grad-book b{color:#e9d5ff}
 /* RESEARCH */
 #research{background:#000c17}
@@ -184,14 +214,14 @@ body{font-family:'Inter',system-ui,sans-serif;background:#030012;color:#f1f5f9;o
 #research .s-title{color:#e0f2fe}
 .res-card{background:rgba(14,165,233,0.04);border:1px solid rgba(14,165,233,0.13);border-radius:11px;padding:1.35rem;transition:all 0.22s}
 .res-card:hover{border-color:rgba(14,165,233,0.35);transform:translateY(-2px)}
-.res-badge{font-family:'JetBrains Mono',monospace;font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.13rem 0.48rem;border-radius:99px;display:inline-block;margin-bottom:0.7rem}
+.res-badge{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.13rem 0.48rem;border-radius:99px;display:inline-block;margin-bottom:0.7rem}
 .rb-breakthrough{background:rgba(16,185,129,0.13);color:#34d399;border:1px solid rgba(16,185,129,0.28)}
 .rb-active{background:rgba(14,165,233,0.13);color:#7dd3fc;border:1px solid rgba(14,165,233,0.28)}
 .rb-open{background:rgba(245,158,11,0.13);color:#fcd34d;border:1px solid rgba(245,158,11,0.28)}
-.res-title{font-family:'Playfair Display',serif;font-weight:700;color:#e0f2fe;font-size:1rem;margin-bottom:0.45rem;line-height:1.35}
-.res-who{font-size:0.78rem;color:#0ea5e9;margin-bottom:0.2rem}
-.res-inst{font-size:0.73rem;color:#334155;margin-bottom:0.65rem;font-style:italic}
-.res-desc{font-size:0.83rem;color:#dde6f0;line-height:1.7}
+.res-title{font-family:'Playfair Display',serif;font-weight:700;color:#e0f2fe;font-size:1.07rem;margin-bottom:0.45rem;line-height:1.35}
+.res-who{font-size:0.84rem;color:#0ea5e9;margin-bottom:0.2rem}
+.res-inst{font-size:0.79rem;color:#334155;margin-bottom:0.65rem;font-style:italic}
+.res-desc{font-size:0.9rem;color:#dde6f0;line-height:1.74}
 /* OPEN PROBLEMS */
 #openproblems{background:#060004}
 #openproblems .s-eyebrow{background:rgba(239,68,68,0.08);color:#fca5a5;border:1px solid rgba(239,68,68,0.22)}
@@ -199,15 +229,15 @@ body{font-family:'Inter',system-ui,sans-serif;background:#030012;color:#f1f5f9;o
 .op-card{background:rgba(239,68,68,0.03);border:1px solid rgba(239,68,68,0.1);border-radius:11px;overflow:hidden;transition:all 0.22s}
 .op-card:hover{border-color:rgba(239,68,68,0.3);box-shadow:0 4px 18px rgba(239,68,68,0.08)}
 .op-hdr{padding:1.1rem 1.15rem;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:0.75rem}
-.op-title{font-family:'Playfair Display',serif;font-weight:700;color:#fecaca;font-size:0.97rem;margin-bottom:0.28rem;line-height:1.3}
-.op-field{font-size:0.7rem;color:#ef4444;font-family:'Space Grotesk',sans-serif}
-.op-prize{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#fbbf24;background:rgba(251,191,36,0.1);padding:0.13rem 0.45rem;border-radius:4px;flex-shrink:0}
-.op-arr{color:#ef4444;font-size:0.85rem;flex-shrink:0;transition:transform 0.3s;margin-top:0.15rem}
+.op-title{font-family:'Playfair Display',serif;font-weight:700;color:#fecaca;font-size:1.03rem;margin-bottom:0.28rem;line-height:1.3}
+.op-field{font-size:0.76rem;color:#ef4444;font-family:'Space Grotesk',sans-serif}
+.op-prize{font-family:'JetBrains Mono',monospace;font-size:0.77rem;color:#fbbf24;background:rgba(251,191,36,0.1);padding:0.13rem 0.45rem;border-radius:4px;flex-shrink:0}
+.op-arr{color:#ef4444;font-size:0.9rem;flex-shrink:0;transition:transform 0.3s;margin-top:0.15rem}
 .op-body{display:none;padding:0 1.15rem 1.15rem}
-.op-stmt{font-size:0.87rem;color:#fecaca;line-height:1.72;margin-bottom:0.7rem;padding:0.7rem;background:rgba(239,68,68,0.05);border-radius:7px;border-left:3px solid #ef4444}
-.op-lbl{font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.25rem}
-.op-why{font-size:0.82rem;color:#d1d5db;margin-bottom:0.6rem;line-height:1.65}
-.op-how{font-size:0.82rem;color:#86efac;line-height:1.65;padding:0.6rem 0.75rem;background:rgba(16,185,129,0.06);border-radius:6px}
+.op-stmt{font-size:0.93rem;color:#fecaca;line-height:1.78;margin-bottom:0.7rem;padding:0.7rem;background:rgba(239,68,68,0.05);border-radius:7px;border-left:3px solid #ef4444}
+.op-lbl{font-family:'JetBrains Mono',monospace;font-size:0.67rem;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.25rem}
+.op-why{font-size:0.88rem;color:#d1d5db;margin-bottom:0.6rem;line-height:1.7}
+.op-how{font-size:0.88rem;color:#86efac;line-height:1.7;padding:0.6rem 0.75rem;background:rgba(16,185,129,0.06);border-radius:6px}
 /* CAREERS */
 #careers{background:#020015}
 #careers .s-eyebrow{background:rgba(139,92,246,0.08);color:#c4b5fd;border:1px solid rgba(139,92,246,0.22)}
@@ -215,10 +245,10 @@ body{font-family:'Inter',system-ui,sans-serif;background:#030012;color:#f1f5f9;o
 .car-card{background:rgba(139,92,246,0.05);border:1px solid rgba(139,92,246,0.13);border-radius:11px;padding:1.2rem;transition:all 0.22s}
 .car-card:hover{border-color:rgba(139,92,246,0.35);transform:translateY(-2px);box-shadow:0 6px 20px rgba(139,92,246,0.08)}
 .car-icon{font-size:1.65rem;margin-bottom:0.45rem;display:block}
-.car-title{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#ddd6fe;font-size:0.93rem;margin-bottom:0.45rem}
-.car-desc{font-size:0.81rem;color:#dde6f0;line-height:1.65;margin-bottom:0.65rem}
-.car-tag{display:inline-block;font-size:0.63rem;padding:0.12rem 0.42rem;border-radius:4px;background:rgba(139,92,246,0.14);color:#a78bfa;font-family:'Space Grotesk',sans-serif;margin-right:0.22rem;margin-bottom:0.22rem}
-.car-sal{font-size:0.76rem;color:#8b5cf6;font-family:'JetBrains Mono',monospace;margin-top:0.35rem}
+.car-title{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#ddd6fe;font-size:1.0rem;margin-bottom:0.45rem}
+.car-desc{font-size:0.88rem;color:#dde6f0;line-height:1.68;margin-bottom:0.65rem}
+.car-tag{display:inline-block;font-size:0.68rem;padding:0.12rem 0.42rem;border-radius:4px;background:rgba(139,92,246,0.14);color:#a78bfa;font-family:'Space Grotesk',sans-serif;margin-right:0.22rem;margin-bottom:0.22rem}
+.car-sal{font-size:0.82rem;color:#8b5cf6;font-family:'JetBrains Mono',monospace;margin-top:0.35rem}
 /* STUDY GUIDE */
 #studyguide{background:#001008}
 #studyguide .s-eyebrow{background:rgba(16,185,129,0.08);color:#6ee7b7;border:1px solid rgba(16,185,129,0.22)}
@@ -227,8 +257,8 @@ body{font-family:'Inter',system-ui,sans-serif;background:#030012;color:#f1f5f9;o
 .tip-card{display:flex;gap:1.1rem;align-items:flex-start;background:rgba(16,185,129,0.04);border:1px solid rgba(16,185,129,0.1);border-radius:11px;padding:1.1rem;transition:all 0.22s}
 .tip-card:hover{border-color:rgba(16,185,129,0.28);background:rgba(16,185,129,0.07)}
 .tip-num{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:700;color:#10b981;background:rgba(16,185,129,0.1);width:2.4rem;height:2.4rem;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.tip-title{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#6ee7b7;font-size:0.92rem;margin-bottom:0.28rem}
-.tip-desc{font-size:0.83rem;color:#dde6f0;line-height:1.7}
+.tip-title{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#6ee7b7;font-size:1.0rem;margin-bottom:0.28rem}
+.tip-desc{font-size:0.9rem;color:#dde6f0;line-height:1.74}
 /* FACTS */
 #facts{background:#060612}
 #facts .s-eyebrow{background:rgba(236,72,153,0.08);color:#f9a8d4;border:1px solid rgba(236,72,153,0.22)}
@@ -236,23 +266,23 @@ body{font-family:'Inter',system-ui,sans-serif;background:#030012;color:#f1f5f9;o
 .fact-card{background:var(--fc,rgba(255,255,255,0.03));border:1px solid var(--fb,rgba(255,255,255,0.08));border-radius:11px;padding:1.2rem;transition:all 0.22s;position:relative;overflow:hidden}
 .fact-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--fa,#a855f7)}
 .fact-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
-.fact-cat{font-family:'JetBrains Mono',monospace;font-size:0.63rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--fa,#a855f7);margin-bottom:0.45rem}
-.fact-text{font-size:0.87rem;color:#e2e8f0;line-height:1.72;margin-bottom:0.4rem}
-.fact-math{font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--fa,#a855f7);background:rgba(255,255,255,0.04);padding:0.3rem 0.55rem;border-radius:5px;display:inline-block;margin-top:0.2rem}
+.fact-cat{font-family:'JetBrains Mono',monospace;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--fa,#a855f7);margin-bottom:0.45rem}
+.fact-text{font-size:0.93rem;color:#e2e8f0;line-height:1.78;margin-bottom:0.4rem}
+.fact-math{font-family:'JetBrains Mono',monospace;font-size:0.87rem;color:var(--fa,#a855f7);background:rgba(255,255,255,0.04);padding:0.3rem 0.55rem;border-radius:5px;display:inline-block;margin-top:0.2rem}
 /* UNIVERSITIES */
 #universities{background:#0f0800}
 #universities .s-eyebrow{background:rgba(249,115,22,0.08);color:#fdba74;border:1px solid rgba(249,115,22,0.22)}
 #universities .s-title{color:#ffedd5}
 .uni-card{background:rgba(249,115,22,0.04);border:1px solid rgba(249,115,22,0.13);border-radius:11px;padding:1.2rem;transition:all 0.22s}
 .uni-card:hover{border-color:rgba(249,115,22,0.35);transform:translateY(-2px);box-shadow:0 4px 18px rgba(249,115,22,0.08)}
-.uni-tier{font-family:'JetBrains Mono',monospace;font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.1rem 0.42rem;border-radius:3px;display:inline-block;margin-bottom:0.45rem}
+.uni-tier{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.1rem 0.42rem;border-radius:3px;display:inline-block;margin-bottom:0.45rem}
 .t-elite{background:rgba(251,191,36,0.18);color:#fbbf24;border:1px solid rgba(251,191,36,0.28)}
 .t-premier{background:rgba(249,115,22,0.18);color:#fb923c;border:1px solid rgba(249,115,22,0.28)}
 .t-strong{background:rgba(239,68,68,0.13);color:#fca5a5;border:1px solid rgba(239,68,68,0.22)}
-.uni-name{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#fed7aa;font-size:0.92rem;margin-bottom:0.2rem}
-.uni-city{font-size:0.75rem;color:#6b5239;margin-bottom:0.45rem}
-.uni-prog{font-size:0.78rem;color:#d6d3d1;margin-bottom:0.25rem;line-height:1.5}
-.uni-note{font-size:0.76rem;color:#92400e;font-style:italic;line-height:1.6}
+.uni-name{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#fed7aa;font-size:0.99rem;margin-bottom:0.2rem}
+.uni-city{font-size:0.8rem;color:#6b5239;margin-bottom:0.45rem}
+.uni-prog{font-size:0.84rem;color:#d6d3d1;margin-bottom:0.25rem;line-height:1.5}
+.uni-note{font-size:0.82rem;color:#92400e;font-style:italic;line-height:1.6}
 /* THEME TOGGLE — fixed above back-to-top */
 #theme-toggle{position:fixed;bottom:calc(1.5rem + 38px + 0.55rem);right:1.5rem;z-index:999;width:38px;height:38px;border-radius:50%;border:1px solid rgba(139,92,246,0.35);background:rgba(3,0,18,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:#a855f7;font-size:1.05rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.25s;outline:none;box-shadow:0 2px 12px rgba(139,92,246,0.2);}
 #theme-toggle:hover{background:rgba(124,58,237,0.22);transform:scale(1.08)}
@@ -305,7 +335,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#030012;color:#f1f5f9;o
 .ug-detail,.grad-detail{
   display:none;margin-top:0.85rem;padding-top:0.85rem;
   border-top:1px solid rgba(99,102,241,0.15);
-  font-size:0.82rem;color:#dde6f0;line-height:1.75
+  font-size:0.89rem;color:#dde6f0;line-height:1.8
 }
 .grad-detail{border-color:rgba(168,85,247,0.15)}
 .ug-detail p,.grad-detail p{margin-bottom:0.7rem}
@@ -315,7 +345,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#030012;color:#f1f5f9;o
 body.light-mode .grad-detail em{color:#5b21b6!important;font-weight:500}
 .ug-expand-lbl,.grad-expand-lbl{
   display:inline-flex;align-items:center;gap:0.3rem;
-  font-size:0.63rem;font-family:'JetBrains Mono',monospace;
+  font-size:0.68rem;font-family:'JetBrains Mono',monospace;
   letter-spacing:0.08em;text-transform:uppercase;margin-top:0.65rem;
   cursor:pointer;color:#6366f1;transition:color 0.2s;
 }
@@ -338,11 +368,11 @@ body.light-mode .grad-detail em{color:#5b21b6!important;font-weight:500}
 .op-lbl{font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.3rem;margin-top:0.6rem}
 
 /* Research expanded card */
-.res-detail{font-size:0.82rem;color:#7dd3fc;line-height:1.75;margin-top:0.6rem;padding-top:0.6rem;border-top:1px solid rgba(14,165,233,0.12);display:none}
+.res-detail{font-size:0.88rem;color:#7dd3fc;line-height:1.8;margin-top:0.6rem;padding-top:0.6rem;border-top:1px solid rgba(14,165,233,0.12);display:none}
 .res-detail.show,.res-detail[style*="block"]{display:block}
 .res-detail p{margin-bottom:0.6rem}
 .res-detail p:last-child{margin-bottom:0}
-.res-math{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:#38bdf8;background:rgba(14,165,233,0.08);padding:0.4rem 0.6rem;border-radius:5px;display:block;margin:0.4rem 0;white-space:pre-wrap;word-break:break-word}
+.res-math{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:#38bdf8;background:rgba(14,165,233,0.08);padding:0.4rem 0.6rem;border-radius:5px;display:block;margin:0.4rem 0;white-space:pre-wrap;word-break:break-word}
 /* REVEAL ANIMATION */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity 0.5s ease,transform 0.5s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -352,6 +382,76 @@ body.light-mode .grad-detail em{color:#5b21b6!important;font-weight:500}
 @media(max-width:900px){.oly-phd{grid-template-columns:1fr}}
 @media(max-width:768px){.intro-grid{grid-template-columns:1fr}.section{padding:4rem 1rem}.g2{grid-template-columns:1fr}.g3{grid-template-columns:1fr}}
 @media(max-width:640px){.g4{grid-template-columns:1fr 1fr}.hero-eq{font-size:0.85rem}}
+
+/* ── GRID ALIGNMENT — prevent blank card stretch ────────────── */
+.g2,.g3,.g4{align-items:start}
+
+/* ── DESKTOP EXPANDED GLOW (laptop only) ─────────────────────── */
+@media(min-width:769px){
+  /* Puzzle cards */
+  .puz-card:has(.puz-body[style*="block"]){
+    grid-column:1/-1;
+    box-shadow:0 0 0 1.5px #06b6d4,0 8px 40px rgba(6,182,212,0.18);
+    border-color:#06b6d4!important;
+    background:rgba(6,182,212,0.1)!important;
+    transition:all .25s ease;
+  }
+  .puz-card:has(.puz-body[style*="block"]) .puz-title{font-size:1.12rem}
+  .puz-card:has(.puz-body[style*="block"]) .puz-q{font-size:1.02rem;line-height:1.88}
+  .puz-card:has(.puz-body[style*="block"]) .puz-hint,.puz-card:has(.puz-body[style*="block"]) .puz-ans{font-size:0.93rem;line-height:1.82}
+  /* Undergrad cards */
+  .ug-card:has(.ug-detail:not([style*="none"])){
+    grid-column:1/-1;
+    box-shadow:0 0 0 1.5px #6366f1,0 8px 40px rgba(99,102,241,0.18);
+    border-color:rgba(99,102,241,0.6)!important;
+    background:rgba(99,102,241,0.14)!important;
+  }
+  .ug-card:has(.ug-detail:not([style*="none"])) .ug-topic{font-size:1.1rem}
+  .ug-card:has(.ug-detail:not([style*="none"])) .ug-detail{font-size:0.95rem;line-height:1.88}
+  /* Graduate cards */
+  .grad-card:has(.grad-detail:not([style*="none"])){
+    grid-column:1/-1;
+    box-shadow:0 0 0 1.5px #a855f7,0 8px 40px rgba(168,85,247,0.18);
+    border-color:rgba(168,85,247,0.6)!important;
+    background:rgba(168,85,247,0.12)!important;
+  }
+  .grad-card:has(.grad-detail:not([style*="none"])) .grad-topic{font-size:1.1rem}
+  .grad-card:has(.grad-detail:not([style*="none"])) .grad-detail{font-size:0.95rem;line-height:1.88}
+  /* Research cards */
+  .res-card:has(.res-detail.show){
+    box-shadow:0 0 0 1.5px #0ea5e9,0 8px 40px rgba(14,165,233,0.18);
+    border-color:rgba(14,165,233,0.6)!important;
+    background:rgba(14,165,233,0.12)!important;
+  }
+  .res-card:has(.res-detail.show) .res-title{font-size:1.14rem}
+  .res-detail.show{font-size:0.94rem;line-height:1.86}
+  /* Open problems */
+  .op-card:has(.op-body[style*="block"]){
+    box-shadow:0 0 0 1.5px #ef4444,0 8px 40px rgba(239,68,68,0.18);
+    border-color:rgba(239,68,68,0.6)!important;
+    background:rgba(239,68,68,0.1)!important;
+  }
+  .op-card:has(.op-body[style*="block"]) .op-title{font-size:1.1rem}
+  .op-card:has(.op-body[style*="block"]) .op-stmt{font-size:1.0rem}
+  .op-card:has(.op-body[style*="block"]) .op-why,.op-card:has(.op-body[style*="block"]) .op-how{font-size:0.94rem;line-height:1.84}
+  /* Career cards */
+  .car-card:has(.car-section:not([style*="none"])){
+    box-shadow:0 0 0 1.5px #8b5cf6,0 8px 40px rgba(139,92,246,0.18);
+    border-color:rgba(139,92,246,0.6)!important;
+    background:rgba(139,92,246,0.14)!important;
+  }
+  .car-card:has(.car-section:not([style*="none"])) .car-title{font-size:1.08rem}
+  .car-section-body{font-size:0.9rem;line-height:1.8}
+  /* Olympiad problems */
+  .prob-card:has(.prob-body[style*="block"]){
+    box-shadow:0 0 0 1.5px #f59e0b,0 8px 40px rgba(245,158,11,0.18);
+    border-color:rgba(245,158,11,0.5)!important;
+    background:rgba(245,158,11,0.08)!important;
+  }
+  .prob-card:has(.prob-body[style*="block"]) .prob-ttl{font-size:1.04rem}
+  .prob-card:has(.prob-body[style*="block"]) .prob-stmt,.prob-card:has(.prob-body[style*="block"]) .prob-stmt-visible{font-size:1.0rem;line-height:1.85}
+  .prob-card:has(.prob-body[style*="block"]) .prob-insight{font-size:0.94rem;line-height:1.82}
+}
 
 /* ═══ FONT UTILITIES ════════════════════════════════════════ */
 .font-serif{font-family:'Playfair Display',Georgia,serif}
@@ -371,19 +471,9 @@ body.light-mode .grad-detail em{color:#5b21b6!important;font-weight:500}
 #page-home{min-height:unset}
 
 /* Breadcrumb strip at top of each content page */
-.pg-strip{height:52px;display:flex;align-items:center;padding:0 1.5rem;
-          border-bottom:1px solid rgba(255,255,255,0.05);
-          position:sticky;top:88px;z-index:50;backdrop-filter:blur(12px)}
-.pg-strip-txt{font-family:'JetBrains Mono',monospace;font-size:0.68rem;
-              letter-spacing:0.25em;text-transform:uppercase;opacity:0.45}
-.pg-home-btn{font-family:'Space Grotesk',sans-serif;font-size:0.7rem;font-weight:600;
-             color:#7c3aed;background:rgba(124,58,237,0.1);
-             border:1px solid rgba(124,58,237,0.2);border-radius:99px;
-             padding:0.2rem 0.65rem;cursor:pointer;margin-left:auto;transition:all 0.2s}
-.pg-home-btn:hover{background:rgba(124,58,237,0.2)}
 
 /* Scroll-margin so sticky nav doesn't clip section headings */
-section[id]{scroll-margin-top:140px}
+section[id]{scroll-margin-top:88px}
 
 /* Footer */
 #footer{background:#000008;border-top:1px solid rgba(139,92,246,0.12);
@@ -420,30 +510,30 @@ section[id]{scroll-margin-top:140px}
 /* Facts single column */
 .facts-single-col{display:flex;flex-direction:column;gap:0.75rem}
 .fact-card{cursor:pointer}
-.fact-heading{font-family:'Playfair Display',serif;font-size:1.08rem;font-weight:700;color:#f1f5f9;line-height:1.35;margin-bottom:0.35rem}
-.fact-tap-hint{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--fa,#a855f7);opacity:0.6;margin-top:0.35rem}
+.fact-heading{font-family:'Playfair Display',serif;font-size:1.14rem;font-weight:700;color:#f1f5f9;line-height:1.35;margin-bottom:0.35rem}
+.fact-tap-hint{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--fa,#a855f7);opacity:0.6;margin-top:0.35rem}
 .fact-body{margin-top:0.5rem;border-top:1px solid rgba(255,255,255,0.06);padding-top:0.5rem}
 
 /* Research start guide */
 .res-start-guide{margin-top:0.75rem;padding:0.75rem 0.9rem;background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.18);border-radius:8px}
-.res-start-lbl{font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:#34d399;margin-bottom:0.5rem}
-.res-start-item{font-size:0.78rem;color:#a7f3d0;margin-bottom:0.3rem;line-height:1.55}
+.res-start-lbl{font-family:'JetBrains Mono',monospace;font-size:0.67rem;text-transform:uppercase;letter-spacing:0.12em;color:#34d399;margin-bottom:0.5rem}
+.res-start-item{font-size:0.84rem;color:#a7f3d0;margin-bottom:0.3rem;line-height:1.6}
 .res-start-item a{color:#6ee7b7;text-decoration:underline;text-decoration-color:rgba(110,231,183,0.4)}
 .res-start-item a:hover{color:#34d399}
 
 /* Career expanded sections */
 .car-section{margin-top:0.7rem;border-top:1px solid rgba(139,92,246,0.1);padding-top:0.7rem}
-.car-section-lbl{font-family:'JetBrains Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.12em;color:#8b5cf6;margin-bottom:0.35rem}
-.car-section-body{font-size:0.78rem;color:#dde6f0;line-height:1.65}
+.car-section-lbl{font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:#8b5cf6;margin-bottom:0.35rem}
+.car-section-body{font-size:0.85rem;color:#dde6f0;line-height:1.68}
 .car-section-body strong{color:#c4b5fd}
-.car-expand-btn{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:#8b5cf6;cursor:pointer;margin-top:0.5rem;display:inline-flex;align-items:center;gap:0.25rem;border:none;background:none;padding:0}
+.car-expand-btn{font-family:'JetBrains Mono',monospace;font-size:0.67rem;letter-spacing:0.08em;text-transform:uppercase;color:#8b5cf6;cursor:pointer;margin-top:0.5rem;display:inline-flex;align-items:center;gap:0.25rem;border:none;background:none;padding:0}
 .car-expand-btn:hover{color:#c4b5fd}
 
 /* Quote of the day */
 .quote-of-day{background:rgba(139,92,246,0.07);border:1px solid rgba(139,92,246,0.2);border-radius:12px;padding:1.5rem 1.75rem;margin-bottom:2.5rem;position:relative;overflow:hidden}
 .quote-of-day::before{content:'"';position:absolute;top:-0.5rem;left:0.75rem;font-family:'Playfair Display',serif;font-size:6rem;color:rgba(139,92,246,0.12);line-height:1}
-.quote-text{font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:#ddd6fe;line-height:1.75;margin-bottom:0.65rem;position:relative;z-index:1}
-.quote-attr{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#8b5cf6;letter-spacing:0.08em;position:relative;z-index:1}
+.quote-text{font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:#ddd6fe;line-height:1.8;margin-bottom:0.65rem;position:relative;z-index:1}
+.quote-attr{font-family:'JetBrains Mono',monospace;font-size:0.76rem;color:#8b5cf6;letter-spacing:0.08em;position:relative;z-index:1}
 
 /* ══════════════════════════════════════════════════════════════
    FIX 5: SECTION-SPECIFIC FONTS
@@ -451,56 +541,56 @@ section[id]{scroll-margin-top:140px}
 
 /* BOOKS — Lora: warm, readable, literary */
 #page-books .book-title { font-family: 'Lora', serif !important; }
-#page-books .book-desc { font-family: 'Lora', serif; font-size: 0.91rem; }
+#page-books .book-desc { font-family: 'Lora', serif; font-size: 0.94rem; }
 #page-books .s-title { font-family: 'Lora', serif !important; }
 #page-books .book-card { letter-spacing: 0.01em; }
 
 /* PUZZLES — Nunito: friendly, rounded, approachable */
 #page-puzzles .puz-title { font-family: 'Nunito', sans-serif !important; font-weight: 800; }
-#page-puzzles .puz-q { font-family: 'Nunito', sans-serif; font-size: 0.97rem; }
+#page-puzzles .puz-q { font-family: 'Nunito', sans-serif; font-size: 1.0rem; }
 #page-puzzles .s-title { font-family: 'Nunito', sans-serif !important; font-weight: 800; }
 #page-puzzles .puz-hint, #page-puzzles .puz-ans { font-family: 'Nunito', sans-serif; }
 
 /* OLYMPIAD — Oswald: condensed, athletic, competitive */
-#page-olympiad .prob-ttl { font-family: 'Oswald', sans-serif !important; font-size: 1rem; letter-spacing: 0.03em; }
+#page-olympiad .prob-ttl { font-family: 'Oswald', sans-serif !important; font-size: 1.05rem; letter-spacing: 0.03em; }
 #page-olympiad .oly-tab { font-family: 'Oswald', sans-serif; letter-spacing: 0.04em; }
 #page-olympiad .s-title { font-family: 'Oswald', sans-serif !important; letter-spacing: 0.05em; }
-#page-olympiad .prob-stmt-visible { font-family: 'EB Garamond', serif; font-size: 1.01rem; }
+#page-olympiad .prob-stmt-visible { font-family: 'EB Garamond', serif; font-size: 1.04rem; }
 
 /* UNDERGRAD & GRADUATE — EB Garamond: scholarly, academic, serious */
-#page-undergrad .ug-topic { font-family: 'EB Garamond', serif !important; font-size: 1.15rem; }
-#page-undergrad .ug-desc { font-family: 'EB Garamond', serif; font-size: 0.98rem; }
-#page-undergrad .ug-detail { font-family: 'EB Garamond', serif; font-size: 1.02rem; line-height: 1.85; }
+#page-undergrad .ug-topic { font-family: 'EB Garamond', serif !important; font-size: 1.18rem; }
+#page-undergrad .ug-desc { font-family: 'EB Garamond', serif; font-size: 1.01rem; }
+#page-undergrad .ug-detail { font-family: 'EB Garamond', serif; font-size: 1.05rem; line-height: 1.88; }
 #page-undergrad .s-title { font-family: 'EB Garamond', serif !important; }
-#page-graduate .grad-topic { font-family: 'EB Garamond', serif !important; font-size: 1.15rem; }
-#page-graduate .grad-desc { font-family: 'EB Garamond', serif; font-size: 0.98rem; }
-#page-graduate .grad-detail { font-family: 'EB Garamond', serif; font-size: 1.02rem; line-height: 1.85; }
+#page-graduate .grad-topic { font-family: 'EB Garamond', serif !important; font-size: 1.18rem; }
+#page-graduate .grad-desc { font-family: 'EB Garamond', serif; font-size: 1.01rem; }
+#page-graduate .grad-detail { font-family: 'EB Garamond', serif; font-size: 1.05rem; line-height: 1.88; }
 #page-graduate .s-title { font-family: 'EB Garamond', serif !important; }
 
 /* RESEARCH — IBM Plex Sans: technical, modern, precise */
 #page-research .res-title { font-family: 'IBM Plex Sans', sans-serif !important; font-weight: 600; }
-#page-research .res-desc { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.93rem; }
+#page-research .res-desc { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.95rem; }
 #page-research .s-title { font-family: 'IBM Plex Sans', sans-serif !important; font-weight: 600; }
 #page-research .res-start-item { font-family: 'IBM Plex Sans', sans-serif; }
 
 /* OPEN PROBLEMS — Bebas Neue: dramatic, imposing, iconic */
-#page-openproblems .op-title { font-family: 'Bebas Neue', sans-serif !important; font-size: 1.4rem; letter-spacing: 0.08em; }
+#page-openproblems .op-title { font-family: 'Bebas Neue', sans-serif !important; font-size: 1.45rem; letter-spacing: 0.08em; }
 #page-openproblems .s-title { font-family: 'Bebas Neue', sans-serif !important; letter-spacing: 0.1em; }
 
 /* CAREERS — Lato: professional, clean, corporate */
-#page-careers .car-title { font-family: 'Lato', sans-serif !important; font-weight: 700; font-size: 1.05rem; }
+#page-careers .car-title { font-family: 'Lato', sans-serif !important; font-weight: 700; font-size: 1.08rem; }
 #page-careers .car-desc { font-family: 'Lato', sans-serif; }
 #page-careers .s-title { font-family: 'Lato', sans-serif !important; font-weight: 700; }
-#page-careers .car-section-body { font-family: 'Lato', sans-serif; font-size: 0.87rem; }
+#page-careers .car-section-body { font-family: 'Lato', sans-serif; font-size: 0.9rem; }
 
 /* STUDY GUIDE — Cormorant Garamond: philosophical, contemplative, elegant */
 #page-studyguide .s-title { font-family: 'Cormorant Garamond', serif !important; font-weight: 600; font-size: clamp(2.2rem,5vw,3.5rem); }
-#page-studyguide .tip-title { font-family: 'Cormorant Garamond', serif !important; font-size: 1.2rem; }
-#page-studyguide .tip-desc { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; line-height: 1.85; }
-#page-studyguide .quote-text { font-family: 'Cormorant Garamond', serif !important; font-size: 1.25rem; }
+#page-studyguide .tip-title { font-family: 'Cormorant Garamond', serif !important; font-size: 1.25rem; }
+#page-studyguide .tip-desc { font-family: 'Cormorant Garamond', serif; font-size: 1.08rem; line-height: 1.88; }
+#page-studyguide .quote-text { font-family: 'Cormorant Garamond', serif !important; font-size: 1.28rem; }
 
 /* MATH FACTS — Abril Fatface for headings: bold, display, unforgettable */
-#page-facts .fact-heading { font-family: 'Abril Fatface', serif !important; font-size: 1.15rem; font-weight: 400; line-height: 1.25; }
+#page-facts .fact-heading { font-family: 'Abril Fatface', serif !important; font-size: 1.18rem; font-weight: 400; line-height: 1.25; }
 #page-facts .s-title { font-family: 'Abril Fatface', serif !important; font-weight: 400; letter-spacing: 0.02em; }
 #page-facts .fact-cat { font-family: 'Oswald', sans-serif; letter-spacing: 0.1em; }
 
@@ -511,21 +601,21 @@ section[id]{scroll-margin-top:140px}
 /* ══════════════════════════════════════════════════════════════
    FIX 2: Font size scale-up
    ══════════════════════════════════════════════════════════════ */
-.book-desc { font-size: 0.91rem; }
-.book-title { font-size: 1.03rem !important; }
-.puz-title { font-size: 1.01rem !important; }
-.puz-q { font-size: 0.95rem; line-height: 1.8; }
-.ug-topic { font-size: 1.08rem !important; }
-.ug-desc { font-size: 0.95rem; }
-.grad-topic { font-size: 1.08rem !important; }
-.prob-stmt-visible { font-size: 0.97rem; }
-.fact-heading { font-size: 1.12rem; }
-.fact-text { font-size: 0.95rem; line-height: 1.8; }
-.tip-title { font-size: 1.01rem !important; }
-.tip-desc { font-size: 0.95rem; }
-.car-desc { font-size: 0.94rem; }
-.res-desc { font-size: 0.93rem; }
-.op-desc { font-size: 0.93rem; }
+.book-desc { font-size: 0.94rem; }
+.book-title { font-size: 1.07rem !important; }
+.puz-title { font-size: 1.04rem !important; }
+.puz-q { font-size: 0.98rem; line-height: 1.82; }
+.ug-topic { font-size: 1.1rem !important; }
+.ug-desc { font-size: 0.96rem; }
+.grad-topic { font-size: 1.1rem !important; }
+.prob-stmt-visible { font-size: 1.0rem; }
+.fact-heading { font-size: 1.16rem; }
+.fact-text { font-size: 0.96rem; line-height: 1.82; }
+.tip-title { font-size: 1.04rem !important; }
+.tip-desc { font-size: 0.97rem; }
+.car-desc { font-size: 0.96rem; }
+.res-desc { font-size: 0.95rem; }
+.op-desc { font-size: 0.95rem; }
 
 /* ══════════════════════════════════════════════════════════════
    FIX 3: BRIGHT TEXT — upgrade all muted text
@@ -814,10 +904,6 @@ body.light-mode .ins-lbl { color: #047857 !important; }
 /* Light mode — University cards */
 body.light-mode .uni-card { background: linear-gradient(135deg,#fff7ed,#ffedd5) !important; border-color: rgba(194,65,12,0.2) !important; }
 
-/* Light mode — pg-strip */
-body.light-mode .pg-strip { background: rgba(250,247,242,0.97) !important; }
-
-
 /* Theme toggle light mode */
 body.light-mode #theme-toggle {
   background: rgba(255,251,235,0.95) !important;
@@ -857,15 +943,6 @@ body.light-mode #hero {
 body.light-mode #hero .hero-title,
 body.light-mode #hero .hero-sub,
 body.light-mode #hero .hero-eq { color: inherit; }
-
-/* Light mode: pg-strip (sticky subject bar) */
-body.light-mode .pg-strip {
-  background: rgba(250,247,242,0.96) !important;
-  border-bottom: 1.5px solid rgba(124,58,237,0.15) !important;
-  color: #1c1410 !important;
-}
-body.light-mode .pg-strip .pg-icon,
-body.light-mode .pg-strip .pg-lbl { color: #1c1410 !important; }
 
 /* Light mode: Olympiad oly-phd description box */
 body.light-mode .oly-phd { background: rgba(245,158,11,0.06) !important; }
@@ -1250,8 +1327,8 @@ body.light-mode .foot-txt { color: #44403c !important; }
 body.light-mode .foot-eq { color: #7c3aed !important; }
 
 /* BUTTONS / MISC */
-body.light-mode .pg-strip { background: rgba(250,247,242,0.96) !important; border-bottom:1.5px solid rgba(124,58,237,0.15) !important; color:#1c1410 !important; }
-body.light-mode .pg-strip-txt { color:#1c1410 !important; }
+body.light-mode 
+body.light-mode 
 body.light-mode #theme-toggle { background:rgba(255,251,235,0.95) !important; color:#6d28d9 !important; border-color:rgba(109,40,217,0.35) !important; }
 body.light-mode #btt { background:rgba(255,251,235,0.9) !important; color:#5b21b6 !important; border-color:rgba(109,40,217,0.25) !important; }
 body.light-mode .math-block { background:linear-gradient(135deg,#f0f4ff,#e0e7ff) !important; color:#1e1b4b !important; border:1px solid rgba(79,70,229,0.15) !important; }
@@ -1287,6 +1364,20 @@ body.light-mode #intro button[onclick] { background:rgba(255,255,255,0.8) !impor
   border-color: #10b981 !important;
   box-shadow: 0 0 0 2px #10b981, 0 8px 24px rgba(16,185,129,0.3) !important;
 }
+.book-card.book-read .book-title{color:#a7f3d0!important}
+.book-card.book-read .book-author{color:#6ee7b7!important}
+.book-card.book-read .book-desc{color:#d1fae5!important}
+.book-card.book-read .book-year{color:#34d399!important}
+.book-card.book-read .book-cat{background:rgba(16,185,129,0.25)!important;color:#a7f3d0!important;border-color:rgba(16,185,129,0.45)!important}
+
+/* ═══ BOOK FILTER BAR ════════════════════════════════════════ */
+.book-filter-bar{display:flex;gap:0.45rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.75rem}
+.book-filter-btn{font-family:'Space Grotesk',sans-serif;font-size:0.78rem;font-weight:600;padding:0.38rem 0.95rem;border-radius:99px;border:1px solid rgba(217,119,6,0.22);background:rgba(217,119,6,0.07);color:#b45309;cursor:pointer;transition:all 0.2s}
+.book-filter-btn:hover{background:rgba(217,119,6,0.16);border-color:rgba(217,119,6,0.42);color:#fcd34d}
+.book-filter-btn.active{background:rgba(217,119,6,0.22);border-color:#f59e0b;color:#fef08a;box-shadow:0 0 14px rgba(245,158,11,0.22)}
+body.light-mode .book-filter-btn{color:#78350f;border-color:rgba(180,83,9,0.25);background:rgba(217,119,6,0.06)}
+body.light-mode .book-filter-btn:hover{background:rgba(217,119,6,0.14);color:#78350f}
+body.light-mode .book-filter-btn.active{background:rgba(217,119,6,0.18);color:#78350f;border-color:#d97706}
 
 /* ═══ COMMENTS SECTION ═══════════════════════════════════════ */
 #page-comments { background:#050014; }
@@ -1301,6 +1392,20 @@ body.light-mode #intro button[onclick] { background:rgba(255,255,255,0.8) !impor
 .comment-submit-btn:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(124,58,237,0.4); }
 .comment-del-btn { font-size:0.67rem; color:#fca5a5; background:none; border:none; cursor:pointer; margin-left:0.5rem; padding:0.1rem 0.3rem; border-radius:4px; }
 .comment-del-btn:hover { background:rgba(239,68,68,0.1); }
+
+/* ── COMMENTS: light-mode overrides ─────────────────────────── */
+body.light-mode #page-comments { background:#f5f3ff !important; }
+body.light-mode .comment-box { background:rgba(139,92,246,0.06); border-color:rgba(109,40,217,0.2); }
+body.light-mode .comment-user { color:#5b21b6; }
+body.light-mode .comment-text { color:#1e1b4b; }
+body.light-mode .comment-time { color:#6d28d9; }
+body.light-mode .comment-input-area { background:rgba(139,92,246,0.05); border-color:rgba(109,40,217,0.2); }
+body.light-mode .comment-textarea { background:#fff; border-color:rgba(109,40,217,0.25); color:#1e1b4b; }
+/* shared.js-generated comment DOM classes */
+body.light-mode .comment-item { background:rgba(139,92,246,0.06); border:1px solid rgba(109,40,217,0.18); border-radius:10px; padding:0.8rem 1rem; margin-bottom:0.75rem; }
+body.light-mode .comment-name { color:#5b21b6; }
+body.light-mode .comment-date { color:#7c3aed; }
+body.light-mode .comment-delete-btn { color:#b91c1c; }
 
 /* ═══ OLYMPIAD IMPORTANCE BOX ═══════════════════════════════ */
 .oly-importance-box {
@@ -1330,14 +1435,14 @@ body.light-mode .oly-importance-text { color:#44403c!important; }
 body.light-mode .op-prize { background:rgba(161,98,7,0.15)!important; color:#92400e!important; border:1px solid rgba(161,98,7,0.35)!important; }
 
 /* ═══ GRADUATE SECTION HEADING FIX ════════════════════════════ */
-body.light-mode .pg-strip[style*="d8b4fe"] span { color:#4c1d95!important; }
-#page-graduate .pg-strip-txt { color:#d8b4fe!important; }
-body.light-mode #page-graduate .pg-strip-txt { color:#4c1d95!important; }
+
+#page-graduate 
+body.light-mode #page-graduate 
 body.light-mode #page-graduate .s-eyebrow { color:#4c1d95!important; background:rgba(168,85,247,0.1)!important; }
 
 /* ═══ OLYMPIAD EYEBROW LIGHT MODE FIX ════════════════════════ */
 body.light-mode #page-olympiad .s-eyebrow { color:#78350f!important; background:rgba(245,158,11,0.12)!important; }
-body.light-mode #page-olympiad .pg-strip-txt { color:#78350f!important; }
+body.light-mode #page-olympiad 
 
 /* ═══ NUMBERED PUZZLE/PROBLEM BADGES ════════════════════════ */
 .puz-num-badge {
@@ -1408,22 +1513,31 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
 
 <!-- ═══════════════════════════════════════ NAV ═══════════════ -->
 <nav id="nav">
-  <span class="nav-brand">∑ Mathematics</span>
-  <button class="nav-a active" data-page="home"         onclick="showPage('home')">Home</button>
-  <button class="nav-a"        data-page="books"        onclick="showPage('books')">Books</button>
-  <button class="nav-a"        data-page="puzzles"      onclick="showPage('puzzles')">Puzzles</button>
-  <button class="nav-a"        data-page="precollege"   onclick="showPage('precollege')">Pre-College</button>
-  <button class="nav-a"        data-page="olympiad"     onclick="showPage('olympiad')">Olympiad</button>
-  <button class="nav-a"        data-page="undergrad"    onclick="showPage('undergrad')">Undergrad</button>
-  <button class="nav-a"        data-page="graduate"     onclick="showPage('graduate')">Graduate</button>
-  <button class="nav-a"        data-page="research"     onclick="showPage('research')">Research</button>
-  <button class="nav-a"        data-page="openproblems" onclick="showPage('openproblems')">Open Problems</button>
-  <button class="nav-a"        data-page="careers"      onclick="showPage('careers')">Careers</button>
-  <button class="nav-a"        data-page="studyguide"   onclick="showPage('studyguide')">Study Guide</button>
-  <button class="nav-a"        data-page="facts"        onclick="showPage('facts')">Math Facts</button>
-  <button class="nav-a"        data-page="comments"     onclick="showPage('comments')">💬 Comments</button>
-  <button class="nav-a"        data-page="universities" onclick="showPage('universities')">India</button>
+  <span class="nav-brand" onclick="showPage('home')" style="cursor:pointer;user-select:none">∑ Mathematics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Home</span>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
 </nav>
+
+<!-- ═══════════════════════════════════════ HAMBURGER MENU ════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item active" data-page="home"         onclick="showPage('home')">🏠 Home</button>
+  <button class="hm-item"        data-page="books"        onclick="showPage('books')">📚 Books</button>
+  <button class="hm-item"        data-page="puzzles"      onclick="showPage('puzzles')">🧩 Puzzles</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="precollege"   onclick="showPage('precollege')">📐 Pre-College</button>
+  <button class="hm-item"        data-page="olympiad"     onclick="showPage('olympiad')">🏆 Olympiad</button>
+  <button class="hm-item"        data-page="undergrad"    onclick="showPage('undergrad')">🎓 Undergrad</button>
+  <button class="hm-item"        data-page="graduate"     onclick="showPage('graduate')">🔬 Graduate</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="research"     onclick="showPage('research')">⚡ Research</button>
+  <button class="hm-item"        data-page="openproblems" onclick="showPage('openproblems')">❓ Open Problems</button>
+  <button class="hm-item"        data-page="careers"      onclick="showPage('careers')">💼 Careers</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="studyguide"   onclick="showPage('studyguide')">📖 Study Guide</button>
+  <button class="hm-item"        data-page="facts"        onclick="showPage('facts')">✨ Math Facts</button>
+  <button class="hm-item"        data-page="universities" onclick="showPage('universities')">🎓 India</button>
+  <button class="hm-item"        data-page="comments"     onclick="showPage('comments')">💬 Comments</button>
+</div>
 
 <!-- ═══════════════════════════════════════ PAGE: HOME ════════ -->
 <div class="page active" id="page-home">
@@ -1433,7 +1547,7 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
     <span class="hero-eyebrow">A Complete Atlas of the Mathematical Universe</span>
     <h1 class="hero-title">Mathematics</h1>
     <div class="hero-eq">e<sup>iπ</sup> + 1 = 0 · ζ(s) = Σ n<sup>−s</sup> · ∀ε &gt; 0 ∃δ &gt; 0</div>
-    <p class="hero-sub">The most profound, beautiful, and endlessly deep human creation — from counting pebbles to reshaping the nature of reality itself.</p>
+    <p class="hero-sub" style="background:linear-gradient(145deg,#f1f5f9 0%,#c4b5fd 35%,#38bdf8 70%,#f0abfc 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">The most profound, beautiful, and endlessly deep human creation — from counting pebbles to reshaping the nature of reality itself.</p>
     <button class="hero-btn" onclick="showPage('books')">Explore the Universe ↓</button>
   </div>
 </section>
@@ -1488,14 +1602,14 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
 </div>
 <!-- ═══ PAGE: BOOKS ══════════════════════════════════════════ -->
 <div class="page" id="page-books" style="background:#0d0800">
-  <div class="pg-strip" style="background:rgba(13,8,0,0.9)"><span class="pg-strip-txt" style="color:#fbbf24">📚 Popular Mathematics Books</span><button class="pg-home-btn" onclick="showPage('home')">← Home</button></div>
   <section class="section" id="books">
     <div class="s-inner">
       <div class="s-head">
-        <span class="s-eyebrow" style="background:rgba(217,119,6,0.12);color:#fbbf24;border:1px solid rgba(217,119,6,0.25)">Popular Mathematics</span>
+        <span class="s-eyebrow" style="background:rgba(217,119,6,0.12);color:#92400e;border:1px solid rgba(217,119,6,0.25)">Popular Mathematics</span>
         <h2 class="s-title font-serif" style="color:#fef3c7">Books to Fall in Love With Mathematics</h2>
         <p class="s-desc" style="color:#92400e">No prerequisites needed. These are the doors into the mathematical world — narratives, biographies, and gentle explorations written to enchant and inspire anyone.</p>
       </div>
+      <div class="book-filter-bar" id="books-filter-bar"></div>
       <div class="g3" id="books-grid"></div>
     </div>
   </section>
@@ -1503,7 +1617,6 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
 
 <!-- ═══ PAGE: PUZZLES ════════════════════════════════════════ -->
 <div class="page" id="page-puzzles" style="background:#001212">
-  <div class="pg-strip" style="background:rgba(0,18,18,0.9)"><span class="pg-strip-txt" style="color:#22d3ee">🧩 Mathematical Puzzles</span><button class="pg-home-btn" onclick="showPage('home')">← Home</button></div>
   <section class="section" id="puzzles">
     <div class="s-inner">
       <div class="s-head">
@@ -1518,7 +1631,6 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
 
 <!-- ═══ PAGE: PRE-COLLEGE ════════════════════════════════════ -->
 <div class="page" id="page-precollege" style="background:#000e1a">
-  <div class="pg-strip" style="background:rgba(0,14,26,0.9)"><span class="pg-strip-txt" style="color:#60a5fa">📐 School Mathematics · Class 6–12</span><button class="pg-home-btn" onclick="showPage('home')">← Home</button></div>
   <section class="section" id="precollege">
     <div class="s-inner">
       <div class="s-head">
@@ -1533,7 +1645,6 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
 
 <!-- ═══ PAGE: OLYMPIAD ═══════════════════════════════════════ -->
 <div class="page" id="page-olympiad" style="background:#0c0600">
-  <div class="pg-strip" style="background:rgba(12,6,0,0.9)"><span class="pg-strip-txt" style="color:#fcd34d">🏆 Mathematical Olympiads</span><button class="pg-home-btn" onclick="showPage('home')">← Home</button></div>
   <section class="section" id="olympiad">
     <div class="s-inner">
       <div class="s-head">
@@ -1561,7 +1672,6 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
 
 <!-- ═══ PAGE: UNDERGRADUATE ══════════════════════════════════ -->
 <div class="page" id="page-undergrad" style="background:#00050e">
-  <div class="pg-strip" style="background:rgba(0,5,14,0.9)"><span class="pg-strip-txt" style="color:#a5b4fc">🎓 Undergraduate Mathematics</span><button class="pg-home-btn" onclick="showPage('home')">← Home</button></div>
   <section class="section" id="undergrad">
     <div class="s-inner">
       <div class="s-head">
@@ -1576,7 +1686,6 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
 
 <!-- ═══ PAGE: GRADUATE ════════════════════════════════════════ -->
 <div class="page" id="page-graduate" style="background:#07000e">
-  <div class="pg-strip" style="background:rgba(7,0,14,0.9)"><span class="pg-strip-txt" style="color:#d8b4fe">🔬 Graduate &amp; Research Level</span><button class="pg-home-btn" onclick="showPage('home')">← Home</button></div>
   <section class="section" id="graduate">
     <div class="s-inner">
       <div class="s-head">
@@ -1591,7 +1700,6 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
 
 <!-- ═══ PAGE: RESEARCH ════════════════════════════════════════ -->
 <div class="page" id="page-research" style="background:#000c17">
-  <div class="pg-strip" style="background:rgba(0,12,23,0.9)"><span class="pg-strip-txt" style="color:#7dd3fc">⚡ Current Research Frontiers</span><button class="pg-home-btn" onclick="showPage('home')">← Home</button></div>
   <section class="section" id="research">
     <div class="s-inner">
       <div class="s-head">
@@ -1614,7 +1722,6 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
 
 <!-- ═══ PAGE: OPEN PROBLEMS ═══════════════════════════════════ -->
 <div class="page" id="page-openproblems" style="background:#060004">
-  <div class="pg-strip" style="background:rgba(6,0,4,0.9)"><span class="pg-strip-txt" style="color:#fca5a5">❓ The Great Unsolved Problems</span><button class="pg-home-btn" onclick="showPage('home')">← Home</button></div>
   <section class="section" id="openproblems">
     <div class="s-inner">
       <div class="s-head">
@@ -1629,7 +1736,6 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
 
 <!-- ═══ PAGE: CAREERS ════════════════════════════════════════ -->
 <div class="page" id="page-careers" style="background:#020015">
-  <div class="pg-strip" style="background:rgba(2,0,21,0.9)"><span class="pg-strip-txt" style="color:#c4b5fd">💼 Mathematical Careers</span><button class="pg-home-btn" onclick="showPage('home')">← Home</button></div>
   <section class="section" id="careers">
     <div class="s-inner">
       <div class="s-head">
@@ -1644,7 +1750,6 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
 
 <!-- ═══ PAGE: STUDY GUIDE ════════════════════════════════════ -->
 <div class="page" id="page-studyguide" style="background:#001008">
-  <div class="pg-strip" style="background:rgba(0,16,8,0.9)"><span class="pg-strip-txt" style="color:#6ee7b7">📖 How to Learn Mathematics</span><button class="pg-home-btn" onclick="showPage('home')">← Home</button></div>
   <section class="section" id="studyguide">
     <div class="s-inner">
       <div class="s-head">
@@ -1660,7 +1765,6 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
 
 <!-- ═══ PAGE: MATH FACTS ══════════════════════════════════════ -->
 <div class="page" id="page-facts" style="background:#060612">
-  <div class="pg-strip" style="background:rgba(6,6,18,0.9)"><span class="pg-strip-txt" style="color:#f9a8d4">✨ Curiosities &amp; Wonders</span><button class="pg-home-btn" onclick="showPage('home')">← Home</button></div>
   <section class="section" id="facts">
     <div class="s-inner">
       <div class="s-head">
@@ -1675,7 +1779,6 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
 
 <!-- ═══ PAGE: UNIVERSITIES ═══════════════════════════════════ -->
 <div class="page" id="page-universities" style="background:#0f0800">
-  <div class="pg-strip" style="background:rgba(15,8,0,0.9)"><span class="pg-strip-txt" style="color:#fdba74">🎓 India's Mathematical Institutions</span><button class="pg-home-btn" onclick="showPage('home')">← Home</button></div>
   <section class="section" id="universities">
     <div class="s-inner">
       <div class="s-head">
@@ -1689,8 +1792,7 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
 </div>
 
 <!-- ═══ PAGE: COMMENTS ═══════════════════════════════════════ -->
-<div class="page" id="page-comments" style="background:#050014">
-  <div class="pg-strip" style="background:rgba(5,0,20,0.95)"><span class="pg-strip-txt" style="color:#c4b5fd">💬 Community Comments</span><button class="pg-home-btn" onclick="showPage('home')">← Home</button></div>
+<div class="page" id="page-comments">
   <section class="section" id="comments-section">
     <div class="s-inner" style="max-width:740px">
       <div class="s-head">
@@ -1728,10 +1830,7 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
 
 <!-- ═══ PAGE: ABOUT ══════════════════════════════════════════ -->
 <div class="page" id="page-about" style="background:#030012">
-  <div class="pg-strip" style="background:rgba(3,0,18,0.95)">
-    <span class="pg-strip-txt" style="color:#c4b5fd">📖 About Stargazer</span>
-    <button class="pg-home-btn" onclick="showPage('home')">← Home</button>
-  </div>
+
   <section class="section">
     <div class="s-inner" style="max-width:780px">
       <div class="s-head">
@@ -2435,7 +2534,7 @@ const careersData=[
 {icon:"🔐",t:"Cryptographer",tags:["Cybersecurity","Government","Fintech"],desc:"Design or analyse cryptographic protocols using number theory, algebra, and complexity theory. Critical for national security, blockchain, and privacy. Growing with quantum computing threats.",sal:"₹10–50L / $100K–$250K",detail:{dayToDay:"Design cryptographic protocols (digital signatures, key exchange, zero-knowledge proofs). Analyse existing schemes for vulnerabilities. Implement and optimise cryptographic algorithms in C/Rust/Go. Review post-quantum standards (NIST PQC process). Write security proofs in the random-oracle or standard model. Collaborate with engineers on TLS/PKI deployments. Attend academic conferences (Crypto, Eurocrypt, Asiacrypt, CCS).",skills:"<strong>Mathematics:</strong> Number theory (modular arithmetic, quadratic residues, discrete logarithm), abstract algebra (groups, rings, fields, lattices), algebraic geometry (elliptic curves, pairings), probability, complexity theory (P vs NP, reductions). <strong>CS theory:</strong> computational complexity, information theory, formal proofs of security. <strong>Programming:</strong> C, Rust, Python (cryptography library), SageMath.",resources:"<strong>Foundational maths:</strong> Ireland &amp; Rosen's <em>A Classical Introduction to Modern Number Theory</em>, Dummit &amp; Foote's <em>Abstract Algebra</em>. <strong>Cryptography:</strong> Boneh &amp; Shoup's <em>A Graduate Course in Applied Cryptography</em> (free at crypto.stanford.edu/~dabo/cryptobook), Katz &amp; Lindell's <em>Introduction to Modern Cryptography</em>. <strong>Online:</strong> Dan Boneh's Cryptography courses on Coursera (Stanford), MIT 6.875 Foundations of Cryptography. <strong>Research:</strong> IACR ePrint Archive (eprint.iacr.org) for the latest papers.",companies:"GCHQ, NSA/CISA, Cloudflare (Research), Google (Security), Apple (Security Engineering), IBM Research, NCC Group, Trail of Bits, Protocol Labs (Filecoin/zkSNARKs), Ethereum Foundation, NIST, academic universities.",apply:"Entry via BSc/MSc in Mathematics, Computer Science, or combined. Security clearance is required for government roles (SC/DV in UK). Industry roles value GitHub contributions to open-source cryptographic libraries, CTF (Capture the Flag) competition results, and published papers. Academic route requires PhD. Industrial research labs (Google, IBM, Microsoft) recruit from top conference publications.",competition:"Moderate-to-low in industry (strong demand post-2020 for post-quantum expertise), but high for elite research positions. A global shortage of post-quantum cryptographers means those with lattice-based or isogeny-based expertise can be very selective. Government cryptographer roles are limited but stable — GCHQ hires ~20–30 mathematicians per year from UK universities."}},
 {icon:"⚙️",t:"Operations Research Analyst",tags:["Logistics","Optimisation","Consulting"],desc:"Optimise complex real-world systems — supply chains, hospital scheduling, airline routing, portfolio optimisation — using linear programming, integer programming, and simulation.",sal:"₹6–30L / $65K–$140K",detail:{dayToDay:"Formulate real problems as mathematical optimisation models: linear programmes (LP), integer programmes (MIP), stochastic programmes, network flow. Implement in Python/Julia using Gurobi, CPLEX, or OR-Tools. Work with logistics teams on vehicle routing, scheduling, supply chain network design. Run simulations to test policies. Present sensitivity analyses to operations directors.",skills:"<strong>Mathematics:</strong> Linear programming (simplex, duality), integer programming (branch-and-bound, cutting planes), convex optimisation, graph theory (shortest paths, matchings, flows), dynamic programming, queueing theory, simulation. <strong>Programming:</strong> Python (Gurobi/Pyomo), Julia (JuMP), R.",resources:"<strong>Undergraduate:</strong> Hillier &amp; Lieberman's <em>Introduction to Operations Research</em>, Winston's <em>Operations Research: Applications and Algorithms</em>. <strong>Advanced:</strong> Bertsimas &amp; Tsitsiklis' <em>Introduction to Linear Optimization</em>, Wolsey's <em>Integer Programming</em>, Boyd &amp; Vandenberghe's <em>Convex Optimization</em> (free). <strong>Online:</strong> edX MITx Supply Chain series, Coursera OR (UT Austin), Gurobi free academic licence with tutorials at gurobi.com/learn.",companies:"Amazon (Operations Research Science), DHL, UPS, NHS Supply Chain, McKinsey Operations, BCG, Palantir, Rolls-Royce, British Airways (scheduling), IBM Research.",apply:"MSc in Operations Research, Industrial Engineering, or Applied Mathematics is standard. PhD preferred for research roles. Expect: modelling case study (formulate and solve an LP), solver discussion (Gurobi/CPLEX), and coding in Python. Highlight any internship in logistics or supply chain.",competition:"Moderate. INFORMS estimates 10,000 OR graduates annually vs 30,000 openings in the US — demand exceeds supply. Solver proficiency (Gurobi/Python) is a strong differentiator. Unlike finance quants, OR roles span many industries, providing more entry points."}},
 {icon:"🧬",t:"Biostatistician",tags:["Clinical Trials","Genomics","Public Health"],desc:"Design and analyse medical experiments — clinical trials, epidemiological studies, genomic data analysis. Vital for pharmaceutical research and public health policy.",sal:"₹6–25L / $70K–$160K",detail:{dayToDay:"Design Phase I–III clinical trials including randomisation schemes, sample size calculations, and adaptive trial designs. Write statistical analysis plans (SAPs). Perform survival analysis, mixed-effects models, and multiple imputation for missing data. Prepare regulatory submissions to FDA/EMA. Present results to clinical and medical teams. Mentor junior statisticians.",skills:"<strong>Mathematics:</strong> Probability theory, survival analysis (Kaplan-Meier, Cox PH model), mixed-effects models, Bayesian adaptive designs, multiple testing corrections (Bonferroni, FDR). <strong>Regulation:</strong> ICH E9 guidelines, Good Statistical Practice. <strong>Software:</strong> SAS (industry standard for pharma), R (lme4, survival, ggplot2), STATA.",resources:"<strong>Undergraduate:</strong> Casella &amp; Berger's <em>Statistical Inference</em>. <strong>Graduate:</strong> Collett's <em>Modelling Survival Data in Medical Research</em>, Jennison &amp; Turnbull's <em>Group Sequential Methods with Applications to Clinical Trials</em>, Senn's <em>Statistical Issues in Drug Development</em>. <strong>Online:</strong> Coursera Biostatistics in Public Health (Johns Hopkins), SAS programming courses (SAS website), FDA statistical guidance documents (fda.gov/statistical-guidance).",companies:"AstraZeneca, Pfizer, GSK, Roche, Novartis, Eli Lilly, MSD, ICON, PPD (CRO), Covance, NHS Clinical Research, MHRA, CDC.",apply:"MSc Biostatistics or MSc Statistics strongly preferred; PhD opens doors to senior Principal Statistician roles. Apply via pharma careers pages. Expect: case study on clinical trial design or analysis, ICH E9 knowledge questions, R or SAS coding. SAS certification adds credibility. Permanent roles often recruit from CRO internships.",competition:"Low-to-moderate — chronic shortage of biostatisticians globally, particularly those with SAS and clinical trial expertise. Typical postings receive 30–80 applicants vs 200+ for data science roles. FDA-facing biostatisticians are among the most in-demand healthcare professionals."}},
-{icon:"💻",t:"Algorithm Designer / CS Theorist",tags:["FAANG","Theory","Compilers"],desc:"Design algorithms for search, sorting, graphs, cryptography, and machine learning. The theoretical computer science track — P vs NP is the central unsolved problem.",sal:"₹15–100L / $120K–$400K"},
+{icon:"💻",t:"Algorithm Designer / CS Theorist",tags:["FAANG","Theory","Compilers"],desc:"Design algorithms for search, sorting, graphs, cryptography, and machine learning. The theoretical computer science track — P vs NP is the central unsolved problem.",sal:"₹15–100L / $120K–$400K",detail:{dayToDay:"Design and analyse algorithms for hard computational problems — sorting, graph traversal, network flow, approximation. Write rigorous correctness and complexity proofs. Implement and benchmark in C++/Python. Read arXiv papers (cs.DS, cs.CC) daily. At FAANG: review and design interview problems, contribute to production codebases (compilers, search, ad ranking), and research novel optimisations for high-scale systems. At research labs: collaborate on open problems, write and submit papers to STOC/FOCS/SODA.",skills:"<strong>Core mathematics:</strong> Combinatorics, graph theory, probability theory, number theory, linear algebra. <strong>Algorithms:</strong> Sorting, BFS/DFS/Dijkstra/Bellman-Ford, dynamic programming, network flow, string algorithms, randomised algorithms, approximation algorithms, advanced data structures (segment trees, Fenwick trees, tries, link-cut trees, van Emde Boas). <strong>Theory:</strong> Computational complexity (P, NP, reductions, NP-hardness, PSPACE, #P), automata theory, information theory, online algorithms. <strong>Programming:</strong> C++ (primary), Python, Java — ability to write provably correct, cache-efficient code.",resources:"<strong>Undergraduate:</strong> Cormen, Leiserson, Rivest &amp; Stein <em>Introduction to Algorithms</em> (CLRS) — the definitive reference. Sipser's <em>Introduction to the Theory of Computation</em> for complexity theory. <strong>Graduate:</strong> Vazirani's <em>Approximation Algorithms</em> (free PDF), Arora &amp; Barak's <em>Computational Complexity: A Modern Approach</em> (free online), Motwani &amp; Raghavan's <em>Randomized Algorithms</em>. <strong>Competitive programming:</strong> Codeforces, AtCoder Grand Contests, USACO Guide, CP-Algorithms.com. <strong>Online courses:</strong> MIT 6.006 and 6.046 (OCW, free), Erik Demaine's Advanced Algorithms (MIT, free notes), Stanford CS161.",companies:"Google (Core Algorithms, Search Infrastructure, DeepMind), Meta (Ads Algorithms, Infrastructure), Apple (Performance Engineering), Amazon (AWS, Logistics Optimisation), Microsoft Research (Theory Group), Jane Street, Citadel (HFT systems), Bloomberg, NVIDIA (GPU algorithms), Palantir, academic research at MIT/CMU/Stanford/ETH.",apply:"For FAANG roles: LeetCode performance is critical (target consistent success on Hard problems, contest rating 1800+). The typical interview process: (1) OA with 2 algorithmic problems, (2) phone screen, (3) 4–6 onsite rounds — 2–3 algorithmic coding (DP, graphs, strings, data structures), 1 system design, 1 behavioural. Strong competitive programming ratings (Codeforces Expert or higher) are major differentiators. Research positions require a PhD and publications at top theory venues (STOC, FOCS, SODA, ICALP). List yourself on LinkedIn, Codeforces, and maintain a personal site with your competitive programming profile.",competition:"FAANG algorithm roles attract 500–2,000+ applications per position; only ~5–15% pass the coding screen. Competition from top competitive programmers (ICPC World Finalists, IOI medalists) is fierce. Research theory roles at top labs are less crowded for those with strong publications — but the global pool of senior theorists is small. The Millennium Prize P vs NP problem ($1M) remains the most famous open question — solving it would be the most consequential mathematical result in history, though no institution funds work on it directly."}},
 {icon:"🚀",t:"Aerospace & Defence Researcher",tags:["ISRO","DRDO","HAL"],desc:"Apply differential equations, fluid dynamics, numerical methods, and control theory to aerospace engineering and defence systems. ISRO, DRDO, and HAL hire mathematicians directly.",sal:"₹8–20L (India government scale)"},
 {icon:"📚",t:"Educator & Teacher",tags:["School","Coaching","University"],desc:"From school teaching (transformative societal impact) to coaching institutes (JEE, Olympiad) to university lecturing. Mathematics educators shape the next generation of thinkers and researchers.",sal:"₹3–30L (wide range)"},
 {icon:"🔭",t:"Theoretical Physicist",tags:["Particle Physics","Cosmology","String Theory"],desc:"Modern theoretical physics IS applied mathematics. String theory, quantum gravity, and quantum field theory all require graduate-level mathematics as prerequisite.",sal:"₹5–30L (academia) / $60K–$150K",detail:{dayToDay:"Develop mathematical frameworks for quantum field theory, string theory, quantum gravity, or condensed matter. Write lengthy calculations involving Feynman diagrams, path integrals, renormalisation group flows. Read and write papers (arXiv daily). Give seminars. Collaborate internationally. Apply for postdoctoral positions and grants. Some move to industry: quantum computing, semiconductor physics, financial modelling.",skills:"Mathematical physics at graduate level: quantum mechanics, quantum field theory (QFT), general relativity, statistical mechanics, group theory (Lie groups, representation theory), differential geometry, complex analysis, functional analysis. Very strong computation: Mathematica, Python (NumPy/SciPy), sometimes Fortran for large simulations.",resources:"<strong>Undergraduate:</strong> Griffiths' <em>Introduction to Quantum Mechanics</em>, Carroll's <em>Spacetime and Geometry</em>. <strong>Graduate:</strong> Peskin &amp; Schroeder's <em>An Introduction to Quantum Field Theory</em> (the bible), Weinberg's <em>Quantum Theory of Fields</em> (3 vols), Nakahara's <em>Geometry, Topology and Physics</em>. <strong>Online:</strong> Leonard Susskind's Theoretical Minimum lectures (theoreticalminimum.com, free), Perimeter Institute recorded lectures (pirsa.org, free), David Tong's lecture notes (damtp.cam.ac.uk/user/tong, free).",companies:"CERN, Fermilab, DESY, Brookhaven National Lab, Perimeter Institute, IHES, KITP Santa Barbara, academic universities, quantum computing companies (IBM Quantum, IQM, QuEra, Google Quantum AI).",apply:"Path is almost always BSc Physics/Maths → PhD (4–5 years) → 2–3 postdoc positions → faculty or industry transition. For quantum computing industry: an arXiv paper on quantum algorithms or error correction plus Python/Qiskit skills is very effective. Faculty positions are on the same competitive level as academic mathematics.",competition:"Extremely competitive for academic posts — similar to academic mathematics. However, theoretical physicists have excellent exit routes: finance (they are heavily recruited by quant funds), quantum computing, semiconductor R&amp;D. IBM and Google Quantum AI have standing graduate recruitment programmes."}},
@@ -2631,43 +2730,61 @@ function indiaBuyLinks(title, author) {
 
 function renderBooks(){
   var isAdm = isAdmin();
-  // Group by category
-  var cats = {};
-  var catOrder = [];
-  booksData.forEach(function(b, i){
-    var c = b.cat || 'General';
-    if (!cats[c]) { cats[c] = []; catOrder.push(c); }
-    cats[c].push({b:b, i:i});
-  });
-  var html = '';
-  // Show all with numbers (ungrouped grid), but with category badge
-  html = booksData.map(function(b, i){
-    var isRead = _bookReadSet.has(i);
-    var readStyle = isRead
-      ? 'background:linear-gradient(135deg,#064e3b,#065f46)!important;border-color:#10b981!important;box-shadow:0 0 0 2px #10b981,0 8px 24px rgba(16,185,129,0.3)!important;'
-      : '';
-    var readBadge = isRead
-      ? '<span style="display:inline-flex;align-items:center;gap:0.25rem;font-size:0.63rem;background:rgba(16,185,129,0.2);color:#34d399;border:1px solid rgba(16,185,129,0.4);padding:0.12rem 0.42rem;border-radius:99px;font-family:\'Space Grotesk\',sans-serif;font-weight:600;margin-bottom:0.4rem">✓ Read</span>'
-      : '';
-    return '<div class="book-card reveal" style="'+readStyle+'">'
-      + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.4rem">'
-      + '<span style="font-family:\'JetBrains Mono\',monospace;font-size:0.62rem;color:#f59e0b;background:rgba(245,158,11,0.1);padding:0.1rem 0.38rem;border-radius:4px">#'+(i+1)+'</span>'
-      + readBadge
-      + '</div>'
-      + '<div class="book-title">'+(b._title||b.t)+'</div>'
-      + '<div class="book-author">'+(b._author||b.a)+'</div>'
-      + '<div class="book-year">'+(b.y||'')+'</div>'
-      + '<div class="book-desc">'+(b._desc||b.d)+'</div>'
-      + '<span class="book-cat">'+(b.cat||'General')+'</span>'
-      + indiaBuyLinks(b.t, b.a)
-      + '<div style="margin-top:0.6rem;display:flex;gap:0.5rem;flex-wrap:wrap">'
-      + '<button onclick="toggleBookRead('+i+')" style="font-family:\'Space Grotesk\',sans-serif;font-size:0.67rem;font-weight:600;padding:0.22rem 0.65rem;border-radius:99px;border:1px solid rgba(16,185,129,0.4);background:rgba(16,185,129,0.1);color:#34d399;cursor:pointer;transition:all 0.2s">'
-      + (isRead ? '↩ Mark Unread' : '✓ Mark as Read') + '</button>'
-      + (isAdm ? '<button class="admin-btn edit-btn" onclick="adminEditBook('+i+')" style="font-size:0.62rem">✏️ Edit</button>' : '')
-      + '</div>'
-      + '</div>';
-  }).join('');
+  var html = booksData
+    .map(function(b, i){ return {b:b, i:i}; })
+    .filter(function(entry){
+      return currentBookFilter === 'all' || (entry.b.cat || 'General') === currentBookFilter;
+    })
+    .map(function(entry){
+      var b = entry.b, i = entry.i;
+      var isRead = _bookReadSet.has(i);
+      var readStyle = isRead
+        ? 'background:linear-gradient(135deg,#064e3b,#065f46)!important;border-color:#10b981!important;box-shadow:0 0 0 2px #10b981,0 8px 24px rgba(16,185,129,0.3)!important;'
+        : '';
+      var readBadge = isRead
+        ? '<span style="display:inline-flex;align-items:center;gap:0.25rem;font-size:0.63rem;background:rgba(16,185,129,0.2);color:#34d399;border:1px solid rgba(16,185,129,0.4);padding:0.12rem 0.42rem;border-radius:99px;font-family:\'Space Grotesk\',sans-serif;font-weight:600;margin-bottom:0.4rem">✓ Read</span>'
+        : '';
+      return '<div class="book-card reveal'+(isRead?' book-read':'')+'" style="'+readStyle+'">'
+        + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.4rem">'
+        + '<span style="font-family:\'JetBrains Mono\',monospace;font-size:0.62rem;color:#f59e0b;background:rgba(245,158,11,0.1);padding:0.1rem 0.38rem;border-radius:4px">#'+(i+1)+'</span>'
+        + readBadge
+        + '</div>'
+        + '<div class="book-title">'+(b._title||b.t)+'</div>'
+        + '<div class="book-author">'+(b._author||b.a)+'</div>'
+        + '<div class="book-year">'+(b.y||'')+'</div>'
+        + '<div class="book-desc">'+(b._desc||b.d)+'</div>'
+        + '<span class="book-cat">'+(b.cat||'General')+'</span>'
+        + indiaBuyLinks(b.t, b.a)
+        + '<div style="margin-top:0.6rem;display:flex;gap:0.5rem;flex-wrap:wrap">'
+        + '<button onclick="toggleBookRead('+i+')" style="font-family:\'Space Grotesk\',sans-serif;font-size:0.67rem;font-weight:600;padding:0.22rem 0.65rem;border-radius:99px;border:1px solid rgba(16,185,129,0.4);background:rgba(16,185,129,0.1);color:#34d399;cursor:pointer;transition:all 0.2s">'
+        + (isRead ? '↩ Mark Unread' : '✓ Mark as Read') + '</button>'
+        + (isAdm ? '<button class="admin-btn edit-btn" onclick="adminEditBook('+i+')" style="font-size:0.62rem">✏️ Edit</button>' : '')
+        + '</div>'
+        + '</div>';
+    }).join('');
   document.getElementById("books-grid").innerHTML = html;
+}
+
+var currentBookFilter = 'all';
+
+function renderBookFilters(){
+  var el = document.getElementById('books-filter-bar');
+  if (!el) return;
+  var cats = ['all'];
+  booksData.forEach(function(b){
+    var c = b.cat || 'General';
+    if (cats.indexOf(c) === -1) cats.push(c);
+  });
+  el.innerHTML = cats.map(function(c){
+    return '<button class="book-filter-btn'+(currentBookFilter===c?' active':'')+'" onclick="setBookFilter(\''+c+'\')">'+(c==='all'?'All Books':c)+'</button>';
+  }).join('');
+}
+
+function setBookFilter(cat){
+  currentBookFilter = cat;
+  renderBooks();
+  renderBookFilters();
+  reRevealActivePage();
 }
 
 function renderPuzzles(){
@@ -3010,16 +3127,16 @@ function renderFacts(){
     const math = ov.math || f.math || '';
     const renderedHeading = latexToHTML ? latexToHTML(heading) : heading;
     const renderedText = latexToHTML ? latexToHTML(text) : text;
-    return`<div class="fact-card reveal" style="--fa:${c.a};--fb:${c.a}33;--fc:${c.b}">
+    return`<div class="fact-card reveal" style="--fa:${c.a};--fb:${c.a}33;--fc:${c.b};cursor:pointer" onclick="togFact(${i})">
       <div class="fact-cat">${f.cat}</div>
-      <div class="fact-heading" id="facth${i}" onclick="togFact(${i})" style="cursor:pointer">${renderedHeading}</div>
+      <div class="fact-heading" id="facth${i}">${renderedHeading}</div>
       <div class="fact-body" id="factbody${i}" style="display:none">
         <div class="fact-text" id="facttxt${i}">${renderedText}</div>
         ${math?`<span class="fact-math" id="factmath${i}">${latexToHTML?latexToHTML(math):math}</span>`:""}
       </div>
-      <div class="fact-tap-hint" id="facttap${i}" onclick="togFact(${i})" style="cursor:pointer">↓ tap to reveal</div>
-      <div class="admin-bar${isAdm?' visible':''}" style="margin-top:0.5rem">
-        <button class="admin-btn edit-btn" onclick="adminEditFact(${i})">✏️ Edit Fact</button>
+      <div class="fact-tap-hint" id="facttap${i}">↓ tap to reveal</div>
+      <div class="admin-bar${isAdm?' visible':''}" style="margin-top:0.5rem" onclick="event.stopPropagation()">
+        <button class="admin-btn edit-btn" onclick="adminEditFact(${i});event.stopPropagation()">✏️ Edit Fact</button>
       </div>
     </div>`;}).join("");}
 function togFact(i){
@@ -3083,17 +3200,28 @@ function switchTab(idx) {
    SPA — PAGE SWITCHER
    ========================================================= */
 function showPage(id) {
+  // Close hamburger menu
+  var hmenu = document.getElementById('hamburger-menu');
+  var hbtn  = document.getElementById('hamburger-btn');
+  if (hmenu) hmenu.classList.remove('open');
+  if (hbtn)  hbtn.classList.remove('open');
+
   // Hide all pages
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
   var page = document.getElementById('page-' + id);
   if (!page) return;
   page.classList.add('active');
   window.scrollTo(0, 0);
 
-  // Highlight nav button
-  document.querySelectorAll('#nav button.nav-a').forEach(function(btn) {
+  // Update hamburger active item
+  document.querySelectorAll('#hamburger-menu .hm-item').forEach(function(btn) {
     btn.classList.toggle('active', btn.dataset.page === id);
   });
+
+  // Update current section label in nav
+  var curLbl = document.getElementById('nav-cur-lbl');
+  var PAGE_LABELS = {home:'Home',books:'Books',puzzles:'Puzzles',precollege:'Pre-College',olympiad:'Olympiad',undergrad:'Undergrad',graduate:'Graduate',research:'Research',openproblems:'Open Problems',careers:'Careers',studyguide:'Study Guide',facts:'Math Facts',universities:'India',comments:'Comments',about:'About'};
+  if (curLbl) curLbl.textContent = PAGE_LABELS[id] || id;
 
   // Stagger-reveal cards on this page
   var reveals = page.querySelectorAll('.reveal');
@@ -3110,11 +3238,11 @@ function showPage(id) {
   // Hash routing
   try {
     if (_navFromPopState) {
-      _navFromPopState = false; // browser already moved in history — don't add another entry
+      _navFromPopState = false;
     } else if (_initNavDone) {
-      history.pushState({ page: id }, '', '#' + id); // normal navigation → new history entry
+      history.pushState({ page: id }, '', '#' + id);
     } else {
-      history.replaceState({ page: id }, '', '#' + id); // very first call → normalise initial entry
+      history.replaceState({ page: id }, '', '#' + id);
       _initNavDone = true;
     }
   } catch(e) {}
@@ -3136,32 +3264,102 @@ function showPage(id) {
   var cv = document.getElementById('starCanvas');
   if (!cv) return;
   var ctx = cv.getContext('2d');
-  var W, H, stars = [];
+  var W, H, shapes = [];
+  var COLS = ['#a855f7','#7c3aed','#38bdf8','#6366f1','#c084fc','#818cf8','#f0abfc','#e879f9','#34d399','#60a5fa'];
   function resize() { W = cv.width = innerWidth; H = cv.height = innerHeight; }
-  function mkStars() {
-    stars = [];
-    for (var i = 0; i < 320; i++) {
-      stars.push({ x: Math.random()*W, y: Math.random()*H,
-        r: Math.random()*1.4+0.2, spd: Math.random()*0.18+0.04,
-        op: Math.random(), dop: (Math.random()*0.006+0.002)*(Math.random()<0.5?1:-1) });
+  function mkShapes(n) {
+    shapes = [];
+    for (var i = 0; i < n; i++) {
+      var sideOpts = [0,0,3,3,4,5,6];
+      var sides = sideOpts[Math.floor(Math.random()*sideOpts.length)];
+      shapes.push({
+        x: Math.random()*W, y: Math.random()*H,
+        vx: (Math.random()-0.5)*0.45, vy: (Math.random()-0.5)*0.45,
+        r: sides===0 ? Math.random()*2+0.8 : Math.random()*9+4,
+        sides: sides,
+        angle: Math.random()*Math.PI*2,
+        rot: (Math.random()-0.5)*0.016,
+        col: COLS[Math.floor(Math.random()*COLS.length)],
+        op: Math.random()*0.5+0.22
+      });
     }
   }
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    stars.forEach(function(s) {
-      s.op += s.dop;
-      if (s.op > 1 || s.op < 0) s.dop *= -1;
-      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 6.283);
-      ctx.fillStyle = 'rgba(200,180,255,' + Math.max(0, Math.min(1, s.op)) + ')';
-      ctx.fill();
-      s.x -= s.spd;
-      if (s.x < -2) { s.x = W + 2; s.y = Math.random() * H; }
-    });
-    requestAnimationFrame(draw);
+  function hexRgba(h,a){
+    var r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);
+    return 'rgba('+r+','+g+','+b+','+a+')';
   }
-  resize(); mkStars(); draw();
-  window.addEventListener('resize', function() { resize(); mkStars(); }, { passive: true });
+  function draw() {
+    requestAnimationFrame(draw);
+    if (document.hidden) return;
+    ctx.clearRect(0, 0, W, H);
+    // connection lines
+    for (var i = 0; i < shapes.length; i++) {
+      for (var j = i+1; j < shapes.length; j++) {
+        var dx=shapes[i].x-shapes[j].x, dy=shapes[i].y-shapes[j].y;
+        var dist=Math.sqrt(dx*dx+dy*dy);
+        if (dist < 115) {
+          ctx.beginPath(); ctx.moveTo(shapes[i].x,shapes[i].y); ctx.lineTo(shapes[j].x,shapes[j].y);
+          ctx.strokeStyle='rgba(139,92,246,'+(1-dist/115)*0.2+')';
+          ctx.lineWidth=0.8; ctx.stroke();
+        }
+      }
+    }
+    // shapes
+    shapes.forEach(function(s) {
+      ctx.beginPath();
+      if (s.sides === 0) {
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      } else {
+        for (var k=0; k<s.sides; k++) {
+          var a = s.angle + k*2*Math.PI/s.sides;
+          if (k===0) ctx.moveTo(s.x+s.r*Math.cos(a), s.y+s.r*Math.sin(a));
+          else ctx.lineTo(s.x+s.r*Math.cos(a), s.y+s.r*Math.sin(a));
+        }
+        ctx.closePath();
+      }
+      ctx.fillStyle = hexRgba(s.col, s.op*0.55);
+      ctx.fill();
+      ctx.strokeStyle = hexRgba(s.col, s.op);
+      ctx.lineWidth = 1.3; ctx.stroke();
+      s.x += s.vx; s.y += s.vy; s.angle += s.rot;
+      if (s.x < -20 || s.x > W+20) s.vx *= -1;
+      if (s.y < -20 || s.y > H+20) s.vy *= -1;
+    });
+  }
+  resize(); mkShapes(140); draw();
+  window.addEventListener('resize', function() { resize(); mkShapes(140); }, { passive: true });
 })();
+
+/* =========================================================
+   HAMBURGER MENU
+   ========================================================= */
+function toggleHamburger() {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu) return;
+  var open = menu.classList.toggle('open');
+  btn.classList.toggle('open', open);
+}
+// Close on outside click
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu || !menu.classList.contains('open')) return;
+  if (!menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var menu = document.getElementById('hamburger-menu');
+    if (menu && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      document.getElementById('hamburger-btn').classList.remove('open');
+    }
+  }
+});
 
 /* =========================================================
    BACK TO TOP
@@ -3209,6 +3407,7 @@ window._applyProgressData = function(d) {
     _bookReadSet = new Set(d.booksRead);
     localStorage.setItem('books_read', JSON.stringify(d.booksRead));
     renderBooks();
+    renderBookFilters();
     reRevealActivePage(); // new book cards have .reveal but not .visible
   }
 };
@@ -3219,6 +3418,7 @@ function toggleBookRead(idx) {
   localStorage.setItem('books_read', JSON.stringify([..._bookReadSet]));
   window.sbSaveProgress && window.sbSaveProgress();
   renderBooks();
+  reRevealActivePage(); // re-show cards after re-render
 }
 
 /* ── DARK MODE (via shared.js dark-mode sync) ───────────────────── */
@@ -3343,24 +3543,55 @@ async function loadAdminData() {
   renderGraduate();
   // Re-apply reveal to any freshly rendered cards on the active page
   reRevealActivePage();
+  // Re-process KaTeX math in newly rendered content (e.g. admin-edited LaTeX)
+  setTimeout(function(){
+    if (window.renderMathInElement){
+      window.renderMathInElement(document.body,{
+        delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],
+        throwOnError:false
+      });
+    }
+  }, 80);
 }
 
 function latexToHTML(text) {
   if (!text) return '';
-  // Replace subscripts: a_{cd} → a<sub>cd</sub>
+
+  // Step 1: Convert $$...$$ → \[...\] (display math) and $...$ → \(...\) (inline math)
+  // This makes admin-typed dollar-sign LaTeX compatible with KaTeX auto-render
+  text = text.replace(/\$\$([^$]+)\$\$/g, '\\[$1\\]');
+  text = text.replace(/\$([^$\n]+)\$/g, '\\($1\\)');
+
+  // Step 2: If text has KaTeX delimiters, let KaTeX handle it entirely
+  if (text.indexOf('\\(') !== -1 || text.indexOf('\\[') !== -1) {
+    if (window.katex && window.renderMathInElement) {
+      try {
+        var div = document.createElement('div');
+        div.innerHTML = text;
+        window.renderMathInElement(div, {
+          delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],
+          throwOnError: false
+        });
+        return div.innerHTML;
+      } catch(e) {}
+    }
+    // KaTeX not yet loaded — return as-is; KaTeX onload will process it from the DOM
+    return text;
+  }
+
+  // Step 3: No KaTeX delimiters — apply simple Unicode/HTML substitutions as fallback
+  // Subscripts: a_{cd} → a<sub>cd</sub>
   text = text.replace(/([a-zA-Z0-9\)])\_{([^}]+)}/g, '$1<sub>$2</sub>');
   text = text.replace(/([a-zA-Z0-9\)])_([a-zA-Z0-9])/g, '$1<sub>$2</sub>');
-  // Replace superscripts: a^{e} → a<sup>e</sup>
+  // Superscripts: a^{e} → a<sup>e</sup>
   text = text.replace(/([a-zA-Z0-9\)])\^{([^}]+)}/g, '$1<sup>$2</sup>');
   text = text.replace(/([a-zA-Z0-9\)])\^([a-zA-Z0-9])/g, '$1<sup>$2</sup>');
-  // Replace \frac{a}{b} → a/b
+  // \frac{a}{b} → a/b
   text = text.replace(/\\frac{([^}]+)}{([^}]+)}/g, '($1)/($2)');
-  // Replace \infty → ∞
+  // Common symbols
   text = text.replace(/\\infty/g, '∞');
-  // Replace \mathbb{R} → ℝ etc.
   const bbMap = {R:'ℝ', Q:'ℚ', Z:'ℤ', N:'ℕ', C:'ℂ'};
   text = text.replace(/\\mathbb{([A-Z])}/g, (m,c) => bbMap[c]||c);
-  // Replace \to → →
   text = text.replace(/\\to/g, '→');
   text = text.replace(/\\leq/g, '≤');
   text = text.replace(/\\geq/g, '≥');
@@ -3377,15 +3608,6 @@ function latexToHTML(text) {
   text = text.replace(/\\sqrt{([^}]+)}/g, '√($1)');
   text = text.replace(/\\times/g, '×');
   text = text.replace(/\\cdot/g, '·');
-  // Render KaTeX inline if available
-  if (window.katex && window.renderMathInElement) {
-    try {
-      const div = document.createElement('div');
-      div.innerHTML = text;
-      renderMathInElement(div, {delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});
-      return div.innerHTML;
-    } catch(e) {}
-  }
   return text;
 }
 
@@ -3836,6 +4058,7 @@ document.getElementById('adminModal').addEventListener('click', function(e) {
    ========================================================= */
 (function() {
   renderBooks();
+  renderBookFilters();
   renderDailyQuote();
   renderPuzzles();
   renderPrecollege();

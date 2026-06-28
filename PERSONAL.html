@@ -58,6 +58,32 @@ body.day-mode{
   --crimson:#a04030;
 }
 
+/* ══════════════════════════════════════════
+   DAY MODE — solid button overrides
+   In night mode the dark bg makes semi-transparent tints look fine.
+   On parchment, solids read as deliberate rather than washed-out.
+══════════════════════════════════════════ */
+body.day-mode .hbtn{
+  background:rgba(156,106,31,.28);border-color:rgba(120,80,30,.45);color:#4a3010;
+}
+body.day-mode .hbtn:hover{background:rgba(156,106,31,.42);border-color:rgba(120,80,30,.65);color:#2e1e06;}
+body.day-mode .hbtn.primary{background:rgba(156,106,31,.42);border-color:rgba(120,80,30,.6);color:#3d2608;}
+body.day-mode .hbtn.primary:hover{background:rgba(156,106,31,.58);box-shadow:0 0 16px rgba(156,106,31,.22);}
+body.day-mode .enter-btn{background:rgba(156,106,31,.28);border-color:rgba(120,80,30,.5);color:#4a3010;}
+body.day-mode .enter-btn:hover{background:rgba(156,106,31,.42);}
+body.day-mode .btn-p{background:rgba(156,106,31,.3);border-color:rgba(120,80,30,.55);color:#3d2608;}
+body.day-mode .btn-p:hover{background:rgba(156,106,31,.48);box-shadow:0 0 22px rgba(156,106,31,.2);}
+body.day-mode .btn-g{background:rgba(120,80,30,.1);border-color:rgba(120,80,30,.3);color:#5a4020;}
+body.day-mode .btn-g:hover{border-color:rgba(120,80,30,.55);color:#3a2810;}
+body.day-mode .btn-d{background:rgba(160,64,48,.14);border-color:rgba(160,64,48,.42);color:#8a3020;}
+body.day-mode .btn-d:hover{background:rgba(160,64,48,.24);}
+body.day-mode .btn-ink{background:rgba(61,111,142,.14);border-color:rgba(61,111,142,.36);color:#1e4a62;}
+body.day-mode .btn-ink:hover{background:rgba(61,111,142,.24);}
+body.day-mode .cbtn{background:rgba(120,80,30,.08);border-color:rgba(120,80,30,.25);color:#5a4020;}
+body.day-mode .cbtn:hover{border-color:rgba(120,80,30,.45);color:#3a2810;}
+body.day-mode .diary-filter{background:rgba(120,80,30,.12);border-color:rgba(120,80,30,.28);color:#5a4020;}
+body.day-mode .diary-filter.active{background:rgba(156,106,31,.3);border-color:rgba(120,80,30,.5);color:#3d2608;}
+
 html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:var(--fb);overflow-x:hidden;transition:background .35s,color .35s;}
 
 /* ── PARCHMENT GRID OVERLAY + FANTASY MAP BACKDROP ────────────────── */
@@ -131,6 +157,18 @@ body.authed #loginPage{display:none !important;}
   box-shadow:0 0 70px rgba(196,136,47,.07),0 24px 64px rgba(0,0,0,.65);
 }
 body.day-mode .login-card{background:rgba(236,226,204,.96);}
+.login-card::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(196,136,47,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(196,136,47,.022) 1px,transparent 1px);
+  background-size:28px 28px;border-radius:3px;
+}
+body.day-mode .login-card::before{
+  background-image:
+    linear-gradient(rgba(120,80,30,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(120,80,30,.035) 1px,transparent 1px);
+}
 .cartouche-corner{position:absolute;width:42px;height:42px;z-index:2;pointer-events:none;opacity:.85;}
 .cartouche-corner.tl{top:0;left:0;}
 .cartouche-corner.tr{top:0;right:0;}
@@ -265,12 +303,12 @@ body.day-mode .vault-header{background:rgba(236,226,204,.96);}
 .hdr-title-col{min-width:0;}
 .hdr-vname{font-family:var(--fh);font-size:.82rem;font-weight:700;letter-spacing:.16em;color:var(--gold);white-space:nowrap;}
 .breadcrumb{
-  font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;color:var(--muted);
-  margin-top:.18rem;display:flex;align-items:center;gap:.3rem;flex-wrap:wrap;
+  font-family:var(--fm);font-size:1rem;letter-spacing:.1em;color:var(--muted);
+  margin-top:.35rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
 }
-.bc-item{cursor:pointer;transition:color .15s;}
+.bc-item{cursor:pointer;transition:color .15s;padding:.35rem .2rem;min-height:44px;display:inline-flex;align-items:center;}
 .bc-item:hover{color:var(--gold);}
-.bc-sep{opacity:.35;}
+.bc-sep{opacity:.35;font-size:1.1rem;}
 
 .hdr-right{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;}
 .hbtn{
@@ -480,6 +518,10 @@ body.day-mode .entry-desc-preview{color:rgba(58,46,28,.62);}
   border-top:1px solid var(--border);overflow:hidden;
   background:linear-gradient(180deg,transparent,rgba(196,136,47,.025));
 }
+body.day-mode .vault-colophon{
+  background:linear-gradient(180deg,transparent,rgba(120,80,30,.055));
+  border-top-color:rgba(120,80,30,.28);
+}
 .colophon-watermark{
   position:absolute;top:50%;left:50%;width:560px;height:560px;
   transform:translate(-50%,-50%);color:rgba(196,136,47,.05);
@@ -492,6 +534,11 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.07);}
 .colophon-heading{
   font-family:var(--fm);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--gold-d);margin-bottom:1rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.colophon-heading::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,var(--gold-d),transparent);opacity:.4;
 }
 .legend-grid{display:flex;flex-direction:column;gap:.65rem;}
 .legend-item{
@@ -511,7 +558,11 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.07);}
 }
 .colophon-seal{width:48px;height:48px;color:var(--gold-d);flex-shrink:0;}
 .colophon-sig{font-family:var(--fm);font-size:.62rem;letter-spacing:.07em;color:rgba(232,220,200,.32);}
-body.day-mode .colophon-sig{color:rgba(58,46,28,.45);}
+body.day-mode .colophon-sig{color:rgba(58,46,28,.72);}
+body.day-mode .colophon-heading{color:rgba(100,65,18,.95);}
+body.day-mode .colophon-text{color:rgba(45,33,15,.88);}
+body.day-mode .legend-item{color:rgba(45,33,15,.88);}
+body.day-mode .legend-ico{background:rgba(156,106,31,.12);border-color:rgba(156,106,31,.3);}
 @media(max-width:720px){
   .colophon-row{grid-template-columns:1fr;gap:1.8rem;}
   .colophon-watermark{width:380px;height:380px;}
@@ -798,13 +849,86 @@ body.day-mode #toast{background:#f3ebd8;}
   display:none;align-items:center;justify-content:center;flex-direction:column;gap:.8rem;
 }
 #unlockOverlay.show{display:flex;}
-.unlock-spinner{
-  width:36px;height:36px;border-radius:50%;
-  border:2px solid rgba(196,136,47,.2);border-top-color:var(--gold);
-  animation:spin .8s linear infinite;
+/* Cartography compass ring — replaces old plain spinner */
+.unlock-compass-ring{width:90px;height:90px;position:relative;flex-shrink:0;}
+@keyframes ring-spin{to{transform:rotate(360deg);}}
+@keyframes needle-pulse{0%,100%{opacity:.6;}50%{opacity:1;}}
+.unlock-ring-svg{width:100%;height:100%;}
+.unlock-ring-arc{
+  stroke-dasharray:88 192;stroke-linecap:round;
+  transform-origin:45px 45px;
+  animation:ring-spin 1.5s linear infinite;
 }
-@keyframes spin{to{transform:rotate(360deg);}}
-.unlock-text{font-family:var(--fm);font-size:.65rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;}
+.unlock-ring-arc2{
+  stroke-dasharray:38 242;stroke-linecap:round;
+  transform-origin:45px 45px;
+  animation:ring-spin 2.8s linear infinite reverse;
+}
+.unlock-text{
+  font-family:var(--fh);font-size:1.08rem;font-weight:700;
+  letter-spacing:.18em;color:var(--gold-l);text-transform:uppercase;
+  text-shadow:0 0 20px rgba(196,136,47,.4);
+}
+
+/* ── More cartography design elements ── */
+/* Topographic contour ring on section panels */
+.tab-panel.active::before{
+  content:'';pointer-events:none;
+  position:fixed;right:-180px;top:50%;
+  width:420px;height:420px;border-radius:50%;
+  border:1px solid rgba(196,136,47,.035);
+  transform:translateY(-50%);
+  box-shadow:0 0 0 25px rgba(196,136,47,.022),0 0 0 55px rgba(196,136,47,.013),
+             0 0 0 90px rgba(196,136,47,.007);
+  z-index:0;
+}
+/* Latitude / longitude fine grid on the main vault-body */
+.vault-body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(196,136,47,.014) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(196,136,47,.014) 1px,transparent 1px);
+  background-size:120px 120px;
+}
+body.day-mode .vault-body::after{
+  background-image:
+    linear-gradient(rgba(120,80,30,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(120,80,30,.022) 1px,transparent 1px);
+}
+/* Decorative cartouche corner on the main-tabs */
+.main-tabs{position:relative;}
+.main-tabs::after{
+  content:'';position:absolute;bottom:0;right:0;
+  width:22px;height:22px;pointer-events:none;
+  border-right:1px solid rgba(196,136,47,.3);
+  border-bottom:1px solid rgba(196,136,47,.3);
+}
+/* Legend section star markers */
+.legend-ico{position:relative;}
+.legend-ico::after{
+  content:'·';position:absolute;top:-2px;right:-2px;
+  font-size:.5rem;color:var(--gold-d);opacity:.6;pointer-events:none;
+}
+/* Compass watermark inside stat cards */
+.vault-stats::after{
+  content:'N';
+  position:absolute;top:.5rem;right:.85rem;
+  font-family:var(--fh);font-size:.52rem;font-weight:700;
+  color:rgba(196,136,47,.22);letter-spacing:.1em;
+  pointer-events:none;z-index:1;
+}
+body.day-mode .vault-stats::after{color:rgba(120,80,30,.28);}
+/* Treasure-map dashed border accent on book cards */
+/* Subtle dashed inset on book cards via box-shadow instead (no ::after conflict) */
+.book-card{box-shadow:0 3px 14px var(--card-shadow),inset 0 0 0 1px rgba(196,136,47,.04);}
+body.day-mode .book-card{box-shadow:0 3px 14px var(--card-shadow),inset 0 0 0 1px rgba(120,80,30,.08);}
+/* Cross-hair detail on empty states */
+.vault-empty::after,.vault-empty::before{
+  content:'';position:absolute;background:rgba(196,136,47,.07);pointer-events:none;
+}
+.vault-empty::before{width:1px;height:60px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.vault-empty::after{height:1px;width:60px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.vault-empty{position:relative;overflow:hidden;}
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar{width:5px;}
@@ -835,6 +959,55 @@ button:focus-visible,.entry-head:focus-visible{outline-offset:3px;}
   border-width:0 18px 18px 0;
   border-color:transparent var(--gold-d) transparent transparent;
 }
+
+/* ── Section lock overlay ── */
+#sectionLockOverlay{
+  position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:1.5rem;
+  background:rgba(9,7,4,.7);backdrop-filter:blur(8px);border-radius:4px;
+  min-height:280px;padding:2.5rem 1.5rem;
+}
+body.day-mode #sectionLockOverlay{background:rgba(220,208,185,.82);}
+.section-lock-icon{width:52px;height:52px;opacity:.9;}
+.section-lock-card{
+  width:100%;max-width:340px;background:var(--card);
+  border:1px solid var(--border-s);border-radius:4px;padding:1.8rem;
+  box-shadow:0 8px 32px var(--card-shadow),0 0 28px rgba(196,136,47,.08);
+}
+.section-lock-title{
+  font-family:var(--fh);font-size:.98rem;font-weight:700;color:var(--gold-l);
+  letter-spacing:.08em;text-align:center;margin-bottom:.3rem;
+}
+.section-lock-sub{
+  font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:1.3rem;
+}
+.section-lock-error{
+  font-family:var(--fm);font-size:.66rem;color:var(--crimson);margin-top:.5rem;
+  letter-spacing:.06em;display:none;
+}
+.section-lock-error.show{display:block;}
+#panelDiary{position:relative;}
+
+/* ── Additional cartography design elements ── */
+.carto-meridian{
+  position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;
+  z-index:0;overflow:hidden;
+}
+.sec-heading{position:relative;}
+/* Subtler latitude marks on the stats bar */
+.vault-stats::before{
+  content:'';position:absolute;top:0;right:0;bottom:0;width:3px;
+  background:linear-gradient(to bottom,var(--gold-d),transparent);
+  opacity:.35;border-radius:0 6px 6px 0;
+}
+.vault-stats{position:relative;}
+/* Rope/border motif on cards in day mode */
+body.day-mode .entry-row{
+  box-shadow:0 3px 14px var(--card-shadow),inset 0 0 0 1px rgba(156,106,31,.06);
+}
+/* Colophon watermark larger in day mode for visual richness */
+body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
 
 /* ── Print ── */
 @media print{
@@ -871,7 +1044,38 @@ button:focus-visible,.entry-head:focus-visible{outline-offset:3px;}
      UNLOCK OVERLAY (shown briefly while decrypting)
 ══════════════════════════════════════════ -->
 <div id="unlockOverlay">
-  <div class="unlock-spinner"></div>
+  <div class="unlock-compass-ring">
+    <svg class="unlock-ring-svg" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Static outer bezel ring with tick marks -->
+      <circle cx="45" cy="45" r="42" stroke="rgba(196,136,47,.12)" stroke-width=".8"/>
+      <circle cx="45" cy="45" r="38" stroke="rgba(196,136,47,.08)" stroke-width=".5" stroke-dasharray="2 4"/>
+      <!-- Cardinal ticks N/S/E/W -->
+      <line x1="45" y1="4" x2="45" y2="9" stroke="rgba(196,136,47,.45)" stroke-width="1.4"/>
+      <line x1="45" y1="81" x2="45" y2="86" stroke="rgba(196,136,47,.25)" stroke-width=".8"/>
+      <line x1="4" y1="45" x2="9" y2="45" stroke="rgba(196,136,47,.25)" stroke-width=".8"/>
+      <line x1="81" y1="45" x2="86" y2="45" stroke="rgba(196,136,47,.25)" stroke-width=".8"/>
+      <!-- Diagonal ticks -->
+      <line x1="15.3" y1="15.3" x2="18.5" y2="18.5" stroke="rgba(196,136,47,.18)" stroke-width=".6"/>
+      <line x1="71.5" y1="71.5" x2="74.7" y2="74.7" stroke="rgba(196,136,47,.18)" stroke-width=".6"/>
+      <line x1="71.5" y1="18.5" x2="74.7" y2="15.3" stroke="rgba(196,136,47,.18)" stroke-width=".6"/>
+      <line x1="15.3" y1="74.7" x2="18.5" y2="71.5" stroke="rgba(196,136,47,.18)" stroke-width=".6"/>
+      <!-- Outer spinning arc (fast) -->
+      <circle class="unlock-ring-arc" cx="45" cy="45" r="34"
+        stroke="#c4882f" stroke-width="2.2" fill="none"/>
+      <!-- Inner spinning arc (slow, reverse) -->
+      <circle class="unlock-ring-arc2" cx="45" cy="45" r="27"
+        stroke="rgba(196,136,47,.45)" stroke-width="1.2" fill="none"/>
+      <!-- Compass needle (static centre) -->
+      <polygon points="45,22 47.5,43 45,49 42.5,43" fill="#c4882f"/>
+      <polygon points="45,68 47.5,47 45,41 42.5,47" fill="rgba(196,136,47,.3)"/>
+      <!-- Centre hub -->
+      <circle cx="45" cy="45" r="6" fill="rgba(9,7,4,.9)" stroke="rgba(196,136,47,.6)" stroke-width="1.2"/>
+      <circle cx="45" cy="45" r="2.5" fill="#c4882f"/>
+      <!-- N label -->
+      <text x="45" y="2.5" text-anchor="middle" fill="#c4882f" font-size="5.5"
+        font-family="Cinzel,serif" font-weight="700">N</text>
+    </svg>
+  </div>
   <div class="unlock-text">Unsealing the vault…</div>
 </div>
 
@@ -1344,6 +1548,7 @@ button:focus-visible,.entry-head:focus-visible{outline-offset:3px;}
             </div>
           </div>
 
+          <input type="hidden" id="fEditFileId" value="">
         </form>
       </div>
     </div>
@@ -1658,6 +1863,50 @@ button:focus-visible,.entry-head:focus-visible{outline-offset:3px;}
   </div>
 </div>
 
+<!-- ══════════════════════════════════════════
+     SECTION LOCK — additional key required for Diary & Ideas
+══════════════════════════════════════════ -->
+<div id="sectionLockModal" class="modal-overlay">
+  <div class="modal-box sm">
+    <div class="modal-hdr">
+      <div>
+        <div class="modal-title">Sealed Section</div>
+        <div class="modal-sub">This section requires an additional key</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div style="text-align:center;margin-bottom:1.4rem;">
+        <svg width="52" height="52" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="14" y="28" width="36" height="30" rx="3" stroke="var(--gold)" stroke-width="1.6" fill="none"/>
+          <path d="M22 28V22C22 14 42 14 42 22V28" stroke="var(--gold)" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+          <circle cx="32" cy="43" r="4.5" fill="var(--gold)"/>
+          <line x1="32" y1="47" x2="32" y2="52" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
+          <!-- Decorative map border on lock -->
+          <line x1="6" y1="6" x2="12" y2="6" stroke="rgba(196,136,47,.35)" stroke-width=".7"/>
+          <line x1="6" y1="6" x2="6" y2="12" stroke="rgba(196,136,47,.35)" stroke-width=".7"/>
+          <line x1="58" y1="6" x2="52" y2="6" stroke="rgba(196,136,47,.35)" stroke-width=".7"/>
+          <line x1="58" y1="6" x2="58" y2="12" stroke="rgba(196,136,47,.35)" stroke-width=".7"/>
+          <line x1="6" y1="58" x2="12" y2="58" stroke="rgba(196,136,47,.35)" stroke-width=".7"/>
+          <line x1="6" y1="58" x2="6" y2="52" stroke="rgba(196,136,47,.35)" stroke-width=".7"/>
+          <line x1="58" y1="58" x2="52" y2="58" stroke="rgba(196,136,47,.35)" stroke-width=".7"/>
+          <line x1="58" y1="58" x2="58" y2="52" stroke="rgba(196,136,47,.35)" stroke-width=".7"/>
+        </svg>
+      </div>
+      <div class="fgrp" style="margin-bottom:.85rem;">
+        <label class="flbl">Section Key</label>
+        <input class="fin" id="sectionPwInput" type="password"
+          placeholder="Enter section password" autocomplete="off"
+          onkeydown="if(event.key==='Enter')unlockSection()">
+      </div>
+      <div class="login-error" id="sectionPwError"></div>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-g" onclick="closeModal('sectionLockModal')">Cancel</button>
+      <button class="btn btn-p" onclick="unlockSection()">Unlock Section</button>
+    </div>
+  </div>
+</div>
+
 <div id="toast"></div>
 
 <script src="shared.js"></script>
@@ -1673,6 +1922,11 @@ const ADMIN_EMAIL = VALID_EMAIL; // the one account that can use the Google bypa
 // an attempt before the same key is used to derive the encryption used below.
 const PW_SALT = 'cv_vault_v2_9f24a7';
 const PW_HASH = '081939cd6c0e4cf8941e61e9d5ab4a7df3f5f468a708596fd5304aebe34c73c3';
+
+// Secondary section lock — protects Diary & Ideas tab.
+// This is a SHA-256 of (SECTION_SALT + sectionPassword) — password not stored in plain text.
+const SECTION_SALT = 'cv_section_lock_v1';
+const SECTION_HASH = '3a755b826630d13bd7c2e9f08bd099f703ea062e2f5b50eb3bd30db347a50a73';
 
 // Supabase client (sb) is provided by shared.js loaded above.
 // PERSONAL uses the vault_sync table for cross-device sync.
@@ -1795,6 +2049,19 @@ const DB = {
       req.onsuccess = () => res();
       req.onerror   = () => rej(req.error);
     });
+  },
+
+  // Writes many records in a single IndexedDB transaction instead of one
+  // transaction per record — used when hydrating local storage from a
+  // cloud pull so a large vault doesn't pay per-record transaction overhead.
+  putAll(records) {
+    if (!records.length) return Promise.resolve();
+    return new Promise((res, rej) => {
+      const store = this._tx('readwrite');
+      records.forEach(r => store.put(r));
+      store.transaction.oncomplete = () => res();
+      store.transaction.onerror    = () => rej(store.transaction.error);
+    });
   }
 };
 
@@ -1805,52 +2072,130 @@ const DB = {
 // anon policy is far more robust. Supabase only ever sees ciphertext —
 // the same {iv, ct} blobs that live in IndexedDB. Every function here
 // fails silently when Supabase isn't reachable — vault is always usable offline.
+//
+// PENDING-SYNC TRACKING
+// sbPushAllItems used to re-upload the *entire* vault, one network
+// round-trip per item, on every single unlock — fine with a handful of
+// items, but it scales linearly with vault size and was the cause of
+// multi-minute unlocks once there were dozens of files/books/diary
+// entries. Now only items that were actually added/edited since their
+// last confirmed cloud write are pushed, and they go up in batched
+// requests rather than one-at-a-time. A one-time migration flag still
+// seeds the pending set from whatever's already in IndexedDB the first
+// time this runs on a given browser, so pre-existing local-only data
+// isn't left behind.
 // ══════════════════════════════════════════════
+const PENDING_KEY  = 'cv_pending_sync';
+const MIGRATED_KEY = 'cv_migrated_push_v1';
+
+function getPendingIds() {
+  try { return JSON.parse(localStorage.getItem(PENDING_KEY) || '[]'); }
+  catch (e) { return []; }
+}
+function setPendingIds(ids) {
+  localStorage.setItem(PENDING_KEY, JSON.stringify(ids));
+}
+function markPending(id) {
+  const ids = getPendingIds();
+  if (!ids.includes(id)) { ids.push(id); setPendingIds(ids); }
+}
+function clearPending(id) {
+  const ids = getPendingIds();
+  const next = ids.filter(x => x !== id);
+  if (next.length !== ids.length) setPendingIds(next);
+}
+
+// Bounds a single Supabase call so a slow, sleeping, or unreachable project
+// fails fast instead of hanging — the underlying fetch has no timeout of
+// its own, so without this an unlucky network condition can leave an
+// "await sb.from(...)" pending for a very long time with nothing to show
+// for it. 8s comfortably covers normal latency, including a cold-started
+// free-tier project.
+async function withTimeout(builder, ms = 8000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), ms);
+  try {
+    return await builder.abortSignal(controller.signal);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 async function sbUploadItem(id, iv, ct) {
   if (!sb || !sbUserId) return;
   try {
-    const { error } = await sb.from('vault_sync')
-      .upsert({ item_id: id, user_hash: sbUserId, iv, ct, updated_at: new Date().toISOString() });
+    const { error } = await withTimeout(sb.from('vault_sync')
+      .upsert({ item_id: id, user_hash: sbUserId, iv, ct, updated_at: new Date().toISOString() }));
     if (error) throw error;
+    clearPending(id); // confirmed on the cloud — no longer needs a retry push
   } catch (e) { console.warn('Cloud sync (save) failed — change is still kept on this device.', e); }
 }
 
 async function sbDeleteItem(id) {
   if (!sb || !sbUserId) return;
   try {
-    const { error } = await sb.from('vault_sync')
-      .delete().eq('item_id', id).eq('user_hash', sbUserId);
+    const { error } = await withTimeout(sb.from('vault_sync')
+      .delete().eq('item_id', id).eq('user_hash', sbUserId));
     if (error) throw error;
   } catch (e) { console.warn('Cloud sync (delete) failed.', e); }
+  finally { clearPending(id); } // nothing local left to retry-push for this id
 }
 
 async function sbPullAllItems() {
   if (!sb || !sbUserId) return;
   try {
-    const { data, error } = await sb.from('vault_sync')
-      .select('item_id, iv, ct').eq('user_hash', sbUserId);
+    const { data, error } = await withTimeout(sb.from('vault_sync')
+      .select('item_id, iv, ct').eq('user_hash', sbUserId));
     if (error) throw error;
     if (!data || !data.length) return;
-    for (const row of data) {
-      if (row.item_id.startsWith('__')) continue; // skip reserved preference rows
-      try {
-        await DB.put({ id: row.item_id, iv: row.iv, ct: row.ct }); // cloud is source of truth on login
-      } catch (e) { console.warn('Cloud sync (item save) error:', e); }
-    }
+    const records = data
+      .filter(row => !row.item_id.startsWith('__')) // skip reserved preference rows
+      .map(row => ({ id: row.item_id, iv: row.iv, ct: row.ct }));
+    if (records.length) await DB.putAll(records); // one transaction, not one per row
   } catch (e) { console.warn('Cloud sync (pull) failed — showing what is cached on this device.', e); }
 }
 
-// Pushes every encrypted record from local IndexedDB to vault_sync table.
-// Called on every unlock so offline edits are promoted before pulling remote state.
+// Pushes only items pending sync (new/edited locally and not yet confirmed
+// on the cloud) — not the whole vault — and in batched requests rather
+// than one network round-trip per item. Called after the vault is already
+// open (see syncVaultWithCloud) so this never blocks the unlock screen;
+// on a normal run with nothing new, it's a no-op and returns immediately.
 async function sbPushAllItems() {
   if (!sb || !sbUserId) return;
   try {
-    const allRaw = await DB.getAll();  // raw {id, iv, ct} — ciphertext only, no decryption needed
-    for (const item of allRaw) {
-      await sbUploadItem(item.id, item.iv, item.ct);
+    // One-time migration: treat everything already in IndexedDB as pending
+    // so pre-existing local data (from before this tracking existed) still
+    // reaches the cloud once.
+    if (!localStorage.getItem(MIGRATED_KEY)) {
+      const allRaw = await DB.getAll();
+      setPendingIds(allRaw.map(r => r.id));
+      localStorage.setItem(MIGRATED_KEY, '1');
     }
-    console.log(`Cloud sync: pushed ${allRaw.length} item(s) from this device.`);
-  } catch (e) { console.warn('Cloud push failed — local data is safe.', e); }
+    const pending = getPendingIds();
+    if (!pending.length) return;
+
+    const allRaw = await DB.getAll();
+    const byId = new Map(allRaw.map(r => [r.id, r]));
+    const CHUNK = 25; // batch several items per request instead of one request each
+    let pushedCount = 0;
+
+    for (let i = 0; i < pending.length; i += CHUNK) {
+      const idsChunk = pending.slice(i, i + CHUNK);
+      const rows = idsChunk
+        .filter(id => byId.has(id)) // dropped before ever syncing — nothing to push
+        .map(id => {
+          const r = byId.get(id);
+          return { item_id: r.id, user_hash: sbUserId, iv: r.iv, ct: r.ct, updated_at: new Date().toISOString() };
+        });
+      if (rows.length) {
+        const { error } = await withTimeout(sb.from('vault_sync').upsert(rows));
+        if (error) throw error;
+        pushedCount += rows.length;
+      }
+      idsChunk.forEach(clearPending);
+    }
+    if (pushedCount) console.log(`Cloud sync: pushed ${pushedCount} pending item(s) from this device.`);
+  } catch (e) { console.warn('Cloud push failed — local data is safe and will retry next unlock.', e); }
 }
 
 // ══════════════════════════════════════════════
@@ -1862,12 +2207,14 @@ const Vault = {
     const id = crypto.randomUUID();
     const { iv, ct } = await encryptRecord(payload);
     await DB.put({ id, iv, ct });
-    sbUploadItem(id, iv, ct); // fire-and-forget
+    markPending(id);
+    sbUploadItem(id, iv, ct); // fire-and-forget; clears pending flag on success
     return id;
   },
   async update(id, payload) {
     const { iv, ct } = await encryptRecord(payload);
     await DB.put({ id, iv, ct });
+    markPending(id);
     sbUploadItem(id, iv, ct);
     return id;
   },
@@ -2023,15 +2370,21 @@ async function attemptUnlock(password) {
   return true;
 }
 
+// Opens the vault from whatever's already on this device, then syncs with
+// the cloud afterward in the background. Previously this awaited the push
+// AND pull before rendering anything — meaning a slow, sleeping, or briefly
+// unreachable Supabase project held the unlock screen up for however long
+// those calls took, even when nothing about the vault's own content needed
+// the network at all. Now the overlay comes down as soon as local decrypt
+// + render is done; cloud sync (now also time-bounded — see withTimeout)
+// runs quietly after and only re-renders if it actually brought in something.
 async function unlockVault(password) {
   document.getElementById('unlockOverlay').classList.add('show');
   try {
     cryptoKey = await deriveKey(password);
     document.body.classList.add('authed');
     await DB.init();
-    await sbPushAllItems();             // push any local-only items to cloud first (migrates old data)
-    await sbPullAllItems();             // then pull items from other devices into local cache
-    const justLinked = await maybeLinkGoogleAccount(password); // await so link is stored before vault opens
+    const justLinked = await maybeLinkGoogleAccount(password); // local crypto only, not a network call
     if (justLinked) {
       // Small delay so the toast appears after the unlock overlay fades
       setTimeout(() => toast('◈ Google sign-in linked — next time use the Google tab to enter without a cipher key.'), 600);
@@ -2043,6 +2396,17 @@ async function unlockVault(password) {
   } finally {
     document.getElementById('unlockOverlay').classList.remove('show');
   }
+  syncVaultWithCloud(); // fire-and-forget — never blocks the unlock screen
+}
+
+async function syncVaultWithCloud() {
+  try {
+    await sbPushAllItems();             // push any pending local edits first (migrates old data once)
+    await sbPullAllItems();             // then pull items from other devices into local cache
+    await renderBooks();
+    await render();
+    await renderDiary();
+  } catch (e) { console.warn('Background cloud sync did not complete this session — local data is unaffected.', e); }
 }
 
 function signOut() {
@@ -2062,6 +2426,7 @@ function signOut() {
   document.getElementById('vaultGrid').innerHTML = '';
   document.getElementById('booksGrid').innerHTML = '';
   document.getElementById('diaryList').innerHTML = '';
+  diaryUnlocked = false;
   document.getElementById('googleStatus').style.display = 'none';
   document.getElementById('googleEnterBtn').style.display = 'none';
   if (GOOGLE_CLIENT_ID && GOOGLE_CLIENT_ID.indexOf('YOUR_') !== 0) {
@@ -2104,8 +2469,8 @@ async function ensureSbUser() {
 async function sbLoadDarkMode(userId) {
   if (!sb || !userId) return null;
   try {
-    const { data, error } = await sb.from('vault_sync')
-      .select('ct').eq('item_id', '__theme__').eq('user_hash', userId).maybeSingle();
+    const { data, error } = await withTimeout(sb.from('vault_sync')
+      .select('ct').eq('item_id', '__theme__').eq('user_hash', userId).maybeSingle());
     if (error) throw error;
     return data ? data.ct === '1' : null;
   } catch (e) { return null; }
@@ -2114,8 +2479,8 @@ async function sbLoadDarkMode(userId) {
 async function sbSaveDarkMode(userId, isDark) {
   if (!sb || !userId) return;
   try {
-    const { error } = await sb.from('vault_sync')
-      .upsert({ item_id: '__theme__', user_hash: userId, iv: 'pref', ct: isDark ? '1' : '0', updated_at: new Date().toISOString() });
+    const { error } = await withTimeout(sb.from('vault_sync')
+      .upsert({ item_id: '__theme__', user_hash: userId, iv: 'pref', ct: isDark ? '1' : '0', updated_at: new Date().toISOString() }));
     if (error) throw error;
   } catch (e) { console.warn('Could not sync theme to Supabase', e); }
 }
@@ -2321,7 +2686,7 @@ function closeModal(id) { document.getElementById(id).classList.remove('open'); 
 // ══════════════════════════════════════════════
 // MAIN TABS  (Books / Files / Diary)
 // ══════════════════════════════════════════════
-function switchMainTab(tab) {
+function _doSwitchMainTab(tab) {
   document.getElementById('tabBtnBooks').classList.toggle('active', tab === 'books');
   document.getElementById('tabBtnFiles').classList.toggle('active', tab === 'files');
   document.getElementById('tabBtnDiary').classList.toggle('active', tab === 'diary');
@@ -2332,6 +2697,43 @@ function switchMainTab(tab) {
   document.getElementById('addDocBtn').style.display   = tab === 'files' ? '' : 'none';
   document.getElementById('addTerrBtn').style.display  = tab === 'files' ? '' : 'none';
   document.getElementById('addDiaryBtn').style.display = tab === 'diary' ? '' : 'none';
+}
+
+function switchMainTab(tab) {
+  if (tab === 'diary' && !diaryUnlocked) {
+    // Show section lock prompt; stay on current tab
+    document.getElementById('sectionPwInput').value = '';
+    document.getElementById('sectionPwError').classList.remove('show');
+    // Store intent so after unlock we navigate there
+    window._pendingTab = 'diary';
+    openModal('sectionLockModal');
+    return;
+  }
+  _doSwitchMainTab(tab);
+}
+
+async function unlockSection() {
+  const pw = document.getElementById('sectionPwInput').value;
+  const hash = await sha256Hex(SECTION_SALT + pw);
+  if (hash === SECTION_HASH) {
+    diaryUnlocked = true;
+    closeModal('sectionLockModal');
+    document.getElementById('sectionPwInput').value = '';
+    document.getElementById('sectionPwError').classList.remove('show');
+    if (window._pendingTab) {
+      _doSwitchMainTab(window._pendingTab);
+      window._pendingTab = null;
+    }
+  } else {
+    const err = document.getElementById('sectionPwError');
+    err.textContent = '◈ Incorrect section key.';
+    err.classList.add('show');
+    // brief shake on the input
+    const inp = document.getElementById('sectionPwInput');
+    inp.style.transform = 'translateX(-4px)';
+    setTimeout(() => { inp.style.transform = 'translateX(4px)'; }, 80);
+    setTimeout(() => { inp.style.transform = ''; }, 160);
+  }
 }
 
 // ══════════════════════════════════════════════
@@ -2351,18 +2753,21 @@ let selColor         = '';
 let selIcon          = '🗺️';
 let diaryFilter      = 'all';
 let selDiaryType     = 'reflection';
+let diaryUnlocked    = false;  // gated by secondary section password
 
 // ══════════════════════════════════════════════
 // RENDER — FILES & TERRITORIES (single-row, expand-in-place)
 // ══════════════════════════════════════════════
 function df(key, val, full=false, isTag=false) {
   const empty = !val;
+  if (empty) return '';
   let valHtml;
-  if (isTag && !empty) {
+  if (isTag) {
     const tags = String(val).split(',').map(t=>t.trim()).filter(Boolean);
+    if (!tags.length) return '';
     valHtml = `<div class="det-tags-wrap">${tags.map(t=>`<span class="fc-tag">#${esc(t)}</span>`).join('')}</div>`;
   } else {
-    valHtml = `<div class="det-val${empty?' em':''}">${empty ? '—' : esc(String(val))}</div>`;
+    valHtml = `<div class="det-val">${esc(String(val))}</div>`;
   }
   return `<div class="det-field${full?' det-full':''}">
     <div class="det-key">${esc(key)}</div>
@@ -2460,7 +2865,9 @@ function fileRowHtml(fl) {
           ${df('Personal Annotations', m.notes, true)}
         </div>
         <div class="entry-actions">
+          <button class="btn btn-ink sm" data-action="view-file" data-id="${fl.id}">⊙ View Document</button>
           <button class="btn btn-ink sm" data-action="download-file" data-id="${fl.id}">↓ Retrieve Document</button>
+          <button class="btn btn-g sm" data-action="edit-file" data-id="${fl.id}">Edit Info</button>
           <button class="btn btn-d sm" data-action="delete-file" data-id="${fl.id}" data-label="${title}">Unmap</button>
         </div>
       </div></div></div>
@@ -2561,14 +2968,23 @@ async function render() {
 
 function handleGridClick(e) {
   const el = e.target.closest('[data-action]');
-  if (!el) return;
+  if (!el) {
+    // Clicking inside an expanded entry outside interactive elements → collapse
+    if (!e.target.closest('button,a,input,select,textarea')) {
+      const row = e.target.closest('.entry-row.expanded');
+      if (row) row.classList.remove('expanded');
+    }
+    return;
+  }
   const id = el.dataset.id;
   switch (el.dataset.action) {
     case 'toggle-expand': el.closest('.entry-row').classList.toggle('expanded'); break;
     case 'open-folder':   enterFolder(id, el.dataset.name).catch(err => { toast('◈ Failed to open territory'); console.error(err); }); break;
     case 'delete-folder': confirmDelete(id, 'folder', el.dataset.label); break;
     case 'delete-file':   confirmDelete(id, 'file', el.dataset.label); break;
-    case 'download-file': downloadItem(id); break; // downloadItem has its own try/catch
+    case 'view-file':     viewItem(id); break;
+    case 'download-file': downloadItem(id); break;
+    case 'edit-file':     openEditFileModal(id); break;
   }
 }
 
@@ -2624,7 +3040,58 @@ function openUploadModal() {
   document.getElementById('autoInfo').style.display = 'none';
   document.getElementById('metaSection').style.display = 'none';
   document.getElementById('uploadForm').reset();
+  document.getElementById('fEditFileId').value = '';
+  const titleEl = document.querySelector('#uploadModal .modal-title');
+  if (titleEl) titleEl.textContent = 'Chart a New Document';
+  const submitBtn = document.getElementById('uploadSubmitBtn');
+  if (submitBtn) submitBtn.textContent = 'Chart This Document';
   openModal('uploadModal');
+}
+
+async function openEditFileModal(id) {
+  const item = await Vault.get(id);
+  if (!item) { toast('◈ Could not load entry'); return; }
+  const m = item.meta;
+  // Reset then pre-fill
+  openUploadModal();
+  document.getElementById('fEditFileId').value = id;
+  const titleEl = document.querySelector('#uploadModal .modal-title');
+  if (titleEl) titleEl.textContent = 'Edit Document Info';
+  const submitBtn = document.getElementById('uploadSubmitBtn');
+  if (submitBtn) submitBtn.textContent = 'Save Changes';
+  // Show meta section and fill fields
+  document.getElementById('metaSection').style.display = 'block';
+  // Show existing file info and keep dropzone visible for optional replacement
+  const dz = document.getElementById('dropzone');
+  dz.style.display = '';
+  const fc = document.getElementById('fileChosen');
+  fc.classList.add('show');
+  document.getElementById('fcIcon').textContent = fileIcon(m.mimeType||'', m.fileName||'');
+  document.getElementById('fcName').textContent = m.fileName || 'Stored file';
+  document.getElementById('fcMeta').textContent = '↑ Currently stored — drop a new file above to replace it, or leave to keep';
+  const ai = document.getElementById('autoInfo');
+  ai.style.display = 'flex';
+  document.getElementById('aiType').textContent = typeLabel(m.mimeType||'', m.fileName||'');
+  document.getElementById('aiDate').textContent = m.charted || '—';
+  document.getElementById('aiSize').textContent = fmt(m.fileSize||0);
+  // Fill all form fields
+  const set = (elId, val) => { const e = document.getElementById(elId); if (e) e.value = val||''; };
+  set('fTitle',       m.title);
+  set('fSubject',     m.subject);
+  set('fCategory',    m.category);
+  set('fComplexity',  m.complexity);
+  set('fLanguage',    m.language);
+  set('fPriority',    m.priority);
+  set('fDescription', m.description);
+  set('fPurpose',     m.purpose);
+  set('fAuthor',      m.author);
+  set('fSource',      m.source);
+  set('fVersion',     m.version);
+  set('fRelated',     m.related);
+  set('fTags',        m.tags);
+  set('fHowTo',       m.howTo);
+  set('fNotes',       m.notes);
+  if (m.expiry) document.getElementById('fExpiry').value = m.expiry;
 }
 
 function handleDrop(e) {
@@ -2657,21 +3124,28 @@ function pickFile(file) {
 
 function clearFileSelection() {
   selFile = null;
+  const editId = document.getElementById('fEditFileId').value;
   document.getElementById('dropzone').style.display = '';
   document.getElementById('fileChosen').classList.remove('show');
   document.getElementById('autoInfo').style.display = 'none';
-  document.getElementById('metaSection').style.display = 'none';
+  // In edit mode, keep meta section visible so user can still edit fields
+  if (!editId) {
+    document.getElementById('metaSection').style.display = 'none';
+  }
 }
 
 async function submitUpload() {
-  if (!selFile) { toast('◈ Select a document first'); return; }
+  const editId = document.getElementById('fEditFileId').value;
+  if (!selFile && !editId) { toast('◈ Select a document first'); return; }
   const btn = document.getElementById('uploadSubmitBtn');
   btn.disabled = true;
   try {
     const g = id => document.getElementById(id).value.trim();
-
+    let existingItem = null;
+    if (editId) existingItem = await Vault.get(editId);
+    const base = existingItem ? existingItem.meta : {};
     const meta = {
-      title:       g('fTitle') || selFile.name,
+      title:       g('fTitle') || (selFile ? selFile.name : base.title),
       subject:     g('fSubject'),
       category:    g('fCategory'),
       description: g('fDescription'),
@@ -2687,20 +3161,31 @@ async function submitUpload() {
       priority:    g('fPriority'),
       notes:       g('fNotes'),
       expiry:      document.getElementById('fExpiry').value,
-      fileName:  selFile.name,
-      mimeType:  selFile.type,
-      fileSize:  selFile.size,
-      charted:   today(),
+      fileName:    selFile ? selFile.name  : base.fileName,
+      mimeType:    selFile ? selFile.type  : base.mimeType,
+      fileSize:    selFile ? selFile.size  : base.fileSize,
+      charted:     base.charted || today(),
     };
-
-    const buf = await selFile.arrayBuffer();
-    const fileDataB64 = bufToB64(buf);
-    await Vault.add({ type:'file', parentId:currentParent, name:selFile.name, meta, fileData: fileDataB64 });
-    closeModal('uploadModal');
-    toast('◈ Document charted to the vault');
+    let fileDataB64;
+    if (selFile) {
+      const buf = await selFile.arrayBuffer();
+      fileDataB64 = bufToB64(buf);
+    } else {
+      fileDataB64 = existingItem ? existingItem.fileData : null;
+    }
+    if (editId) {
+      const parent = existingItem ? existingItem.parentId : currentParent;
+      await Vault.update(editId, { type:'file', parentId:parent, name:meta.fileName||'file', meta, fileData:fileDataB64 });
+      closeModal('uploadModal');
+      toast('◈ Document info updated');
+    } else {
+      await Vault.add({ type:'file', parentId:currentParent, name:meta.fileName||'file', meta, fileData: fileDataB64 });
+      closeModal('uploadModal');
+      toast('◈ Document charted to the vault');
+    }
     await render();
   } catch (e) {
-    toast('◈ Failed to chart document — please try again');
+    toast('◈ Failed to save document — please try again');
     console.error('Upload error:', e);
   } finally {
     btn.disabled = false;
@@ -2765,6 +3250,21 @@ async function submitFolder() {
 // ══════════════════════════════════════════════
 // DOWNLOAD
 // ══════════════════════════════════════════════
+async function viewItem(id) {
+  try {
+    const item = await Vault.get(id);
+    if (!item || !item.fileData) { toast('◈ Could not retrieve document'); return; }
+    const buf  = b64ToBuf(item.fileData);
+    const blob = new Blob([buf], { type: item.meta.mimeType || 'application/octet-stream' });
+    const url  = URL.createObjectURL(blob);
+    window.open(url, '_blank');
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+  } catch (e) {
+    toast('◈ Failed to open document');
+    console.error('View error:', e);
+  }
+}
+
 async function downloadItem(id) {
   try {
     const item = await Vault.get(id);
@@ -3243,7 +3743,14 @@ async function renderDiary() {
 
 function handleDiaryGridClick(e) {
   const el = e.target.closest('[data-action]');
-  if (!el) return;
+  if (!el) {
+    // Clicking inside an expanded diary entry outside buttons → collapse
+    if (!e.target.closest('button,a,input,select,textarea')) {
+      const row = e.target.closest('.entry-row.expanded');
+      if (row) row.classList.remove('expanded');
+    }
+    return;
+  }
   const id = el.dataset.id;
   switch (el.dataset.action) {
     case 'toggle-expand': el.closest('.entry-row').classList.toggle('expanded'); break;
@@ -3344,6 +3851,7 @@ async function init() {
   await initThemeForSession();   // runs before any unlock — theme isn't sensitive content
   initGoogleSignIn();
   checkSetup();                  // console warnings about unconfigured credentials
+  // wireDropzone handles all file-selection events via pickFile()
   // The vault content itself always opens locked: the cipher key is required
   // every time because it is what derives the encryption key for everything
   // inside (except the Google admin path, which recovers that same key via
