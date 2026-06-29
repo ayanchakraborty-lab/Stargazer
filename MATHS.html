@@ -76,6 +76,73 @@ body{font-family:'Inter',system-ui,sans-serif;background:#030012;color:#f1f5f9;o
 /* Search button in nav */
 .nav-search-btn{font-family:'Space Grotesk',sans-serif;font-size:.74rem;color:#94a3b8;background:none;border:1px solid rgba(139,92,246,0.2);border-radius:99px;padding:.2rem .65rem;cursor:pointer;display:inline-flex;align-items:center;gap:.3rem;transition:all .2s;white-space:nowrap;flex-shrink:0}
 .nav-search-btn:hover{color:#e2e8f0;background:rgba(139,92,246,0.15)}
+/* ── SHORTCUT HINT ───────────────────────────────────────── */
+#shortcut-hint{position:fixed;bottom:1.5rem;left:1.5rem;z-index:998;font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#6366f1;opacity:.45;pointer-events:none;letter-spacing:.06em}
+
+/* ── SEARCH MODAL ────────────────────────────────────────── */
+#search-modal{position:fixed;inset:0;z-index:2000;display:none;align-items:flex-start;justify-content:center;padding-top:80px;background:rgba(0,0,0,.68);backdrop-filter:blur(9px)}
+#search-modal.open{display:flex;animation:mFadeIn .2s ease}
+@keyframes mFadeIn{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}
+#search-box{background:#060010;border:1px solid rgba(139,92,246,.45);border-radius:14px;width:min(660px,94vw);max-height:73vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 0 0 1px rgba(99,102,241,.18),0 28px 80px rgba(0,0,0,.65),0 0 70px rgba(139,92,246,.14)}
+#search-input-wrap{display:flex;align-items:center;gap:.65rem;padding:.95rem 1.3rem;border-bottom:1px solid rgba(139,92,246,.22)}
+#search-icon-lbl{font-size:1.1rem;color:#7c3aed}
+#search-input{flex:1;background:none;border:none;outline:none;font-family:'Space Grotesk',sans-serif;font-size:.97rem;color:#e2e8f0}
+#search-input::placeholder{color:#3d3d5c}
+#search-kbd{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#6366f1;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.3);padding:.1rem .38rem;border-radius:4px}
+#search-results{overflow-y:auto;max-height:58vh;padding:.5rem}
+.sr-item{display:flex;align-items:center;gap:.85rem;padding:.7rem .9rem;border-radius:9px;cursor:pointer;transition:all .15s}
+.sr-item:hover,.sr-item:focus{background:rgba(99,102,241,.14);outline:none;transform:translateX(3px)}
+.sr-icon{font-size:1.1rem;flex-shrink:0;width:1.5rem;text-align:center}
+.sr-title{font-size:.88rem;color:#e2e8f0;font-weight:500;line-height:1.3}
+.sr-meta{font-size:.73rem;color:#64748b;margin-top:.12rem}
+.sr-section{font-size:.65rem;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.1em;color:#7c3aed;margin-left:auto;white-space:nowrap;flex-shrink:0;padding:.15rem .42rem;border:1px solid rgba(124,58,237,.28);border-radius:4px;background:rgba(124,58,237,.08)}
+.sr-empty{color:#475569;font-size:.85rem;text-align:center;padding:2.5rem 1rem;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+.sr-empty::before{display:block;font-size:1.6rem;margin-bottom:.5rem;content:'✦'}
+#search-results mark{background:rgba(139,92,246,.32);color:#e2e8f0!important;border-radius:3px;padding:0 2px}
+
+/* ── ANIMATED CARD SHIMMER ───────────────────────────────── */
+@keyframes glowPulse{
+  0%,100%{box-shadow:0 0 0 2px var(--gc,#6366f1),0 10px 48px var(--gs,rgba(99,102,241,.25)),0 0 28px var(--gp,rgba(99,102,241,.12))}
+  50%{box-shadow:0 0 0 2.5px var(--gc,#6366f1),0 14px 70px var(--gs,rgba(99,102,241,.4)),0 0 50px var(--gp,rgba(99,102,241,.22))}
+}
+@keyframes shimmerCard{0%{background-position:200% center}100%{background-position:-200% center}}
+
+/* Shimmer layer on all main cards */
+.ug-card,.grad-card,.res-card,.puz-card,.op-card,.car-card,.prob-card,.fact-card,.myth-card{position:relative;overflow:hidden}
+.ug-card::after,.grad-card::after,.res-card::after,.puz-card::after,.op-card::after,.car-card::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.045) 50%,transparent 58%);
+  background-size:200% 100%;opacity:0;transition:opacity .3s;border-radius:inherit;
+}
+.ug-card:hover::after,.grad-card:hover::after,.res-card:hover::after,.puz-card:hover::after,.op-card:hover::after,.car-card:hover::after{
+  opacity:1;animation:shimmerCard 1.6s ease forwards;
+}
+
+/* Badge pulse colors */
+@keyframes badgeGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.25)}}
+.rb-breakthrough{animation:badgeGlow 2s ease-in-out infinite}
+.rb-active{animation:badgeGlow 3s ease-in-out infinite}
+
+/* More vivid section titles */
+.s-title{transition:text-shadow .3s}
+.s-head:hover .s-title{text-shadow:0 0 40px currentColor;filter:brightness(1.08)}
+
+/* Vivid hover on nav links */
+#nav button.nav-a:hover{
+  background:rgba(139,92,246,.18)!important;
+  color:#c4b5fd!important;
+  border-color:rgba(139,92,246,.5)!important;
+}
+
+/* Colorful card background on hover (subtle) */
+.ug-card:hover{background:rgba(99,102,241,.1)!important;border-color:rgba(99,102,241,.38)!important}
+.grad-card:hover{background:rgba(168,85,247,.1)!important;border-color:rgba(168,85,247,.38)!important}
+.res-card:hover{background:rgba(14,165,233,.1)!important;border-color:rgba(14,165,233,.38)!important}
+.op-card:hover{background:rgba(239,68,68,.08)!important;border-color:rgba(239,68,68,.35)!important}
+.car-card:hover{background:rgba(139,92,246,.1)!important;border-color:rgba(139,92,246,.38)!important}
+.puz-card:hover{background:rgba(6,182,212,.09)!important;border-color:rgba(6,182,212,.35)!important}
+.prob-card:hover{background:rgba(245,158,11,.07)!important;border-color:rgba(245,158,11,.32)!important}
+
 /* Hamburger dropdown */
 #hamburger-menu{position:fixed;top:88px;right:0;width:235px;max-height:calc(100vh - 88px);overflow-y:auto;background:rgba(3,0,18,0.97);backdrop-filter:blur(28px) saturate(200%);border-left:1px solid rgba(139,92,246,0.2);border-bottom:1px solid rgba(139,92,246,0.2);border-radius:0 0 0 14px;z-index:999;padding:.45rem 0;display:none;flex-direction:column;box-shadow:-6px 6px 32px rgba(0,0,0,.45)}
 #hamburger-menu.open{display:flex;animation:hmIn .18s ease}
@@ -98,8 +165,9 @@ body.light-mode #hamburger-btn.open,body.light-mode #hamburger-btn:hover{color:#
 .hero-title{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(3.5rem,10vw,7.5rem);line-height:0.97;background:linear-gradient(145deg,#f1f5f9 0%,#c4b5fd 35%,#38bdf8 70%,#f0abfc 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1rem}
 .hero-eq{font-family:'JetBrains Mono',monospace;font-size:1.1rem;color:rgba(196,181,253,0.65);margin-bottom:1.5rem;letter-spacing:0.08em}
 .hero-sub{font-size:1.05rem;color:#dde6f0;max-width:560px;margin:0 auto 2.5rem;line-height:1.8}
-.hero-btn{display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg,#7c3aed,#1d4ed8);color:#fff;text-decoration:none;padding:0.9rem 2.25rem;border-radius:100px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.9rem;letter-spacing:0.04em;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 24px rgba(124,58,237,0.4)}
-.hero-btn:hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(124,58,237,0.6)}
+.hero-btn{display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg,#7c3aed,#6d28d9,#1d4ed8,#0ea5e9);background-size:300% 300%;color:#fff;text-decoration:none;padding:0.9rem 2.25rem;border-radius:100px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.9rem;letter-spacing:0.04em;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 28px rgba(124,58,237,0.5);animation:heroBtn 5s ease-in-out infinite;border:none;cursor:pointer}
+.hero-btn:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 14px 55px rgba(124,58,237,0.8),0 0 35px rgba(56,189,248,0.35)}
+@keyframes heroBtn{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 /* SHARED SECTION */
 .section{padding:5.5rem 1.5rem}
 .s-inner{max-width:1180px;margin:0 auto}
@@ -215,8 +283,8 @@ body.light-mode #hamburger-btn.open,body.light-mode #hamburger-btn:hover{color:#
 .res-card{background:rgba(14,165,233,0.04);border:1px solid rgba(14,165,233,0.13);border-radius:11px;padding:1.35rem;transition:all 0.22s}
 .res-card:hover{border-color:rgba(14,165,233,0.35);transform:translateY(-2px)}
 .res-badge{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.13rem 0.48rem;border-radius:99px;display:inline-block;margin-bottom:0.7rem}
-.rb-breakthrough{background:rgba(16,185,129,0.13);color:#34d399;border:1px solid rgba(16,185,129,0.28)}
-.rb-active{background:rgba(14,165,233,0.13);color:#7dd3fc;border:1px solid rgba(14,165,233,0.28)}
+.rb-breakthrough{background:linear-gradient(135deg,rgba(16,185,129,0.18),rgba(5,150,105,0.1));color:#34d399;border:1px solid rgba(16,185,129,0.38);animation:badgeGlow 2s ease-in-out infinite}
+.rb-active{background:linear-gradient(135deg,rgba(14,165,233,0.18),rgba(2,132,199,0.1));color:#38bdf8;border:1px solid rgba(14,165,233,0.38);animation:badgeGlow 3s ease-in-out infinite}
 .rb-open{background:rgba(245,158,11,0.13);color:#fcd34d;border:1px solid rgba(245,158,11,0.28)}
 .res-title{font-family:'Playfair Display',serif;font-weight:700;color:#e0f2fe;font-size:1.07rem;margin-bottom:0.45rem;line-height:1.35}
 .res-who{font-size:0.84rem;color:#0ea5e9;margin-bottom:0.2rem}
@@ -386,71 +454,88 @@ body.light-mode .grad-detail em{color:#5b21b6!important;font-weight:500}
 /* ── GRID ALIGNMENT — prevent blank card stretch ────────────── */
 .g2,.g3,.g4{align-items:start}
 
-/* ── DESKTOP EXPANDED GLOW (laptop only) ─────────────────────── */
+/* ── DESKTOP EXPANDED GLOW — big screen, readable fonts ─────── */
 @media(min-width:769px){
-  /* Puzzle cards */
+  /* ── Puzzle cards ──────────────────────────────────────── */
   .puz-card:has(.puz-body[style*="block"]){
-    grid-column:1/-1;
-    box-shadow:0 0 0 1.5px #06b6d4,0 8px 40px rgba(6,182,212,0.18);
+    grid-column:1/-1;--gc:#06b6d4;--gs:rgba(6,182,212,.3);--gp:rgba(6,182,212,.16);
     border-color:#06b6d4!important;
-    background:rgba(6,182,212,0.1)!important;
-    transition:all .25s ease;
+    background:linear-gradient(140deg,rgba(6,182,212,.16),rgba(6,182,212,.06))!important;
+    animation:glowPulse 2.6s ease-in-out infinite;
+    transition:all .3s ease;padding:1.7rem!important;
   }
-  .puz-card:has(.puz-body[style*="block"]) .puz-title{font-size:1.12rem}
-  .puz-card:has(.puz-body[style*="block"]) .puz-q{font-size:1.02rem;line-height:1.88}
-  .puz-card:has(.puz-body[style*="block"]) .puz-hint,.puz-card:has(.puz-body[style*="block"]) .puz-ans{font-size:0.93rem;line-height:1.82}
-  /* Undergrad cards */
+  .puz-card:has(.puz-body[style*="block"]) .puz-title{font-size:1.25rem!important;color:#22d3ee}
+  .puz-card:has(.puz-body[style*="block"]) .puz-q{font-size:1.08rem;line-height:1.95}
+  .puz-card:has(.puz-body[style*="block"]) .puz-hint,.puz-card:has(.puz-body[style*="block"]) .puz-ans{font-size:1.0rem;line-height:1.9}
+
+  /* ── Undergrad cards ───────────────────────────────────── */
   .ug-card:has(.ug-detail:not([style*="none"])){
-    grid-column:1/-1;
-    box-shadow:0 0 0 1.5px #6366f1,0 8px 40px rgba(99,102,241,0.18);
-    border-color:rgba(99,102,241,0.6)!important;
-    background:rgba(99,102,241,0.14)!important;
+    grid-column:1/-1;--gc:#6366f1;--gs:rgba(99,102,241,.3);--gp:rgba(99,102,241,.16);
+    border-color:rgba(99,102,241,.85)!important;
+    background:linear-gradient(140deg,rgba(99,102,241,.2),rgba(99,102,241,.07))!important;
+    animation:glowPulse 2.6s ease-in-out infinite;
+    transition:all .3s ease;padding:1.7rem!important;
   }
-  .ug-card:has(.ug-detail:not([style*="none"])) .ug-topic{font-size:1.1rem}
-  .ug-card:has(.ug-detail:not([style*="none"])) .ug-detail{font-size:0.95rem;line-height:1.88}
-  /* Graduate cards */
+  .ug-card:has(.ug-detail:not([style*="none"])) .ug-topic{font-size:1.22rem!important;color:#a5b4fc}
+  .ug-card:has(.ug-detail:not([style*="none"])) .ug-detail{font-size:1.02rem;line-height:1.96}
+
+  /* ── Graduate cards ────────────────────────────────────── */
   .grad-card:has(.grad-detail:not([style*="none"])){
-    grid-column:1/-1;
-    box-shadow:0 0 0 1.5px #a855f7,0 8px 40px rgba(168,85,247,0.18);
-    border-color:rgba(168,85,247,0.6)!important;
-    background:rgba(168,85,247,0.12)!important;
+    grid-column:1/-1;--gc:#a855f7;--gs:rgba(168,85,247,.3);--gp:rgba(168,85,247,.16);
+    border-color:rgba(168,85,247,.85)!important;
+    background:linear-gradient(140deg,rgba(168,85,247,.2),rgba(168,85,247,.07))!important;
+    animation:glowPulse 2.6s ease-in-out infinite;
+    transition:all .3s ease;padding:1.7rem!important;
   }
-  .grad-card:has(.grad-detail:not([style*="none"])) .grad-topic{font-size:1.1rem}
-  .grad-card:has(.grad-detail:not([style*="none"])) .grad-detail{font-size:0.95rem;line-height:1.88}
-  /* Research cards */
+  .grad-card:has(.grad-detail:not([style*="none"])) .grad-topic{font-size:1.22rem!important;color:#e9d5ff}
+  .grad-card:has(.grad-detail:not([style*="none"])) .grad-detail{font-size:1.02rem;line-height:1.96}
+
+  /* ── Research cards ────────────────────────────────────── */
   .res-card:has(.res-detail.show){
-    box-shadow:0 0 0 1.5px #0ea5e9,0 8px 40px rgba(14,165,233,0.18);
-    border-color:rgba(14,165,233,0.6)!important;
-    background:rgba(14,165,233,0.12)!important;
+    grid-column:1/-1;--gc:#0ea5e9;--gs:rgba(14,165,233,.3);--gp:rgba(14,165,233,.15);
+    border-color:rgba(14,165,233,.85)!important;
+    background:linear-gradient(140deg,rgba(14,165,233,.18),rgba(14,165,233,.06))!important;
+    animation:glowPulse 2.6s ease-in-out infinite;
+    transition:all .3s ease;padding:1.7rem!important;
   }
-  .res-card:has(.res-detail.show) .res-title{font-size:1.14rem}
-  .res-detail.show{font-size:0.94rem;line-height:1.86}
-  /* Open problems */
+  .res-card:has(.res-detail.show) .res-title{font-size:1.25rem!important;color:#38bdf8}
+  .res-detail.show{font-size:1.02rem!important;line-height:1.96;color:#bae6fd}
+  .res-card:has(.res-detail.show) .res-desc{font-size:1.0rem}
+
+  /* ── Open problems ─────────────────────────────────────── */
   .op-card:has(.op-body[style*="block"]){
-    box-shadow:0 0 0 1.5px #ef4444,0 8px 40px rgba(239,68,68,0.18);
-    border-color:rgba(239,68,68,0.6)!important;
-    background:rgba(239,68,68,0.1)!important;
+    grid-column:1/-1;--gc:#ef4444;--gs:rgba(239,68,68,.28);--gp:rgba(239,68,68,.14);
+    border-color:rgba(239,68,68,.8)!important;
+    background:linear-gradient(140deg,rgba(239,68,68,.16),rgba(239,68,68,.05))!important;
+    animation:glowPulse 2.6s ease-in-out infinite;
+    transition:all .3s ease;padding:1.7rem!important;
   }
-  .op-card:has(.op-body[style*="block"]) .op-title{font-size:1.1rem}
-  .op-card:has(.op-body[style*="block"]) .op-stmt{font-size:1.0rem}
-  .op-card:has(.op-body[style*="block"]) .op-why,.op-card:has(.op-body[style*="block"]) .op-how{font-size:0.94rem;line-height:1.84}
-  /* Career cards */
+  .op-card:has(.op-body[style*="block"]) .op-title{font-size:1.2rem!important;color:#fca5a5}
+  .op-card:has(.op-body[style*="block"]) .op-stmt{font-size:1.08rem!important}
+  .op-card:has(.op-body[style*="block"]) .op-why,.op-card:has(.op-body[style*="block"]) .op-how{font-size:1.0rem;line-height:1.92}
+
+  /* ── Career cards ──────────────────────────────────────── */
   .car-card:has(.car-section:not([style*="none"])){
-    box-shadow:0 0 0 1.5px #8b5cf6,0 8px 40px rgba(139,92,246,0.18);
-    border-color:rgba(139,92,246,0.6)!important;
-    background:rgba(139,92,246,0.14)!important;
+    grid-column:1/-1;--gc:#8b5cf6;--gs:rgba(139,92,246,.3);--gp:rgba(139,92,246,.15);
+    border-color:rgba(139,92,246,.85)!important;
+    background:linear-gradient(140deg,rgba(139,92,246,.2),rgba(139,92,246,.07))!important;
+    animation:glowPulse 2.6s ease-in-out infinite;
+    transition:all .3s ease;padding:1.7rem!important;
   }
-  .car-card:has(.car-section:not([style*="none"])) .car-title{font-size:1.08rem}
-  .car-section-body{font-size:0.9rem;line-height:1.8}
-  /* Olympiad problems */
+  .car-card:has(.car-section:not([style*="none"])) .car-title{font-size:1.18rem!important;color:#c4b5fd}
+  .car-section-body{font-size:0.97rem;line-height:1.88}
+
+  /* ── Olympiad problems ─────────────────────────────────── */
   .prob-card:has(.prob-body[style*="block"]){
-    box-shadow:0 0 0 1.5px #f59e0b,0 8px 40px rgba(245,158,11,0.18);
-    border-color:rgba(245,158,11,0.5)!important;
-    background:rgba(245,158,11,0.08)!important;
+    grid-column:1/-1;--gc:#f59e0b;--gs:rgba(245,158,11,.28);--gp:rgba(245,158,11,.14);
+    border-color:rgba(245,158,11,.8)!important;
+    background:linear-gradient(140deg,rgba(245,158,11,.14),rgba(245,158,11,.05))!important;
+    animation:glowPulse 2.6s ease-in-out infinite;
+    transition:all .3s ease;padding:1.7rem!important;
   }
-  .prob-card:has(.prob-body[style*="block"]) .prob-ttl{font-size:1.04rem}
-  .prob-card:has(.prob-body[style*="block"]) .prob-stmt,.prob-card:has(.prob-body[style*="block"]) .prob-stmt-visible{font-size:1.0rem;line-height:1.85}
-  .prob-card:has(.prob-body[style*="block"]) .prob-insight{font-size:0.94rem;line-height:1.82}
+  .prob-card:has(.prob-body[style*="block"]) .prob-ttl{font-size:1.15rem!important;color:#fcd34d}
+  .prob-card:has(.prob-body[style*="block"]) .prob-stmt,.prob-card:has(.prob-body[style*="block"]) .prob-stmt-visible{font-size:1.08rem;line-height:1.92}
+  .prob-card:has(.prob-body[style*="block"]) .prob-insight{font-size:1.0rem;line-height:1.9}
 }
 
 /* ═══ FONT UTILITIES ════════════════════════════════════════ */
@@ -1515,6 +1600,7 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
 <nav id="nav">
   <span class="nav-brand" onclick="showPage('home')" style="cursor:pointer;user-select:none">∑ Mathematics</span>
   <span class="nav-cur-section" id="nav-cur-lbl">Home</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)">🔍 Search</button>
   <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
 </nav>
 
@@ -1538,6 +1624,22 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
   <button class="hm-item"        data-page="universities" onclick="showPage('universities')">🎓 India</button>
   <button class="hm-item"        data-page="comments"     onclick="showPage('comments')">💬 Comments</button>
 </div>
+
+<!-- ═══════════════════════════════════════ SEARCH MODAL ════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search books, puzzles, theorems, careers, open problems…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ SHORTCUT HINT ═══ -->
+<div id="shortcut-hint">/ search · ← → pages</div>
 
 <!-- ═══════════════════════════════════════ PAGE: HOME ════════ -->
 <div class="page active" id="page-home">
@@ -4072,6 +4174,120 @@ document.getElementById('adminModal').addEventListener('click', function(e) {
   renderFacts();
   renderUniversities();
 
+
+/* =========================================================
+   SEARCH — full-site index and modal
+   ========================================================= */
+var MATH_SEARCH_INDEX = [];
+
+function buildMathSearchIndex() {
+  if (MATH_SEARCH_INDEX.length) return;
+  // Books  — {t, a, y, cat, d}
+  if (typeof booksData !== 'undefined') booksData.forEach(function(b) {
+    MATH_SEARCH_INDEX.push({icon:'📚',title:b.t,meta:(b.a||'')+' · '+(b.y||''),section:'Books',page:'books',q:(b.t+' '+(b.a||'')+' '+(b.cat||'')+' '+(b.d||'')).toLowerCase()});
+  });
+  // Puzzles — {t, d, q, src}
+  if (typeof puzzlesData !== 'undefined') puzzlesData.forEach(function(p) {
+    MATH_SEARCH_INDEX.push({icon:'🧩',title:p.t,meta:'Puzzle',section:'Puzzles',page:'puzzles',q:(p.t+' '+(p.q||'')+' '+(p.src||'')).toLowerCase()});
+  });
+  // Undergrad  — {t, tag, desc, detail}
+  if (typeof undergradData !== 'undefined') undergradData.forEach(function(u) {
+    MATH_SEARCH_INDEX.push({icon:'🎓',title:u.t,meta:'Undergrad · '+(u.tag||''),section:'Undergrad',page:'undergrad',q:(u.t+' '+(u.tag||'')+' '+(u.desc||'')).toLowerCase()});
+  });
+  // Graduate  — {t, desc, detail}
+  if (typeof graduateData !== 'undefined') graduateData.forEach(function(g) {
+    MATH_SEARCH_INDEX.push({icon:'🔬',title:g.t,meta:'Graduate',section:'Graduate',page:'graduate',q:(g.t+' '+(g.desc||'')).toLowerCase()});
+  });
+  // Research  — {badge, t, res, inst, desc}
+  if (typeof researchData !== 'undefined') researchData.forEach(function(r) {
+    MATH_SEARCH_INDEX.push({icon:'⚡',title:r.t,meta:(r.res||'')+' · '+(r.inst||''),section:'Research',page:'research',q:(r.t+' '+(r.res||'')+' '+(r.desc||'')).toLowerCase()});
+  });
+  // Open problems  — {t, field, prize, simple, why}
+  if (typeof openProblems !== 'undefined') openProblems.forEach(function(p) {
+    MATH_SEARCH_INDEX.push({icon:'❓',title:p.t,meta:(p.field||'')+' · '+(p.prize||''),section:'Open Problems',page:'openproblems',q:(p.t+' '+(p.simple||'')+' '+(p.why||'')).toLowerCase()});
+  });
+  // Careers  — {icon, t, tags, desc}
+  if (typeof careersData !== 'undefined') careersData.forEach(function(c) {
+    MATH_SEARCH_INDEX.push({icon:c.icon||'💼',title:c.t,meta:(c.tags||[]).join(' · '),section:'Careers',page:'careers',q:(c.t+' '+(c.desc||'')).toLowerCase()});
+  });
+  // Facts  — {cat, heading, text}
+  if (typeof factsData !== 'undefined') factsData.forEach(function(f) {
+    MATH_SEARCH_INDEX.push({icon:'✨',title:(f.heading||f.cat||''),meta:'Math Fact · '+(f.cat||''),section:'Math Facts',page:'facts',q:((f.heading||'')+' '+(f.text||'')+' '+(f.cat||'')).toLowerCase()});
+  });
+  // Pre-college  — {t, grade, sub}
+  if (typeof preCurriculum !== 'undefined') preCurriculum.forEach(function(p) {
+    MATH_SEARCH_INDEX.push({icon:'📐',title:p.t,meta:'Pre-College · '+(p.grade||''),section:'Pre-College',page:'precollege',q:(p.t+' '+(p.grade||'')+' '+(p.sub||'')).toLowerCase()});
+  });
+  // Olympiad problems via olympiadData tabs
+  if (typeof olympiadData !== 'undefined') olympiadData.forEach(function(tab) {
+    (tab.probs||[]).forEach(function(p) {
+      MATH_SEARCH_INDEX.push({icon:'🏆',title:p.t,meta:'Olympiad · '+(tab.label||''),section:'Olympiad',page:'olympiad',q:(p.t+' '+(p.q||'')+' '+(tab.label||'')).toLowerCase()});
+    });
+  });
+}
+
+function openSearch() {
+  buildMathSearchIndex();
+  var m = document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(function() { document.getElementById('search-input').focus(); }, 80);
+}
+
+function closeSearch() {
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-results').innerHTML = '<div class="sr-empty">Start typing to search across the entire site…</div>';
+}
+
+function runSearch(q) {
+  var res = document.getElementById('search-results');
+  if (!q.trim()) { res.innerHTML = '<div class="sr-empty">Start typing…</div>'; return; }
+  var lq = q.toLowerCase();
+  var hits = MATH_SEARCH_INDEX.filter(function(x) { return x.q.includes(lq); }).slice(0, 20);
+  if (!hits.length) { res.innerHTML = '<div class="sr-empty">No results for "' + q + '"</div>'; return; }
+  res.innerHTML = hits.map(function(h, i) {
+    var ti = mathHighlight(h.title, lq);
+    return '<div class="sr-item" tabindex="0" data-idx="' + MATH_SEARCH_INDEX.indexOf(h) + '" onclick="goMathResult(' + MATH_SEARCH_INDEX.indexOf(h) + ')" onkeydown="if(event.key===\'Enter\')goMathResult(' + MATH_SEARCH_INDEX.indexOf(h) + ')">' +
+      '<span class="sr-icon">' + h.icon + '</span>' +
+      '<div><div class="sr-title">' + ti + '</div><div class="sr-meta">' + h.meta + '</div></div>' +
+      '<span class="sr-section">' + h.section + '</span></div>';
+  }).join('');
+}
+
+function mathHighlight(text, q) {
+  if (!q) return text;
+  var idx = text.toLowerCase().indexOf(q);
+  if (idx < 0) return text;
+  return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
+}
+
+function goMathResult(idx) {
+  var h = MATH_SEARCH_INDEX[idx]; if (!h) return;
+  closeSearch();
+  showPage(h.page);
+}
+
+function searchKeyNav(e) {
+  if (e.key === 'Escape') { closeSearch(); return; }
+  var items = document.querySelectorAll('.sr-item');
+  var cur = document.activeElement;
+  var curIdx = Array.from(items).indexOf(cur);
+  if (e.key === 'ArrowDown') { e.preventDefault(); (items[curIdx + 1] || items[0]).focus(); }
+  if (e.key === 'ArrowUp')   { e.preventDefault(); (items[curIdx - 1] || items[items.length - 1]).focus(); }
+  if (e.key === 'Enter' && curIdx >= 0) { items[curIdx].click(); }
+}
+
+// Keyboard shortcut: '/' opens search
+document.addEventListener('keydown', function(e) {
+  if (['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)) return;
+  var modal = document.getElementById('search-modal');
+  if (modal && modal.classList.contains('open')) {
+    if (e.key === 'Escape') closeSearch();
+    return;
+  }
+  if (e.key === '/') { e.preventDefault(); openSearch(); }
+});
+
   // Determine start page from hash or default home
   var startPage = (location.hash || '').replace('#', '') || 'home';
   showPage(startPage);
@@ -4081,6 +4297,13 @@ document.getElementById('adminModal').addEventListener('click', function(e) {
     _navFromPopState = true;
     showPage((e.state && e.state.page) ? e.state.page : 'home');
   });
+
+  // Expose search functions to global scope for inline HTML handlers
+  window.openSearch = openSearch;
+  window.closeSearch = closeSearch;
+  window.runSearch = runSearch;
+  window.searchKeyNav = searchKeyNav;
+  window.goMathResult = goMathResult;
 })();
 </script>
 

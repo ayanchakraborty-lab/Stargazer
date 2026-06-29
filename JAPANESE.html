@@ -443,7 +443,19 @@ section{position:relative;}
 }
 .kcard .kchar{font-family:var(--kana-font); font-size:2.5rem; line-height:1;}
 .kcard .kroma{font-family:var(--mono); font-size:0.68rem; letter-spacing:0.05em; opacity:0.92; text-transform:uppercase;}
-.kcard .kclick{position:absolute; bottom:6px; right:8px; font-size:0.6rem; opacity:0.5;}
+.ksound{
+  position:absolute; bottom:5px; right:5px;
+  background:rgba(0,0,0,0.22); border:none; border-radius:8px;
+  color:#fff; font-size:0.9rem; width:28px; height:28px;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; padding:0; line-height:1;
+  transition:background 0.15s ease, transform 0.12s ease;
+  z-index:2;
+}
+.ksound:hover,.ksound:focus-visible{background:rgba(0,0,0,0.45); transform:scale(1.15);}
+.ksound:active{transform:scale(0.95);}
+.ksound.playing{animation:soundPop 0.3s ease;}
+@keyframes soundPop{0%{transform:scale(1);}50%{transform:scale(1.3);}100%{transform:scale(1);}}
 
 .bonus-block{
   max-width:880px; margin:80px auto 0; padding:34px 30px; border-radius:22px;
@@ -3229,13 +3241,13 @@ footer p{font-size:0.82rem; opacity:0.5; max-width:560px; margin:6px auto;}
 
   <div class="bonus-block">
     <h3>Beyond the Basic 46</h3>
-    <p>Two small marks and a handful of combination characters extend hiragana to cover every sound in Japanese. A <strong>dakuten</strong> (゛) added to certain consonants voices the sound — か (ka) becomes が (ga). A <strong>handakuten</strong> (゜), used only on the h-row, turns h into a crisp p sound — は (ha) becomes ぱ (pa).</p>
+    <p>Two small marks and a handful of combination characters extend hiragana to cover every sound in Japanese. A <strong>dakuten</strong> (゛) added to certain consonants voices the sound — か (ka) becomes が (ga). A <strong>handakuten</strong> (゜), used only on the h-row, turns h into a crisp p sound — は (ha) becomes ぱ (pa). All dakuon and handakuon characters, plus yōon combinations and long vowel patterns, are now included in the grid above.</p>
     <table class="bonus-table">
       <tr><th>Base</th><th>+ dakuten</th><th>Base</th><th>+ dakuten</th><th>Base</th><th>+ handakuten</th></tr>
       <tr><td class="glyph">か ka</td><td class="glyph">が ga</td><td class="glyph">さ sa</td><td class="glyph">ざ za</td><td class="glyph">は ha</td><td class="glyph">ぱ pa</td></tr>
       <tr><td class="glyph">た ta</td><td class="glyph">だ da</td><td class="glyph">は ha</td><td class="glyph">ば ba</td><td class="glyph">ひ hi</td><td class="glyph">ぴ pi</td></tr>
     </table>
-    <p style="margin-top:24px;">Small versions of や, ゆ, and よ can also combine with an i-row character to form a single blended <strong>yōon</strong> sound — き + small ゃ becomes きゃ (kya), not "ki-ya" said quickly, but one true syllable.</p>
+    <p style="margin-top:24px;">Small versions of や, ゆ, and よ combine with an i-row character to form a single blended <strong>yōon</strong> (拗音) sound — き + small ゃ becomes きゃ (kya), not "ki-ya" said quickly, but one true syllable. A small っ (<strong>sokuon</strong>, 促音) before k / s / t / p doubles that consonant: 切手 (kitte, stamp). Long vowels are written by repeating the vowel: お母さん (okāsan) has a long ā.</p>
     <table class="bonus-table">
       <tr><th>き + ゃ</th><th>き + ゅ</th><th>き + ょ</th><th>し + ゃ</th><th>し + ゅ</th><th>し + ょ</th></tr>
       <tr><td class="glyph">きゃ kya</td><td class="glyph">きゅ kyu</td><td class="glyph">きょ kyo</td><td class="glyph">しゃ sha</td><td class="glyph">しゅ shu</td><td class="glyph">しょ sho</td></tr>
@@ -3309,13 +3321,13 @@ footer p{font-size:0.82rem; opacity:0.5; max-width:560px; margin:6px auto;}
 
   <div class="bonus-block">
     <h3>Sounds Japan Didn't Originally Have</h3>
-    <p>Modern Japanese borrows enormously from English, French, German, and beyond, which means katakana has had to stretch to cover sounds that don't naturally occur in native Japanese. Small versions of vowel characters combine with existing katakana to approximate these foreign sounds as closely as possible.</p>
+    <p>Modern Japanese borrows enormously from English, French, German, and beyond, which means katakana has had to stretch to cover sounds that don't naturally occur in native Japanese. All dakuon (voiced ゛), handakuon (semi-voiced ゜), yōon combination syllables, small ッ, and long vowels (written with ー) are now included in the full grid above.</p>
     <table class="bonus-table">
       <tr><th>Combo</th><th>Sound</th><th>Combo</th><th>Sound</th><th>Combo</th><th>Sound</th></tr>
       <tr><td class="glyph">ファ</td><td>fa</td><td class="glyph">ティ</td><td>ti</td><td class="glyph">ウィ</td><td>wi</td></tr>
       <tr><td class="glyph">ヴァ</td><td>va</td><td class="glyph">チェ</td><td>che</td><td class="glyph">ジェ</td><td>je</td></tr>
     </table>
-    <p style="margin-top:24px;">One extra symbol rounds out the system: a long horizontal dash called <strong>chōonpu</strong> (ー) stretches the preceding vowel sound — コーヒー (kōhī, "coffee") would lose its rhythm entirely without it. It's used almost exclusively in katakana, rarely appearing in native Japanese hiragana words at all.</p>
+    <p style="margin-top:24px;">One extra symbol rounds out the system: a long horizontal dash called <strong>chōonpu</strong> (ー) stretches the preceding vowel sound — コーヒー (kōhī, "coffee") would lose its rhythm entirely without it. It is used almost exclusively in katakana, rarely appearing in native Japanese hiragana words.</p>
   </div>
 
 </div>
@@ -3351,6 +3363,7 @@ footer p{font-size:0.82rem; opacity:0.5; max-width:560px; margin:6px auto;}
       <div>
         <div class="kmodal-romaji" id="kmodal-romaji"></div>
         <div class="kmodal-type" id="kmodal-type"></div>
+        <button id="kmodal-sound" aria-label="Play pronunciation" title="Play sound" style="margin-top:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:8px;color:#fff;font-size:1rem;padding:6px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background 0.15s;">🔊 <span style="font-family:var(--mono);font-size:0.7rem;letter-spacing:0.05em;text-transform:uppercase;opacity:0.8;">Play</span></button>
       </div>
     </div>
     <div class="kmodal-section">
@@ -3525,7 +3538,218 @@ const HIRAGANA = [
    f:"を is essentially retired from everyday spelling except for one critical role: marking the direct object of a sentence. You'll use it constantly, but only that way."},
   {c:"ん",r:"n",row:"w",k:"无 (disputed)",
    m:"A simple curved hook, like a half-finished knot left hanging — it's the only sound in Japanese that stands completely on its own with no vowel attached.",
-   f:"ん was the very last kana to be invented, appearing only around 1,000 years ago once the \"n\" sound itself developed in spoken Japanese."}
+   f:"ん was the very last kana to be invented, appearing only around 1,000 years ago once the \"n\" sound itself developed in spoken Japanese."},
+
+  /* ── DAKUON & HANDAKUON ─────────────────────────────── */
+  /* G-row */
+  {c:"が",r:"ga",row:"g",
+   m:"か with two dots (dakuten ゛) — the same shape, now voiced. The k flips to a buzzing g: ga!",
+   f:"Dakuten ゛ always signals voicing: か→が, さ→ざ, た→だ, は→ば. Five base rows, five voiced families."},
+  {c:"ぎ",r:"gi",row:"g",
+   m:"き with the dakuten buzz — like a vibrating key: giii!",
+   f:"ぎ appears in 技術 (gijutsu, technology) and 義務 (gimu, obligation) — both essential vocabulary words."},
+  {c:"ぐ",r:"gu",row:"g",
+   m:"く with two buzzing dots — the growl at the back of the throat: guh!",
+   f:"ぐ starts 具合 (guai, condition) and ぐるぐる (guruguru, spinning round and round) — a vivid onomatopoeia."},
+  {c:"げ",r:"ge",row:"g",
+   m:"け with a buzz — energetic like 'get!' said with conviction.",
+   f:"げ is the opening syllable of 元気 (genki, energetic/healthy) — possibly the most-used positive adjective in daily Japanese."},
+  {c:"ご",r:"go",row:"g",
+   m:"こ with two dots — and ご (go) happens to mean 'five' in Japanese!",
+   f:"ご also works as an honorific prefix: ご飯 (gohan, cooked rice) and ご家族 (go-kazoku, your family)."},
+  /* Z-row */
+  {c:"ざ",r:"za",row:"z",
+   m:"さ with a buzz — like a bee zigzagging past your ear: za za za!",
+   f:"ざ starts ざんねん (zannen, what a pity) — one of the most frequently used expressions of mild disappointment."},
+  {c:"じ",r:"ji",row:"z",
+   m:"し with two buzzing dots — a smooth, flowing ji that glides like water.",
+   f:"じ is the more common of two kana for the 'ji' sound. It appears in 自由 (jiyū, freedom) and 時間 (jikan, time)."},
+  {c:"ず",r:"zu",row:"z",
+   m:"す with a buzz — the steady hum of something rolling along: zu~",
+   f:"ず appears in ずっと (zutto, the whole time / all along) — one of the most useful adverbs for learners to know early."},
+  {c:"ぜ",r:"ze",row:"z",
+   m:"せ with a buzz — urgent and emphatic, like 'absolutely!' buzzing through a conversation.",
+   f:"ぜ starts 全然 (zenzen, not at all) and 絶対 (zettai, absolutely) — both essential for strong emphasis in speech."},
+  {c:"ぞ",r:"zo",row:"z",
+   m:"そ with two dots — like something eerie lurking just out of sight: ぞっとする (zotto suru, gives you the creeps)!",
+   f:"ぞ adds forcefulness at the end of casual sentences — だぞ! means 'it IS, I tell you!' with real conviction."},
+  /* D-row */
+  {c:"だ",r:"da",row:"d",
+   m:"た with two dots — the emphatic だ! that ends countless Japanese sentences as the plain, informal copula.",
+   f:"だ is the casual form of です (desu, to be) — the absolute backbone of informal Japanese conversation."},
+  {c:"ぢ",r:"ji",row:"d",
+   m:"ち with a buzz — now rare, surviving mainly in compound words where historical voicing rules apply.",
+   f:"ぢ is kept alive in 鼻血 (hanaji, nosebleed) and 続く (tsuzuku, to continue) where old spelling conventions hold."},
+  {c:"づ",r:"zu",row:"d",
+   m:"つ with dots — the archaic 'zu', a relic of older spelling now replaced by ず in most modern contexts.",
+   f:"づ survives in words like 続く (tsuzuku, to continue) and 稲妻 (inazuma, lightning) by historical convention."},
+  {c:"で",r:"de",row:"d",
+   m:"て with a buzz — で marks the place or means of an action: 東京で (Tōkyō de, in Tokyo).",
+   f:"で is among the five most-used particles in Japanese, marking locations, tools, and causes all in one syllable."},
+  {c:"ど",r:"do",row:"d",
+   m:"と with dots — ど starts どこ (doko, where?), どう (dō, how?), and どんな (donna, what kind?).",
+   f:"ど can also intensify words in casual speech: ど真ん中 (domannaka) means 'right smack in the absolute middle.'"},
+  /* B-row */
+  {c:"ば",r:"ba",row:"b",
+   m:"は with a buzz — like 'bam' cut short: ba! A solid, punchy syllable.",
+   f:"ば appears in 場合 (baai, case/situation) and anchors the conditional verb ending -ば (if/when)."},
+  {c:"び",r:"bi",row:"b",
+   m:"ひ with dots — the start of 美術 (bijutsu, fine arts) and びっくり (bikkuri, startled)!",
+   f:"び appears in 美人 (bijin, beautiful person) and 文化 (bunka... wait — ぶ not び). び is in 美術 (bijutsu) and 病気 (byōki is びょ)."},
+  {c:"ぶ",r:"bu",row:"b",
+   m:"ふ with a buzz — the thud of impact: ぶつかる (butsukaru, to bump into).",
+   f:"ぶ is in 文化 (bunka, culture) and 武道 (budō, martial arts) — two of Japan's greatest cultural exports."},
+  {c:"べ",r:"be",row:"b",
+   m:"へ with a buzz — べ starts 勉強 (benkyō, studying) — the word every language learner needs first!",
+   f:"べ appears in 便利 (benri, convenient) and 別に (betsu ni, not particularly) — both extremely common in daily speech."},
+  {c:"ぼ",r:"bo",row:"b",
+   m:"ほ with dots — the soft resonant plop of ぼとっ (bototto, something dropping into water).",
+   f:"ぼ appears in 僕 (boku, I/me, used by males) and ぼんやり (bon'yari, vaguely/absent-mindedly)."},
+  /* P-row */
+  {c:"ぱ",r:"pa",row:"p",
+   m:"は with a tiny circle (handakuten ゜) — a crisp, unvoiced pop: pa! Like a burst bubble.",
+   f:"The handakuten ゜ applies ONLY to the h-row, converting は/ひ/ふ/へ/ほ into the entire p-sound family."},
+  {c:"ぴ",r:"pi",row:"p",
+   m:"ひ with a circle — ぴかぴか (pikapika) means sparkling bright! Pop-i!",
+   f:"ぴかぴか (pikapika, sparkling) is where Pikachu's name comes from — a sparkling little electric mouse."},
+  {c:"ぷ",r:"pu",row:"p",
+   m:"ふ with a circle — the pop of a bubble: ぷっ (pu)!",
+   f:"ぷ appears in ぷよぷよ (puyopuyo, wobbly/squishy) — a beloved game and the word for anything soft and jiggly."},
+  {c:"ぺ",r:"pe",row:"p",
+   m:"へ with a circle — a light tap onto a surface: ぺた (peta, a flat slap).",
+   f:"ぺらぺら (perapera, fluent) is the word for speaking a language fluently — the goal every learner is chasing!"},
+  {c:"ぽ",r:"po",row:"p",
+   m:"ほ with a circle — round and popping like a cork: ぽん (pon)!",
+   f:"ぽかぽか (pokapoka, warm and cozy) and ぽつぽつ (potsupotsu, little by little) capture the soft sound perfectly."},
+
+  /* ── YŌON (combination syllables) ──────────────────── */
+  {c:"きゃ",r:"kya",row:"yo",
+   m:"き + small ゃ = one blended syllable: kya! The 'i' in き glides straight into 'ya'.",
+   f:"Yōon are always written as one LARGE kana + one SMALL kana — the small size signals fusion into a single sound, not two beats."},
+  {c:"きゅ",r:"kyu",row:"yo",
+   m:"き + small ゅ = kyu — like 'queue' said in one smooth motion.",
+   f:"きゅうり (kyūri, cucumber) and 急 (kyū, sudden) make きゅ one of the most useful yōon in everyday Japanese."},
+  {c:"きょ",r:"kyo",row:"yo",
+   m:"き + small ょ = kyo — the heart of 京都 (Kyōto), Japan's ancient capital.",
+   f:"きょ starts 今日 (kyō, today) and 教室 (kyōshitsu, classroom) — two absolute must-know words."},
+  {c:"ぎゃ",r:"gya",row:"yo",
+   m:"ぎ + small ゃ = gya — the voiced twin of kya, buzzing with energy.",
+   f:"ぎゃっ! (gyaa!) is a startled shriek in manga — and ぎゃく (gyaku, reverse/opposite) is an everyday word."},
+  {c:"ぎゅ",r:"gyu",row:"yo",
+   m:"ぎ + small ゅ = gyu — like 'gyudon' (beef bowl), Japan's iconic comfort food.",
+   f:"ぎゅうどん (gyūdon, beef bowl) and ぎゅっと (gyutto, with a tight squeeze) both start with this syllable."},
+  {c:"ぎょ",r:"gyo",row:"yo",
+   m:"ぎ + small ょ = gyo — 漁 (gyō, fishing) uses this, and ぎょっ! is a startled exclamation.",
+   f:"ぎょっ! is a vivid expression of shock in casual Japanese — and 漁師 (gyoshi, fisherman) shares the syllable."},
+  {c:"しゃ",r:"sha",row:"yo",
+   m:"し + small ゃ = sha — the shush of a hushed secret, or the start of 写真 (shashin, photograph).",
+   f:"写真 (shashin, photograph) and しゃべる (shaberu, to chat) make しゃ one of the most-encountered yōon."},
+  {c:"しゅ",r:"shu",row:"yo",
+   m:"し + small ゅ = shu — like 'shoe' said decisively. 趣味 (shumi, hobby) starts here.",
+   f:"趣味 (shumi, hobby) is indispensable vocabulary — you'll need it the moment someone asks 'what do you enjoy?'"},
+  {c:"しょ",r:"sho",row:"yo",
+   m:"し + small ょ = sho — 将軍 (shōgun) starts here, and so does 醤油 (shōyu, soy sauce).",
+   f:"醤油 (shōyu, soy sauce) is one of Japan's most fundamental flavors — and a lovely early vocabulary word."},
+  {c:"じゃ",r:"ja",row:"yo",
+   m:"じ + small ゃ = ja — じゃあね! (jā ne, see you!) — one of the first phrases you'll use every day.",
+   f:"じゃ is essential: じゃあまた (jā mata, see you soon) and じゃない (ja nai, is not) appear constantly."},
+  {c:"じゅ",r:"ju",row:"yo",
+   m:"じ + small ゅ = ju — 授業 (jugyō, class/lesson) and 重要 (jūyō, important) start here.",
+   f:"自由 (jiyū, freedom) and 授業 (jugyō, lesson) make じゅ one of the most content-rich syllables to learn."},
+  {c:"じょ",r:"jo",row:"yo",
+   m:"じ + small ょ = jo — 情報 (jōhō, information) and 女性 (josei, woman) start here.",
+   f:"情報 (jōhō, information) is a word that will follow you everywhere in modern Japanese life."},
+  {c:"ちゃ",r:"cha",row:"yo",
+   m:"ち + small ゃ = cha — お茶 (ocha, green tea) ends here, and ちゃんと (chanto, properly) starts with it.",
+   f:"ちゃんと (chanto, properly/correctly) is one of the most genuinely useful early vocabulary words a learner can pick up."},
+  {c:"ちゅ",r:"chu",row:"yo",
+   m:"ち + small ゅ = chu — the sound of a kiss in Japanese, and also the sound a mouse makes!",
+   f:"ちゅう (chū) has charming dual duty: a mouse's squeak AND the sound a kiss makes."},
+  {c:"ちょ",r:"cho",row:"yo",
+   m:"ち + small ょ = cho — ちょっと (chotto, a little / just a moment) starts right here.",
+   f:"ちょっと (chotto) is one of the most versatile words in the language: 'a little,' 'hold on,' or even a polite refusal."},
+  {c:"にゃ",r:"nya",row:"yo",
+   m:"に + small ゃ = nya — the sound cats make in Japan! にゃー (nyā) is the Japanese meow.",
+   f:"Cats say にゃー (nyā) in Japan — and ニャンコ (nyanko) is the sweet, affectionate word for a pet cat."},
+  {c:"にゅ",r:"nyu",row:"yo",
+   m:"に + small ゅ = nyu — 入学 (nyūgaku, school enrollment) and 入力 (nyūryoku, input) start here.",
+   f:"入 (nyū, to enter) compounds form dozens of vital words: 入院 (nyūin, hospitalization), 入国 (entering a country)."},
+  {c:"によ",r:"nyo",row:"yo",
+   m:"に + small ょ = nyo — a rare syllable found in some classical and Buddhist terminology.",
+   f:"によ is uncommon in modern everyday Japanese but preserved in historical and religious compound words."},
+  {c:"ひゃ",r:"hya",row:"yo",
+   m:"ひ + small ゃ = hya — 百 (hyaku, one hundred) starts right here!",
+   f:"ひゃく (hyaku, 100) is one of the very first yōon new learners encounter — you need it to count past ninety-nine."},
+  {c:"ひゅ",r:"hyu",row:"yo",
+   m:"ひ + small ゅ = hyu — the whooshing sound of wind rushing past.",
+   f:"ひゅー (hyū) is an onomatopoeia for a whistling wind — uncommon in vocabulary but vivid in descriptive writing."},
+  {c:"ひょ",r:"hyo",row:"yo",
+   m:"ひ + small ょ = hyo — 表 (hyō, chart/table) and ひょっとして (hyotto shite, by any chance?) start here.",
+   f:"ひょっとして (hyotto shite, perhaps/maybe) is a gentle way to float a possibility — conversationally very natural."},
+  {c:"びゃ",r:"bya",row:"yo",
+   m:"び + small ゃ = bya — a rare combination found in some specialized vocabulary.",
+   f:"びゃ is uncommon in mainstream Japanese but appears in some technical and regional vocabulary contexts."},
+  {c:"びゅ",r:"byu",row:"yo",
+   m:"び + small ゅ = byu — rare, occasionally used to approximate certain foreign sounds.",
+   f:"びゅ appears mainly in onomatopoeia for swishing or rushing sounds rather than in standard vocabulary."},
+  {c:"びょ",r:"byo",row:"yo",
+   m:"び + small ょ = byo — 病院 (byōin, hospital) starts right here. Know this one!",
+   f:"びょうき (byōki, illness/sickness) and 病院 (byōin, hospital) make びょ essential vocabulary for daily life."},
+  {c:"ぴゃ",r:"pya",row:"yo",
+   m:"ぴ + small ゃ = pya — a popping syllable found mainly in playful onomatopoeia.",
+   f:"ぴゃ is rare in standard vocabulary but pops up in manga, anime sound effects, and playful expressions."},
+  {c:"ぴゅ",r:"pyu",row:"yo",
+   m:"ぴ + small ゅ = pyu — the whoosh of something flying past at speed.",
+   f:"ぴゅー (pyū) is an onomatopoeia for something moving through the air very quickly — vivid in manga action scenes."},
+  {c:"ぴょ",r:"pyo",row:"yo",
+   m:"ぴ + small ょ = pyo — ぴょん (pyon) is how rabbits hop in Japan!",
+   f:"ぴょんぴょん (pyonpyon, hopping playfully) perfectly captures the sound — light, bouncy, and irresistibly cute."},
+  {c:"みゃ",r:"mya",row:"yo",
+   m:"み + small ゃ = mya — a rare combination preserved in some dialect and literary uses.",
+   f:"みゃ is uncommon in everyday spoken Japanese but appears in some regional accents and older literary vocabulary."},
+  {c:"みゅ",r:"myu",row:"yo",
+   m:"み + small ゅ = myu — as in ミュージック (myūjikku, music) when written in hiragana.",
+   f:"みょうじ (myōji, family name/surname) uses みょ — a word every Japanese learner needs early on."},
+  {c:"みょ",r:"myo",row:"yo",
+   m:"み + small ょ = myo — 妙 (myō, strange/remarkable) and みょうじ (myōji, surname) start here.",
+   f:"みょうじ (myōji, surname) is a word you'll use the first time you introduce yourself formally in Japanese."},
+  {c:"りゃ",r:"rya",row:"yo",
+   m:"り + small ゃ = rya — found in 略 (ryaku, abbreviation/shortcut).",
+   f:"略語 (ryakugo, abbreviation) and 略図 (ryakuzu, sketch map) both use りゃ — practical for note-taking."},
+  {c:"りゅ",r:"ryu",row:"yo",
+   m:"り + small ゅ = ryu — 龍 (ryū, dragon) lives here. One of the most iconic words in Japanese.",
+   f:"りゅう (ryū, dragon) and 流行 (ryūkō, trend/fashion) both start with りゅ — one mythical, one very current."},
+  {c:"りょ",r:"ryo",row:"yo",
+   m:"り + small ょ = ryo — 旅行 (ryokō, travel/journey) starts right here!",
+   f:"旅行 (ryokō, travel) and 料理 (ryōri, cooking/cuisine) both begin with りょ — two pillars of the Japanese experience."},
+
+  /* ── SMALL っ (GEMINATE CONSONANT) ─────────────────── */
+  {c:"っ",r:"xtsu",row:"tsu",
+   m:"A smaller version of つ (tsu) — wherever it appears, it creates a brief held pause before the next consonant, effectively doubling it.",
+   f:"っ is called 促音 (sokuon). It turns 'kite' into 'kitte' (切手, stamp) and completely changes meaning — without it, words collapse. It can precede k, s, t, or p."},
+
+  /* ── LONG VOWELS ────────────────────────────────────── */
+  {c:"ああ",r:"ā",row:"lv",
+   m:"Two あ in a row — hold the 'ah' sound for two full beats. お母さん (okāsan, mother) uses this pattern.",
+   f:"In hiragana, long vowels are written by adding a second vowel character — unlike katakana, which uses the dedicated ー mark."},
+  {c:"いい",r:"ī",row:"lv",
+   m:"Two い in a row — stretch the 'ee' for two beats. And いい (ii) itself means 'good' or 'fine'!",
+   f:"いい (ii, good/fine) is itself a long-vowel word — so this card is also a very useful adjective to memorize right away."},
+  {c:"うう",r:"ū",row:"lv",
+   m:"Two う in a row — hold the 'oo' for two beats. 数学 (sūgaku, mathematics) contains this long vowel.",
+   f:"Long ū is common: 空気 (kūki, air), 数学 (sūgaku, math), 普通 (futsū, ordinary) — all use extended う."},
+  {c:"ええ",r:"ē",row:"lv",
+   m:"Two え in a row — hold the 'eh' for two beats. And ええ (ee) means 'yes' in Kansai dialect!",
+   f:"ええ (ee) is a casual 'yes' in Kansai-area Japanese — recognizing it helps you understand regional speech."},
+  {c:"おお",r:"ō",row:"lv",
+   m:"Two お in a row — hold the 'oh' for two beats. 大きい (ōkii, big) starts with this pattern.",
+   f:"Both おお and おう spellings can produce the same long ō sound — which one is used depends on the word's historical spelling."},
+  {c:"えい",r:"ē",row:"lv",
+   m:"え + い — technically a diphthong, but usually held as a sustained long ē: 英語 (eigo, English language).",
+   f:"えい is typically held as a single long ē in standard speech, not two distinct beats — a subtlety that catches many learners."},
+  {c:"おう",r:"ō",row:"lv",
+   m:"お + う — the most common way to write a long ō in hiragana: 東京 (Tōkyō) ends with this pattern.",
+   f:"おう (ō) appears in countless words: 東京 (Tōkyō), 王 (ō, king), 多い (ōi, many) — it's everywhere in the language."}
 ];
 
 const KATAKANA = [
@@ -3666,7 +3890,212 @@ const KATAKANA = [
    f:"ヲ traces to a different parent kanji than hiragana を (乎 versus 遠) and today survives almost only in old telegraphs, military signage, and retro typography."},
   {c:"ン",r:"n",row:"w",k:"尓/爾 (disputed, possibly none)",
    m:"A short diagonal stroke, nearly identical to ソ and ツ but tilted at its own particular angle — the trickiest of the look-alike trio.",
-   f:"Some linguists believe ン never had a single parent kanji at all — it may have been invented as a pure abbreviation mark after the \"n\" sound emerged in spoken Japanese."}
+   f:"Some linguists believe ン never had a single parent kanji at all — it may have been invented as a pure abbreviation mark after the \"n\" sound emerged in spoken Japanese."},
+
+  /* ── DAKUON & HANDAKUON ─────────────────────────────── */
+  /* G-row */
+  {c:"ガ",r:"ga",row:"g",
+   m:"カ with two dots added — the same bold shape, now voiced: ga!",
+   f:"ガ starts ガソリン (gasorin, gasoline) and ガラス (garasu, glass) — two ubiquitous loanwords."},
+  {c:"ギ",r:"gi",row:"g",
+   m:"キ with a buzz — voiced and vibrant: ギター (gitā, guitar) starts right here!",
+   f:"ギター (gitā, guitar) and ギャップ (gyappu, gap) are two of the most common gi- words in modern Japanese."},
+  {c:"グ",r:"gu",row:"g",
+   m:"ク with dots — グラス (gurasu, glass/cup) and グループ (gurūpu, group) start here.",
+   f:"グーグル (Gūguru, Google) is arguably the most-recognised gu- word in contemporary Japanese!"},
+  {c:"ゲ",r:"ge",row:"g",
+   m:"ケ with a buzz — ゲーム (gēmu, game) is how Japan writes its beloved gaming culture.",
+   f:"ゲーム (gēmu, game) and ゲスト (gesuto, guest) are both extremely common in everyday Japanese."},
+  {c:"ゴ",r:"go",row:"g",
+   m:"コ with dots — ゴール (gōru, goal) and ゴリラ (gorira, gorilla) come to mind instantly.",
+   f:"ゴリラ (gorira, gorilla) illustrates how katakana inserts vowels after each consonant to fit Japanese phonology."},
+  /* Z-row */
+  {c:"ザ",r:"za",row:"z",
+   m:"サ with a buzz — ザ (za) is also used to transliterate English 'The' in brand names!",
+   f:"ザ・ビートルズ (Za Bītaruzu, The Beatles) — ザ as 'The' appears constantly in Japanese logo and brand writing."},
+  {c:"ジ",r:"ji",row:"z",
+   m:"シ with dots — ジュース (jūsu, juice) and ジャズ (jazu, jazz) both start here.",
+   f:"ジュース (jūsu, juice) from English is one of the very first katakana words visitors to Japan encounter."},
+  {c:"ズ",r:"zu",row:"z",
+   m:"ス with a buzz — ズボン (zubon, trousers) and ズーム (zūmu, zoom) start here.",
+   f:"ズボン (zubon, trousers/pants) comes from French 'jupon' — a reminder that Japanese loanwords arrive from many languages."},
+  {c:"ゼ",r:"ze",row:"z",
+   m:"セ with dots — ゼロ (zero) starts right here. The very beginning of nothing!",
+   f:"ゼロ (zero) from English makes ゼ instantly recognisable — and ゼリー (zerī, jelly) is a sweet bonus."},
+  {c:"ゾ",r:"zo",row:"z",
+   m:"ソ with a buzz — ゾンビ (zonbi, zombie) and ゾーン (zōn, zone) live in this syllable.",
+   f:"ゾンビ (zonbi, zombie) shows how katakana adapts consonant-heavy foreign words by inserting extra vowels."},
+  /* D-row */
+  {c:"ダ",r:"da",row:"d",
+   m:"タ with dots — ダンス (dansu, dance) starts here. The body in motion!",
+   f:"ダンス (dansu, dance) and ダイエット (daietto, diet) are two of the most common da- loanwords in Japanese."},
+  {c:"ヂ",r:"ji",row:"d",
+   m:"チ with dots — nearly extinct in modern katakana; ジ handles almost all 'ji' sounds instead.",
+   f:"ヂ is essentially obsolete in katakana loanwords — you will almost never encounter it in modern written Japanese."},
+  {c:"ヅ",r:"zu",row:"d",
+   m:"ツ with dots — extremely rare; ズ has taken over almost all 'zu' roles in loanwords.",
+   f:"ヅ is nearly unused in modern katakana — ズ handles all standard 'zu' transcriptions today."},
+  {c:"デ",r:"de",row:"d",
+   m:"テ with a buzz — デパート (depāto, department store) starts right here.",
+   f:"デパート (depāto, department store) from English 'department' is a word every visitor to Japan soon learns."},
+  {c:"ド",r:"do",row:"d",
+   m:"ト with dots — ドア (doa, door) and ドラマ (dorama, drama) start with this.",
+   f:"ドラマ (dorama, TV drama) is one of many English words Japanese shortened while borrowing — 'drama' became dorama."},
+  /* B-row */
+  {c:"バ",r:"ba",row:"b",
+   m:"ハ with a buzz — バス (basu, bus) is one of the first transport words every visitor learns.",
+   f:"バス (basu, bus), バター (batā, butter), and バナナ (banana) — ハ became バ to fill a phonological gap."},
+  {c:"ビ",r:"bi",row:"b",
+   m:"ヒ with dots — ビール (bīru, beer) is borrowed from German 'Bier'. Prost!",
+   f:"ビール (bīru, beer) from German is one of Japan's most popular imports in every sense of the word."},
+  {c:"ブ",r:"bu",row:"b",
+   m:"フ with a buzz — ブック (bukku, book) and ブルー (burū, blue) start here.",
+   f:"ブルー (burū, blue) shows how katakana doubles consonants and inserts vowels to adapt cluster-heavy English words."},
+  {c:"ベ",r:"be",row:"b",
+   m:"ヘ with dots — ベスト (besuto, best) and ベランダ (beranda, veranda) start here.",
+   f:"ベランダ (beranda, balcony/veranda) from Portuguese is one of the older European loanwords still in everyday use."},
+  {c:"ボ",r:"bo",row:"b",
+   m:"ホ with a buzz — ボール (bōru, ball) and ボタン (botan, button) start here.",
+   f:"ボタン (botan, button) from Portuguese 'botão' — a reminder that Japanese loanwords predate the English era."},
+  /* P-row */
+  {c:"パ",r:"pa",row:"p",
+   m:"ハ with a tiny circle (handakuten ゜) — a crisp pop: パン (pan, bread) from Portuguese!",
+   f:"パン (pan, bread) from Portuguese 'pão' is one of the oldest European loanwords in the Japanese language."},
+  {c:"ピ",r:"pi",row:"p",
+   m:"ヒ with a circle — ピアノ (piano) starts here, straight from Italian.",
+   f:"ピアノ (piano) and ピザ (piza, pizza) are loanwords from different European languages — both start with ピ."},
+  {c:"プ",r:"pu",row:"p",
+   m:"フ with a circle — プール (pūru, swimming pool) and プレゼント (purezento, present/gift) start here.",
+   f:"プール (pūru, swimming pool) from English is essential vocabulary for summer in Japan."},
+  {c:"ペ",r:"pe",row:"p",
+   m:"ヘ with a circle — ペン (pen) is about as direct a loanword as it gets!",
+   f:"ペン (pen) is one of the first katakana words taught to new learners — a direct borrowing needing no adaptation."},
+  {c:"ポ",r:"po",row:"p",
+   m:"ホ with a circle — ポケット (poketto, pocket) gave its first four characters to Pokémon!",
+   f:"ポケモン (Pokémon) is short for ポケット (poketto, pocket) + モンスター (monsutā, monster) — pure katakana wordplay."},
+
+  /* ── YŌON (combination syllables) ──────────────────── */
+  {c:"キャ",r:"kya",row:"yo",
+   m:"キ + small ャ = kya — キャラ (kyara, character) and キャンプ (kyanpu, camping) start here.",
+   f:"キャラ (kyara, character) is one of Japan's most-used pop-culture words — short for キャラクター."},
+  {c:"キュ",r:"kyu",row:"yo",
+   m:"キ + small ュ = kyu — キュート (kyūto, cute) makes this immediately useful!",
+   f:"キュート (kyūto, cute) and キューブ (kyūbu, cube) both use キュ — borrowed directly from English."},
+  {c:"キョ",r:"kyo",row:"yo",
+   m:"キ + small ョ = kyo — トーキョー (Tōkyō) ends with this syllable!",
+   f:"東京 written in katakana is トーキョー — a useful exercise in reading katakana place names."},
+  {c:"ギャ",r:"gya",row:"yo",
+   m:"ギ + small ャ = gya — ギャップ (gyappu, gap/difference) is a very common word.",
+   f:"ギャップ (gyappu, gap) and ギャラリー (gyararī, gallery) are both frequently used in modern Japanese."},
+  {c:"ギュ",r:"gyu",row:"yo",
+   m:"ギ + small ュ = gyu — ギュッ (gyutto) means to squeeze something tightly!",
+   f:"ギュッと (gyutto, tightly/with a squeeze) is onomatopoeia that appears even in katakana contexts."},
+  {c:"ギョ",r:"gyo",row:"yo",
+   m:"ギ + small ョ = gyo — ギョーザ (gyōza, pot stickers/dumplings) is one of Japan's favourite dishes!",
+   f:"ギョーザ (gyōza) from Chinese 饺子 (jiǎozi) is one of the most beloved foods in Japan — a delicious loanword."},
+  {c:"シャ",r:"sha",row:"yo",
+   m:"シ + small ャ = sha — シャワー (shawā, shower) and シャツ (shatsu, shirt) start here.",
+   f:"シャツ (shatsu, shirt) and シャワー (shawā, shower) are everyday essentials — and everyday katakana."},
+  {c:"シュ",r:"shu",row:"yo",
+   m:"シ + small ュ = shu — シュート (shūto, shoot) and シュークリーム (shūkurīmu, cream puff) use this.",
+   f:"シュークリーム (shūkurīmu, cream puff) from French 'chou à la crème' — katakana handles French remarkably well."},
+  {c:"ショ",r:"sho",row:"yo",
+   m:"シ + small ョ = sho — ショッピング (shoppingu, shopping) starts right here.",
+   f:"ショッピングモール (shoppingu mōru, shopping mall) is pure English phonetically adapted to Japanese."},
+  {c:"ジャ",r:"ja",row:"yo",
+   m:"ジ + small ャ = ja — ジャズ (jazu, jazz) and ジャケット (jaketto, jacket) start here.",
+   f:"ジャズ (jazu, jazz) and ジャム (jamu, jam) show how ja- words arrive from English into katakana with ease."},
+  {c:"ジュ",r:"ju",row:"yo",
+   m:"ジ + small ュ = ju — ジュース (jūsu, juice) is one of the very first katakana words learners encounter!",
+   f:"ジュース (jūsu, juice) from English is ubiquitous on menus and in everyday life across Japan."},
+  {c:"ジョ",r:"jo",row:"yo",
+   m:"ジ + small ョ = jo — ジョギング (jogingu, jogging) and ジョーク (jōku, joke) live here.",
+   f:"ジョーク (jōku, joke) and ジョギング (jogingu, jogging) are both common in everyday modern Japanese."},
+  {c:"チャ",r:"cha",row:"yo",
+   m:"チ + small ャ = cha — チャンス (chansu, chance) and チャット (chatto, chat) start here.",
+   f:"チャンス (chansu, chance/opportunity) is extremely high frequency — business, sports, everyday conversation."},
+  {c:"チュ",r:"chu",row:"yo",
+   m:"チ + small ュ = chu — チューブ (chūbu, tube) and チューリップ (chūrippu, tulip) start here.",
+   f:"チューリップ (chūrippu, tulip) from Dutch 'tulp' is a lovely example of a European plant name entering Japanese."},
+  {c:"チョ",r:"cho",row:"yo",
+   m:"チ + small ョ = cho — チョコレート (chokorēto, chocolate) — everyone recognises this one!",
+   f:"チョコレート (chokorēto, chocolate) is possibly the single most recognised katakana word among non-Japanese speakers."},
+  {c:"ニャ",r:"nya",row:"yo",
+   m:"ニ + small ャ = nya — ニャー (nyā, meow) and ニャンコ (nyanko, kitty) live here.",
+   f:"ニャンコ (nyanko, kitty) and the onomatopoeia ニャー (nyā) make this one of the most adorable katakana yōon."},
+  {c:"ニュ",r:"nyu",row:"yo",
+   m:"ニ + small ュ = nyu — ニュース (nyūsu, news) starts right here!",
+   f:"ニュース (nyūsu, news) from English is one of the most essential katakana words for daily life in Japan."},
+  {c:"ニョ",r:"nyo",row:"yo",
+   m:"ニ + small ョ = nyo — ニョッキ (nyokki, gnocchi) from Italian is a rare but real example!",
+   f:"ニョッキ (nyokki, gnocchi) shows katakana's impressive ability to handle diverse phonology from many languages."},
+  {c:"ヒャ",r:"hya",row:"yo",
+   m:"ヒ + small ャ = hya — rare in loanwords, but found in some transcriptions.",
+   f:"ヒャ is uncommon in mainstream katakana loanwords — most 'hya' sounds are rare in the source languages too."},
+  {c:"ヒュ",r:"hyu",row:"yo",
+   m:"ヒ + small ュ = hyu — ヒューマン (hyūman, human) and ヒューズ (hyūzu, fuse) use this.",
+   f:"ヒューマン (hyūman, human) from English is one of the clearest and most common examples of ヒュ in use."},
+  {c:"ヒョ",r:"hyo",row:"yo",
+   m:"ヒ + small ョ = hyo — ヒョウ (hyō, leopard) is a native word sometimes written in katakana.",
+   f:"ヒョウ (hyō, leopard) is a native Japanese animal name — one of several written in katakana for visual clarity."},
+  {c:"ビャ",r:"bya",row:"yo",
+   m:"ビ + small ャ = bya — extremely rare; almost non-existent in modern loanwords.",
+   f:"ビャ is essentially obsolete in modern katakana — you're unlikely to encounter it outside of academic discussion."},
+  {c:"ビュ",r:"byu",row:"yo",
+   m:"ビ + small ュ = byu — ビュッフェ (byuffe, buffet) from French is one of the few examples.",
+   f:"ビュッフェ (byuffe, buffet) from French 'buffet' is one of the few mainstream words containing ビュ."},
+  {c:"ビョ",r:"byo",row:"yo",
+   m:"ビ + small ョ = byo — mainly used in foreign name transcription: ビョーク (Björk).",
+   f:"ビョーク (Björk) — the Icelandic singer's name — is one of the most recognised examples of ビョ in Japanese media."},
+  {c:"ピャ",r:"pya",row:"yo",
+   m:"ピ + small ャ = pya — extremely rare in modern Japanese.",
+   f:"ピャ is essentially unused — one of the rarest katakana yōon combinations in the modern language."},
+  {c:"ピュ",r:"pyu",row:"yo",
+   m:"ピ + small ュ = pyu — ピュア (pyua, pure) is the most common example!",
+   f:"ピュア (pyua, pure) from English is frequently used in advertising, cosmetics, and everyday compliments in Japan."},
+  {c:"ピョ",r:"pyo",row:"yo",
+   m:"ピ + small ョ = pyo — ピョンヤン (P'yŏngyang, Pyongyang) is a well-known example.",
+   f:"ピョンヤン (Pyongyang) and ピョン (pyon, boing/hop) give ピョ rare but real appearances in written Japanese."},
+  {c:"ミャ",r:"mya",row:"yo",
+   m:"ミ + small ャ = mya — ミャンマー (Myanmā, Myanmar) is the main example.",
+   f:"ミャンマー (Myanmā, Myanmar) is the most common word containing ミャ in modern Japanese."},
+  {c:"ミュ",r:"myu",row:"yo",
+   m:"ミ + small ュ = myu — ミュージック (myūjikku, music) starts right here!",
+   f:"ミュージック (myūjikku, music) from English is one of the most recognisable ミュ words in Japanese culture."},
+  {c:"ミョ",r:"myo",row:"yo",
+   m:"ミ + small ョ = myo — rare in loanwords; mainly appears in place name transcriptions.",
+   f:"ミョ is uncommon in mainstream loanwords — it mainly appears in the transcription of foreign proper nouns."},
+  {c:"リャ",r:"rya",row:"yo",
+   m:"リ + small ャ = rya — rare; occasionally seen in foreign name transcriptions.",
+   f:"リャ is one of the rarer yōon in katakana, mainly appearing in the transcription of non-English names."},
+  {c:"リュ",r:"ryu",row:"yo",
+   m:"リ + small ュ = ryu — リュックサック (ryukkusakku, rucksack) from German uses this!",
+   f:"リュックサック (ryukkusakku, rucksack/backpack) from German 'Rucksack' — リュ makes it perfectly Japanese."},
+  {c:"リョ",r:"ryo",row:"yo",
+   m:"リ + small ョ = ryo — rare in katakana loanwords; mainly seen in proper name transcriptions.",
+   f:"リョ is uncommon in mainstream katakana but appears in some specialised transcriptions and place names."},
+
+  /* ── SMALL ッ (GEMINATE CONSONANT) ─────────────────── */
+  {c:"ッ",r:"xtsu",row:"tsu",
+   m:"The smaller version of ツ (tsu) — placed before k, s, t, or p, it doubles the consonant and creates a brief held pause.",
+   f:"ッ is the 促音 (sokuon). ネット (netto, net/internet), マッサージ (massāji, massage), アップ (appu, up) — it's everywhere in loanwords."},
+
+  /* ── LONG VOWELS (katakana uses ー chōonpu) ─────────── */
+  {c:"アー",r:"ā",row:"lv",
+   m:"ア + ー (chōonpu) — the long vowel dash ー simply stretches any preceding vowel for one extra beat.",
+   f:"Katakana uses ー (chōonpu) for all long vowels — unlike hiragana, which repeats the vowel character. ソファー (sofā, sofa) is one example."},
+  {c:"イー",r:"ī",row:"lv",
+   m:"イ + ー = long ī — コーヒー (kōhī, coffee) ends with イー!",
+   f:"コーヒー (kōhī, coffee) from Dutch 'koffie' uses ー twice — making it one of the most-written katakana words in Japan."},
+  {c:"ウー",r:"ū",row:"lv",
+   m:"ウ + ー = long ū — クール (kūru, cool) starts with this stretched vowel.",
+   f:"クール (kūru, cool) from English is high-frequency in advertising, fashion, and everyday conversation across Japan."},
+  {c:"エー",r:"ē",row:"lv",
+   m:"エ + ー = long ē — ケーキ (kēki, cake) contains this. Sweet and easy!",
+   f:"ケーキ (kēki, cake) from English is one of the most recognisable katakana words and one of Japan's favourite imported foods."},
+  {c:"オー",r:"ō",row:"lv",
+   m:"オ + ー = long ō — the most common long vowel in English loanwords: コーヒー (kōhī, coffee) starts here.",
+   f:"オー (ō) appears constantly in English loanwords: ボード (bōdo, board), コード (kōdo, code), ゴール (gōru, goal)."}
 ];
 
 /* ==========================================================
@@ -3682,14 +4111,48 @@ const ROWS = [
   {key:"m", label:"ま row"},
   {key:"y", label:"や row"},
   {key:"r", label:"ら row"},
-  {key:"w", label:"わ row — plus the lone ん"}
+  {key:"w",   label:"わ row — plus the lone ん"},
+  {key:"g",   label:"が row — dakuon (voiced ゛)"},
+  {key:"z",   label:"ざ row — dakuon (voiced ゛)"},
+  {key:"d",   label:"だ row — dakuon (voiced ゛)"},
+  {key:"b",   label:"ば row — dakuon (voiced ゛)"},
+  {key:"p",   label:"ぱ row — handakuon (semi-voiced ゜)"},
+  {key:"yo",  label:"Yōon — combination syllables"},
+  {key:"tsu", label:"Small tsu — geminate consonant"},
+  {key:"lv",  label:"Long vowels"}
 ];
 
 const HIRA_PALETTE = ["#ff6f9c","#ff9a5a","#ffd25a","#6fdc8c","#5ad1ff","#6f8cff","#c46fff","#ff6fd8","#ff8a6f","#9adb5a","#5affc7"];
 const KATA_PALETTE = ["#00e0c6","#00b8ff","#6a7bff","#c45cff","#ff4fd0","#ff5566","#ff9b2e","#ffd23f","#7bdc4d","#2effb0","#5ad1ff"];
 
+/* ==========================================================
+   STROKE ORDER URL
+   ========================================================== */
 function strokeImgUrl(type, char){
   return "https://commons.wikimedia.org/wiki/Special:FilePath/" + type + "_" + encodeURIComponent(char) + "_stroke_order_animation.gif";
+}
+
+/* ==========================================================
+   SOUND PLAYBACK
+   ========================================================== */
+function playKana(r, e){
+  if(e){ e.stopPropagation(); e.preventDefault(); }
+  /* normalise romanisation to a filename: strip macrons, skip non-standard keys */
+  if(!r || r.startsWith("(")) return;
+  const filename = r
+    .replace(/[āâ]/g,"a").replace(/[īî]/g,"i")
+    .replace(/[ūû]/g,"u").replace(/[ēê]/g,"e")
+    .replace(/[ōô]/g,"o")
+    .replace("xtsu","tsu");
+  if(!filename) return;
+  /* brief visual pop on the button */
+  if(e && e.currentTarget){
+    const btn = e.currentTarget;
+    btn.classList.add("playing");
+    setTimeout(()=>btn.classList.remove("playing"), 320);
+  }
+  const audio = new Audio("sounds/kana/" + filename + ".mp3");
+  audio.play().catch(()=>{});
 }
 
 /* ==========================================================
@@ -3707,11 +4170,12 @@ function buildGrid(containerId, data, type, palette){
       const c1 = palette[globalIndex % palette.length];
       const c2 = palette[(globalIndex + 4) % palette.length];
       const delay = (globalIndex % 6) * 0.35;
-      html += `<button class="kcard" style="--c1:${c1};--c2:${c2};--delay:${delay}s" data-type="${type}" data-index="${globalIndex}" aria-label="${item.c}, romanized ${item.r}. Click for stroke order.">
+      const safeR = item.r.replace(/'/g,"&#39;");
+      html += `<div class="kcard" style="--c1:${c1};--c2:${c2};--delay:${delay}s" role="button" tabindex="0" data-type="${type}" data-index="${globalIndex}" aria-label="${item.c}, ${item.r}">
         <span class="kchar">${item.c}</span>
         <span class="kroma">${item.r}</span>
-        <span class="kclick">tap ↗</span>
-      </button>`;
+        <button class="ksound" data-r="${safeR}" aria-label="Play pronunciation of ${item.c}" title="Play sound">🔊</button>
+      </div>`;
     });
     html += `</div>`;
   });
@@ -3760,7 +4224,7 @@ function openModal(type, index){
   const strokeBox = document.getElementById("kmodal-stroke");
   if(strokeBox){
     const imgUrl = strokeImgUrl(type, item.c);
-    strokeBox.innerHTML = `<img src="${imgUrl}" alt="Stroke order animation for ${item.c}" loading="eager" onerror="this.parentElement.innerHTML='<div class=&quot;stroke-fallback&quot;>Stroke order animation couldn\\'t load right now — needs an internet connection.</div>'">`;
+    strokeBox.innerHTML = `<img src="${imgUrl}" alt="Stroke order animation for ${item.c}" loading="eager" onerror="this.parentElement.innerHTML='<div class=&quot;stroke-fallback&quot;>Stroke order not available for this character.</div>'">`;
   }
 
   const overlay = document.getElementById("kmodal-overlay");
@@ -3942,9 +4406,27 @@ document.addEventListener("DOMContentLoaded", function(){
   buildGrid("katakana-grid", KATAKANA, "Katakana", KATA_PALETTE);
 
   document.body.addEventListener("click", function(e){
+    /* Sound button — handled here so we have the element reference for the pop animation */
+    const soundBtn = e.target.closest(".ksound");
+    if(soundBtn){
+      playKana(soundBtn.dataset.r, {stopPropagation:()=>{}, preventDefault:()=>{}, currentTarget:soundBtn});
+      return;
+    }
+    /* Card body → open modal */
     const card = e.target.closest(".kcard");
     if(card){
       openModal(card.dataset.type, parseInt(card.dataset.index,10));
+    }
+  });
+
+  /* Keyboard support for div-based kcard */
+  document.body.addEventListener("keydown", function(e){
+    if(e.key === "Enter" || e.key === " "){
+      const card = e.target.closest(".kcard");
+      if(card && !e.target.closest(".ksound")){
+        e.preventDefault();
+        openModal(card.dataset.type, parseInt(card.dataset.index,10));
+      }
     }
   });
 
@@ -3952,10 +4434,19 @@ document.addEventListener("DOMContentLoaded", function(){
   const kmodalOverlay = document.getElementById("kmodal-overlay");
   const kmodalPrev    = document.getElementById("kmodal-prev");
   const kmodalNext    = document.getElementById("kmodal-next");
+  const kmodalSound   = document.getElementById("kmodal-sound");
   if(kmodalClose)   kmodalClose.addEventListener("click", closeModal);
   if(kmodalOverlay) kmodalOverlay.addEventListener("click", function(e){ if(e.target===this) closeModal(); });
   if(kmodalPrev)    kmodalPrev.addEventListener("click", ()=>stepModal(-1));
   if(kmodalNext)    kmodalNext.addEventListener("click", ()=>stepModal(1));
+  if(kmodalSound)   kmodalSound.addEventListener("click", function(e){
+    const data = currentType==="Hiragana" ? HIRAGANA : KATAKANA;
+    if(currentIndex !== null && data[currentIndex]){
+      playKana(data[currentIndex].r, {stopPropagation:()=>{},preventDefault:()=>{},currentTarget:kmodalSound});
+      kmodalSound.classList.add("playing");
+      setTimeout(()=>kmodalSound.classList.remove("playing"),320);
+    }
+  });
   document.addEventListener("keydown", function(e){
     const ov = document.getElementById("kmodal-overlay");
     if(!ov || !ov.classList.contains("open")) return;

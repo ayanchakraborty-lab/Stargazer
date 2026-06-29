@@ -142,8 +142,9 @@ body.night .hero-title{background:linear-gradient(145deg,#f5f0e8 0%,#6aab80 40%,
 .hero-eq{font-family:'Source Code Pro',monospace;font-size:.88rem;color:rgba(42,95,120,.7);margin-bottom:1.5rem;letter-spacing:.05em}
 body.night .hero-eq{color:rgba(90,173,208,.6)}
 .hero-sub{font-size:1.05rem;color:var(--text-2);max-width:560px;margin:0 auto 2.5rem;line-height:1.8}
-.hero-btn{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#4d7a58,#2a5f78);color:#fff;text-decoration:none;padding:.9rem 2.25rem;border-radius:100px;font-family:'Outfit',sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.04em;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 24px rgba(77,122,88,.35)}
-.hero-btn:hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(77,122,88,.5)}
+.hero-btn{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#4d7a58,#2e6b6b,#2a5f78,#3d6b9e);background-size:300% 300%;color:#fff;text-decoration:none;padding:.9rem 2.25rem;border-radius:100px;font-family:'Outfit',sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.04em;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 28px rgba(77,122,88,.45);animation:statHeroBtn 5s ease-in-out infinite}
+.hero-btn:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 14px 50px rgba(77,122,88,.7),0 0 30px rgba(90,191,181,.3)}
+@keyframes statHeroBtn{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 
 /* SHARED SECTIONS */
 .section{padding:5.5rem 1.5rem}
@@ -411,70 +412,139 @@ section[id]{scroll-margin-top:88px}
 /* ── GRID ALIGNMENT — prevent blank card stretch ── */
 .g2,.g3,.g4{align-items:start}
 
-/* ── DESKTOP EXPANDED ITEM GLOW (laptop only) ────────────── */
+/* ── RESEARCH CARDS (Statistics) ────────────────────────── */
+.stat-res-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:1.35rem;transition:all .22s;cursor:default}
+.stat-res-card:hover{border-color:var(--tl);transform:translateY(-2px);box-shadow:0 6px 28px var(--tl-l)}
+.stat-res-badge{display:inline-flex;align-items:center;gap:.3rem;font-family:'Source Code Pro',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;padding:.18rem .55rem;margin-bottom:.65rem}
+.srb-breakthrough{background:rgba(212,96,80,.12);color:var(--rd);border:1px solid rgba(212,96,80,.28)}
+.srb-active{background:var(--gr-l);color:var(--gr);border:1px solid var(--gr-b)}
+.srb-open{background:var(--pu-l);color:var(--pu);border:1px solid rgba(94,58,142,.25)}
+.stat-res-title{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.08rem;color:var(--text);margin-bottom:.45rem;line-height:1.35}
+.stat-res-who{font-size:.8rem;color:var(--text-2);margin-bottom:.18rem}
+.stat-res-inst{font-size:.78rem;color:var(--text-3);margin-bottom:.6rem}
+.stat-res-desc{font-size:.9rem;color:var(--text-2);line-height:1.74}
+.stat-res-detail{font-size:.88rem;color:var(--text-2);line-height:1.82;margin-top:.65rem;padding-top:.65rem;border-top:1px solid var(--border);display:none}
+.stat-res-detail.show{display:block}
+.stat-res-detail p{margin-bottom:.6rem}
+.stat-res-expand{display:inline-flex;align-items:center;gap:.3rem;font-size:.64rem;font-family:'Source Code Pro',monospace;letter-spacing:.09em;text-transform:uppercase;margin-top:.65rem;cursor:pointer;color:var(--tl);transition:opacity .2s}
+.stat-res-expand:hover{opacity:.72}
+.stat-res-guide{margin-top:.8rem;padding:.75rem .9rem;background:var(--gr-l);border:1px solid var(--gr-b);border-radius:8px}
+.stat-res-guide-lbl{font-family:'Source Code Pro',monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:var(--gr);margin-bottom:.5rem}
+.stat-res-guide-item{font-size:.84rem;color:var(--text-2);margin-bottom:.3rem;line-height:1.6}
+.stat-res-guide-item a{color:var(--tl);text-decoration:underline;text-decoration-color:rgba(46,107,107,.4)}
+.stat-res-access{margin-bottom:1.5rem;max-width:780px;margin-left:auto;margin-right:auto;padding:.8rem 1.1rem;background:var(--bg-2);border:1px solid var(--border);border-radius:9px;font-size:.83rem;color:var(--text-3);line-height:1.7}
+.stat-res-access a{color:var(--tl);text-decoration:underline}
+
+/* ── DESKTOP EXPANDED GLOW for research in STATS ─────────── */
 @media(min-width:769px){
-  /* puzzle expanded */
-  .puz-card:has(.puz-body.show){
-    grid-column:1/-1;
-    box-shadow:0 0 0 1.5px var(--tl),0 8px 36px var(--tl-l);
-    border-color:var(--tl);
-    background:var(--tl-l);
-    transition:all .25s ease;
+  .stat-res-card:has(.stat-res-detail.show){
+    grid-column:1/-1;--egc:var(--tl);--egs:var(--tl-l);--egp:var(--tl-l);
+    border-color:var(--tl)!important;
+    background:var(--tl-l)!important;
+    animation:glowPulseStats 2.6s ease-in-out infinite;
+    transition:all .3s ease;padding:1.7rem!important;
   }
-  .puz-card:has(.puz-body.show) .puz-title{font-size:1.08rem}
-  .puz-card:has(.puz-body.show) .puz-q{font-size:.99rem;line-height:1.85}
-  .puz-card:has(.puz-body.show) .puz-spoiler-inner{font-size:.92rem;line-height:1.82}
-  /* inference expanded */
-  .inf-card:has(.inf-detail.show){
-    grid-column:1/-1;
-    box-shadow:0 0 0 1.5px var(--gr),0 8px 36px var(--gr-l);
-    border-color:var(--gr);
-    background:var(--gr-l);
-  }
-  .inf-card:has(.inf-detail.show) .inf-topic{font-size:1.08rem}
-  .inf-card:has(.inf-detail.show) .inf-detail{font-size:.93rem;line-height:1.88}
-  /* bayesian expanded */
-  .bay-card:has(.bay-detail.show){
-    grid-column:1/-1;
-    box-shadow:0 0 0 1.5px var(--pu),0 8px 36px var(--pu-l);
-    border-color:var(--pu);
-    background:var(--pu-l);
-  }
-  .bay-card:has(.bay-detail.show) .bay-topic{font-size:1.08rem}
-  .bay-card:has(.bay-detail.show) .bay-detail{font-size:.93rem;line-height:1.88}
-  /* open problems expanded */
-  .op-card:has(.op-body.show){
-    box-shadow:0 0 0 1.5px var(--og),0 8px 36px var(--og-l);
-    border-color:var(--og);
-    background:var(--og-l);
-  }
-  .op-card:has(.op-body.show) .op-title{font-size:1.08rem}
-  .op-card:has(.op-body.show) .op-body .op-stmt{font-size:.97rem}
-  .op-card:has(.op-body.show) .op-why,.op-card:has(.op-body.show) .op-how{font-size:.92rem;line-height:1.82}
-  /* distribution expanded */
-  .dist-card:has(.dist-detail-body.show){
-    box-shadow:0 0 0 1.5px var(--rd),0 8px 36px var(--rd-l);
-    border-color:var(--rd) !important;
-    background:var(--rd-l);
-  }
-  .dist-card:has(.dist-detail-body.show) .dist-name{font-size:1.18rem}
-  .dist-detail-body.show{font-size:.9rem;line-height:1.82}
-  /* career expanded */
-  .car-card:has(.car-detail-wrap.open){
-    box-shadow:0 0 0 1.5px var(--tl),0 8px 36px var(--tl-l);
-    border-color:var(--tl);
-    background:var(--tl-l);
-  }
-  .car-card:has(.car-detail-wrap.open) .car-title{font-size:1.08rem}
-  .car-detail-wrap.open{font-size:.9rem;line-height:1.82}
-  /* tool res expanded */
-  .tool-card:has(.tool-res.show){
-    box-shadow:0 0 0 1.5px var(--bl),0 8px 36px var(--bl-l);
-    border-color:var(--bl);
-    background:var(--bl-l);
-  }
-  .tool-res.show{font-size:.88rem;line-height:1.82}
+  .stat-res-card:has(.stat-res-detail.show) .stat-res-title{font-size:1.22rem!important;color:var(--tl)}
+  .stat-res-detail.show{font-size:1.0rem!important;line-height:1.96}
+  .stat-res-card:has(.stat-res-detail.show) .stat-res-desc{font-size:.97rem}
 }
+
+/* ── DESKTOP EXPANDED ITEM GLOW — big screen, readable ───── */
+@media(min-width:769px){
+  /* ── Puzzle ─────────────────────────────────────────────── */
+  .puz-card:has(.puz-body.show){
+    grid-column:1/-1;--egc:var(--tl);--egs:var(--tl-l);--egp:var(--tl-l);
+    border-color:var(--tl)!important;background:var(--tl-l)!important;
+    animation:glowPulseStats 2.6s ease-in-out infinite;transition:all .3s ease;padding:1.7rem!important;
+  }
+  .puz-card:has(.puz-body.show) .puz-title{font-size:1.22rem!important;color:var(--tl)}
+  .puz-card:has(.puz-body.show) .puz-q{font-size:1.06rem;line-height:1.95}
+  .puz-card:has(.puz-body.show) .puz-spoiler-inner{font-size:1.0rem;line-height:1.9}
+
+  /* ── Inference ───────────────────────────────────────────── */
+  .inf-card:has(.inf-detail.show){
+    grid-column:1/-1;--egc:var(--gr);--egs:var(--gr-l);--egp:var(--gr-l);
+    border-color:var(--gr)!important;background:var(--gr-l)!important;
+    animation:glowPulseStats 2.6s ease-in-out infinite;transition:all .3s ease;padding:1.7rem!important;
+  }
+  .inf-card:has(.inf-detail.show) .inf-topic{font-size:1.22rem!important;color:var(--gr)}
+  .inf-card:has(.inf-detail.show) .inf-detail{font-size:1.0rem;line-height:1.96}
+
+  /* ── Bayesian ────────────────────────────────────────────── */
+  .bay-card:has(.bay-detail.show){
+    grid-column:1/-1;--egc:var(--pu);--egs:var(--pu-l);--egp:var(--pu-l);
+    border-color:var(--pu)!important;background:var(--pu-l)!important;
+    animation:glowPulseStats 2.6s ease-in-out infinite;transition:all .3s ease;padding:1.7rem!important;
+  }
+  .bay-card:has(.bay-detail.show) .bay-topic{font-size:1.22rem!important;color:var(--pu)}
+  .bay-card:has(.bay-detail.show) .bay-detail{font-size:1.0rem;line-height:1.96}
+
+  /* ── Open problems ───────────────────────────────────────── */
+  .op-card:has(.op-body.show){
+    grid-column:1/-1;--egc:var(--og);--egs:var(--og-l);--egp:var(--og-l);
+    border-color:var(--og)!important;background:var(--og-l)!important;
+    animation:glowPulseStats 2.6s ease-in-out infinite;transition:all .3s ease;padding:1.7rem!important;
+  }
+  .op-card:has(.op-body.show) .op-title{font-size:1.22rem!important;color:var(--og)}
+  .op-card:has(.op-body.show) .op-body .op-stmt{font-size:1.05rem}
+  .op-card:has(.op-body.show) .op-why,.op-card:has(.op-body.show) .op-how{font-size:1.0rem;line-height:1.9}
+
+  /* ── Distributions ───────────────────────────────────────── */
+  .dist-card:has(.dist-detail-body.show){
+    grid-column:1/-1;--egc:var(--rd);--egs:var(--rd-l);--egp:var(--rd-l);
+    border-color:var(--rd)!important;background:var(--rd-l)!important;
+    animation:glowPulseStats 2.6s ease-in-out infinite;transition:all .3s ease;padding:1.7rem!important;
+  }
+  .dist-card:has(.dist-detail-body.show) .dist-name{font-size:1.25rem!important;color:var(--rd)}
+  .dist-detail-body.show{font-size:.97rem;line-height:1.88}
+
+  /* ── Career ──────────────────────────────────────────────── */
+  .car-card:has(.car-detail-wrap.open){
+    grid-column:1/-1;--egc:var(--tl);--egs:var(--tl-l);--egp:var(--tl-l);
+    border-color:var(--tl)!important;background:var(--tl-l)!important;
+    animation:glowPulseStats 2.6s ease-in-out infinite;transition:all .3s ease;padding:1.7rem!important;
+  }
+  .car-card:has(.car-detail-wrap.open) .car-title{font-size:1.2rem!important;color:var(--tl)}
+  .car-detail-wrap.open{font-size:.97rem;line-height:1.88}
+
+  /* ── Tool ────────────────────────────────────────────────── */
+  .tool-card:has(.tool-res.show){
+    grid-column:1/-1;--egc:var(--bl);--egs:var(--bl-l);--egp:var(--bl-l);
+    border-color:var(--bl)!important;background:var(--bl-l)!important;
+    animation:glowPulseStats 2.6s ease-in-out infinite;transition:all .3s ease;padding:1.7rem!important;
+  }
+  .tool-card:has(.tool-res.show) .tool-name{font-size:1.15rem!important;color:var(--bl)}
+  .tool-res.show{font-size:.96rem;line-height:1.88}
+}
+
+
+/* ── COLORFUL ENHANCEMENTS ───────────────────────────────── */
+@keyframes glowPulseStats{
+  0%,100%{box-shadow:0 0 0 2px var(--egc,var(--gr)),0 10px 48px var(--egs,rgba(106,171,128,.25)),0 0 28px var(--egp,rgba(106,171,128,.12))}
+  50%{box-shadow:0 0 0 2.5px var(--egc,var(--gr)),0 14px 70px var(--egs,rgba(106,171,128,.4)),0 0 50px var(--egp,rgba(106,171,128,.22))}
+}
+@keyframes shimmerStats{0%{background-position:200% center}100%{background-position:-200% center}}
+@keyframes badgeGlowStats{0%,100%{filter:brightness(1)}50%{filter:brightness(1.3)}}
+
+.inf-card,.bay-card,.puz-card,.dist-card,.car-card,.tool-card,.op-card{position:relative;overflow:hidden}
+.inf-card::after,.bay-card::after,.puz-card::after,.dist-card::after,.car-card::after,.tool-card::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.05) 50%,transparent 58%);
+  background-size:200% 100%;opacity:0;transition:opacity .28s;border-radius:inherit;
+}
+body.night .inf-card:hover::after,body.night .bay-card:hover::after,body.night .puz-card:hover::after,
+body.night .dist-card:hover::after,body.night .car-card:hover::after,body.night .tool-card:hover::after{
+  opacity:1;animation:shimmerStats 1.6s ease forwards;
+}
+
+/* Vivid card hover colors */
+.inf-card:hover{background:var(--gr-b)!important;border-color:var(--gr)!important;transform:translateY(-2px)}
+.bay-card:hover{background:var(--pu-l)!important;border-color:var(--pu)!important;transform:translateY(-2px)}
+.dist-card:hover{border-color:var(--rd)!important;background:var(--rd-l)!important}
+.tool-card:hover{border-color:var(--bl)!important;background:var(--bl-l)!important}
+
+/* Vivid section header on hover */
+.s-head:hover .s-title{text-shadow:0 0 30px currentColor;filter:brightness(1.06)}
 
 /* ── SEARCH MODAL ────────────────────────────────────────── */
 #search-modal{position:fixed;inset:0;z-index:2000;display:none;align-items:flex-start;justify-content:center;padding-top:80px;background:rgba(0,0,0,0.55);backdrop-filter:blur(6px)}
@@ -657,6 +727,7 @@ section[id]{scroll-margin-top:88px}
   <button class="hm-item"        data-page="distributions" onclick="showPage('distributions')">📊 Distributions</button>
   <button class="hm-item"        data-page="bayesian"      onclick="showPage('bayesian')">∫ Bayesian</button>
   <button class="hm-item"        data-page="openproblems"  onclick="showPage('openproblems')">❓ Open Problems</button>
+  <button class="hm-item"        data-page="research"      onclick="showPage('research')">🔭 Research</button>
   <div class="hm-divider"></div>
   <button class="hm-item"        data-page="careers"       onclick="showPage('careers')">💼 Careers</button>
   <button class="hm-item"        data-page="studyguide"    onclick="showPage('studyguide')">🗺️ Study Guide</button>
@@ -781,6 +852,27 @@ section[id]{scroll-margin-top:88px}
   <p class="foot-txt"><strong style="color:var(--gr)">"To consult the statistician after an experiment is finished is often merely to ask him to conduct a post mortem examination. He can perhaps say what the experiment died of."</strong><br>— Sir Ronald A. Fisher, 1938</p>
 </footer>
 </div><!-- /page-home -->
+
+<!-- ═══ PAGE: CURRENT RESEARCH ══════════════════════════════ -->
+<div class="page" id="page-research">
+  <section class="section" id="research-sec" style="background:var(--bg)">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:var(--tl-l);color:var(--tl);border:1px solid var(--tl-l)">Active Frontiers</span>
+        <h2 class="s-title">Where Statistics Is Being Made Right Now</h2>
+        <p class="s-desc">Active research programs, recent breakthroughs (2022–2025), and the statisticians reshaping how we understand uncertainty, causality, and data.</p>
+      </div>
+      <div class="stat-res-access">
+        <strong>📖 Access Research Papers Free:</strong>
+        <a href="https://arxiv.org/list/stat" target="_blank">arXiv stat</a> has virtually all modern statistics preprints.
+        <a href="https://scholar.google.com" target="_blank">Google Scholar</a> → look for [PDF] links or author pages.
+        <a href="https://sci-hub.se" target="_blank">Sci-Hub</a> provides paywalled papers via DOI.
+        Key journals: <em>Annals of Statistics</em>, <em>JRSS-B</em>, <em>Biometrika</em>, <em>JASA</em>.
+      </div>
+      <div class="g3" id="stat-research-grid"></div>
+    </div>
+  </section>
+</div>
 
 <!-- ═══ PAGE: COMMUNITY DISCUSSION ═════════════════════════════ -->
 <div class="page" id="page-comments">
@@ -3128,6 +3220,7 @@ const PAGE_RENDER={
   books:renderBooks, puzzles:renderPuzzles, school:renderSchool,
   inference:renderInference, distributions:renderDistributions,
   bayesian:renderBayesian, openproblems:renderOpenProblems,
+  research:renderStatResearch,
   careers:renderCareers, studyguide:renderStudyGuide,
   facts:renderFacts, tools:renderTools,
   calc:renderCalc, formulas:renderFormulas,
@@ -3142,7 +3235,7 @@ function showPage(name){
   const hbtn=document.getElementById('hamburger-btn');
   if(hmenu){hmenu.classList.remove('open');}
   if(hbtn){hbtn.classList.remove('open');}
-  window._curPageIdx=(function(){const PLIST=['home','books','puzzles','school','inference','distributions','bayesian','openproblems','careers','studyguide','facts','tools','calc','formulas','history','comments'];const i=PLIST.indexOf(name);return i>=0?i:(window._curPageIdx||0);})();
+  window._curPageIdx=(function(){const PLIST=['home','books','puzzles','school','inference','distributions','bayesian','openproblems','research','careers','studyguide','facts','tools','calc','formulas','history','comments'];const i=PLIST.indexOf(name);return i>=0?i:(window._curPageIdx||0);})();
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   // Update hamburger items
   document.querySelectorAll('#hamburger-menu .hm-item').forEach(b=>{
@@ -3150,7 +3243,7 @@ function showPage(name){
   });
   // Update current section label in nav
   const curLbl=document.getElementById('nav-cur-lbl');
-  const PAGE_LABELS={home:'Home',books:'Books',puzzles:'Puzzles',school:'School Stats',inference:'Inference',distributions:'Distributions',bayesian:'Bayesian',openproblems:'Open Problems',careers:'Careers',studyguide:'Study Guide',facts:'Fun Facts',tools:'Tools',calc:'Calculator',formulas:'Formulas',history:'History',comments:'Discuss'};
+  const PAGE_LABELS={home:'Home',books:'Books',puzzles:'Puzzles',school:'School Stats',inference:'Inference',distributions:'Distributions',bayesian:'Bayesian',openproblems:'Open Problems',research:'Research',careers:'Careers',studyguide:'Study Guide',facts:'Fun Facts',tools:'Tools',calc:'Calculator',formulas:'Formulas',history:'History',comments:'Discuss'};
   if(curLbl)curLbl.textContent=PAGE_LABELS[name]||name;
   const pg=document.getElementById('page-'+name);
   if(pg){
@@ -3323,6 +3416,104 @@ window.addEventListener('scroll',()=>{
 /* ═══════════════════════════════════════════════════════════
    SEARCH
    ═══════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════
+   CURRENT STATISTICAL RESEARCH DATA
+   ═══════════════════════════════════════════════════════════ */
+const STAT_RESEARCH_DATA=[
+{badge:'breakthrough',t:'Conformal Prediction — Distribution-Free Inference',res:'Vladimir Vovk, Ryan Tibshirani, Emmanuel Candès',inst:'Royal Holloway / Carnegie Mellon / Stanford',
+desc:'Conformal prediction provides provably valid prediction intervals for any machine learning model without distributional assumptions — a major breakthrough in reliable uncertainty quantification.',
+detail:`<p>Classical statistics gives exact prediction intervals only when strong assumptions hold (e.g. normal residuals). Conformal prediction achieves <em>marginal coverage</em> — P(Y ∈ Ĉ(X)) ≥ 1−α — for any model and any distribution, with only an exchangeability assumption.</p>
+<p><strong>Split conformal algorithm:</strong> (1) Split data into training D₁ and calibration D₂. (2) Fit model f̂ on D₁. (3) Compute nonconformity scores rᵢ = |yᵢ − f̂(xᵢ)| on D₂. (4) For a new point x_{n+1}: set q̂ = ⌈(1−α)(n+1)⌉/n-th quantile of {rᵢ}. (5) Ĉ(x_{n+1}) = [f̂(x_{n+1}) ± q̂].</p>
+<p>This gives exact finite-sample coverage — no asymptotics. Candès & collaborators extended it to <em>conditional coverage</em> (harder to achieve) and <em>covariate shift</em> settings. Applications: LLM hallucination detection, clinical trial design, protein structure prediction (AlphaFold uncertainty).</p>
+<p>Active 2024 frontier: <em>conformal risk control</em> (Angelopoulos et al.) — control any monotone risk functional at a user-specified level. Used to certify FDR control in multiple testing without model assumptions, and to give guaranteed image segmentation coverage in medical imaging.</p>`,
+guide:['📖 Start with Angelopoulos & Bates "A Gentle Introduction to Conformal Prediction" (arXiv:2107.07511) — 25 pages, very accessible.','📖 Tibshirani et al. "Conformal Prediction under Covariate Shift" (NeurIPS 2019) for distribution shift.','🔬 Entry project: implement split conformal on any scikit-learn model. Compare empirical coverage with 1−α on held-out data.']},
+
+{badge:'breakthrough',t:'Causal Inference via DAGs & Potential Outcomes Unification',res:'Judea Pearl, James Robins, Donald Rubin',inst:'UCLA / Harvard / Harvard',
+desc:"Pearl's do-calculus and Rubin's potential outcomes framework are being unified, enabling identification of causal effects in more complex observational settings than ever before.",
+detail:`<p>The two dominant frameworks for causal inference — Pearl's Structural Causal Models (SCMs) using DAGs, and Rubin's potential outcomes / counterfactuals — were long viewed as competing paradigms. Current work shows they are mathematically equivalent and complementary.</p>
+<p><strong>Key technical achievement:</strong> Pearl's ID algorithm decides in polynomial time whether a causal effect P(Y|do(X)) is identifiable from observational data given a DAG. The algorithm generates the minimal adjustment formula. Example: If Z is a confounder but also a mediator, naive conditioning biases the estimate — the front-door criterion gives: P(Y|do(X)) = Σ_z P(Z=z|X)·Σ_x' P(Y|X',Z)P(X'). This works even without measuring confounders.</p>
+<p>2024 active frontiers: <em>Proximal causal learning</em> (Tchetgen Tchetgen) — identification when confounders are unobserved but proxy variables exist. <em>Causal representation learning</em> — learning causal structure from high-dimensional data (images, text). Integration with LLMs: using language models as sources of causal domain knowledge to constrain DAG search.</p>`,
+guide:['📖 Pearl, Glymour, Jewell "Causal Inference in Statistics: A Primer" — the most accessible entry.','📖 Hernán & Robins "Causal Inference: What If" (free at hsph.harvard.edu/miguel-hernan) — the epidemiology gold standard.','🔬 Entry: implement backdoor adjustment and propensity score weighting on a real observational dataset using R (MatchIt package) or Python (DoWhy).']},
+
+{badge:'active',t:'Double Descent & Overparameterization in Modern Statistics',res:'Mikhail Belkin, Peter Bartlett, Andrea Montanari',inst:'UC San Diego / UC Berkeley / Stanford',
+desc:'Classical bias-variance tradeoff breaks down for modern overparameterized models — the "double descent" phenomenon reshapes statistical learning theory.',
+detail:`<p>Classical statistical wisdom: increasing model complexity past the interpolation threshold increases test error (overfitting). The double descent phenomenon overturns this: for many model families, test error decreases again after interpolation as parameters → ∞.</p>
+<p>Observed in: linear regression (when p > n), deep neural networks, random forests, kernel machines. For the minimum-norm interpolator in linear regression with p/n = γ: risk = σ²γ/(γ−1) for γ > 1 (overparameterized) — this → σ² as γ → ∞, matching the Bayes-optimal risk.</p>
+<p>Belkin's "Reconciling modern machine learning practice" (PNAS 2019) named and formalized the phenomenon. Bartlett et al. (2020) characterized when interpolation is benign vs catastrophic via spectral conditions on the feature matrix. Montanari uses the replica method from statistical physics to derive exact risk asymptotics for many model families.</p>
+<p>Current frontiers: <em>grokking</em> in neural networks (generalization long after interpolation), <em>in-context learning</em> as implicit Bayesian inference, understanding transformer double descent.</p>`,
+guide:['📖 Belkin et al. "Reconciling modern machine-learning practice and the classical bias-variance trade-off" (PNAS 2019) — the founding paper.','📖 Hastie et al. "Surprises in High-Dimensional Ridgeless Least Squares Interpolation" (Annals of Statistics 2022).','🔬 Entry: replicate double descent in linear regression with simulated data (p/n sweep, fixed n). Plot test MSE as a function of p/n.']},
+
+{badge:'active',t:'Optimal Transport in Statistics',res:'Marco Cuturi, Philippe Rigollet, Gábor Lugosi',inst:'Apple / MIT / Universitat Pompeu Fabra',
+desc:'Optimal transport theory is transforming statistics, giving new distances between distributions and enabling generative models, robust statistics, and distribution shift quantification.',
+detail:`<p>The Wasserstein distance W_p(μ,ν) = (inf_{γ∈Γ(μ,ν)} ∫ d(x,y)^p dγ)^{1/p} measures the minimum cost of "transporting" mass from distribution μ to ν. Unlike KL divergence, W_p is defined even when supports don't overlap and metrizes weak convergence.</p>
+<p>Cuturi's Sinkhorn algorithm (2013) made W_p computable in practice using entropic regularization: W_ε(μ,ν) = min_{γ∈Γ(μ,ν)} ∫c dγ + ε·KL(γ‖μ⊗ν). The regularized problem has a unique solution γ* = diag(u)·K·diag(v) for the kernel K_ij = exp(−c_ij/ε), and u,v are found via iterative Sinkhorn scaling — O(n²) per iteration.</p>
+<p>Statistical applications: (1) Goodness-of-fit tests using W₂ statistics. (2) Distribution regression — regressing outcomes on input distributions using barycentric regression in W₂ space. (3) Robust estimation — Wasserstein DRO (distributionally robust optimization) minimizes worst-case risk over a W_p ball. (4) Sliced Wasserstein — random projections make W₁ practical in high dimensions.</p>`,
+guide:['📖 Peyré & Cuturi "Computational Optimal Transport" (Foundations & Trends, free online) — the definitive reference.','📖 Villani "Topics in Optimal Transportation" (AMS) for the rigorous mathematical theory.','🔬 Entry: use the Python OT library (POT) to compute Wasserstein distances between MNIST digit classes. Visualize optimal transport plans.']},
+
+{badge:'breakthrough',t:'Post-Selection Inference & Selective Validity',res:'Ryan Tibshirani, Jonathan Taylor, Robert Tibshirani',inst:'UC Berkeley / Stanford / Stanford',
+desc:'Valid statistical inference after data-driven model selection — addressing the critical gap between how models are chosen and how confidence intervals are computed in practice.',
+detail:`<p>Classical problem: LASSO selects variables; standard OLS confidence intervals on the selected variables are grossly anti-conservative because they ignore the selection event. The Selective Inference framework gives valid inference conditional on the model chosen.</p>
+<p><strong>Polyhedral lemma (Lee et al. 2016):</strong> The LASSO selection event {M̂(y) = M} = {y : Ay ≤ b} is a polyhedron in y-space (since LASSO is a piecewise-linear function of y). Conditional on y ∈ {Ay ≤ b}, the distribution of a linear contrast cᵀy is a truncated normal — exact pivot for inference.</p>
+<p>This gives: confidence intervals that are valid after any LASSO selection, forward stepwise selection, or other polyhedral selector. Key limitation: the selection-conditional intervals are very wide (conservative) because they condition on a rare event. 2022–2024 active frontier: <em>data splitting and e-values</em> for post-selection inference — using holdout data to validate selected models, or using e-values (alternatives to p-values) that remain valid under arbitrary selection.</p>`,
+guide:['📖 Tibshirani et al. "Exact Post-Selection Inference for Sequential Regression Procedures" (JASA 2016) — the polyhedral lasso paper.','📖 Wasserman & Roeder "High-Dimensional Variable Selection" for the broader model selection context.','🔬 Entry: use the selectiveInference R package on a real dataset. Compare selective confidence intervals with naive OLS intervals after LASSO.']},
+
+{badge:'active',t:'Differential Privacy in Statistical Inference',res:'Cynthia Dwork, Salil Vadhan, Aaron Roth',inst:'Harvard / Harvard / UPenn',
+desc:'Differential privacy provides rigorous mathematical guarantees that statistical analyses cannot reveal information about individuals — becoming the standard for data release.',
+detail:`<p>A randomised mechanism M satisfies (ε,δ)-differential privacy if for any two datasets D, D' differing in one individual and any output set S: P(M(D)∈S) ≤ e^ε · P(M(D')∈S) + δ. The parameter ε ("privacy budget") controls the privacy-utility tradeoff.</p>
+<p><strong>Laplace mechanism:</strong> To release a statistic f(D) with L1 sensitivity Δf = sup_{D,D'} ‖f(D)−f(D')‖₁, add Laplace(0, Δf/ε) noise. This achieves ε-DP. Example: release the mean of a bounded dataset: sensitivity = range/n; add Lap(range/(nε)) noise.</p>
+<p>The US Census Bureau uses DP (TopDown algorithm) for the 2020 Census. Apple and Google deploy DP mechanisms for telemetry. Statistical challenges: DP adds noise that biases standard estimators, inflates variances, and invalidates classical hypothesis tests. Current research: (1) Private hypothesis testing — DP analogues of t-tests, chi-squared tests. (2) Private confidence intervals — validity requires new theory. (3) Local DP — when data never leaves the user's device (stronger privacy, much worse utility). (4) DP-SGD for private machine learning.</p>`,
+guide:['📖 Dwork & Roth "The Algorithmic Foundations of Differential Privacy" (Foundations & Trends, free online) — the canonical reference.','📖 Vadhan "The Complexity of Differential Privacy" for the theoretical foundations.','🔬 Entry: implement the Laplace mechanism in Python. Explore the privacy-accuracy tradeoff for mean estimation as ε varies from 0.01 to 10.']},
+
+{badge:'active',t:'High-Dimensional Statistics & Compressed Sensing',res:'Emmanuel Candès, Terence Tao, David Donoho',inst:'Stanford / UCLA / Stanford',
+desc:'The LASSO, compressed sensing, and matrix completion revolutionised how we handle p ≫ n problems. Modern extensions address nonlinear structure and unknown sparsity.',
+detail:`<p>LASSO (Tibshirani 1996): β̂ = argmin ‖y − Xβ‖² + λ‖β‖₁ simultaneously selects variables and estimates coefficients by promoting sparsity. Under the Restricted Isometry Property (RIP): X satisfies (s, δ)-RIP if (1−δ)‖v‖² ≤ ‖Xv‖² ≤ (1+δ)‖v‖² for all s-sparse v. With δ_{2s} < √2 − 1, LASSO recovers the true support exactly (Candès & Tao 2007).</p>
+<p>Compressed sensing: if a signal x ∈ ℝᴺ is s-sparse, then O(s log N) Gaussian measurements suffice for exact recovery via ℓ₁ minimisation. This explains MRI acceleration (undersampling k-space), single-pixel cameras, and DNA microarray analysis.</p>
+<p>Current 2024 frontiers: (1) <em>AMP (Approximate Message Passing)</em> — an iterative algorithm for LASSO with Gaussian designs that achieves the information-theoretic threshold; Bayati-Montanari theory gives exact risk formulas via a scalar recursion. (2) <em>SLOPE</em> (Sorted L1 Penalised Estimation) — adaptive LASSO that controls FDR. (3) <em>Group LASSO</em> and <em>structured sparsity</em> for problems with known block structure.</p>`,
+guide:['📖 Hastie, Tibshirani & Wainwright "Statistical Learning with Sparsity" (free at web.stanford.edu/~hastie).','📖 Wainwright "High-Dimensional Statistics: A Non-Asymptotic Viewpoint" (Cambridge) — rigorous graduate text.','🔬 Entry: implement LASSO via coordinate descent from scratch. Compare support recovery as n/p varies — find the phase transition.']},
+
+{badge:'active',t:'Replication Crisis & Modern Statistical Reform',res:'Andrew Gelman, John Ioannidis, Daniel Lakens',inst:'Columbia / Stanford / TU Eindhoven',
+desc:'Statistical reform in response to the replication crisis: pre-registration, effect size reporting, e-values, Bayesian alternatives to NHST, and the move beyond p < 0.05.',
+detail:`<p>Ioannidis (2005) proved that most published research findings are false when base rates are low and statistical power is limited. With α = 0.05, power = 0.80, prior probability p₀ of a true effect, the positive predictive value (PPV) = p₀ · 0.80 / (p₀ · 0.80 + (1−p₀) · 0.05). If p₀ = 0.1: PPV = 0.61. Most published significant findings are false positives.</p>
+<p>Gelman & Loken (2014): The "garden of forking paths" — multiple undisclosed researcher degrees of freedom inflate false discovery rates catastrophically. Simmons et al. (2011): p-hacking can make noise achieve p < 0.05 in >60% of experiments.</p>
+<p>Reforms: (1) Pre-registration and registered reports. (2) Effect size and confidence interval reporting. (3) Lowering α to 0.005 (Benjamin et al. 2018, 72 authors). (4) <em>E-values</em> (Grünwald, Shafer, Vovk) — betting-based test statistics that remain valid under optional stopping and arbitrary selection. An e-value E satisfies E[E|H₀] ≤ 1; reject when E > 1/α. (5) Bayesian approaches replacing p-values with Bayes factors or posterior probabilities.</p>`,
+guide:['📖 Gelman & Hill "Regression and Other Stories" — modern approach integrating causal thinking with regression.','📖 Read Ioannidis (2005) "Why Most Published Research Findings Are False" — 8,000+ citations, 8 pages.','🔬 Entry: simulate p-hacking. Show empirically how researcher degrees of freedom inflate false positive rate. Present to a statistics class.']}
+];
+
+var statResearchPDFs = {};
+
+function renderStatResearch() {
+  var grid = document.getElementById('stat-research-grid');
+  if (!grid) return;
+  var badgeCls = {breakthrough:'srb-breakthrough', active:'srb-active', open:'srb-open'};
+  var badgeTxt = {breakthrough:'🔥 Breakthrough', active:'⚡ Active', open:'🔓 Open'};
+  grid.innerHTML = STAT_RESEARCH_DATA.map(function(r, i) {
+    var pdfs = (statResearchPDFs[i] || []).map(function(p) {
+      return '<a class="pdf-resource-link" href="'+p.url+'" target="_blank" rel="noopener">📄 '+p.name+'</a>';
+    }).join('');
+    var guide = r.guide ? '<div class="stat-res-guide"><div class="stat-res-guide-lbl">🚀 How to Get Started</div>' +
+      r.guide.map(function(s) { return '<div class="stat-res-guide-item">'+s+'</div>'; }).join('') + '</div>' : '';
+    var detail = r.detail ? '<div class="stat-res-detail" id="sresd'+i+'">'+r.detail+'</div>' +
+      '<div class="stat-res-expand" onclick="toggleStatRes('+i+')" id="sresa'+i+'"><span id="sresarr'+i+'">▼</span> Detailed Mathematics</div>' : '';
+    return '<div class="stat-res-card reveal">'+
+      '<span class="stat-res-badge '+badgeCls[r.badge]+'">'+badgeTxt[r.badge]+'</span>'+
+      '<div class="stat-res-title">'+r.t+'</div>'+
+      '<div class="stat-res-who">👤 '+r.res+'</div>'+
+      '<div class="stat-res-inst">🏛 '+r.inst+'</div>'+
+      '<div class="stat-res-desc">'+r.desc+'</div>'+
+      pdfs + detail + guide + '</div>';
+  }).join('');
+}
+
+function toggleStatRes(i) {
+  var d = document.getElementById('sresd'+i);
+  if (!d) return;
+  var open = d.classList.toggle('show');
+  var arr = document.getElementById('sresarr'+i);
+  if (arr) { arr.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)'; arr.style.transition = 'transform .25s'; }
+}
+
+
 const SEARCH_INDEX=[];
 function buildSearchIndex(){
   if(SEARCH_INDEX.length)return;
@@ -3335,6 +3526,7 @@ function buildSearchIndex(){
   OPEN_PROBLEMS.forEach(p=>SEARCH_INDEX.push({icon:'❓',title:p.t,meta:p.field,section:'Open Problems',page:'openproblems',q:p.t+' '+p.why+' '+p.field}));
   CAREERS.forEach(c=>SEARCH_INDEX.push({icon:c.icon,title:c.title,meta:(c.tags||[]).join(', '),section:'Careers',page:'careers',q:c.title+' '+c.desc}));
   FACTS.forEach(f=>SEARCH_INDEX.push({icon:'✨',title:f.cat+': '+f.text.slice(0,60),meta:f.cat,section:'Fun Facts',page:'facts',q:f.text+' '+f.cat}));
+  (typeof STAT_RESEARCH_DATA!=='undefined'?STAT_RESEARCH_DATA:[]).forEach(r=>SEARCH_INDEX.push({icon:'🔭',title:r.t,meta:r.res+' · '+r.inst,section:'Research',page:'research',q:r.t+' '+r.res+' '+r.desc}));
   TOOLS.forEach(t=>SEARCH_INDEX.push({icon:t.icon,title:t.name,meta:t.type,section:'Tools',page:'tools',q:t.name+' '+t.desc+' '+t.type}));
 }
 
@@ -3786,7 +3978,7 @@ function renderFormulas(){
    KEYBOARD SHORTCUTS
    ═══════════════════════════════════════════════════════════ */
 (function initKeyboard(){
-  const PAGES=['home','books','puzzles','school','inference','distributions','bayesian','openproblems','careers','studyguide','facts','tools','calc','formulas','history','comments'];
+  const PAGES=['home','books','puzzles','school','inference','distributions','bayesian','openproblems','research','careers','studyguide','facts','tools','calc','formulas','history','comments'];
   document.addEventListener('keydown',e=>{
     if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
     if(document.getElementById('search-modal').classList.contains('open')){
