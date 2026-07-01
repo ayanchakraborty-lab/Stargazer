@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="pics/logo.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -3339,7 +3340,7 @@ footer p{font-size:0.82rem; opacity:0.5; max-width:560px; margin:6px auto;}
 
 <footer>
   <div class="foot-glyph">日 本 ・ に っ ぽ ん</div>
-  <p>Built as a hand-crafted single page. Stroke-order animations are loaded live from Wikimedia Commons (public domain / CC0, by contributor Sirgazil). Etymological kanji origins drawn from classical man'yōgana scholarship — some kana origins remain genuinely debated among linguists, which is part of their charm.</p>
+  <p>Built as a hand-crafted single page. Stroke-order animations for the base kana are loaded live from Wikimedia Commons (public domain / CC0, by contributor Sirgazil). Stroke-order diagrams for dakuon, handakuon, and small っ/ッ are from the <a href="https://kanjivg.tagaini.net/" style="color:inherit;" target="_blank" rel="noopener">KanjiVG project</a> by Ulrich Apel (CC BY-SA 3.0). Etymological kanji origins drawn from classical man'yōgana scholarship — some kana origins remain genuinely debated among linguists, which is part of their charm.</p>
 </footer>
 
 <!-- ── CONTACT ── -->
@@ -3366,7 +3367,7 @@ footer p{font-size:0.82rem; opacity:0.5; max-width:560px; margin:6px auto;}
         <button id="kmodal-sound" aria-label="Play pronunciation" title="Play sound" style="margin-top:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:8px;color:#fff;font-size:1rem;padding:6px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background 0.15s;">🔊 <span style="font-family:var(--mono);font-size:0.7rem;letter-spacing:0.05em;text-transform:uppercase;opacity:0.8;">Play</span></button>
       </div>
     </div>
-    <div class="kmodal-section">
+    <div class="kmodal-section" id="kmodal-stroke-section">
       <h4>Stroke order</h4>
       <div class="stroke-box" id="kmodal-stroke"></div>
     </div>
@@ -4132,6 +4133,26 @@ function strokeImgUrl(type, char){
   return "https://commons.wikimedia.org/wiki/Special:FilePath/" + type + "_" + encodeURIComponent(char) + "_stroke_order_animation.gif";
 }
 
+/* Wikimedia's animated stroke-order GIFs (by Sirgazil) only exist for the
+   46 base kana + ゐ/ゑ — dakuon (が), handakuon (ぱ), and small っ/ッ are
+   each their own Unicode character but have no animated GIF of their own.
+   For those we fall back to the KanjiVG project's numbered stroke-order
+   SVGs, addressed by the character's own code point and served via the
+   jsDelivr GitHub CDN. This covers every dakuon/handakuon character and
+   the geminate っ/ッ with a real, working diagram instead of a blank box. */
+function kanjivgUrl(char){
+  const codePoint = char.codePointAt(0).toString(16).padStart(5,"0");
+  return "https://cdn.jsdelivr.net/gh/KanjiVG/kanjivg/kanji/" + codePoint + ".svg";
+}
+
+/* Rows that are single characters without a Sirgazil animation, so they use
+   the KanjiVG diagram above instead */
+const KANJIVG_ROWS = new Set(["g","z","d","b","p","tsu"]);
+/* Rows that are multi-character combinations (e.g. きゃ, ああ) — there is no
+   such thing as a single-character stroke order for these, so the whole
+   "Stroke order" section is hidden rather than showing an empty box */
+const NO_STROKE_ROWS = new Set(["yo","lv"]);
+
 /* ==========================================================
    SOUND PLAYBACK
    ========================================================== */
@@ -4221,10 +4242,23 @@ function openModal(type, index){
     originEl.textContent = "from the man\u2019y\u014dgana character " + kLabel + kMeaning;
   }
 
+  const strokeSection = document.getElementById("kmodal-stroke-section");
   const strokeBox = document.getElementById("kmodal-stroke");
-  if(strokeBox){
-    const imgUrl = strokeImgUrl(type, item.c);
-    strokeBox.innerHTML = `<img src="${imgUrl}" alt="Stroke order animation for ${item.c}" loading="eager" onerror="this.parentElement.innerHTML='<div class=&quot;stroke-fallback&quot;>Stroke order not available for this character.</div>'">`;
+  if(NO_STROKE_ROWS.has(item.row)){
+    /* きゃ, ああ, etc. are multi-character combinations — no single stroke
+       order applies, so hide the section completely rather than show an
+       empty white box */
+    if(strokeSection) strokeSection.style.display = "none";
+  } else {
+    if(strokeSection) strokeSection.style.display = "";
+    if(strokeBox){
+      const usesKanjiVG = KANJIVG_ROWS.has(item.row);
+      const imgUrl = usesKanjiVG ? kanjivgUrl(item.c) : strokeImgUrl(type, item.c);
+      const altLabel = usesKanjiVG
+        ? `Numbered stroke order diagram for ${item.c}`
+        : `Stroke order animation for ${item.c}`;
+      strokeBox.innerHTML = `<img src="${imgUrl}" alt="${altLabel}" loading="eager" onerror="this.parentElement.innerHTML='<div class=&quot;stroke-fallback&quot;>Stroke order not available for this character.</div>'">`;
+    }
   }
 
   const overlay = document.getElementById("kmodal-overlay");

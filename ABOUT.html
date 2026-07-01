@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — Stargazer: Ten Territories Through a Curious Mind</title>
@@ -192,6 +193,59 @@ main { position: relative; z-index: 1; padding-top: 52px; }
 }
 .divider span { font-size: 0.62rem; color: rgba(201,168,76,0.32); }
 
+/* ── WATCH (click-to-play video cards) ─────────────────────────────── */
+.watch-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem; margin-top: 0.5rem;
+}
+.watch-card {
+  position: relative; aspect-ratio: 16 / 9; overflow: hidden;
+  border-radius: 4px 16px 4px 16px; border: 1px solid var(--bdr2);
+  background: #000; box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+.watch-card:hover { transform: translateY(-2px); box-shadow: 0 14px 38px rgba(0,0,0,0.5); }
+.watch-video { width: 100%; height: 100%; object-fit: cover; display: block; background: #000; }
+.watch-card::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to top, rgba(2,1,8,0.84) 0%, rgba(2,1,8,0.10) 48%, rgba(2,1,8,0.28) 100%);
+  transition: opacity 0.3s ease;
+}
+.watch-card.playing::after { opacity: 0; }
+.watch-play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 54px; height: 54px; border-radius: 50%; padding: 0;
+  background: rgba(8,4,18,0.55); border: 1px solid var(--bdr2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold2); cursor: pointer;
+  transition: background 0.22s, border-color 0.22s, transform 0.22s;
+  animation: watchPulse 2.6s ease-in-out infinite;
+}
+.watch-play svg { width: 17px; height: 17px; margin-left: 2px; }
+.watch-card:hover .watch-play {
+  background: rgba(201,168,76,0.18); border-color: var(--gold);
+  transform: translate(-50%,-50%) scale(1.08);
+}
+.watch-card.playing .watch-play { display: none; }
+@keyframes watchPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.22); }
+  50%      { box-shadow: 0 0 0 10px rgba(201,168,76,0); }
+}
+.watch-cap {
+  position: absolute; left: 1rem; right: 1rem; bottom: 0.85rem;
+  display: flex; flex-direction: column; gap: 0.15rem; pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.watch-card.playing .watch-cap { opacity: 0; }
+.watch-cap-title {
+  font-family: var(--font); font-style: italic; font-size: 1.02rem;
+  color: var(--gold2); line-height: 1.2;
+}
+.watch-cap-sub {
+  font-family: var(--mono); font-size: 0.44rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text3);
+}
+
 /* ── MANIFESTO ───────────────────────────────────────────────────── */
 .manifesto p {
   font-size: 1.04rem; color: var(--text2); line-height: 1.9; margin-bottom: 1.15rem;
@@ -324,6 +378,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
 @media (max-width: 680px) {
   .cosmo-hero { padding: 4rem 1.2rem 1rem; }
   .domains-grid { grid-template-columns: 1fr; }
+  .watch-grid { grid-template-columns: 1fr; }
   .full-nav-grid { grid-template-columns: repeat(2, 1fr); }
   .stat-item { padding: 0.4rem 0.7rem; }
   .content-well { padding: 0 1.1rem 4rem; }
@@ -545,6 +600,53 @@ main { position: relative; z-index: 1; padding-top: 52px; }
      CONTENT WELL
 ══════════════════════════════════════════════════════════════ -->
 <div class="content-well">
+
+
+  <!-- ─── WATCH · TWO TRANSMISSIONS, BEFORE THE TEXT ──────────── -->
+  <section class="watch reveal">
+    <p class="sec-eyebrow">✦ &nbsp;·&nbsp; in motion</p>
+    <h2 class="sec-title">Watch, Before You Read</h2>
+    <p class="sec-intro">two short transmissions — the mark, and the cosmos it opens onto</p>
+
+    <div class="watch-grid">
+
+      <!-- Trailer -->
+      <figure class="watch-card">
+        <video class="watch-video" preload="metadata" poster="pics/trailer-poster.jpg" playsinline controlsList="nodownload"
+               onplay="this.closest('.watch-card').classList.add('playing')"
+               onended="this.controls=false; this.closest('.watch-card').classList.remove('playing');">
+          <source src="video/about.mp4" type="video/mp4">
+        </video>
+        <button class="watch-play" type="button" aria-label="Play: Lost in the Cosmos, the trailer" onclick="playWatchVideo(this)">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <figcaption class="watch-cap">
+          <span class="watch-cap-title">Lost in the Cosmos</span>
+          <span class="watch-cap-sub">the trailer &nbsp;·&nbsp; 0:10</span>
+        </figcaption>
+      </figure>
+
+      <!-- Mark -->
+      <figure class="watch-card">
+        <video class="watch-video" preload="metadata" poster="pics/mark-poster.jpg" playsinline controlsList="nodownload"
+               onplay="this.closest('.watch-card').classList.add('playing')"
+               onended="this.controls=false; this.closest('.watch-card').classList.remove('playing');">
+          <source src="video/logo.mp4" type="video/mp4">
+        </video>
+        <button class="watch-play" type="button" aria-label="Play: The Mark, in motion" onclick="playWatchVideo(this)">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <figcaption class="watch-cap">
+          <span class="watch-cap-title">The Mark</span>
+          <span class="watch-cap-sub">the sigil, forming &nbsp;·&nbsp; 0:10</span>
+        </figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+
+  <div class="divider"><span>✦</span></div>
 
 
   <!-- ─── I · UNIFIED MANIFESTO ─────────────────────────────── -->
@@ -788,6 +890,15 @@ main { position: relative; z-index: 1; padding-top: 52px; }
 
 <script>
 window._pageKey = 'about';
+
+/* ── WATCH — click-to-play video cards ──────────────────────────── */
+window.playWatchVideo = function(btn) {
+  const card  = btn.closest('.watch-card');
+  const video = card && card.querySelector('video');
+  if (!video) return;
+  video.controls = true;
+  video.play().catch(() => {});
+};
 
 /* ── INTERSECTION OBSERVER — scroll-reveal ──────────────────────── */
 const revealObserver = new IntersectionObserver((entries) => {

@@ -1,0 +1,8 @@
+name = "german-sentence-checker"
+main = "sentence-checker-worker.js"
+compatibility_date = "2024-01-01"
+
+# After first deploy, run:
+#   wrangler secret put ANTHROPIC_API_KEY
+# and paste your Anthropic API key when prompted. Never put it directly
+# in this file or in sentence-checker-worker.js.
