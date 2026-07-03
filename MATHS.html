@@ -1570,6 +1570,15 @@ body.light-mode .res-access { background:rgba(4,120,87,0.06)!important; color:#0
 }
 .foot-link:hover { color:#c4b5fd; border-color:rgba(139,92,246,0.5); background:rgba(139,92,246,0.1); }
 body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,217,0.3)!important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  canvas { display: none; }
+}
 </style>
 </head>
 <body>
@@ -1699,7 +1708,7 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
     <button class="foot-link" onclick="showPage('about')">📖 About Stargazer</button>
     <a class="foot-link" onclick="showPage('comments'); return false;" href="#">💬 Community Comments</a>
     <a class="foot-link" href="mailto:ayan.chakraborty6174@gmail.com">✉️ Contact Creator</a>
-    <a class="foot-link" href="https://stargazer-9m9.pages.dev" target="_blank">🌐 Stargazer Home</a>
+    <a class="foot-link" href="https://stargazer-9m9.pages.dev" target="_blank" rel="noopener">🌐 Stargazer Home</a>
   </div>
 </footer>
 </div>
@@ -1813,10 +1822,10 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
       <!-- FREE ACCESS NOTE — shown once for the whole section -->
       <div class="res-access" style="margin-bottom:1.5rem;max-width:780px;margin-left:auto;margin-right:auto">
         <strong>📖 How to Access Research Papers for Free:</strong>
-        <a href="https://arxiv.org" target="_blank">arXiv.org</a> has virtually all modern math preprints free. Try
-        <a href="https://scholar.google.com" target="_blank">Google Scholar</a> → look for a "[PDF]" link or the author's university page.
-        <a href="https://sci-hub.se" target="_blank">Sci-Hub</a> provides most paywalled papers via DOI. For textbooks,
-        <a href="https://library.lol" target="_blank">Library Genesis</a> has most mathematical books freely. Authors also often post PDFs on their personal pages.
+        <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv.org</a> has virtually all modern math preprints free. Try
+        <a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a> → look for a "[PDF]" link or the author's university page.
+        <a href="https://sci-hub.se" target="_blank" rel="noopener">Sci-Hub</a> provides most paywalled papers via DOI. For textbooks,
+        <a href="https://library.lol" target="_blank" rel="noopener">Library Genesis</a> has most mathematical books freely. Authors also often post PDFs on their personal pages.
       </div>
       <div class="g3" id="research-grid"></div>
     </div>
@@ -1966,8 +1975,8 @@ body.light-mode .foot-link { color:#5b21b6!important; border-color:rgba(109,40,2
   </section>
 </div>
 
-<button id="theme-toggle" onclick="toggleTheme()">☀️</button>
-<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button id="theme-toggle" title="Toggle light / dark theme" aria-label="Toggle light / dark theme" onclick="toggleTheme()">☀️</button>
+<button id="btt" title="Back to top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <script>
 /* =========================================================
    DATA
@@ -4067,7 +4076,7 @@ function adminUploadPDF(section, itemIdx) {
   ) || [];
 
   const existingHTML = existing.map((pdf, pi) =>
-    `<div class="admin-pdf-item">📄 <a href="${pdf.url}" target="_blank">${escHtml(pdf.name)}</a>
+    `<div class="admin-pdf-item">📄 <a href="${pdf.url}" target="_blank" rel="noopener">${escHtml(pdf.name)}</a>
      <button class="remove-pdf" onclick="adminRemovePDF('${section}',${itemIdx},${pi})">✕ Remove</button></div>`
   ).join('');
 

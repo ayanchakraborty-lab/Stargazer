@@ -1891,6 +1891,24 @@ let activeDiffs  = new Set(); // empty = show all difficulty levels
 let activeSort = 'order';
 let searchTerm = '';
 
+// ── FILTER PERSISTENCE ──────────────────────────────────────────────
+// Remembers the active source/genre/buying/difficulty/sort/search filters
+// across page reloads.
+function saveFilters(){
+  localStorage.setItem('rl_filters_v1', JSON.stringify({
+    source: activeSource,
+    genres: [...activeGenres],
+    buying: activeBuying,
+    diffs:  [...activeDiffs],
+    sort:   activeSort,
+    search: searchTerm
+  }));
+}
+function loadSavedFilters(){
+  try{ return JSON.parse(localStorage.getItem('rl_filters_v1')) || null; }
+  catch(e){ return null; }
+}
+
 // ── HELPERS ────────────────────────────────────────────────────────
 const $ = id => document.getElementById(id);
 function saveStatus(){ if (typeof sbSaveProgress === 'function') sbSaveProgress(); localStorage.setItem('rl_status_v3', JSON.stringify(status)); }
@@ -2004,33 +2022,53 @@ function updateSpotlight(){
 // Local covers from the pics/ folder (highest priority)
 const LOCAL_COVERS = {
   'c20': 'covers/2666.jpg',
+  'o25': 'covers/aninstanceofthefingerpost.jpg',
+  'o28': 'covers/atswimtwobirds.jpg',
   'o75': 'covers/avoid.jpg',
+  'o40': 'covers/blindsight.jpg',
   'c30': 'covers/catscradle.jpg',
+  'o35': 'covers/cryingofthelot49.jpg',
   'o44': 'covers/cryptonomicon.jpg',
+  'o49': 'covers/diaspora.jpg',
+  'o22': 'covers/ellaminnowpea.jpg',
+  'o46': 'covers/embasseytown.jpg',
   'o59': 'covers/exercisesinstyle.jpg',
+  'o74': 'covers/gadsby.jpg',
   'o63': 'covers/hopscotch.jpg',
   'c10': 'covers/hyperion.jpg',
+  'o64': 'covers/ifonawintersnightatraveller.jpg',
+  'o86': 'covers/infinitejest.jpg',
   'o55': 'covers/jonathanstrange.jpg',
   'c22': 'covers/labyrinths.jpg',
+  'o26': 'covers/lincolninthebardo.jpg',
   'c2':  'covers/malonedies.jpg',
   'c11': 'covers/morethanhuman.jpg',
+  'o72': 'covers/multiplechoice.jpg',
   'c13': 'covers/nausea.jpg',
   'c26': 'covers/neverletmego.jpg',
+  'o34': 'covers/newyorktrilogy.jpg',
+  'o4':  'covers/nightfilm.jpg',
   'o73': 'covers/palefire.jpg',
+  'o43': 'covers/permutationcity.jpg',
+  'o36': 'covers/poorthings.jpg',
   'c33': 'covers/recursion.jpg',
   'o68': 'covers/s.jpg',
   'o19': 'covers/solaris.jpg',
   'c5':  'covers/thecastle.jpg',
   'c31': 'covers/thefemaleman.jpg',
   'c15': 'covers/theglassbeadgame.jpg',
+  'o31': 'covers/thehearingtrumpet.jpg',
   'o30': 'covers/themanuscriptfoundinsargossa.jpg',
   'o60': 'covers/thepenguinbookofoulipo.jpg',
   'o53': 'covers/theringsofsaturn.jpg',
+  'o23': 'covers/strangepictures.jpg',
   'c14': 'covers/thestranger.jpg',
+  'o29': 'covers/thethirdpoliceman.jpg',
   'o66': 'covers/theunfortunates.jpg',
   'c3':  'covers/theunnamable.jpg',
   'c4':  'covers/thetrial.jpg',
   'c16': 'covers/underthevolcano.jpg',
+  'o61': 'covers/unflattening.jpg',
   'c23': 'covers/whitenoise.jpg',
 };
 const COVER_FIXES = {
@@ -2064,15 +2102,27 @@ const COVER_FIXES = {
   'c31':'The Female Man Joanna Russ novel',
   'c32':'Alphabetical Africa Walter Abish',
 };
+// Every book without a local cover gets looked up via the OpenLibrary
+// search API (which returns a numeric cover id we can trust), rather than
+// the old fallback of covers.openlibrary.org/b/title/... — "title" is not
+// a valid lookup key for that endpoint, so it silently never resolved.
 const coverOverrides = {};
-for(const id of Object.keys(COVER_FIXES)){
+function coverQueryFor(id){
+  if(COVER_FIXES[id]) return COVER_FIXES[id];
+  const b = booksData.find(x=>x.id===id);
+  return b ? `${b.title} ${b.author}` : null;
+}
+const COVER_LOOKUP_IDS = booksData.filter(b=>!LOCAL_COVERS[b.id]).map(b=>b.id);
+for(const id of COVER_LOOKUP_IDS){
   const cached = localStorage.getItem(`rl_cov3_${id}`);
   if(cached) coverOverrides[id] = cached;
 }
 async function fetchMissingCovers(){
   let dirty=false;
-  for(const [id, query] of Object.entries(COVER_FIXES)){
+  for(const id of COVER_LOOKUP_IDS){
     if(coverOverrides[id]) continue;
+    const query = coverQueryFor(id);
+    if(!query) continue;
     try{
       const r = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&fields=cover_i&limit=1`);
       const d = await r.json();
@@ -2089,7 +2139,7 @@ async function fetchMissingCovers(){
 function coverUrl(b){
   if(LOCAL_COVERS[b.id]) return LOCAL_COVERS[b.id];
   if(coverOverrides[b.id]) return coverOverrides[b.id];
-  return `https://covers.openlibrary.org/b/title/${encodeURIComponent(b.title)}-M.jpg`;
+  return ''; // triggers onerror → placeholder, until fetchMissingCovers() resolves it
 }
 
 // ── FILTER + SORT ─────────────────────────────────────────────────
@@ -2197,12 +2247,13 @@ function renderAll(){
     <li class="book-item${itemClass}" id="book-${b.id}">
       <div class="book-cover">
         <div class="cover-img-wrap">
-          <img src="${coverUrl(b)}" alt="Cover: ${b.title}"
+          ${(()=>{const cu=coverUrl(b); return cu ? `
+          <img src="${cu}" alt="Cover: ${b.title}"
                onclick="openCoverLightbox(this.src,'${b.title.replace(/'/g,"&#39;")}')"
                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                onload="if(this.naturalWidth<12||this.naturalHeight<12){this.style.display='none';this.nextElementSibling.style.display='flex'}"
-               loading="lazy">
-          <div class="cover-placeholder" style="display:none">
+               loading="lazy">` : '';})()}
+          <div class="cover-placeholder" style="${coverUrl(b)?'display:none':'display:flex'}">
             <span class="cover-emoji">📖</span>
             <span class="placeholder-title">${b.title}</span>
             <span class="placeholder-author">${b.author}</span>
@@ -2325,12 +2376,12 @@ searchInput.addEventListener('input',()=>{
   searchTerm=searchInput.value.trim();
   searchClear.style.display=searchTerm?'block':'none';
   clearTimeout(_searchTimer);
-  _searchTimer=setTimeout(renderAll,220); /* debounce: skip mid-keystroke renders */
+  _searchTimer=setTimeout(()=>{renderAll();saveFilters();},220); /* debounce: skip mid-keystroke renders */
 });
 searchClear.addEventListener('click',()=>{
   searchInput.value=''; searchTerm='';
   searchClear.style.display='none';
-  renderAll(); searchInput.focus();
+  renderAll(); searchInput.focus(); saveFilters();
 });
 document.addEventListener('keydown',e=>{
   if(e.key==='/'&&document.activeElement!==searchInput){
@@ -2349,7 +2400,7 @@ function resetAllFilters(){
 }
 
 document.getElementById('clearAllFilters').addEventListener('click',()=>{
-  resetAllFilters(); renderAll();
+  resetAllFilters(); renderAll(); saveFilters();
 });
 
 document.querySelectorAll('.tag-btn[data-category]').forEach(btn=>{
@@ -2397,6 +2448,7 @@ document.querySelectorAll('.tag-btn[data-category]').forEach(btn=>{
       else if(cat==='buying')  activeBuying=tag;
     }
     renderAll();
+    saveFilters();
   });
 });
 
@@ -2407,6 +2459,7 @@ document.querySelectorAll('.sort-btn[data-sort]').forEach(btn=>{
     btn.classList.add('active');
     activeSort=btn.dataset.sort;
     renderAll();
+    saveFilters();
   });
 });
 
@@ -2791,6 +2844,35 @@ async function resetProgress(){
 }
 
 // ── INIT ─────────────────────────────────────────────────────────
+function restoreFilters(){
+  const saved = loadSavedFilters();
+  if(!saved) return;
+
+  activeSource = saved.source || 'all-source';
+  activeBuying = saved.buying || 'all-buying';
+  activeGenres = new Set(saved.genres || []);
+  activeDiffs  = new Set((saved.diffs||[]).map(Number));
+  activeSort   = saved.sort || 'order';
+  searchTerm   = saved.search || '';
+
+  document.querySelectorAll('.tag-btn[data-category="source"]').forEach(b=>b.classList.toggle('active', b.dataset.tag===activeSource));
+  document.querySelectorAll('.tag-btn[data-category="buying"]').forEach(b=>b.classList.toggle('active', b.dataset.tag===activeBuying));
+  document.querySelectorAll('.tag-btn[data-category="genre"]').forEach(b=>{
+    if(b.dataset.tag==='all-genre') b.classList.toggle('active', activeGenres.size===0);
+    else b.classList.toggle('active', activeGenres.has(b.dataset.tag));
+  });
+  document.querySelectorAll('.tag-btn[data-category="diff"]').forEach(b=>{
+    if(b.dataset.tag==='all-diff') b.classList.toggle('active', activeDiffs.size===0);
+    else b.classList.toggle('active', activeDiffs.has(parseInt(b.dataset.tag.replace('diff-',''))));
+  });
+  document.querySelectorAll('.sort-btn[data-sort]').forEach(b=>b.classList.toggle('active', b.dataset.sort===activeSort));
+
+  if(searchTerm){
+    searchInput.value = searchTerm;
+    searchClear.style.display = 'block';
+  }
+}
+restoreFilters();
 fetchMissingCovers();
 renderAll();
 

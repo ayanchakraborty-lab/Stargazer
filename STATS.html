@@ -691,6 +691,17 @@ body.night .dist-card:hover::after,body.night .car-card:hover::after,body.night 
 /* Fade-in toast */
 @keyframes fadeUpIn{from{opacity:0;transform:translateX(-50%) translateY(8px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  /* Only hide the decorative background canvas — .dist-canvas elements
+     are functional statistical charts, not ambient motion, so they stay. */
+  #dataCanvas { display: none; }
+}
+
 </style>
 </head>
 <body>
@@ -699,7 +710,7 @@ body.night .dist-card:hover::after,body.night .car-card:hover::after,body.night 
 <div id="auth-topbar">
   <a href="index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
   <div style="flex:1"></div>
-  <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night">
+  <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
     <span id="mode-icon">☾</span>
   </button>
   <a href="login.html" id="loginBtn">☽ Sign In</a>
@@ -713,7 +724,7 @@ body.night .dist-card:hover::after,body.night .car-card:hover::after,body.night 
 <nav id="nav">
   <span class="nav-brand" onclick="showPage('home')" style="cursor:pointer;user-select:none">∑ Statistics</span>
   <span class="nav-cur-section" id="nav-cur-lbl">Home</span>
-  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)">🔍</button>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)" aria-label="Search">🔍</button>
   <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
 </nav>
 
@@ -756,7 +767,7 @@ body.night .dist-card:hover::after,body.night .car-card:hover::after,body.night 
 
 <!-- ═══ TOAST ══════════════════════════════════════════════════════ -->
 <div id="toast">
-  <button id="toast-close" onclick="hideToast()">✕</button>
+  <button id="toast-close" onclick="hideToast()" aria-label="Dismiss notification">✕</button>
   <div class="toast-cat" id="toast-cat">Fun Fact</div>
   <div id="toast-body"></div>
 </div>
@@ -776,7 +787,7 @@ body.night .dist-card:hover::after,body.night .car-card:hover::after,body.night 
       <div class="calc-search-wrap">
         <span class="calc-search-icon">🔍</span>
         <input class="calc-search-inp" id="calc-search-inp" placeholder="Search calculators — try 'entropy', 'power', 'confidence', 'Bayes'…" autocomplete="off" oninput="calcSearch(this.value)">
-        <button class="calc-search-clear" id="calc-search-clr" onclick="calcSearchClear()">✕</button>
+        <button class="calc-search-clear" id="calc-search-clr" onclick="calcSearchClear()" aria-label="Clear search">✕</button>
         <div class="calc-hint" id="calc-hint"></div>
       </div>
       <div class="g3" id="calc-grid"></div>
@@ -865,9 +876,9 @@ body.night .dist-card:hover::after,body.night .car-card:hover::after,body.night 
       </div>
       <div class="stat-res-access">
         <strong>📖 Access Research Papers Free:</strong>
-        <a href="https://arxiv.org/list/stat" target="_blank">arXiv stat</a> has virtually all modern statistics preprints.
-        <a href="https://scholar.google.com" target="_blank">Google Scholar</a> → look for [PDF] links or author pages.
-        <a href="https://sci-hub.se" target="_blank">Sci-Hub</a> provides paywalled papers via DOI.
+        <a href="https://arxiv.org/list/stat" target="_blank" rel="noopener">arXiv stat</a> has virtually all modern statistics preprints.
+        <a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a> → look for [PDF] links or author pages.
+        <a href="https://sci-hub.se" target="_blank" rel="noopener">Sci-Hub</a> provides paywalled papers via DOI.
         Key journals: <em>Annals of Statistics</em>, <em>JRSS-B</em>, <em>Biometrika</em>, <em>JASA</em>.
       </div>
       <div class="g3" id="stat-research-grid"></div>
@@ -1126,7 +1137,7 @@ body.night .dist-card:hover::after,body.night .car-card:hover::after,body.night 
   <a href="ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
 </div>
 
-<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
 <script>
 /* ═══════════════════════════════════════════════════════════
    DATA ARRAYS
@@ -2667,28 +2678,28 @@ const TOOLS = [
 
 async function handleBookPdfUpload(slug,inp){
   const file=inp.files[0]; if(!file)return;
-  if(!window.sbClient){alert('Supabase not connected');return;}
+  if(!window.sb){alert('Supabase not connected');return;}
   const btn=document.getElementById('pdfbtn-'+slug);
   if(!btn)return;
   btn.textContent='⏳ Uploading…';btn.style.display='inline-flex';
   const path='books/'+slug+'.pdf';
-  const{error}=await window.sbClient.storage.from('vault-files').upload(path,file,{upsert:true});
+  const{error}=await window.sb.storage.from('vault-files').upload(path,file,{upsert:true});
   if(error){alert('Upload error: '+error.message);btn.style.display='none';return;}
-  const{data}=window.sbClient.storage.from('vault-files').getPublicUrl(path);
+  const{data}=window.sb.storage.from('vault-files').getPublicUrl(path);
   btn.href=data.publicUrl;btn.textContent='📄 Read PDF';btn.style.display='inline-flex';
   alert('PDF uploaded successfully!');
 }
 
 async function loadBookPdfs(){
-  if(!window.sbClient)return;
+  if(!window.sb)return;
   try{
-    const{data,error}=await window.sbClient.storage.from('vault-files').list('books',{limit:100});
+    const{data,error}=await window.sb.storage.from('vault-files').list('books',{limit:100});
     if(error||!data)return;
     data.forEach(f=>{
       const slug=f.name.replace('.pdf','');
       const btn=document.getElementById('pdfbtn-'+slug);
       if(btn){
-        const{data:u}=window.sbClient.storage.from('vault-files').getPublicUrl('books/'+f.name);
+        const{data:u}=window.sb.storage.from('vault-files').getPublicUrl('books/'+f.name);
         btn.href=u.publicUrl;btn.style.display='inline-flex';
       }
     });
@@ -3093,7 +3104,7 @@ function renderBayesian(){
       <span class="bay-expand-lbl" id="baylbl-${i}" onclick="toggleBay(${i})">▸ Read more (all levels)</span>
       <div class="bay-detail" id="baydet-${i}">${b.detail}
         <div class="bay-pdf-row">
-          <a class="bay-pdf-link" id="baypdf-${b.pdfKey}" style="display:none" href="#" target="_blank">📄 PDF Reference</a>
+          <a class="bay-pdf-link" id="baypdf-${b.pdfKey}" style="display:none" href="#" target="_blank" rel="noopener">📄 PDF Reference</a>
           ${admin?`<div>
             <input type="file" accept=".pdf" style="display:none" id="bayinp-${b.pdfKey}" onchange="handleBayPdfUpload('${b.pdfKey}',this)">
             <label for="bayinp-${b.pdfKey}" class="book-upload-label">📤 Upload PDF</label>
@@ -3119,26 +3130,26 @@ function toggleBayLevel(hdr){
 
 async function handleBayPdfUpload(key,inp){
   const file=inp.files[0]; if(!file)return;
-  if(!window.sbClient){alert('Supabase not connected');return;}
+  if(!window.sb){alert('Supabase not connected');return;}
   const path='bayesian/'+key+'.pdf';
-  const{error}=await window.sbClient.storage.from('vault-files').upload(path,file,{upsert:true});
+  const{error}=await window.sb.storage.from('vault-files').upload(path,file,{upsert:true});
   if(error){alert('Upload error: '+error.message);return;}
-  const{data}=window.sbClient.storage.from('vault-files').getPublicUrl(path);
+  const{data}=window.sb.storage.from('vault-files').getPublicUrl(path);
   const lnk=document.getElementById('baypdf-'+key);
   if(lnk){lnk.href=data.publicUrl;lnk.style.display='inline-flex';}
   alert('PDF uploaded!');
 }
 
 async function loadBayPdfs(){
-  if(!window.sbClient)return;
+  if(!window.sb)return;
   try{
-    const{data,error}=await window.sbClient.storage.from('vault-files').list('bayesian',{limit:50});
+    const{data,error}=await window.sb.storage.from('vault-files').list('bayesian',{limit:50});
     if(error||!data)return;
     data.forEach(f=>{
       const key=f.name.replace('.pdf','');
       const lnk=document.getElementById('baypdf-'+key);
       if(lnk){
-        const{data:u}=window.sbClient.storage.from('vault-files').getPublicUrl('bayesian/'+f.name);
+        const{data:u}=window.sb.storage.from('vault-files').getPublicUrl('bayesian/'+f.name);
         lnk.href=u.publicUrl;lnk.style.display='inline-flex';
       }
     });
@@ -4290,7 +4301,7 @@ function renderBooks(){
       </div>
       <div class="book-links" style="margin-top:.6rem">
         ${(b.links||[]).map(l=>`<a href="${l.url}" target="_blank" rel="noopener" class="book-link book-link-${l.cls}">${l.label} ↗</a>`).join('')}
-        <a class="book-pdf-btn" id="pdfbtn-${b.slug}" style="display:none" href="#" target="_blank">📄 Read PDF</a>
+        <a class="book-pdf-btn" id="pdfbtn-${b.slug}" style="display:none" href="#" target="_blank" rel="noopener">📄 Read PDF</a>
       </div>
       ${adm?`<div class="book-upload-wrap" style="margin-top:.4rem">
         <input type="file" accept=".pdf" class="book-upload-input" id="uinp-${b.slug}" onchange="handleBookPdfUpload('${b.slug}',this)">

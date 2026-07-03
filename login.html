@@ -8,6 +8,8 @@
 <meta name="application-name" content="Stargazer: Lost in the Cosmos">
 <title>Sign In | Stargazer: Lost in the Cosmos</title>
 <meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -302,6 +304,15 @@ body::after {
   color: rgba(255,255,255,0.2); transition: all 0.2s;
 }
 .btn-signout:hover { border-color: rgba(255,100,100,0.3); color: rgba(255,120,120,0.6); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  canvas { display: none; }
+}
 
 </style>
 </head>

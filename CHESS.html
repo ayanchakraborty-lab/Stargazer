@@ -1835,14 +1835,23 @@ tbody tr:hover { background: var(--glow-gold); }
   0%, 100% { box-shadow: 0 0 20px rgba(212,175,55,0.1); }
   50% { box-shadow: 0 0 40px rgba(212,175,55,0.3); }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  canvas { display: none; }
+}
 </style>
 </head>
 <body>
 <!-- Reading progress bar -->
 <div id="read-progress"></div>
 <!-- Page navigation buttons -->
-<button id="backToTop" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-<button id="pageDown" title="Page down" onclick="window.scrollBy({top:window.innerHeight*0.85,behavior:'smooth'})">↓</button>
+<button id="backToTop" title="Back to top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button id="pageDown" title="Page down" aria-label="Page down" onclick="window.scrollBy({top:window.innerHeight*0.85,behavior:'smooth'})">↓</button>
 
 <!-- ============================================================
      HERO SECTION

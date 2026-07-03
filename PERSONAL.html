@@ -1018,6 +1018,105 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
   .entry-body-wrap{grid-template-rows:1fr !important;}
 }
 
+/* ══════════════════════════════════════════
+   SINGLE-ENTRY PDF EXPORT
+   A hidden, purpose-built printable page for a
+   single book / movie / anime / diary entry.
+   Kept off-screen at all times; when the user
+   asks to download an entry, we populate this
+   sheet, flip on .printing-entry, and hand off
+   to the browser's native print → Save as PDF.
+══════════════════════════════════════════ */
+#pdfPrintSheet{
+  position:fixed;left:-99999px;top:0;width:820px;
+  background:#fbf6ea;
+}
+@media print{
+  body.printing-entry *{visibility:hidden !important;}
+  body.printing-entry #pdfPrintSheet,
+  body.printing-entry #pdfPrintSheet *{visibility:visible !important;}
+  body.printing-entry #pdfPrintSheet{
+    position:absolute;left:0;top:0;width:100%;margin:0;padding:0;background:#fbf6ea;
+  }
+  @page{margin:0.55in;}
+}
+.pdf-page{
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact;
+  background:#fbf6ea;color:#2b2015;font-family:'Lora',serif;
+  padding:2.1rem 2.3rem 1.6rem;position:relative;
+  border:1.5px solid #a9762f;
+  box-shadow:inset 0 0 0 5px #fbf6ea, inset 0 0 0 6px rgba(169,118,47,.55);
+}
+.pdf-corner{position:absolute;width:22px;height:22px;border:1.5px solid #a9762f;}
+.pdf-corner.tl{top:8px;left:8px;border-right:none;border-bottom:none;}
+.pdf-corner.tr{top:8px;right:8px;border-left:none;border-bottom:none;}
+.pdf-corner.bl{bottom:8px;left:8px;border-right:none;border-top:none;}
+.pdf-corner.br{bottom:8px;right:8px;border-left:none;border-top:none;}
+.pdf-hdr{text-align:center;margin-bottom:1.3rem;break-inside:avoid;}
+.pdf-seal{width:34px;height:34px;color:#a9762f;margin:0 auto .5rem;display:block;}
+.pdf-kicker{
+  font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.32em;
+  text-transform:uppercase;color:#a9762f;margin-bottom:.3rem;
+}
+.pdf-kind{
+  font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.22em;
+  text-transform:uppercase;color:#8a6a3f;margin-bottom:.7rem;
+}
+.pdf-title{
+  font-family:'Cinzel',serif;font-size:1.9rem;font-weight:700;color:#5a3d14;
+  letter-spacing:.02em;line-height:1.25;margin:0 0 .4rem;
+}
+.pdf-subtitle{
+  font-family:'Lora',serif;font-style:italic;font-size:.92rem;color:#5c4a30;margin-bottom:.6rem;
+}
+.pdf-rule-orn{
+  display:flex;align-items:center;gap:.6rem;justify-content:center;margin:.7rem auto 1.1rem;width:70%;
+  color:#a9762f;font-size:.8rem;
+}
+.pdf-rule-orn::before,.pdf-rule-orn::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,#a9762f,transparent);}
+.pdf-hero{display:flex;gap:1.3rem;align-items:flex-start;margin-bottom:1.2rem;break-inside:avoid;}
+.pdf-cover-wrap{
+  flex-shrink:0;width:120px;height:172px;border:2px solid #a9762f;border-radius:2px;
+  overflow:hidden;box-shadow:0 3px 10px rgba(90,61,20,.28);background:#efe4cc;
+}
+.pdf-cover-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+.pdf-hero-body{flex:1;min-width:0;padding-top:.2rem;}
+.pdf-rating-line{font-size:.95rem;letter-spacing:.14em;color:#a9762f;margin-bottom:.5rem;}
+.pdf-rating-num{font-family:'Space Mono',monospace;font-size:.68rem;color:#5c4a30;margin-left:.4rem;letter-spacing:0;}
+.pdf-genres{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.2rem;}
+.pdf-tag{
+  font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;letter-spacing:.05em;
+  color:#5a3d14;background:rgba(169,118,47,.14);border:1px solid rgba(169,118,47,.5);
+  border-radius:2px;padding:.14rem .5rem;
+}
+.pdf-section{margin-bottom:1.05rem;}
+.pdf-section-lbl{
+  display:flex;align-items:center;gap:.55rem;
+  font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
+  color:#8a6a3f;margin-bottom:.45rem;
+}
+.pdf-section-lbl::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(169,118,47,.55),transparent);}
+.pdf-section-txt{
+  font-family:'Lora',serif;font-size:.88rem;line-height:1.75;color:#332818;
+  white-space:pre-wrap;
+}
+.pdf-quote{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;line-height:1.6;
+  color:#4a3418;border-left:3px solid #a9762f;padding:.3rem 0 .3rem 1.1rem;margin:0;
+  white-space:pre-wrap;break-inside:avoid;
+}
+.pdf-diary-body{
+  font-family:'Lora',serif;font-size:.92rem;line-height:1.85;color:#332818;white-space:pre-wrap;
+}
+.pdf-ftr{
+  margin-top:1.6rem;padding-top:1rem;border-top:1px solid rgba(169,118,47,.5);
+  text-align:center;break-inside:avoid;
+}
+.pdf-ftr-text{
+  font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
+  color:#8a6a3f;
+}
+
 /* ── Responsive ── */
 @media(max-width:720px){
   .colophon-row{grid-template-columns:1fr;gap:1.8rem;}
@@ -1195,6 +1294,8 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
       <button class="hbtn primary" id="addDocBtn" onclick="openUploadModal()">+ Document</button>
       <button class="hbtn primary" id="addTerrBtn" onclick="openFolderModal()">+ Territory</button>
       <button class="hbtn primary" id="addBookBtn" style="display:none" onclick="openBookModal()">+ Add a Book</button>
+      <button class="hbtn primary" id="addMovieBtn" style="display:none" onclick="openMovieModal()">+ Add a Movie</button>
+      <button class="hbtn primary" id="addAnimeBtn" style="display:none" onclick="openAnimeModal()">+ Add an Anime</button>
       <button class="hbtn primary" id="addDiaryBtn" style="display:none" onclick="openDiaryModal()">+ New Entry</button>
       <button class="hbtn theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Switch to day mode" title="Switch theme">🌙</button>
       <button class="hbtn" id="backUniverseBtn" onclick="backToUniverse()" title="Lock the vault and return home">← Universe</button>
@@ -1208,6 +1309,12 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
     <div class="main-tabs">
       <button class="main-tab active" id="tabBtnBooks" onclick="switchMainTab('books')">
         <img src="pics/old_books.png" alt="" class="tab-icon-img" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';"><span class="tab-icon-fallback" style="display:none">📚</span> Books I Read
+      </button>
+      <button class="main-tab" id="tabBtnMovies" onclick="switchMainTab('movies')">
+        <span class="tab-icon-fallback" style="display:inline">🎬</span> Movies I've Watched
+      </button>
+      <button class="main-tab" id="tabBtnAnime" onclick="switchMainTab('anime')">
+        <span class="tab-icon-fallback" style="display:inline">🎴</span> Anime I've Watched
       </button>
       <button class="main-tab" id="tabBtnFiles" onclick="switchMainTab('files')">
         <img src="pics/old_files.png" alt="" class="tab-icon-img" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';"><span class="tab-icon-fallback" style="display:none">🗂️</span> Files Uploaded
@@ -1254,6 +1361,84 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
       </div>
 
       <div class="books-grid" id="booksGrid"></div>
+    </div>
+
+    <!-- ══════════ MOVIES PANEL ══════════ -->
+    <div class="tab-panel" id="panelMovies">
+
+      <div class="vault-stats">
+        <div class="stat-item">
+          <div class="stat-val" id="statMovies">0</div>
+          <div class="stat-lbl">Movies Watched</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-item">
+          <div class="stat-val" id="statMoviePosterSize">—</div>
+          <div class="stat-lbl">Poster Art Space</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-item">
+          <div class="stat-val" id="statMovieGenres">0</div>
+          <div class="stat-lbl">Genres Explored</div>
+        </div>
+        <div class="stat-log" id="statMoviesLog">All entries logged</div>
+      </div>
+
+      <div class="vault-controls">
+        <div class="search-wrap">
+          <span class="search-ico">⌕</span>
+          <input class="search-input" id="movieSearchInput" type="text" placeholder="Search your movies…">
+        </div>
+        <select class="sort-sel" id="movieSortSelect">
+          <option value="date-desc">Newest First</option>
+          <option value="date-asc">Oldest First</option>
+          <option value="rating-desc">Highest Rated</option>
+          <option value="rating-asc">Lowest Rated</option>
+          <option value="title-asc">Title A → Z</option>
+          <option value="title-desc">Title Z → A</option>
+        </select>
+      </div>
+
+      <div class="books-grid" id="moviesGrid"></div>
+    </div>
+
+    <!-- ══════════ ANIME PANEL ══════════ -->
+    <div class="tab-panel" id="panelAnime">
+
+      <div class="vault-stats">
+        <div class="stat-item">
+          <div class="stat-val" id="statAnime">0</div>
+          <div class="stat-lbl">Anime Watched</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-item">
+          <div class="stat-val" id="statAnimePosterSize">—</div>
+          <div class="stat-lbl">Poster Art Space</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-item">
+          <div class="stat-val" id="statAnimeGenres">0</div>
+          <div class="stat-lbl">Genres Explored</div>
+        </div>
+        <div class="stat-log" id="statAnimeLog">All entries logged</div>
+      </div>
+
+      <div class="vault-controls">
+        <div class="search-wrap">
+          <span class="search-ico">⌕</span>
+          <input class="search-input" id="animeSearchInput" type="text" placeholder="Search your anime…">
+        </div>
+        <select class="sort-sel" id="animeSortSelect">
+          <option value="date-desc">Newest First</option>
+          <option value="date-asc">Oldest First</option>
+          <option value="rating-desc">Highest Rated</option>
+          <option value="rating-asc">Lowest Rated</option>
+          <option value="title-asc">Title A → Z</option>
+          <option value="title-desc">Title Z → A</option>
+        </select>
+      </div>
+
+      <div class="books-grid" id="animeGrid"></div>
     </div>
 
     <!-- ══════════ FILES PANEL ══════════ -->
@@ -1762,6 +1947,202 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
 
 
 <!-- ══════════════════════════════════════════
+     ADD / EDIT MOVIE MODAL
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="movieModal">
+  <div class="modal-box">
+    <div class="modal-hdr">
+      <div>
+        <div class="modal-title" id="movieModalTitle">Record a Movie</div>
+        <div class="modal-sub">Nothing here is required — fill in only what you'd like</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('movieModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="movieForm" onsubmit="return false">
+
+        <div class="f-divider">◈ Poster Image</div>
+        <div class="cover-preview-row">
+          <div class="cover-preview-box" id="moviePreviewBox">
+            <svg viewBox="0 0 64 64" fill="none"><rect x="8" y="14" width="48" height="36" rx="2" stroke="rgba(196,136,47,.6)" stroke-width="2"/><line x1="8" y1="22" x2="56" y2="22" stroke="rgba(196,136,47,.5)" stroke-width="1.6"/><line x1="16" y1="14" x2="16" y2="22" stroke="rgba(196,136,47,.5)" stroke-width="1.6"/><line x1="26" y1="14" x2="26" y2="22" stroke="rgba(196,136,47,.5)" stroke-width="1.6"/><line x1="36" y1="14" x2="36" y2="22" stroke="rgba(196,136,47,.5)" stroke-width="1.6"/><line x1="46" y1="14" x2="46" y2="22" stroke="rgba(196,136,47,.5)" stroke-width="1.6"/><path d="M22 40l7-6 6 5 9-9" stroke="rgba(196,136,47,.5)" stroke-width="1.6" fill="none"/></svg>
+          </div>
+          <div class="cover-actions">
+            <button type="button" class="btn btn-g" id="moviePickBtn" onclick="document.getElementById('movieInput').click()">Choose Poster</button>
+            <button type="button" class="btn btn-g" id="movieClearBtn" onclick="clearMoviePosterSelection()" style="display:none">Remove</button>
+            <div class="dz-sub" style="margin:0">Any image file works. If you skip this, a placeholder will be shown instead.</div>
+          </div>
+        </div>
+        <input type="file" id="movieInput" style="display:none">
+
+        <div class="f-divider">◈ Title &amp; Director</div>
+        <div class="frow c2">
+          <div class="fgrp">
+            <label class="flbl">Title <span class="flbl-opt">optional</span></label>
+            <input class="fin" id="mvTitle" type="text" placeholder="What's it called?">
+          </div>
+          <div class="fgrp">
+            <label class="flbl">Director <span class="flbl-opt">optional</span></label>
+            <input class="fin" id="mvDirector" type="text" placeholder="Who made it?">
+          </div>
+        </div>
+
+        <div class="f-divider">◈ Your Rating</div>
+        <div class="fgrp">
+          <label class="flbl">How would you rate it? <span class="flbl-opt">optional</span></label>
+          <div class="rating-row">
+            <input type="range" class="rating-slider" id="mvRating" min="0" max="10" step="1" value="0" oninput="updateMovieRatingReadout()">
+            <div class="rating-readout" id="mvRatingReadout">— / 10</div>
+          </div>
+          <div class="rating-diamonds-live" id="mvRatingDiamonds"></div>
+        </div>
+
+        <div class="f-divider">◈ Genres, As You Saw Them</div>
+        <div class="fgrp">
+          <label class="flbl">Which shelves does it belong on? <span class="flbl-opt">optional</span></label>
+          <input class="fin" id="mvGenres" type="text" placeholder="e.g. Noir, Slow Burn, Sci-Fi…">
+        </div>
+
+        <div class="f-divider">◈ Your Verdict</div>
+        <div class="fgrp">
+          <label class="flbl">What did you make of it? <span class="flbl-opt">optional</span></label>
+          <textarea class="ftxt" id="mvReview" placeholder="Your honest take, in your own words…"></textarea>
+        </div>
+
+        <div class="f-divider">◈ The Story, In Brief</div>
+        <div class="fgrp">
+          <label class="flbl">If you had thirty seconds to explain it to a friend <span class="flbl-opt">optional</span></label>
+          <textarea class="ftxt" id="mvSummary" placeholder="The plot, simplified right down…"></textarea>
+        </div>
+
+        <div class="f-divider">◈ The People In It</div>
+        <div class="fgrp">
+          <label class="flbl">A quick sketch of the cast &amp; characters <span class="flbl-opt">optional</span></label>
+          <textarea class="ftxt" id="mvCast" placeholder="How you saw them, what you thought of them…"></textarea>
+        </div>
+
+        <div class="f-divider">◈ Lines Worth Keeping</div>
+        <div class="fgrp">
+          <label class="flbl">Any lines that stayed with you? <span class="flbl-opt">optional</span></label>
+          <textarea class="ftxt" id="mvQuotes" placeholder="Paste a few lines, one per line if you like…"></textarea>
+        </div>
+
+        <div class="f-divider">◈ What It Left You Thinking</div>
+        <div class="fgrp">
+          <label class="flbl">Observations, theories, things you pieced together <span class="flbl-opt">optional</span></label>
+          <textarea class="ftxt" id="mvThoughts" placeholder="Whatever the film stirred up…"></textarea>
+        </div>
+
+        <input type="hidden" id="mvEditId" value="">
+        <input type="hidden" id="mvPostedDate" value="">
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-g" onclick="closeModal('movieModal')">Cancel</button>
+      <button class="btn btn-p" id="movieSubmitBtn" onclick="submitMovie()">Add to Shelf</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     ADD / EDIT ANIME MODAL
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="animeModal">
+  <div class="modal-box">
+    <div class="modal-hdr">
+      <div>
+        <div class="modal-title" id="animeModalTitle">Record an Anime</div>
+        <div class="modal-sub">Nothing here is required — fill in only what you'd like</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('animeModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="animeForm" onsubmit="return false">
+
+        <div class="f-divider">◈ Poster Image</div>
+        <div class="cover-preview-row">
+          <div class="cover-preview-box" id="animePreviewBox">
+            <svg viewBox="0 0 64 64" fill="none"><rect x="10" y="8" width="44" height="48" rx="2" stroke="rgba(196,136,47,.6)" stroke-width="2"/><circle cx="32" cy="26" r="8" stroke="rgba(196,136,47,.5)" stroke-width="1.6"/><path d="M20 46q12-8 24 0" stroke="rgba(196,136,47,.5)" stroke-width="1.6" fill="none"/></svg>
+          </div>
+          <div class="cover-actions">
+            <button type="button" class="btn btn-g" id="animePickBtn" onclick="document.getElementById('animeInput').click()">Choose Poster</button>
+            <button type="button" class="btn btn-g" id="animeClearBtn" onclick="clearAnimePosterSelection()" style="display:none">Remove</button>
+            <div class="dz-sub" style="margin:0">Any image file works. If you skip this, a placeholder will be shown instead.</div>
+          </div>
+        </div>
+        <input type="file" id="animeInput" style="display:none">
+
+        <div class="f-divider">◈ Title &amp; Studio</div>
+        <div class="frow c2">
+          <div class="fgrp">
+            <label class="flbl">Title <span class="flbl-opt">optional</span></label>
+            <input class="fin" id="anTitle" type="text" placeholder="What's it called?">
+          </div>
+          <div class="fgrp">
+            <label class="flbl">Studio <span class="flbl-opt">optional</span></label>
+            <input class="fin" id="anStudio" type="text" placeholder="Who made it?">
+          </div>
+        </div>
+
+        <div class="f-divider">◈ Your Rating</div>
+        <div class="fgrp">
+          <label class="flbl">How would you rate it? <span class="flbl-opt">optional</span></label>
+          <div class="rating-row">
+            <input type="range" class="rating-slider" id="anRating" min="0" max="10" step="1" value="0" oninput="updateAnimeRatingReadout()">
+            <div class="rating-readout" id="anRatingReadout">— / 10</div>
+          </div>
+          <div class="rating-diamonds-live" id="anRatingDiamonds"></div>
+        </div>
+
+        <div class="f-divider">◈ Genres, As You Saw Them</div>
+        <div class="fgrp">
+          <label class="flbl">Which shelves does it belong on? <span class="flbl-opt">optional</span></label>
+          <input class="fin" id="anGenres" type="text" placeholder="e.g. Shounen, Slice of Life, Isekai…">
+        </div>
+
+        <div class="f-divider">◈ Your Verdict</div>
+        <div class="fgrp">
+          <label class="flbl">What did you make of it? <span class="flbl-opt">optional</span></label>
+          <textarea class="ftxt" id="anReview" placeholder="Your honest take, in your own words…"></textarea>
+        </div>
+
+        <div class="f-divider">◈ The Story, In Brief</div>
+        <div class="fgrp">
+          <label class="flbl">If you had thirty seconds to explain it to a friend <span class="flbl-opt">optional</span></label>
+          <textarea class="ftxt" id="anSummary" placeholder="The plot, simplified right down…"></textarea>
+        </div>
+
+        <div class="f-divider">◈ The People In It</div>
+        <div class="fgrp">
+          <label class="flbl">A quick sketch of the characters <span class="flbl-opt">optional</span></label>
+          <textarea class="ftxt" id="anCharacters" placeholder="How you saw them, what you thought of them…"></textarea>
+        </div>
+
+        <div class="f-divider">◈ Lines Worth Keeping</div>
+        <div class="fgrp">
+          <label class="flbl">Any lines that stayed with you? <span class="flbl-opt">optional</span></label>
+          <textarea class="ftxt" id="anQuotes" placeholder="Paste a few lines, one per line if you like…"></textarea>
+        </div>
+
+        <div class="f-divider">◈ What It Left You Thinking</div>
+        <div class="fgrp">
+          <label class="flbl">Observations, theories, things you pieced together <span class="flbl-opt">optional</span></label>
+          <textarea class="ftxt" id="anThoughts" placeholder="Whatever the series stirred up…"></textarea>
+        </div>
+
+        <input type="hidden" id="anEditId" value="">
+        <input type="hidden" id="anPostedDate" value="">
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-g" onclick="closeModal('animeModal')">Cancel</button>
+      <button class="btn btn-p" id="animeSubmitBtn" onclick="submitAnime()">Add to Shelf</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
      DIARY ENTRY MODAL
 ══════════════════════════════════════════ -->
 <div class="modal-overlay" id="diaryModal">
@@ -1838,6 +2219,9 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
     </div>
   </div>
 </div>
+
+<!-- Hidden, purpose-built sheet used only when exporting a single entry to PDF (see printEntryPdf) -->
+<div id="pdfPrintSheet" aria-hidden="true"></div>
 
 
 <!-- ══════════════════════════════════════════
@@ -1933,6 +2317,32 @@ const SECTION_HASH = '3a755b826630d13bd7c2e9f08bd099f703ea062e2f5b50eb3bd30db347
 
 // Google OAuth Client ID — enables the admin bypass tab.
 const GOOGLE_CLIENT_ID = '489152706422-pg1rh08bgsol7g8pjmnclrm1otij08ja.apps.googleusercontent.com';
+
+// ══════════════════════════════════════════════
+// ON-SCREEN DEBUG LOG — opt-in only, add ?debug=1 to the URL.
+// Mobile browsers don't expose a console without a cable and a desktop's
+// devtools, so this mirrors console.warn/console.error into a small on-page
+// panel instead. With no URL param present, nothing about the page changes.
+// ══════════════════════════════════════════════
+if (new URLSearchParams(location.search).has('debug')) {
+  const dbgPanel = document.createElement('div');
+  dbgPanel.style.cssText = 'position:fixed;left:0;right:0;bottom:0;max-height:38vh;overflow-y:auto;background:rgba(10,10,10,.94);color:#9f9;font:11px/1.45 "SF Mono",Consolas,monospace;padding:8px;z-index:999999;white-space:pre-wrap;';
+  document.body.appendChild(dbgPanel);
+  const dbgWrite = (label, color, args) => {
+    const line = document.createElement('div');
+    line.style.cssText = `color:${color};border-bottom:1px solid #333;padding:3px 0;`;
+    line.textContent = `[${label}] ` + args.map(a =>
+      a instanceof Error ? (a.message || String(a)) :
+      (typeof a === 'object' ? JSON.stringify(a) : String(a))
+    ).join(' ');
+    dbgPanel.appendChild(line);
+    dbgPanel.scrollTop = dbgPanel.scrollHeight;
+  };
+  const origWarn = console.warn.bind(console);
+  const origError = console.error.bind(console);
+  console.warn  = (...a) => { origWarn(...a);  dbgWrite('warn',  '#fd6', a); };
+  console.error = (...a) => { origError(...a); dbgWrite('error', '#f66', a); };
+}
 
 // ══════════════════════════════════════════════
 // CRYPTO  (Web Crypto API — PBKDF2 → AES-GCM)
@@ -2087,6 +2497,7 @@ const DB = {
 // ══════════════════════════════════════════════
 const PENDING_KEY  = 'cv_pending_sync';
 const MIGRATED_KEY = 'cv_migrated_push_v1';
+const LAST_PULL_KEY = 'cv_last_pull_at'; // newest updated_at seen so far — lets pulls fetch deltas only
 
 function getPendingIds() {
   try { return JSON.parse(localStorage.getItem(PENDING_KEY) || '[]'); }
@@ -2124,8 +2535,12 @@ async function withTimeout(builder, ms = 8000) {
 async function sbUploadItem(id, iv, ct) {
   if (!sb || !sbUserId) return;
   try {
+    // Files can run into the tens of MB as base64 ciphertext, and mobile
+    // upload speeds are often nowhere near desktop WiFi — the default 8s
+    // is tuned for small rows and was aborting large uploads before they
+    // ever finished, silently, leaving them stuck "pending" forever.
     const { error } = await withTimeout(sb.from('vault_sync')
-      .upsert({ item_id: id, user_hash: sbUserId, iv, ct, updated_at: new Date().toISOString() }));
+      .upsert({ item_id: id, user_hash: sbUserId, iv, ct, updated_at: new Date().toISOString() }), 60000);
     if (error) throw error;
     clearPending(id); // confirmed on the cloud — no longer needs a retry push
   } catch (e) { console.warn('Cloud sync (save) failed — change is still kept on this device.', e); }
@@ -2141,17 +2556,34 @@ async function sbDeleteItem(id) {
   finally { clearPending(id); } // nothing local left to retry-push for this id
 }
 
+// Pulls only rows changed since the last successful pull — mirrors the same
+// "sync deltas, not the whole vault" idea sbPushAllItems already uses below.
+// This used to re-fetch every row, ciphertext included, on every single
+// unlock; once a few large files were in the vault that meant tens of MB
+// re-downloaded each time, which is what was blowing past both Postgres's
+// statement_timeout and our own client-side one. The very first pull on a
+// given browser still fetches everything (no cursor yet) — every pull after
+// that only asks for what's new.
+//
+// Note: this doesn't propagate deletions from other devices (a delete just
+// stops appearing in future deltas, rather than being actively removed
+// here) — that was already true of the old full-pull version too, not a
+// regression introduced by this change.
 async function sbPullAllItems() {
   if (!sb || !sbUserId) return;
   try {
-    const { data, error } = await withTimeout(sb.from('vault_sync')
-      .select('item_id, iv, ct').eq('user_hash', sbUserId));
+    const since = localStorage.getItem(LAST_PULL_KEY);
+    let query = sb.from('vault_sync').select('item_id, iv, ct, updated_at').eq('user_hash', sbUserId);
+    if (since) query = query.gt('updated_at', since);
+    const { data, error } = await withTimeout(query, 60000);
     if (error) throw error;
     if (!data || !data.length) return;
     const records = data
       .filter(row => !row.item_id.startsWith('__')) // skip reserved preference rows
       .map(row => ({ id: row.item_id, iv: row.iv, ct: row.ct }));
     if (records.length) await DB.putAll(records); // one transaction, not one per row
+    const newest = data.reduce((max, r) => (r.updated_at > max ? r.updated_at : max), since || '');
+    if (newest) localStorage.setItem(LAST_PULL_KEY, newest);
   } catch (e) { console.warn('Cloud sync (pull) failed — showing what is cached on this device.', e); }
 }
 
@@ -2188,7 +2620,9 @@ async function sbPushAllItems() {
           return { item_id: r.id, user_hash: sbUserId, iv: r.iv, ct: r.ct, updated_at: new Date().toISOString() };
         });
       if (rows.length) {
-        const { error } = await withTimeout(sb.from('vault_sync').upsert(rows));
+        // Same large-payload allowance as sbUploadItem — a pending chunk can
+        // still contain a big file even though this call batches several items.
+        const { error } = await withTimeout(sb.from('vault_sync').upsert(rows), 60000);
         if (error) throw error;
         pushedCount += rows.length;
       }
@@ -2391,6 +2825,8 @@ async function unlockVault(password) {
     }
     switchMainTab('books');
     await renderBooks();
+    await renderMovies();
+    await renderAnime();
     await render();
     await renderDiary();
   } finally {
@@ -2404,6 +2840,8 @@ async function syncVaultWithCloud() {
     await sbPushAllItems();             // push any pending local edits first (migrates old data once)
     await sbPullAllItems();             // then pull items from other devices into local cache
     await renderBooks();
+    await renderMovies();
+    await renderAnime();
     await render();
     await renderDiary();
   } catch (e) { console.warn('Background cloud sync did not complete this session — local data is unaffected.', e); }
@@ -2413,6 +2851,8 @@ function signOut() {
   cryptoKey = null;
   allItems = [];
   allBooks = [];
+  allMovies = [];
+  allAnime = [];
   allDiary = [];
   currentParent = null;
   crumbs = [];
@@ -2425,6 +2865,8 @@ function signOut() {
   document.getElementById('pwError').classList.remove('show');
   document.getElementById('vaultGrid').innerHTML = '';
   document.getElementById('booksGrid').innerHTML = '';
+  document.getElementById('moviesGrid').innerHTML = '';
+  document.getElementById('animeGrid').innerHTML = '';
   document.getElementById('diaryList').innerHTML = '';
   diaryUnlocked = false;
   document.getElementById('googleStatus').style.display = 'none';
@@ -2688,12 +3130,18 @@ function closeModal(id) { document.getElementById(id).classList.remove('open'); 
 // ══════════════════════════════════════════════
 function _doSwitchMainTab(tab) {
   document.getElementById('tabBtnBooks').classList.toggle('active', tab === 'books');
+  document.getElementById('tabBtnMovies').classList.toggle('active', tab === 'movies');
+  document.getElementById('tabBtnAnime').classList.toggle('active', tab === 'anime');
   document.getElementById('tabBtnFiles').classList.toggle('active', tab === 'files');
   document.getElementById('tabBtnDiary').classList.toggle('active', tab === 'diary');
   document.getElementById('panelBooks').classList.toggle('active', tab === 'books');
+  document.getElementById('panelMovies').classList.toggle('active', tab === 'movies');
+  document.getElementById('panelAnime').classList.toggle('active', tab === 'anime');
   document.getElementById('panelFiles').classList.toggle('active', tab === 'files');
   document.getElementById('panelDiary').classList.toggle('active', tab === 'diary');
   document.getElementById('addBookBtn').style.display  = tab === 'books' ? '' : 'none';
+  document.getElementById('addMovieBtn').style.display = tab === 'movies' ? '' : 'none';
+  document.getElementById('addAnimeBtn').style.display = tab === 'anime' ? '' : 'none';
   document.getElementById('addDocBtn').style.display   = tab === 'files' ? '' : 'none';
   document.getElementById('addTerrBtn').style.display  = tab === 'files' ? '' : 'none';
   document.getElementById('addDiaryBtn').style.display = tab === 'diary' ? '' : 'none';
@@ -2743,12 +3191,18 @@ let currentParent   = null;       // null = root
 let crumbs          = [];         // [{id, name}]
 let allItems        = [];
 let allBooks         = [];
+let allMovies        = [];
+let allAnime         = [];
 let allDiary          = [];
 let selFile          = null;       // File object (document upload)
 let selCoverFile     = null;       // File object (book cover) — only used if image/*
 let selCoverDataUrl  = null;       // resolved cover (uploaded or fetched online)
+let selMoviePosterFile    = null;  // File object (movie poster) — only used if image/*
+let selMoviePosterDataUrl = null;  // resolved poster (uploaded)
+let selAnimePosterFile    = null;  // File object (anime poster) — only used if image/*
+let selAnimePosterDataUrl = null;  // resolved poster (uploaded)
 let pendingDelId     = null;
-let pendingDelType   = null;       // 'file' | 'folder' | 'book' | 'diary'
+let pendingDelType   = null;       // 'file' | 'folder' | 'book' | 'movie' | 'anime' | 'diary'
 let selColor         = '';
 let selIcon          = '🗺️';
 let diaryFilter      = 'all';
@@ -2889,6 +3343,93 @@ function emptyStateHtml(title, sub) {
       <div class="empty-t">${title}</div>
       <div class="empty-s">${sub}</div>
     </div>`;
+}
+
+// ══════════════════════════════════════════════
+// SINGLE-ENTRY PDF EXPORT
+// Builds a styled printable sheet for one book /
+// movie / anime / diary entry, then hands off to
+// the browser's native print dialog so the person
+// can "Save as PDF". Works for any entry type via
+// a small config object — see the callers below.
+// ══════════════════════════════════════════════
+function pdfSectionHtml(label, value, asQuote) {
+  if (!value) return '';
+  if (asQuote) {
+    return `
+      <div class="pdf-section">
+        <div class="pdf-section-lbl">${esc(label)}</div>
+        <blockquote class="pdf-quote">${esc(value)}</blockquote>
+      </div>`;
+  }
+  return `
+    <div class="pdf-section">
+      <div class="pdf-section-lbl">${esc(label)}</div>
+      <div class="pdf-section-txt">${esc(value)}</div>
+    </div>`;
+}
+
+function buildEntryPdfHtml(cfg) {
+  const genres = (cfg.genres||'').split(',').map(t=>t.trim()).filter(Boolean);
+  return `
+    <div class="pdf-page">
+      <div class="pdf-corner tl"></div><div class="pdf-corner tr"></div>
+      <div class="pdf-corner bl"></div><div class="pdf-corner br"></div>
+      <div class="pdf-hdr">
+        <svg class="pdf-seal" viewBox="0 0 120 120" fill="none">
+          <circle cx="60" cy="60" r="54" stroke="currentColor" stroke-width=".8"/>
+          <polygon points="60,10 66,54 60,66 54,54" fill="currentColor" opacity=".85"/>
+          <polygon points="60,110 66,66 60,54 54,66" fill="currentColor" opacity=".4"/>
+          <polygon points="110,60 66,66 54,60 66,54" fill="currentColor" opacity=".4"/>
+          <polygon points="10,60 54,66 66,60 54,54" fill="currentColor" opacity=".4"/>
+          <circle cx="60" cy="60" r="7" fill="#fbf6ea" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+        <div class="pdf-kicker">The Cartographer's Vault · Personal Archive</div>
+        <div class="pdf-kind">${esc(cfg.kind)}</div>
+        <div class="pdf-title">${esc(cfg.title || 'Untitled')}</div>
+        ${cfg.subtitle ? `<div class="pdf-subtitle">${esc(cfg.subtitle)}</div>` : ''}
+        <div class="pdf-rule-orn">◈</div>
+      </div>
+
+      ${cfg.cover || cfg.rating != null || genres.length ? `
+      <div class="pdf-hero">
+        ${cfg.cover ? `<div class="pdf-cover-wrap"><img src="${esc(cfg.cover)}" alt=""></div>` : ''}
+        <div class="pdf-hero-body">
+          ${cfg.rating != null ? `<div class="pdf-rating-line">${ratingDiamonds(cfg.rating)}<span class="pdf-rating-num">${cfg.rating}/10</span></div>` : ''}
+          ${genres.length ? `<div class="pdf-genres">${genres.map(g=>`<span class="pdf-tag">#${esc(g)}</span>`).join('')}</div>` : ''}
+        </div>
+      </div>` : ''}
+
+      ${cfg.diaryBody != null ? `<div class="pdf-diary-body">${esc(cfg.diaryBody)}</div>` : cfg.sections.map(s => pdfSectionHtml(s.label, s.value, s.quote)).join('')}
+
+      <div class="pdf-ftr">
+        <div class="pdf-ftr-text">Sealed within The Cartographer's Vault · Printed ${esc(fmtDate(today()))}</div>
+      </div>
+    </div>`;
+}
+
+function printEntryPdf(cfg) {
+  const sheet = document.getElementById('pdfPrintSheet');
+  sheet.innerHTML = buildEntryPdfHtml(cfg);
+  const prevTitle = document.title;
+  document.title = cfg.title || 'Entry';
+  document.body.classList.add('printing-entry');
+
+  const cleanup = () => {
+    document.body.classList.remove('printing-entry');
+    document.title = prevTitle;
+    sheet.innerHTML = '';
+  };
+  window.addEventListener('afterprint', cleanup, { once: true });
+  // Fallback in case afterprint doesn't fire on some browsers/OSes — mobile
+  // print-to-PDF flows (share sheet, picking a save location, etc.) can
+  // easily run past 15s, and this was wiping the sheet's content out from
+  // under an in-progress save, producing a blank PDF. #pdfPrintSheet sits
+  // off-screen outside of @media print regardless, so a longer delay here
+  // costs nothing.
+  setTimeout(cleanup, 120000);
+
+  requestAnimationFrame(() => window.print());
 }
 
 async function render() {
@@ -3317,6 +3858,8 @@ async function executeDelete() {
   pendingDelId   = null;
   pendingDelType = null; // clear stale state
   if (finishedType === 'book') await renderBooks();
+  else if (finishedType === 'movie') await renderMovies();
+  else if (finishedType === 'anime') await renderAnime();
   else if (finishedType === 'diary') await renderDiary();
   else await render();
 }
@@ -3572,7 +4115,23 @@ async function showBookDetail(id) {
     </div>`;
 
   document.getElementById('detailOpenBtn').style.display = 'none';
-  document.getElementById('detailDownloadBtn').style.display = 'none';
+  document.getElementById('detailDownloadBtn').style.display = '';
+  document.getElementById('detailDownloadBtn').textContent = '🖶 Download as PDF';
+  document.getElementById('detailDownloadBtn').onclick = () => printEntryPdf({
+    kind: 'Book Record',
+    title: m.title,
+    subtitle: `${m.author || 'Unknown author'} · Added ${fmtDate(m.posted)}`,
+    cover: m.cover,
+    rating: m.rating,
+    genres: m.genres,
+    sections: [
+      { label: 'The Story, In Brief', value: m.summary },
+      { label: 'Your Verdict', value: m.review },
+      { label: 'The People In It', value: m.characters },
+      { label: 'Lines Worth Keeping', value: m.quotes, quote: true },
+      { label: 'What It Left You Thinking', value: m.thoughts },
+    ],
+  });
   document.getElementById('detailEditBtn').style.display = '';
   document.getElementById('detailEditBtn').onclick = () => { closeModal('detailModal'); openBookModal(id); };
   document.getElementById('detailDeleteBtn').onclick = () => confirmDelete(id, 'book', m.title || 'this book');
@@ -3583,6 +4142,530 @@ function handleBooksGridClick(e) {
   const el = e.target.closest('[data-action]');
   if (!el) return;
   if (el.dataset.action === 'book-detail') showBookDetail(el.dataset.id);
+}
+
+// ══════════════════════════════════════════════
+// MOVIES — "Movies I've Watched"
+// ══════════════════════════════════════════════
+function moviePlaceholderSvg() {
+  return `<svg viewBox="0 0 64 64" fill="none"><rect x="8" y="14" width="48" height="36" rx="2" stroke="rgba(196,136,47,.55)" stroke-width="2"/><line x1="8" y1="22" x2="56" y2="22" stroke="rgba(196,136,47,.45)" stroke-width="1.6"/><line x1="16" y1="14" x2="16" y2="22" stroke="rgba(196,136,47,.45)" stroke-width="1.6"/><line x1="26" y1="14" x2="26" y2="22" stroke="rgba(196,136,47,.45)" stroke-width="1.6"/><line x1="36" y1="14" x2="36" y2="22" stroke="rgba(196,136,47,.45)" stroke-width="1.6"/><line x1="46" y1="14" x2="46" y2="22" stroke="rgba(196,136,47,.45)" stroke-width="1.6"/><path d="M22 40l7-6 6 5 9-9" stroke="rgba(196,136,47,.45)" stroke-width="1.6" fill="none"/></svg>`;
+}
+
+function setMoviePosterPreview(src) {
+  const box = document.getElementById('moviePreviewBox');
+  const clearBtn = document.getElementById('movieClearBtn');
+  if (src) {
+    box.innerHTML = `<img src="${esc(src)}" alt="Poster preview">`;
+    clearBtn.style.display = '';
+  } else {
+    box.innerHTML = moviePlaceholderSvg();
+    clearBtn.style.display = 'none';
+  }
+}
+
+function pickMoviePosterFile(file) {
+  if (!file) return;
+  if (!file.type.startsWith('image/')) {
+    toast('◈ That file can\u2019t be shown as a poster');
+    selMoviePosterFile = null;
+    selMoviePosterDataUrl = null;
+    setMoviePosterPreview(null);
+    return;
+  }
+  selMoviePosterFile = file;
+  const reader = new FileReader();
+  reader.onload = e => {
+    selMoviePosterDataUrl = e.target.result;
+    setMoviePosterPreview(selMoviePosterDataUrl);
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearMoviePosterSelection() {
+  selMoviePosterFile = null;
+  selMoviePosterDataUrl = null;
+  document.getElementById('movieInput').value = '';
+  setMoviePosterPreview(null);
+}
+
+let movieRatingTouched = false;
+function updateMovieRatingReadout() {
+  movieRatingTouched = true;
+  const v = document.getElementById('mvRating').value;
+  document.getElementById('mvRatingReadout').textContent = v + ' / 10';
+  document.getElementById('mvRatingDiamonds').innerHTML = ratingDiamonds(v);
+}
+
+function openMovieModal(editId) {
+  document.getElementById('movieForm').reset();
+  selMoviePosterFile = null;
+  selMoviePosterDataUrl = null;
+  movieRatingTouched = false;
+  setMoviePosterPreview(null);
+  document.getElementById('mvRating').value = 0;
+  document.getElementById('mvRatingReadout').textContent = '— / 10';
+  document.getElementById('mvRatingDiamonds').innerHTML = ratingDiamonds(0);
+  document.getElementById('mvEditId').value = '';
+  document.getElementById('mvPostedDate').value = '';
+
+  if (editId != null) {
+    (async () => {
+      const item = await Vault.get(editId);
+      if (!item) return;
+      const m = item.meta;
+      document.getElementById('movieModalTitle').textContent = 'Edit This Entry';
+      document.getElementById('movieSubmitBtn').textContent = 'Save Changes';
+      document.getElementById('mvTitle').value = m.title || '';
+      document.getElementById('mvDirector').value = m.director || '';
+      document.getElementById('mvGenres').value = m.genres || '';
+      document.getElementById('mvReview').value = m.review || '';
+      document.getElementById('mvSummary').value = m.summary || '';
+      document.getElementById('mvCast').value = m.cast || '';
+      document.getElementById('mvQuotes').value = m.quotes || '';
+      document.getElementById('mvThoughts').value = m.thoughts || '';
+      document.getElementById('mvEditId').value = editId;
+      document.getElementById('mvPostedDate').value = m.posted || '';
+      if (m.rating != null) {
+        document.getElementById('mvRating').value = m.rating;
+        document.getElementById('mvRatingReadout').textContent = m.rating + ' / 10';
+        document.getElementById('mvRatingDiamonds').innerHTML = ratingDiamonds(m.rating);
+        movieRatingTouched = true;
+      }
+      if (m.poster) { selMoviePosterDataUrl = m.poster; setMoviePosterPreview(m.poster); }
+      openModal('movieModal');
+    })();
+    return;
+  }
+
+  document.getElementById('movieModalTitle').textContent = 'Record a Movie';
+  document.getElementById('movieSubmitBtn').textContent = 'Add to Shelf';
+  openModal('movieModal');
+}
+
+async function submitMovie() {
+  const g = id => document.getElementById(id).value.trim();
+  const editId = document.getElementById('mvEditId').value;
+  const title  = g('mvTitle');
+  const director = g('mvDirector');
+
+  const meta = {
+    title, director,
+    rating: movieRatingTouched ? Number(document.getElementById('mvRating').value) : null,
+    genres: g('mvGenres'),
+    review: g('mvReview'),
+    summary: g('mvSummary'),
+    cast: g('mvCast'),
+    quotes: g('mvQuotes'),
+    thoughts: g('mvThoughts'),
+    poster: selMoviePosterDataUrl || null,
+    posted: document.getElementById('mvPostedDate').value || today(),
+  };
+
+  const btn = document.getElementById('movieSubmitBtn');
+  btn.disabled = true;
+  try {
+    if (editId) {
+      await Vault.update(editId, { type:'movie', parentId:null, name: title||'Untitled', meta });
+      toast('◈ Entry updated');
+    } else {
+      await Vault.add({ type:'movie', parentId:null, name: title||'Untitled', meta });
+      toast('◈ Added to your shelf');
+    }
+    closeModal('movieModal');
+    await renderMovies();
+  } catch (e) {
+    toast('◈ Failed to save movie — please try again');
+    console.error('Movie save error:', e);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+async function renderMovies() {
+  allMovies = (await Vault.getAll()).filter(i => i.type === 'movie');
+
+  const posterBytes = allMovies.reduce((sum, mv) => {
+    if (!mv.meta.poster) return sum;
+    const b64 = mv.meta.poster.includes(',') ? mv.meta.poster.split(',')[1] : mv.meta.poster;
+    return sum + Math.floor((b64.length * 3) / 4);
+  }, 0);
+  const genreSet = new Set();
+  allMovies.forEach(mv => (mv.meta.genres||'').split(',').map(g=>g.trim()).filter(Boolean).forEach(g=>genreSet.add(g.toLowerCase())));
+
+  document.getElementById('statMovies').textContent = allMovies.length;
+  document.getElementById('statMoviePosterSize').textContent = posterBytes > 0 ? fmt(posterBytes) : '—';
+  document.getElementById('statMovieGenres').textContent = genreSet.size;
+  document.getElementById('statMoviesLog').textContent =
+    `${allMovies.length} movie${allMovies.length === 1 ? '' : 's'} on the shelf`;
+
+  let view = allMovies.slice();
+  const q = document.getElementById('movieSearchInput').value.trim().toLowerCase();
+  if (q) {
+    view = view.map(mv => ({ item: mv, score: searchScore([
+      [mv.meta.title,100], [mv.meta.director,85], [mv.meta.genres,70],
+      [mv.meta.review,50], [mv.meta.summary,45], [mv.meta.cast,35],
+      [mv.meta.quotes,35], [mv.meta.thoughts,30]
+    ], q) })).filter(x => x.score > 0).sort((a,b) => b.score - a.score).map(x => x.item);
+  } else {
+    const s = document.getElementById('movieSortSelect').value;
+    view.sort((a, b) => {
+      switch (s) {
+        case 'date-asc':    return new Date(a.meta.posted||0) - new Date(b.meta.posted||0);
+        case 'rating-desc': return (b.meta.rating??-1) - (a.meta.rating??-1);
+        case 'rating-asc':  return (a.meta.rating??99) - (b.meta.rating??99);
+        case 'title-asc':   return (a.meta.title||'').localeCompare(b.meta.title||'');
+        case 'title-desc':  return (b.meta.title||'').localeCompare(a.meta.title||'');
+        default:             return new Date(b.meta.posted||0) - new Date(a.meta.posted||0);
+      }
+    });
+  }
+
+  const grid = document.getElementById('moviesGrid');
+  if (!view.length) {
+    grid.innerHTML = emptyStateHtml(
+      q ? 'No movies match your search' : 'The shelf is empty',
+      q ? 'Try a different word' : "Add the first movie you've watched above"
+    );
+    return;
+  }
+
+  grid.innerHTML = view.map(mv => {
+    const m = mv.meta;
+    const genres = (m.genres||'').split(',').map(t=>t.trim()).filter(Boolean).slice(0,3);
+    return `
+      <div class="book-card" data-action="movie-detail" data-id="${mv.id}">
+        <div class="book-cover-wrap">
+          ${m.poster ? `<img src="${esc(m.poster)}" alt="${esc(m.title||'Poster')}" loading="lazy">` : `<div class="book-cover-fallback">${moviePlaceholderSvg()}</div>`}
+        </div>
+        <div class="book-card-body">
+          <div class="book-title">${esc(m.title||'Untitled')}</div>
+          ${m.director ? `<div class="book-author">${esc(m.director)}</div>` : ''}
+          ${m.rating != null ? `
+          <div class="book-rating-row">
+            <span class="book-diamonds">${ratingDiamonds(m.rating)}</span>
+            <span class="book-rating-num">${m.rating}/10</span>
+          </div>` : ''}
+          ${genres.length ? `<div class="book-genres">${genres.map(g=>`<span class="fc-tag">#${esc(g)}</span>`).join('')}</div>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+async function showMovieDetail(id) {
+  const item = await Vault.get(id);
+  if (!item) return;
+  const m = item.meta;
+
+  document.getElementById('detailModalTitle').textContent = 'Movie Record';
+  document.getElementById('detailModalSub').textContent = 'Your watching, in your own words';
+  document.getElementById('detailContent').innerHTML = `
+    <div class="det-hero">
+      <div class="det-cover">${m.poster ? `<img src="${esc(m.poster)}" alt="${esc(m.title||'Poster')}">` : moviePlaceholderSvg()}</div>
+      <div>
+        <div class="det-title">${esc(m.title||'Untitled')}</div>
+        <div class="det-meta">${esc(m.director||'Unknown director')} · Added ${fmtDate(m.posted)}</div>
+        ${m.rating != null ? `<div style="margin-top:.4rem" class="book-diamonds">${ratingDiamonds(m.rating)} <span class="book-rating-num">${m.rating}/10</span></div>` : ''}
+      </div>
+    </div>
+    <div class="det-grid">
+      ${df('Genres', m.genres, true, true)}
+      ${df('The Story, In Brief', m.summary, true)}
+      ${df('Your Verdict', m.review, true)}
+      ${df('The People In It', m.cast, true)}
+      ${m.quotes ? `<div class="det-field det-full"><div class="det-key">Lines Worth Keeping</div><div class="quote-block"><svg class="quote-mark" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V14.4Q0 7.2 3.6 3.6 7.2 0 13.2 0V4.8Q9.6 4.8 7.8 6.6 6 8.4 6 12H12V24H0ZM18 24V14.4Q18 7.2 21.6 3.6 25.2 0 31.2 0V4.8Q27.6 4.8 25.8 6.6 24 8.4 24 12H30V24H18Z"/></svg><div class="quote-text">${esc(m.quotes)}</div></div></div>` : df('Lines Worth Keeping', m.quotes, true)}
+      ${df('What It Left You Thinking', m.thoughts, true)}
+    </div>`;
+
+  document.getElementById('detailOpenBtn').style.display = 'none';
+  document.getElementById('detailDownloadBtn').style.display = '';
+  document.getElementById('detailDownloadBtn').textContent = '🖶 Download as PDF';
+  document.getElementById('detailDownloadBtn').onclick = () => printEntryPdf({
+    kind: 'Movie Record',
+    title: m.title,
+    subtitle: `${m.director || 'Unknown director'} · Added ${fmtDate(m.posted)}`,
+    cover: m.poster,
+    rating: m.rating,
+    genres: m.genres,
+    sections: [
+      { label: 'The Story, In Brief', value: m.summary },
+      { label: 'Your Verdict', value: m.review },
+      { label: 'The People In It', value: m.cast },
+      { label: 'Lines Worth Keeping', value: m.quotes, quote: true },
+      { label: 'What It Left You Thinking', value: m.thoughts },
+    ],
+  });
+  document.getElementById('detailEditBtn').style.display = '';
+  document.getElementById('detailEditBtn').onclick = () => { closeModal('detailModal'); openMovieModal(id); };
+  document.getElementById('detailDeleteBtn').onclick = () => confirmDelete(id, 'movie', m.title || 'this movie');
+  openModal('detailModal');
+}
+
+function handleMoviesGridClick(e) {
+  const el = e.target.closest('[data-action]');
+  if (!el) return;
+  if (el.dataset.action === 'movie-detail') showMovieDetail(el.dataset.id);
+}
+
+// ══════════════════════════════════════════════
+// ANIME — "Anime I've Watched"
+// ══════════════════════════════════════════════
+function animePlaceholderSvg() {
+  return `<svg viewBox="0 0 64 64" fill="none"><rect x="10" y="8" width="44" height="48" rx="2" stroke="rgba(196,136,47,.55)" stroke-width="2"/><circle cx="32" cy="26" r="8" stroke="rgba(196,136,47,.45)" stroke-width="1.6"/><path d="M20 46q12-8 24 0" stroke="rgba(196,136,47,.45)" stroke-width="1.6" fill="none"/></svg>`;
+}
+
+function setAnimePosterPreview(src) {
+  const box = document.getElementById('animePreviewBox');
+  const clearBtn = document.getElementById('animeClearBtn');
+  if (src) {
+    box.innerHTML = `<img src="${esc(src)}" alt="Poster preview">`;
+    clearBtn.style.display = '';
+  } else {
+    box.innerHTML = animePlaceholderSvg();
+    clearBtn.style.display = 'none';
+  }
+}
+
+function pickAnimePosterFile(file) {
+  if (!file) return;
+  if (!file.type.startsWith('image/')) {
+    toast('◈ That file can\u2019t be shown as a poster');
+    selAnimePosterFile = null;
+    selAnimePosterDataUrl = null;
+    setAnimePosterPreview(null);
+    return;
+  }
+  selAnimePosterFile = file;
+  const reader = new FileReader();
+  reader.onload = e => {
+    selAnimePosterDataUrl = e.target.result;
+    setAnimePosterPreview(selAnimePosterDataUrl);
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearAnimePosterSelection() {
+  selAnimePosterFile = null;
+  selAnimePosterDataUrl = null;
+  document.getElementById('animeInput').value = '';
+  setAnimePosterPreview(null);
+}
+
+let animeRatingTouched = false;
+function updateAnimeRatingReadout() {
+  animeRatingTouched = true;
+  const v = document.getElementById('anRating').value;
+  document.getElementById('anRatingReadout').textContent = v + ' / 10';
+  document.getElementById('anRatingDiamonds').innerHTML = ratingDiamonds(v);
+}
+
+function openAnimeModal(editId) {
+  document.getElementById('animeForm').reset();
+  selAnimePosterFile = null;
+  selAnimePosterDataUrl = null;
+  animeRatingTouched = false;
+  setAnimePosterPreview(null);
+  document.getElementById('anRating').value = 0;
+  document.getElementById('anRatingReadout').textContent = '— / 10';
+  document.getElementById('anRatingDiamonds').innerHTML = ratingDiamonds(0);
+  document.getElementById('anEditId').value = '';
+  document.getElementById('anPostedDate').value = '';
+
+  if (editId != null) {
+    (async () => {
+      const item = await Vault.get(editId);
+      if (!item) return;
+      const m = item.meta;
+      document.getElementById('animeModalTitle').textContent = 'Edit This Entry';
+      document.getElementById('animeSubmitBtn').textContent = 'Save Changes';
+      document.getElementById('anTitle').value = m.title || '';
+      document.getElementById('anStudio').value = m.studio || '';
+      document.getElementById('anGenres').value = m.genres || '';
+      document.getElementById('anReview').value = m.review || '';
+      document.getElementById('anSummary').value = m.summary || '';
+      document.getElementById('anCharacters').value = m.characters || '';
+      document.getElementById('anQuotes').value = m.quotes || '';
+      document.getElementById('anThoughts').value = m.thoughts || '';
+      document.getElementById('anEditId').value = editId;
+      document.getElementById('anPostedDate').value = m.posted || '';
+      if (m.rating != null) {
+        document.getElementById('anRating').value = m.rating;
+        document.getElementById('anRatingReadout').textContent = m.rating + ' / 10';
+        document.getElementById('anRatingDiamonds').innerHTML = ratingDiamonds(m.rating);
+        animeRatingTouched = true;
+      }
+      if (m.poster) { selAnimePosterDataUrl = m.poster; setAnimePosterPreview(m.poster); }
+      openModal('animeModal');
+    })();
+    return;
+  }
+
+  document.getElementById('animeModalTitle').textContent = 'Record an Anime';
+  document.getElementById('animeSubmitBtn').textContent = 'Add to Shelf';
+  openModal('animeModal');
+}
+
+async function submitAnime() {
+  const g = id => document.getElementById(id).value.trim();
+  const editId = document.getElementById('anEditId').value;
+  const title  = g('anTitle');
+  const studio = g('anStudio');
+
+  const meta = {
+    title, studio,
+    rating: animeRatingTouched ? Number(document.getElementById('anRating').value) : null,
+    genres: g('anGenres'),
+    review: g('anReview'),
+    summary: g('anSummary'),
+    characters: g('anCharacters'),
+    quotes: g('anQuotes'),
+    thoughts: g('anThoughts'),
+    poster: selAnimePosterDataUrl || null,
+    posted: document.getElementById('anPostedDate').value || today(),
+  };
+
+  const btn = document.getElementById('animeSubmitBtn');
+  btn.disabled = true;
+  try {
+    if (editId) {
+      await Vault.update(editId, { type:'anime', parentId:null, name: title||'Untitled', meta });
+      toast('◈ Entry updated');
+    } else {
+      await Vault.add({ type:'anime', parentId:null, name: title||'Untitled', meta });
+      toast('◈ Added to your shelf');
+    }
+    closeModal('animeModal');
+    await renderAnime();
+  } catch (e) {
+    toast('◈ Failed to save anime — please try again');
+    console.error('Anime save error:', e);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+async function renderAnime() {
+  allAnime = (await Vault.getAll()).filter(i => i.type === 'anime');
+
+  const posterBytes = allAnime.reduce((sum, an) => {
+    if (!an.meta.poster) return sum;
+    const b64 = an.meta.poster.includes(',') ? an.meta.poster.split(',')[1] : an.meta.poster;
+    return sum + Math.floor((b64.length * 3) / 4);
+  }, 0);
+  const genreSet = new Set();
+  allAnime.forEach(an => (an.meta.genres||'').split(',').map(g=>g.trim()).filter(Boolean).forEach(g=>genreSet.add(g.toLowerCase())));
+
+  document.getElementById('statAnime').textContent = allAnime.length;
+  document.getElementById('statAnimePosterSize').textContent = posterBytes > 0 ? fmt(posterBytes) : '—';
+  document.getElementById('statAnimeGenres').textContent = genreSet.size;
+  document.getElementById('statAnimeLog').textContent =
+    `${allAnime.length} title${allAnime.length === 1 ? '' : 's'} on the shelf`;
+
+  let view = allAnime.slice();
+  const q = document.getElementById('animeSearchInput').value.trim().toLowerCase();
+  if (q) {
+    view = view.map(an => ({ item: an, score: searchScore([
+      [an.meta.title,100], [an.meta.studio,85], [an.meta.genres,70],
+      [an.meta.review,50], [an.meta.summary,45], [an.meta.characters,35],
+      [an.meta.quotes,35], [an.meta.thoughts,30]
+    ], q) })).filter(x => x.score > 0).sort((a,b) => b.score - a.score).map(x => x.item);
+  } else {
+    const s = document.getElementById('animeSortSelect').value;
+    view.sort((a, b) => {
+      switch (s) {
+        case 'date-asc':    return new Date(a.meta.posted||0) - new Date(b.meta.posted||0);
+        case 'rating-desc': return (b.meta.rating??-1) - (a.meta.rating??-1);
+        case 'rating-asc':  return (a.meta.rating??99) - (b.meta.rating??99);
+        case 'title-asc':   return (a.meta.title||'').localeCompare(b.meta.title||'');
+        case 'title-desc':  return (b.meta.title||'').localeCompare(a.meta.title||'');
+        default:             return new Date(b.meta.posted||0) - new Date(a.meta.posted||0);
+      }
+    });
+  }
+
+  const grid = document.getElementById('animeGrid');
+  if (!view.length) {
+    grid.innerHTML = emptyStateHtml(
+      q ? 'No anime match your search' : 'The shelf is empty',
+      q ? 'Try a different word' : "Add the first anime you've watched above"
+    );
+    return;
+  }
+
+  grid.innerHTML = view.map(an => {
+    const m = an.meta;
+    const genres = (m.genres||'').split(',').map(t=>t.trim()).filter(Boolean).slice(0,3);
+    return `
+      <div class="book-card" data-action="anime-detail" data-id="${an.id}">
+        <div class="book-cover-wrap">
+          ${m.poster ? `<img src="${esc(m.poster)}" alt="${esc(m.title||'Poster')}" loading="lazy">` : `<div class="book-cover-fallback">${animePlaceholderSvg()}</div>`}
+        </div>
+        <div class="book-card-body">
+          <div class="book-title">${esc(m.title||'Untitled')}</div>
+          ${m.studio ? `<div class="book-author">${esc(m.studio)}</div>` : ''}
+          ${m.rating != null ? `
+          <div class="book-rating-row">
+            <span class="book-diamonds">${ratingDiamonds(m.rating)}</span>
+            <span class="book-rating-num">${m.rating}/10</span>
+          </div>` : ''}
+          ${genres.length ? `<div class="book-genres">${genres.map(g=>`<span class="fc-tag">#${esc(g)}</span>`).join('')}</div>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+async function showAnimeDetail(id) {
+  const item = await Vault.get(id);
+  if (!item) return;
+  const m = item.meta;
+
+  document.getElementById('detailModalTitle').textContent = 'Anime Record';
+  document.getElementById('detailModalSub').textContent = 'Your watching, in your own words';
+  document.getElementById('detailContent').innerHTML = `
+    <div class="det-hero">
+      <div class="det-cover">${m.poster ? `<img src="${esc(m.poster)}" alt="${esc(m.title||'Poster')}">` : animePlaceholderSvg()}</div>
+      <div>
+        <div class="det-title">${esc(m.title||'Untitled')}</div>
+        <div class="det-meta">${esc(m.studio||'Unknown studio')} · Added ${fmtDate(m.posted)}</div>
+        ${m.rating != null ? `<div style="margin-top:.4rem" class="book-diamonds">${ratingDiamonds(m.rating)} <span class="book-rating-num">${m.rating}/10</span></div>` : ''}
+      </div>
+    </div>
+    <div class="det-grid">
+      ${df('Genres', m.genres, true, true)}
+      ${df('The Story, In Brief', m.summary, true)}
+      ${df('Your Verdict', m.review, true)}
+      ${df('The People In It', m.characters, true)}
+      ${m.quotes ? `<div class="det-field det-full"><div class="det-key">Lines Worth Keeping</div><div class="quote-block"><svg class="quote-mark" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V14.4Q0 7.2 3.6 3.6 7.2 0 13.2 0V4.8Q9.6 4.8 7.8 6.6 6 8.4 6 12H12V24H0ZM18 24V14.4Q18 7.2 21.6 3.6 25.2 0 31.2 0V4.8Q27.6 4.8 25.8 6.6 24 8.4 24 12H30V24H18Z"/></svg><div class="quote-text">${esc(m.quotes)}</div></div></div>` : df('Lines Worth Keeping', m.quotes, true)}
+      ${df('What It Left You Thinking', m.thoughts, true)}
+    </div>`;
+
+  document.getElementById('detailOpenBtn').style.display = 'none';
+  document.getElementById('detailDownloadBtn').style.display = '';
+  document.getElementById('detailDownloadBtn').textContent = '🖶 Download as PDF';
+  document.getElementById('detailDownloadBtn').onclick = () => printEntryPdf({
+    kind: 'Anime Record',
+    title: m.title,
+    subtitle: `${m.studio || 'Unknown studio'} · Added ${fmtDate(m.posted)}`,
+    cover: m.poster,
+    rating: m.rating,
+    genres: m.genres,
+    sections: [
+      { label: 'The Story, In Brief', value: m.summary },
+      { label: 'Your Verdict', value: m.review },
+      { label: 'The People In It', value: m.characters },
+      { label: 'Lines Worth Keeping', value: m.quotes, quote: true },
+      { label: 'What It Left You Thinking', value: m.thoughts },
+    ],
+  });
+  document.getElementById('detailEditBtn').style.display = '';
+  document.getElementById('detailEditBtn').onclick = () => { closeModal('detailModal'); openAnimeModal(id); };
+  document.getElementById('detailDeleteBtn').onclick = () => confirmDelete(id, 'anime', m.title || 'this anime');
+  openModal('detailModal');
+}
+
+function handleAnimeGridClick(e) {
+  const el = e.target.closest('[data-action]');
+  if (!el) return;
+  if (el.dataset.action === 'anime-detail') showAnimeDetail(el.dataset.id);
 }
 
 // ══════════════════════════════════════════════
@@ -3611,6 +4694,7 @@ function entryDiaryRowHtml(d) {
       <div class="entry-body-wrap"><div class="entry-body-inner">
         <div class="entry-diary-body">${esc(m.content || 'No words were written for this page.')}</div>
         <div class="entry-actions" style="padding:0 1.2rem 1.3rem">
+          <button class="btn btn-ink sm" data-action="pdf-diary" data-id="${d.id}">🖶 PDF</button>
           <button class="btn btn-ink sm" data-action="edit-diary" data-id="${d.id}">Edit</button>
           <button class="btn btn-d sm" data-action="delete-diary" data-id="${d.id}" data-label="${title}">Unmap</button>
         </div>
@@ -3741,6 +4825,19 @@ async function renderDiary() {
   list.innerHTML = view.map(entryDiaryRowHtml).join('');
 }
 
+async function printDiaryPdf(id) {
+  const item = await Vault.get(id);
+  if (!item) return;
+  const m = item.meta;
+  const isReflection = (m.subtype || 'reflection') === 'reflection';
+  printEntryPdf({
+    kind: isReflection ? 'Diary Page · Reflection' : 'Diary Page · Idea & Spark',
+    title: m.title || (isReflection ? 'A reflection' : 'An idea'),
+    subtitle: fmtDateLong(m.posted),
+    diaryBody: m.content || 'No words were written for this page.',
+  });
+}
+
 function handleDiaryGridClick(e) {
   const el = e.target.closest('[data-action]');
   if (!el) {
@@ -3756,6 +4853,7 @@ function handleDiaryGridClick(e) {
     case 'toggle-expand': el.closest('.entry-row').classList.toggle('expanded'); break;
     case 'edit-diary':    openDiaryModal(id); break;
     case 'delete-diary':  confirmDelete(id, 'diary', el.dataset.label); break;
+    case 'pdf-diary':     printDiaryPdf(id); break;
   }
 }
 

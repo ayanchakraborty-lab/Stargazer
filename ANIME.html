@@ -22,6 +22,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Anime Abyss | Stargazer: Lost in the Cosmos">
 <meta name="twitter:description" content="From clever time travel to the eternal loop. 88 anime that will rewire your brain. Descend →">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 
@@ -707,6 +709,7 @@ body.names-only .card-inner { padding:0.7rem 1rem 0.7rem 1.2rem; }
 }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
 <body data-page="anime">
 
 <div id="toast"></div>
@@ -4540,9 +4543,10 @@ function legacyCopy(text, onSuccess) {
 }
 
 document.querySelectorAll('.copy-link-btn').forEach(btn => {
+  const n = btn.dataset.n;
+  if (!btn.hasAttribute('aria-label')) btn.setAttribute('aria-label', 'Copy link to entry #' + n);
   btn.addEventListener('click', e => {
     e.stopPropagation();
-    const n = btn.dataset.n;
     const url = buildUrl('anime-' + n);
     copyToClipboard(url, () => showToast('signal link copied · #' + n));
     const card = document.getElementById('anime-' + n);

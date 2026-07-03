@@ -1837,7 +1837,7 @@
 <!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
 <div class="modal" id="modalContent">
-<button class="modal-close" onclick="closeModal()">✕</button>
+<button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
 <div class="modal-cover-wrap" id="mCoverWrap">
 <div class="modal-cover-glyph" id="mGlyph"></div>
 </div>
@@ -1929,7 +1929,7 @@
 <!-- SIGIL QUOTE MODAL -->
 <div class="sigil-modal" id="sigilModal" onclick="closeSigilModal()">
 <div class="sigil-modal-inner" onclick="event.stopPropagation()">
-<button class="sigil-modal-close" onclick="closeSigilModal()">✕</button>
+<button class="sigil-modal-close" onclick="closeSigilModal()" aria-label="Close">✕</button>
 <span class="sigil-modal-glyph" id="sigilGlyph">☽ ✦ ☾</span>
 <p class="sigil-modal-quote" id="sigilQuote"></p>
 <p class="sigil-modal-source" id="sigilSource"></p>

@@ -808,13 +808,13 @@ footer {
   <a href="login.html" id="loginBtn" style="font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(201,168,76,0.75);border:1px solid rgba(201,168,76,0.28);padding:0.32rem 0.9rem;border-radius:3px;text-decoration:none;background:rgba(5,5,8,0.65);backdrop-filter:blur(6px);transition:all 0.25s;display:inline-flex;align-items:center;" onmouseover="this.style.color='#c9a84c';this.style.borderColor='rgba(201,168,76,0.7)'" onmouseout="this.style.color='rgba(201,168,76,0.75)';this.style.borderColor='rgba(201,168,76,0.28)'">sign in</a>
   <div id="userInfo" style="display:none;align-items:center;gap:0.5rem;font-family:'Space Mono',monospace;font-size:0.6rem;">
     <span id="userEmailDisplay" style="color:rgba(201,168,76,0.6);background:rgba(5,5,8,0.65);border:1px solid rgba(201,168,76,0.2);border-radius:3px;padding:0.28rem 0.8rem;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:0.08em;backdrop-filter:blur(6px);"></span>
-    <button id="acctSettingsBtn" onclick="acctOpenModal()" title="Account settings">⚙</button>
+    <button id="acctSettingsBtn" onclick="acctOpenModal()" title="Account settings" aria-label="Account settings">⚙</button>
     <button onclick="doSignOut()" id="signOutBtn" style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(201,168,76,0.55);background:rgba(5,5,8,0.65);border:1px solid rgba(201,168,76,0.18);border-radius:3px;padding:0.28rem 0.8rem;cursor:pointer;backdrop-filter:blur(6px);transition:all 0.2s;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(201,168,76,0.55)'">sign out</button>
   </div>
 </div>
 
-<button class="scroll-btn" id="scrollTop" title="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-<button class="scroll-btn" id="scrollBot" title="Scroll to bottom" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">↓</button>
+<button class="scroll-btn" id="scrollTop" title="Scroll to top" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button class="scroll-btn" id="scrollBot" title="Scroll to bottom" aria-label="Scroll to bottom" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">↓</button>
 <!-- ── ACCOUNT SETTINGS MODAL ── -->
 <div id="accountModal" role="dialog" aria-modal="true" aria-label="Account settings">
   <div id="acctBg" style="position:absolute;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(7px);"></div>
