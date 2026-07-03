@@ -127,7 +127,19 @@ body::before {
 #homeLink:hover { border-color: var(--gold-2); color: var(--gold-3); box-shadow: 0 0 16px rgba(255,204,0,0.15); }
 body.light #homeLink { background: rgba(255,254,245,0.97); border-color: rgba(200,128,16,0.3); color: var(--gold-2); }
 body.light #homeLink:hover { color: var(--gold-3); }
-@media (max-width: 480px){ #homeLink { display: none; } }
+/* Mobile: this used to be display:none here — that hid the only way back to
+   the universe index on phones. Instead we shrink both top-left buttons to
+   icon-only pills (see #hamburger-btn span.hb-label / #homeLink span.hl-label
+   below) so both fit, and free up the crowded right side by moving
+   #darkToggle into the sidebar (see .sidebar-theme-btn). */
+@media (max-width: 480px){
+  #hamburger-btn { padding: 0.34rem 0.7rem; left: 12px; }
+  #hamburger-btn span.hb-label { display: none; }
+  #homeLink { left: 70px; padding: 0.34rem 0.7rem; }
+  #homeLink span.hl-label { display: none; }
+  #darkToggle { display: none; }
+  #userEmailDisplay { max-width: 64px; }
+}
 
 #sidebar-overlay {
   position: fixed; inset: 0; background: rgba(0,0,0,0.7);
@@ -216,7 +228,18 @@ body.light #homeLink:hover { color: var(--gold-3); }
   border-top: 1px solid rgba(255,204,0,0.08);
   font-size: 10px; color: var(--text-faint);
   text-align: center; font-style: italic;
+  cursor: default; user-select: none;
 }
+.sidebar-theme-row { padding: 4px 20px 14px; }
+.sidebar-theme-btn {
+  width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em;
+  color: var(--text-2); background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,204,0,0.18); border-radius: 30px;
+  padding: 0.5rem 0.9rem; cursor: pointer; transition: all 0.2s;
+}
+.sidebar-theme-btn:hover { border-color: var(--gold-2); color: var(--gold-2); background: rgba(255,204,0,0.06); }
+body.light .sidebar-theme-btn { color: var(--gold-2); border-color: rgba(200,128,16,0.3); }
 
 /* ═══ HAMBURGER BUTTON ═══ */
 #hamburger-btn {
@@ -280,7 +303,7 @@ body.light #homeLink:hover { color: var(--gold-3); }
 /* ═══ HERO ═══ */
 .hero {
   position: relative; min-height: 100vh;
-  display: flex; flex-direction: column;
+  display: none; flex-direction: column;
   align-items: center; justify-content: center;
   overflow: hidden;
   background:
@@ -290,6 +313,7 @@ body.light #homeLink:hover { color: var(--gold-3); }
     radial-gradient(ellipse 50% 40% at 80% 50%, rgba(16,185,129,0.06) 0%, transparent 70%),
     linear-gradient(180deg, #05050D 0%, #0C0C20 50%, #0A080E 100%);
 }
+.hero.active { display: flex; }
 .hero::before {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(135deg,
@@ -331,32 +355,6 @@ body.light #homeLink:hover { color: var(--gold-3); }
     radial-gradient(1.5px 1.5px at 85% 28%, rgba(255,80,80,0.4)   0%, transparent 0%);
 }
 
-.hero-flag {
-  position: absolute; top: 90px; right: 40px;
-  display: flex; flex-direction: column;
-  width: 88px; height: 56px;
-  border-radius: 3px; overflow: hidden;
-  box-shadow: 0 0 0 1.5px rgba(255,255,255,0.15),0 4px 24px rgba(0,0,0,0.6),0 0 40px rgba(255,204,0,0.12);
-  animation: flagWave 4s ease-in-out infinite;
-  transform-origin: left center;
-}
-@keyframes flagWave {
-  0%,100% { transform: skewY(0deg) scaleX(1); }
-  25%      { transform: skewY(0.8deg) scaleX(1.01); }
-  50%      { transform: skewY(-0.5deg) scaleX(0.99); }
-  75%      { transform: skewY(0.6deg) scaleX(1.01); }
-}
-.flag-stripe { flex: 1; width: 100%; }
-.flag-black  { background: #1A1A1A; }
-.flag-red    { background: #CC0000; }
-.flag-gold   { background: #FFCC00; }
-.hero-flag-pole {
-  position: absolute; top: 80px; right: 130px;
-  width: 2px; height: 70px;
-  background: linear-gradient(to bottom, rgba(255,204,0,0.8), rgba(255,204,0,0.3));
-  border-radius: 2px;
-}
-
 .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 24px; max-width: 780px; }
 .hero-orn {
   font-family: 'Playfair Display', serif; font-size: 20px;
@@ -391,47 +389,18 @@ body.light #homeLink:hover { color: var(--gold-3); }
   max-width: 520px; margin: 0 auto 32px; line-height: 1.75;
 }
 
-/* Features grid on hero */
-.hero-features {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px; max-width: 700px; margin: 0 auto 36px; text-align: left;
+/* Scroll cue at the bottom of the hero, pointing down at the home section's
+   own explore grid (see .explore-grid) instead of duplicating nav links here */
+.hero-scroll-cue {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--text-3); text-decoration: none;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  border: 1px solid rgba(255,204,0,0.18); border-radius: 30px;
+  padding: 9px 18px; transition: all 0.22s;
 }
-.hero-feature {
-  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,204,0,0.1);
-  border-radius: var(--r); padding: 10px 14px;
-  transition: all 0.2s;
-}
-.hero-feature:hover { background: rgba(255,204,0,0.05); border-color: rgba(255,204,0,0.25); }
-.hero-feat-icon { font-size: 18px; margin-bottom: 4px; display: block; }
-.hero-feat-title { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-2); }
-.hero-feat-desc { font-size: 10px; color: var(--text-3); margin-top: 3px; line-height: 1.5; }
-
-.hero-links {
-  display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
-}
-.hero-link {
-  padding: 9px 22px; border: 1px solid rgba(255,204,0,0.35);
-  background: rgba(255,204,0,0.07); color: var(--gold-2);
-  text-decoration: none; font-size: 11px; letter-spacing: 0.12em;
-  border-radius: var(--r); transition: all 0.22s;
-  position: relative; overflow: hidden;
-}
-.hero-link::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(255,204,0,0.12), rgba(204,0,0,0.08));
-  opacity: 0; transition: opacity 0.22s;
-}
-.hero-link:hover {
-  border-color: rgba(255,204,0,0.8); color: #FFE033;
-  box-shadow: 0 0 20px rgba(255,204,0,0.2);
-}
-.hero-link:hover::before { opacity: 1; }
-.hero-link.hl-purple { border-color: rgba(167,139,250,0.35); background: rgba(124,58,237,0.07); color: var(--purple-2); }
-.hero-link.hl-purple:hover { border-color: var(--purple-2); color: var(--purple-3); }
-.hero-link.hl-emerald { border-color: rgba(52,211,153,0.35); background: rgba(16,185,129,0.07); color: var(--emerald-2); }
-.hero-link.hl-emerald:hover { border-color: var(--emerald-2); color: var(--emerald-3); }
-.hero-link.hl-ocean { border-color: rgba(56,189,248,0.35); background: rgba(2,132,199,0.07); color: var(--ocean-2); }
-.hero-link.hl-ocean:hover { border-color: var(--ocean-2); color: var(--ocean-3); }
+.hero-scroll-cue:hover { color: var(--gold-2); border-color: rgba(255,204,0,0.4); }
+.hero-scroll-cue svg { animation: bounceDown 1.8s ease-in-out infinite; }
+@keyframes bounceDown { 0%,100%{transform:translateY(0);} 50%{transform:translateY(4px);} }
 
 .hero-trees {
   position: absolute; bottom: 0; left: 0; right: 0; height: 220px; z-index: 1;
@@ -477,37 +446,6 @@ body.light #homeLink:hover { color: var(--gold-3); }
 /* ═══ MAIN ═══ */
 main { position: relative; z-index: 1; }
 
-/* ═══ SECTION TABS ═══ */
-.section-nav {
-  display: flex; background: var(--bg-card);
-  border-bottom: 1px solid rgba(255,204,0,0.1);
-  overflow-x: auto; scrollbar-width: none;
-  position: sticky; top: 50px; z-index: 80;
-}
-.section-nav::-webkit-scrollbar { display: none; }
-.s-tab {
-  display: flex; flex-direction: column; align-items: center; gap: 1px;
-  padding: 10px 18px; background: none; border: none;
-  color: var(--text-3); font-family: 'Space Mono', monospace;
-  font-size: 10px; letter-spacing: 0.08em;
-  cursor: pointer; white-space: nowrap;
-  border-bottom: 3px solid transparent; transition: all 0.22s;
-  text-transform: uppercase;
-}
-.s-tab:hover { color: var(--text-2); background: rgba(255,204,0,0.04); }
-.s-tab.active { color: var(--gold-2); border-bottom-color: var(--gold-2); background: rgba(255,204,0,0.06); }
-.s-tab.t-purple.active { color: var(--purple-2); border-bottom-color: var(--purple-2); background: rgba(124,58,237,0.06); }
-.s-tab.t-emerald.active { color: var(--emerald-2); border-bottom-color: var(--emerald-2); background: rgba(16,185,129,0.06); }
-.s-tab.t-ocean.active { color: var(--ocean-2); border-bottom-color: var(--ocean-2); background: rgba(2,132,199,0.06); }
-.s-tab.t-coral.active { color: var(--coral-2); border-bottom-color: var(--coral-2); background: rgba(225,29,72,0.06); }
-.s-tab.t-teal.active { color: var(--teal-2); border-bottom-color: var(--teal-2); background: rgba(8,145,178,0.06); }
-.s-tab .ti { font-size: 14px; }
-.s-tab .tab-en { font-size: 8px; letter-spacing: 0.05em; color: var(--text-faint); text-transform: none; font-family: 'Playfair Display', serif; font-style: italic; }
-.s-tab.active .tab-en { color: var(--gold-2); opacity: 0.6; }
-.s-tab.t-purple.active .tab-en { color: var(--purple-2); }
-.s-tab.t-emerald.active .tab-en { color: var(--emerald-2); }
-.s-tab.t-ocean.active .tab-en { color: var(--ocean-2); }
-
 /* ═══ SECTIONS ═══ */
 .section {
   display: none; padding: 40px 24px 64px;
@@ -541,6 +479,45 @@ main { position: relative; z-index: 1; }
 .section-head.sh-teal h2 { color: var(--teal-2); text-shadow: 0 0 30px rgba(8,145,178,0.3); }
 .section-head.sh-amber h2 { color: var(--amber-warm-2); text-shadow: 0 0 30px rgba(217,119,6,0.3); }
 .section-head p { color: var(--text-3); font-size: 12px; letter-spacing: 0.05em; }
+
+/* ═══ HOME · EXPLORE-ALL-SECTIONS GRID ═══ */
+.explore-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 14px; margin-bottom: 40px;
+}
+.explore-card {
+  display: block; width: 100%; text-align: left; cursor: pointer;
+  font-family: inherit; background: var(--bg-card);
+  border: 1px solid rgba(255,204,0,0.12); border-left: 3px solid var(--gold-2);
+  border-radius: var(--r-lg); padding: 18px 20px;
+  transition: all 0.22s; position: relative; overflow: hidden;
+}
+.explore-card:hover {
+  transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+  background: rgba(255,204,0,0.05); border-color: rgba(255,204,0,0.3);
+}
+.explore-icon { font-size: 22px; display: block; margin-bottom: 8px; }
+.explore-title { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--gold-2); margin-bottom: 3px; }
+.explore-sub { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 9px; }
+.explore-desc { font-size: 11.5px; color: var(--text-3); line-height: 1.6; }
+.explore-card.ec-purple { border-left-color: var(--purple-2); }
+.explore-card.ec-purple:hover { border-color: rgba(124,58,237,0.35); background: rgba(124,58,237,0.06); }
+.explore-card.ec-purple .explore-title { color: var(--purple-2); }
+.explore-card.ec-emerald { border-left-color: var(--emerald-2); }
+.explore-card.ec-emerald:hover { border-color: rgba(16,185,129,0.35); background: rgba(16,185,129,0.06); }
+.explore-card.ec-emerald .explore-title { color: var(--emerald-2); }
+.explore-card.ec-ocean { border-left-color: var(--ocean-2); }
+.explore-card.ec-ocean:hover { border-color: rgba(2,132,199,0.35); background: rgba(2,132,199,0.06); }
+.explore-card.ec-ocean .explore-title { color: var(--ocean-2); }
+.explore-card.ec-amber { border-left-color: var(--amber-warm-2); }
+.explore-card.ec-amber:hover { border-color: rgba(217,119,6,0.35); background: rgba(217,119,6,0.06); }
+.explore-card.ec-amber .explore-title { color: var(--amber-warm-2); }
+.explore-card.ec-teal { border-left-color: var(--teal-2); }
+.explore-card.ec-teal:hover { border-color: rgba(8,145,178,0.35); background: rgba(8,145,178,0.06); }
+.explore-card.ec-teal .explore-title { color: var(--teal-2); }
+.explore-card.ec-coral { border-left-color: var(--coral-2); }
+.explore-card.ec-coral:hover { border-color: rgba(225,29,72,0.35); background: rgba(225,29,72,0.06); }
+.explore-card.ec-coral .explore-title { color: var(--coral-2); }
 
 /* ═══ DICTIONARY ═══ */
 .dict-controls { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
@@ -766,6 +743,10 @@ main { position: relative; z-index: 1; }
 }
 .test-card:hover { border-color: var(--tc-border, rgba(167,139,250,0.3)); background: var(--bg-raised); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.5); }
 .test-card:hover::after { opacity: 1; }
+.test-card.secret-card { border-style: dashed; border-color: rgba(212,175,55,0.4); background: linear-gradient(135deg, rgba(212,175,55,0.05), var(--bg-card) 60%); }
+.test-card.secret-card::before { background: linear-gradient(90deg, #D4AF37, #7C3AED, #D4AF37); background-size: 200% 100%; animation: secretShimmer 3.5s linear infinite; }
+@keyframes secretShimmer { 0%{background-position:0% 0;} 100%{background-position:200% 0;} }
+.test-card.secret-card:hover { border-color: #D4AF37; box-shadow: 0 12px 30px rgba(212,175,55,0.25); }
 .test-emoji { font-size: 32px; margin-bottom: 10px; display: block; }
 .test-card-title { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
 .test-card-en { font-size: 10px; color: var(--text-faint); font-style: italic; margin-bottom: 8px; font-family: 'Playfair Display', serif; }
@@ -832,6 +813,20 @@ main { position: relative; z-index: 1; }
 .tq-opt .opt-l { min-width: 22px; height: 22px; border: 1px solid var(--border-2); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--text-3); flex-shrink: 0; }
 .tq-opt.selected .opt-l { background: rgba(124,58,237,0.25); border-color: var(--purple-2); color: var(--purple-2); }
 
+/* A 'statement' item — used once, by the secret test — reads as a plain
+   note instead of a graded multiple-choice question: no options, no scoring. */
+.tq-card.tq-statement {
+  background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(124,58,237,0.05));
+  border: 1px dashed rgba(212,175,55,0.4);
+}
+.tq-statement-badge {
+  display: inline-block; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: #D4AF37; border: 1px solid rgba(212,175,55,0.4); border-radius: 20px;
+  padding: 3px 10px; margin-bottom: 14px;
+}
+.tq-statement-text { font-family: 'Crimson Text', serif; font-size: 17px; font-style: italic; line-height: 1.75; color: var(--text); margin-bottom: 14px; }
+.tq-statement-en { font-size: 12px; color: var(--text-3); line-height: 1.7; border-top: 1px dashed rgba(255,255,255,0.12); padding-top: 12px; }
+
 /* Test results */
 .test-results { display: none; }
 .test-results.show { display: block; }
@@ -857,6 +852,7 @@ main { position: relative; z-index: 1; }
 .sol-item { background: var(--bg-raised); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 18px; margin-bottom: 12px; }
 .sol-item.correct-ans { border-color: rgba(60,180,30,0.3); }
 .sol-item.wrong-ans { border-color: rgba(180,30,30,0.3); }
+.sol-item.sol-statement { border-color: rgba(212,175,55,0.35); background: linear-gradient(135deg, rgba(212,175,55,0.06), var(--bg-raised) 60%); }
 .sol-q-num { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
 .sol-q-text { font-size: 13px; color: var(--text-2); margin-bottom: 10px; line-height: 1.5; }
 .sol-your-ans { font-size: 11px; margin-bottom: 6px; }
@@ -1088,6 +1084,11 @@ main { position: relative; z-index: 1; }
   margin-bottom: 8px; font-size: 12px; line-height: 1.6;
 }
 .sb-error-item strong { color: var(--red-3); }
+.sb-en-trans {
+  margin-top: 7px; padding-top: 7px; border-top: 1px dashed rgba(255,255,255,0.1);
+  font-size: 11.5px; font-style: italic; color: var(--text-3); line-height: 1.6;
+}
+.sb-en-loading { opacity: 0.6; }
 .sb-suggestion-block {
   background: rgba(56,189,248,0.05); border: 1px solid rgba(56,189,248,0.15);
   border-radius: var(--r); padding: 12px 16px; font-family: 'Crimson Text', serif;
@@ -1134,6 +1135,39 @@ main { position: relative; z-index: 1; }
 .ref-table .form { color: var(--text); }
 .ref-table .text-amber { color: var(--gold-3); }
 
+/* ═══ GEMEINSCHAFT (COMMUNITY) ═══ */
+.community-compose {
+  background: var(--bg-card); border: 1px solid rgba(225,29,72,0.15);
+  border-radius: var(--r-lg); padding: 20px; margin-bottom: 28px;
+}
+.community-login-notice { font-size: 12px; color: var(--text-3); font-style: italic; }
+.community-textarea {
+  width: 100%; min-height: 80px; resize: vertical;
+  background: var(--bg-raised); border: 1px solid var(--border-2);
+  border-radius: var(--r); padding: 12px 14px; color: var(--text);
+  font-family: 'Crimson Text', serif; font-size: 14px; line-height: 1.6;
+}
+.community-textarea:focus { border-color: var(--coral-2); box-shadow: 0 0 0 3px rgba(225,29,72,0.1); }
+.community-write-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.community-author-hint { font-size: 11px; color: var(--text-3); }
+.community-author-hint strong { color: var(--coral-2); }
+.community-feed { display: flex; flex-direction: column; gap: 12px; }
+.community-empty { text-align: center; padding: 30px 20px; color: var(--text-faint); font-size: 12px; font-style: italic; }
+.community-post {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-left: 3px solid var(--coral-2);
+  border-radius: var(--r-lg); padding: 16px 20px;
+}
+.community-post-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.community-post-author { font-size: 12px; font-weight: 700; color: var(--coral-2); }
+.community-post-date { font-size: 10px; color: var(--text-faint); letter-spacing: 0.04em; margin-left: auto; }
+.community-post-content { font-size: 13px; color: var(--text-2); line-height: 1.7; white-space: pre-wrap; word-break: break-word; }
+.community-delete {
+  background: none; border: 1px solid rgba(225,29,72,0.3); color: var(--coral-2);
+  border-radius: 6px; font-size: 11px; padding: 2px 7px; cursor: pointer; transition: all 0.18s;
+}
+.community-delete:hover { background: rgba(225,29,72,0.15); border-color: var(--coral-2); }
+
 /* ═══ FOOTER ═══ */
 footer { border-top: 1px solid rgba(255,204,0,0.1); padding: 28px 24px; text-align: center; color: var(--text-faint); font-size: 10px; letter-spacing: 0.12em; position: relative; }
 footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(to right, #1A1A1A 25%, #CC0000 50%, #FFCC00 75%, #7C3AED 100%); opacity: 0.5; }
@@ -1152,10 +1186,7 @@ footer a:hover { color: var(--gold-2); }
   .idiom-grid { grid-template-columns: 1fr; }
   .ref-grid { grid-template-columns: 1fr; }
   .hero-title { font-size: clamp(40px, 12vw, 72px); }
-  .hero-flag { top: 90px; right: 20px; width: 64px; height: 42px; }
-  .hero-flag-pole { right: 86px; }
   .test-grid { grid-template-columns: 1fr; }
-  .hero-features { grid-template-columns: 1fr 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { .needle, .hero-moon { animation: none; } }
 
@@ -1200,11 +1231,51 @@ body.light .q-opt.correct { background: rgba(200,240,180,0.5); color: #0E6008; }
 body.light .q-opt.wrong { background: rgba(240,200,190,0.5); color: #880808; }
 body.light .story-title { color: var(--emerald-3); }
 body.light #sidebar { background: #FAF6E2; }
+
+/* ═══ GEHEIMER MODUS · SECRET MODE ═══
+   Triple-click the footer text to toggle (see handleFooterClick() /
+   toggleSecretMode() in the script). Purely a reskin — trades the German
+   flag's gold/red palette for a hidden 'moonlit archive' violet/emerald
+   one. State persists in localStorage across visits. */
+body.geheim-mode {
+  --gold: #8B5CF6; --gold-2: #C4A7FA; --gold-3: #E9D5FF;
+  --red: #059669; --red-2: #10B981; --red-3: #34D399;
+  --bg: #050310; --bg-card: #0F0A1F; --bg-raised: #171029; --bg-hover: #201A38; --bg-active: #2A2148;
+  --border: #2A1F4A; --border-2: #40316B;
+  --text-2: #D9CCF0;
+}
+body.geheim-mode::before {
+  background: linear-gradient(to right, #1A0F2E 0% 20%, #8B5CF6 20% 45%, #C4A7FA 45% 65%, #10B981 65% 85%, #34D399 85% 100%);
+}
+body.geheim-mode .hero {
+  background:
+    radial-gradient(ellipse 100% 45% at 50% 0%, rgba(139,92,246,0.16) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(16,185,129,0.12) 0%, transparent 55%),
+    linear-gradient(180deg, #050310 0%, #0A0620 55%, #050310 100%);
+}
+body.geheim-mode .hero-moon {
+  background: radial-gradient(circle, rgba(196,167,250,0.9) 0%, rgba(139,92,246,0.45) 45%, transparent 70%);
+  box-shadow: 0 0 90px rgba(139,92,246,0.35), 0 0 200px rgba(16,185,129,0.1);
+}
+body.geheim-mode .hero-title { text-shadow: 0 0 40px rgba(139,92,246,0.55), 0 0 100px rgba(139,92,246,0.25); }
+body.geheim-mode .hero-title .frak { color: #C4A7FA; }
+body.geheim-mode .hero-sub, body.geheim-mode .hero-desc { color: #C9BEE0; }
+
+.geheim-toast {
+  position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%) translateY(20px);
+  background: linear-gradient(135deg, rgba(139,92,246,0.95), rgba(16,185,129,0.85));
+  color: #fff; padding: 14px 22px; border-radius: 14px;
+  font-family: 'Space Mono', monospace; font-size: 12px; line-height: 1.6; text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5); z-index: 100000;
+  opacity: 0; pointer-events: none; transition: all 0.45s ease; max-width: 86vw;
+}
+.geheim-toast span { display: block; font-size: 10.5px; opacity: 0.85; margin-top: 3px; font-style: italic; }
+.geheim-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 </style>
 </head>
 <body>
 <!-- Home button -->
-<a href="index.html" id="homeLink">← universe</a>
+<a href="index.html" id="homeLink" title="universe"><span class="hl-arrow">←</span> <span class="hl-label">universe</span></a>
 
 <!-- Auth header -->
 <div id="authHeader">
@@ -1219,7 +1290,7 @@ body.light #sidebar { background: #FAF6E2; }
 <!-- Hamburger Button -->
 <button id="hamburger-btn" onclick="openSidebar()" aria-label="Open navigation">
   <span style="font-size:18px;">☰</span>
-  <span>MENÜ</span>
+  <span class="hb-label">MENÜ</span>
 </button>
 
 <!-- Sidebar Overlay -->
@@ -1232,6 +1303,10 @@ body.light #sidebar { background: #FAF6E2; }
     <button class="sidebar-close" onclick="closeSidebar()">✕</button>
   </div>
   <div class="sidebar-flag"><div class="f1"></div><div class="f2"></div><div class="f3"></div></div>
+
+  <div class="sidebar-theme-row">
+    <button id="sidebarDarkToggle" class="sidebar-theme-btn" onclick="toggleLight()">☀ Day Mode</button>
+  </div>
 
   <ul class="sidebar-nav" style="list-style:none;">
     <li class="sidebar-divider">Hauptseiten · Main Pages</li>
@@ -1285,6 +1360,12 @@ body.light #sidebar { background: #FAF6E2; }
       <span class="sidebar-icon">💬</span>
       <span class="sidebar-text"><span class="sidebar-de">Redewendungen</span><span class="sidebar-en">Idioms & Expressions</span></span>
     </button></li>
+
+    <li class="sidebar-divider">Gemeinschaft · Community</li>
+    <li><button class="sidebar-item" id="sb-community" onclick="switchTab('community');closeSidebar()">
+      <span class="sidebar-icon">👥</span>
+      <span class="sidebar-text"><span class="sidebar-de">Gemeinschaft</span><span class="sidebar-en">Community Discussion</span></span>
+    </button></li>
   </ul>
 
   <div class="sidebar-footer">
@@ -1300,15 +1381,9 @@ body.light #sidebar { background: #FAF6E2; }
 <div id="nav-container"></div>
 
 <!-- ═══ HERO / HOME ═══ -->
-<header class="hero" id="top">
+<header class="hero active" id="top">
   <div class="hero-stars"></div>
   <div class="hero-moon"></div>
-  <div class="hero-flag-pole"></div>
-  <div class="hero-flag" aria-label="German flag">
-    <div class="flag-stripe flag-black"></div>
-    <div class="flag-stripe flag-red"></div>
-    <div class="flag-stripe flag-gold"></div>
-  </div>
 
   <div class="hero-content">
     <span class="hero-orn">✦ &nbsp; ✦ &nbsp; ✦</span>
@@ -1319,36 +1394,10 @@ body.light #sidebar { background: #FAF6E2; }
     <p class="hero-sub">Waldeinsamkeit · Bildung · Sehnsucht</p>
     <p class="hero-desc">German is a language of compounding — of stacking ideas until a single word holds an entire feeling that other languages need a paragraph to explain. This is your immersion.</p>
 
-    <div class="hero-features">
-      <div class="hero-feature">
-        <span class="hero-feat-icon">📖</span>
-        <div class="hero-feat-title">Wörterbuch</div>
-        <div class="hero-feat-desc">18 untranslatable words + 50+ curated vocabulary entries with etymology</div>
-      </div>
-      <div class="hero-feature">
-        <span class="hero-feat-icon">🧪</span>
-        <div class="hero-feat-title">20 Themed Tests</div>
-        <div class="hero-feat-desc">200 advanced grammar questions across 20 professions — lumberjack to judge</div>
-      </div>
-      <div class="hero-feature">
-        <span class="hero-feat-icon">📚</span>
-        <div class="hero-feat-title">60 Stories</div>
-        <div class="hero-feat-desc">Ten stories per CEFR level from A1 to C2 with vocabulary &amp; summaries</div>
-      </div>
-      <div class="hero-feature">
-        <span class="hero-feat-icon">🤖</span>
-        <div class="hero-feat-title">AI Sentence Checker</div>
-        <div class="hero-feat-desc">Write a sentence with a random word — AI corrects grammar &amp; tone</div>
-      </div>
-    </div>
-
-    <div class="hero-links">
-      <a href="#" class="hero-link" onclick="event.preventDefault();switchTab('woerterbuch')">📖 Wörterbuch</a>
-      <a href="#" class="hero-link" onclick="event.preventDefault();switchTab('grammatik')">✏️ Grammatik</a>
-      <a href="#" class="hero-link hl-purple" onclick="event.preventDefault();switchTab('pruefungen')">🧪 Prüfungen</a>
-      <a href="#" class="hero-link hl-emerald" onclick="event.preventDefault();switchTab('geschichten')">📚 Geschichten</a>
-      <a href="#" class="hero-link hl-ocean" onclick="event.preventDefault();switchTab('satzbauer')">🤖 Satzbauer</a>
-    </div>
+    <a href="#" class="hero-scroll-cue" onclick="event.preventDefault();document.getElementById('home-explore').scrollIntoView({behavior:'smooth'})">
+      <span>Erkunde alle Bereiche · Explore everything below</span>
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 6L8 11L13 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
   </div>
 
   <div class="hero-trees">
@@ -1407,27 +1456,76 @@ body.light #sidebar { background: #FAF6E2; }
   </div>
 </div>
 
-<!-- ═══ SECTION TABS ═══ -->
-<nav class="section-nav" id="section-tabs" aria-label="Content sections">
-  <button class="s-tab active" id="tab-home" onclick="switchTab('home')"><span class="ti">🏠</span><span>Startseite</span><span class="tab-en">Home</span></button>
-  <button class="s-tab" id="tab-woerterbuch" onclick="switchTab('woerterbuch')"><span class="ti">📖</span><span>Wörterbuch</span><span class="tab-en">Dictionary</span></button>
-  <button class="s-tab" id="tab-grammatik" onclick="switchTab('grammatik')"><span class="ti">✏️</span><span>Grammatik</span><span class="tab-en">Grammar</span></button>
-  <button class="s-tab t-purple" id="tab-pruefungen" onclick="switchTab('pruefungen')"><span class="ti">🧪</span><span>Prüfungen</span><span class="tab-en">Tests</span></button>
-  <button class="s-tab t-emerald" id="tab-geschichten" onclick="switchTab('geschichten')"><span class="ti">📚</span><span>Geschichten</span><span class="tab-en">Stories</span></button>
-  <button class="s-tab t-ocean" id="tab-satzbauer" onclick="switchTab('satzbauer')"><span class="ti">🤖</span><span>Satzbauer</span><span class="tab-en">AI Builder</span></button>
-  <button class="s-tab t-coral" id="tab-buecher" onclick="switchTab('buecher')"><span class="ti">📕</span><span>Bücher</span><span class="tab-en">Books</span></button>
-  <button class="s-tab" id="tab-redewendungen" onclick="switchTab('redewendungen')"><span class="ti">💬</span><span>Redewendungen</span><span class="tab-en">Idioms</span></button>
-  <button class="s-tab t-teal" id="tab-zungenbrecher" onclick="switchTab('zungenbrecher')"><span class="ti">👅</span><span>Zungenbrecher</span><span class="tab-en">Twisters</span></button>
-  <button class="s-tab" id="tab-nachschlagen" onclick="switchTab('nachschlagen')"><span class="ti">📋</span><span>Nachschlagen</span><span class="tab-en">Reference</span></button>
-</nav>
-
 <main>
 
 <!-- ═══ HOME SECTION ═══ -->
 <section class="section active" id="home">
   <div class="section-head">
     <h2>Willkommen</h2>
-    <p>Your immersive German learning space — from first words to literary mastery</p>
+    <p>Your immersive German learning space — from first words to literary mastery. Ten corners to explore below: a dictionary of untranslatable words, adaptive grammar drills, 20 themed exams, graded short stories, a curated reading list, an AI sentence coach, tongue twisters, idioms, quick reference tables, and a community of fellow learners.</p>
+  </div>
+
+  <div class="explore-grid" id="home-explore">
+    <button class="explore-card" onclick="switchTab('woerterbuch')">
+      <span class="explore-icon">📖</span>
+      <div class="explore-title">Wörterbuch</div>
+      <div class="explore-sub">Dictionary</div>
+      <div class="explore-desc">18 untranslatable words plus 50+ curated entries, each with full etymology.</div>
+    </button>
+    <button class="explore-card" onclick="switchTab('grammatik')">
+      <span class="explore-icon">✏️</span>
+      <div class="explore-title">Grammatik</div>
+      <div class="explore-sub">Grammar Practice</div>
+      <div class="explore-desc">32+ adaptive questions across every major structure, with streaks &amp; scoring.</div>
+    </button>
+    <button class="explore-card ec-purple" onclick="switchTab('pruefungen')">
+      <span class="explore-icon">🧪</span>
+      <div class="explore-title">Prüfungen</div>
+      <div class="explore-sub">Themed Tests</div>
+      <div class="explore-desc">20 professions, 200 advanced questions — plus one test that isn't quite like the others.</div>
+    </button>
+    <button class="explore-card" onclick="switchTab('nachschlagen')">
+      <span class="explore-icon">📋</span>
+      <div class="explore-title">Nachschlagen</div>
+      <div class="explore-sub">Reference Tables</div>
+      <div class="explore-desc">Cases, pronouns, prepositions &amp; strong verbs, all at a glance.</div>
+    </button>
+    <button class="explore-card ec-emerald" onclick="switchTab('geschichten')">
+      <span class="explore-icon">📚</span>
+      <div class="explore-title">Geschichten</div>
+      <div class="explore-sub">Stories</div>
+      <div class="explore-desc">Ten graded stories per CEFR level, A1 through C2, with vocabulary &amp; summaries.</div>
+    </button>
+    <button class="explore-card ec-amber" onclick="switchTab('buecher')">
+      <span class="explore-icon">📕</span>
+      <div class="explore-title">Bücher</div>
+      <div class="explore-sub">Books</div>
+      <div class="explore-desc">A curated reading list with a growing library of PDFs.</div>
+    </button>
+    <button class="explore-card ec-ocean" onclick="switchTab('satzbauer')">
+      <span class="explore-icon">🤖</span>
+      <div class="explore-title">Satzbauer</div>
+      <div class="explore-sub">AI Sentence Builder</div>
+      <div class="explore-desc">Write a sentence with a random word — get instant AI-graded feedback.</div>
+    </button>
+    <button class="explore-card ec-teal" onclick="switchTab('zungenbrecher')">
+      <span class="explore-icon">👅</span>
+      <div class="explore-title">Zungenbrecher</div>
+      <div class="explore-sub">Tongue Twisters</div>
+      <div class="explore-desc">Pronunciation drills that will absolutely destroy your confidence.</div>
+    </button>
+    <button class="explore-card" onclick="switchTab('redewendungen')">
+      <span class="explore-icon">💬</span>
+      <div class="explore-title">Redewendungen</div>
+      <div class="explore-sub">Idioms &amp; Expressions</div>
+      <div class="explore-desc">German sayings with their literal and real meanings side by side.</div>
+    </button>
+    <button class="explore-card ec-coral" onclick="switchTab('community')">
+      <span class="explore-icon">👥</span>
+      <div class="explore-title">Gemeinschaft</div>
+      <div class="explore-sub">Community</div>
+      <div class="explore-desc">Talk German with other Stargazer travelers — ask, share, discuss.</div>
+    </button>
   </div>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-bottom:40px;">
@@ -1476,13 +1574,6 @@ body.light #sidebar { background: #FAF6E2; }
         <div style="font-size:10px;color:var(--text-3);margin-top:4px;line-height:1.4;">Mastery · Literary, philosophical, native-level</div>
       </div>
     </div>
-  </div>
-
-  <div style="display:flex;gap:12px;flex-wrap:wrap;">
-    <button class="btn btn-primary" onclick="switchTab('pruefungen')">🧪 Take a Test</button>
-    <button class="btn btn-emerald" onclick="switchTab('geschichten')">📚 Read a Story</button>
-    <button class="btn btn-ocean" onclick="switchTab('satzbauer')">🤖 Try the AI Builder</button>
-    <button class="btn btn-purple" onclick="switchTab('grammatik')">✏️ Practice Grammar</button>
   </div>
 </section>
 
@@ -1646,6 +1737,18 @@ body.light #sidebar { background: #FAF6E2; }
   <div class="ref-grid" id="ref-grid"></div>
 </section>
 
+<!-- ═══ GEMEINSCHAFT (COMMUNITY) ═══ -->
+<section class="section" id="community">
+  <div class="section-head sh-coral">
+    <h2>Gemeinschaft</h2>
+    <p>Community · Ask questions, share what you're learning, talk to other Stargazer travelers</p>
+  </div>
+  <div class="community-compose" id="community-compose"></div>
+  <div class="community-feed" id="community-feed">
+    <div class="community-empty">Lade Beiträge…</div>
+  </div>
+</section>
+
 </main>
 
 <!-- ═══ TEST MODAL ═══ -->
@@ -1699,7 +1802,7 @@ body.light #sidebar { background: #FAF6E2; }
   </div>
 </div>
 
-<footer>
+<footer id="site-footer" onclick="handleFooterClick(event)">
   <p>Stargazer · Deutsch · <a href="index.html">← Zurück zur Hauptseite</a></p>
   <p style="margin-top:6px;color:var(--text-faint)">Sprache ist das Haus des Seins. — Martin Heidegger</p>
 </footer>
@@ -1718,6 +1821,8 @@ window._applyDarkMode = function(isDark) {
   document.body.classList.toggle('light', !isDark);
   const btn = document.getElementById('darkToggle');
   if (btn) btn.textContent = isDark ? '☀ Day' : '🌙 Dark';
+  const sideBtn = document.getElementById('sidebarDarkToggle');
+  if (sideBtn) sideBtn.textContent = isDark ? '☀ Day Mode' : '🌙 Dark Mode';
 };
 
 /* Called by shared.js after every auth render — drives this page's own
@@ -2093,6 +2198,21 @@ qs:[
 {q:"What does K1 in indirect speech signal that indicative does NOT?",o:["Higher register","Temporal distance","Epistemic distance: this is someone's claim, not narrator's statement","Event already happened"],c:2,exp:"<strong>Epistemische Distanzierung</strong>: K1 signals 'this is what someone said, not what I assert as fact'. Why courts, news, and scholarship use K1/K2 systematically."},
 {q:"<em>Er berichtete, dass die Rezension morgen erscheinen ___.</em>",o:["werde (K1 Futur I)","wird (indicative)","würde (K2)","worden ist"],c:0,exp:"<strong>K1 Futur I</strong>: <em>werden</em> K1 3rd sg = <em>werde</em>. In dass-clause of formal reported speech: <em>erscheinen werde</em>. K2 (<em>würde erscheinen</em>) also correct but K1 is the formal standard."},
 {q:"When is K2 used INSTEAD OF K1 in indirect speech?",o:["Always","Never — K1 is always used","When K1 form = indicative form","When the statement is false"],c:2,exp:"<strong>K2 substitution rule</strong>: K2 replaces K1 when K1 would be identical to the indicative. This avoids ambiguity. If K1 is clearly distinct from indicative, K1 is preferred in formal written German."}
+]},
+{id:21,emoji:"🕵️",title:"Der Geheimagent",titleEn:"The Secret Agent",theme:"Indirekte Fragesätze & Verhöre",color:"#D4AF37",
+desc:"Grammar in the shadows — indirect questions, reported doubt, and interrogation. (One item here isn't a question at all.)",
+qs:[
+{q:"Der Agent fragte flüsternd, <em>___</em> die Übergabe wie geplant stattfinden werde.",o:["dass","ob","wenn","weil"],c:1,exp:"<strong>Indirekte Ja/Nein-Frage: ob</strong>: Reporting a yes/no question uses <em>ob</em> ('whether'). <em>dass</em> introduces statements, <em>wenn</em> is conditional/temporal 'if/when', and <em>weil</em> means 'because' — none fit a reported question."},
+{q:"Der Vorgesetzte fragte, wer die Geheimakte <em>___</em>.",o:["hat gestohlen","gestohlen habe","stiehlt","stehlen würde"],c:1,exp:"<strong>Indirekte W-Frage: Verbendstellung + K1</strong>: the embedded question needs verb-final order plus Konjunktiv I: <em>wer die Geheimakte gestohlen habe</em>. <em>hat gestohlen</em> breaks verb-final order; <em>stiehlt</em> is present tense; K2 <em>stehlen würde</em> isn't needed since K1 (<em>habe</em>) already differs from the indicative (<em>hat</em>)."},
+{q:"Der Ermittler vermutete, der Kontaktmann <em>___</em> bereits gewarnt worden sein.",o:["muss","dürfte","soll","will"],c:1,exp:"<strong>Dürfte = vorsichtige Vermutung</strong>: K2 <em>dürfte</em> expresses cautious probability, matching <em>vermutete</em> ('suspected'). <em>muss</em> implies certainty; <em>soll</em> reports hearsay ('is said to'); <em>will</em> reports a claim the subject makes about itself."},
+{q:"Er wollte wissen, wann der Austausch stattfinden <em>___</em>.",o:["werde","wird","würde","wäre"],c:0,exp:"<strong>K1 Futur I</strong>: <em>werden</em> K1 3rd sg = <em>werde</em>, distinct from the indicative <em>wird</em> — so K1 is used directly in careful indirect speech. K2 <em>würde</em> is only needed when K1 collapses into the indicative; <em>wäre</em> is the wrong verb (<em>sein</em>, not <em>werden</em>)."},
+{q:"Der Agent war sich nicht sicher, <em>___</em> der Brief echt oder gefälscht war.",o:["dass","dessen","ob","wobei"],c:2,exp:"<strong>sich sicher sein, ob…</strong>: 'to be sure whether'. <em>ob</em> introduces the indirect alternative question ('whether…or'). <em>dass</em> introduces a statement, <em>dessen</em> is a genitive relative pronoun, and <em>wobei</em> ('whereby') doesn't fit here."},
+{q:"Der Agent berichtete, der Kontakt <em>___</em> zur Bushaltestelle kommen.",o:["soll","solle","sollte","würde sollen"],c:1,exp:"<strong>K1 von sollen: reported instruction</strong>: a direct command ('Komm zur Bushaltestelle!') becomes indirect with K1 <em>solle</em>. <em>soll</em> is indicative (states it as fact, not as reported); <em>sollte</em> is K2 (only needed if K1=indicative, which it isn't here); <em>würde sollen</em> isn't idiomatic — <em>sollen</em> already has its own K1/K2 forms."},
+{q:"Der Spion, <em>___</em> wahre Identität nie aufgedeckt wurde, verschwand spurlos.",o:["der","dessen","deren","dem"],c:1,exp:"<strong>Genitiv-Relativpronomen</strong>: <em>der Spion</em> is masculine, and the relative clause needs a possessive ('whose identity') = genitive <em>dessen</em>. <em>der</em>/<em>dem</em> are nominative/dative, <em>deren</em> is feminine/plural genitive."},
+{q:"Sie verhielt sich, als <em>___</em>",o:["ob sie nichts wüsste.","ob wüsste sie nichts.","wüsste sie nichts ob.","sie nichts wüsste ob."],c:0,exp:"<strong>als ob + Konjunktiv II</strong>: an irreal comparison ('as if'). With <em>als ob</em>, the clause keeps normal verb-final order: <em>als ob sie nichts wüsste</em>. (Drop <em>ob</em> and you'd invert instead: <em>als wüsste sie nichts</em>.)"},
+{q:"Man fragte sich, ob der Maulwurf im Ministerium wirklich <em>___</em>.",o:["existiert","existiere","existierte","existieren"],c:1,exp:"<strong>K1 Präsens, 3. Person Singular</strong>: <em>existieren</em> K1 3rd sg = <em>existiere</em>, distinct from the indicative <em>existiert</em> — so careful indirect speech uses K1 here, unlike verbs such as <em>haben</em>/<em>wissen</em> elsewhere, where K1 collapses into the indicative and K2 has to substitute instead. <em>existierte</em> is K2, <em>existieren</em> is the infinitive."},
+{q:"Er notierte sich, wie der Verdächtige die Nachricht <em>___</em> hatte.",o:["weiter gegeben","weitergegeben","weiter habe gegeben","hat weitergegeben"],c:1,exp:"<strong>Trennbares Verb: ein Partizip</strong>: separable-prefix verbs form ONE past participle — <em>weitergegeben</em>, never split into two words. It sits directly before the finite verb at the end of the subordinate clause: <em>die Nachricht weitergegeben hatte</em>."},
+{statement:true,icon:"🕵️",label:"Eine Nachricht von deinem Kontakt",text:"Kein Rätsel, nur ein Hinweis: Klicke dreimal schnell auf den Text in der Fußzeile dieser Seite, um einen geheimen Modus zu aktivieren.",textEn:"No riddle, just a tip: click the text in this page's footer three times quickly to activate a secret mode."}
 ]}
 ];
 
@@ -3146,6 +3266,7 @@ let isAdmin = false;
 ═══════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', initApp);
 function initApp(){
+  restoreSecretMode();
   initParticles();
   renderWotd();
   renderDictionary();
@@ -3158,6 +3279,7 @@ function initApp(){
   renderIdioms('all');
   renderZungenbrecher();
   renderReferenceTables();
+  renderCommunity();
   pickRandomWord();
   checkAdminMode();
   loadBookPdfs();
@@ -3198,16 +3320,21 @@ function closeSidebar(){
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('sidebar-overlay').classList.remove('open');
 }
-const TAB_IDS = ['home','woerterbuch','grammatik','pruefungen','geschichten','satzbauer','buecher','redewendungen','zungenbrecher','nachschlagen'];
+const TAB_IDS = ['home','woerterbuch','grammatik','pruefungen','geschichten','satzbauer','buecher','redewendungen','zungenbrecher','nachschlagen','community'];
 function switchTab(tab){
   TAB_IDS.forEach(t=>{
     const sec = document.getElementById(t);
-    const navTab = document.getElementById('tab-'+t);
     const sbItem = document.getElementById('sb-'+t);
     if(sec) sec.classList.toggle('active', t===tab);
-    if(navTab) navTab.classList.toggle('active', t===tab);
     if(sbItem) sbItem.classList.toggle('active', t===tab);
   });
+  /* The hero (title/sun/forest/quote) is home-only content now — it lives
+     outside <main> for layout reasons, so it's toggled separately here
+     rather than through the .section system above. This is also what fixes
+     the old "picking any section scrolls you back up behind a giant hero"
+     bug: for every other tab there's simply no hero in the flow to land on. */
+  const heroEl = document.getElementById('top');
+  if(heroEl) heroEl.classList.toggle('active', tab==='home');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -3217,13 +3344,53 @@ function switchTab(tab){
    class + button label. Persistence (Supabase if signed in, else local)
    is owned by shared.js via the optional sbSaveDarkMode() hook, and
    initial state is applied by shared.js calling window._applyDarkMode().
+   Two buttons show this state — the top-bar #darkToggle (hidden on phones,
+   where top-bar space is tight) and the always-available #sidebarDarkToggle
+   inside the ☰ menu — so both are kept in sync everywhere below.
 ═══════════════════════════════════════════ */
 function toggleLight(){
   const goingLight = !document.body.classList.contains('light');
   document.body.classList.toggle('light', goingLight);
+  const label = goingLight ? '🌙 Dark' : '☀ Day';
   const btn = document.getElementById('darkToggle');
-  if(btn) btn.textContent = goingLight ? '🌙 Dark' : '☀ Day';
+  if(btn) btn.textContent = label;
+  const sideBtn = document.getElementById('sidebarDarkToggle');
+  if(sideBtn) sideBtn.textContent = goingLight ? '🌙 Dark Mode' : '☀ Day Mode';
   if (typeof sbSaveDarkMode === 'function') sbSaveDarkMode(!goingLight);
+}
+
+/* ═══════════════════════════════════════════
+   GEHEIMER MODUS · SECRET MODE
+   Triple-clicking the footer text (not the "Zurück zur Hauptseite" link
+   itself) flips a hidden theme. e.detail is the browser's own rapid-click
+   counter, so no manual timers are needed. State persists in localStorage.
+   The Prüfungen section has a themed test ("Der Geheimagent") whose last
+   item plainly tells the player about this — see THEMED_TESTS id 21.
+═══════════════════════════════════════════ */
+function handleFooterClick(e){
+  if(e.target.closest('a')) return; // let the real navigation link work normally
+  if(e.detail===3) toggleSecretMode();
+}
+function toggleSecretMode(){
+  const on = !document.body.classList.contains('geheim-mode');
+  document.body.classList.toggle('geheim-mode', on);
+  try{ localStorage.setItem('german-geheim-mode', on ? '1' : '0'); }catch(e){}
+  showSecretToast(on);
+}
+function showSecretToast(on){
+  const existing = document.querySelector('.geheim-toast');
+  if(existing) existing.remove();
+  const t = document.createElement('div');
+  t.className = 'geheim-toast';
+  t.innerHTML = on
+    ? `🔮 <strong>Geheimer Modus aktiviert</strong><span>Secret mode activated — welcome behind the curtain.</span>`
+    : `Geheimer Modus deaktiviert <span>Secret mode off</span>`;
+  document.body.appendChild(t);
+  requestAnimationFrame(()=>t.classList.add('show'));
+  setTimeout(()=>{ t.classList.remove('show'); setTimeout(()=>t.remove(), 500); }, 3200);
+}
+function restoreSecretMode(){
+  try{ if(localStorage.getItem('german-geheim-mode')==='1') document.body.classList.add('geheim-mode'); }catch(e){}
 }
 
 /* ═══════════════════════════════════════════
@@ -3416,15 +3583,16 @@ function renderTestGrid(){
   document.getElementById('test-grid').innerHTML = THEMED_TESTS.map(t=>{
     const done = getTestResult(t.id);
     const rgb = t.color.match(/\w\w/g).map(x=>parseInt(x,16)).join(',');
-    return `<div class="test-card" style="--tc-color:${t.color};--tc-rgb:${rgb};--tc-border:${t.color}55" onclick="openTest(${t.id})">
+    const gradedCount = t.qs.filter(q=>!q.statement).length;
+    return `<div class="test-card${t.id===21?' secret-card':''}" style="--tc-color:${t.color};--tc-rgb:${rgb};--tc-border:${t.color}55" onclick="openTest(${t.id})">
       <span class="test-emoji">${t.emoji}</span>
       <div class="test-card-title">${t.title}</div>
       <div class="test-card-en">${t.titleEn}</div>
       <div class="test-card-theme">${t.theme}</div>
       <div class="test-card-desc">${t.desc}</div>
       <div class="test-card-meta">
-        <span class="test-card-qs">10 Fragen · 10 Punkte</span>
-        ${done ? `<span class="test-status completed">✓ ${done}/10</span>` : `<span class="test-status not-taken">Nicht versucht</span>`}
+        <span class="test-card-qs">${gradedCount} Fragen · ${gradedCount} Punkte</span>
+        ${done ? `<span class="test-status completed">✓ ${done}/${gradedCount}</span>` : `<span class="test-status not-taken">Nicht versucht</span>`}
       </div>
     </div>`;
   }).join('');
@@ -3442,7 +3610,7 @@ function openTest(testId){
   document.getElementById('tm-emoji').textContent = currentTest.emoji;
   document.getElementById('tm-title').textContent = currentTest.title;
   document.getElementById('tm-sub').textContent = `${currentTest.titleEn} · ${currentTest.theme}`;
-  document.getElementById('tm-total-q').textContent = currentTest.qs.length;
+  document.getElementById('tm-total-q').textContent = currentTest.qs.filter(q=>!q.statement).length;
   document.getElementById('tm-questions-panel').style.display='block';
   document.getElementById('tm-results').classList.remove('show');
   renderTmQuestion();
@@ -3456,19 +3624,33 @@ function renderTmQuestion(){
   const q = currentTest.qs[tmIdx];
   document.getElementById('tm-progress-txt').textContent = `Frage ${tmIdx+1} von ${currentTest.qs.length}`;
   document.getElementById('tm-prog-fill').style.width = ((tmIdx+1)/currentTest.qs.length*100)+'%';
+  if(q.statement){
+    // A plain note, not a graded question — mark it seen immediately so it
+    // counts as "answered" and never blocks moving on or submitting.
+    tmAnswers[tmIdx] = 'ack';
+  }
   const answeredCount = tmAnswers.filter(a=>a!==null).length;
   document.getElementById('tm-score-running').textContent = `${answeredCount}/${currentTest.qs.length} beantwortet`;
-  const sel = tmAnswers[tmIdx];
-  document.getElementById('tm-q-area').innerHTML = `
-    <div class="tq-card">
-      <div class="tq-label">Frage ${tmIdx+1}</div>
-      <div class="tq-text">${q.q}</div>
-      <div class="tq-opts">
-        ${q.o.map((opt,i)=>`<button class="tq-opt ${sel===i?'selected':''}" onclick="selectTmAnswer(${i})">
-          <span class="opt-l">${String.fromCharCode(65+i)}</span><span>${opt}</span>
-        </button>`).join('')}
-      </div>
-    </div>`;
+  if(q.statement){
+    document.getElementById('tm-q-area').innerHTML = `
+      <div class="tq-card tq-statement">
+        <span class="tq-statement-badge">${q.icon||'✦'} ${q.label||'Hinweis'} · not a question</span>
+        <div class="tq-statement-text">${q.text}</div>
+        ${q.textEn?`<div class="tq-statement-en">🇬🇧 ${q.textEn}</div>`:''}
+      </div>`;
+  } else {
+    const sel = tmAnswers[tmIdx];
+    document.getElementById('tm-q-area').innerHTML = `
+      <div class="tq-card">
+        <div class="tq-label">Frage ${tmIdx+1}</div>
+        <div class="tq-text">${q.q}</div>
+        <div class="tq-opts">
+          ${q.o.map((opt,i)=>`<button class="tq-opt ${sel===i?'selected':''}" onclick="selectTmAnswer(${i})">
+            <span class="opt-l">${String.fromCharCode(65+i)}</span><span>${opt}</span>
+          </button>`).join('')}
+        </div>
+      </div>`;
+  }
   document.getElementById('tm-prev').disabled = tmIdx===0;
   const isLast = tmIdx===currentTest.qs.length-1;
   document.getElementById('tm-next').style.display = isLast ? 'none' : 'inline-block';
@@ -3488,13 +3670,14 @@ function submitTest(){
     }
   }
   let score=0;
-  currentTest.qs.forEach((q,i)=>{ if(tmAnswers[i]===q.c) score++; });
+  currentTest.qs.forEach((q,i)=>{ if(!q.statement && tmAnswers[i]===q.c) score++; });
+  const gradedTotal = currentTest.qs.filter(q=>!q.statement).length;
   setTestResult(currentTest.id, score);
   document.getElementById('tm-questions-panel').style.display='none';
   document.getElementById('tm-results').classList.add('show');
   document.getElementById('tm-final-score').textContent = score;
   let grade='', gradeLabel='';
-  if(score===10){grade='🏆';gradeLabel='Perfekt! Meisterhaft!';}
+  if(score===gradedTotal){grade='🏆';gradeLabel='Perfekt! Meisterhaft!';}
   else if(score>=8){grade='⭐';gradeLabel='Ausgezeichnet!';}
   else if(score>=6){grade='👍';gradeLabel='Gut gemacht!';}
   else if(score>=4){grade='📚';gradeLabel='Weiter üben!';}
@@ -3502,11 +3685,17 @@ function submitTest(){
   document.getElementById('tm-grade').textContent = grade;
   document.getElementById('tm-grade-label').textContent = gradeLabel;
   document.getElementById('tm-solutions').innerHTML = currentTest.qs.map((q,i)=>{
+    if(q.statement){
+      return `<div class="sol-item sol-statement">
+        <div class="sol-q-num">${q.icon||'✦'} ${q.label||'Hinweis'} <span style="opacity:.6;font-style:italic;">— nicht bewertet · not graded</span></div>
+        <div class="sol-exp" style="font-family:'Crimson Text',serif;font-size:14px;font-style:italic;">${q.text}${q.textEn?`<br><br>🇬🇧 ${q.textEn}`:''}</div>
+      </div>`;
+    }
     const correct = tmAnswers[i]===q.c;
     return `<div class="sol-item ${correct?'correct-ans':'wrong-ans'}">
       <div class="sol-q-num">Frage ${i+1}</div>
       <div class="sol-q-text">${q.q}</div>
-      <div class="sol-your-ans ${correct?'right':'wrong'}">Deine Antwort: ${tmAnswers[i]!==null?String.fromCharCode(65+tmAnswers[i])+') '+q.o[tmAnswers[i]]:'— keine —'} ${correct?'✓':'✗'}</div>
+      <div class="sol-your-ans ${correct?'right':'wrong'}">Deine Antwort: ${(tmAnswers[i]!==null && tmAnswers[i]!=='ack')?String.fromCharCode(65+tmAnswers[i])+') '+q.o[tmAnswers[i]]:'— keine —'} ${correct?'✓':'✗'}</div>
       ${!correct?`<div class="sol-correct-ans">Richtige Antwort: ${String.fromCharCode(65+q.c)}) ${q.o[q.c]}</div>`:''}
       <div class="sol-exp">${q.exp}</div>
     </div>`;
@@ -3716,6 +3905,7 @@ function checkAdminMode(){
   const bar = document.getElementById('book-admin-bar');
   if(bar) bar.style.display = isAdmin ? 'block' : 'none';
   renderBooks();
+  if(typeof renderCommunity === 'function') renderCommunity();
 }
 function renderBooks(){
   document.getElementById('book-grid').innerHTML = BOOKS.map((b,i)=>{
@@ -3787,7 +3977,20 @@ function pickRandomWord(){
    This calls a backend endpoint (NOT the Anthropic API directly — browsers cannot
    safely call api.anthropic.com with a secret key embedded in client-side code).
    Deploy the included `sentence-checker-worker.js` as a Cloudflare Worker (same
-   pattern as your R2 vault worker), then set the URL below. */
+   pattern as your R2 vault worker), then set the URL below.
+
+   Expected JSON response shape — the *En fields are optional. If the worker
+   doesn't send them, renderSbResult() below fills the gap itself with a free
+   translation API, but having the worker's own LLM write native English
+   directly (e.g. by asking it for both languages in one prompt) will always
+   read better than a bolted-on translation:
+     {
+       usesWord: boolean,
+       errors: [{ issue, explanation, explanationEn? }],
+       praise?: string, praiseEn?: string,
+       suggestion?: string,          // stays German — it IS the corrected sentence
+       toneNote?: string, toneNoteEn?: string
+     } */
 const AI_CHECK_ENDPOINT = 'https://german-sentence-checker.ayanchakrabortyall.workers.dev/check-sentence';
 
 async function checkSentence(){
@@ -3804,7 +4007,8 @@ async function checkSentence(){
     const resp = await fetch(AI_CHECK_ENDPOINT, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({ word: sbCurrentWord.w, sentence })
+      body: JSON.stringify({ word: sbCurrentWord.w, sentence }),
+      signal: AbortSignal.timeout(8000)
     });
     if(!resp.ok) throw new Error('Worker endpoint returned '+resp.status);
     const data = await resp.json();
@@ -3818,34 +4022,90 @@ async function checkSentence(){
   }
 }
 
+/* Free, keyless translation fallback for whenever the AI worker's response
+   doesn't already include its own English field. Fails silently — if the
+   network call doesn't pan out, the caller just omits that English line
+   rather than leaving a broken "translating…" placeholder on screen. */
+async function translateDeToEn(text){
+  if(!text) return null;
+  const plain = text.replace(/<[^>]+>/g,'').trim();
+  if(!plain) return null;
+  try{
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(plain)}&langpair=de|en`;
+    const resp = await fetch(url, { signal: AbortSignal.timeout(6000) });
+    if(!resp.ok) return null;
+    const json = await resp.json();
+    const t = json && json.responseData && json.responseData.translatedText;
+    if(!t || /MYMEMORY WARNING/i.test(t)) return null;
+    return t;
+  }catch(e){
+    return null;
+  }
+}
+
 function renderSbResult(data){
   const resultBox = document.getElementById('sb-result');
   let html = `<div class="sb-result-header">✦ Analyse</div><div class="sb-analysis-block">`;
+  const pending = []; // {id, text} — German strings still needing a live-translated English line
+
   if(data.usesWord===false){
     html += `<div class="sb-analysis-section"><div class="sb-anal-label warn">⚠ Wort nicht gefunden</div><div class="sb-anal-text">Dein Satz scheint „${sbCurrentWord.w}" nicht zu enthalten. Versuche es noch einmal!</div></div>`;
   } else if(data.errors && data.errors.length){
     html += `<div class="sb-analysis-section"><div class="sb-anal-label warn">⚠ Gefundene Fehler</div>`;
-    data.errors.forEach(err=>{
-      html += `<div class="sb-error-item"><strong>${err.issue}</strong><br>${err.explanation}</div>`;
+    data.errors.forEach((err,i)=>{
+      html += `<div class="sb-error-item"><strong>${err.issue}</strong><br>${err.explanation}`;
+      if(err.explanationEn){
+        html += `<div class="sb-en-trans">🇬🇧 ${err.explanationEn}</div>`;
+      } else {
+        html += `<div class="sb-en-trans" id="sb-en-err-${i}">🇬🇧 <span class="sb-en-loading">translating…</span></div>`;
+        pending.push({id:`sb-en-err-${i}`, text: err.explanation});
+      }
+      html += `</div>`;
     });
     html += `</div>`;
   } else {
-    html += `<div class="sb-analysis-section"><div class="sb-anal-label good">✓ Grammatik korrekt!</div><div class="sb-anal-text">${data.praise||'Gut gemacht — dein Satz ist grammatikalisch korrekt.'}</div></div>`;
+    const praiseText = data.praise || 'Gut gemacht — dein Satz ist grammatikalisch korrekt.';
+    html += `<div class="sb-analysis-section"><div class="sb-anal-label good">✓ Grammatik korrekt!</div><div class="sb-anal-text">${praiseText}`;
+    if(data.praiseEn){
+      html += `<div class="sb-en-trans">🇬🇧 ${data.praiseEn}</div>`;
+    } else {
+      html += `<div class="sb-en-trans" id="sb-en-praise">🇬🇧 <span class="sb-en-loading">translating…</span></div>`;
+      pending.push({id:'sb-en-praise', text: praiseText});
+    }
+    html += `</div></div>`;
   }
   if(data.suggestion){
     html += `<div class="sb-analysis-section"><div class="sb-anal-label suggest">✦ Verbesserter Satz &amp; Ton</div><div class="sb-suggestion-block">${data.suggestion}</div></div>`;
   }
   if(data.toneNote){
-    html += `<div class="sb-analysis-section"><div class="sb-anal-label suggest">💬 Hinweis zum Ton</div><div class="sb-anal-text">${data.toneNote}</div></div>`;
+    html += `<div class="sb-analysis-section"><div class="sb-anal-label suggest">💬 Hinweis zum Ton</div><div class="sb-anal-text">${data.toneNote}`;
+    if(data.toneNoteEn){
+      html += `<div class="sb-en-trans">🇬🇧 ${data.toneNoteEn}</div>`;
+    } else {
+      html += `<div class="sb-en-trans" id="sb-en-tone">🇬🇧 <span class="sb-en-loading">translating…</span></div>`;
+      pending.push({id:'sb-en-tone', text: data.toneNote});
+    }
+    html += `</div></div>`;
   }
   html += `</div>`;
   resultBox.innerHTML = html;
   resultBox.classList.add('show');
+
+  // Fill in any English lines the API response didn't already provide.
+  pending.forEach(async p=>{
+    const en = await translateDeToEn(p.text);
+    const el = document.getElementById(p.id);
+    if(!el) return; // result box may have been cleared/reset already
+    if(en) el.innerHTML = `🇬🇧 ${en}`;
+    else el.remove();
+  });
 }
 
 /* Local fallback heuristic — used only when the AI Worker endpoint is unreachable.
    Performs very basic checks so the feature is never completely dead, and clearly
-   labels itself as a fallback rather than full AI analysis. */
+   labels itself as a fallback rather than full AI analysis. Every German string
+   here ships with its own hand-written English translation (explanationEn /
+   praiseEn / toneNoteEn) rather than relying on the live translateDeToEn() call. */
 function localHeuristicCheck(sentence, wordObj){
   const errors = [];
   const usesWord = sentence.toLowerCase().includes(wordObj.w.toLowerCase());
@@ -3853,16 +4113,28 @@ function localHeuristicCheck(sentence, wordObj){
 
   const words = sentence.trim().split(/\s+/);
   if(words.length && words[0] && /^[a-zäöüß]/.test(words[0])){
-    errors.push({issue:'Großschreibung am Satzanfang', explanation:'Im Deutschen beginnt jeder Satz mit einem Großbuchstaben. „'+words[0]+'" sollte groß geschrieben werden.'});
+    errors.push({
+      issue:'Großschreibung am Satzanfang',
+      explanation:'Im Deutschen beginnt jeder Satz mit einem Großbuchstaben. „'+words[0]+'" sollte groß geschrieben werden.',
+      explanationEn:'In German, every sentence starts with a capital letter. "'+words[0]+'" should be capitalized.'
+    });
   }
   if(!/[.!?]$/.test(sentence.trim())){
-    errors.push({issue:'Fehlendes Satzzeichen', explanation:'Dein Satz sollte mit einem Punkt, Ausrufezeichen oder Fragezeichen enden.'});
+    errors.push({
+      issue:'Fehlendes Satzzeichen',
+      explanation:'Dein Satz sollte mit einem Punkt, Ausrufezeichen oder Fragezeichen enden.',
+      explanationEn:'Your sentence should end with a period, exclamation mark, or question mark.'
+    });
   }
   const commonNouns = wordObj.pos.includes('Noun') ? [wordObj.w] : [];
   commonNouns.forEach(n=>{
     const re = new RegExp('\\\\b'+n.toLowerCase()+'\\\\b');
     if(re.test(sentence) && !new RegExp('\\\\b'+n+'\\\\b').test(sentence)){
-      errors.push({issue:'Großschreibung von Nomen', explanation:'„'+n+'" ist ein Nomen und muss im Deutschen immer großgeschrieben werden, egal wo es im Satz steht.'});
+      errors.push({
+        issue:'Großschreibung von Nomen',
+        explanation:'„'+n+'" ist ein Nomen und muss im Deutschen immer großgeschrieben werden, egal wo es im Satz steht.',
+        explanationEn:'"'+n+'" is a noun, and German nouns are always capitalized, no matter where they fall in the sentence.'
+      });
     }
   });
 
@@ -3870,9 +4142,127 @@ function localHeuristicCheck(sentence, wordObj){
     usesWord:true,
     errors,
     praise: errors.length===0 ? 'Deine Satzstruktur und Großschreibung sehen gut aus! (Hinweis: Dies ist eine einfache lokale Prüfung — für vollständige KI-Grammatikanalyse richte den Cloudflare Worker ein, siehe sentence-checker-worker.js.)' : undefined,
+    praiseEn: errors.length===0 ? 'Your sentence structure and capitalization look good! (Note: this is a simple local check — for full AI grammar analysis, set up the Cloudflare Worker described in sentence-checker-worker.js.)' : undefined,
     suggestion: undefined,
-    toneNote: 'ℹ️ Lokale Basisprüfung aktiv (KI-Endpoint nicht erreichbar). Für vollständige Analyse mit Grammatikregeln und Tonverbesserung: richte den beigefügten Cloudflare Worker ein und trage die URL in AI_CHECK_ENDPOINT ein.'
+    toneNote: 'ℹ️ Lokale Basisprüfung aktiv (KI-Endpoint nicht erreichbar). Für vollständige Analyse mit Grammatikregeln und Tonverbesserung: richte den beigefügten Cloudflare Worker ein und trage die URL in AI_CHECK_ENDPOINT ein.',
+    toneNoteEn: 'ℹ️ Basic local check active (AI endpoint not reachable). For full analysis with grammar rules and tone feedback: set up the included Cloudflare Worker and enter its URL in AI_CHECK_ENDPOINT.'
   };
+}
+
+/* ═══════════════════════════════════════════
+   GEMEINSCHAFT (Community) — public discussion wall
+   Needs its own new table — nothing existing matches this shape (`progress`
+   is one private JSON blob per user+page; wrong shape for a public feed).
+   Run this once in the Supabase SQL editor:
+
+     create table german_community_posts (
+       id bigint generated by default as identity primary key,
+       user_id uuid references auth.users(id) not null,
+       author_name text not null,
+       content text not null,
+       created_at timestamptz not null default now()
+     );
+     alter table german_community_posts enable row level security;
+     create policy "public read"          on german_community_posts for select using (true);
+     create policy "authenticated insert" on german_community_posts for insert
+       with check (auth.uid() = user_id);
+     create policy "admin delete"         on german_community_posts for delete
+       using (auth.jwt() ->> 'email' = 'ayanchakrabortyall@gmail.com');
+
+   Until that table exists, posting/loading fails gracefully with a note
+   instead of crashing (same pattern as the Bücher PDF uploads above).
+═══════════════════════════════════════════ */
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str==null ? '' : String(str);
+  return div.innerHTML;
+}
+function formatCommunityDate(iso){
+  try{
+    const d = new Date(iso);
+    return d.toLocaleDateString('de-DE',{day:'2-digit',month:'short',year:'numeric'}) + ' · ' + d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
+  }catch(e){ return ''; }
+}
+function renderCommunity(){
+  const composeBox = document.getElementById('community-compose');
+  if(!composeBox) return; // community section not in the DOM (shouldn't happen, but stay safe)
+  const authorName = getCurrentUserEmail();
+  if(authorName){
+    composeBox.innerHTML = `
+      <textarea id="community-input" class="community-textarea" maxlength="600" placeholder="Frag etwas, teile einen Tipp, oder erzähl, woran du gerade arbeitest…"></textarea>
+      <div class="community-write-row">
+        <span class="community-author-hint">Postest als <strong>${escapeHtml(authorName)}</strong></span>
+        <button class="btn btn-coral" onclick="postCommunityMessage()">Absenden</button>
+      </div>`;
+  } else {
+    composeBox.innerHTML = `<p class="community-login-notice">Melde dich an, um an der Diskussion teilzunehmen.</p>`;
+  }
+  loadCommunityPosts();
+}
+async function loadCommunityPosts(){
+  const feed = document.getElementById('community-feed');
+  if(!feed) return;
+  if(!_sb){
+    feed.innerHTML = `<div class="community-empty">Gemeinschaft ist noch nicht eingerichtet.</div>`;
+    return;
+  }
+  try{
+    const {data, error} = await _sb.from('german_community_posts')
+      .select('id,author_name,content,created_at')
+      .order('created_at', {ascending:false}).limit(100);
+    if(error) throw error;
+    if(!data || !data.length){
+      feed.innerHTML = `<div class="community-empty">Noch keine Beiträge — sei die/der Erste! 🌱</div>`;
+      return;
+    }
+    feed.innerHTML = data.map(renderCommunityPost).join('');
+  }catch(e){
+    console.warn('Community posts unavailable:', e);
+    feed.innerHTML = `<div class="community-empty">Gemeinschaft ist noch nicht eingerichtet. (Setup: Tabelle <code>german_community_posts</code> in Supabase anlegen — siehe Code-Kommentar.)</div>`;
+  }
+}
+function renderCommunityPost(p){
+  return `<div class="community-post">
+    <div class="community-post-head">
+      <span class="community-post-author">${escapeHtml(p.author_name || 'Anonym')}</span>
+      <span class="community-post-date">${formatCommunityDate(p.created_at)}</span>
+      ${isAdmin ? `<button class="community-delete" onclick="deleteCommunityPost(${p.id})" title="Löschen">🗑</button>` : ''}
+    </div>
+    <div class="community-post-content">${escapeHtml(p.content)}</div>
+  </div>`;
+}
+async function postCommunityMessage(){
+  const input = document.getElementById('community-input');
+  if(!input) return;
+  const content = input.value.trim();
+  if(!content){ alert('Schreibe zuerst etwas.'); return; }
+  if(!_sb){ alert('Die Gemeinschaft ist noch nicht eingerichtet.'); return; }
+  const userId = await getCurrentUserId();
+  const authorName = getCurrentUserEmail();
+  if(!userId || !authorName){ alert('Bitte melde dich zuerst an.'); return; }
+  try{
+    const {error} = await _sb.from('german_community_posts').insert({
+      user_id: userId, author_name: authorName, content
+    });
+    if(error) throw error;
+    input.value = '';
+    loadCommunityPosts();
+  }catch(e){
+    console.error('Could not post to community:', e);
+    alert('Beitrag konnte nicht gespeichert werden. Setup-Anleitung: siehe Code-Kommentar bei german_community_posts.');
+  }
+}
+async function deleteCommunityPost(id){
+  if(!isAdmin || !_sb) return;
+  if(!confirm('Diesen Beitrag wirklich löschen?')) return;
+  try{
+    const {error} = await _sb.from('german_community_posts').delete().eq('id', id);
+    if(error) throw error;
+    loadCommunityPosts();
+  }catch(e){
+    console.error('Could not delete post:', e);
+    alert('Löschen fehlgeschlagen.');
+  }
 }
 
 /* ═══════════════════════════════════════════
