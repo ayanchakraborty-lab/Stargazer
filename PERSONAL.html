@@ -393,8 +393,8 @@ body.day-mode .sort-sel option{background:#ece2cc;color:#3a2e1c;}
 .vault-grid{display:flex;flex-direction:column;gap:.85rem;}
 .diary-list{display:flex;flex-direction:column;gap:.85rem;}
 .books-grid{
-  display:grid;grid-template-columns:1fr;
-  gap:1.1rem;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  gap:1.4rem;
 }
 
 /* Empty */
@@ -577,40 +577,51 @@ body.day-mode .legend-ico{background:rgba(156,106,31,.12);border-color:rgba(156,
   position:relative;
   background:linear-gradient(155deg,rgba(196,136,47,.09),transparent 60%),var(--card);
   border:1px solid var(--border-s);
-  border-radius:6px;overflow:hidden;cursor:pointer;transition:all .22s;
-  display:flex;flex-direction:row;align-items:stretch;
+  border-radius:8px;overflow:hidden;cursor:pointer;transition:all .22s;
+  display:flex;flex-direction:column;align-items:stretch;
   box-shadow:0 3px 14px var(--card-shadow);
 }
-.book-card::before{
-  content:'';position:absolute;top:0;left:0;width:3px;height:100%;z-index:1;
-  background:linear-gradient(to bottom,var(--gold),transparent 85%);opacity:.8;
-}
 .book-card:hover{
-  border-color:var(--gold-d);transform:translateY(-2px);
-  box-shadow:0 10px 28px var(--card-shadow),0 0 18px rgba(196,136,47,.16);
+  border-color:var(--gold-d);transform:translateY(-3px);
+  box-shadow:0 14px 32px var(--card-shadow),0 0 20px rgba(196,136,47,.16);
 }
+/* Large, full-bleed cover — the chart itself, not a stamp in the corner */
 .book-cover-wrap{
-  width:76px;min-width:76px;height:114px;background:var(--bg2);
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-  border:1px solid var(--border-s);border-radius:3px;position:relative;flex-shrink:0;
-  margin:.75rem 0 .75rem .85rem;box-shadow:0 2px 8px var(--card-shadow);
+  position:relative;width:100%;aspect-ratio:3/4;background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;
+  box-shadow:inset 0 0 0 1px rgba(196,136,47,.3),0 2px 10px var(--card-shadow);
 }
 .book-cover-wrap::before{
-  content:'';position:absolute;top:-4px;left:50%;transform:translateX(-50%);
-  width:7px;height:7px;border-radius:50%;z-index:2;
+  content:'';position:absolute;top:9px;left:50%;transform:translateX(-50%);
+  width:8px;height:8px;border-radius:50%;z-index:2;
   background:radial-gradient(circle at 35% 35%,#f0d98a,var(--gold-d));
-  box-shadow:0 1px 3px rgba(0,0,0,.55);
+  box-shadow:0 1px 3px rgba(0,0,0,.6);
 }
 .book-cover-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
-.book-cover-fallback{width:60%;opacity:.3;}
-.book-card-body{padding:.85rem .9rem 1rem 1rem;display:flex;flex-direction:column;gap:.3rem;flex:1;min-width:0;}
-.book-title{font-family:var(--fh);font-size:.85rem;font-weight:600;color:var(--gold-l);line-height:1.3;}
-.book-author{font-family:var(--fm);font-size:.6rem;color:var(--muted);letter-spacing:.04em;}
-.book-rating-row{display:flex;align-items:center;gap:.3rem;margin-top:.15rem;}
+.book-cover-fallback{width:42%;opacity:.28;}
+.book-card-body{padding:.9rem 1rem 1rem;display:flex;flex-direction:column;gap:.3rem;flex:1;min-width:0;}
+.book-title{
+  font-family:var(--fh);font-size:.92rem;font-weight:600;color:var(--gold-l);line-height:1.32;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.book-author{
+  font-family:var(--fm);font-size:.62rem;color:var(--muted);letter-spacing:.04em;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.book-rating-row{display:flex;align-items:center;gap:.3rem;margin-top:.2rem;flex-wrap:wrap;}
 .book-diamonds{letter-spacing:.1em;font-size:.62rem;color:var(--gold);}
 .book-diamonds .dim{color:rgba(196,136,47,.22);}
 .book-rating-num{font-family:var(--fm);font-size:.58rem;color:var(--muted);}
-.book-genres{display:flex;flex-wrap:wrap;gap:.25rem;margin-top:.3rem;}
+.book-genres{display:flex;flex-wrap:wrap;gap:.25rem;margin-top:.35rem;}
+.book-card-excerpt{
+  font-family:var(--fb);font-style:italic;font-size:.76rem;line-height:1.55;color:var(--muted);
+  margin-top:.5rem;padding-top:.5rem;border-top:1px dashed var(--border);
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.book-card-excerpt .exc-lbl{
+  display:block;font-family:var(--fm);font-style:normal;font-size:.56rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gold-d);margin-bottom:.25rem;
+}
 
 /* ── Rating slider (book form) ── */
 .rating-row{display:flex;align-items:center;gap:.9rem;}
@@ -788,6 +799,10 @@ body.day-mode .fsel option{background:#f3ebd8;color:#3a2e1c;}
 .det-icon{font-size:2.9rem;flex-shrink:0;}
 .det-cover{width:64px;height:96px;border-radius:3px;overflow:hidden;flex-shrink:0;border:1px solid var(--border-s);}
 .det-cover img{width:100%;height:100%;object-fit:cover;}
+/* Book detail modal only — same average size as the grid's book-cover-wrap,
+   instead of the generic 64x96 thumbnail shared by movie/anime detail views. */
+.det-cover-book{width:110px;height:165px;}
+@media(max-width:480px){ .det-cover-book{width:92px;height:138px;} }
 .det-title{font-family:var(--fh);font-size:1.15rem;color:var(--gold-l);line-height:1.25;}
 .det-meta{font-family:var(--fm);font-size:.6rem;color:var(--muted);letter-spacing:.1em;margin-top:.2rem;}
 
@@ -812,6 +827,25 @@ body.day-mode .quote-mark{color:rgba(156,106,31,.45);}
   font-family:var(--fb);font-style:italic;font-size:.96rem;line-height:1.75;
   color:var(--text);white-space:pre-wrap;
 }
+/* Multiple "Lines Worth Keeping" quotes, stacked with a soft divider so
+   each passage still reads as its own distinct moment. */
+.quote-list{display:flex;flex-direction:column;}
+.quote-list .quote-block{
+  padding-bottom:1rem;margin-bottom:.15rem;
+  border-bottom:1px dashed var(--border);
+}
+.quote-list .quote-block:last-child{border-bottom:none;padding-bottom:.4rem;margin-bottom:0;}
+
+/* ── Multi-quote form inputs (Lines Worth Keeping) ── */
+.quote-input-list{display:flex;flex-direction:column;gap:.6rem;}
+.quote-input-row{display:flex;gap:.55rem;align-items:flex-start;}
+.quote-input-row .ftxt{flex:1;min-height:64px;}
+.quote-input-remove{
+  background:none;border:none;cursor:pointer;color:var(--muted);
+  font-size:1rem;padding:.5rem .3rem;transition:color .18s;flex-shrink:0;
+}
+.quote-input-remove:hover{color:var(--crimson);}
+.quote-add-btn{margin-top:.7rem;}
 
 /* ── Color / icon pickers ── */
 .picker-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.35rem;}
@@ -1105,6 +1139,7 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
   color:#4a3418;border-left:3px solid #a9762f;padding:.3rem 0 .3rem 1.1rem;margin:0;
   white-space:pre-wrap;break-inside:avoid;
 }
+.pdf-quote + .pdf-quote{margin-top:.65rem;}
 .pdf-diary-body{
   font-family:'Lora',serif;font-size:.92rem;line-height:1.85;color:#332818;white-space:pre-wrap;
 }
@@ -1120,9 +1155,12 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
 /* ── Responsive ── */
 @media(max-width:720px){
   .colophon-row{grid-template-columns:1fr;gap:1.8rem;}
+  .books-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1.1rem;}
 }
 @media(max-width:580px){
-  .books-grid{grid-template-columns:1fr;}
+  .books-grid{grid-template-columns:repeat(2,1fr);gap:.85rem;}
+  .book-title{font-size:.82rem;}
+  .book-card-excerpt{font-size:.7rem;-webkit-line-clamp:2;}
   .frow.c2{grid-template-columns:1fr;}
   .det-grid{grid-template-columns:1fr;}
   .hdr-right{width:100%;justify-content:flex-start;}
@@ -1641,13 +1679,15 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
           <div class="frow c2">
             <div class="fgrp">
               <label class="flbl">Category <span class="flbl-opt">optional</span></label>
-              <select class="fsel" id="fCategory">
+              <select class="fsel" id="fCategory" onchange="toggleFCategoryOther()">
                 <option value="">— select —</option>
                 <option>Personal</option><option>Work</option><option>Study</option>
                 <option>Research</option><option>Creative</option><option>Finance</option>
                 <option>Health</option><option>Legal</option><option>Reference</option>
+                <option>For Fun</option><option>Explore</option>
                 <option>Other</option>
               </select>
+              <input class="fin" id="fCategoryOther" type="text" placeholder="Specify…" style="display:none;margin-top:.5rem">
             </div>
             <div class="fgrp">
               <label class="flbl">Complexity <span class="flbl-opt">optional</span></label>
@@ -1925,7 +1965,8 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
         <div class="f-divider">◈ Lines Worth Keeping</div>
         <div class="fgrp">
           <label class="flbl">Any passages that stayed with you? <span class="flbl-opt">optional</span></label>
-          <textarea class="ftxt" id="bQuotes" placeholder="Paste a few lines, one per line if you like…"></textarea>
+          <div class="quote-input-list" id="bQuotesList"></div>
+          <button type="button" class="btn btn-g quote-add-btn" onclick="addQuoteInput()">+ Add Another Quote</button>
         </div>
 
         <div class="f-divider">◈ What It Left You Thinking</div>
@@ -2328,6 +2369,26 @@ if (new URLSearchParams(location.search).has('debug')) {
   const dbgPanel = document.createElement('div');
   dbgPanel.style.cssText = 'position:fixed;left:0;right:0;bottom:0;max-height:38vh;overflow-y:auto;background:rgba(10,10,10,.94);color:#9f9;font:11px/1.45 "SF Mono",Consolas,monospace;padding:8px;z-index:999999;white-space:pre-wrap;';
   document.body.appendChild(dbgPanel);
+
+  // Header: shows how many items this device has confirmed pulled from the
+  // cloud, plus a button to clear that record and force everything to be
+  // re-checked. Lets you tell "hasn't reached this device yet" apart from
+  // "reached the server fine, this device just hasn't confirmed it" without
+  // needing to check Supabase directly.
+  const dbgHeader = document.createElement('div');
+  dbgHeader.style.cssText = 'display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px solid #444;padding-bottom:6px;margin-bottom:6px;color:#ccc;';
+  let pulledCountVal = 0;
+  try { pulledCountVal = Object.keys(JSON.parse(localStorage.getItem('cv_pulled_map_v1') || '{}')).length; } catch (e) {}
+  const cursorLabel = document.createElement('span');
+  cursorLabel.textContent = 'items confirmed pulled to this device: ' + pulledCountVal;
+  const resyncBtn = document.createElement('button');
+  resyncBtn.textContent = '⟳ re-check all items';
+  resyncBtn.style.cssText = 'background:#333;color:#9f9;border:1px solid #555;border-radius:4px;padding:4px 8px;font:11px monospace;flex-shrink:0;';
+  resyncBtn.onclick = () => { localStorage.removeItem('cv_pulled_map_v1'); localStorage.removeItem('cv_last_pull_at'); location.reload(); };
+  dbgHeader.appendChild(cursorLabel);
+  dbgHeader.appendChild(resyncBtn);
+  dbgPanel.appendChild(dbgHeader);
+
   const dbgWrite = (label, color, args) => {
     const line = document.createElement('div');
     line.style.cssText = `color:${color};border-bottom:1px solid #333;padding:3px 0;`;
@@ -2462,8 +2523,9 @@ const DB = {
   },
 
   // Writes many records in a single IndexedDB transaction instead of one
-  // transaction per record — used when hydrating local storage from a
-  // cloud pull so a large vault doesn't pay per-record transaction overhead.
+  // transaction per record. Not currently called (sbPullAllItems now writes
+  // items one at a time as each is individually confirmed from the cloud —
+  // see the comment there) — kept as a general bulk-write helper.
   putAll(records) {
     if (!records.length) return Promise.resolve();
     return new Promise((res, rej) => {
@@ -2497,7 +2559,25 @@ const DB = {
 // ══════════════════════════════════════════════
 const PENDING_KEY  = 'cv_pending_sync';
 const MIGRATED_KEY = 'cv_migrated_push_v1';
-const LAST_PULL_KEY = 'cv_last_pull_at'; // newest updated_at seen so far — lets pulls fetch deltas only
+// PULLED_MAP_KEY replaces the old single "cv_last_pull_at" timestamp cursor.
+// That cursor only advanced once an entire batch of changed rows — iv/ct
+// included — had downloaded successfully. A single large file sitting in
+// that batch (files can be tens of MB as base64 ciphertext) meant that on
+// a slow connection the whole batch kept timing out, so the cursor never
+// moved past it — and every *other* item next to it in that batch, however
+// small, was stuck waiting behind it forever too. This tracks confirmed
+// pulls per item_id instead, so each item succeeds or fails independently.
+const PULLED_MAP_KEY = 'cv_pulled_map_v1';
+
+function getPulledMap() {
+  try { return JSON.parse(localStorage.getItem(PULLED_MAP_KEY) || '{}'); }
+  catch (e) { return {}; }
+}
+function markPulled(id, updatedAt) {
+  const map = getPulledMap();
+  map[id] = updatedAt;
+  localStorage.setItem(PULLED_MAP_KEY, JSON.stringify(map));
+}
 
 function getPendingIds() {
   try { return JSON.parse(localStorage.getItem(PENDING_KEY) || '[]'); }
@@ -2516,6 +2596,35 @@ function clearPending(id) {
   if (next.length !== ids.length) setPendingIds(next);
 }
 
+// Tracks deletes that haven't been confirmed gone from the cloud yet.
+// Deleting used to be a single fire-and-forget attempt (see sbDeleteItem
+// below) with nothing recording the intent — so a timeout or dropped
+// connection on that one attempt meant the row simply stayed on the
+// server forever, invisible to retries. Every other device kept syncing
+// it back down (it could even reappear on THIS device on the next unlock,
+// since sbPullAllItems otherwise has no way to tell "deleted on purpose,
+// cloud delete just hasn't landed yet" apart from "never heard of it,
+// please pull it down"). This list closes that gap the same way
+// PENDING_KEY does for pushes: mark first, only clear on confirmed
+// success, retry whatever's left on every sync pass.
+const PENDING_DELETE_KEY = 'cv_pending_deletes';
+function getPendingDeleteIds() {
+  try { return JSON.parse(localStorage.getItem(PENDING_DELETE_KEY) || '[]'); }
+  catch (e) { return []; }
+}
+function setPendingDeleteIds(ids) {
+  localStorage.setItem(PENDING_DELETE_KEY, JSON.stringify(ids));
+}
+function markPendingDelete(id) {
+  const ids = getPendingDeleteIds();
+  if (!ids.includes(id)) { ids.push(id); setPendingDeleteIds(ids); }
+}
+function clearPendingDelete(id) {
+  const ids = getPendingDeleteIds();
+  const next = ids.filter(x => x !== id);
+  if (next.length !== ids.length) setPendingDeleteIds(next);
+}
+
 // Bounds a single Supabase call so a slow, sleeping, or unreachable project
 // fails fast instead of hanging — the underlying fetch has no timeout of
 // its own, so without this an unlucky network condition can leave an
@@ -2532,59 +2641,294 @@ async function withTimeout(builder, ms = 8000) {
   }
 }
 
+// LARGE-FILE CHUNKING
+// Supabase's Data API (PostgREST) rejects a single row write with a hard
+// "413 Payload Too Large" somewhere around ~1MB — this is a wall, not a
+// speed problem, and no timeout tuning gets past it. A 35MB file becomes
+// roughly 47MB of base64 ciphertext, so it can never go up (or come back
+// down) as one row. CT_CHUNK_SIZE keeps each row comfortably under that
+// ceiling. Large items are split into many small "<id>::chunk::<token>::N"
+// rows, with a small header row (real item_id) recording how many to
+// expect — the header is only written after every chunk is confirmed, so
+// a puller never sees a chunk count that doesn't match what's actually
+// there yet.
+//
+// A 35MB file needs 100+ of these chunk rows — sequentially, one at a
+// time, that's easily several uninterrupted minutes. On mobile that window
+// rarely survives intact: a screen lock, the tab getting backgrounded and
+// throttled, a brief signal drop mid-upload, all restart the loop from i=0
+// (the old code deleted and re-uploaded everything on every attempt). Since
+// the header is deliberately written last, none of that partial work was
+// ever visible to another device — this was almost certainly why large
+// files only ever showed up on the device they were uploaded from.
+//
+// Fix: tag each upload attempt with a token kept in localStorage. A retry
+// for the same content reuses that token and asks the server which chunks
+// under it already exist, uploading only what's missing — so repeated
+// short attempts add up instead of each one discarding the last. The token
+// is embedded in the chunk row ids themselves, so leftovers from an
+// abandoned attempt at OLDER content (a different token) can never be
+// mistaken for part of the current one. Chunks also upload a few at a time
+// concurrently instead of strictly one-by-one, shrinking the window an
+// interruption has to land in to begin with.
+const CT_CHUNK_SIZE = 500000; // ~500KB of base64 text per row
+const CHUNK_MARKER = '__CHUNKED__:'; // header row's ct = this + token + ':' + chunk count
+const CHUNK_UPLOAD_CONCURRENCY = 4;
+const CHUNK_TOKEN_KEY = 'cv_chunk_upload_token';
+function getChunkTokens() {
+  try { return JSON.parse(localStorage.getItem(CHUNK_TOKEN_KEY) || '{}'); } catch (e) { return {}; }
+}
+function setChunkTokens(map) { localStorage.setItem(CHUNK_TOKEN_KEY, JSON.stringify(map)); }
+
+async function sbUploadChunked(id, iv, ct) {
+  const n = Math.ceil(ct.length / CT_CHUNK_SIZE);
+  const now = new Date().toISOString();
+
+  // ct.length + chunk count is enough to tell "same content, resuming"
+  // apart from "content changed since the last attempt" without hashing
+  // tens of megabytes on every call — retries of the same pending upload
+  // reuse the exact same stored ct (nothing re-encrypts it), so this only
+  // changes when the user actually edits/replaces the file.
+  const contentTag = `${ct.length}:${n}`;
+  const tokens = getChunkTokens();
+  let token;
+  if (tokens[id] && tokens[id].tag === contentTag) {
+    token = tokens[id].token; // resuming a previous, still-matching attempt
+  } else {
+    token = crypto.randomUUID();
+    tokens[id] = { token, tag: contentTag };
+    setChunkTokens(tokens);
+    // Different (or first-time) content for this id — any chunk rows left
+    // over from a previous, abandoned attempt are now meaningless (they
+    // carry an old token and will never be looked up again). Clear them so
+    // they don't just sit there forever.
+    const { error: delErr } = await withTimeout(sb.from('vault_sync')
+      .delete().eq('user_hash', sbUserId).like('item_id', `${id}::chunk::%`), 30000);
+    if (delErr) throw delErr;
+  }
+
+  // Find out which chunks under THIS token are already confirmed on the
+  // server, so a resumed attempt only uploads what's missing.
+  const prefix = `${id}::chunk::${token}::`;
+  const { data: existingRows, error: existErr } = await withTimeout(
+    sb.from('vault_sync').select('item_id').eq('user_hash', sbUserId).like('item_id', `${prefix}%`), 20000);
+  if (existErr) throw existErr;
+  const already = new Set((existingRows || []).map(r => Number(r.item_id.slice(prefix.length))));
+
+  const missing = [];
+  for (let i = 0; i < n; i++) if (!already.has(i)) missing.push(i);
+
+  for (let i = 0; i < missing.length; i += CHUNK_UPLOAD_CONCURRENCY) {
+    const batch = missing.slice(i, i + CHUNK_UPLOAD_CONCURRENCY);
+    await Promise.all(batch.map(async idx => {
+      const slice = ct.slice(idx * CT_CHUNK_SIZE, (idx + 1) * CT_CHUNK_SIZE);
+      const { error } = await withTimeout(sb.from('vault_sync').upsert({
+        item_id: `${prefix}${idx}`, user_hash: sbUserId, iv, ct: slice, updated_at: now,
+      }), 60000);
+      if (error) throw error;
+    }));
+  }
+
+  const { error: hdrErr } = await withTimeout(sb.from('vault_sync').upsert({
+    item_id: id, user_hash: sbUserId, iv, ct: `${CHUNK_MARKER}${token}:${n}`, updated_at: now,
+  }), 60000);
+  if (hdrErr) throw hdrErr;
+
+  // Fully confirmed — forget the token so a future edit to this item starts
+  // its own clean attempt rather than trying to "resume" into it.
+  const doneTokens = getChunkTokens();
+  delete doneTokens[id];
+  setChunkTokens(doneTokens);
+}
+
+async function sbFetchChunked(id, token, n) {
+  // Re-downloads a large item's chunk rows a few at a time concurrently
+  // (mirroring the upload path above), reassembling them in order
+  // regardless of which one lands first. If any chunk can't be fetched on
+  // this connection, nothing partial is written locally — the whole item
+  // is just retried on the next unlock.
+  const parts = new Array(n);
+  for (let i = 0; i < n; i += CHUNK_UPLOAD_CONCURRENCY) {
+    const batch = [];
+    for (let j = i; j < Math.min(i + CHUNK_UPLOAD_CONCURRENCY, n); j++) batch.push(j);
+    await Promise.all(batch.map(async idx => {
+      const { data, error } = await withTimeout(
+        sb.from('vault_sync').select('ct').eq('item_id', `${id}::chunk::${token}::${idx}`).eq('user_hash', sbUserId).maybeSingle(),
+        60000);
+      if (error) throw error;
+      if (!data) throw new Error(`Missing chunk ${idx}/${n} for ${id}`);
+      parts[idx] = data.ct;
+    }));
+  }
+  return parts.join('');
+}
+
 async function sbUploadItem(id, iv, ct) {
   if (!sb || !sbUserId) return;
   try {
-    // Files can run into the tens of MB as base64 ciphertext, and mobile
-    // upload speeds are often nowhere near desktop WiFi — the default 8s
-    // is tuned for small rows and was aborting large uploads before they
-    // ever finished, silently, leaving them stuck "pending" forever.
-    const { error } = await withTimeout(sb.from('vault_sync')
-      .upsert({ item_id: id, user_hash: sbUserId, iv, ct, updated_at: new Date().toISOString() }), 60000);
-    if (error) throw error;
+    if (ct.length > CT_CHUNK_SIZE) {
+      await sbUploadChunked(id, iv, ct);
+    } else {
+      // Files can run into the tens of MB as base64 ciphertext, and mobile
+      // upload speeds are often nowhere near desktop WiFi — the default 8s
+      // is tuned for small rows and was aborting large uploads before they
+      // ever finished, silently, leaving them stuck "pending" forever.
+      const { error } = await withTimeout(sb.from('vault_sync')
+        .upsert({ item_id: id, user_hash: sbUserId, iv, ct, updated_at: new Date().toISOString() }), 60000);
+      if (error) throw error;
+    }
     clearPending(id); // confirmed on the cloud — no longer needs a retry push
   } catch (e) { console.warn('Cloud sync (save) failed — change is still kept on this device.', e); }
 }
 
 async function sbDeleteItem(id) {
   if (!sb || !sbUserId) return;
+  markPendingDelete(id); // in case this call never gets a chance to finish (tab closed, etc.)
   try {
     const { error } = await withTimeout(sb.from('vault_sync')
       .delete().eq('item_id', id).eq('user_hash', sbUserId));
     if (error) throw error;
-  } catch (e) { console.warn('Cloud sync (delete) failed.', e); }
+    // A large item may have left chunk rows behind too — a plain delete on
+    // the header id above wouldn't touch those, leaving orphans.
+    const { error: chunkErr } = await withTimeout(sb.from('vault_sync')
+      .delete().eq('user_hash', sbUserId).like('item_id', `${id}::chunk::%`));
+    if (chunkErr) throw chunkErr;
+    clearPendingDelete(id); // confirmed gone from the cloud — nothing left to retry
+  } catch (e) {
+    // Leave it marked. Without this, a single dropped connection meant the
+    // row just stayed on the server forever — deleted here, but still
+    // syncing right back down to every other device.
+    console.warn('Cloud sync (delete) failed — will retry next unlock.', e);
+  }
   finally { clearPending(id); } // nothing local left to retry-push for this id
 }
 
-// Pulls only rows changed since the last successful pull — mirrors the same
-// "sync deltas, not the whole vault" idea sbPushAllItems already uses below.
-// This used to re-fetch every row, ciphertext included, on every single
-// unlock; once a few large files were in the vault that meant tens of MB
-// re-downloaded each time, which is what was blowing past both Postgres's
-// statement_timeout and our own client-side one. The very first pull on a
-// given browser still fetches everything (no cursor yet) — every pull after
-// that only asks for what's new.
+// Retries any deletes that didn't make it to the cloud last time. Without
+// this, one failed sbDeleteItem call above was the only attempt a delete
+// ever got — this is what actually makes deletes propagate reliably across
+// devices instead of depending on a single network round-trip succeeding.
+async function sbRetryPendingDeletes() {
+  if (!sb || !sbUserId) return;
+  const ids = getPendingDeleteIds();
+  for (const id of ids) {
+    await sbDeleteItem(id);
+  }
+}
+
+// Pulls items that this device hasn't confirmed yet — mirrors the same
+// "sync deltas, not the whole vault" idea sbPushAllItems already uses below,
+// but per item rather than per batch.
 //
-// Note: this doesn't propagate deletions from other devices (a delete just
-// stops appearing in future deltas, rather than being actively removed
-// here) — that was already true of the old full-pull version too, not a
-// regression introduced by this change.
+// This used to fetch item_id+iv+ct+updated_at for every changed row in one
+// request, then advance a single cursor only once that whole request came
+// back. On a slow mobile connection, one large file in that request (files
+// can be tens of MB as base64 ciphertext) made the *entire* request time
+// out — and because the cursor only advances after a full success, that
+// same batch (large file included) was refetched and re-timed-out on every
+// unlock, forever. Every other item sitting next to that file in the same
+// batch — a diary entry, a territory, anything — was blocked behind it too,
+// even though there was nothing wrong with those items themselves. This is
+// almost certainly why sync only ever seemed to work in one direction: the
+// direction whose backlog didn't happen to have a large file stuck in it.
+//
+// Now: first fetch a cheap manifest (item_id + updated_at only, never the
+// ciphertext) so this step is fast regardless of how large any file has
+// grown. Then fetch each outdated item's iv/ct one at a time and confirm it
+// the moment it lands. If one item (typically a large file) can't finish on
+// this connection, it's skipped for next time — everything else still
+// comes through this run.
+//
+// Deletions from other devices now propagate too: a delete just stops
+// appearing in the manifest (there's no tombstone row), so we diff the
+// manifest against what's sitting in local IndexedDB. Anything local that's
+// missing from the manifest AND isn't itself waiting to be pushed (i.e. it
+// was already confirmed on the cloud before) must have been deleted on
+// another device — remove it here as well. Items still in the pending-push
+// list are left alone, since they simply haven't reached the cloud yet and
+// their absence from the manifest is expected, not a remote delete.
 async function sbPullAllItems() {
   if (!sb || !sbUserId) return;
+  let manifest;
   try {
-    const since = localStorage.getItem(LAST_PULL_KEY);
-    let query = sb.from('vault_sync').select('item_id, iv, ct, updated_at').eq('user_hash', sbUserId);
-    if (since) query = query.gt('updated_at', since);
-    const { data, error } = await withTimeout(query, 60000);
+    const { data, error } = await withTimeout(
+      sb.from('vault_sync').select('item_id, updated_at').eq('user_hash', sbUserId), 20000);
     if (error) throw error;
-    if (!data || !data.length) return;
-    const records = data
-      .filter(row => !row.item_id.startsWith('__')) // skip reserved preference rows
-      .map(row => ({ id: row.item_id, iv: row.iv, ct: row.ct }));
-    if (records.length) await DB.putAll(records); // one transaction, not one per row
-    const newest = data.reduce((max, r) => (r.updated_at > max ? r.updated_at : max), since || '');
-    if (newest) localStorage.setItem(LAST_PULL_KEY, newest);
-  } catch (e) { console.warn('Cloud sync (pull) failed — showing what is cached on this device.', e); }
+    manifest = data || [];
+  } catch (e) {
+    console.warn('Cloud sync (pull manifest) failed — showing what is cached on this device.', e);
+    return;
+  }
+
+  // "::chunk::" rows are fragments of a large item's ciphertext (see
+  // sbUploadChunked) — never standalone items, so they're excluded from
+  // both id-presence tracking and the outdated/pull list below.
+  const isChunkFragment = id => id.includes('::chunk::');
+
+  const remoteIds = new Set(
+    manifest.filter(row => !row.item_id.startsWith('__') && !isChunkFragment(row.item_id)).map(row => row.item_id)
+  );
+  const pulled = getPulledMap();
+
+  try {
+    const pending = new Set(getPendingIds());
+    const localRaw = await DB.getAll();
+    let removedCount = 0;
+    for (const raw of localRaw) {
+      if (raw.id.startsWith('__')) continue;    // reserved preference row
+      if (pending.has(raw.id)) continue;        // not pushed yet — expected to be absent remotely
+      if (remoteIds.has(raw.id)) continue;      // still present in the cloud
+      await DB.delete(raw.id);                  // gone from the cloud and already confirmed once — a remote delete
+      delete pulled[raw.id];
+      removedCount++;
+    }
+    if (removedCount) {
+      localStorage.setItem(PULLED_MAP_KEY, JSON.stringify(pulled));
+      console.log(`Cloud sync: removed ${removedCount} item(s) deleted from another device.`);
+      Vault.invalidate(); // local records changed underneath the cache
+    }
+  } catch (e) {
+    console.warn('Cloud sync (propagate remote deletes) failed — will retry next unlock.', e);
+  }
+
+  const pendingDeletes = new Set(getPendingDeleteIds());
+  const outdated = manifest.filter(row =>
+    !row.item_id.startsWith('__') &&        // skip reserved preference rows (theme has its own sync path)
+    !isChunkFragment(row.item_id) &&        // skip chunk fragments — pulled via their header row instead
+    !pendingDeletes.has(row.item_id) &&     // deleted locally — don't resurrect it while the cloud delete retries
+    pulled[row.item_id] !== row.updated_at  // new item, or edited since this device last confirmed it
+  );
+  if (!outdated.length) return;
+
+  let confirmedCount = 0;
+  for (const row of outdated) {
+    try {
+      // Same large-file allowance as sbUploadItem — any single item here
+      // can still be a large file, but it's now isolated: a timeout here
+      // only retries this one item next time, nothing else.
+      const { data, error } = await withTimeout(
+        sb.from('vault_sync').select('iv, ct').eq('item_id', row.item_id).eq('user_hash', sbUserId).maybeSingle(),
+        60000);
+      if (error) throw error;
+      if (!data) continue; // deleted remotely between the manifest fetch and now
+      let ct = data.ct;
+      if (typeof ct === 'string' && ct.startsWith(CHUNK_MARKER)) {
+        const rest = ct.slice(CHUNK_MARKER.length); // "<token>:<n>"
+        const sep = rest.lastIndexOf(':');
+        const token = rest.slice(0, sep);
+        const n = parseInt(rest.slice(sep + 1), 10);
+        ct = await sbFetchChunked(row.item_id, token, n); // reassemble from "<id>::chunk::<token>::N" rows
+      }
+      await DB.put({ id: row.item_id, iv: data.iv, ct });
+      markPulled(row.item_id, row.updated_at);
+      confirmedCount++;
+    } catch (e) {
+      console.warn(`Cloud sync (pull) failed for one item (${row.item_id}) — will retry next unlock; other items are unaffected.`, e);
+    }
+  }
+  if (confirmedCount) {
+    console.log(`Cloud sync: pulled ${confirmedCount} item(s) from other devices.`);
+    Vault.invalidate(); // local records changed underneath the cache
+  }
 }
 
 // Pushes only items pending sync (new/edited locally and not yet confirmed
@@ -2611,17 +2955,35 @@ async function sbPushAllItems() {
     const CHUNK = 25; // batch several items per request instead of one request each
     let pushedCount = 0;
 
-    for (let i = 0; i < pending.length; i += CHUNK) {
-      const idsChunk = pending.slice(i, i + CHUNK);
-      const rows = idsChunk
-        .filter(id => byId.has(id)) // dropped before ever syncing — nothing to push
-        .map(id => {
-          const r = byId.get(id);
-          return { item_id: r.id, user_hash: sbUserId, iv: r.iv, ct: r.ct, updated_at: new Date().toISOString() };
-        });
+    // Large items can't ride along in a batched upsert with others — one
+    // oversized row makes Supabase reject the *whole* batch with a hard
+    // 413, every retry, forever blocking whatever smaller items happened
+    // to be bundled next to it. Push those individually through the same
+    // chunked path sbUploadItem uses, and keep the rest on the fast batch path.
+    const normalIds = [];
+    for (const id of pending) {
+      const r = byId.get(id);
+      if (!r) { clearPending(id); continue; } // dropped locally before ever syncing
+      if (r.ct.length > CT_CHUNK_SIZE) {
+        try {
+          await sbUploadChunked(id, r.iv, r.ct);
+          clearPending(id);
+          pushedCount++;
+        } catch (e) {
+          console.warn(`Cloud push (large item) failed for ${id} — will retry next unlock.`, e);
+        }
+      } else {
+        normalIds.push(id);
+      }
+    }
+
+    for (let i = 0; i < normalIds.length; i += CHUNK) {
+      const idsChunk = normalIds.slice(i, i + CHUNK);
+      const rows = idsChunk.map(id => {
+        const r = byId.get(id);
+        return { item_id: r.id, user_hash: sbUserId, iv: r.iv, ct: r.ct, updated_at: new Date().toISOString() };
+      });
       if (rows.length) {
-        // Same large-payload allowance as sbUploadItem — a pending chunk can
-        // still contain a big file even though this call batches several items.
         const { error } = await withTimeout(sb.from('vault_sync').upsert(rows), 60000);
         if (error) throw error;
         pushedCount += rows.length;
@@ -2635,14 +2997,29 @@ async function sbPushAllItems() {
 // ══════════════════════════════════════════════
 // VAULT  (encrypt-on-write / decrypt-on-read wrapper around DB + cloud)
 // Decrypted payload shape: { type, parentId, name, meta, fileData(base64) }
+//
+// CACHING — getAll() used to re-decrypt every single record, every time it
+// was called. Every search keystroke, every folder navigation, every tab
+// switch (books/movies/anime/diary all call it too, then just filter by
+// type) triggered a full AES-GCM decrypt of the *entire* vault — including
+// full file bytes for every uploaded document. With even one large file in
+// there, this made the whole page feel stuck while typing or clicking
+// around. Now the decrypted result is cached in memory and only thrown
+// away when the vault actually changes (add/update/delete here, or a
+// cloud-sync pull bringing in changes from another device).
 // ══════════════════════════════════════════════
 const Vault = {
+  _cache: null,
+
+  invalidate() { this._cache = null; },
+
   async add(payload) {
     const id = crypto.randomUUID();
     const { iv, ct } = await encryptRecord(payload);
     await DB.put({ id, iv, ct });
     markPending(id);
     sbUploadItem(id, iv, ct); // fire-and-forget; clears pending flag on success
+    this._cache = null;
     return id;
   },
   async update(id, payload) {
@@ -2650,6 +3027,7 @@ const Vault = {
     await DB.put({ id, iv, ct });
     markPending(id);
     sbUploadItem(id, iv, ct);
+    this._cache = null;
     return id;
   },
   async get(id) {
@@ -2659,6 +3037,7 @@ const Vault = {
     return Object.assign({ id }, payload);
   },
   async getAll() {
+    if (this._cache) return this._cache;
     const rawAll = await DB.getAll();
     const out = [];
     for (const raw of rawAll) {
@@ -2669,11 +3048,16 @@ const Vault = {
         console.warn('Skipped an unreadable record', raw.id);
       }
     }
+    this._cache = out;
     return out;
   },
   async delete(id) {
+    markPendingDelete(id);
     await DB.delete(id);
     sbDeleteItem(id);
+    const tokens = getChunkTokens();
+    if (tokens[id]) { delete tokens[id]; setChunkTokens(tokens); }
+    this._cache = null;
   }
 };
 
@@ -2748,6 +3132,16 @@ function typeLabel(mime, name) {
 
 function priorityColor(p) {
   return { Critical: '#c05040', High: '#c08030', Medium: '#c4882f', Low: '#6b9ab8' }[p] || 'rgba(196,136,47,.55)';
+}
+
+// Builds the short review/summary preview shown directly on a shelf card
+// (Books, Movies, Anime all share this). Prefers the personal verdict;
+// falls back to the plot-in-brief summary if no verdict was written yet.
+function cardExcerptHtml(m) {
+  const text = (m.review || m.summary || '').trim();
+  if (!text) return '';
+  const label = m.review ? 'Your Verdict' : 'In Brief';
+  return `<div class="book-card-excerpt" title="${esc(text)}"><span class="exc-lbl">${label}</span>${esc(text)}</div>`;
 }
 
 function ratingDiamonds(n) {
@@ -2837,6 +3231,7 @@ async function unlockVault(password) {
 
 async function syncVaultWithCloud() {
   try {
+    await sbRetryPendingDeletes();      // retry any deletes that didn't confirm last time
     await sbPushAllItems();             // push any pending local edits first (migrates old data once)
     await sbPullAllItems();             // then pull items from other devices into local cache
     await renderBooks();
@@ -3229,6 +3624,17 @@ function df(key, val, full=false, isTag=false) {
   </div>`;
 }
 
+// Renders one or more "Lines Worth Keeping" quotes as stacked quote blocks.
+// Accepts either an array (current shape) or a legacy plain string, via
+// quotesArray() above.
+function quotesBlockHtml(key, quotes) {
+  const arr = quotesArray(quotes);
+  if (!arr.length) return '';
+  const mark = `<svg class="quote-mark" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V14.4Q0 7.2 3.6 3.6 7.2 0 13.2 0V4.8Q9.6 4.8 7.8 6.6 6 8.4 6 12H12V24H0ZM18 24V14.4Q18 7.2 21.6 3.6 25.2 0 31.2 0V4.8Q27.6 4.8 25.8 6.6 24 8.4 24 12H30V24H18Z"/></svg>`;
+  const blocks = arr.map(q => `<div class="quote-block">${mark}<div class="quote-text">${esc(q)}</div></div>`).join('');
+  return `<div class="det-field det-full"><div class="det-key">${esc(key)}</div><div class="quote-list">${blocks}</div></div>`;
+}
+
 function folderRowHtml(fd) {
   const m = fd.meta;
   const mkCls = m.color ? `mk-${m.color}` : '';
@@ -3299,7 +3705,7 @@ function fileRowHtml(fl) {
         <div class="det-grid">
           ${df('Title', m.title)}
           ${df('Subject', m.subject)}
-          ${df('Category', m.category)}
+          ${df('Category', m.category === 'Other' && m.categoryOther ? `Other — ${m.categoryOther}` : m.category)}
           ${df('Language', m.language)}
           ${df('Author / Creator', m.author)}
           ${df('Source / Origin', m.source)}
@@ -3354,14 +3760,17 @@ function emptyStateHtml(title, sub) {
 // a small config object — see the callers below.
 // ══════════════════════════════════════════════
 function pdfSectionHtml(label, value, asQuote) {
-  if (!value) return '';
   if (asQuote) {
+    const arr = Array.isArray(value) ? value.map(x=>String(x).trim()).filter(Boolean)
+              : (value ? [String(value).trim()].filter(Boolean) : []);
+    if (!arr.length) return '';
     return `
       <div class="pdf-section">
         <div class="pdf-section-lbl">${esc(label)}</div>
-        <blockquote class="pdf-quote">${esc(value)}</blockquote>
+        ${arr.map(q => `<blockquote class="pdf-quote">${esc(q)}</blockquote>`).join('')}
       </div>`;
   }
+  if (!value) return '';
   return `
     <div class="pdf-section">
       <div class="pdf-section-lbl">${esc(label)}</div>
@@ -3408,28 +3817,80 @@ function buildEntryPdfHtml(cfg) {
     </div>`;
 }
 
-function printEntryPdf(cfg) {
+async function printEntryPdf(cfg) {
   const sheet = document.getElementById('pdfPrintSheet');
   sheet.innerHTML = buildEntryPdfHtml(cfg);
   const prevTitle = document.title;
   document.title = cfg.title || 'Entry';
   document.body.classList.add('printing-entry');
 
+  let cleaned = false;
   const cleanup = () => {
+    if (cleaned) return;
+    cleaned = true;
     document.body.classList.remove('printing-entry');
     document.title = prevTitle;
     sheet.innerHTML = '';
   };
-  window.addEventListener('afterprint', cleanup, { once: true });
-  // Fallback in case afterprint doesn't fire on some browsers/OSes — mobile
-  // print-to-PDF flows (share sheet, picking a save location, etc.) can
-  // easily run past 15s, and this was wiping the sheet's content out from
-  // under an in-progress save, producing a blank PDF. #pdfPrintSheet sits
-  // off-screen outside of @media print regardless, so a longer delay here
-  // costs nothing.
+  // 'afterprint' is NOT trustworthy on Android Chrome's "Save as PDF" flow:
+  // it fires the instant the native print UI opens, not once the file is
+  // actually saved — but the print preview / Save-as-PDF renderer keeps
+  // reading the live DOM well after that (that's the "Preparing preview…"
+  // + multi-page picker the user sits in). If we honor that early signal,
+  // cleanup() wipes #pdfPrintSheet's content and drops the .printing-entry
+  // class out from under the in-progress preview, so what actually gets
+  // saved is the *reverted* page — the special print sheet is blank again
+  // and whatever ordinary page content isn't covered by the base print
+  // rules (e.g. the vault's colophon/legend footer) shows through instead.
+  // Desktop print dialogs, by contrast, only fire 'afterprint' once the
+  // dialog genuinely closes, which realistically never happens within a
+  // couple seconds of calling print(). So: ignore any 'afterprint' that
+  // arrives implausibly fast, and let the long timeout below do the
+  // cleanup instead — it costs nothing since #pdfPrintSheet sits off-screen
+  // outside of @media print the rest of the time.
+  const PRINT_CALL_MIN_MS = 4000;
+  const printCalledAt = performance.now();
+  const onAfterPrint = () => {
+    if (performance.now() - printCalledAt < PRINT_CALL_MIN_MS) return;
+    window.removeEventListener('afterprint', onAfterPrint);
+    cleanup();
+  };
+  window.addEventListener('afterprint', onAfterPrint);
+  // Fallback in case afterprint doesn't fire at all on some browsers/OSes,
+  // or gets ignored above as premature — mobile print-to-PDF flows (share
+  // sheet, picking a save location, etc.) can easily run past 15s.
   setTimeout(cleanup, 120000);
 
-  requestAnimationFrame(() => window.print());
+  // Mobile print pipelines (Android Chrome's "Save as PDF" in particular)
+  // snapshot the page for the print preview much sooner than desktop does,
+  // and won't wait around for an in-flight image decode or a webfont
+  // that's still swapping in. On desktop this timing gap is usually small
+  // enough not to matter, which is why this only ever showed up on phones.
+  // So: explicitly wait for the cover image to finish decoding and for
+  // web fonts to be ready before ever calling print().
+  const img = sheet.querySelector('img');
+  if (img) {
+    await new Promise(resolve => {
+      const done = () => resolve();
+      if (img.complete && img.naturalWidth > 0) {
+        (img.decode ? img.decode().catch(() => {}) : Promise.resolve()).then(done);
+      } else {
+        img.addEventListener('load', () => (img.decode ? img.decode().then(done).catch(done) : done()), { once: true });
+        img.addEventListener('error', done, { once: true });
+        // Never block indefinitely on a broken/slow image.
+        setTimeout(done, 3000);
+      }
+    });
+  }
+  if (document.fonts && document.fonts.ready) {
+    try { await document.fonts.ready; } catch (e) { /* non-fatal */ }
+  }
+  // Two animation frames = one guaranteed full style/layout/paint pass,
+  // so the sheet is confirmed on-screen (per the @media print rules)
+  // before we hand off — rather than relying on a single frame.
+  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+
+  window.print();
 }
 
 async function render() {
@@ -3581,6 +4042,7 @@ function openUploadModal() {
   document.getElementById('autoInfo').style.display = 'none';
   document.getElementById('metaSection').style.display = 'none';
   document.getElementById('uploadForm').reset();
+  document.getElementById('fCategoryOther').style.display = 'none';
   document.getElementById('fEditFileId').value = '';
   const titleEl = document.querySelector('#uploadModal .modal-title');
   if (titleEl) titleEl.textContent = 'Chart a New Document';
@@ -3620,6 +4082,8 @@ async function openEditFileModal(id) {
   set('fTitle',       m.title);
   set('fSubject',     m.subject);
   set('fCategory',    m.category);
+  set('fCategoryOther', m.categoryOther);
+  toggleFCategoryOther();
   set('fComplexity',  m.complexity);
   set('fLanguage',    m.language);
   set('fPriority',    m.priority);
@@ -3663,6 +4127,13 @@ function pickFile(file) {
   document.getElementById('fTitle').value = file.name.replace(/\.[^.]+$/, '');
 }
 
+function toggleFCategoryOther() {
+  const sel = document.getElementById('fCategory');
+  const other = document.getElementById('fCategoryOther');
+  other.style.display = sel.value === 'Other' ? '' : 'none';
+  if (sel.value !== 'Other') other.value = '';
+}
+
 function clearFileSelection() {
   selFile = null;
   const editId = document.getElementById('fEditFileId').value;
@@ -3689,6 +4160,7 @@ async function submitUpload() {
       title:       g('fTitle') || (selFile ? selFile.name : base.title),
       subject:     g('fSubject'),
       category:    g('fCategory'),
+      categoryOther: g('fCategory') === 'Other' ? g('fCategoryOther') : '',
       description: g('fDescription'),
       purpose:     g('fPurpose'),
       tags:        g('fTags'),
@@ -3916,6 +4388,56 @@ function updateRatingReadout() {
   document.getElementById('bRatingDiamonds').innerHTML = ratingDiamonds(v);
 }
 
+// ── "Lines Worth Keeping" — multiple quotes ──
+// Stored as an array of strings on meta.quotes. Older entries saved before
+// this existed have meta.quotes as a plain string — quotesArray() below
+// normalizes either shape to an array so nothing has to migrate.
+function quotesArray(q) {
+  if (!q) return [];
+  if (Array.isArray(q)) return q.map(x => String(x).trim()).filter(Boolean);
+  return String(q).trim() ? [String(q).trim()] : [];
+}
+
+function addQuoteInput(value) {
+  const list = document.getElementById('bQuotesList');
+  const row = document.createElement('div');
+  row.className = 'quote-input-row';
+  row.innerHTML = `
+    <textarea class="ftxt quote-input" placeholder="A line or passage worth keeping…"></textarea>
+    <button type="button" class="quote-input-remove" onclick="removeQuoteInput(this)" title="Remove this quote">✕</button>`;
+  if (value) row.querySelector('textarea').value = value;
+  list.appendChild(row);
+  updateQuoteRemoveButtons();
+  return row;
+}
+
+function removeQuoteInput(btn) {
+  const list = document.getElementById('bQuotesList');
+  btn.closest('.quote-input-row').remove();
+  if (!list.children.length) addQuoteInput(); // always leave at least one box
+  updateQuoteRemoveButtons();
+}
+
+function updateQuoteRemoveButtons() {
+  const rows = document.querySelectorAll('#bQuotesList .quote-input-row');
+  rows.forEach(r => {
+    r.querySelector('.quote-input-remove').style.display = rows.length > 1 ? '' : 'none';
+  });
+}
+
+function setQuoteInputs(quotes) {
+  const list = document.getElementById('bQuotesList');
+  list.innerHTML = '';
+  const arr = quotesArray(quotes);
+  (arr.length ? arr : ['']).forEach(q => addQuoteInput(q));
+}
+
+function getQuoteInputs() {
+  return Array.from(document.querySelectorAll('#bQuotesList .quote-input'))
+    .map(t => t.value.trim())
+    .filter(Boolean);
+}
+
 async function fetchFallbackCover(title, author) {
   const q = `${title||''} ${author||''}`.trim();
   if (!q) return null;
@@ -3940,6 +4462,7 @@ function openBookModal(editId) {
   document.getElementById('bRatingDiamonds').innerHTML = ratingDiamonds(0);
   document.getElementById('bEditId').value = '';
   document.getElementById('bPostedDate').value = '';
+  setQuoteInputs(null); // always start with a single clean quote box
 
   if (editId != null) {
     (async () => {
@@ -3954,7 +4477,7 @@ function openBookModal(editId) {
       document.getElementById('bReview').value = m.review || '';
       document.getElementById('bSummary').value = m.summary || '';
       document.getElementById('bCharacters').value = m.characters || '';
-      document.getElementById('bQuotes').value = m.quotes || '';
+      setQuoteInputs(m.quotes);
       document.getElementById('bThoughts').value = m.thoughts || '';
       document.getElementById('bEditId').value = editId;
       document.getElementById('bPostedDate').value = m.posted || '';
@@ -3991,7 +4514,7 @@ async function submitBook() {
     review: g('bReview'),
     summary: g('bSummary'),
     characters: g('bCharacters'),
-    quotes: g('bQuotes'),
+    quotes: getQuoteInputs(),
     thoughts: g('bThoughts'),
     cover: cover || null,
     posted: document.getElementById('bPostedDate').value || today(),
@@ -4084,6 +4607,7 @@ async function renderBooks() {
             <span class="book-rating-num">${m.rating}/10</span>
           </div>` : ''}
           ${genres.length ? `<div class="book-genres">${genres.map(g=>`<span class="fc-tag">#${esc(g)}</span>`).join('')}</div>` : ''}
+          ${cardExcerptHtml(m)}
         </div>
       </div>`;
   }).join('');
@@ -4098,7 +4622,7 @@ async function showBookDetail(id) {
   document.getElementById('detailModalSub').textContent = 'Your reading, in your own words';
   document.getElementById('detailContent').innerHTML = `
     <div class="det-hero">
-      <div class="det-cover">${m.cover ? `<img src="${esc(m.cover)}" alt="${esc(m.title||'Cover')}">` : bookPlaceholderSvg()}</div>
+      <div class="det-cover det-cover-book">${m.cover ? `<img src="${esc(m.cover)}" alt="${esc(m.title||'Cover')}">` : bookPlaceholderSvg()}</div>
       <div>
         <div class="det-title">${esc(m.title||'Untitled')}</div>
         <div class="det-meta">${esc(m.author||'Unknown author')} · Added ${fmtDate(m.posted)}</div>
@@ -4110,7 +4634,7 @@ async function showBookDetail(id) {
       ${df('The Story, In Brief', m.summary, true)}
       ${df('Your Verdict', m.review, true)}
       ${df('The People In It', m.characters, true)}
-      ${m.quotes ? `<div class="det-field det-full"><div class="det-key">Lines Worth Keeping</div><div class="quote-block"><svg class="quote-mark" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V14.4Q0 7.2 3.6 3.6 7.2 0 13.2 0V4.8Q9.6 4.8 7.8 6.6 6 8.4 6 12H12V24H0ZM18 24V14.4Q18 7.2 21.6 3.6 25.2 0 31.2 0V4.8Q27.6 4.8 25.8 6.6 24 8.4 24 12H30V24H18Z"/></svg><div class="quote-text">${esc(m.quotes)}</div></div></div>` : df('Lines Worth Keeping', m.quotes, true)}
+      ${quotesBlockHtml('Lines Worth Keeping', m.quotes)}
       ${df('What It Left You Thinking', m.thoughts, true)}
     </div>`;
 
@@ -4346,6 +4870,7 @@ async function renderMovies() {
             <span class="book-rating-num">${m.rating}/10</span>
           </div>` : ''}
           ${genres.length ? `<div class="book-genres">${genres.map(g=>`<span class="fc-tag">#${esc(g)}</span>`).join('')}</div>` : ''}
+          ${cardExcerptHtml(m)}
         </div>
       </div>`;
   }).join('');
@@ -4608,6 +5133,7 @@ async function renderAnime() {
             <span class="book-rating-num">${m.rating}/10</span>
           </div>` : ''}
           ${genres.length ? `<div class="book-genres">${genres.map(g=>`<span class="fc-tag">#${esc(g)}</span>`).join('')}</div>` : ''}
+          ${cardExcerptHtml(m)}
         </div>
       </div>`;
   }).join('');
@@ -4917,21 +5443,26 @@ function wireCoverInput() {
   input.addEventListener('change', () => { if (input.files[0]) pickCoverFile(input.files[0]); });
 }
 
+function debounce(fn, ms = 180) {
+  let t;
+  return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+}
+
 function wireFilesControls() {
-  document.getElementById('searchInput').addEventListener('input', render);
+  document.getElementById('searchInput').addEventListener('input', debounce(render));
   document.getElementById('sortSelect').addEventListener('change', render);
   document.getElementById('vaultGrid').addEventListener('click', handleGridClick);
   document.getElementById('breadcrumb').addEventListener('click', handleCrumbClick);
 }
 
 function wireBooksControls() {
-  document.getElementById('bookSearchInput').addEventListener('input', renderBooks);
+  document.getElementById('bookSearchInput').addEventListener('input', debounce(renderBooks));
   document.getElementById('bookSortSelect').addEventListener('change', renderBooks);
   document.getElementById('booksGrid').addEventListener('click', handleBooksGridClick);
 }
 
 function wireDiaryControls() {
-  document.getElementById('diarySearchInput').addEventListener('input', renderDiary);
+  document.getElementById('diarySearchInput').addEventListener('input', debounce(renderDiary));
   document.getElementById('diarySortSelect').addEventListener('change', renderDiary);
   document.getElementById('diaryList').addEventListener('click', handleDiaryGridClick);
 }

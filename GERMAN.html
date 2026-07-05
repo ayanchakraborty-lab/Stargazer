@@ -4166,6 +4166,8 @@ function localHeuristicCheck(sentence, wordObj){
      create policy "public read"          on german_community_posts for select using (true);
      create policy "authenticated insert" on german_community_posts for insert
        with check (auth.uid() = user_id);
+     create policy "own delete"           on german_community_posts for delete
+       using (auth.uid() = user_id);
      create policy "admin delete"         on german_community_posts for delete
        using (auth.jwt() ->> 'email' = 'ayanchakrabortyall@gmail.com');
 
@@ -4208,25 +4210,27 @@ async function loadCommunityPosts(){
   }
   try{
     const {data, error} = await _sb.from('german_community_posts')
-      .select('id,author_name,content,created_at')
+      .select('id,user_id,author_name,content,created_at')
       .order('created_at', {ascending:false}).limit(100);
     if(error) throw error;
     if(!data || !data.length){
       feed.innerHTML = `<div class="community-empty">Noch keine Beiträge — sei die/der Erste! 🌱</div>`;
       return;
     }
-    feed.innerHTML = data.map(renderCommunityPost).join('');
+    const currentUserId = await getCurrentUserId();
+    feed.innerHTML = data.map(p => renderCommunityPost(p, currentUserId)).join('');
   }catch(e){
     console.warn('Community posts unavailable:', e);
     feed.innerHTML = `<div class="community-empty">Gemeinschaft ist noch nicht eingerichtet. (Setup: Tabelle <code>german_community_posts</code> in Supabase anlegen — siehe Code-Kommentar.)</div>`;
   }
 }
-function renderCommunityPost(p){
+function renderCommunityPost(p, currentUserId){
+  const canDelete = isAdmin || (currentUserId && p.user_id === currentUserId);
   return `<div class="community-post">
     <div class="community-post-head">
       <span class="community-post-author">${escapeHtml(p.author_name || 'Anonym')}</span>
       <span class="community-post-date">${formatCommunityDate(p.created_at)}</span>
-      ${isAdmin ? `<button class="community-delete" onclick="deleteCommunityPost(${p.id})" title="Löschen">🗑</button>` : ''}
+      ${canDelete ? `<button class="community-delete" onclick="deleteCommunityPost(${p.id})" title="Löschen">🗑</button>` : ''}
     </div>
     <div class="community-post-content">${escapeHtml(p.content)}</div>
   </div>`;
@@ -4249,11 +4253,12 @@ async function postCommunityMessage(){
     loadCommunityPosts();
   }catch(e){
     console.error('Could not post to community:', e);
-    alert('Beitrag konnte nicht gespeichert werden. Setup-Anleitung: siehe Code-Kommentar bei german_community_posts.');
+    const detail = (e && (e.message || e.error_description)) ? `\n\nDetail: ${e.message || e.error_description}${e.code ? ' (code '+e.code+')' : ''}` : '';
+    alert('Beitrag konnte nicht gespeichert werden.' + detail);
   }
 }
 async function deleteCommunityPost(id){
-  if(!isAdmin || !_sb) return;
+  if(!_sb) return;
   if(!confirm('Diesen Beitrag wirklich löschen?')) return;
   try{
     const {error} = await _sb.from('german_community_posts').delete().eq('id', id);
