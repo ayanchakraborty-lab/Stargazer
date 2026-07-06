@@ -1950,6 +1950,12 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
           <textarea class="ftxt" id="bReview" placeholder="Your honest take, in your own words…"></textarea>
         </div>
 
+        <div class="f-divider">◈ The Critique</div>
+        <div class="fgrp">
+          <label class="flbl">Where it fell short, what you'd push back on <span class="flbl-opt">optional</span></label>
+          <textarea class="ftxt" id="bCritique" placeholder="Flaws, weak stretches, things that didn't land…"></textarea>
+        </div>
+
         <div class="f-divider">◈ The Story, In Brief</div>
         <div class="fgrp">
           <label class="flbl">If you had thirty seconds to explain it to a friend <span class="flbl-opt">optional</span></label>
@@ -2049,6 +2055,12 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
           <textarea class="ftxt" id="mvReview" placeholder="Your honest take, in your own words…"></textarea>
         </div>
 
+        <div class="f-divider">◈ The Critique</div>
+        <div class="fgrp">
+          <label class="flbl">Where it fell short, what you'd push back on <span class="flbl-opt">optional</span></label>
+          <textarea class="ftxt" id="mvCritique" placeholder="Flaws, weak stretches, things that didn't land…"></textarea>
+        </div>
+
         <div class="f-divider">◈ The Story, In Brief</div>
         <div class="fgrp">
           <label class="flbl">If you had thirty seconds to explain it to a friend <span class="flbl-opt">optional</span></label>
@@ -2145,6 +2157,12 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
         <div class="fgrp">
           <label class="flbl">What did you make of it? <span class="flbl-opt">optional</span></label>
           <textarea class="ftxt" id="anReview" placeholder="Your honest take, in your own words…"></textarea>
+        </div>
+
+        <div class="f-divider">◈ The Critique</div>
+        <div class="fgrp">
+          <label class="flbl">Where it fell short, what you'd push back on <span class="flbl-opt">optional</span></label>
+          <textarea class="ftxt" id="anCritique" placeholder="Flaws, weak stretches, things that didn't land…"></textarea>
         </div>
 
         <div class="f-divider">◈ The Story, In Brief</div>
@@ -4475,6 +4493,7 @@ function openBookModal(editId) {
       document.getElementById('bAuthor').value = m.author || '';
       document.getElementById('bGenres').value = m.genres || '';
       document.getElementById('bReview').value = m.review || '';
+      document.getElementById('bCritique').value = m.critique || '';
       document.getElementById('bSummary').value = m.summary || '';
       document.getElementById('bCharacters').value = m.characters || '';
       setQuoteInputs(m.quotes);
@@ -4512,6 +4531,7 @@ async function submitBook() {
     rating: ratingTouched ? Number(document.getElementById('bRating').value) : null,
     genres: g('bGenres'),
     review: g('bReview'),
+    critique: g('bCritique'),
     summary: g('bSummary'),
     characters: g('bCharacters'),
     quotes: getQuoteInputs(),
@@ -4564,7 +4584,7 @@ async function renderBooks() {
   if (q) {
     view = view.map(b => ({ item: b, score: searchScore([
       [b.meta.title,100], [b.meta.author,85], [b.meta.genres,70],
-      [b.meta.review,50], [b.meta.summary,45], [b.meta.characters,35],
+      [b.meta.review,50], [b.meta.critique,45], [b.meta.summary,45], [b.meta.characters,35],
       [b.meta.quotes,35], [b.meta.thoughts,30]
     ], q) })).filter(x => x.score > 0).sort((a,b) => b.score - a.score).map(x => x.item);
   } else {
@@ -4633,6 +4653,7 @@ async function showBookDetail(id) {
       ${df('Genres', m.genres, true, true)}
       ${df('The Story, In Brief', m.summary, true)}
       ${df('Your Verdict', m.review, true)}
+      ${df('The Critique', m.critique, true)}
       ${df('The People In It', m.characters, true)}
       ${quotesBlockHtml('Lines Worth Keeping', m.quotes)}
       ${df('What It Left You Thinking', m.thoughts, true)}
@@ -4651,6 +4672,7 @@ async function showBookDetail(id) {
     sections: [
       { label: 'The Story, In Brief', value: m.summary },
       { label: 'Your Verdict', value: m.review },
+      { label: 'The Critique', value: m.critique },
       { label: 'The People In It', value: m.characters },
       { label: 'Lines Worth Keeping', value: m.quotes, quote: true },
       { label: 'What It Left You Thinking', value: m.thoughts },
@@ -4743,6 +4765,7 @@ function openMovieModal(editId) {
       document.getElementById('mvDirector').value = m.director || '';
       document.getElementById('mvGenres').value = m.genres || '';
       document.getElementById('mvReview').value = m.review || '';
+      document.getElementById('mvCritique').value = m.critique || '';
       document.getElementById('mvSummary').value = m.summary || '';
       document.getElementById('mvCast').value = m.cast || '';
       document.getElementById('mvQuotes').value = m.quotes || '';
@@ -4777,6 +4800,7 @@ async function submitMovie() {
     rating: movieRatingTouched ? Number(document.getElementById('mvRating').value) : null,
     genres: g('mvGenres'),
     review: g('mvReview'),
+    critique: g('mvCritique'),
     summary: g('mvSummary'),
     cast: g('mvCast'),
     quotes: g('mvQuotes'),
@@ -4827,7 +4851,7 @@ async function renderMovies() {
   if (q) {
     view = view.map(mv => ({ item: mv, score: searchScore([
       [mv.meta.title,100], [mv.meta.director,85], [mv.meta.genres,70],
-      [mv.meta.review,50], [mv.meta.summary,45], [mv.meta.cast,35],
+      [mv.meta.review,50], [mv.meta.critique,45], [mv.meta.summary,45], [mv.meta.cast,35],
       [mv.meta.quotes,35], [mv.meta.thoughts,30]
     ], q) })).filter(x => x.score > 0).sort((a,b) => b.score - a.score).map(x => x.item);
   } else {
@@ -4896,6 +4920,7 @@ async function showMovieDetail(id) {
       ${df('Genres', m.genres, true, true)}
       ${df('The Story, In Brief', m.summary, true)}
       ${df('Your Verdict', m.review, true)}
+      ${df('The Critique', m.critique, true)}
       ${df('The People In It', m.cast, true)}
       ${m.quotes ? `<div class="det-field det-full"><div class="det-key">Lines Worth Keeping</div><div class="quote-block"><svg class="quote-mark" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V14.4Q0 7.2 3.6 3.6 7.2 0 13.2 0V4.8Q9.6 4.8 7.8 6.6 6 8.4 6 12H12V24H0ZM18 24V14.4Q18 7.2 21.6 3.6 25.2 0 31.2 0V4.8Q27.6 4.8 25.8 6.6 24 8.4 24 12H30V24H18Z"/></svg><div class="quote-text">${esc(m.quotes)}</div></div></div>` : df('Lines Worth Keeping', m.quotes, true)}
       ${df('What It Left You Thinking', m.thoughts, true)}
@@ -4914,6 +4939,7 @@ async function showMovieDetail(id) {
     sections: [
       { label: 'The Story, In Brief', value: m.summary },
       { label: 'Your Verdict', value: m.review },
+      { label: 'The Critique', value: m.critique },
       { label: 'The People In It', value: m.cast },
       { label: 'Lines Worth Keeping', value: m.quotes, quote: true },
       { label: 'What It Left You Thinking', value: m.thoughts },
@@ -5006,6 +5032,7 @@ function openAnimeModal(editId) {
       document.getElementById('anStudio').value = m.studio || '';
       document.getElementById('anGenres').value = m.genres || '';
       document.getElementById('anReview').value = m.review || '';
+      document.getElementById('anCritique').value = m.critique || '';
       document.getElementById('anSummary').value = m.summary || '';
       document.getElementById('anCharacters').value = m.characters || '';
       document.getElementById('anQuotes').value = m.quotes || '';
@@ -5040,6 +5067,7 @@ async function submitAnime() {
     rating: animeRatingTouched ? Number(document.getElementById('anRating').value) : null,
     genres: g('anGenres'),
     review: g('anReview'),
+    critique: g('anCritique'),
     summary: g('anSummary'),
     characters: g('anCharacters'),
     quotes: g('anQuotes'),
@@ -5090,7 +5118,7 @@ async function renderAnime() {
   if (q) {
     view = view.map(an => ({ item: an, score: searchScore([
       [an.meta.title,100], [an.meta.studio,85], [an.meta.genres,70],
-      [an.meta.review,50], [an.meta.summary,45], [an.meta.characters,35],
+      [an.meta.review,50], [an.meta.critique,45], [an.meta.summary,45], [an.meta.characters,35],
       [an.meta.quotes,35], [an.meta.thoughts,30]
     ], q) })).filter(x => x.score > 0).sort((a,b) => b.score - a.score).map(x => x.item);
   } else {
@@ -5159,6 +5187,7 @@ async function showAnimeDetail(id) {
       ${df('Genres', m.genres, true, true)}
       ${df('The Story, In Brief', m.summary, true)}
       ${df('Your Verdict', m.review, true)}
+      ${df('The Critique', m.critique, true)}
       ${df('The People In It', m.characters, true)}
       ${m.quotes ? `<div class="det-field det-full"><div class="det-key">Lines Worth Keeping</div><div class="quote-block"><svg class="quote-mark" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V14.4Q0 7.2 3.6 3.6 7.2 0 13.2 0V4.8Q9.6 4.8 7.8 6.6 6 8.4 6 12H12V24H0ZM18 24V14.4Q18 7.2 21.6 3.6 25.2 0 31.2 0V4.8Q27.6 4.8 25.8 6.6 24 8.4 24 12H30V24H18Z"/></svg><div class="quote-text">${esc(m.quotes)}</div></div></div>` : df('Lines Worth Keeping', m.quotes, true)}
       ${df('What It Left You Thinking', m.thoughts, true)}
@@ -5177,6 +5206,7 @@ async function showAnimeDetail(id) {
     sections: [
       { label: 'The Story, In Brief', value: m.summary },
       { label: 'Your Verdict', value: m.review },
+      { label: 'The Critique', value: m.critique },
       { label: 'The People In It', value: m.characters },
       { label: 'Lines Worth Keeping', value: m.quotes, quote: true },
       { label: 'What It Left You Thinking', value: m.thoughts },
@@ -5461,6 +5491,28 @@ function wireBooksControls() {
   document.getElementById('booksGrid').addEventListener('click', handleBooksGridClick);
 }
 
+function wireMovieInput() {
+  const input = document.getElementById('movieInput');
+  input.addEventListener('change', () => { if (input.files[0]) pickMoviePosterFile(input.files[0]); });
+}
+
+function wireMoviesControls() {
+  document.getElementById('movieSearchInput').addEventListener('input', debounce(renderMovies));
+  document.getElementById('movieSortSelect').addEventListener('change', renderMovies);
+  document.getElementById('moviesGrid').addEventListener('click', handleMoviesGridClick);
+}
+
+function wireAnimeInput() {
+  const input = document.getElementById('animeInput');
+  input.addEventListener('change', () => { if (input.files[0]) pickAnimePosterFile(input.files[0]); });
+}
+
+function wireAnimeControls() {
+  document.getElementById('animeSearchInput').addEventListener('input', debounce(renderAnime));
+  document.getElementById('animeSortSelect').addEventListener('change', renderAnime);
+  document.getElementById('animeGrid').addEventListener('click', handleAnimeGridClick);
+}
+
 function wireDiaryControls() {
   document.getElementById('diarySearchInput').addEventListener('input', debounce(renderDiary));
   document.getElementById('diarySortSelect').addEventListener('change', renderDiary);
@@ -5475,6 +5527,10 @@ async function init() {
   wireCoverInput();
   wireFilesControls();
   wireBooksControls();
+  wireMovieInput();
+  wireMoviesControls();
+  wireAnimeInput();
+  wireAnimeControls();
   wireDiaryControls();
   await DB.init();
   await initThemeForSession();   // runs before any unlock — theme isn't sensitive content
