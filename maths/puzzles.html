@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#faf7f2!important}html.pre-light{background:#faf7f2}</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]}));}else{renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});}"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Lato:ital,wght@0,400;0,700;1,400&family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<title>19 Mathematical Puzzles & Brain Teasers | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="19 mathematical puzzles from Martin Gardner, Euler, and beyond — hints, full solutions, and a few that remain genuinely unsolved.">
+<meta name="keywords" content="mathematical puzzles, math brain teasers, logic puzzles, math riddles, puzzle hints and solutions, Martin Gardner puzzles, unsolved puzzles, recreational math puzzles">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Mathematics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/maths/puzzles.html">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="19 Mathematical Puzzles & Brain Teasers | Stargazer">
+<meta property="og:description" content="19 puzzles that ask for creativity, not credentials — click to reveal hints and full solutions. A few are still unsolved. Dare to try →">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/maths/puzzles.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="19 Mathematical Puzzles & Brain Teasers | Stargazer">
+<meta name="twitter:description" content="Mathematical puzzles from Gardner, Euler, and Hilbert — hints and full solutions included. Some remain unsolved. Test your thinking →">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Mathematical Puzzles: Where Mathematics Becomes Play",
+  "description": "19 mathematical puzzles spanning classic logic, combinatorics, and probability — with hints, full solutions, and a few problems that remain unsolved.",
+  "url": "https://stargazer-9m9.pages.dev/maths/puzzles.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": [
+    { "@type": "Thing", "name": "Mathematics", "sameAs": "https://en.wikipedia.org/wiki/Mathematics" },
+    { "@type": "Thing", "name": "Mathematical puzzle" }
+  ]
+}
+</script>
+<link rel="stylesheet" href="maths.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ AUTH TOP BAR ════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <a href="../login.html" id="loginBtn" class="atb-btn atb-signin">☽ Sign In</a>
+  <div id="userInfo" style="display:none;align-items:center;gap:0.4rem">
+    <span class="atb-username" id="userEmailDisplay">✦ Explorer</span>
+    <button class="atb-signout" onclick="doSignOut()">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ ADMIN MODAL ══════ -->
+<div id="adminModal">
+  <div class="admin-modal-box">
+    <div class="admin-modal-title" id="adminModalTitle">Admin Panel</div>
+    <div id="adminModalBody"></div>
+    <div class="admin-modal-actions">
+      <button class="admin-cancel-btn" onclick="closeAdminModal()">Cancel</button>
+      <button class="admin-save-btn" id="adminModalSaveBtn" onclick="adminModalSave()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ NAV ═══════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Mathematics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Puzzles</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)">🔍 Search</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══════════════════════════════════════ HAMBURGER MENU ════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home" onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item" data-page="books" onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item active" data-page="puzzles" onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="precollege" onclick="location.href='precollege.html'">📐 Pre-College</button>
+  <button class="hm-item" data-page="olympiad" onclick="location.href='olympiad.html'">🏆 Olympiad</button>
+  <button class="hm-item" data-page="undergrad" onclick="location.href='undergrad.html'">🎓 Undergrad</button>
+  <button class="hm-item" data-page="graduate" onclick="location.href='graduate.html'">🔬 Graduate</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="research" onclick="location.href='research.html'">⚡ Research</button>
+  <button class="hm-item" data-page="openproblems" onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item" data-page="careers" onclick="location.href='careers.html'">💼 Careers</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="studyguide" onclick="location.href='studyguide.html'">📖 Study Guide</button>
+  <button class="hm-item" data-page="facts" onclick="location.href='facts.html'">✨ Math Facts</button>
+  <button class="hm-item" data-page="universities" onclick="location.href='universities.html'">🎓 India</button>
+  <button class="hm-item" data-page="comments" onclick="location.href='comments.html'">💬 Comments</button>
+</div>
+
+<!-- ═══════════════════════════════════════ SEARCH MODAL ════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search this page…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<div id="shortcut-hint">/ search</div>
+
+<div class="page active" id="page-puzzles" style="background:#001212">
+  <section class="section" id="puzzles">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:rgba(6,182,212,0.08);color:#22d3ee;border:1px solid rgba(6,182,212,0.22)">Mathematical Puzzles</span>
+        <h1 class="s-title font-serif" style="color:#cffafe">Puzzles — Where Mathematics Becomes Play</h1>
+        <p class="s-desc" style="color:#0891b2">Click any puzzle to reveal the problem, hint, and full answer. Minimal prerequisites — maximum creativity required. Some puzzles here remain unsolved!</p>
+      </div>
+      <div class="g3" id="puzzles-grid"></div>
+    </div>
+  </section>
+</div>
+
+
+<footer id="footer">
+  <div class="foot-eq">e<sup>iπ</sup> + 1 = 0</div>
+  <p class="foot-txt"><strong style="color:#6d28d9">"Mathematics is not about numbers, equations, computations, or algorithms. It is about understanding."</strong><br>— William Paul Thurston, Fields Medalist</p>
+  <div class="foot-links">
+    <button class="foot-link" onclick="location.href='../ABOUT.html'">📖 About Stargazer</button>
+    <a class="foot-link" onclick="location.href='comments.html'; return false;" href="#">💬 Community Comments</a>
+    <a class="foot-link" href="mailto:ayan.chakraborty6174@gmail.com">✉️ Contact Creator</a>
+    <a class="foot-link" href="https://stargazer-9m9.pages.dev" target="_blank" rel="noopener">🌐 Stargazer Home</a>
+  </div>
+</footer>
+
+<button id="theme-toggle" title="Toggle light / dark theme" aria-label="Toggle light / dark theme" onclick="toggleTheme()">☀️</button>
+<button id="btt" title="Back to top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+window._pageKey = 'maths';
+
+function isAdmin() {
+  return !!(window.currentUser && window.currentUser.email === ADMIN_EMAIL);
+}
+
+window._applyDarkMode = function(isDark) {
+  // isDark=true → dark mode (no light-mode class)
+  // isDark=false → light mode
+  applyTheme(!isDark);   // applyTheme(true) adds light-mode class
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+};
+
+
+window._afterRenderAuthUI = function(user) {
+  // Show/hide admin bars
+  document.querySelectorAll('.admin-bar').forEach(function(el) {
+    if (user && user.email === ADMIN_EMAIL) { el.classList.add('visible'); }
+    else                                    { el.classList.remove('visible'); }
+  });
+  // Mirror display name into comment form header
+  var ud2 = document.getElementById('userEmailDisplay2');
+  if (ud2 && user) {
+    ud2.textContent = user.user_metadata?.display_name
+                    || user.user_metadata?.full_name
+                    || user.email || 'you';
+  }
+  // Trigger admin data load on sign-in
+  if (user) { if (typeof loadAdminData === 'function') loadAdminData(); }
+};
+
+
+function applyTheme(light) {
+  if (light) { document.body.classList.add('light-mode'); }
+  else        { document.body.classList.remove('light-mode'); }
+  var btn = document.getElementById('theme-toggle');
+  if (btn) btn.textContent = light ? '🌙' : '☀️';
+  document.documentElement.classList.remove('pre-light');
+}
+
+
+function toggleTheme() {
+  var nowLight = !document.body.classList.contains('light-mode');
+  applyTheme(nowLight);
+  localStorage.setItem('stargazer_theme', nowLight ? 'light' : 'dark');
+  // Persist via shared.js (writes to Supabase profiles.dark_mode)
+  // isDark param: true = dark mode, false = light mode
+  if (window.sbSaveDarkMode) window.sbSaveDarkMode(!nowLight);
+}
+
+
+// Apply theme immediately on load from localStorage
+(function() {
+  var tm = localStorage.getItem('stargazer_theme');
+  applyTheme(tm === 'light');
+})();
+
+// shared.js calls this after loading dark_mode from profiles
+// (already declared in the auth block above as window._applyDarkMode)
+
+
+function reRevealActivePage() {
+  var p = document.querySelector('.page.active');
+  if (!p) return;
+  p.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
+    el.classList.add('visible');
+  });
+}
+
+
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Close modal on backdrop click
+
+function toggleHamburger() {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu) return;
+  var open = menu.classList.toggle('open');
+  btn.classList.toggle('open', open);
+}
+// Close on outside click
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu || !menu.classList.contains('open')) return;
+  if (!menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var menu = document.getElementById('hamburger-menu');
+    if (menu && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      document.getElementById('hamburger-btn').classList.remove('open');
+    }
+  }
+});
+
+window.addEventListener('scroll', function() {
+  var btt = document.getElementById('btt');
+  if (btt) btt.classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
+
+window._getProgressData = function() { return {}; };
+window._applyProgressData = function(d) {};
+
+let _adminModalSaveFn = null;
+
+function openAdminModal(title, bodyHTML, saveFn) {
+  document.getElementById('adminModalTitle').textContent = title;
+  document.getElementById('adminModalBody').innerHTML = bodyHTML;
+  _adminModalSaveFn = saveFn;
+  document.getElementById('adminModal').classList.add('open');
+}
+
+function closeAdminModal() {
+  document.getElementById('adminModal').classList.remove('open');
+  _adminModalSaveFn = null;
+}
+
+async function adminModalSave() {
+  if (_adminModalSaveFn) {
+    const btn = document.getElementById('adminModalSaveBtn');
+    btn.textContent = 'Saving…';
+    btn.disabled = true;
+    try {
+      await _adminModalSaveFn();
+      closeAdminModal();
+    } catch(e) {
+      alert('Save failed: ' + (e.message || e));
+    }
+    btn.textContent = 'Save';
+    btn.disabled = false;
+  }
+}
+
+document.getElementById('adminModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAdminModal();
+});
+
+var PAGE_SEARCH_INDEX = [];
+function openSearch() {
+  buildSearchIndex();
+  var m = document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(function() { document.getElementById('search-input').focus(); }, 80);
+}
+function closeSearch() {
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-results').innerHTML = '<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q) {
+  var res = document.getElementById('search-results');
+  if (!q.trim()) { res.innerHTML = '<div class="sr-empty">Start typing…</div>'; return; }
+  var lq = q.toLowerCase();
+  var hits = PAGE_SEARCH_INDEX.filter(function(x) { return x.q.indexOf(lq) !== -1; }).slice(0, 20);
+  if (!hits.length) { res.innerHTML = '<div class="sr-empty">No results for "' + q + '"</div>'; return; }
+  res.innerHTML = hits.map(function(h) {
+    var idx = PAGE_SEARCH_INDEX.indexOf(h);
+    var ti = mathHighlight(h.title, lq);
+    return '<div class="sr-item" tabindex="0" data-idx="' + idx + '" onclick="goPageResult(' + idx + ')" onkeydown="if(event.key===\'Enter\')goPageResult(' + idx + ')">' +
+      '<span class="sr-icon">' + h.icon + '</span>' +
+      '<div><div class="sr-title">' + ti + '</div><div class="sr-meta">' + h.meta + '</div></div>' +
+      '<span class="sr-section">' + h.section + '</span></div>';
+  }).join('');
+}
+function mathHighlight(text, q) {
+  if (!q) return text;
+  var idx = text.toLowerCase().indexOf(q);
+  if (idx < 0) return text;
+  return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
+}
+function goPageResult(idx) {
+  var h = PAGE_SEARCH_INDEX[idx]; if (!h) return;
+  closeSearch();
+  if (h.pre) h.pre();
+  setTimeout(function(){
+    var el = document.getElementById(h.elId);
+    if (el) {
+      el.scrollIntoView({behavior:'smooth', block:'center'});
+      el.style.outline = '3px solid #a855f7'; el.style.outlineOffset = '4px';
+      setTimeout(function(){ el.style.outline=''; el.style.outlineOffset=''; }, 1600);
+    }
+  }, 60);
+}
+function searchKeyNav(e) {
+  if (e.key === 'Escape') { closeSearch(); return; }
+  var items = document.querySelectorAll('.sr-item');
+  var cur = document.activeElement;
+  var curIdx = Array.prototype.indexOf.call(items, cur);
+  if (e.key === 'ArrowDown') { e.preventDefault(); (items[curIdx + 1] || items[0]).focus(); }
+  if (e.key === 'ArrowUp')   { e.preventDefault(); (items[curIdx - 1] || items[items.length - 1]).focus(); }
+  if (e.key === 'Enter' && curIdx >= 0) { items[curIdx].click(); }
+}
+document.addEventListener('keydown', function(e) {
+  if (['INPUT','TEXTAREA','SELECT'].indexOf(e.target.tagName) !== -1) return;
+  var modal = document.getElementById('search-modal');
+  if (modal && modal.classList.contains('open')) {
+    if (e.key === 'Escape') closeSearch();
+    return;
+  }
+  if (e.key === '/') { e.preventDefault(); openSearch(); }
+});
+
+const puzzlesData=[
+{t:"The Pirate Democracy",src:"TED-Ed",diff:"★★★★☆",q:"Five pirates ranked 1–5 must split 100 gold coins. The most senior proposes a split; if ≥50% vote yes it passes; otherwise he is thrown overboard and the next proposes. All pirates are perfectly rational, greedy, and enjoy eliminating rivals. What does pirate #1 propose?",hint:"Work backwards from 2 pirates. If only 4 and 5 remain, pirate 4 keeps all 100 (50% = himself). If 3, 4, 5 remain, pirate 3 gives nothing to 4 (who'd lose if dropped to 2) and bribes pirate 5 with 1 coin. Continue upwards.",ans:"Pirate 1 keeps 98 coins, gives 1 to pirate 3, and 1 to pirate 5. Pirates 2 and 4 get nothing. The proposal passes 3–2. The key is that with each elimination, certain pirates become willing to accept even 1 coin."},
+{t:"The Three Gods Problem",src:"George Boolos (1996)",diff:"★★★★★",q:"Three gods — True, False, and Random — stand before you. True always answers truthfully, False always lies, Random answers randomly. They understand English but answer only 'ja' or 'da' (you don't know which means yes). In exactly 3 yes/no questions, determine which god is which.",hint:"The key: ask a counterfactual 'double-negative' question of the form 'If I asked you X, would you say ja?' This cancels out the lying and gives reliable information. First identify Random by asking whether a clearly random event happened.",ans:"One valid strategy: Ask god A 'If I asked whether B is Random, would you say ja?' The double-negation neutralises lying. Then ask one god 'Are you True?' using the same structure. The logic is intricate but the technique of counterfactual questions is the key insight."},
+{t:"The Bridge and Torch",src:"TED-Ed / Classic",diff:"★★★☆☆",q:"Four people must cross a bridge at night with one torch. Only 2 can cross at once, moving at the slower person's speed. Crossing times: 1 min, 2 min, 5 min, 10 min. How do all four cross in exactly 17 minutes?",hint:"The two slowest people (5 and 10 min) must cross together to avoid wasting time. The question is: who makes the return trips? The fastest runners are the most efficient carriers.",ans:"(1) 1+2 cross → 2 min. (2) 1 returns → 1 min. (3) 5+10 cross → 10 min. (4) 2 returns → 2 min. (5) 1+2 cross → 2 min. Total: 17 minutes exactly."},
+{t:"The Monty Hall Problem",src:"Classic Probability",diff:"★★☆☆☆",q:"You're on a game show. Three doors: one hides a car, two hide goats. You pick door 1. The host (who knows) opens door 3, revealing a goat. He offers you a switch to door 2. Should you switch?",hint:"Calculate P(win if stay) and P(win if switch) separately. The host's action carries information — he deliberately opened a losing door you didn't pick.",ans:"Always switch! P(win if stay) = 1/3. P(win if switch) = 2/3. Your initial pick was wrong with probability 2/3; if wrong, switching always wins. Confirmed by simulations and formal probability theory."},
+{t:"The Birthday Problem",src:"Classic Probability",diff:"★★☆☆☆",q:"How many people must be in a room for there to be a greater than 50% probability that two share a birthday? Assume 365 equally likely birthdays. Most people guess about 183.",hint:"Calculate the probability that NO two share a birthday: (365/365) × (364/365) × (363/365) × ... and stop when this product drops below 0.5.",ans:"Just 23 people! With 23, P(shared birthday) ≈ 50.7%. With 70, it's 99.9%. The surprise comes from counting all C(n,2) possible pairs — not just pairs involving you personally."},
+{t:"Hilbert's Infinite Hotel",src:"David Hilbert",diff:"★★★☆☆",q:"A hotel with countably infinitely many rooms is completely full. (1) A new guest arrives. (2) Then infinitely many new guests arrive. (3) Then infinitely many infinite busloads arrive. Can all be accommodated each time?",hint:"For one guest: move everyone from room n to room n+1. For infinitely many new guests: move existing guest in room n to room 2n, freeing all odd-numbered rooms.",ans:"Yes to all three! (1) Shift n→n+1; new guest takes room 1. (2) Shift n→2n; odd rooms free for newcomers. (3) Use Cantor's pairing function: biject ℕ×ℕ onto ℕ. The infinity of integers has the same size as the infinity of integer pairs."},
+{t:"The 100 Prisoners Problem",src:"Combinatorics / Probability",diff:"★★★★★",q:"100 prisoners numbered 1–100. Slips 1–100 placed randomly in 100 boxes. Each prisoner may open 50 boxes; must find their own number. If ALL succeed, everyone is freed. No communication after starting. What strategy gives >30% survival probability? (Naive independent: (1/2)^100 ≈ 0%)",hint:"The cycle strategy: prisoner k starts at box k, then follows the number found as the next box. They succeed if and only if the permutation cycle containing their number has length ≤ 50.",ans:"Each prisoner follows cycles in the random permutation. All succeed iff no cycle has length > 50. This probability = 1 − ln(2) ≈ 30.7%. The mathematical analysis uses properties of cycle lengths in random permutations."},
+{t:"The Counterfeit Coin",src:"Classic Logic",diff:"★★★☆☆",q:"12 coins; one is counterfeit and may be lighter or heavier. Using a balance scale in exactly 3 weighings, identify the counterfeit and determine if it's lighter or heavier.",hint:"3 weighings give 3³ = 27 distinguishable outcomes. You have 24 possibilities (12 coins × lighter/heavier). Design weighings to maximise information — each weighing should have roughly equal probability of each outcome.",ans:"Weigh 4 vs 4 (Group A vs B). (1) If balanced: counterfeit is in Group C; 2 further weighings identify it. (2) If tilted: 8 coins are candidates; track the lighter/heavier information to narrow to 1 coin in 2 more weighings."},
+{t:"The Collatz Conjecture",src:"Open Problem (Lothar Collatz, 1937)",diff:"★☆☆☆☆ (to state)",q:"Take any positive integer n. If even, divide by 2; if odd, multiply by 3 and add 1. Repeat. Does every starting number eventually reach 1? Try n = 27: the sequence peaks at 9,232 after 111 steps before crashing to 1.",hint:"Try to find a number that never reaches 1. Then try to prove it always does. Both are impossible with current mathematics.",ans:"Unknown! Verified computationally for all n up to approximately 2^68 (about 295 quintillion). Erdős said 'Mathematics is not yet ready for such problems.' Terence Tao proved (2019) that almost all starting values do eventually reach 1, but the full conjecture remains open."},
+{t:"Bridges of Königsberg",src:"Leonhard Euler, 1736",diff:"★★☆☆☆",q:"The city of Königsberg had 4 land masses connected by 7 bridges. Is it possible to walk through the city crossing each bridge exactly once — and return to your starting point?",hint:"Model the problem as a graph: land masses = vertices, bridges = edges. What property of vertex degrees determines whether such a walk (Eulerian circuit) exists?",ans:"Impossible. Euler proved an Eulerian circuit exists iff every vertex has even degree. In Königsberg, all 4 vertices have odd degree. This 1736 analysis, rejecting a geometric problem and replacing it with an abstract one, founded the field of graph theory."},
+{t:"The Blue Eyes Puzzle",src:"xkcd / Terry Tao",diff:"★★★★★",q:"100 people on an island all have blue eyes, but no mirrors exist and no one discusses eye colour. Everyone can see everyone else's eyes. A visitor announces: 'At least one of you has blue eyes.' What happens?",hint:"Consider n=1 (trivially leaves night 1), n=2 (each waits for n=1 case, deduces n=2 on night 2)... use induction. What does the announcement add beyond what everyone already knows?",ans:"All 100 blue-eyed people leave on night 100. The announcement creates 'common knowledge' — everyone knows, everyone knows everyone knows, etc. Without this, the knowledge chain breaks. With it, induction gives everyone enough information to deduce their own eye colour on night 100."},
+{t:"Tower of Hanoi",src:"Édouard Lucas, 1883",diff:"★★☆☆☆",q:"Three pegs, n disks on peg A (largest at bottom). Move all disks to peg C using peg B as auxiliary — never placing a larger disk on a smaller one. What is the minimum number of moves for n disks?",hint:"Think recursively: to move n disks, first move n−1 disks to peg B (using C), then move the largest to C, then move n−1 disks from B to C.",ans:"T(n) = 2^n − 1 moves minimum. The recurrence T(n) = 2T(n−1) + 1 solves to 2^n − 1. For 64 disks: 2^64 − 1 ≈ 18.4 quintillion moves. At 1 move per second, that's 585 billion years."},
+{t:"The Missing Dollar",src:"Classic Arithmetic",diff:"★☆☆☆☆",q:"3 guests pay £10 each (£30). The manager gives £5 back; bellboy keeps £2 and returns £1 to each guest. Guests paid £9 each = £27 total. Bellboy kept £2. That's £29. Where is the missing pound?",hint:"Ask: what quantities should add to £30? Are the right quantities being added?",ans:"There is no missing pound. The guests paid £27 total: £25 for the room + £2 kept by the bellboy. Adding the bellboy's £2 to £27 is double-counting it. Correct accounting: £30 = £25 (room) + £3 (returned to guests). The puzzle deliberately misleads by adding incompatible quantities."},
+{t:"The Two Envelopes Paradox",src:"Decision Theory",diff:"★★★★☆",q:"Two envelopes: one has twice the money of the other. You open yours and see £100. The other envelope contains either £50 or £200 — expected value £125. So you should always switch. But the same argument applies after switching. What is wrong?",hint:"The expected value calculation assumes a valid prior probability distribution over the contents. Does such a distribution exist?",ans:"The paradox arises from using an improper (unnormalisable) probability distribution. The argument 'the other has £50 or £200 with equal probability' cannot hold for all values simultaneously. With a proper prior, the expected value calculation gives no advantage to switching."},
+{t:"The Josephus Problem",src:"Classic Combinatorics",diff:"★★★☆☆",q:"n people stand in a circle, numbered 1 through n in order. A counting process begins at person 1: person 2 is eliminated first, then person 4, then person 6, and so on — every second person is eliminated as the count progresses around the circle (wrapping around repeatedly) until only one survivor remains. For example with n=6: eliminate 2, 4, 6, 3, 1 — survivor is 5. With n=7: eliminate 2, 4, 6, 1, 5, 3 — survivor is 7. Find a closed-form formula J(n) for the survivor's position as a function of n. Compute J(6), J(7), J(8), and J(100).",hint:"Start with pure powers of 2. The survivor is always person 1 for n = 2^k. Then track what happens when one extra person is added.",ans:"For n = 2^m + l, the survivor is at position 2l+1. The elegant proof: write n in binary, then cyclically shift the leading 1 to the end — this gives the survivor's position. Example: n=13=1101₂ → 1011₂ = 11 decimal — survivor is person 11."},
+{t:"Four Color Theorem",src:"Appel & Haken, 1976",diff:"★★☆☆☆",q:"Consider any map drawn on a flat surface (or a sphere) — a political map with countries, a map with regions, anything. Two regions are 'neighbours' if they share a border of positive length (not just a single point). The Four Colour Theorem asks: is it always possible to colour every region of such a map using at most 4 colours, so that no two neighbouring regions share the same colour? This was conjectured by Francis Guthrie in 1852 while colouring a map of English counties. Despite its elementary statement, it resisted proof for 124 years. Try to construct a map requiring 5 colours. Try to prove 4 always suffice. Both directions are far harder than they appear. The theorem was finally proved in 1976 by Appel and Haken — but the proof required a computer to check 1,936 unavoidable configurations, making it one of the most controversial proofs in mathematical history.",hint:"Try to construct a map requiring 5 colours. Try to prove 4 always suffice. Both are much harder than they sound!",ans:"Four colours always suffice. Appel & Haken (1976) proved it by reducing all planar graphs to a finite list of unavoidable configurations, then showing each is 'reducible.' First major theorem proved with essential computer assistance, sparking foundational debates about the nature of mathematical proof."},
+{t:"The Unexpected Hanging",src:"Martin Gardner / Classic",diff:"★★★★☆",q:"A judge tells a condemned prisoner on Sunday evening: 'You will be hanged at noon on exactly one day during the coming week — Monday through Friday. Moreover, the exact day will be a surprise: when the executioner arrives on that morning, you will not yet know that today is the day.' The prisoner, who is a logician, reasons as follows: 'I cannot be hanged on Friday. If I have survived until Friday morning without being hanged, I will know with certainty that today must be the day — so it would not be a surprise. Therefore Friday is eliminated. But then I cannot be hanged on Thursday either: if I survive until Thursday morning knowing Friday is ruled out, I will know today must be Thursday — again not a surprise. By the same backward induction, Wednesday is eliminated, then Tuesday, then Monday. Therefore I cannot be hanged on any day — the judge's statement is self-contradictory!' The prisoner relaxes completely. On Wednesday morning, the executioner arrives. The prisoner is genuinely surprised. Hanged. Where exactly does the prisoner's reasoning fail?",hint:"The prisoner's deduction chain is logically valid given that the judge's statement is true. The paradox lies in the self-referential nature of 'surprise' and 'knowledge.'",ans:"This is a genuine epistemic paradox about self-reference and knowledge. The prisoner's reasoning is formally valid, but the judge's statement contains a self-referential element about the prisoner's future knowledge state that makes it paradoxical — similar in structure to the Liar's Paradox."},
+{t:"Bertrand's Ballot Problem",src:"Classic Combinatorics",diff:"★★★★☆",q:"In an election, candidate A receives a total of a votes and candidate B receives a total of b votes, where a > b (A wins). The votes are counted one at a time, and the order in which they are tallied is uniformly random (every ordering of the a+b ballots is equally likely). We say A 'leads throughout' if at every single step of the count — after the 1st ballot, the 2nd ballot, and so on until all a+b ballots are counted — A's running total is strictly greater than B's running total. For example, with a=3, b=1 (4 ballots): the sequence AABA has A leading 1-0, then 2-0, then 2-1, then 3-1 — A leads throughout. But the sequence BAAА fails since B leads 0-1 after the first ballot. What is the exact probability, as a formula in a and b, that A leads strictly throughout the entire count? Verify your formula for small cases.",hint:"Model as lattice paths from (0,0) to (a,b). Use the Reflection Principle: paths that touch the diagonal y = x biject with all paths from (1,−1) to (a,b).",ans:"Probability = (a−b)/(a+b). The Reflection Principle proof: the number of 'bad' paths (where B catches A) equals the total number of paths from (−1,1) to (a,b), by reflecting the path at the diagonal. Dividing gives the elegant formula."},
+{t:"The Infinite Series Paradox",src:"Mathematics / Ramanujan",diff:"★★★☆☆",q:"Two famous 'paradoxical' infinite sums appear throughout physics and mathematics. (1) S = 1 − 1 + 1 − 1 + 1 − 1 + ⋯ (the Grandi series). The partial sums alternate between 1 and 0: S₁=1, S₂=0, S₃=1, S₄=0, ... The series does not converge in the standard (Cauchy) sense. Yet it is sometimes assigned the value ½. How, and what does this mean? (2) T = 1 + 2 + 3 + 4 + 5 + ⋯ (the sum of all positive integers). Each partial sum is larger than the last — it diverges to +∞. Yet physicists routinely assign this sum the value −1/12, and use this assignment in string theory and the Casimir effect. How can a sum of positive integers possibly equal a negative fraction? What is actually going on mathematically?",hint:"These series diverge in the standard (Cauchy) sense. But generalised summation methods can assign them values consistently and usefully.",ans:"1−1+1−⋯ = 1/2 under Cesàro summation (average of partial sums). For 1+2+3+⋯: the Riemann zeta function ζ(s) = Σn<sup>−s</sup>, analytically continued to s=−1, gives ζ(−1) = −1/12. This is not the 'sum' in the usual sense but a consistent analytic assignment with genuine physical applications in string theory."}
+];
+
+let customPuzzles = [];
+
+function tog(bodyId, arrId) {
+  var b = document.getElementById(bodyId);
+  if (!b) return;
+  // Check inline style first; fall back to computed style
+  var hidden = b.style.display ? b.style.display === 'none' : window.getComputedStyle(b).display === 'none';
+  b.style.display = hidden ? 'block' : 'none';
+  var a = document.getElementById(arrId);
+  if (a) { a.style.transform = hidden ? 'rotate(180deg)' : 'rotate(0deg)'; a.style.transition = 'transform 0.25s'; }
+}
+
+function toggleBlur(labelEl, targetId) {
+  var t = document.getElementById(targetId);
+  if (!t) return;
+  var isBlurred = t.classList.contains('puz-blurred');
+  t.classList.toggle('puz-blurred', !isBlurred);
+  t.classList.toggle('revealed', isBlurred);
+  labelEl.textContent = isBlurred ?
+    (targetId.includes('hint') ? '💡 Hint — click to blur again' : '✓ Answer — click to blur again') :
+    (targetId.includes('hint') ? '💡 Hint — click to reveal' : '✓ Answer — click to reveal');
+}
+
+
+
+function renderPuzzles(){
+  const isAdm = isAdmin();
+  const allPuzzles = [...puzzlesData, ...customPuzzles];
+  let html = allPuzzles.map((p,i)=>{
+    const isCustom = i >= puzzlesData.length;
+    const customIdx = isCustom ? i - puzzlesData.length : -1;
+    return`<div class="puz-card reveal" id="puzcard${i}">
+    <div class="puz-hdr" onclick="tog('puz${i}','pa${i}')">
+      <div style="display:flex;align-items:flex-start;gap:0.5rem">
+        <span class="puz-num-badge">#${i+1}</span>
+        <div>
+          <div class="puz-title">${p.t}</div>
+          <div class="puz-meta"><span class="puz-src">${p.src}</span><span class="puz-diff">${p.diff}</span></div>
+        </div>
+      </div>
+      <span class="puz-arr" id="pa${i}">▼</span>
+    </div>
+    <div class="puz-body" id="puz${i}" style="display:none">
+      <div class="puz-q">${p.q}</div>
+      <div class="puz-blur-box">
+        <div class="puz-blur-label" onclick="toggleBlur(this,'puz-hint-${i}')">💡 Hint — click to reveal</div>
+        <div class="puz-hint puz-blurred" id="puz-hint-${i}">💡 <strong>Hint:</strong> ${p.hint}</div>
+      </div>
+      <div class="puz-blur-box" style="margin-top:0.55rem">
+        <div class="puz-blur-label" onclick="toggleBlur(this,'puz-ans-${i}')">✓ Answer — click to reveal</div>
+        <div class="puz-ans puz-blurred" id="puz-ans-${i}">✓ <strong>Answer / Insight:</strong> ${p.ans}</div>
+      </div>
+      <div class="admin-bar${isAdm?' visible':''}">
+        ${isCustom
+          ? `<button class="admin-btn edit-btn" onclick="adminEditPuzzle(${customIdx})">✏️ Edit</button>
+             <button class="admin-btn del-btn" onclick="adminDeletePuzzle(${customIdx})">🗑 Delete</button>`
+          : `<span style="font-size:0.62rem;color:#6366f1;font-family:'JetBrains Mono',monospace">Built-in puzzle</span>`}
+      </div>
+    </div>
+  </div>`;}).join("");
+
+  if (isAdm) {
+    html += `<div class="puz-card reveal" style="border-style:dashed;cursor:pointer" onclick="adminAddPuzzle()">
+      <div class="puz-hdr" style="justify-content:center">
+        <div style="text-align:center">
+          <div class="puz-title" style="color:#34d399">➕ Add New Puzzle</div>
+          <div style="font-size:0.75rem;color:#6ee7b7;margin-top:0.3rem">Click to add a custom puzzle</div>
+        </div>
+      </div>
+    </div>`;
+  }
+  document.getElementById("puzzles-grid").innerHTML = html;
+}
+
+
+function adminAddPuzzle() {
+  if (!isAdmin()) return;
+  openAdminModal('➕ Add New Puzzle', `
+    <div class="admin-field"><label>Puzzle Title</label>
+      <input id="apTitle" placeholder="e.g. The 100 Prisoners Problem"></div>
+    <div class="admin-field"><label>Puzzle Question</label>
+      <textarea id="apQuestion" rows="4" placeholder="Describe the puzzle clearly..."></textarea></div>
+    <div class="admin-field"><label>Hint</label>
+      <textarea id="apHint" rows="2" placeholder="A helpful hint without giving away the answer..."></textarea></div>
+    <div class="admin-field"><label>Answer / Full Solution</label>
+      <textarea id="apAnswer" rows="3" placeholder="The complete answer and explanation..."></textarea></div>
+    <div class="admin-field"><label>Source (optional)</label>
+      <input id="apSource" placeholder="e.g. Martin Gardner / Classic"></div>
+    <div class="admin-field"><label>Difficulty</label>
+      <select id="apDiff">
+        <option value="★☆☆☆☆">★☆☆☆☆ — Very Easy</option>
+        <option value="★★☆☆☆">★★☆☆☆ — Easy</option>
+        <option value="★★★☆☆" selected>★★★☆☆ — Medium</option>
+        <option value="★★★★☆">★★★★☆ — Hard</option>
+        <option value="★★★★★">★★★★★ — Very Hard</option>
+      </select></div>
+  `, async () => {
+    const sb = window.sb;
+    if (!sb) return;
+    const puzzle = {
+      title: document.getElementById('apTitle').value.trim(),
+      puzzle: document.getElementById('apQuestion').value.trim(),
+      hint: document.getElementById('apHint').value.trim(),
+      answer: document.getElementById('apAnswer').value.trim(),
+      source: document.getElementById('apSource').value.trim() || 'Admin Added',
+      difficulty: document.getElementById('apDiff').value,
+      created_by: window.currentUser.email
+    };
+    if (!puzzle.title || !puzzle.puzzle) throw new Error('Title and puzzle question are required.');
+    if (sb) {
+      const { error } = await sb.from('math_puzzles').insert([puzzle]);
+      if (error) throw error;
+    } else {
+      // Fallback: store in localStorage
+      const stored = JSON.parse(localStorage.getItem('math_puzzles_local') || '[]');
+      stored.push({...puzzle, id: Date.now()});
+      localStorage.setItem('math_puzzles_local', JSON.stringify(stored));
+    }
+    await loadAdminData();
+  });
+}
+
+
+function adminEditPuzzle(idx) {
+  if (!isAdmin() || !customPuzzles[idx]) return;
+  const p = customPuzzles[idx];
+  openAdminModal('✏️ Edit Puzzle', `
+    <div class="admin-field"><label>Puzzle Title</label>
+      <input id="epTitle" value="${escHtml(p.t)}"></div>
+    <div class="admin-field"><label>Puzzle Question</label>
+      <textarea id="epQuestion" rows="4">${escHtml(p.q)}</textarea></div>
+    <div class="admin-field"><label>Hint</label>
+      <textarea id="epHint" rows="2">${escHtml(p.hint)}</textarea></div>
+    <div class="admin-field"><label>Answer / Full Solution</label>
+      <textarea id="epAnswer" rows="3">${escHtml(p.ans)}</textarea></div>
+    <div class="admin-field"><label>Source</label>
+      <input id="epSource" value="${escHtml(p.src)}"></div>
+  `, async () => {
+    const sb = window.sb;
+    if (!sb) return;
+    const updates = {
+      title: document.getElementById('epTitle').value.trim(),
+      puzzle: document.getElementById('epQuestion').value.trim(),
+      hint: document.getElementById('epHint').value.trim(),
+      answer: document.getElementById('epAnswer').value.trim(),
+      source: document.getElementById('epSource').value.trim()
+    };
+    if (sb && p.id) {
+      const { error } = await sb.from('math_puzzles').update(updates).eq('id', p.id);
+      if (error) throw error;
+    } else {
+      const stored = JSON.parse(localStorage.getItem('math_puzzles_local') || '[]');
+      const si = stored.findIndex(r => r.id == p.id);
+      if (si >= 0) { stored[si] = {...stored[si], ...updates}; localStorage.setItem('math_puzzles_local', JSON.stringify(stored)); }
+    }
+    await loadAdminData();
+  });
+}
+
+
+async function adminDeletePuzzle(idx) {
+  const sb = window.sb;
+  if (!sb) return;
+  if (!isAdmin() || !customPuzzles[idx]) return;
+  if (!confirm('Delete this puzzle? This cannot be undone.')) return;
+  const p = customPuzzles[idx];
+  if (sb && p.id) {
+    const { error } = await sb.from('math_puzzles').delete().eq('id', p.id);
+    if (error) { alert('Delete failed: ' + error.message); return; }
+  } else {
+    const stored = JSON.parse(localStorage.getItem('math_puzzles_local') || '[]');
+    const filtered = stored.filter(r => r.id != p.id);
+    localStorage.setItem('math_puzzles_local', JSON.stringify(filtered));
+  }
+  await loadAdminData();
+}
+
+
+async function loadAdminData() {
+  const sb = window.sb;
+  if (!sb || !isAdmin()) return;
+  try {
+    const { data: puzzles } = await sb.from('math_puzzles').select('*').order('created_at', { ascending: true });
+    customPuzzles = (puzzles || []).map(r => ({
+      id: r.id, t: r.title, q: r.puzzle, hint: r.hint, ans: r.answer,
+      src: r.source || 'Admin Added', diff: r.difficulty || '★★★☆☆'
+    }));
+  } catch(e) { console.warn('loadAdminData error:', e); }
+  renderPuzzles();
+  reRevealActivePage();
+}
+
+
+(function loadLocalFallback() {
+  try {
+    const lp = JSON.parse(localStorage.getItem('math_puzzles_local') || '[]');
+    if (lp.length) {
+      customPuzzles = lp.map(r => ({ id: r.id, t: r.title, q: r.puzzle, hint: r.hint, ans: r.answer, src: r.source || 'Admin Added', diff: r.difficulty || '★★★☆☆' }));
+    }
+  } catch(e) {}
+})();
+
+function buildSearchIndex(){
+  PAGE_SEARCH_INDEX = [];
+  var all = puzzlesData.concat(customPuzzles);
+  all.forEach(function(p,i){
+    PAGE_SEARCH_INDEX.push({icon:'🧩',title:p.t,meta:p.src||'Puzzle',section:'Puzzles',elId:'puzcard'+i,q:(p.t+' '+(p.q||'')+' '+(p.src||'')).toLowerCase()});
+  });
+}
+
+renderPuzzles();
+
+
+document.querySelectorAll('.reveal').forEach(function(el, i) {
+  setTimeout(function() { el.classList.add('visible'); }, Math.min(i * 35, 900));
+});
+</script>
+
+<!-- ═══ SUPABASE + SHARED AUTH/COMMENTS BRIDGE ═══════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+</body>
+</html>

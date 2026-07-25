@@ -2163,7 +2163,14 @@ async function fetchMissingCovers(){
       }
     }catch(e){}
   }
-  if(dirty) renderAll();
+  if(dirty){
+    // This resolves a second or two after the page finishes loading —
+    // right when a bare renderAll() would blow away the scroll position
+    // we'd just restored on return from the background. Same anchor
+    // pattern as _applyProgressData below.
+    const anchor = getScrollAnchor();
+    renderAll(() => restoreScrollAnchor(anchor));
+  }
 }
 function coverUrl(b){
   if(LOCAL_COVERS[b.id]) return LOCAL_COVERS[b.id];
@@ -2221,7 +2228,62 @@ const PEARL_TYPE={'o1':'white','o5':'white','o8':'white','o10':'white','o13':'wh
 // the file clam_yellow.png (the colour name used for the asset).
 const PEARL_IMG = {white:'white', pink:'pink', gold:'yellow', black:'black'};
 
-function renderAll(){
+// ── SCROLL POSITION ANCHORING ───────────────────────────────────
+// Remembers which book card sits at the top of the viewport so that a
+// list rebuild (incoming cross-device sync data, the chunked re-render
+// below, or even a browser tab reload after being backgrounded) can put
+// the user back where they were instead of landing on a different book.
+function getScrollAnchor(){
+  const items = document.querySelectorAll('#bookList .book-item');
+  for (const el of items) {
+    const r = el.getBoundingClientRect();
+    if (r.bottom > 0) return { id: el.id, offset: r.top };
+  }
+  return null;
+}
+function restoreScrollAnchor(anchor){
+  if (!anchor) return;
+  const el = document.getElementById(anchor.id);
+  if (!el) return;
+  const delta = el.getBoundingClientRect().top - anchor.offset;
+  // behavior:'instant' is required, not cosmetic. html{scroll-behavior:smooth}
+  // (set globally, further down, for user-facing navigation like "back to
+  // top" or a deep-linked book) would otherwise turn this silent correction
+  // into a multi-hundred-ms animated scroll. That's a real window of time in
+  // which a SECOND anchor cycle — cover art resolving in fetchMissingCovers,
+  // or a cross-device resync landing in _applyProgressData right as you
+  // return from the background — can call getScrollAnchor() mid-glide,
+  // capture whatever book is scrolling past at that instant, and then
+  // "restore" to that instead of where you actually were. Instant makes the
+  // correction atomic so no other cycle can ever observe it half-finished.
+  if (Math.abs(delta) > 1) window.scrollBy({left:0, top:delta, behavior:'instant'});
+}
+// Persist the anchor as the user scrolls so it survives a full page
+// reload (e.g. a mobile browser reloading a tab that sat backgrounded
+// for a while), and restore it once the initial render below finishes.
+let _anchorSaveTimer;
+window.addEventListener('scroll', () => {
+  clearTimeout(_anchorSaveTimer);
+  _anchorSaveTimer = setTimeout(() => {
+    const a = getScrollAnchor();
+    if (a) sessionStorage.setItem('rl_scrollAnchor_books', JSON.stringify(a));
+  }, 200);
+}, {passive:true});
+
+// renderAll() can be re-entered while a previous call's chunked build (see
+// CHUNK below) is still trickling in across animation frames — e.g. a
+// cross-device sync callback fires before the initial 121-card render has
+// finished appending. Without a guard, both chunk chains keep appending to
+// the same <ul>, interleaving or duplicating cards, and BOTH eventually
+// reach their own onDone/restoreScrollAnchor — so whichever happens to
+// finish last silently wins the final scroll position, even if it was the
+// stale call. Each renderAll() call captures the generation counter at
+// start and every later step checks it first; a newer call bumps the
+// counter, which makes any older call quietly stop appending right where it
+// is instead of fighting the newer one.
+let _renderGen = 0;
+function renderAll(onDone){
+  const _gen = ++_renderGen;
   updateStats();
   updateSpotlight();
   const list=sortedFiltered();
@@ -2334,15 +2396,17 @@ function renderAll(){
   ul.innerHTML='';
   if(list.length<=CHUNK){
     ul.innerHTML=list.map(bookHTML).join('');
+    if(_gen===_renderGen && onDone) onDone();
   } else {
     ul.insertAdjacentHTML('beforeend',list.slice(0,CHUNK).map(bookHTML).join(''));
     let _ci=CHUNK;
     function _renderNext(){
-      if(_ci>=list.length) return;
+      if(_gen!==_renderGen) return; // superseded by a newer renderAll() — stop appending, let the new call own the list
       const end=Math.min(_ci+CHUNK,list.length);
       ul.insertAdjacentHTML('beforeend',list.slice(_ci,end).map(bookHTML).join(''));
       _ci=end;
       if(_ci<list.length) requestAnimationFrame(_renderNext);
+      else if(onDone) onDone();
     }
     requestAnimationFrame(_renderNext);
   }
@@ -2903,22 +2967,34 @@ function restoreFilters(){
 }
 restoreFilters();
 fetchMissingCovers();
-renderAll();
-
-// ── ANCHOR SCROLL: handle #book-{id} links from "Copy link" ──────
-(function handleBookAnchor() {
+renderAll(() => {
+  // ── ANCHOR SCROLL: handle #book-{id} links from "Copy link" ──────
   const hash = window.location.hash;
-  if (!hash || !hash.startsWith('#book-')) return;
-  // renderAll() is synchronous so the element already exists in DOM
-  const el = document.querySelector(hash);
-  if (!el) return;
-  setTimeout(() => {
-    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    el.style.transition = 'outline 0s, box-shadow 0.3s';
-    el.style.boxShadow  = '0 0 0 2px var(--accent2), 0 0 24px rgba(201,168,76,0.18)';
-    setTimeout(() => { el.style.boxShadow = ''; }, 2200);
-  }, 120);
-})();
+  if (hash && hash.startsWith('#book-')) {
+    const el = document.querySelector(hash);
+    // Consume the hash immediately, whether or not the element exists,
+    // so it can't re-hijack every future reload of this tab (e.g. the
+    // browser reloading a tab that sat backgrounded for a while) — a
+    // deep link should only jump once, then get out of the way.
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+    if (el) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.style.transition = 'outline 0s, box-shadow 0.3s';
+        el.style.boxShadow  = '0 0 0 2px var(--accent2), 0 0 24px rgba(201,168,76,0.18)';
+        setTimeout(() => { el.style.boxShadow = ''; }, 2200);
+      }, 120);
+    }
+    return;
+  }
+  // No deep link — restore wherever the user was scrolled to before the
+  // tab was backgrounded/reloaded (a mobile browser reloading a tab that
+  // sat backgrounded for a while re-runs this whole script from scratch).
+  try {
+    const saved = sessionStorage.getItem('rl_scrollAnchor_books');
+    if (saved) restoreScrollAnchor(JSON.parse(saved));
+  } catch(e) {}
+});
 
 // ── SEO: JSON-LD STRUCTURED DATA ─────────────────────────────────
 (function injectStructuredData() {
@@ -3298,12 +3374,33 @@ window._getProgressData = function() {
 };
 
 window._applyProgressData = function(data) {
+  // A background-return resync usually carries back exactly what's already
+  // on screen — nothing changed on another device, it just fired because
+  // the tab regained focus. Diff before merging so a no-op sync skips the
+  // rebuild entirely: fewer rebuilds means fewer chances for the anchor
+  // cycles below to overlap and race each other in the first place.
+  const changed =
+    (data.status     && JSON.stringify(data.status)     !== JSON.stringify(status))     ||
+    (data.notes      && JSON.stringify(data.notes)      !== JSON.stringify(notes))      ||
+    (data.bought     && JSON.stringify(data.bought)     !== JSON.stringify(bought))     ||
+    (data.willBuy    && JSON.stringify(data.willBuy)    !== JSON.stringify(willBuy))    ||
+    (data.willNotBuy && JSON.stringify(data.willNotBuy) !== JSON.stringify(willNotBuy));
+
   if (data.status)     { Object.assign(status,     data.status);     localStorage.setItem('rl_status_v3',    JSON.stringify(status)); }
   if (data.notes)      { Object.assign(notes,       data.notes);      localStorage.setItem('rl_notes_v3',     JSON.stringify(notes)); }
   if (data.bought)     { Object.assign(bought,      data.bought);     localStorage.setItem('rl_bought_v3',    JSON.stringify(bought)); }
   if (data.willBuy)    { Object.assign(willBuy,     data.willBuy);    localStorage.setItem('rl_willbuy_v3',   JSON.stringify(willBuy)); }
   if (data.willNotBuy) { Object.assign(willNotBuy,  data.willNotBuy); localStorage.setItem('rl_willnotbuy_v3',JSON.stringify(willNotBuy)); }
-  if (typeof renderAll === 'function') renderAll();
+
+  if (changed && typeof renderAll === 'function') {
+    // This fires whenever shared.js pulls fresh data — e.g. a periodic
+    // re-sync after the tab was backgrounded — which used to rebuild the
+    // whole list and leave scroll wherever the shrunken/regrown list
+    // happened to land. Remember the on-screen card and restore it once
+    // the (possibly multi-frame) rebuild finishes.
+    const anchor = getScrollAnchor();
+    renderAll(() => restoreScrollAnchor(anchor));
+  }
 };
 
 </script>

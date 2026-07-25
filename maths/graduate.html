@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#faf7f2!important}html.pre-light{background:#faf7f2}</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]}));}else{renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});}"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Lato:ital,wght@0,400;0,700;1,400&family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<title>Graduate Mathematics: 14 Advanced Topics | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="14 graduate-level topics — algebraic topology, symplectic geometry, functional analysis and beyond — where coursework ends and mathematical research begins.">
+<meta name="keywords" content="graduate mathematics, algebraic topology, symplectic geometry, functional analysis, graduate math topics, PhD mathematics, advanced mathematics">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Mathematics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/maths/graduate.html">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Graduate Mathematics: 14 Advanced Topics | Stargazer">
+<meta property="og:description" content="Where coursework ends and research begins — 14 graduate topics, from algebraic topology to symplectic geometry, with the books to master them →">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/maths/graduate.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Graduate Mathematics: 14 Advanced Topics | Stargazer">
+<meta name="twitter:description" content="Algebraic topology, symplectic geometry, functional analysis — 14 graduate topics at the advanced frontier of mathematics. Go further →">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Graduate Mathematics: The Deep End of Research",
+  "description": "14 graduate-level mathematics topics — algebraic topology, symplectic geometry, functional analysis, and beyond — at the frontier where coursework ends and research begins.",
+  "url": "https://stargazer-9m9.pages.dev/maths/graduate.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Mathematics", "sameAs": "https://en.wikipedia.org/wiki/Mathematics" }
+}
+</script>
+<link rel="stylesheet" href="maths.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ AUTH TOP BAR ════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <a href="../login.html" id="loginBtn" class="atb-btn atb-signin">☽ Sign In</a>
+  <div id="userInfo" style="display:none;align-items:center;gap:0.4rem">
+    <span class="atb-username" id="userEmailDisplay">✦ Explorer</span>
+    <button class="atb-signout" onclick="doSignOut()">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ ADMIN MODAL ══════ -->
+<div id="adminModal">
+  <div class="admin-modal-box">
+    <div class="admin-modal-title" id="adminModalTitle">Admin Panel</div>
+    <div id="adminModalBody"></div>
+    <div class="admin-modal-actions">
+      <button class="admin-cancel-btn" onclick="closeAdminModal()">Cancel</button>
+      <button class="admin-save-btn" id="adminModalSaveBtn" onclick="adminModalSave()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ NAV ═══════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Mathematics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Graduate</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)">🔍 Search</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══════════════════════════════════════ HAMBURGER MENU ════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home" onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item" data-page="books" onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item" data-page="puzzles" onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="precollege" onclick="location.href='precollege.html'">📐 Pre-College</button>
+  <button class="hm-item" data-page="olympiad" onclick="location.href='olympiad.html'">🏆 Olympiad</button>
+  <button class="hm-item" data-page="undergrad" onclick="location.href='undergrad.html'">🎓 Undergrad</button>
+  <button class="hm-item active" data-page="graduate" onclick="location.href='graduate.html'">🔬 Graduate</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="research" onclick="location.href='research.html'">⚡ Research</button>
+  <button class="hm-item" data-page="openproblems" onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item" data-page="careers" onclick="location.href='careers.html'">💼 Careers</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="studyguide" onclick="location.href='studyguide.html'">📖 Study Guide</button>
+  <button class="hm-item" data-page="facts" onclick="location.href='facts.html'">✨ Math Facts</button>
+  <button class="hm-item" data-page="universities" onclick="location.href='universities.html'">🎓 India</button>
+  <button class="hm-item" data-page="comments" onclick="location.href='comments.html'">💬 Comments</button>
+</div>
+
+<!-- ═══════════════════════════════════════ SEARCH MODAL ════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search this page…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<div id="shortcut-hint">/ search</div>
+
+<div class="page active" id="page-graduate" style="background:#07000e">
+  <section class="section" id="graduate">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:rgba(168,85,247,0.08);color:#d8b4fe;border:1px solid rgba(168,85,247,0.22)">Graduate &amp; Research Level</span>
+        <h1 class="s-title font-serif" style="color:#f3e8ff">The Deep End — Masters &amp; Research Mathematics</h1>
+        <p class="s-desc" style="color:#a855f7">The advanced frontier: algebraic geometry, number theory, functional analysis, and beyond — where coursework ends and research begins.</p>
+      </div>
+      <div class="g3" id="graduate-grid"></div>
+    </div>
+  </section>
+</div>
+
+
+<footer id="footer">
+  <div class="foot-eq">e<sup>iπ</sup> + 1 = 0</div>
+  <p class="foot-txt"><strong style="color:#6d28d9">"Mathematics is not about numbers, equations, computations, or algorithms. It is about understanding."</strong><br>— William Paul Thurston, Fields Medalist</p>
+  <div class="foot-links">
+    <button class="foot-link" onclick="location.href='../ABOUT.html'">📖 About Stargazer</button>
+    <a class="foot-link" onclick="location.href='comments.html'; return false;" href="#">💬 Community Comments</a>
+    <a class="foot-link" href="mailto:ayan.chakraborty6174@gmail.com">✉️ Contact Creator</a>
+    <a class="foot-link" href="https://stargazer-9m9.pages.dev" target="_blank" rel="noopener">🌐 Stargazer Home</a>
+  </div>
+</footer>
+
+<button id="theme-toggle" title="Toggle light / dark theme" aria-label="Toggle light / dark theme" onclick="toggleTheme()">☀️</button>
+<button id="btt" title="Back to top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+window._pageKey = 'maths';
+
+function isAdmin() {
+  return !!(window.currentUser && window.currentUser.email === ADMIN_EMAIL);
+}
+
+window._applyDarkMode = function(isDark) {
+  // isDark=true → dark mode (no light-mode class)
+  // isDark=false → light mode
+  applyTheme(!isDark);   // applyTheme(true) adds light-mode class
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+};
+
+
+window._afterRenderAuthUI = function(user) {
+  // Show/hide admin bars
+  document.querySelectorAll('.admin-bar').forEach(function(el) {
+    if (user && user.email === ADMIN_EMAIL) { el.classList.add('visible'); }
+    else                                    { el.classList.remove('visible'); }
+  });
+  // Mirror display name into comment form header
+  var ud2 = document.getElementById('userEmailDisplay2');
+  if (ud2 && user) {
+    ud2.textContent = user.user_metadata?.display_name
+                    || user.user_metadata?.full_name
+                    || user.email || 'you';
+  }
+  // Trigger admin data load on sign-in
+  if (user) { if (typeof loadAdminData === 'function') loadAdminData(); }
+};
+
+
+function applyTheme(light) {
+  if (light) { document.body.classList.add('light-mode'); }
+  else        { document.body.classList.remove('light-mode'); }
+  var btn = document.getElementById('theme-toggle');
+  if (btn) btn.textContent = light ? '🌙' : '☀️';
+  document.documentElement.classList.remove('pre-light');
+}
+
+
+function toggleTheme() {
+  var nowLight = !document.body.classList.contains('light-mode');
+  applyTheme(nowLight);
+  localStorage.setItem('stargazer_theme', nowLight ? 'light' : 'dark');
+  // Persist via shared.js (writes to Supabase profiles.dark_mode)
+  // isDark param: true = dark mode, false = light mode
+  if (window.sbSaveDarkMode) window.sbSaveDarkMode(!nowLight);
+}
+
+
+// Apply theme immediately on load from localStorage
+(function() {
+  var tm = localStorage.getItem('stargazer_theme');
+  applyTheme(tm === 'light');
+})();
+
+// shared.js calls this after loading dark_mode from profiles
+// (already declared in the auth block above as window._applyDarkMode)
+
+
+function reRevealActivePage() {
+  var p = document.querySelector('.page.active');
+  if (!p) return;
+  p.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
+    el.classList.add('visible');
+  });
+}
+
+
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Close modal on backdrop click
+
+function toggleHamburger() {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu) return;
+  var open = menu.classList.toggle('open');
+  btn.classList.toggle('open', open);
+}
+// Close on outside click
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu || !menu.classList.contains('open')) return;
+  if (!menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var menu = document.getElementById('hamburger-menu');
+    if (menu && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      document.getElementById('hamburger-btn').classList.remove('open');
+    }
+  }
+});
+
+window.addEventListener('scroll', function() {
+  var btt = document.getElementById('btt');
+  if (btt) btt.classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
+
+window._getProgressData = function() { return {}; };
+window._applyProgressData = function(d) {};
+
+let _adminModalSaveFn = null;
+
+function openAdminModal(title, bodyHTML, saveFn) {
+  document.getElementById('adminModalTitle').textContent = title;
+  document.getElementById('adminModalBody').innerHTML = bodyHTML;
+  _adminModalSaveFn = saveFn;
+  document.getElementById('adminModal').classList.add('open');
+}
+
+function closeAdminModal() {
+  document.getElementById('adminModal').classList.remove('open');
+  _adminModalSaveFn = null;
+}
+
+async function adminModalSave() {
+  if (_adminModalSaveFn) {
+    const btn = document.getElementById('adminModalSaveBtn');
+    btn.textContent = 'Saving…';
+    btn.disabled = true;
+    try {
+      await _adminModalSaveFn();
+      closeAdminModal();
+    } catch(e) {
+      alert('Save failed: ' + (e.message || e));
+    }
+    btn.textContent = 'Save';
+    btn.disabled = false;
+  }
+}
+
+document.getElementById('adminModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAdminModal();
+});
+
+var PAGE_SEARCH_INDEX = [];
+function openSearch() {
+  buildSearchIndex();
+  var m = document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(function() { document.getElementById('search-input').focus(); }, 80);
+}
+function closeSearch() {
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-results').innerHTML = '<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q) {
+  var res = document.getElementById('search-results');
+  if (!q.trim()) { res.innerHTML = '<div class="sr-empty">Start typing…</div>'; return; }
+  var lq = q.toLowerCase();
+  var hits = PAGE_SEARCH_INDEX.filter(function(x) { return x.q.indexOf(lq) !== -1; }).slice(0, 20);
+  if (!hits.length) { res.innerHTML = '<div class="sr-empty">No results for "' + q + '"</div>'; return; }
+  res.innerHTML = hits.map(function(h) {
+    var idx = PAGE_SEARCH_INDEX.indexOf(h);
+    var ti = mathHighlight(h.title, lq);
+    return '<div class="sr-item" tabindex="0" data-idx="' + idx + '" onclick="goPageResult(' + idx + ')" onkeydown="if(event.key===\'Enter\')goPageResult(' + idx + ')">' +
+      '<span class="sr-icon">' + h.icon + '</span>' +
+      '<div><div class="sr-title">' + ti + '</div><div class="sr-meta">' + h.meta + '</div></div>' +
+      '<span class="sr-section">' + h.section + '</span></div>';
+  }).join('');
+}
+function mathHighlight(text, q) {
+  if (!q) return text;
+  var idx = text.toLowerCase().indexOf(q);
+  if (idx < 0) return text;
+  return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
+}
+function goPageResult(idx) {
+  var h = PAGE_SEARCH_INDEX[idx]; if (!h) return;
+  closeSearch();
+  if (h.pre) h.pre();
+  setTimeout(function(){
+    var el = document.getElementById(h.elId);
+    if (el) {
+      el.scrollIntoView({behavior:'smooth', block:'center'});
+      el.style.outline = '3px solid #a855f7'; el.style.outlineOffset = '4px';
+      setTimeout(function(){ el.style.outline=''; el.style.outlineOffset=''; }, 1600);
+    }
+  }, 60);
+}
+function searchKeyNav(e) {
+  if (e.key === 'Escape') { closeSearch(); return; }
+  var items = document.querySelectorAll('.sr-item');
+  var cur = document.activeElement;
+  var curIdx = Array.prototype.indexOf.call(items, cur);
+  if (e.key === 'ArrowDown') { e.preventDefault(); (items[curIdx + 1] || items[0]).focus(); }
+  if (e.key === 'ArrowUp')   { e.preventDefault(); (items[curIdx - 1] || items[items.length - 1]).focus(); }
+  if (e.key === 'Enter' && curIdx >= 0) { items[curIdx].click(); }
+}
+document.addEventListener('keydown', function(e) {
+  if (['INPUT','TEXTAREA','SELECT'].indexOf(e.target.tagName) !== -1) return;
+  var modal = document.getElementById('search-modal');
+  if (modal && modal.classList.contains('open')) {
+    if (e.key === 'Escape') closeSearch();
+    return;
+  }
+  if (e.key === '/') { e.preventDefault(); openSearch(); }
+});
+
+const graduateData=[
+{t:"Algebraic Topology",desc:"Topological spaces via algebraic invariants: fundamental groups, covering spaces, homology and cohomology rings, CW complexes.",books:[{n:"Algebraic Topology (free online)",au:"Allen Hatcher"},{n:"Algebraic Topology",au:"Bredon"}],
+detail:"<p><em>🎯 What is this?</em> Algebraic topology is about answering the question: 'How is this shape different from that shape?' without being able to tear or glue anything. For example, a donut and a coffee cup are secretly the SAME shape (you can deform one into the other), but a donut and a sphere are different — a sphere has no hole. Algebraic topology turns these geometric intuitions into precise algebra: it assigns GROUPS (sets with an addition rule) and NUMBERS to shapes, so that two shapes are equivalent only if their algebraic invariants match. You convert a hard geometric problem into an algebra problem.</p><p>Algebraic topology transforms topology — the study of spaces up to continuous deformation — into algebra, producing invariants that distinguish non-homeomorphic spaces. The fundamental group π₁(X,x₀) captures loops based at x₀: it's the group of homotopy classes of loops, under concatenation. For the circle: π₁(S¹) = ℤ (loops classified by winding number). For S² (2-sphere): π₁(S²) = 0 (every loop can be contracted). This already distinguishes surfaces that look similar.</p><p>Homology groups H_n(X) are more powerful and easier to compute. They are defined via chain complexes: C_n are n-dimensional 'cells' of X, with boundary maps ∂: C_n → C<sub>n-1</sub> satisfying ∂∘∂ = 0. Then H_n = ker(∂_n)/im(∂<sub>n+1</sub>). For the torus T²: H₀=ℤ, H₁=ℤ², H₂=ℤ. For the Klein bottle K: H₀=ℤ, H₁=ℤ⊕ℤ/2ℤ, H₂=0. The torsion part (ℤ/2ℤ for the Klein bottle) detects non-orientability. The Euler characteristic χ(X) = Σ (−1)ⁿ rank(H_n) = V−E+F recovers Euler's formula as a special case of a deep algebraic identity.</p><p>Cohomology H*(X) is the dual theory, but with the additional structure of a cup product making H*(X) into a graded ring. This ring is a finer invariant: ℝP² and S¹∨S² have the same Betti numbers but different cohomology rings. The Künneth formula: H_*(X×Y) ≅ H_*(X) ⊗ H_*(Y) (over a field). Poincaré duality: for a closed orientable n-manifold, H^k(M) ≅ H<sub>n-k</sub>(M). These tools let you prove things like: there is no retraction of the disk onto its boundary — the Brouwer fixed-point theorem follows immediately from it.</p>"},
+
+{t:"Algebraic Geometry",desc:"Geometry defined by polynomial equations — varieties, schemes, sheaves. One of the richest and most active areas of pure mathematics.",books:[{n:"Algebraic Geometry",au:"Robin Hartshorne"},{n:"Foundations of Algebraic Geometry (free)",au:"Ravi Vakil"},{n:"Basic Algebraic Geometry",au:"Igor Shafarevich"}],
+detail:"<p>Classical algebraic geometry studies varieties: solution sets of polynomial equations over a field k. An affine variety V(f₁,...,fₘ) = {(a₁,...,aₙ) ∈ kⁿ: fᵢ(a₁,...,aₙ)=0 for all i}. The key link to algebra: the Nullstellensatz (Hilbert). Over ℂ: a system f₁,...,fₘ has no common solution iff 1 ∈ (f₁,...,fₘ) — the ideal they generate. The radical ideal I(V) = {f: fⁿ ∈ I for some n} corresponds bijectively to varieties. This is the algebra-geometry dictionary: varieties ↔ radical ideals.<p><em>🎯 What is this?</em> Algebraic geometry is the study of shapes defined by polynomial equations — like circles (x²+y²=1) or parabolas (y=x²), but in many dimensions and with many variables. At school you solved two equations simultaneously to find where two lines intersect. Algebraic geometry does that for arbitrarily complex shapes in any dimension. Grothendieck in the 1960s completely rebuilt the subject with 'schemes' — a new language that works over any number system, including whole numbers — connecting geometry to number theory in a profound way.</p></p><p>Grothendieck's scheme theory (1960s) revolutionised algebraic geometry by allowing 'nilpotents' — rings where xⁿ=0 for some n>1 — to appear in the structure sheaf. A scheme is a locally ringed space (X, O_X) where X is a topological space and O_X is a sheaf of rings locally isomorphic to Spec(A) = {prime ideals of A}. This allows a seamless treatment of algebraic geometry over any ring, including ℤ — 'arithmetic geometry.' Key theorem: a scheme is smooth over ℂ iff the complex analytic space it defines is a complex manifold.</p><p>Sheaves and their cohomology are the main computational tools. For a coherent sheaf ℱ on a projective variety X, the Riemann-Roch theorem (in various forms) computes χ(X,ℱ) = Σ (−1)ⁱ h^i(X,ℱ) in terms of intersection theory. The Grothendieck-Riemann-Roch theorem unifies all versions: ch(f_! ℱ) = f_*(ch(ℱ)·td(T_X)), an equation in the Chow ring. This level of abstraction — working with categories of sheaves, derived categories D^b(Coh(X)), and eventually ∞-categories — is where modern algebraic geometry lives.</p>",startGuide:["📖 Prerequisites first: Miles Reid's <em>Undergraduate Algebraic Geometry</em> (free PDF, Cambridge) for the intuition.","📖 Then Hartshorne's <em>Algebraic Geometry</em> (Springer GTM 52) — the standard graduate text, challenging but comprehensive.","📖 Modern approach: Vakil's <em>The Rising Sea: Foundations of Algebraic Geometry</em> (free at math.stanford.edu/~vakil/216blog/) — the best introduction to the scheme-theoretic view.","🎥 Online: <a href='https://piazza.com/stanford/fall2023/math216a'>Ravi Vakil's course notes</a>; also Richard Borcherds' algebraic geometry lectures on YouTube.","📄 Entry-level paper: Milne's freely available notes at <a href='https://www.jmilne.org/math/'>jmilne.org/math</a> cover algebraic curves and abelian varieties accessibly.","🔬 Join a reading group at your university working through Hartshorne Chapters II–III — this is the standard PhD entry point."]},
+
+{t:"Functional Analysis",desc:"Infinite-dimensional spaces, bounded operators, spectral theory, Banach and Hilbert spaces — the mathematical home of quantum mechanics.",books:[{n:"Real and Complex Analysis",au:"Walter Rudin ('Big Rudin')"},{n:"A Course in Functional Analysis",au:"John Conway"},{n:"Functional Analysis",au:"Peter Lax"}],
+detail:"<p>Functional analysis studies infinite-dimensional vector spaces and the operators on them — what happens when you do linear algebra in infinite dimensions. <p><em>🎯 What is this?</em> Normal algebra works with lists of numbers (vectors in 3D space, etc.). Functional analysis does linear algebra in INFINITE dimensions — where 'vectors' are functions like sin(x), e^x, or any wave shape. You ask the same questions as in linear algebra: can we find the 'eigenvectors' (special directions)? Can we decompose any function into simpler pieces? The surprising answer: YES, and this is exactly what Fourier series does (decomposing any sound wave into pure sine waves). Functional analysis is the rigorous mathematical foundation of quantum mechanics and modern signal processing.</p> A Banach space is a complete normed vector space; a Hilbert space additionally has an inner product. The key examples: L²([0,1]) (square-integrable functions), ℓ² (square-summable sequences), H^1_0 (Sobolev space). In infinite dimensions, familiar facts break down: the closed unit ball is NOT compact (Riesz lemma), and not every linear map is continuous.</p><p>Bounded linear operators T: X→Y (‖Tx‖ ≤ C‖x‖) form a Banach space B(X,Y). The spectral theorem for compact self-adjoint operators on a Hilbert space H: H has an orthonormal basis of eigenvectors of T, with eigenvalues forming a sequence converging to 0. This is the infinite-dimensional analogue of diagonalizing symmetric matrices — and it is what makes quantum mechanics work. The Schrödinger equation iℏ dψ/dt = Hψ (H = Hamiltonian operator, self-adjoint on L²) has solution ψ(t) = e<sup>−iHt/ℏ</sup>ψ₀; the spectral theorem tells us the possible energy values (eigenvalues of H) and their probabilities (⟨ψ,Eₙ⟩²).</p><p>The Hahn-Banach theorem (extend any bounded linear functional from a subspace to the whole space preserving norm), the open mapping theorem (a surjective bounded operator between Banach spaces is open), and the closed graph theorem (a closed linear map is bounded) are the Big Three theorems. Together they provide the analytical power to prove existence and uniqueness theorems for PDEs via abstract functional analysis — the Lax-Milgram theorem is a key example, giving existence of weak solutions to elliptic PDEs from abstract Hilbert space theory alone.</p>"},
+
+{t:"Measure Theory",desc:"The rigorous foundation of probability and integration — Lebesgue's revolution in analysis. Measure spaces, integration, Lᵖ spaces.",books:[{n:"Real Analysis: Modern Techniques",au:"Gerald Folland"},{n:"Measure Theory",au:"Paul Halmos"},{n:"Measure, Integration & Real Analysis",au:"Sheldon Axler (free)"}],
+detail:"<p><em>🎯 What is this?</em> You learned integration as 'area under a curve' in school. But what if the function you want to integrate is incredibly jagged — discontinuous at infinitely many points? The standard Riemann integral (the one from calculus class) breaks down. Lebesgue in 1902 invented a completely new way to compute areas, by slicing HORIZONTALLY instead of vertically. His theory can integrate far more functions, handles limit operations more cleanly, and is the foundation of modern probability theory and analysis. It's one of the most important ideas in 20th century mathematics.</p><p>Riemann integration has a critical flaw: it can't handle too many discontinuities. Lebesgue (1902) fixed this with a completely new approach. A measure space (X,ℳ,μ): X is any set, ℳ is a σ-algebra (closed under countable unions and complements), μ: ℳ → [0,∞] is countably additive. The Lebesgue measure on ℝ: μ([a,b]) = b−a, extended to all Borel sets (and more). Key advantage: if fₙ → f pointwise and |fₙ| ≤ g for some integrable g, then ∫fₙ → ∫f (Dominated Convergence Theorem). Riemann integration cannot do this.</p><p>The Lᵖ spaces are the key examples: Lᵖ(X,μ) = {f: ∫|f|ᵖ dμ &lt; ∞} with norm ‖f‖_p = (∫|f|ᵖ)<sup>1/p</sup>. Hölder's inequality: |∫fg| ≤ ‖f‖_p ‖g‖_q for <span class='frac'><sup>1</sup><span></span><sub>p</sub></span>+<span class='frac'><sup>1</sup><span></span><sub>q</sub></span>=1. Minkowski's inequality: ‖f+g‖_p ≤ ‖f‖_p + ‖g‖_p. L² is a Hilbert space; L¹ and L∞ are Banach spaces. The Riesz representation theorem: every bounded linear functional on L¹(X,μ) is given by integration against an L∞ function — the dual space is (L¹)* = L∞.</p><p>The Radon-Nikodym theorem: if ν is absolutely continuous with respect to μ (μ(A)=0 implies ν(A)=0), then there exists a measurable function f (the Radon-Nikodym derivative dν/dμ) such that ν(A) = ∫_A f dμ. This is the rigorous foundation for conditional expectation in probability. The change of variables formula ∫_A f(Φ(x))|det DΦ(x)| dx = ∫<sub>Φ(A)</sub> f(y) dy is proved using measure theory, and Fubini's theorem (∫∫f(x,y)dxdy = ∫(∫f(x,y)dx)dy under absolute integrability) follows from the construction of product measures.</p>"},
+
+{t:"Analytic Number Theory",desc:"Complex analysis applied to prime numbers and arithmetic functions — home of the Riemann Hypothesis and the Prime Number Theorem.",books:[{n:"Multiplicative Number Theory",au:"Harold Davenport"},{n:"Analytic Number Theory",au:"Iwaniec & Kowalski"},{n:"Introduction to Analytic Number Theory",au:"Apostol"}],
+detail:"<p><em>🎯 What is this?</em> Prime numbers (2, 3, 5, 7, 11, 13, ...) seem to appear randomly among the integers. But in 1859, Riemann discovered something stunning: the pattern of primes is secretly encoded in a function ζ(s) — the 'zeta function' — defined for complex numbers. By studying ζ(s) using the tools of calculus and complex analysis, you can answer questions like: approximately how many primes are there below 1 million? (Answer: about 72,000). The field connects the most elementary objects in mathematics (prime numbers) to the most sophisticated tools (complex analysis), and its central open question — the Riemann Hypothesis — has resisted proof for 165 years.</p><p>Analytic number theory is where complex analysis meets the integers — and the result is spectacular. The Riemann zeta function ζ(s) = Σ<sub>n=1</sub>^∞ n<sup>−s</sup> converges for Re(s) > 1 and has an Euler product ζ(s) = ∏_p (1-p<sup>−s</sup>)<sup>−1</sup> over all primes p. This product encodes the fundamental theorem of arithmetic analytically. Via analytic continuation, ζ extends to all of ℂ except s=1 where it has a simple pole with residue 1.</p><p>The Prime Number Theorem: π(x) ~ x/log x — proved by showing ζ has no zeros on Re(s)=1. The explicit formula: ψ(x) = x − Σ_ρ x^ρ/ρ − log(2π) − (1/2)log(1-x<sup>−2</sup>), where ψ(x) = Σ<sub>p^k ≤ x</sub> log p and the sum is over non-trivial zeros ρ of ζ. This is the bridge between prime distribution and zeros. The connection is exact: every zero of ζ contributes an oscillation to prime distribution — if RH fails and a zero ρ has Re(ρ) = 1/2+ε, primes oscillate with amplitude x<sup>1/2+ε</sup>/|ρ| — larger than expected.</p><p>Dirichlet L-functions L(s,χ) = Σ χ(n)/nˢ (χ a Dirichlet character mod q) extend ζ. Dirichlet's theorem: there are infinitely many primes in any arithmetic progression a, a+q, a+2q,... with gcd(a,q)=1. Proof: log L(s,χ) ~ Σ_p χ(p)/pˢ, and if no primes in the progression, L(1,χ)=0 for all characters — contradiction with ∏_χ L(1,χ) ≠ 0. The sieve of Eratosthenes, Legendre's sieve, Selberg sieve, and large sieve give powerful tools for counting primes in restricted sets.</p>",startGuide:["📖 Start with Hardy &amp; Wright's <em>An Introduction to the Theory of Numbers</em> — the classic text covering primes, Diophantine equations, and analytic methods.","📖 Then Davenport's <em>Multiplicative Number Theory</em> for L-functions and Dirichlet's theorem with full proofs.","📖 Graduate level: Iwaniec &amp; Kowalski's <em>Analytic Number Theory</em> (AMS) for sieve methods and character sums.","🎥 Online: <a href='https://math.mit.edu/classes/18.785/'>MIT 18.785 Number Theory I</a> (Bjorn Poonen, free notes).","📄 Read the arXiv number theory section (math.NT) at arxiv.org. Good entry-level papers: Granville's expository articles on primes.","🔬 First research project: study the distribution of primes in short intervals or gaps between primes — many open problems accessible with standard tools."]},
+
+{t:"Algebraic Number Theory",desc:"Algebraic integers, ideal class groups, Galois theory over number fields — the deep arithmetic structure of numbers.",books:[{n:"Algebraic Number Theory",au:"Jürgen Neukirch"},{n:"Number Fields",au:"Daniel Marcus"},{n:"A Classical Intro to Modern Number Theory",au:"Ireland & Rosen"}],
+detail:"<p><em>🎯 What is this?</em> In school, you learned to factor numbers: 6 = 2×3. This always works uniquely for whole numbers. But what if you extend your number system? In ℤ[√-5] (numbers of the form a+b√-5), we get 6 = 2×3 = (1+√-5)(1-√-5) — two DIFFERENT factorisations! Unique factorisation fails. Algebraic number theory fixes this by replacing numbers with 'ideals' (sets of multiples), and unique factorisation is restored. This is the foundation of modern cryptography and was essential to Wiles's proof of Fermat's Last Theorem.</p><p>Algebraic number theory extends the integers ℤ to 'integers' in number fields — finite extensions K/ℚ. An algebraic integer is a root of a monic polynomial with integer coefficients. The ring of integers O_K ⊂ K (all algebraic integers in K) replaces ℤ. Key example: K=ℚ(√-5), O_K=ℤ[√-5]. Here 6 = 2×3 = (1+√-5)(1-√-5) — two different factorizations! Unique factorization fails.</p><p>Dedekind's fix (1871): factor ideals, not elements. Every nonzero ideal in O_K factors uniquely into prime ideals: (6) = P₂·P₃·P₃' in ℤ[√-5] where P₂=(2,1+√-5), P₃=(3,1+√-5), P₃'=(3,1-√-5). Prime ideals always factor uniquely — the failure of unique factorization is measured by the class group Cl(O_K) = (fractional ideals)/(principal ideals). When Cl(O_K)=0 (trivial class group), unique factorization holds. The class number h(K) = |Cl(O_K)| measures how badly factorization fails. For ℚ(√-1): h=1 (ℤ[i] is a UFD). For ℚ(√-5): h=2.</p><p>The Dedekind zeta function ζ_K(s) = Σ<sub>nonzero ideals I</sub> N(I)<sup>−s</sup> generalises ζ(s). The analytic class number formula: lim<sub>s→1</sub> (s-1)ζ_K(s) = 2<sup>r₁</sup>(2π)<sup>r₂</sup>h(K)R(K)/(w(K)√|disc(K)|) where r₁, r₂ count real and complex embeddings, R(K) is the regulator (volume of unit group lattice), w(K) counts roots of unity. This formula connects five fundamental invariants of K in one equation — one of the deepest results in number theory.</p>"},
+
+{t:"Riemannian Geometry",desc:"Curved spaces and manifolds: connections, curvature tensors, geodesics, comparison theorems — the geometry of general relativity.",books:[{n:"Riemannian Geometry",au:"Manfredo do Carmo"},{n:"Introduction to Smooth Manifolds",au:"John Lee"},{n:"Riemannian Manifolds: An Introduction",au:"John Lee"}],
+detail:"<p><em>🎯 What is this?</em> A 'manifold' is any curved surface or higher-dimensional shape — the surface of Earth, the curved space-time of Einstein's relativity, or even abstract data clouds. Riemannian geometry is the mathematics of measuring distances and angles on curved surfaces. At school you learned the flat Pythagorean theorem: distance² = x² + y². On a curved surface, the formula changes at every point — it's encoded in a 'metric tensor' g. Einsteins general relativity says gravity IS the curvature of a Riemannian manifold (4D space-time), and mass curves the manifold around it.</p><p>A Riemannian manifold (M,g) is a smooth manifold M with a Riemannian metric g — a smoothly varying inner product on each tangent space T_pM. The metric determines lengths of curves γ: [a,b]→M via L(γ) = ∫ₐᵇ √g(γ'(t),γ'(t)) dt, and hence distances d(p,q) = inf<sub>γ connecting p,q</sub> L(γ). In local coordinates {xⁱ}, g = gᵢⱼ dxⁱ⊗dxʲ — a positive definite matrix at each point.</p><p>Curvature is the key concept. The Riemann curvature tensor R(X,Y)Z = ∇_X∇_Y Z − ∇_Y∇_X Z − ∇<sub>[X,Y]</sub>Z (where ∇ is the Levi-Civita connection — the unique torsion-free metric-compatible connection) measures how parallel transport around a loop rotates vectors. The Ricci tensor Ric(X,Y) = tr(Z↦R(X,Z)Y) and scalar curvature R = tr(Ric) are contractions. Einstein's field equations: Ric − R/2·g + Λg = 8πG/c⁴ · T, where T is the stress-energy tensor — Riemannian geometry governs gravity at the largest scales.</p><p>The Gauss-Bonnet theorem for surfaces: ∫∫_M K dA + ∫<sub>∂M</sub> κ_g ds = 2πχ(M), where K is Gaussian curvature and κ_g is geodesic curvature. This profound formula connects local geometry (curvature) to global topology (Euler characteristic). Generalization: the Chern-Gauss-Bonnet theorem on 2n-manifolds ∫_M Pf(Ω) = (2π)ⁿ χ(M) (Ω = curvature 2-form). The comparison theorems (Bishop-Gromov, Toponogov) control the geometry of manifolds with curvature bounds — the foundation of global Riemannian geometry.</p>"},
+
+{t:"Representation Theory",desc:"How algebraic objects act on vector spaces — connecting algebra, analysis, and physics. Finite groups, Lie algebras, and beyond.",books:[{n:"Representation Theory: A First Course",au:"Fulton & Harris"},{n:"Linear Representations of Finite Groups",au:"Jean-Pierre Serre"}],
+detail:"<p><em>🎯 What is this?</em> A symmetry is any transformation that leaves something looking the same. Rotate a snowflake by 60° — it looks identical. A 'group' is the mathematical object that captures all symmetries of something. Representation theory asks: can we understand all possible symmetries by just looking at how they act as matrix rotations in some dimension? It turns out: YES — every abstract symmetry group can be 'represented' by concrete matrices. This is why physicists can study fundamental particles by looking at representations of symmetry groups. Every subatomic particle is literally a representation of a symmetry group.</p><p>A representation of a group G is a homomorphism ρ: G → GL(V) — a way to 'represent' G as matrices acting on a vector space V. Over ℂ, every representation of a finite group G decomposes into a direct sum of irreducible representations (Maschke's theorem): V = V₁<sup>a₁</sup> ⊕ V₂<sup>a₂</sup> ⊕ ... ⊕ Vₖ<sup>aₖ</sup>. The number of irreducible representations equals the number of conjugacy classes of G. For S₃ (permutations of 3 elements, 3 conjugacy classes): three irreducibles of dimensions 1, 1, 2 with 1²+1²+2²=6=|S₃| ✓.</p><p>Characters χ_V(g) = tr(ρ(g)) are the key computational tool. Character tables encode all representation theory of a finite group. Schur's lemma: every G-linear map between irreducible representations is either 0 or an isomorphism. The inner product ⟨χ₁,χ₂⟩ = (1/|G|)Σ<sub>g∈G</sub> χ₁(g)χ₂(g)⁻¹ = δ₁₂ for distinct irreducibles — characters form an orthonormal basis of class functions. To decompose any representation V: aᵢ = ⟨χ_V, χᵢ⟩.</p><p>Lie algebra representations are crucial for physics. The Lie algebra sl₂(ℂ) = span{e,f,h} with [h,e]=2e, [h,f]=-2f, [e,f]=h. Its irreducible representations are classified by their highest weight n: V_n = span{v₀,v₁,...,vₙ} with h·vₖ=(n-2k)vₖ, so dimensions n+1. This structure explains spin in quantum mechanics: spin-s particles have (2s+1)-dimensional representation. The representation theory of semisimple Lie algebras (classified by Dynkin diagrams: A_n, B_n, C_n, D_n, E₆, E₇, E₈, F₄, G₂) is one of the most beautiful theories in all of mathematics.</p>",startGuide:["📖 Fulton &amp; Harris's <em>Representation Theory: A First Course</em> (Springer GTM) — the most accessible graduate text, with beautiful examples.","📖 Serre's <em>Linear Representations of Finite Groups</em> (Springer) — short, elegant, and complete for the finite group case.","📖 Bump's <em>Lie Groups</em> (Springer) for the Lie group and algebraic group perspective.","🎥 Online: Peter Woit's notes at <a href='https://www.math.columbia.edu/~woit/QM/qmbook.pdf'>Columbia</a>; YouTube lectures by Richard Borcherds on representation theory.","📄 Bernstein &amp; Zelevinsky's 1977 paper on representations of GLₙ is a masterpiece accessible after Fulton &amp; Harris.","🔬 Entry project: classify all irreducible representations of SU(2) and SU(3) explicitly — this is the standard first exercise that connects to particle physics."]},
+
+{t:"Lie Groups & Lie Algebras",desc:"Continuous symmetry groups and their infinitesimal generators — the mathematical language of particle physics.",books:[{n:"Introduction to Lie Algebras",au:"James Humphreys"},{n:"Lie Groups",au:"Daniel Bump"},{n:"Representations of Compact Lie Groups",au:"Bröcker & tom Dieck"}],
+detail:"<p><em>🎯 What is this?</em> A 'Lie group' is a symmetry that varies CONTINUOUSLY — like the symmetry of a circle (you can rotate it by any angle, not just specific ones). In contrast, the symmetries of a snowflake are discrete (only specific angles work). Continuous symmetries are everywhere in physics: rotating a physics experiment in any direction gives the same result (rotational symmetry = Lie group SO(3)), and this FORCES certain conservation laws to exist (angular momentum). The mathematics of Lie groups and their 'infinitesimal generators' (Lie algebras) is what makes modern particle physics and quantum field theory possible.</p><p>A Lie group G is simultaneously a smooth manifold and a group where multiplication G×G→G and inversion G→G are smooth maps. Examples: GL_n(ℝ), SO(n) (rotation matrices), SU(n), U(n), Sp(2n). The tangent space at the identity g = T_e G is the Lie algebra — equipped with a bracket [X,Y] = XY-YX (as matrix commutator). The exponential map exp: g → G, exp(tX) = Σ (tX)^n/n!, connects algebra to the group.</p><p>The Lie algebra encodes the local group structure completely: for connected, simply-connected G, the group is completely determined by its Lie algebra. The classification of complex semisimple Lie algebras (Killing, Cartan 1894): they are classified by Dynkin diagrams — connected graphs with vertices = simple roots, edges = angles between roots. There are four infinite families A_n (su(n+1)), B_n (so(2n+1)), C_n (sp(2n)), D_n (so(2n)) and five exceptional cases E₆, E₇, E₈, F₄, G₂. The exceptional Lie algebra E₈ (dimension 248!) is related to the Monster group and string theory.</p><p>The Peter-Weyl theorem for compact Lie groups: L²(G) = ⊕<sub>V irred</sub> V⊗V* — the regular representation decomposes as a direct sum of all irreducible representations, each appearing with multiplicity equal to its dimension. The Weyl character formula computes the character of any irreducible representation in terms of the highest weight λ: χ_λ = Σ<sub>w∈W</sub> sgn(w) e<sup>w(λ+ρ)</sup> / Σ<sub>w∈W</sub> sgn(w) e<sup>w(ρ)</sup>, where W = Weyl group and ρ = half-sum of positive roots.</p>"},
+
+{t:"Set Theory",desc:"The foundations of mathematics — forcing, large cardinals, independence results. Cohen's proof that CH is independent of ZFC.",books:[{n:"Set Theory",au:"Thomas Jech"},{n:"Set Theory: An Introduction to Independence Proofs",au:"Kenneth Kunen"}],
+detail:"<p><em>🎯 What is this?</em> All of mathematics — numbers, shapes, functions, everything — can be built from one single primitive concept: a SET (a collection of things). Set theory is the attempt to write down the complete axioms (rules) from which all of mathematics logically follows. The shocking discovery of the 20th century (by Gödel in 1931 and Cohen in 1963) is that some mathematical questions — like 'how many real numbers are there, exactly?' — CANNOT be answered by these axioms. They are literally undecidable: neither yes nor no can be proved. This is the most philosophical and foundational area of mathematics.</p><p>Set theory (Zermelo-Fraenkel + Axiom of Choice = ZFC) is the foundation of all mathematics. The axioms include: Extensionality (sets with the same elements are equal), Pairing ({a,b} exists), Union (∪A exists), Power set (P(A) exists), Infinity (ℕ exists), Replacement (images of sets under functions are sets), Regularity (no infinite descending chains a₁∋a₂∋a₃∋...), and Choice (every family of non-empty sets has a choice function). Every mathematical object is ultimately a set in this system.</p><p>Cohen's forcing (1963) — arguably the greatest mathematical technique of the 20th century — proved the Continuum Hypothesis (CH: every infinite subset of ℝ is either countably infinite or has the cardinality of ℝ) is independent of ZFC. The method: given a model M of ZFC, construct a 'forcing extension' M[G] by adding a 'generic filter' G. Specifically, to violate CH: add ℵ₂ many new real numbers using partial functions p: ω×ω₂ → 2. The key: M[G] satisfies ¬CH (there are at least ℵ₂ > ℵ₁ many reals). Combined with Gödel's 1940 result (L, the constructible universe, satisfies CH), we have: CH is neither provable nor disprovable from ZFC.</p><p>Large cardinals are the stratosphere of set theory: inaccessible cardinals, Mahlo cardinals, measurable cardinals, supercompact cardinals... each is provably stronger than the last, and each is independent of ZFC (cannot prove they exist within ZFC). A measurable cardinal κ: there exists a non-principal κ-complete ultrafilter on κ. The existence of even one measurable cardinal implies L ≠ V (Gödel's constructible universe is not all sets) and proves the consistency of ZFC! Large cardinal axioms form an infinite hierarchy of additional axioms that can be freely added to ZFC — the ultimate open question is whether they are 'true' in any absolute sense.</p>"},
+
+{t:"Category Theory",desc:"Abstract structures and structure-preserving maps — the language of modern algebra and topology. Functors, natural transformations, adjoints.",books:[{n:"Categories for the Working Mathematician",au:"Saunders Mac Lane"},{n:"Category Theory in Context (free)",au:"Emily Riehl"},{n:"Sheaves in Geometry and Logic",au:"Mac Lane & Moerdijk"}],
+detail:"<p><em>🎯 What is this?</em> Category theory is often called 'the mathematics of mathematics.' Instead of studying numbers or shapes directly, it studies the RELATIONSHIPS between mathematical structures. A 'category' consists of objects (sets, groups, spaces, etc.) and arrows between them (functions, homomorphisms, continuous maps). The insight is that most important mathematical concepts — like products, sums, and symmetries — can be defined purely in terms of these arrows, without ever looking inside the objects. It's like understanding a city's road network without knowing what's inside any building. Surprisingly powerful and deeply unifying.</p><p>Category theory (Mac Lane-Eilenberg 1945) abstracts away internal structure to focus purely on relationships between objects. A category C consists of objects Ob(C) and morphisms Hom(X,Y) for each pair of objects, with a composition law Hom(X,Y)×Hom(Y,Z)→Hom(X,Z) satisfying associativity and identity. Examples: Set (sets and functions), Grp (groups and homomorphisms), Top (topological spaces and continuous maps), Vect_k (vector spaces and linear maps), Ring (rings and ring homomorphisms).</p><p>Functors F: C → D preserve structure: for each morphism f: X→Y in C, F(f): F(X)→F(Y) in D, with F(g∘f)=F(g)∘F(f). Natural transformations η: F→G are families of morphisms η_X: F(X)→G(X) commuting with all morphisms. The Yoneda lemma: for a functor F: C→Set, Nat(Hom(−,X), F) ≅ F(X) naturally — every functor from C is 'represented' by the hom-functor, and an object X is completely determined by all morphisms into/out of it. Yoneda is the deepest foundational theorem in category theory.</p><p>Adjoints are the central concept: F: C→D and G: D→C are adjoint (F⊣G) if Hom_D(F(X),Y) ≅ Hom_C(X,G(Y)) naturally. Examples: Free⊣Forgetful (free group on a set adjoint to underlying set of a group); − ⊗ M ⊣ Hom(M,−) (tensor-hom adjunction). Most mathematical constructions are adjoints: limits, colimits, sheafification. Mac Lane's theorem: a functor has a left adjoint iff it preserves all limits (and the solution set condition holds). The language of category theory is now ubiquitous in modern mathematics.</p>"},
+
+{t:"Arithmetic Geometry",desc:"Combines algebraic geometry with number theory — rational and integer points on varieties, elliptic curves, modular forms.",books:[{n:"The Arithmetic of Elliptic Curves",au:"Joseph Silverman"},{n:"Abelian Varieties",au:"Mumford"},{n:"Advanced Topics: Arithmetic of Elliptic Curves",au:"Silverman"}],
+detail:"<p><em>🎯 What is this?</em> Arithmetic geometry is the study of curves and surfaces defined by polynomial equations, but asking: which solutions are RATIONAL numbers (fractions)? For example, x² + y² = 1 has infinitely many rational solutions (called Pythagorean triples: 3/5, 4/5 etc.). But x² + y² = 3 has no rational solutions at all. Surprisingly, the answer depends on the SHAPE of the curve. An elliptic curve (like y² = x³ - x) can have 0, finitely many, or infinitely many rational solutions, and figuring out which requires some of the deepest mathematics humans have ever developed — including the theory used by Wiles to prove Fermat's Last Theorem.</p><p>Arithmetic geometry studies the arithmetic properties of geometric objects — rational and integral points on varieties over number fields. The central example: an elliptic curve E/ℚ, defined by y² = x³+ax+b (discriminant Δ = −16(4a³+27b²) ≠ 0). The rational points E(ℚ) form a finitely generated abelian group by the Mordell-Weil theorem: E(ℚ) ≅ E(ℚ)_tors ⊕ ℤʳ, where the rank r is a mysterious number. The group law on E: given P,Q on the curve, the line PQ intersects E in a third point R, and P+Q = −R (reflect R over x-axis). This geometric construction satisfies all group axioms.</p><p>The L-function of E: L(E,s) = ∏<sub>p good</sub> (1-aₚp<sup>−s</sup>+p<sup>1−2s</sup>)<sup>−1</sup> × (bad factors) where aₚ = p+1−#E(𝔽_p). By modularity (Wiles 1995): every elliptic curve over ℚ is modular — its L-function equals the L-function L(f,s) of a weight-2 modular form f on Γ₀(N). The BSD conjecture (see Open Problems) predicts r = ord<sub>s=1</sub> L(E,s). The Tate-Shafarevich group Ш(E/ℚ) = ker(H¹(ℚ,E) → ∏_v H¹(ℚ_v,E)) measures the failure of Hasse principle — elements of Ш are 'phantom curves' that look like E everywhere locally but are not E globally.</p><p>Faltings's theorem (1983): every smooth projective curve of genus g ≥ 2 over ℚ has finitely many rational points. The proof uses Arakelov theory — extending intersection theory to arithmetic surfaces (scheme over Spec ℤ). Faltings proved the Mordell conjecture (open since 1922) as a consequence of a general theorem about heights on abelian varieties over number fields. The techniques introduced revolutionised arithmetic geometry and fed directly into Wiles's proof of Fermat's Last Theorem.</p>"},
+
+{t:"Symplectic Geometry",desc:"The geometric framework of classical mechanics — symplectic manifolds, Lagrangian submanifolds, Hamiltonian systems, Floer theory.",books:[{n:"Introduction to Symplectic Topology",au:"McDuff & Salamon"},{n:"Lectures on Symplectic Geometry (free)",au:"Ana Cannas da Silva"}],
+detail:"<p><em>🎯 What is this?</em> In physics, the position and momentum of every particle form a 'phase space.' If you have a pendulum, its state is given by two numbers: its angle and its angular speed. The mathematics that describes how this state evolves over time — the whole of classical mechanics — is symplectic geometry. The surprising fact: phase space has a special geometric structure (the 'symplectic form') that is PRESERVED by all physical evolution. This structure is the reason energy is conserved, why quantum mechanics looks the way it does, and why certain planetary orbits are stable over billions of years.</p><p>A symplectic manifold (M,ω) is a smooth manifold M with a closed, non-degenerate 2-form ω (dω=0, ω^n≠0 everywhere). The canonical example: ℝ²ⁿ with ω = Σᵢ dqᵢ∧dpᵢ — the phase space of classical mechanics, where qᵢ are positions and pᵢ are momenta. By Darboux's theorem: every symplectic manifold looks locally like ℝ²ⁿ — there are no local invariants! All the interesting structure is global. This is in stark contrast to Riemannian geometry, where curvature is a local invariant.</p><p>Hamiltonian mechanics: given a function H: M→ℝ (the Hamiltonian), the Hamiltonian vector field X_H is defined by ω(X_H,·) = dH. Hamilton's equations: q̇ᵢ = ∂H/∂pᵢ, ṗᵢ = −∂H/∂qᵢ. Liouville's theorem: the symplectic form is preserved by Hamiltonian flow (Lₓ_H ω = 0), so the symplectic volume ωⁿ/n! is preserved — phase space volume is conserved. Arnold's conjecture (proved by various people 1980-2010s): the number of fixed points of a Hamiltonian diffeomorphism is at least the sum of Betti numbers of M — much larger than the number predicted by topology alone.</p><p>Floer homology (for symplectic geometry): the fixed points of a Hamiltonian diffeomorphism φ: M→M correspond to solutions of a Cauchy-Riemann type equation on M×ℝ. Floer constructs a chain complex generated by these fixed points, with differential counting pseudo-holomorphic strips. The resulting Floer homology HF*(M,φ) proves Arnold's conjecture. The deep connection to string theory: open strings on a symplectic manifold end on Lagrangian submanifolds, and the Fukaya category — an A∞-category whose objects are Lagrangians and morphisms are Floer homology groups — is one side of mirror symmetry.</p>"},
+
+{t:"Higher Category Theory",desc:"∞-categories, derived algebraic geometry, motivic homotopy theory — the emerging framework unifying homotopy theory and algebra.",books:[{n:"Higher Topos Theory (free)",au:"Jacob Lurie"},{n:"Infinity Categories from Scratch (free)",au:"Emily Riehl & Dominic Verity"}],
+detail:"<p><em>🎯 What is this?</em> Standard mathematics works with sets and functions. But sometimes, instead of asking 'is function f equal to function g?', you want to ask 'is there a way to deform f into g?' — a path between them in the space of all functions. This happens all over topology and geometry. Higher category theory is the framework for doing mathematics where equality is replaced by 'equivalence up to homotopy' (deformation). It is very abstract, but it turns out to be the RIGHT language for derived algebraic geometry, string theory, and the Langlands program — some of the deepest mathematics being done today.</p><p>Classical category theory becomes inadequate when the 'morphisms' between objects naturally form a space rather than a set — for example, the space of continuous maps between topological spaces, or the space of chain maps between chain complexes. An (∞,1)-category (∞-category) has objects, morphisms, 2-morphisms (homotopies between morphisms), 3-morphisms (homotopies of homotopies), etc., with all k-morphisms for k≥2 being invertible. The key model: quasicategories — simplicial sets S where every horn Λⁿₖ (0 &lt; k &lt; n) can be filled. Lurie's 900-page 'Higher Topos Theory' (2009) develops all of category theory in this setting.</p><p>The ∞-categorical analogue of the category of sets is the ∞-category of spaces Spc (Kan complexes). The ∞-category of spectra Sp is the stabilisation — it encodes stable homotopy theory. Key theorem: the ∞-category of E∞-ring spectra is the homotopy-coherent commutative algebra within Sp. This gives 'ring spectra' — objects where one can do algebra up to coherent homotopy. Topological K-theory KU, complex bordism MU, and tmf (topological modular forms) are all E∞-ring spectra.</p><p>Derived algebraic geometry (Lurie 'Spectral Algebraic Geometry', 2018, 1500+ pages): replaces commutative rings with E∞-ring spectra. A derived scheme is a functor X: CAlg → Spc (from E∞-algebras to spaces) satisfying étale descent. The moduli problem for elliptic curves has a natural derived structure encoding the 'obstruction theory' — and tmf is the E∞-ring spectrum of functions on the moduli stack of elliptic curves. This framework is currently being absorbed and applied across algebraic geometry, topology, and mathematical physics.</p>"}
+];
+
+let descOverride = {};
+
+function tog(bodyId, arrId) {
+  var b = document.getElementById(bodyId);
+  if (!b) return;
+  // Check inline style first; fall back to computed style
+  var hidden = b.style.display ? b.style.display === 'none' : window.getComputedStyle(b).display === 'none';
+  b.style.display = hidden ? 'block' : 'none';
+  var a = document.getElementById(arrId);
+  if (a) { a.style.transform = hidden ? 'rotate(180deg)' : 'rotate(0deg)'; a.style.transition = 'transform 0.25s'; }
+}
+
+function indiaBuyLinks(title, author) {
+  const q = encodeURIComponent(title + ' ' + author + ' book');
+  return `<div class="buy-links">
+    <a class="buy-link amz" href="https://www.amazon.in/s?k=${q}&i=stripbooks" target="_blank" rel="noopener">🛒 Amazon.in</a>
+  </div>`;
+}
+
+
+function renderGraduate(){
+  const isAdm = isAdmin();
+  document.getElementById("graduate-grid").innerHTML=graduateData.map((t,i)=>`
+  <div class="grad-card reveal" id="gradcard${i}">
+    <div class="grad-topic">${t.t}</div>
+    <div class="grad-desc" id="graddesc${i}">${t.desc}</div>
+    ${t.books?t.books.map(b=>`<div class="grad-book">📘 <b>${b.n}</b> — ${b.au}
+      ${indiaBuyLinks(b.n, b.au)}
+    </div>`).join(""):""}
+    ${t.detail?`<div onclick="tog('grd${i}','gra${i}')" class="grad-expand-lbl"><span id="gra${i}">▼</span> Explore in Depth</div>
+    <div class="grad-detail" id="grd${i}" style="display:none">${t.detail}</div>`:""}
+    <div class="admin-bar${isAdm?' visible':''}" id="gradadmin${i}">
+      <button class="admin-btn edit-btn" onclick="adminEditDesc('graduate',${i})">✏️ Edit Description</button>
+    </div>
+  </div>`).join("");}
+
+
+function latexToHTML(text) {
+  if (!text) return '';
+
+  // Step 1: Convert $$...$$ → \[...\] (display math) and $...$ → \(...\) (inline math)
+  // This makes admin-typed dollar-sign LaTeX compatible with KaTeX auto-render
+  text = text.replace(/\$\$([^$]+)\$\$/g, '\\[$1\\]');
+  text = text.replace(/\$([^$\n]+)\$/g, '\\($1\\)');
+
+  // Step 2: If text has KaTeX delimiters, let KaTeX handle it entirely
+  if (text.indexOf('\\(') !== -1 || text.indexOf('\\[') !== -1) {
+    if (window.katex && window.renderMathInElement) {
+      try {
+        var div = document.createElement('div');
+        div.innerHTML = text;
+        window.renderMathInElement(div, {
+          delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],
+          throwOnError: false
+        });
+        return div.innerHTML;
+      } catch(e) {}
+    }
+    // KaTeX not yet loaded — return as-is; KaTeX onload will process it from the DOM
+    return text;
+  }
+
+  // Step 3: No KaTeX delimiters — apply simple Unicode/HTML substitutions as fallback
+  // Subscripts: a_{cd} → a<sub>cd</sub>
+  text = text.replace(/([a-zA-Z0-9\)])\_{([^}]+)}/g, '$1<sub>$2</sub>');
+  text = text.replace(/([a-zA-Z0-9\)])_([a-zA-Z0-9])/g, '$1<sub>$2</sub>');
+  // Superscripts: a^{e} → a<sup>e</sup>
+  text = text.replace(/([a-zA-Z0-9\)])\^{([^}]+)}/g, '$1<sup>$2</sup>');
+  text = text.replace(/([a-zA-Z0-9\)])\^([a-zA-Z0-9])/g, '$1<sup>$2</sup>');
+  // \frac{a}{b} → a/b
+  text = text.replace(/\\frac{([^}]+)}{([^}]+)}/g, '($1)/($2)');
+  // Common symbols
+  text = text.replace(/\\infty/g, '∞');
+  const bbMap = {R:'ℝ', Q:'ℚ', Z:'ℤ', N:'ℕ', C:'ℂ'};
+  text = text.replace(/\\mathbb{([A-Z])}/g, (m,c) => bbMap[c]||c);
+  text = text.replace(/\\to/g, '→');
+  text = text.replace(/\\leq/g, '≤');
+  text = text.replace(/\\geq/g, '≥');
+  text = text.replace(/\\neq/g, '≠');
+  text = text.replace(/\\alpha/g, 'α');
+  text = text.replace(/\\beta/g, 'β');
+  text = text.replace(/\\gamma/g, 'γ');
+  text = text.replace(/\\delta/g, 'δ');
+  text = text.replace(/\\epsilon/g, 'ε');
+  text = text.replace(/\\pi/g, 'π');
+  text = text.replace(/\\sum/g, 'Σ');
+  text = text.replace(/\\prod/g, 'Π');
+  text = text.replace(/\\int/g, '∫');
+  text = text.replace(/\\sqrt{([^}]+)}/g, '√($1)');
+  text = text.replace(/\\times/g, '×');
+  text = text.replace(/\\cdot/g, '·');
+  return text;
+}
+
+
+function previewLatex(inputId, previewId) {
+  const input = document.getElementById(inputId);
+  const preview = document.getElementById(previewId);
+  if (input && preview) {
+    preview.innerHTML = latexToHTML(input.value);
+  }
+}
+
+
+function adminEditDesc(section, idx) {
+  if (!isAdmin()) return;
+  const key = section + '_' + idx;
+  const currentEl = document.getElementById((section === 'undergrad' ? 'ug' : 'grad') + 'desc' + idx);
+  const current = currentEl ? currentEl.innerText : '';
+  openAdminModal('✏️ Edit Description (LaTeX Supported)', `
+    <div class="admin-field">
+      <label>Description (HTML + LaTeX)</label>
+      <textarea id="descEdit" rows="5" oninput="previewLatex('descEdit','descPreview')"
+        placeholder="Write description. Use LaTeX like a_{cd}^e for subscripts/superscripts.">${escHtml(descOverride[key] || current)}</textarea>
+      <div class="admin-latex-hint">💡 LaTeX: a_{cd}^e → a<sub>cd</sub><sup>e</sup> · \infty → ∞ · \mathbb{R} → ℝ</div>
+    </div>
+    <div class="admin-field">
+      <label>Preview</label>
+      <div class="admin-latex-preview" id="descPreview">${latexToHTML(descOverride[key] || current)}</div>
+    </div>
+  `, async () => {
+    const sb = window.sb;
+    if (!sb) return;
+    const content = document.getElementById('descEdit').value.trim();
+    const rendered = latexToHTML(content);
+    if (sb) {
+      const { error } = await sb.from('math_desc_overrides').upsert([{ key, content, section, item_index: idx }], { onConflict: 'key' });
+      if (error) throw error;
+    } else {
+      descOverride[key] = content;
+      localStorage.setItem('desc_overrides', JSON.stringify(descOverride));
+    }
+    descOverride[key] = content;
+    // Apply immediately
+    if (currentEl) { currentEl.innerHTML = rendered; }
+  });
+}
+
+
+(function loadLocalFallback() {
+  try {
+    const lo = JSON.parse(localStorage.getItem('desc_overrides') || '{}');
+    Object.assign(descOverride, lo);
+  } catch(e) {}
+})();
+
+function buildSearchIndex(){
+  PAGE_SEARCH_INDEX = [];
+  graduateData.forEach(function(t,i){
+    PAGE_SEARCH_INDEX.push({icon:'🔬',title:t.t,meta:'Graduate',section:'Graduate',elId:'gradcard'+i,q:(t.t+' '+(t.desc||'')).toLowerCase()});
+  });
+}
+
+renderGraduate();
+
+
+document.querySelectorAll('.reveal').forEach(function(el, i) {
+  setTimeout(function() { el.classList.add('visible'); }, Math.min(i * 35, 900));
+});
+</script>
+
+<!-- ═══ SUPABASE + SHARED AUTH/COMMENTS BRIDGE ═══════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+</body>
+</html>

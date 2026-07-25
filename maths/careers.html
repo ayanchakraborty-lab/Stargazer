@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#faf7f2!important}html.pre-light{background:#faf7f2}</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]}));}else{renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});}"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Lato:ital,wght@0,400;0,700;1,400&family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<title>15 Mathematics Careers & Salary Guide | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="15 career paths for mathematics graduates — from academia to quant finance — with day-to-day realities, required skills, salaries, and how to break in.">
+<meta name="keywords" content="mathematics careers, careers for math majors, quantitative analyst, math degree jobs, mathematician salary, what can you do with a math degree, math career paths">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Mathematics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/maths/careers.html">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="15 Mathematics Careers & Salary Guide | Stargazer">
+<meta property="og:description" content="What do mathematicians actually do all day? 15 career paths, real salaries, and how to break into each one — from academia to Wall Street →">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/maths/careers.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="15 Mathematics Careers & Salary Guide | Stargazer">
+<meta name="twitter:description" content="15 careers for mathematics graduates, from tenure-track professor to quant analyst — salaries, skills, and how to get in →">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "What Mathematicians Do: 15 Career Paths Explored",
+  "description": "15 career paths for mathematics graduates, each with day-to-day realities, required skills, typical salaries, and a route in — from academia to quantitative finance.",
+  "url": "https://stargazer-9m9.pages.dev/maths/careers.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": [
+    { "@type": "Thing", "name": "Mathematics", "sameAs": "https://en.wikipedia.org/wiki/Mathematics" },
+    { "@type": "Thing", "name": "Mathematician", "sameAs": "https://en.wikipedia.org/wiki/Mathematician" }
+  ]
+}
+</script>
+<link rel="stylesheet" href="maths.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ AUTH TOP BAR ════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <a href="../login.html" id="loginBtn" class="atb-btn atb-signin">☽ Sign In</a>
+  <div id="userInfo" style="display:none;align-items:center;gap:0.4rem">
+    <span class="atb-username" id="userEmailDisplay">✦ Explorer</span>
+    <button class="atb-signout" onclick="doSignOut()">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ ADMIN MODAL ══════ -->
+<div id="adminModal">
+  <div class="admin-modal-box">
+    <div class="admin-modal-title" id="adminModalTitle">Admin Panel</div>
+    <div id="adminModalBody"></div>
+    <div class="admin-modal-actions">
+      <button class="admin-cancel-btn" onclick="closeAdminModal()">Cancel</button>
+      <button class="admin-save-btn" id="adminModalSaveBtn" onclick="adminModalSave()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ NAV ═══════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Mathematics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Careers</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)">🔍 Search</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══════════════════════════════════════ HAMBURGER MENU ════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home" onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item" data-page="books" onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item" data-page="puzzles" onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="precollege" onclick="location.href='precollege.html'">📐 Pre-College</button>
+  <button class="hm-item" data-page="olympiad" onclick="location.href='olympiad.html'">🏆 Olympiad</button>
+  <button class="hm-item" data-page="undergrad" onclick="location.href='undergrad.html'">🎓 Undergrad</button>
+  <button class="hm-item" data-page="graduate" onclick="location.href='graduate.html'">🔬 Graduate</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="research" onclick="location.href='research.html'">⚡ Research</button>
+  <button class="hm-item" data-page="openproblems" onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item active" data-page="careers" onclick="location.href='careers.html'">💼 Careers</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="studyguide" onclick="location.href='studyguide.html'">📖 Study Guide</button>
+  <button class="hm-item" data-page="facts" onclick="location.href='facts.html'">✨ Math Facts</button>
+  <button class="hm-item" data-page="universities" onclick="location.href='universities.html'">🎓 India</button>
+  <button class="hm-item" data-page="comments" onclick="location.href='comments.html'">💬 Comments</button>
+</div>
+
+<!-- ═══════════════════════════════════════ SEARCH MODAL ════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search this page…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<div id="shortcut-hint">/ search</div>
+
+<div class="page active" id="page-careers" style="background:#020015">
+  <section class="section" id="careers">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:rgba(139,92,246,0.08);color:#c4b5fd;border:1px solid rgba(139,92,246,0.22)">What Mathematicians Do</span>
+        <h1 class="s-title font-serif" style="color:#ede9fe">Career Paths in Mathematics</h1>
+        <p class="s-desc" style="color:#8b5cf6">Mathematics opens more doors than almost any other discipline. Every field that relies on reasoning, data, or structure needs mathematicians.</p>
+      </div>
+      <div class="g3" id="careers-grid"></div>
+    </div>
+  </section>
+</div>
+
+
+<footer id="footer">
+  <div class="foot-eq">e<sup>iπ</sup> + 1 = 0</div>
+  <p class="foot-txt"><strong style="color:#6d28d9">"Mathematics is not about numbers, equations, computations, or algorithms. It is about understanding."</strong><br>— William Paul Thurston, Fields Medalist</p>
+  <div class="foot-links">
+    <button class="foot-link" onclick="location.href='../ABOUT.html'">📖 About Stargazer</button>
+    <a class="foot-link" onclick="location.href='comments.html'; return false;" href="#">💬 Community Comments</a>
+    <a class="foot-link" href="mailto:ayan.chakraborty6174@gmail.com">✉️ Contact Creator</a>
+    <a class="foot-link" href="https://stargazer-9m9.pages.dev" target="_blank" rel="noopener">🌐 Stargazer Home</a>
+  </div>
+</footer>
+
+<button id="theme-toggle" title="Toggle light / dark theme" aria-label="Toggle light / dark theme" onclick="toggleTheme()">☀️</button>
+<button id="btt" title="Back to top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+window._pageKey = 'maths';
+
+function isAdmin() {
+  return !!(window.currentUser && window.currentUser.email === ADMIN_EMAIL);
+}
+
+window._applyDarkMode = function(isDark) {
+  // isDark=true → dark mode (no light-mode class)
+  // isDark=false → light mode
+  applyTheme(!isDark);   // applyTheme(true) adds light-mode class
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+};
+
+
+window._afterRenderAuthUI = function(user) {
+  // Show/hide admin bars
+  document.querySelectorAll('.admin-bar').forEach(function(el) {
+    if (user && user.email === ADMIN_EMAIL) { el.classList.add('visible'); }
+    else                                    { el.classList.remove('visible'); }
+  });
+  // Mirror display name into comment form header
+  var ud2 = document.getElementById('userEmailDisplay2');
+  if (ud2 && user) {
+    ud2.textContent = user.user_metadata?.display_name
+                    || user.user_metadata?.full_name
+                    || user.email || 'you';
+  }
+  // Trigger admin data load on sign-in
+  if (user) { if (typeof loadAdminData === 'function') loadAdminData(); }
+};
+
+
+function applyTheme(light) {
+  if (light) { document.body.classList.add('light-mode'); }
+  else        { document.body.classList.remove('light-mode'); }
+  var btn = document.getElementById('theme-toggle');
+  if (btn) btn.textContent = light ? '🌙' : '☀️';
+  document.documentElement.classList.remove('pre-light');
+}
+
+
+function toggleTheme() {
+  var nowLight = !document.body.classList.contains('light-mode');
+  applyTheme(nowLight);
+  localStorage.setItem('stargazer_theme', nowLight ? 'light' : 'dark');
+  // Persist via shared.js (writes to Supabase profiles.dark_mode)
+  // isDark param: true = dark mode, false = light mode
+  if (window.sbSaveDarkMode) window.sbSaveDarkMode(!nowLight);
+}
+
+
+// Apply theme immediately on load from localStorage
+(function() {
+  var tm = localStorage.getItem('stargazer_theme');
+  applyTheme(tm === 'light');
+})();
+
+// shared.js calls this after loading dark_mode from profiles
+// (already declared in the auth block above as window._applyDarkMode)
+
+
+function reRevealActivePage() {
+  var p = document.querySelector('.page.active');
+  if (!p) return;
+  p.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
+    el.classList.add('visible');
+  });
+}
+
+
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Close modal on backdrop click
+
+function toggleHamburger() {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu) return;
+  var open = menu.classList.toggle('open');
+  btn.classList.toggle('open', open);
+}
+// Close on outside click
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu || !menu.classList.contains('open')) return;
+  if (!menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var menu = document.getElementById('hamburger-menu');
+    if (menu && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      document.getElementById('hamburger-btn').classList.remove('open');
+    }
+  }
+});
+
+window.addEventListener('scroll', function() {
+  var btt = document.getElementById('btt');
+  if (btt) btt.classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
+
+window._getProgressData = function() { return {}; };
+window._applyProgressData = function(d) {};
+
+let _adminModalSaveFn = null;
+
+function openAdminModal(title, bodyHTML, saveFn) {
+  document.getElementById('adminModalTitle').textContent = title;
+  document.getElementById('adminModalBody').innerHTML = bodyHTML;
+  _adminModalSaveFn = saveFn;
+  document.getElementById('adminModal').classList.add('open');
+}
+
+function closeAdminModal() {
+  document.getElementById('adminModal').classList.remove('open');
+  _adminModalSaveFn = null;
+}
+
+async function adminModalSave() {
+  if (_adminModalSaveFn) {
+    const btn = document.getElementById('adminModalSaveBtn');
+    btn.textContent = 'Saving…';
+    btn.disabled = true;
+    try {
+      await _adminModalSaveFn();
+      closeAdminModal();
+    } catch(e) {
+      alert('Save failed: ' + (e.message || e));
+    }
+    btn.textContent = 'Save';
+    btn.disabled = false;
+  }
+}
+
+document.getElementById('adminModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAdminModal();
+});
+
+var PAGE_SEARCH_INDEX = [];
+function openSearch() {
+  buildSearchIndex();
+  var m = document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(function() { document.getElementById('search-input').focus(); }, 80);
+}
+function closeSearch() {
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-results').innerHTML = '<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q) {
+  var res = document.getElementById('search-results');
+  if (!q.trim()) { res.innerHTML = '<div class="sr-empty">Start typing…</div>'; return; }
+  var lq = q.toLowerCase();
+  var hits = PAGE_SEARCH_INDEX.filter(function(x) { return x.q.indexOf(lq) !== -1; }).slice(0, 20);
+  if (!hits.length) { res.innerHTML = '<div class="sr-empty">No results for "' + q + '"</div>'; return; }
+  res.innerHTML = hits.map(function(h) {
+    var idx = PAGE_SEARCH_INDEX.indexOf(h);
+    var ti = mathHighlight(h.title, lq);
+    return '<div class="sr-item" tabindex="0" data-idx="' + idx + '" onclick="goPageResult(' + idx + ')" onkeydown="if(event.key===\'Enter\')goPageResult(' + idx + ')">' +
+      '<span class="sr-icon">' + h.icon + '</span>' +
+      '<div><div class="sr-title">' + ti + '</div><div class="sr-meta">' + h.meta + '</div></div>' +
+      '<span class="sr-section">' + h.section + '</span></div>';
+  }).join('');
+}
+function mathHighlight(text, q) {
+  if (!q) return text;
+  var idx = text.toLowerCase().indexOf(q);
+  if (idx < 0) return text;
+  return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
+}
+function goPageResult(idx) {
+  var h = PAGE_SEARCH_INDEX[idx]; if (!h) return;
+  closeSearch();
+  if (h.pre) h.pre();
+  setTimeout(function(){
+    var el = document.getElementById(h.elId);
+    if (el) {
+      el.scrollIntoView({behavior:'smooth', block:'center'});
+      el.style.outline = '3px solid #a855f7'; el.style.outlineOffset = '4px';
+      setTimeout(function(){ el.style.outline=''; el.style.outlineOffset=''; }, 1600);
+    }
+  }, 60);
+}
+function searchKeyNav(e) {
+  if (e.key === 'Escape') { closeSearch(); return; }
+  var items = document.querySelectorAll('.sr-item');
+  var cur = document.activeElement;
+  var curIdx = Array.prototype.indexOf.call(items, cur);
+  if (e.key === 'ArrowDown') { e.preventDefault(); (items[curIdx + 1] || items[0]).focus(); }
+  if (e.key === 'ArrowUp')   { e.preventDefault(); (items[curIdx - 1] || items[items.length - 1]).focus(); }
+  if (e.key === 'Enter' && curIdx >= 0) { items[curIdx].click(); }
+}
+document.addEventListener('keydown', function(e) {
+  if (['INPUT','TEXTAREA','SELECT'].indexOf(e.target.tagName) !== -1) return;
+  var modal = document.getElementById('search-modal');
+  if (modal && modal.classList.contains('open')) {
+    if (e.key === 'Escape') closeSearch();
+    return;
+  }
+  if (e.key === '/') { e.preventDefault(); openSearch(); }
+});
+
+const careersData=[
+{icon:"🏛️",t:"Academic Mathematician",tags:["Professor","Researcher","Postdoc"],desc:"Pursue original research at universities or institutes (IAS, MSRI, Fields). The deepest engagement with mathematics — highly competitive. Typically: PhD (5–6 years) + 2–3 postdocs before tenure-track position.",sal:"₹8–80L (India) / $60K–$200K+ (global)",detail:{dayToDay:"Research: formulate conjectures, attempt proofs, read the literature (arXiv daily), attend seminars, collaborate internationally. Teaching: lecture undergrad/grad courses, supervise dissertations, write problem sets. Administration: faculty meetings, grant applications (NSF, EPSRC, ERC), serving on editorial boards and conference programme committees. Writing: produce 1–3 research papers per year for peer-reviewed journals (Annals of Mathematics, Inventiones, JAMS, etc).",skills:"Deep expertise in one or more subfields (e.g. algebraic geometry, analytic number theory, geometric topology). Ability to read and write formal mathematical proofs rigorously. Mathematical maturity across several areas (analysis, algebra, topology are foundational). Communication: writing clear mathematics, giving seminar talks. Grant writing. Mentoring PhD students.",resources:"<strong>Undergrad foundation:</strong> Spivak's <em>Calculus</em>, Artin's <em>Algebra</em>, Munkres' <em>Topology</em>. <strong>Graduate:</strong> Hartshorne's <em>Algebraic Geometry</em> (for algebraists), Evans' <em>Partial Differential Equations</em> (analysts), Hatcher's <em>Algebraic Topology</em> (free online). <strong>Research training:</strong> Find a PhD supervisor early; attend summer schools (PCMI, Arizona Winter School, Clay Mathematics Institute events). Read arXiv papers in your area daily from your third year onward. Attend conferences: ICM, EMS Congress, Joint AMS meetings.",companies:"Universities (Oxford, Cambridge, MIT, Princeton, Stanford, ETH Zurich, IAS Princeton), research institutes (Clay Mathematics Institute, Fields Institute, IHES Paris, Max Planck Institute), national labs (Los Alamos, Argonne for applied maths).",apply:"Path: BSc (First Class) → PhD (4–5 years) → Postdoc (1–2 postdocs, 2–3 years each) → tenure-track faculty position. Faculty jobs are advertised on MathJobs.org every September–November for positions starting the following academic year. A strong research record (3–5 papers in reputable journals), excellent reference letters, and a compelling research statement are essential. The market is extremely competitive.",competition:"The most competitive path in mathematics. Globally, roughly 1,500–2,000 permanent faculty positions open per year while 7,000–10,000 PhDs graduate annually. Only ~15–20% of PhD graduates eventually secure permanent academic positions. Top positions at research universities (R1 in the US, Russell Group in the UK) may attract 300–500 applicants. Exceptional research output and an international network are non-negotiable."}},
+{icon:"📈",t:"Quantitative Analyst (Quant)",tags:["Finance","Hedge Funds","Risk"],desc:"Apply stochastic calculus, PDEs, statistics, and numerical methods to price derivatives, manage risk, and develop trading strategies. Some of the highest-paying roles in mathematics.",sal:"₹20–200L+ / $100K–$500K+",detail:{dayToDay:"Build and validate mathematical models for pricing complex derivatives (options, swaps, structured products). Write Python/C++ code implementing Monte Carlo simulations and finite difference PDE solvers. Run statistical back-tests on trading strategies, analyse P&amp;L attribution, and produce daily risk reports. Calibrate models to live market data every morning. Collaborate with traders on execution logic and risk management teams on stress-test scenarios.",skills:"<strong>Core mathematics:</strong> Stochastic calculus (Itô lemma, Girsanov theorem), measure-theoretic probability, PDEs (Black-Scholes, heat equation), numerical analysis (Monte Carlo, finite differences, Fourier methods), linear algebra, optimisation. <strong>Statistics:</strong> time series analysis, regression, Bayesian inference. <strong>Programming:</strong> Python (NumPy, pandas, scipy), C++, MATLAB, SQL.",resources:"<strong>Undergraduate:</strong> Strang's <em>Linear Algebra</em>, Rudin's <em>Principles of Mathematical Analysis</em>, Ross's <em>A First Course in Probability</em>. <strong>Graduate:</strong> Shreve's <em>Stochastic Calculus for Finance I &amp; II</em>, Øksendal's <em>Stochastic Differential Equations</em>, Hull's <em>Options, Futures and Other Derivatives</em>. <strong>Computation:</strong> Wilmott's <em>Paul Wilmott on Quantitative Finance</em> (3 vols). <strong>Online:</strong> MIT 18.S096 Mathematics in Finance, Coursera Financial Engineering (Columbia).",companies:"Jane Street, Citadel, Two Sigma, DE Shaw, Optiver, Akuna Capital, SIG (Susquehanna), Jump Trading, Goldman Sachs (Strats), Morgan Stanley (Model Risk), Bloomberg (Quant Research), BlackRock (Systematic).",apply:"Most firms recruit on-campus at MIT, Cambridge, Imperial, CMU, ETH Zurich. Expect: (1) online numeracy screening, (2) phone technical round (probability puzzles, mental maths, finance basics), (3) full-day on-site with coding test, brain-teasers, and senior-quant interviews. Internship at the firm almost guarantees a return offer.",competition:"Extremely competitive. Top firms see 10,000–30,000 applications for 20–100 graduate roles. Citadel and Jane Street acceptance rates are below 1%. A first-class degree in Maths/Physics/CS from a top institution plus strong programming is the bare minimum."}},
+{icon:"📊",t:"Actuary",tags:["Insurance","Pensions","Risk Management"],desc:"Model financial risk using probability and statistics. Requires professional examination series (ACET for India, IFoA, CAS for US). One of the most consistently well-compensated maths-based careers.",sal:"₹6–40L / $70K–$200K",detail:{dayToDay:"Model insurance risks: mortality, morbidity, catastrophe events, longevity. Price products: life insurance, annuities, property &amp; casualty, health plans. Value liabilities (reserving). Perform stress-tests and scenario analyses for regulatory reporting (Solvency II, IFRS 17). Present results to boards, regulators, and investment teams. Mentor junior actuaries through professional exam sittings.",skills:"<strong>Mathematics:</strong> Probability theory, stochastic processes, survival analysis, regression, time-series, extreme value theory. <strong>Finance:</strong> present value calculations, yield curves, asset-liability management. <strong>Programming:</strong> R, Python, Excel/VBA, Prophet (actuarial modelling software). <strong>Communication:</strong> explaining complex risk to non-specialists.",resources:"<strong>Exams (UK IFoA or US CAS/SOA):</strong> start as early as second year. IFoA CS1/CS2 cover probability and statistics; CM1/CM2 cover financial mathematics and stochastic modelling. ActuaryExamTutor.com, the Acted study notes (ActEd), and AMLCR (<em>Actuarial Mathematics for Life Contingent Risks</em> by Dickson, Hardy, Waters) are essential. <strong>Undergraduate:</strong> Ross's <em>A First Course in Probability</em>, Bowers et al. <em>Actuarial Mathematics</em>.",companies:"Deloitte, PwC, KPMG, Milliman, Aon, Willis Towers Watson, Swiss Re, Munich Re, Allianz, Aviva, Legal &amp; General, Prudential, NHS Pension Service.",apply:"Apply for actuarial trainee or graduate schemes via company websites. Most firms accept applicants who have passed 1–3 professional exams before joining. CV should show: quantitative degree, exam passes, any internship or placement year in insurance. Assessment includes: numerical reasoning tests, written case study, competency interview. Studying for exams while working is the norm — firms typically fund exam sittings and study days.",competition:"Moderate. The IFoA and CAS have roughly 1,000–2,000 graduates entering the profession annually in the UK/US. Demand is consistently strong — actuaries are legally required by insurance regulators. The bottleneck is the professional exam series (12–15 exams over 5–8 years), not the job market per se. Qualified Fellows command premium salaries and have extremely low unemployment rates (&lt;2%)."}},
+{icon:"🤖",t:"Data Scientist / ML Engineer",tags:["AI","Analytics","Industry"],desc:"Build predictive models, recommendation systems, and AI applications. Linear algebra, statistics, and optimisation are the core tools. Enormous demand across every industry sector.",sal:"₹8–60L / $90K–$200K",detail:{dayToDay:"Design A/B experiments, compute sample sizes, and analyse statistical significance. Build predictive models (classification, regression, forecasting) using scikit-learn, XGBoost, or neural networks. Clean large datasets with SQL/pandas. Train large models on GPU clusters, optimise pipelines, implement architectures from research papers. Deploy models to production via model serving and quantisation.",skills:"<strong>Mathematics:</strong> Linear algebra (SVD, PCA), multivariable calculus (backpropagation), probability, statistical inference, optimisation (gradient descent, convex optimisation), information theory. <strong>Programming:</strong> Python (PyTorch or JAX, scikit-learn, pandas), SQL, distributed systems (Ray, DeepSpeed). <strong>Systems:</strong> Linux, Docker/Kubernetes, cloud (AWS/GCP/Azure).",resources:"<strong>Maths:</strong> Strang's <em>Introduction to Linear Algebra</em>, Boyd &amp; Vandenberghe's <em>Convex Optimization</em> (free). <strong>ML:</strong> Goodfellow et al. <em>Deep Learning</em> (free at deeplearningbook.org), Bishop's <em>Pattern Recognition and Machine Learning</em>, Hastie's <em>The Elements of Statistical Learning</em> (free). <strong>Practical:</strong> Andrej Karpathy's neural network blog, fast.ai (free), Stanford CS231n and CS224n (free). <strong>Research:</strong> arXiv cs.LG, Papers With Code.",companies:"Google DeepMind, OpenAI, Anthropic, Meta AI, Netflix, Spotify, Amazon Science, Microsoft Research, NVIDIA, Hugging Face, Stability AI, Waymo, every major bank and insurer.",apply:"Strong GitHub portfolio is essential. Kaggle grandmaster status or NeurIPS/ICML paper helps enormously. Expect: (1) take-home data challenge, (2) ML system design interview, (3) Python/PyTorch coding round, (4) research discussion. Papers and open-source contributions are strong differentiators.",competition:"Top AI labs (Anthropic, OpenAI, DeepMind) have &lt;0.1% acceptance rates. Broader MLE roles are reachable with a strong portfolio. Field is growing at 35% per year. Senior MLE roles at top labs pay $300K–$1M+ total compensation."}},
+{icon:"🔐",t:"Cryptographer",tags:["Cybersecurity","Government","Fintech"],desc:"Design or analyse cryptographic protocols using number theory, algebra, and complexity theory. Critical for national security, blockchain, and privacy. Growing with quantum computing threats.",sal:"₹10–50L / $100K–$250K",detail:{dayToDay:"Design cryptographic protocols (digital signatures, key exchange, zero-knowledge proofs). Analyse existing schemes for vulnerabilities. Implement and optimise cryptographic algorithms in C/Rust/Go. Review post-quantum standards (NIST PQC process). Write security proofs in the random-oracle or standard model. Collaborate with engineers on TLS/PKI deployments. Attend academic conferences (Crypto, Eurocrypt, Asiacrypt, CCS).",skills:"<strong>Mathematics:</strong> Number theory (modular arithmetic, quadratic residues, discrete logarithm), abstract algebra (groups, rings, fields, lattices), algebraic geometry (elliptic curves, pairings), probability, complexity theory (P vs NP, reductions). <strong>CS theory:</strong> computational complexity, information theory, formal proofs of security. <strong>Programming:</strong> C, Rust, Python (cryptography library), SageMath.",resources:"<strong>Foundational maths:</strong> Ireland &amp; Rosen's <em>A Classical Introduction to Modern Number Theory</em>, Dummit &amp; Foote's <em>Abstract Algebra</em>. <strong>Cryptography:</strong> Boneh &amp; Shoup's <em>A Graduate Course in Applied Cryptography</em> (free at crypto.stanford.edu/~dabo/cryptobook), Katz &amp; Lindell's <em>Introduction to Modern Cryptography</em>. <strong>Online:</strong> Dan Boneh's Cryptography courses on Coursera (Stanford), MIT 6.875 Foundations of Cryptography. <strong>Research:</strong> IACR ePrint Archive (eprint.iacr.org) for the latest papers.",companies:"GCHQ, NSA/CISA, Cloudflare (Research), Google (Security), Apple (Security Engineering), IBM Research, NCC Group, Trail of Bits, Protocol Labs (Filecoin/zkSNARKs), Ethereum Foundation, NIST, academic universities.",apply:"Entry via BSc/MSc in Mathematics, Computer Science, or combined. Security clearance is required for government roles (SC/DV in UK). Industry roles value GitHub contributions to open-source cryptographic libraries, CTF (Capture the Flag) competition results, and published papers. Academic route requires PhD. Industrial research labs (Google, IBM, Microsoft) recruit from top conference publications.",competition:"Moderate-to-low in industry (strong demand post-2020 for post-quantum expertise), but high for elite research positions. A global shortage of post-quantum cryptographers means those with lattice-based or isogeny-based expertise can be very selective. Government cryptographer roles are limited but stable — GCHQ hires ~20–30 mathematicians per year from UK universities."}},
+{icon:"⚙️",t:"Operations Research Analyst",tags:["Logistics","Optimisation","Consulting"],desc:"Optimise complex real-world systems — supply chains, hospital scheduling, airline routing, portfolio optimisation — using linear programming, integer programming, and simulation.",sal:"₹6–30L / $65K–$140K",detail:{dayToDay:"Formulate real problems as mathematical optimisation models: linear programmes (LP), integer programmes (MIP), stochastic programmes, network flow. Implement in Python/Julia using Gurobi, CPLEX, or OR-Tools. Work with logistics teams on vehicle routing, scheduling, supply chain network design. Run simulations to test policies. Present sensitivity analyses to operations directors.",skills:"<strong>Mathematics:</strong> Linear programming (simplex, duality), integer programming (branch-and-bound, cutting planes), convex optimisation, graph theory (shortest paths, matchings, flows), dynamic programming, queueing theory, simulation. <strong>Programming:</strong> Python (Gurobi/Pyomo), Julia (JuMP), R.",resources:"<strong>Undergraduate:</strong> Hillier &amp; Lieberman's <em>Introduction to Operations Research</em>, Winston's <em>Operations Research: Applications and Algorithms</em>. <strong>Advanced:</strong> Bertsimas &amp; Tsitsiklis' <em>Introduction to Linear Optimization</em>, Wolsey's <em>Integer Programming</em>, Boyd &amp; Vandenberghe's <em>Convex Optimization</em> (free). <strong>Online:</strong> edX MITx Supply Chain series, Coursera OR (UT Austin), Gurobi free academic licence with tutorials at gurobi.com/learn.",companies:"Amazon (Operations Research Science), DHL, UPS, NHS Supply Chain, McKinsey Operations, BCG, Palantir, Rolls-Royce, British Airways (scheduling), IBM Research.",apply:"MSc in Operations Research, Industrial Engineering, or Applied Mathematics is standard. PhD preferred for research roles. Expect: modelling case study (formulate and solve an LP), solver discussion (Gurobi/CPLEX), and coding in Python. Highlight any internship in logistics or supply chain.",competition:"Moderate. INFORMS estimates 10,000 OR graduates annually vs 30,000 openings in the US — demand exceeds supply. Solver proficiency (Gurobi/Python) is a strong differentiator. Unlike finance quants, OR roles span many industries, providing more entry points."}},
+{icon:"🧬",t:"Biostatistician",tags:["Clinical Trials","Genomics","Public Health"],desc:"Design and analyse medical experiments — clinical trials, epidemiological studies, genomic data analysis. Vital for pharmaceutical research and public health policy.",sal:"₹6–25L / $70K–$160K",detail:{dayToDay:"Design Phase I–III clinical trials including randomisation schemes, sample size calculations, and adaptive trial designs. Write statistical analysis plans (SAPs). Perform survival analysis, mixed-effects models, and multiple imputation for missing data. Prepare regulatory submissions to FDA/EMA. Present results to clinical and medical teams. Mentor junior statisticians.",skills:"<strong>Mathematics:</strong> Probability theory, survival analysis (Kaplan-Meier, Cox PH model), mixed-effects models, Bayesian adaptive designs, multiple testing corrections (Bonferroni, FDR). <strong>Regulation:</strong> ICH E9 guidelines, Good Statistical Practice. <strong>Software:</strong> SAS (industry standard for pharma), R (lme4, survival, ggplot2), STATA.",resources:"<strong>Undergraduate:</strong> Casella &amp; Berger's <em>Statistical Inference</em>. <strong>Graduate:</strong> Collett's <em>Modelling Survival Data in Medical Research</em>, Jennison &amp; Turnbull's <em>Group Sequential Methods with Applications to Clinical Trials</em>, Senn's <em>Statistical Issues in Drug Development</em>. <strong>Online:</strong> Coursera Biostatistics in Public Health (Johns Hopkins), SAS programming courses (SAS website), FDA statistical guidance documents (fda.gov/statistical-guidance).",companies:"AstraZeneca, Pfizer, GSK, Roche, Novartis, Eli Lilly, MSD, ICON, PPD (CRO), Covance, NHS Clinical Research, MHRA, CDC.",apply:"MSc Biostatistics or MSc Statistics strongly preferred; PhD opens doors to senior Principal Statistician roles. Apply via pharma careers pages. Expect: case study on clinical trial design or analysis, ICH E9 knowledge questions, R or SAS coding. SAS certification adds credibility. Permanent roles often recruit from CRO internships.",competition:"Low-to-moderate — chronic shortage of biostatisticians globally, particularly those with SAS and clinical trial expertise. Typical postings receive 30–80 applicants vs 200+ for data science roles. FDA-facing biostatisticians are among the most in-demand healthcare professionals."}},
+{icon:"💻",t:"Algorithm Designer / CS Theorist",tags:["FAANG","Theory","Compilers"],desc:"Design algorithms for search, sorting, graphs, cryptography, and machine learning. The theoretical computer science track — P vs NP is the central unsolved problem.",sal:"₹15–100L / $120K–$400K",detail:{dayToDay:"Design and analyse algorithms for hard computational problems — sorting, graph traversal, network flow, approximation. Write rigorous correctness and complexity proofs. Implement and benchmark in C++/Python. Read arXiv papers (cs.DS, cs.CC) daily. At FAANG: review and design interview problems, contribute to production codebases (compilers, search, ad ranking), and research novel optimisations for high-scale systems. At research labs: collaborate on open problems, write and submit papers to STOC/FOCS/SODA.",skills:"<strong>Core mathematics:</strong> Combinatorics, graph theory, probability theory, number theory, linear algebra. <strong>Algorithms:</strong> Sorting, BFS/DFS/Dijkstra/Bellman-Ford, dynamic programming, network flow, string algorithms, randomised algorithms, approximation algorithms, advanced data structures (segment trees, Fenwick trees, tries, link-cut trees, van Emde Boas). <strong>Theory:</strong> Computational complexity (P, NP, reductions, NP-hardness, PSPACE, #P), automata theory, information theory, online algorithms. <strong>Programming:</strong> C++ (primary), Python, Java — ability to write provably correct, cache-efficient code.",resources:"<strong>Undergraduate:</strong> Cormen, Leiserson, Rivest &amp; Stein <em>Introduction to Algorithms</em> (CLRS) — the definitive reference. Sipser's <em>Introduction to the Theory of Computation</em> for complexity theory. <strong>Graduate:</strong> Vazirani's <em>Approximation Algorithms</em> (free PDF), Arora &amp; Barak's <em>Computational Complexity: A Modern Approach</em> (free online), Motwani &amp; Raghavan's <em>Randomized Algorithms</em>. <strong>Competitive programming:</strong> Codeforces, AtCoder Grand Contests, USACO Guide, CP-Algorithms.com. <strong>Online courses:</strong> MIT 6.006 and 6.046 (OCW, free), Erik Demaine's Advanced Algorithms (MIT, free notes), Stanford CS161.",companies:"Google (Core Algorithms, Search Infrastructure, DeepMind), Meta (Ads Algorithms, Infrastructure), Apple (Performance Engineering), Amazon (AWS, Logistics Optimisation), Microsoft Research (Theory Group), Jane Street, Citadel (HFT systems), Bloomberg, NVIDIA (GPU algorithms), Palantir, academic research at MIT/CMU/Stanford/ETH.",apply:"For FAANG roles: LeetCode performance is critical (target consistent success on Hard problems, contest rating 1800+). The typical interview process: (1) OA with 2 algorithmic problems, (2) phone screen, (3) 4–6 onsite rounds — 2–3 algorithmic coding (DP, graphs, strings, data structures), 1 system design, 1 behavioural. Strong competitive programming ratings (Codeforces Expert or higher) are major differentiators. Research positions require a PhD and publications at top theory venues (STOC, FOCS, SODA, ICALP). List yourself on LinkedIn, Codeforces, and maintain a personal site with your competitive programming profile.",competition:"FAANG algorithm roles attract 500–2,000+ applications per position; only ~5–15% pass the coding screen. Competition from top competitive programmers (ICPC World Finalists, IOI medalists) is fierce. Research theory roles at top labs are less crowded for those with strong publications — but the global pool of senior theorists is small. The Millennium Prize P vs NP problem ($1M) remains the most famous open question — solving it would be the most consequential mathematical result in history, though no institution funds work on it directly."}},
+{icon:"🚀",t:"Aerospace & Defence Researcher",tags:["ISRO","DRDO","HAL"],desc:"Apply differential equations, fluid dynamics, numerical methods, and control theory to aerospace engineering and defence systems. ISRO, DRDO, and HAL hire mathematicians directly.",sal:"₹8–20L (India government scale)"},
+{icon:"📚",t:"Educator & Teacher",tags:["School","Coaching","University"],desc:"From school teaching (transformative societal impact) to coaching institutes (JEE, Olympiad) to university lecturing. Mathematics educators shape the next generation of thinkers and researchers.",sal:"₹3–30L (wide range)"},
+{icon:"🔭",t:"Theoretical Physicist",tags:["Particle Physics","Cosmology","String Theory"],desc:"Modern theoretical physics IS applied mathematics. String theory, quantum gravity, and quantum field theory all require graduate-level mathematics as prerequisite.",sal:"₹5–30L (academia) / $60K–$150K",detail:{dayToDay:"Develop mathematical frameworks for quantum field theory, string theory, quantum gravity, or condensed matter. Write lengthy calculations involving Feynman diagrams, path integrals, renormalisation group flows. Read and write papers (arXiv daily). Give seminars. Collaborate internationally. Apply for postdoctoral positions and grants. Some move to industry: quantum computing, semiconductor physics, financial modelling.",skills:"Mathematical physics at graduate level: quantum mechanics, quantum field theory (QFT), general relativity, statistical mechanics, group theory (Lie groups, representation theory), differential geometry, complex analysis, functional analysis. Very strong computation: Mathematica, Python (NumPy/SciPy), sometimes Fortran for large simulations.",resources:"<strong>Undergraduate:</strong> Griffiths' <em>Introduction to Quantum Mechanics</em>, Carroll's <em>Spacetime and Geometry</em>. <strong>Graduate:</strong> Peskin &amp; Schroeder's <em>An Introduction to Quantum Field Theory</em> (the bible), Weinberg's <em>Quantum Theory of Fields</em> (3 vols), Nakahara's <em>Geometry, Topology and Physics</em>. <strong>Online:</strong> Leonard Susskind's Theoretical Minimum lectures (theoreticalminimum.com, free), Perimeter Institute recorded lectures (pirsa.org, free), David Tong's lecture notes (damtp.cam.ac.uk/user/tong, free).",companies:"CERN, Fermilab, DESY, Brookhaven National Lab, Perimeter Institute, IHES, KITP Santa Barbara, academic universities, quantum computing companies (IBM Quantum, IQM, QuEra, Google Quantum AI).",apply:"Path is almost always BSc Physics/Maths → PhD (4–5 years) → 2–3 postdoc positions → faculty or industry transition. For quantum computing industry: an arXiv paper on quantum algorithms or error correction plus Python/Qiskit skills is very effective. Faculty positions are on the same competitive level as academic mathematics.",competition:"Extremely competitive for academic posts — similar to academic mathematics. However, theoretical physicists have excellent exit routes: finance (they are heavily recruited by quant funds), quantum computing, semiconductor R&amp;D. IBM and Google Quantum AI have standing graduate recruitment programmes."}},
+{icon:"💰",t:"Econometrician / Financial Economist",tags:["Economics","Policy","Central Banking"],desc:"Apply statistical methods to economic data — causal inference, panel data, time series. Works in research institutes, central banks (RBI, World Bank), government agencies, and universities.",sal:"₹8–40L / $70K–$180K"},
+{icon:"🌐",t:"Network Scientist & Data Analyst",tags:["Social Networks","Epidemiology","Tech"],desc:"Study complex networks — social, biological, computational — using graph theory, probability, and statistical physics. Applications in epidemiology, recommendation systems, social media.",sal:"₹8–35L / $80K–$180K"},
+{icon:"🎯",t:"Quantitative Risk Manager",tags:["Banking","Basel III","Compliance"],desc:"Model credit, market, liquidity, and operational risk in financial institutions. Regulatory capital calculations require sophisticated stochastic models and deep statistical knowledge.",sal:"₹12–60L / $90K–$250K"},
+{icon:"🎲",t:"Mathematical Modeller (Climate / Biology)",tags:["Environmental","Epidemiology","R&D"],desc:"Build mathematical models of climate systems, pandemic spread, ecological dynamics, or drug interactions. Uses ODEs, PDEs, stochastic processes, and numerical simulation.",sal:"₹5–25L / $60K–$130K"}
+];
+
+let researchPDFs = {}; let openProblemPDFs = {}; let careerPDFs = {};
+
+function tog(bodyId, arrId) {
+  var b = document.getElementById(bodyId);
+  if (!b) return;
+  // Check inline style first; fall back to computed style
+  var hidden = b.style.display ? b.style.display === 'none' : window.getComputedStyle(b).display === 'none';
+  b.style.display = hidden ? 'block' : 'none';
+  var a = document.getElementById(arrId);
+  if (a) { a.style.transform = hidden ? 'rotate(180deg)' : 'rotate(0deg)'; a.style.transition = 'transform 0.25s'; }
+}
+
+function renderCareers(){
+  const isAdm = isAdmin();
+  document.getElementById("careers-grid").innerHTML=careersData.map((c,i)=>`
+  <div class="car-card reveal" id="carcard${i}">
+    <span class="car-icon">${c.icon}</span>
+    <div class="car-title">${c.t}</div>
+    <div class="car-desc">${c.desc}</div>
+    <div>${c.tags.map(tag=>`<span class="car-tag">${tag}</span>`).join("")}</div>
+    <div class="car-sal">💰 ${c.sal}</div>
+    ${(careerPDFs[i]||[]).map(pdf=>`
+      <a class="pdf-resource-link" href="${pdf.url}" target="_blank" rel="noopener">📄 ${pdf.name}</a>`).join('')}
+    ${c.detail?`<button class="car-expand-btn" onclick="tog('cardet${i}','carbtn${i}')"><span id="carbtn${i}">▼</span> Full Career Details</button>
+    <div id="cardet${i}" style="display:none">
+      ${c.detail.dayToDay?`<div class="car-section"><div class="car-section-lbl">📋 Day-to-Day Work</div><div class="car-section-body">${c.detail.dayToDay}</div></div>`:""}
+      ${c.detail.skills?`<div class="car-section"><div class="car-section-lbl">🧮 Mathematical Skills Required</div><div class="car-section-body">${c.detail.skills}</div></div>`:""}
+      ${c.detail.resources?`<div class="car-section"><div class="car-section-lbl">📚 How to Prepare (Undergrad to Job-Ready)</div><div class="car-section-body">${c.detail.resources}</div></div>`:""}
+      ${c.detail.companies?`<div class="car-section"><div class="car-section-lbl">🏢 Top Companies & Organisations</div><div class="car-section-body">${c.detail.companies}</div></div>`:""}
+      ${c.detail.apply?`<div class="car-section"><div class="car-section-lbl">📝 How to Apply</div><div class="car-section-body">${c.detail.apply}</div></div>`:""}
+      ${c.detail.competition?`<div class="car-section"><div class="car-section-lbl">⚔️ Competition & Seats</div><div class="car-section-body">${c.detail.competition}</div></div>`:""}
+    </div>`:""}
+    <div class="admin-bar${isAdm?' visible':''}">
+      <button class="admin-btn add-btn" onclick="adminUploadPDF('career',${i})">📎 Add PDF Resource</button>
+    </div>
+  </div>`).join("");}
+
+
+function adminUploadPDF(section, itemIdx) {
+  if (!isAdmin()) return;
+  const existing = (
+    section === 'research' ? researchPDFs[itemIdx] :
+    section === 'openprob' ? openProblemPDFs[itemIdx] :
+    careerPDFs[itemIdx]
+  ) || [];
+
+  const existingHTML = existing.map((pdf, pi) =>
+    `<div class="admin-pdf-item">📄 <a href="${pdf.url}" target="_blank" rel="noopener">${escHtml(pdf.name)}</a>
+     <button class="remove-pdf" onclick="adminRemovePDF('${section}',${itemIdx},${pi})">✕ Remove</button></div>`
+  ).join('');
+
+  openAdminModal('📎 Add PDF Resource', `
+    ${existing.length ? `<div class="admin-field"><label>Existing PDFs</label><div class="admin-pdf-list">${existingHTML}</div></div>` : ''}
+    <div class="admin-field">
+      <label>PDF Display Name</label>
+      <input id="pdfName" placeholder="e.g. Wiles 1995 - Modular Elliptic Curves and Fermat's Last Theorem"></div>
+    <div class="admin-field">
+      <label>Upload PDF File</label>
+      <input type="file" id="pdfFile" accept=".pdf" style="color:#e2e8f0;padding:0.4rem 0"></div>
+    <div class="admin-field">
+      <label>OR Paste External URL</label>
+      <input id="pdfUrl" placeholder="https://arxiv.org/pdf/..."></div>
+    <p style="font-size:0.72rem;color:#7dd3fc;margin-top:0.3rem">PDFs are stored in Supabase Storage and visible to all users.</p>
+  `, async () => {
+    const sb = window.sb;
+    if (!sb) return;
+    const name = document.getElementById('pdfName').value.trim();
+    const file = document.getElementById('pdfFile').files[0];
+    const extUrl = document.getElementById('pdfUrl').value.trim();
+    if (!name) throw new Error('Display name is required.');
+    if (!file && !extUrl) throw new Error('Upload a file or provide a URL.');
+
+    let fileUrl = extUrl;
+    if (file && sb) {
+      const filePath = `${section}/${itemIdx}/${Date.now()}_${file.name.replace(/\s/g,'_')}`;
+      const { error: upErr } = await sb.storage.from('vault-files').upload(filePath, file, { upsert: true });
+      if (upErr) throw upErr;
+      const { data: urlData } = sb.storage.from('vault-files').getPublicUrl(filePath);
+      fileUrl = urlData.publicUrl;
+    } else if (file) {
+      // Fallback: use object URL (temporary)
+      fileUrl = URL.createObjectURL(file);
+    }
+
+    const record = { section, item_index: itemIdx, file_name: name, file_url: fileUrl, uploaded_by: window.currentUser.email };
+    if (sb) {
+      const { error } = await sb.from('math_pdf_resources').insert([record]);
+      if (error) throw error;
+    }
+    await loadAdminData();
+  });
+}
+
+
+async function adminRemovePDF(section, itemIdx, pdfIdx) {
+  if (!isAdmin()) return;
+  const sb = window.sb;
+  const arr = section === 'research' ? researchPDFs[itemIdx] :
+              section === 'openprob' ? openProblemPDFs[itemIdx] :
+              careerPDFs[itemIdx];
+  if (!arr || !arr[pdfIdx]) return;
+  const pdf = arr[pdfIdx];
+  if (!confirm('Remove PDF "' + pdf.name + '"?')) return;
+  if (sb && pdf.id) {
+    const { error } = await sb.from('math_pdf_resources').delete().eq('id', pdf.id);
+    if (error) { alert('Remove failed: ' + error.message); return; }
+  }
+  await loadAdminData();
+  // Re-open modal to reflect changes
+  adminUploadPDF(section, itemIdx);
+}
+
+
+async function loadAdminData() {
+  const sb = window.sb;
+  if (!sb || !isAdmin()) return;
+  try {
+    const { data: pdfs } = await sb.from('math_pdf_resources').select('*').order('created_at', { ascending: true });
+    careerPDFs = {};
+    (pdfs || []).forEach(r => {
+      if (r.section === 'career') {
+        const idx = r.item_index;
+        if (!careerPDFs[idx]) careerPDFs[idx] = [];
+        careerPDFs[idx].push({ id: r.id, name: r.file_name, url: r.file_url });
+      }
+    });
+  } catch(e) { console.warn('loadAdminData error:', e); }
+  renderCareers();
+  reRevealActivePage();
+}
+
+function buildSearchIndex(){
+  PAGE_SEARCH_INDEX = [];
+  careersData.forEach(function(c,i){
+    PAGE_SEARCH_INDEX.push({icon:c.icon||'💼',title:c.t,meta:(c.tags||[]).join(' · '),section:'Careers',elId:'carcard'+i,q:(c.t+' '+(c.desc||'')).toLowerCase()});
+  });
+}
+
+renderCareers();
+
+
+document.querySelectorAll('.reveal').forEach(function(el, i) {
+  setTimeout(function() { el.classList.add('visible'); }, Math.min(i * 35, 900));
+});
+</script>
+
+<!-- ═══ SUPABASE + SHARED AUTH/COMMENTS BRIDGE ═══════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Statistics Puzzles & Probability Paradoxes | Stargazer</title>
+<meta name="description" content="Classic and advanced probability puzzles, from the Monty Hall problem to the birthday paradox — statistics at its most playful, with hints and solutions.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Statistics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/stats/puzzles.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Statistics Puzzles & Probability Paradoxes | Stargazer">
+<meta property="og:description" content="Classic and advanced probability puzzles, from Monty Hall to the birthday paradox — with hints and solutions.">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/stats/puzzles.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Statistics Puzzles & Probability Paradoxes | Stargazer">
+<meta name="twitter:description" content="Classic and advanced probability puzzles, from Monty Hall to the birthday paradox — with hints and solutions.">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Statistics Puzzles & Probability Paradoxes | Stargazer",
+  "description": "Classic and advanced probability puzzles, from Monty Hall to the birthday paradox — with hints and solutions.",
+  "url": "https://stargazer-9m9.pages.dev/stats/puzzles.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Statistics", "sameAs": "https://en.wikipedia.org/wiki/Statistics" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stats.css">
+</head>
+<body>
+
+<!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
+    <span id="mode-icon">☾</span>
+  </button>
+  <a href="../login.html" id="loginBtn">☽ Sign In</a>
+  <div id="userInfo">
+    <span id="userEmailDisplay">✦ Explorer</span>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══ NAV ═════════════════════════════════════════════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Statistics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Puzzles</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)" aria-label="Search">🔍</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══ HAMBURGER MENU ══════════════════════════════════════════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home"          onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item"        data-page="books"         onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item active"        data-page="puzzles"       onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <button class="hm-item"        data-page="school"        onclick="location.href='school.html'">🏫 School</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="inference"     onclick="location.href='inference.html'">🔬 Inference</button>
+  <button class="hm-item"        data-page="distributions" onclick="location.href='distributions.html'">📊 Distributions</button>
+  <button class="hm-item"        data-page="bayesian"      onclick="location.href='bayesian.html'">∫ Bayesian</button>
+  <button class="hm-item"        data-page="openproblems"  onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item"        data-page="research"      onclick="location.href='research.html'">🔭 Research</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="careers"       onclick="location.href='careers.html'">💼 Careers</button>
+  <button class="hm-item"        data-page="studyguide"    onclick="location.href='studyguide.html'">🗺️ Study Guide</button>
+  <button class="hm-item"        data-page="facts"         onclick="location.href='facts.html'">✨ Fun Facts</button>
+  <button class="hm-item"        data-page="tools"         onclick="location.href='tools.html'">🛠️ Tools</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="calc"          onclick="location.href='calc.html'">🔢 Calculator</button>
+  <button class="hm-item"        data-page="formulas"      onclick="location.href='formulas.html'">📋 Formulas</button>
+  <button class="hm-item"        data-page="history"       onclick="location.href='history.html'">⏳ History</button>
+  <button class="hm-item"        data-page="comments"      onclick="location.href='comments.html'">💬 Discuss</button>
+</div>
+
+<!-- ═══ SEARCH MODAL ═══════════════════════════════════════════════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search books, puzzles, distributions, tools…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<!-- ═══ TOAST ══════════════════════════════════════════════════════ -->
+<div id="toast">
+  <button id="toast-close" onclick="hideToast()" aria-label="Dismiss notification">✕</button>
+  <div class="toast-cat" id="toast-cat">Fun Fact</div>
+  <div id="toast-body"></div>
+</div>
+
+<!-- ═══ KEYBOARD HINT ══════════════════════════════════════════════ -->
+<div id="shortcut-hint">/ search · ← → pages</div>
+
+<!-- ═══ PAGE: CALCULATOR ═══════════════════════════════════════════ -->
+<div class="page active" id="page-puzzles">
+  <section class="section" id="puzzles">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:var(--tl-l);color:var(--tl);border:1px solid rgba(46,107,107,.25)">Classic &amp; Advanced Puzzles</span>
+        <h2 class="s-title font-serif">Puzzles — Where Statistics Becomes Philosophy</h2>
+        <p class="s-desc">Click any puzzle to expand. Hints and solutions are blurred — click them to reveal. Mark puzzles solved to track your progress.</p>
+      </div>
+      <div style="text-align:center;margin-bottom:1.5rem"><button onclick="openRandomPuzzle()" style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.55rem 1.3rem;border-radius:99px;background:var(--tl-l);color:var(--tl);border:1px solid var(--tl);cursor:pointer;transition:all .2s" onmouseover="this.style.background='var(--tl)';this.style.color='#fff'" onmouseout="this.style.background='var(--tl-l)';this.style.color='var(--tl)'">🎲 Random Puzzle</button> <button onclick="showRandomFact()" style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.55rem 1.3rem;border-radius:99px;background:var(--pk-l);color:var(--pk);border:1px solid var(--pk);cursor:pointer;margin-left:.5rem;transition:all .2s" onmouseover="this.style.background='var(--pk)';this.style.color='#fff'" onmouseout="this.style.background='var(--pk-l)';this.style.color='var(--pk)'">✨ Random Fact</button></div>
+      <div id="puzzles-daily-quote"></div>
+      <div class="puz-filter-wrap">
+        <span class="puz-filter-lbl">Category:</span>
+        <div id="puz-filter-row" style="display:flex;flex-wrap:wrap;gap:.3rem;flex:1"></div>
+        <button class="puz-random-btn" onclick="openRandomPuzzle()">🎲 Random</button>
+      </div>
+      <div class="g3" id="puzzles-grid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ PAGE: SCHOOL ═════════════════════════════════════════════ -->
+<!-- ── CONTACT ── -->
+<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);font-style:italic;font-family:'Source Code Pro',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div style="text-align:center;padding-bottom:2rem;">
+  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+</div>
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
+<script>
+window._nextPage = 'school.html';
+window._prevPage = 'books.html';
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+
+function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+
+/* ── BOOKS ─────────────────────────────────────────────────── */
+
+function toggleHamburger(){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu)return;
+  const open=menu.classList.toggle('open');
+  btn.classList.toggle('open',open);
+}
+// Close when clicking outside
+document.addEventListener('click',function(e){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu||!menu.classList.contains('open'))return;
+  if(!menu.contains(e.target)&&e.target!==btn&&!btn.contains(e.target)){
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+
+
+/* ═══════════════════════════════════════════════════════════════
+   OVERRIDE: renderPuzzles — index + cat badge + solved button + filters
+   ═══════════════════════════════════════════════════════════════ */
+
+function toggleMode(){
+  const night=document.body.classList.toggle('night');
+  document.getElementById('mode-icon').textContent=night?'☀':'☾';
+  localStorage.setItem('stats-mode',night?'night':'day');
+  // redraw all visible canvases
+  document.querySelectorAll('.dist-canvas').forEach(c=>{
+    const cid=c.id;
+    const params={};
+    document.querySelectorAll(`[id^="sl-${cid}-"]`).forEach(sl=>{
+      params[sl.id.replace('sl-'+cid+'-','')]=parseFloat(sl.value);
+    });
+    // find the slug from DISTRIBUTIONS
+    const slug=getSlugFromCanvas(cid);
+    if(slug){
+      const isDisc=['bernoulli','binomial','geometric','negbin','poisson','hypergeometric'].includes(slug);
+      drawDistCanvas(cid,slug,params,isDisc);
+    }
+  });
+}
+
+
+function getSlugFromCanvas(cid){
+  // cid format: dc-type-idx
+  const parts=cid.split('-');
+  if(parts.length<3)return null;
+  const type=parts[1],idx=parseInt(parts[2]);
+  if(DISTRIBUTIONS[type]&&DISTRIBUTIONS[type][idx])return DISTRIBUTIONS[type][idx].slug;
+  return null;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL EFFECTS
+   ═══════════════════════════════════════════════════════════ */
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  if(btt)btt.classList.toggle('show',window.scrollY>300);
+  document.querySelectorAll('.reveal').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-60)
+      el.classList.add('visible');
+  });
+},{passive:true});
+
+/* ═══════════════════════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════════════════════ */
+
+let SEARCH_INDEX=[];
+function openSearch(){
+  buildSearchIndex();
+  const m=document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(()=>document.getElementById('search-input').focus(),80);
+}
+function closeSearch(){
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value='';
+  document.getElementById('search-results').innerHTML='<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q){
+  const res=document.getElementById('search-results');
+  if(!q.trim()){res.innerHTML='<div class="sr-empty">Start typing…</div>';return;}
+  const lq=q.toLowerCase();
+  const hits=SEARCH_INDEX.filter(x=>x.q.toLowerCase().includes(lq)).slice(0,18);
+  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q+'"</div>';return;}
+  res.innerHTML=hits.map((h,i)=>`<div class="sr-item" tabindex="0" data-idx="${i}" onclick="goSearchResult(${SEARCH_INDEX.indexOf(h)})" onkeydown="if(event.key==='Enter')goSearchResult(${SEARCH_INDEX.indexOf(h)})"><span class="sr-icon">${h.icon}</span><div><div class="sr-title">${highlight(h.title,lq)}</div><div class="sr-meta">${h.meta}</div></div><span class="sr-section">${h.section}</span></div>`).join('');
+}
+function highlight(text,q){
+  if(!q)return text;
+  const idx=text.toLowerCase().indexOf(q);
+  if(idx<0)return text;
+  return text.slice(0,idx)+'<mark style="background:var(--gd-l);color:var(--gd);border-radius:2px">'+text.slice(idx,idx+q.length)+'</mark>'+text.slice(idx+q.length);
+}
+function goSearchResult(idx){ closeSearch(); }
+function searchKeyNav(e){
+  if(e.key==='Escape'){closeSearch();return;}
+  const items=document.querySelectorAll('.sr-item');
+  const cur=document.activeElement;
+  const curIdx=[...items].indexOf(cur);
+  if(e.key==='ArrowDown'){e.preventDefault();(items[curIdx+1]||items[0])?.focus();}
+  if(e.key==='ArrowUp'){e.preventDefault();(items[curIdx-1]||items[items.length-1])?.focus();}
+  if(e.key==='Enter'&&curIdx>=0){items[curIdx].click();}
+}
+
+
+function buildSearchIndex(){
+  if(SEARCH_INDEX.length)return;
+  PUZZLES.forEach(p=>SEARCH_INDEX.push({icon:'🎲',title:p.title,meta:p.src+' · '+p.diff,section:'Puzzles',page:'puzzles',q:p.title+' '+p.src+' '+p.q}));
+}
+
+
+(function initKeyboard(){
+  const PAGES=['home','precollege_placeholder'];
+  document.addEventListener('keydown',e=>{
+    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
+    if(document.getElementById('search-modal')&&document.getElementById('search-modal').classList.contains('open')){
+      if(e.key==='Escape')closeSearch();
+      return;
+    }
+    if(e.key==='/'){e.preventDefault();openSearch();return;}
+    if(e.key==='ArrowRight'){e.preventDefault();location.href=window._nextPage;}
+    if(e.key==='ArrowLeft'){e.preventDefault();location.href=window._prevPage;}
+    if(e.key==='f'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){if(typeof showRandomFact==='function')showRandomFact();}
+    if(e.key==='Escape'){
+      const hmenu=document.getElementById('hamburger-menu');
+      if(hmenu&&hmenu.classList.contains('open')){
+        hmenu.classList.remove('open');
+        document.getElementById('hamburger-btn')?.classList.remove('open');
+      }
+    }
+  });
+})();
+
+function showToast(msg,bg){
+  const t=document.createElement('div');
+  t.textContent=msg;
+  t.style.cssText=`position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);background:${bg};color:#fff;font-family:'Source Code Pro',monospace;font-size:.72rem;padding:.45rem 1.1rem;border-radius:99px;z-index:9998;animation:fadeUpIn .35s ease;white-space:nowrap;pointer-events:none`;
+  document.body.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .35s';setTimeout(()=>t.remove(),380);},2200);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATISTICIAN QUOTES — daily + 5-hour rotation
+   ═══════════════════════════════════════════════════════════════ */
+
+let toastTimer=null;
+
+const PUZZLES = [
+  {
+    title:"The Monty Hall Problem",cat:"Probability",
+    src:"Probability · Conditional",
+    diff:"★★★☆☆",
+    q:"You're on a game show. Three doors: one hides a car, two hide goats. You pick Door 1. The host (who knows what's behind each door) opens Door 3, revealing a goat. Should you switch to Door 2 or stay with Door 1?",
+    hint:"Think about what information the host's action reveals. The host always opens a goat door — this is a key constraint. Calculate P(car behind Door 2 | host opens Door 3).",
+    ans:"<strong>Switch. Your probability of winning doubles.</strong><br><br>Initially P(car behind Door 1) = 1/3, P(car behind Door 2) = 1/3, P(car behind Door 3) = 1/3.<br><br>After the host opens Door 3 (always a goat):<br>• If car was behind Door 1 (prob 1/3): host chose randomly between Doors 2 and 3.<br>• If car was behind Door 2 (prob 1/3): host was forced to open Door 3.<br>• If car was behind Door 3: impossible — host can't reveal the car.<br><br>P(car behind Door 2 | host opens Door 3) = (1/3 · 1)/(1/3 · 1/2 + 1/3 · 1) = (1/3)/(1/2) = <strong>2/3</strong>.<br><br>P(car behind Door 1 | host opens Door 3) = 1/3.<br><br>Switching wins 2/3 of the time. This result is counterintuitive because the host's action is not random — it carries information."
+  },
+  {
+    title:"The Birthday Paradox",cat:"Probability",
+    src:"Combinatorics · Probability",
+    diff:"★★☆☆☆",
+    q:"In a room of 23 people, what is the probability that at least two people share a birthday? (Assume 365 days per year, uniform distribution, ignore leap years.)",
+    hint:"It's far easier to compute the complementary probability: P(all birthdays are different). The first person has any birthday; the second must avoid 1 out of 365; the third must avoid 2 out of 365, and so on.",
+    ans:"<strong>Approximately 50.7% — higher than almost anyone guesses.</strong><br><br>P(no match among n people) = 365/365 × 364/365 × 363/365 × ⋯ × (365-n+1)/365<br><br>= (365)!/(365-n)! / 365ⁿ<br><br>For n = 23: P(no match) = 365×364×…×343 / 365²³ ≈ 0.4927<br><br>P(at least one match) = 1 − 0.4927 ≈ <strong>0.5073</strong>, i.e. just over 50%.<br><br>The paradox is that we compare 23 people against 365 days and intuit ~6% probability. But there are C(23,2) = 253 pairs, each with probability 1/365 of matching. The relevant comparison is 253 vs 365, not 23 vs 365."
+  },
+  {
+    title:"The Two-Envelope Problem",cat:"Paradox",
+    src:"Decision Theory · Paradox",
+    diff:"★★★★☆",
+    q:"Two envelopes each contain money. One contains twice as much as the other. You open one envelope and find £100. You reason: the other envelope contains either £50 or £200 with equal probability. Expected value of switching = (£50 + £200)/2 = £125 > £100. So you should always switch — but this applies no matter what you see, which leads to a paradox. What is wrong with this reasoning?",
+    hint:"Suppose the envelopes contain £x and £2x. What is the prior distribution of x? Does the uniform distribution over all positive reals exist?",
+    ans:"<strong>The error is in the implicit prior distribution assumption.</strong><br><br>When you compute E[other envelope | see £100] = (£50 + £200)/2, you are implicitly assuming P(lower = £50) = P(lower = £100) = 1/2, i.e. that the envelope pairs (50,100) and (100,200) are equally likely.<br><br>But this requires a prior distribution on the smaller amount x such that P(x = £50) = P(x = £100). For this to be a valid (normalised) probability distribution while making all switches equally attractive, you'd need a uniform distribution on (0,∞) — which doesn't exist as a probability measure.<br><br>For any specific, proper prior on x, the switching argument breaks down. With a proper prior, the posterior probability that you hold the smaller envelope depends on which value you actually observe, and is not always 1/2.<br><br>The deep lesson: improper priors can generate paradoxes. Any valid decision must be grounded in a proper probability model."
+  },
+  {
+    title:"Simpson's Paradox",cat:"Paradox",
+    src:"Statistical Inference · Paradox",
+    diff:"★★★☆☆",
+    q:"Hospital A has a 90% surgery success rate overall; Hospital B has an 80% overall success rate. But when you separate patients by severity (mild vs severe cases), Hospital B has a better success rate in BOTH categories. How is this possible?",
+    hint:"Hospital B may treat a higher proportion of severe cases, where success rates are lower for everyone. Think about what happens when you combine two groups with different base rates and different group sizes.",
+    ans:"<strong>This is Simpson's Paradox — a reversal of direction when groups are combined.</strong><br><br>Example:<br>Hospital A: Mild cases: 8100/9000 = 90%, Severe cases: 800/1000 = 80%. Overall: 8900/10000 = <strong>89%</strong>.<br>Hospital B: Mild cases: 900/1000 = 90%, Severe cases: 7200/9000 = 80%. Overall: 8100/10000 = <strong>81%</strong>.<br><br>Wait, both hospitals have 90% mild and 80% severe rates — yet Hospital A's overall rate is higher because it treats 9× more mild than severe cases, while Hospital B treats 9× more severe than mild cases.<br><br><strong>Real example:</strong> UC Berkeley 1973 admissions appeared to favour men (44% admitted vs 35% women). When broken down by department, women had higher admission rates in most departments — they had applied to more competitive departments in larger numbers.<br><br>The lesson: aggregate data can systematically mislead when a lurking variable (severity, department) is correlated with both the grouping variable and the outcome. Always condition on relevant confounders."
+  },
+  {
+    title:"St. Petersburg Paradox",cat:"Paradox",
+    src:"Decision Theory · Probability",
+    diff:"★★★★☆",
+    q:"A casino offers a game: a fair coin is tossed until heads appears. If heads first appears on flip k, you win 2^k pounds. What is the fair price to pay for this game? Would you pay £1000 to play?",
+    hint:"Compute E[winnings] = Σ P(first heads on flip k) × 2^k for k = 1, 2, 3, .... What do you notice?",
+    ans:"<strong>The expected value is infinite — but almost no one would pay more than £20 to play. Why?</strong><br><br>E[winnings] = Σ (1/2)^k × 2^k for k=1 to ∞ = Σ 1 for k=1 to ∞ = ∞<br><br>The expected value is infinite, yet the game has almost no chance of paying more than a few hundred pounds. P(win ≥ £1024) = P(10+ tails before first heads) = 1/1024 ≈ 0.001.<br><br><strong>Bernoulli's resolution (1738): diminishing marginal utility.</strong> If utility of wealth x is log(x), then E[utility] = Σ (1/2)^k × log(2^k) = log(2)·Σ k/2^k = 2·log(2) < ∞.<br><br>For an individual with current wealth W, the fair price p is: log(W) = Σ (1/2)^k log(W + 2^k - p). For W = 1000, this gives p ≈ £6.<br><br><strong>Modern resolution:</strong> The paradox reveals that expected monetary value is not always the right objective function for decision-making. Risk-averse agents, fat tails in real markets, and the impossibility of actually paying infinite amounts all break the naive analysis. It motivated the development of expected utility theory."
+  },
+  {
+    title:"The German Tank Problem",cat:"Inference",
+    src:"Estimation Theory · WWII Statistics",
+    diff:"★★★☆☆",
+    q:"During WWII, captured German Panzer tanks had serial numbers on their gearboxes numbered sequentially from 1 to N (where N is total production). From a sample of k captured tanks with serial numbers x₁, x₂, ..., xₖ, derive the minimum variance unbiased estimator (MVUE) of N. Allied statisticians solved this problem from 1940–45.",
+    hint:"The maximum observed serial number m = max(x₁,...,xₖ) is a sufficient statistic. The MLE is simply m. But the MLE is biased — it always underestimates N. To find an unbiased estimator, compute E[m] as a function of N and k.",
+    ans:"<strong>MVUE: N̂ = m(k+1)/k - 1</strong>, where m = max(x₁,...,xₖ) and k is sample size.<br><br><strong>Derivation:</strong> Sampling k numbers without replacement from {1,...,N}, the expected value of the maximum is:<br>E[m] = k(N+1)/(k+1)<br><br>This follows because the k order statistics of a uniform draw from {1,...,N} are symmetric about (N+1)/2, and the joint distribution of all order statistics can be computed via counting arguments.<br><br>Solving for N: E[m] = k(N+1)/(k+1) ⟹ N = (k+1)E[m]/k - 1<br><br>Replacing E[m] with its realisation m: <strong>N̂ = m(k+1)/k - 1</strong><br><br>This is the MVUE because m is a complete sufficient statistic (by the Lehmann-Scheffé theorem).<br><br><strong>Historical performance:</strong> The MVUE gave an estimate of ~255 Panzer V tanks produced in June 1944. German records after the war showed actual production was 270. Post-war intelligence estimates (based on interrogation) had claimed ~1,400. The statistical approach was dramatically more accurate."
+  },
+  {
+    title:"Stein's Paradox — The Inadmissibility of the MLE",
+    src:"Decision Theory · Estimation",
+    diff:"★★★★★",
+    q:"You observe X₁, X₂, X₃ ∼ N(θ₁, 1), N(θ₂, 1), N(θ₃, 1) independently (estimating 3 independent normal means simultaneously). The natural estimator is the MLE: θ̂ᵢ = Xᵢ. Charles Stein proved in 1956 that this MLE is inadmissible. The James-Stein estimator θ̂ᴶˢ = (1 - (p-2)/‖X‖²)X dominates it in total squared error when p ≥ 3. Why should estimating the batting averages of three players be improved by also knowing the temperature in Bolivia?",
+    hint:"'Inadmissible' means there exists another estimator with uniformly lower MSE (for all θ) in total squared error ‖θ̂ - θ‖². The key is the word 'total' — we evaluate all p components jointly. Think about what shrinking toward zero buys you when ‖X‖² is large vs small.",
+    ans:"<strong>Stein's paradox is real and profound. In p ≥ 3 dimensions, the MLE is inadmissible under squared error loss.</strong><br><br><strong>Why the JS estimator works:</strong><br>The MLE has E‖X - θ‖² = p (since each component has MSE = 1). The James-Stein estimator shrinks X toward zero by factor (1 - (p-2)/‖X‖²). When ‖X‖² is large relative to p-2, very little shrinkage occurs. When ‖X‖² is small, the shrinkage is substantial. The risk of JS satisfies:<br><br>E‖θ̂ᴶˢ - θ‖² = p - (p-2)²·E[1/‖X‖²] < p for all θ when p ≥ 3.<br><br><strong>The batting average intuition (Efron & Morris, 1977):</strong> Shrinking toward the grand mean (rather than zero) in a season of baseball batting averages can reduce total MSE even though each player's true ability is independent. The information in the joint distribution of a collection of estimates — specifically that the estimator's variance around truth has a shared structure — justifies borrowing strength across seemingly unrelated quantities.<br><br><strong>Deep consequence:</strong> Stein's result shattered the statistical principle that components of a multivariate estimation problem can always be solved independently. It opened the field of shrinkage estimation, regularisation (ridge, LASSO), and empirical Bayes — all of which exploit the paradox constructively."
+  },
+  {
+    title:"The False Discovery Rate — Multiple Testing",cat:"Inference",
+    src:"Hypothesis Testing · Multiple Comparisons",
+    diff:"★★★☆☆",
+    q:"A genomic study tests H₀ᵢ: gene i has no effect, for i = 1,...,10,000 genes. Suppose 1,000 genes truly affect the trait and 9,000 do not. Each test is conducted at α = 0.05. (a) How many false positives do you expect? (b) If 1,000 hypotheses are rejected, what proportion are likely false discoveries? (c) What method controls the False Discovery Rate?",
+    hint:"For part (a): the 9,000 true null hypotheses each have a 5% chance of being falsely rejected. For part (c): the Benjamini-Hochberg procedure. For the 1,000 truly non-null tests, you need to know the power to compute expected true positives.",
+    ans:"<strong>(a) Expected false positives = 9,000 × 0.05 = 450.</strong><br><br>(b) Expected true positives depend on power. Suppose power = 0.80 (80% chance each true effect is detected). Expected true positives = 1,000 × 0.80 = 800.<br><br>If 1,250 tests are rejected (450 false + 800 true), then:<br>FDR = expected false positives / total rejections = 450/1,250 = <strong>36%</strong><br><br>This is alarmingly high. Over a third of your 'discoveries' are false.<br><br><strong>Bonferroni control:</strong> Test each hypothesis at α/m = 0.05/10,000 = 0.000005. This controls the Family-Wise Error Rate (FWER: probability of ANY false positive ≤ 5%). But it is very conservative — expected true positives ≈ 1,000 × P(Noncentrally-distributed test statistic exceeds the Bonferroni threshold) ≈ much lower than 800.<br><br><strong>Benjamini-Hochberg (1995):</strong> Sort p-values p(1) ≤ p(2) ≤ ... ≤ p(m). Reject all hypotheses up to rank k where k = max{i : p(i) ≤ iQ/m}. Setting Q = 0.05 controls E[FDP] ≤ Q. This is far more powerful than Bonferroni while still providing meaningful control. It's the standard in genomics and the reason the BH procedure won Benjamini and Hochberg the Israel Prize."
+  },
+  {
+    title:"The Cauchy Sample Mean Paradox",cat:"Distributions",
+    src:"Heavy Tails · Order Statistics",
+    diff:"★★★★☆",
+    q:"Let X₁, X₂, ..., Xₙ be i.i.d. Cauchy(0,1) random variables (location 0, scale 1). What is the distribution of the sample mean X̄ₙ = (X₁ + ... + Xₙ)/n? Does X̄ₙ → 0 as n → ∞?",
+    hint:"Use characteristic functions. The characteristic function of Cauchy(0,1) is φ(t) = e^(-|t|). The characteristic function of a sum of n i.i.d. variables is φ(t)ⁿ. What is the characteristic function of the mean?",
+    ans:"<strong>The sample mean has the same distribution as a single observation: X̄ₙ ∼ Cauchy(0,1) for all n.</strong><br><br><strong>Derivation via characteristic functions:</strong><br>φ_{X_i}(t) = e^(-|t|) for Cauchy(0,1).<br>φ_{ΣXᵢ}(t) = [e^(-|t|)]ⁿ = e^(-n|t|), so ΣXᵢ ∼ Cauchy(0, n).<br>φ_{X̄}(t) = φ_{ΣXᵢ}(t/n) = e^(-n|t/n|) = e^(-|t|).<br><br>Therefore X̄ₙ ∼ Cauchy(0,1) — the distribution of the mean is identical to the distribution of a single observation, regardless of n!<br><br><strong>The LLN fails here</strong> because the Cauchy distribution has no finite mean (its integral ∫|x|f(x)dx diverges). The CLT also fails — Cauchy distributions are stable distributions with index α=1, meaning sums Sₙ/n^(1/α) = Sₙ/n converge to Cauchy, not to a Gaussian.<br><br><strong>Practical implication:</strong> Heavy-tailed data (financial returns, earthquake magnitudes, network traffic) may behave like Cauchy-type distributions. In these settings, the sample mean does not converge to a useful quantity and more robust estimators (median, trimmed mean, or full distributional modelling) are necessary. The Cauchy serves as a warning that classical statistics breaks down catastrophically with very heavy tails."
+  },
+  {
+    title:"The Optional Stopping Problem",cat:"Stochastic Processes",
+    src:"Sequential Analysis · Martingales",
+    diff:"★★★★☆",
+    q:"You flip a fair coin repeatedly. You win £1 for heads, lose £1 for tails. You stop when either your total fortune reaches +10 or −10 (starting from 0). (a) With what probability do you finish at +10? (b) What is the expected number of flips until you stop?",
+    hint:"(a) Use the Optional Stopping Theorem: Sₙ (your running fortune) is a martingale. Stopping times at boundaries −10 and +10. Apply Wald's identity or the optional stopping theorem directly. (b) Consider Mₙ = Sₙ² − n. This is also a martingale.",
+    ans:"<strong>(a) P(win, i.e. reach +10) = 1/2. (b) E[stopping time] = 100 flips.</strong><br><br><strong>Part (a):</strong> Let Sₙ be the fortune after n flips, S₀ = 0. Since the coin is fair, Sₙ is a martingale. Let τ = min{n : Sₙ = +10 or Sₙ = −10}. By the Optional Stopping Theorem (the bounded martingale Sₙ∧τ satisfies the conditions), E[Sτ] = E[S₀] = 0. So:<br>E[Sτ] = (+10)·P(reach +10) + (−10)·P(reach −10) = 0<br>Since P(reach +10) + P(reach −10) = 1, we get P(reach +10) = 1/2. ✓<br><br><strong>Part (b):</strong> Mₙ = Sₙ² − n is a martingale (since E[S²ₙ₊₁ | Fₙ] = E[(Sₙ ± 1)² | Fₙ] = Sₙ² + 1). Apply Optional Stopping to Mₙ∧τ:<br>E[Mτ] = M₀ = 0²− 0 = 0<br>E[Sτ² − τ] = 0<br>E[Sτ²] = E[τ]<br>E[Sτ²] = (+10)²·(1/2) + (−10)²·(1/2) = 100<br>Therefore E[τ] = <strong>100</strong>.<br><br><strong>General result:</strong> For boundaries at ±a, E[τ] = a². This is the gambler's ruin at symmetric boundaries, and the result 100 = 10² is exact."
+  },
+  {
+    title:"Galton-Watson Branching Process — Extinction",cat:"Stochastic Processes",
+    src:"Stochastic Processes",
+    diff:"★★★★☆",
+    q:"In a Galton-Watson branching process, each individual independently produces k offspring with probability pₖ, k = 0, 1, 2, .... Define the probability generating function G(s) = Σ pₖ sᵏ. Starting with one individual (Z₀ = 1), what is the probability of eventual extinction q = P(Zₙ → 0)?",
+    hint:"Let q_n = P(Zₙ = 0). Note q_{n+1} = G(q_n) because the first-generation offspring each independently start their own processes. The extinction probability q is the smallest non-negative fixed point of s = G(s).",
+    ans:"<strong>Extinction probability q is the smallest non-negative solution to s = G(s).</strong><br><br><strong>The key theorem (Galton-Watson, 1874):</strong><br>• Let μ = G'(1) = E[offspring per individual] = mean number of children.<br>• If μ ≤ 1 (subcritical or critical): q = 1 (certain extinction).<br>• If μ > 1 (supercritical): q < 1 (positive probability of non-extinction).<br><br><strong>Proof sketch:</strong> q_n = P(Zₙ = 0) is non-decreasing and bounded above by 1, so it converges to a limit q = P(extinction). Conditioning on Z₁ = k: q = Σₖ pₖ · qᵏ = G(q). So q is a fixed point of G.<br><br>Since G is convex on [0,1] and G(1) = 1, if G'(1) = μ ≤ 1 the line y = s is tangent to or lies below G at s = 1, making 1 the only fixed point in [0,1]. If μ > 1, convexity of G guarantees exactly one additional fixed point q* < 1, which is the smallest fixed point.<br><br><strong>Example:</strong> Binary branching: p₀ = 1/4, p₂ = 3/4. G(s) = 1/4 + 3s²/4. μ = 3/2 > 1. Fixed points: s = 1/4 + 3s²/4 ⟹ 3s² - 4s + 1 = 0 ⟹ s = 1 or s = 1/3. Extinction probability q = 1/3.<br><br><strong>Application:</strong> Galton was studying the extinction of aristocratic surnames (1874). The model applies to nuclear chain reactions, population genetics (neutral allele drift), and epidemic spreading."
+  },
+  {
+    title:"Bootstrap Failure — Inconsistency for Extremes",cat:"Inference",
+    src:"Resampling Methods",
+    diff:"★★★★☆",
+    q:"The ordinary nonparametric bootstrap is one of the most powerful tools in statistics, but it is not universally valid. Give a concrete example of a statistic and distribution where the bootstrap gives an inconsistent (incorrect) confidence interval, and explain why it fails.",
+    hint:"Think about statistics that depend critically on the extreme values of the sample. If the true distribution has a finite endpoint (like Uniform(0,θ)), the maximum of the sample is the natural estimator. What happens when bootstrap samples redraw the maximum?",
+    ans:"<strong>The bootstrap fails for the maximum of a Uniform(0,θ) sample.</strong><br><br>Let X₁,...,Xₙ i.i.d. Uniform(0,θ). The MLE and MVUE of θ is the maximum order statistic: θ̂ = X₍ₙ₎ = max(Xᵢ).<br><br><strong>True distribution of the error:</strong><br>n(θ - X₍ₙ₎) → Exponential(1/θ) as n → ∞. The convergence is at rate n, not √n, because X₍ₙ₎ concentrates near θ very rapidly.<br><br><strong>Bootstrap failure:</strong> In a bootstrap resample X₁*,...,Xₙ* (drawn with replacement from the original), the maximum X*₍ₙ₎ ≤ X₍ₙ₎ always (cannot exceed the original maximum). The bootstrap distribution of n(X₍ₙ₎ - X*₍ₙ₎) converges to a discrete distribution that places positive mass at 0 (when no bootstrap resample reaches X₍ₙ₎), not to Exponential(1/θ). The bootstrap CI is therefore inconsistent.<br><br><strong>Fix:</strong> The m-out-of-n bootstrap (resample m < n observations) restores consistency for this case. Alternatively, use the exact distribution of X₍ₙ₎ or parametric bootstrap.<br><br><strong>General principle:</strong> The bootstrap fails whenever the statistic's sampling distribution depends on the tails of the population in a non-smooth way, such as for the sample range, quantile estimation near 0 or 1, and other non-regular settings."
+  },
+  {
+    title:"Sufficient Statistics and the Exponential Family",cat:"Inference",
+    src:"Statistical Theory · Information",
+    diff:"★★★★☆",
+    q:"(a) What does it mean for a statistic T(X) to be sufficient for θ? (b) For X₁,...,Xₙ i.i.d. Normal(μ, σ²=1), prove that X̄ is a complete sufficient statistic for μ and that it achieves the Cramér-Rao lower bound.",
+    hint:"Sufficiency: the conditional distribution of data given T(X) does not depend on θ. Use the Fisher-Neyman factorisation theorem. Completeness: if E_θ[g(T)] = 0 for all θ implies g(T) = 0 a.s. For CR bound, compute the Fisher information I(μ) = nE[(∂log f/∂μ)²].",
+    ans:"<strong>(a) Sufficiency:</strong> T(X) is sufficient for θ if and only if the conditional distribution p(x | T(x)=t, θ) does not depend on θ. Intuitively: once you know T(X), knowing the data X itself adds no further information about θ.<br><br><strong>Fisher-Neyman factorisation:</strong> T is sufficient iff the joint density factors as:<br>f(x|θ) = g(T(x),θ) · h(x) for some functions g,h.<br><br><strong>(b) Normal case:</strong> f(x|μ) = (2π)^{-n/2} exp(−Σ(xᵢ−μ)²/2)<br>= (2π)^{-n/2} exp(−Σxᵢ²/2) · exp(nμx̄ − nμ²/2).<br><br>By factorisation, T = X̄ is sufficient for μ.<br><br><strong>Completeness:</strong> The Normal belongs to the exponential family with natural parameter η = μ and sufficient statistic T = X̄. Exponential family sufficient statistics are always complete (Bahadur, 1957). Hence X̄ is complete sufficient.<br><br><strong>Cramér-Rao bound:</strong> Fisher information I(μ) = −E[∂²log f/∂μ²] = n (each observation contributes 1).<br><br>CR lower bound for any unbiased estimator: Var(T) ≥ 1/I(μ) = 1/n.<br><br>Var(X̄) = σ²/n = 1/n. Therefore X̄ achieves the CR lower bound — it is the UMVUE (by Lehmann-Scheffé: the unique unbiased estimator that is a function of a complete sufficient statistic)."
+  },
+  {
+    title:"The Inspection Paradox — Waiting Time",cat:"Stochastic Processes",
+    src:"Renewal Theory · Stochastic Processes",
+    diff:"★★★★☆",
+    q:"Buses arrive at a stop following a renewal process with interarrival distribution having mean μ and variance σ². A passenger arrives at the stop at a uniformly random time. (a) What is the expected waiting time until the next bus? (b) Why is this always ≥ μ/2, with equality only when arrivals are deterministic (Poisson buses are actually worse)?",
+    hint:"The waiting time W is not μ/2. The passenger is more likely to arrive in a long interval than a short one (length-biased sampling). The expected waiting time in the interval [Sₙ, Sₙ₊₁) in which the passenger arrives is not μ but E[I²]/μ where I is the interarrival time.",
+    ans:"<strong>E[W] = μ/2 + σ²/(2μ)</strong>, which equals μ/2 only when σ² = 0 (deterministic arrivals).<br><br><strong>Derivation:</strong> By renewal theory, the rate of the process is 1/μ. The length of the interval containing a randomly-chosen time t follows a size-biased distribution with mean E[I²]/μ (where I is the interarrival time). By symmetry, the passenger arrives uniformly within this interval, so the expected residual waiting time is:<br>E[W] = E[I²]/(2μ) = (μ² + σ²)/(2μ) = μ/2 + σ²/(2μ).<br><br><strong>For Poisson arrivals:</strong> I ∼ Exponential(1/μ), so σ² = μ². Thus E[W] = μ/2 + μ/2 = μ. The mean wait equals the mean interarrival time — you expect to wait as long as the gap between buses!<br><br><strong>The paradox:</strong> You might think averaging half the interval gives E[W] = μ/2, but the random-time observer is more likely to land in a longer interval. If some buses run 20 minutes apart and some 2 minutes, you're 10× more likely to arrive in the 20-minute gap. This is the inspection paradox, also called the waiting time paradox.<br><br><strong>Practical implication:</strong> Scheduled buses (σ → 0) minimise waiting time. Random arrivals (Poisson) are twice as bad as a deterministic schedule with the same mean frequency. This explains why regular bus timetables are more valuable than the mean frequency suggests."
+  },
+  {
+    title:"The Ballot Problem",cat:"Combinatorics",
+    src:"Combinatorics · Stochastic Processes",
+    diff:"★★★★☆",
+    q:"In an election, candidate A receives a votes and candidate B receives b votes, with a > b. Votes are counted one at a time in a uniformly random order. What is the probability that A is strictly ahead of B throughout the entire counting process (i.e. A's running total exceeds B's running tally after every single vote counted)?",
+    hint:"This is the classical Ballot Problem solved by Bertrand (1887). Consider the path of the random walk Sₖ = #{A votes so far} - #{B votes so far} as votes are counted. You want P(Sₖ > 0 for k = 1, 2, ..., a+b). Use the reflection principle for lattice paths.",
+    ans:"<strong>P(A always strictly ahead) = (a − b)/(a + b)</strong>.<br><br>This elegant result is Bertrand's Ballot Theorem (1887).<br><br><strong>Proof via reflection principle:</strong> There are C(a+b, a) equally likely orderings of the votes. We count orderings where A is always strictly ahead.<br><br>Consider lattice paths from (0,0) to (a,b) using steps right (+1 for A) and up (+1 for B). 'Always ahead' means paths that never touch the diagonal line x = y after (0,0).<br><br>Paths that DO touch x=y at some point after the start can be reflected at their first touching point to create a bijection with paths from (−1,1) to (a,b) — i.e., paths from (1,0) to (a,b) starting with a B vote... [Cycle Lemma/André reflection].<br><br>Number of 'bad' paths (A not always ahead) = C(a+b, a−1) [classical reflection argument].<br>Number of 'good' paths = C(a+b, a) − C(a+b, a−1) = C(a+b,a)·(a−b)/(a+b).<br><br>P(always ahead) = good/total = (a−b)/(a+b). ✓<br><br><strong>Example:</strong> a = 6, b = 4: P = 2/10 = 1/5. Only 20% of counts keep A ahead throughout, despite A winning comfortably.<br><br><strong>Connection:</strong> This proof technique (reflection principle for random walks) underlies the derivation of barrier crossing probabilities in Brownian motion, the distribution of the maximum of a random walk, and results in financial option pricing (barrier options)."
+  },
+
+  {title:"Buffon's Needle",cat:"Probability",src:"Geometric Probability",diff:"★★★★☆",
+   q:"A needle of length L is dropped at random onto a floor made of parallel wooden strips each of width D (with L ≤ D). What is the probability that the needle crosses a crack between strips? Use this to estimate π.",
+   hint:"Let X be the distance from the needle's midpoint to the nearest crack (X ∼ Uniform[0, D/2]) and θ be the acute angle the needle makes with the cracks (θ ∼ Uniform[0, π/2]). The needle crosses a crack when X ≤ (L/2)sin θ. Integrate over both random variables.",
+   ans:"<strong>P(crossing) = 2L/(πD)</strong>, so π = 2L/(D · P(crossing)).<br><br><strong>Derivation:</strong> The needle crosses a crack iff X ≤ (L/2)sin θ, where X ∼ Uniform[0, D/2] and θ ∼ Uniform[0, π/2].<br><br>P(crossing) = ∫₀^{π/2} ∫₀^{(L/2)sinθ} (2/D)(2/π) dX dθ = (4/(πD)) ∫₀^{π/2} (L/2)sinθ dθ = (4/(πD))·(L/2)·[−cosθ]₀^{π/2} = (4/(πD))·(L/2)·1 = <strong>2L/(πD)</strong>.<br><br><strong>Monte Carlo estimation of π:</strong> Drop a needle n times; count k crossings. Then π ≈ 2Ln/(kD). With L=D, π ≈ 2n/k. This was one of the first Monte Carlo methods, described by Buffon in 1777 and refined by Laplace. After n = 3,408 throws, Lazzarini (1901) got π ≈ 3.14159292 — suspiciously accurate, now believed fraudulent.<br><br><strong>Why this works:</strong> The formula P = 2L/πD contains π because the sine function integrates over a half-period. The circular geometry embedded in the expected number of crossings encodes π through the link between the needle angle and harmonic geometry."},
+
+  {title:"The Three Prisoners Paradox",cat:"Probability",src:"Conditional Probability · Paradox",diff:"★★★☆☆",
+   q:"Three prisoners A, B, C are told that one will be pardoned (chosen uniformly at random) and two executed. Prisoner A asks the guard: 'Tell me the name of one of B or C who will be executed.' The guard says 'B'. Should A update his probability of being pardoned from 1/3 to 1/2?",
+   hint:"This is essentially the Monty Hall problem in disguise. Model the guard's behaviour explicitly: if A is to be pardoned, the guard can tell A either 'B' or 'C' (say with equal probability 1/2 each). If B is to be pardoned, the guard must say 'C'. If C is to be pardoned, the guard must say 'B'. Now compute P(A pardoned | guard says B) using Bayes' theorem.",
+   ans:"<strong>A's probability of being pardoned remains 1/3. C's rises to 2/3.</strong><br><br><strong>Bayes' theorem:</strong><br>P(A|guard says B) = P(guard says B | A pardoned)·P(A pardoned) / P(guard says B)<br><br>P(guard says B | A pardoned) = 1/2 (guard picks B or C equally)<br>P(guard says B | B pardoned) = 0 (can't say B if B is pardoned)<br>P(guard says B | C pardoned) = 1 (must say B)<br><br>P(guard says B) = (1/2)(1/3) + 0(1/3) + 1·(1/3) = 1/6 + 0 + 1/3 = 1/2.<br><br>P(A pardoned | guard says B) = (1/2·1/3)/(1/2) = <strong>1/3</strong>.<br>P(C pardoned | guard says B) = (1·1/3)/(1/2) = <strong>2/3</strong>.<br><br>The information that B will be executed was not surprising given any hypothesis about A — the guard would have told A someone's name regardless. So A learns nothing about his own fate. But the information strongly favours C, since if C were pardoned, the guard was forced to name B."},
+
+  {title:"Coupon Collector's Problem",cat:"Combinatorics",src:"Combinatorics · Expectation",diff:"★★★☆☆",
+   q:"A cereal box contains one of n different coupons uniformly at random (independent boxes). How many boxes must you buy in expectation until you have at least one of each coupon? For n=6 (standard die, rolling until all faces appear), give the exact expected value.",
+   hint:"When you have already collected k distinct coupons, the probability that the next box gives a new one is (n−k)/n. The waiting time for the next new coupon is Geometric with success probability (n−k)/n, so its expectation is n/(n−k). Sum these expectations from k=0 to n−1.",
+   ans:"<strong>E[boxes needed] = n·Σₖ₌₁ⁿ 1/k = n·Hₙ</strong>, where Hₙ is the n-th harmonic number.<br><br><strong>Derivation:</strong> Let Tₖ = waiting time for the (k+1)-th distinct coupon after having k. Tₖ ∼ Geometric((n−k)/n), so E[Tₖ] = n/(n−k).<br><br>E[total] = Σₖ₌₀^{n-1} E[Tₖ] = Σₖ₌₀^{n-1} n/(n−k) = n·Σⱼ₌₁ⁿ 1/j = n·Hₙ.<br><br><strong>For n=6:</strong> E = 6·(1 + 1/2 + 1/3 + 1/4 + 1/5 + 1/6) = 6·(60+30+20+15+12+10)/60 = 6·147/60 = <strong>14.7 rolls</strong> on average.<br><br><strong>Large n approximation:</strong> E[total] ≈ n ln(n) + γn + 1/2 where γ ≈ 0.5772 is the Euler-Mascheroni constant. The standard deviation is approximately π·n/√6.<br><br><strong>Applications:</strong> DNA sequencing (read coverage), database hashing, promotional campaigns, sports card collections. The coupon collector's problem gives the expected number of independent observations of a process to see all n outcomes at least once."},
+
+  {title:"The Secretary Problem",cat:"Probability",src:"Optimal Stopping · Decision Theory",diff:"★★★★☆",
+   q:"You interview n candidates one at a time in random order. You must decide immediately after each interview whether to hire or reject (no going back). Your goal: maximise the probability of selecting the absolute best candidate. What is the optimal strategy and what probability does it achieve?",
+   hint:"The optimal strategy has a 'look then leap' structure: reject the first r−1 candidates (record the best seen so far), then hire the next candidate who is better than all previous. Find the optimal r by maximising the probability of hiring the best. Take r proportional to n/e as n → ∞.",
+   ans:"<strong>Optimal strategy: reject first r−1 candidates, then hire the first who beats all seen. Optimal r ≈ n/e. Probability of success → 1/e ≈ 0.368 as n → ∞.</strong><br><br><strong>Probability of success for fixed r:</strong><br>P(hire best | use threshold r) = Σₖ₌ᵣⁿ P(best is candidate k) × P(hire best | best is candidate k and threshold r)<br><br>If best is at position k and we use threshold r: we hire the best iff none of the candidates in positions r,...,k−1 is better than all of 1,...,r−1, which happens with probability (r−1)/(k−1) (the best of the first k−1 candidates is in the first r−1).<br><br>P(success) = Σₖ₌ᵣⁿ (1/n)·(r−1)/(k−1) = (r−1)/n · Σₖ₌ᵣⁿ 1/(k−1) ≈ (r/n)·ln(n/r) for large n.<br><br>Maximising over r: set r/n = x, maximise x·ln(1/x) ⟹ 1·ln(1/x) − 1 = 0 ⟹ x = 1/e.<br><br>So r* ≈ n/e, P(success) ≈ 1/e ≈ 0.368. Remarkably, you can hire the best ~37% of the time regardless of n."},
+
+  {title:"Regression to the Mean",cat:"Regression",src:"Regression · Statistical Fallacies",diff:"★★☆☆☆",
+   q:"In 1886, Galton studied heights of parents and children. He found that tall parents had children shorter than themselves (on average) and short parents had children taller than themselves. He called this 'regression to mediocrity.' Explain the phenomenon mathematically: if father's height X and son's height Y have a bivariate normal with means μ, the same variance σ², and correlation ρ, what is E[Y | X = x]?",
+   hint:"For bivariate normal (X,Y) with equal means μ, equal variances σ², and correlation ρ, use the conditional distribution formula. E[Y|X=x] is a linear function of x.",
+   ans:"<strong>E[Y | X = x] = μ + ρ(x − μ)</strong><br><br>This shows that a father who is (x−μ) above average has an expected son who is only ρ(x−μ) above average — fraction ρ of the father's deviation, where ρ ∈ (−1,1).<br><br><strong>Derivation:</strong> For bivariate normal, E[Y|X=x] = μ_Y + ρ(σ_Y/σ_X)(x − μ_X). With equal means and variances: E[Y|X=x] = μ + ρ(x−μ).<br><br><strong>The regression paradox:</strong> Note that E[X|Y=y] = μ + ρ(y−μ) also. So BOTH regressions (son on father AND father on son) show regression to the mean. The lines are different, which confused Galton initially.<br><br><strong>Regression fallacy in practice:</strong> Students who score best on a test often score lower on the retest — not because of any intervention but because of random fluctuation. This causes false attribution of intervention effects (quiet children talked to → improve; praised children → regress → apparent negative effect of praise). Francis Galton first named this effect in 1886."},
+
+  {title:"Jensen's Inequality and the Exponential Family",cat:"Probability",src:"Convexity · Probability Theory",diff:"★★★☆☆",
+   q:"(a) State and prove Jensen's Inequality for a convex function φ. (b) Use it to prove that the geometric mean of positive numbers is always ≤ their arithmetic mean (AM-GM inequality). (c) Show that for any random variable X and any distribution P, the log-likelihood L(θ) = E_P[log p(X|θ)] is maximised when θ is the true parameter generating P.",
+   hint:"(a) Jensen's: if φ is convex and X is a random variable, E[φ(X)] ≥ φ(E[X]). Prove by the supporting hyperplane theorem: at any point x₀, ∃ a linear function L(x) = a + b(x−x₀) ≤ φ(x) for all x (tangent at x₀). (b) Apply Jensen to φ(x) = −log(x) which is convex. (c) Use the KL divergence.",
+   ans:"<strong>(a) Jensen's Inequality:</strong> If φ is convex, E[φ(X)] ≥ φ(E[X]).<br>Proof: By convexity, there exists a supporting hyperplane at μ = E[X]: φ(x) ≥ φ(μ) + φ'(μ)(x−μ) for all x. Take expectations: E[φ(X)] ≥ φ(μ) + φ'(μ)·E[X−μ] = φ(μ) + 0 = φ(E[X]). ✓<br><br><strong>(b) AM-GM:</strong> Let φ(x) = −log(x) (convex since φ'' = 1/x² > 0). Apply Jensen to a discrete uniform distribution on {x₁,...,xₙ}:<br>E[−log(X)] ≥ −log(E[X]) ⟹ −(1/n)Σlog(xᵢ) ≥ −log((1/n)Σxᵢ) ⟹ (x₁x₂...xₙ)^{1/n} ≤ (x₁+...+xₙ)/n. ✓<br><br><strong>(c) KL-divergence:</strong> Define KL(P‖Q) = E_P[log(p(X)/q(X|θ))] = E_P[log p(X)] − L(θ). Since −log is convex, KL(P‖Q) ≥ 0 by Jensen (equality iff P=Q a.s.). Therefore L(θ) ≤ E_P[log p(X)] with equality iff P(x) = p(x|θ). The log-likelihood is maximised by the true parameter. ✓"},
+
+  {title:"The Ballot Problem – Cycle Lemma",cat:"Combinatorics",src:"Combinatorics · Random Walks",diff:"★★★★☆",
+   q:"Prove the Cycle Lemma (Dvoretzky-Motzkin): among all n+m sequences of n ones and m negative-ones (with n > m), exactly n/(n+m) of the cyclic rotations of any fixed sequence have all partial sums positive. Use this to re-derive the Ballot Problem.",
+   hint:"Consider the n+m cyclic rotations of a fixed sequence. A rotation is 'good' if all partial sums are positive. The Cycle Lemma states that among the n+m rotations, exactly n are good. Count good rotations by finding which starting positions make all partial sums positive.",
+   ans:"<strong>Cycle Lemma:</strong> For a sequence of n ones and m negative-ones (n > m), exactly n of the n+m cyclic rotations have all partial sums strictly positive.<br><br><strong>Proof sketch:</strong> Consider the n+m distinct cyclic rotations. For each rotation, let Sₖ be the partial sum after k steps. A rotation starting at position i is 'good' if all Sₖ > 0. Among the n+m rotations, the sum of all partial sums is fixed: Σₖ Sₖ = n + 0 − m (endpoint). The key observation: in any sequence with final sum n−m > 0, there are exactly n cyclic rotations where starting from that position, all partial sums are positive. This follows from the geometry of the path (the lattice path touches or goes below zero in exactly m out of n+m starting positions).<br><br><strong>Ballot Problem derivation:</strong> There are C(n+m, n) total sequences. Number of 'good' sequences (A always ahead) = (n/(n+m))·C(n+m, n) = C(n+m−1, n−1).<br>P(A always ahead) = C(n+m−1, n−1)/C(n+m, n) = (n−m)/(n+m). ✓<br><br>This is the most elegant proof of the Ballot Theorem and demonstrates how discrete geometry (lattice paths) encodes combinatorial identities."},
+
+  {title:"The Delta Method",cat:"Inference",src:"Asymptotic Theory · Estimation",diff:"★★★☆☆",
+   q:"The Delta Method provides the asymptotic distribution of a function g(X̄ₙ) when √n(X̄ₙ − μ) →ᵈ N(0, σ²). State the result and apply it to: (a) the log-transformation g(x) = log(x), and (b) to derive the asymptotic variance of the sample coefficient of variation CV = S/X̄.",
+   hint:"The Delta Method: if √n(T_n − θ) →ᵈ N(0,V) and g is differentiable at θ with g'(θ) ≠ 0, then √n(g(T_n) − g(θ)) →ᵈ N(0, [g'(θ)]²·V). For CV, write CV as a function of (X̄, S²) and use the multivariate delta method.",
+   ans:"<strong>Delta Method:</strong> If √n(Tₙ − θ) →ᵈ N(0,V) and g is differentiable at θ, then √n(g(Tₙ) − g(θ)) →ᵈ N(0, V·[g'(θ)]²).<br><br>Proof: Taylor expand g(Tₙ) ≈ g(θ) + g'(θ)(Tₙ−θ) + O((Tₙ−θ)²). Multiply by √n and apply Slutsky.<br><br><strong>(a) Log transformation:</strong> If √n(X̄ − μ) →ᵈ N(0, σ²), then g(x) = log(x), g'(x) = 1/x, so:<br>√n(log X̄ − log μ) →ᵈ N(0, σ²/μ²).<br><br><strong>(b) Coefficient of Variation CV = σ/μ:</strong> Estimated by Ŝ/X̄. Using the multivariate delta method with the function h(μ̂, σ̂²) = √σ̂²/μ̂ = σ̂/μ̂:<br>∂h/∂μ̂ = −σ/μ², ∂h/∂σ̂² = 1/(2σμ).<br><br>Asymptotic variance of √n·CV = σ²·(∂h/∂μ̂)²·1 + 2σ⁴·(∂h/∂σ̂²)² (using independence and δ-method)<br>= (σ⁴/μ⁴) + σ²·(1/(4σ²μ²))·2σ⁴ = (σ/μ)²·(1/(2·1) + 1/μ²·σ²/2) = CV²(1 + 2CV²)/2.<br><br>More precisely: Var(√n·Ŝ/X̄) → (CV²/2)·(1 + 2CV²).<br><br>This is widely used in analytical chemistry (propagation of uncertainty) and reliability engineering."},
+
+  {title:"The Lindley Paradox",cat:"Bayesian",src:"Bayesian vs Frequentist · Inference",diff:"★★★★☆",
+   q:"Lindley (1957) showed a fundamental disagreement between Bayesian and frequentist inference. Let H₀: μ=0 vs H₁: μ≠0, with X₁,...,Xₙ ∼ N(μ,1). Suppose X̄ = c/√n for fixed c > 0 (a fixed number of standard errors). As n → ∞: (a) the frequentist p-value approaches a fixed value; (b) the Bayes factor for any reasonable prior on μ approaches ∞ in favour of H₀. How is this possible?",
+   hint:"(a) The z-statistic is z = X̄√n = c, which gives fixed p-value = 2Φ(−c) regardless of n. (b) The Bayes factor BF₀₁ = P(x|H₀)/P(x|H₁). With a N(0,τ²) prior on μ under H₁, compute P(x|H₁) = ∫N(x̄|μ,1/n)N(μ|0,τ²)dμ and show the Bayes factor → ∞ as n → ∞.",
+   ans:"<strong>Lindley's Paradox: the frequentist z-test rejects H₀, but the Bayes factor supports H₀ — as n → ∞ with z fixed.</strong><br><br><strong>(a) Frequentist:</strong> z = X̄√n = c is fixed regardless of n. So the p-value = 2Φ(−|c|) is fixed. For c = 1.96, p ≈ 0.05 always.<br><br><strong>(b) Bayes factor with N(0,τ²) prior:</strong><br>Under H₁: X̄ ∼ N(0, 1/n + τ²) (marginal after integrating out μ).<br>Under H₀: X̄ ∼ N(0, 1/n).<br><br>BF₀₁ = p(X̄|H₀)/p(X̄|H₁) = [N(c/√n|0,1/n)] / [N(c/√n|0,1/n+τ²)]<br>= √(1+nτ²)·exp{−c²/2·(1 − 1/(1+nτ²))} ≈ √(nτ²)·e^{−c²/2} → ∞ as n → ∞.<br><br><strong>Resolution:</strong> The paradox arises because as n increases with z fixed, X̄ = c/√n → 0, which is very close to zero and makes H₀:μ=0 increasingly plausible. The frequentist ignores this 'shrinkage' of the estimate. Bayesians update: a small but statistically significant difference in a massive sample favours H₀ under priors that do not concentrate near zero. The paradox motivates the argument for Bayesian inference in large-sample settings and the distinction between 'statistical significance' and 'practical significance.'"},
+
+  {title:"Berkson's Paradox",cat:"Inference",src:"Causal Inference · Collider Bias",diff:"★★★☆☆",
+   q:"In a hospital study, researchers find that diabetes and cardiovascular disease are NEGATIVELY correlated among inpatients (r < 0). But in the general population, both conditions are independent (both caused only by obesity, which is not recorded). Explain the paradox mathematically and state what it implies for observational research.",
+   hint:"Draw the causal DAG: Obesity → Diabetes, Obesity → CVD. Conditioning on Hospitalisation (a 'collider' — caused by both Diabetes and CVD) induces a spurious correlation. Think about which patients end up in the hospital and how that selection changes the correlation structure.",
+   ans:"<strong>Berkson's Paradox: conditioning on a collider induces spurious correlation.</strong><br><br><strong>Mechanism:</strong> DAG structure: Diabetes ← Obesity → CVD. Both Diabetes and CVD cause Hospitalisation. Conditioning on Hospitalisation opens the 'collider path' D → H ← CVD, creating a spurious negative association between D and CVD.<br><br><strong>Algebraic example:</strong> Suppose D, C ∈ {0,1} are independent in the population. Hospitalised iff D=1 OR C=1 (or both). Among hospitalized patients:<br>P(D=1, C=1 | H=1) = P(D=1,C=1)/P(H=1) = p²/(1−(1−p)²)<br>P(D=1|H=1) = p(1−(1−p)²−p(1−p)·0)/(1−(1−p)²) > p but...<br>P(C=1|D=1,H=1) = P(C=1,D=1)/P(D=1|H=1)·... = p < P(C=1|H=1).<br><br>So among hospitalised patients, knowing D=1 makes C=1 less likely (since D alone is sufficient for hospitalisation). The correlation is negative even though D and C are independent in the population.<br><br><strong>Implications:</strong> Any study using a selected sample (patients, survey responders, internet users, employees) conditions on a collider. Even independent variables can appear correlated. Conditioning on a common effect always induces spurious association — a profound warning for observational epidemiology."},
+
+  {title:"The Borel-Cantelli Lemma",cat:"Probability",src:"Probability Theory · Almost Sure Events",diff:"★★★★☆",
+   q:"(a) State both Borel-Cantelli Lemmas. (b) Apply the first Lemma to prove that if X₁, X₂, ... are i.i.d. with E[X] < ∞, then P(Xₙ > nε, infinitely often) = 0 for any ε > 0. (c) Apply the second Lemma to show that the Strong Law of Large Numbers cannot be proved using just independence and finite mean.",
+   hint:"(a) First BC: if Σₙ P(Aₙ) < ∞, then P(Aₙ i.o.) = 0. Second BC: if Aₙ are independent and Σₙ P(Aₙ) = ∞, then P(Aₙ i.o.) = 1. For (b), compute Σ P(Xₙ > nε) ≤ (1/ε)E[X]/n and use convergence of the harmonic series.",
+   ans:"<strong>(a) Borel-Cantelli Lemmas:</strong><br>First: If Σₙ P(Aₙ) &lt; ∞, then P(limsup Aₙ) = P(Aₙ infinitely often) = 0.<br>Second: If Aₙ are independent and Σₙ P(Aₙ) = ∞, then P(limsup Aₙ) = 1.<br><br><strong>Proof (First):</strong> P(Aₙ i.o.) = P(∩ₙ ∪ₖ≥ₙ Aₖ) ≤ P(∪ₖ≥ₙ Aₖ) ≤ Σₖ≥ₙ P(Aₖ) → 0 as n→∞ (tail of convergent series). ✓<br><br><strong>(b)</strong> P(Xₙ &gt; nε) ≤ E[Xₙ·1{Xₙ>nε}]/(nε) ≤ E[X]/(nε) (Markov's inequality). Σₙ P(Xₙ &gt; nε) ≤ E[X]/ε · Σ1/n → ∞? No! We need Σ P(Xₙ &gt; nε) &lt; ∞. For E[X] &lt; ∞, we have Σₙ P(X &gt; nε) ≤ E[X/ε] &lt; ∞ (a standard result). By BC1, Xₙ ≤ nε for all large n almost surely, implying Xₙ/n → 0 a.s., which is part of the SLLN proof.<br><br><strong>(c)</strong> The second BC shows that without independence assumptions, P(Aₙ i.o.) = 1 when the series diverges, regardless of whether the events are correlated. This means that finite mean alone (without independence) is insufficient to prove the SLLN — correlation can prevent the averaging effect from working."},
+
+  {title:"The EM Algorithm",cat:"Inference",src:"Computational Statistics · Missing Data",diff:"★★★★☆",
+   q:"Mixture of two Gaussians: X₁,...,Xₙ are i.i.d. with density π·N(x|μ₁,σ²) + (1−π)·N(x|μ₂,σ²). We cannot observe which component each observation came from. (a) Write the complete-data log-likelihood if we knew the latent class labels zᵢ ∈ {1,2}. (b) Describe the E-step and M-step of the EM algorithm. (c) What does EM converge to?",
+   hint:"Introduce latent variables zᵢ ∈ {1,2} indicating which component generated xᵢ. The complete data is (xᵢ, zᵢ). E-step: compute E[zᵢ|xᵢ, current parameters] = responsibility rᵢ = P(zᵢ=1|xᵢ). M-step: maximise E[log L(θ;x,z)|x] by setting derivatives to zero.",
+   ans:"<strong>(a) Complete-data log-likelihood:</strong><br>log L_c(θ; x, z) = Σᵢ [zᵢ·log(π·N(xᵢ|μ₁,σ²)) + (1−zᵢ)·log((1−π)·N(xᵢ|μ₂,σ²))]<br><br><strong>(b) EM Algorithm:</strong><br><em>E-step:</em> Compute 'responsibilities' — the soft assignments:<br>rᵢ⁽ᵗ⁾ = π⁽ᵗ⁾N(xᵢ|μ₁⁽ᵗ⁾,σ²) / [π⁽ᵗ⁾N(xᵢ|μ₁⁽ᵗ⁾,σ²) + (1−π⁽ᵗ⁾)N(xᵢ|μ₂⁽ᵗ⁾,σ²)]<br>Compute Q(θ,θ⁽ᵗ⁾) = E[log L_c|x,θ⁽ᵗ⁾] by substituting rᵢ⁽ᵗ⁾ for zᵢ.<br><br><em>M-step:</em> Maximise Q over θ = (π,μ₁,μ₂,σ²):<br>π̂ = (Σᵢ rᵢ)/n; μ̂₁ = Σᵢ rᵢxᵢ/Σᵢ rᵢ; μ̂₂ = Σᵢ(1−rᵢ)xᵢ/Σᵢ(1−rᵢ).<br><br><strong>(c) Convergence:</strong> EM monotonically increases the observed log-likelihood L(θ;x) at each step. This is guaranteed by Jensen's inequality (the Q function lower-bounds log L). EM converges to a local maximum or saddle point of L — it is not guaranteed to find the global maximum, and mixture models have multimodal likelihoods. In practice, EM is initialised multiple times with different starting values."},
+
+  {title:"The Bias-Variance Tradeoff",cat:"Inference",src:"Statistical Learning Theory",diff:"★★★☆☆",
+   q:"For estimating f(x) from data, the expected mean squared error of predictor f̂(x) decomposes as: E[(f̂(x) − f(x))²] = (Bias[f̂(x)])² + Var(f̂(x)) + σ². Prove this decomposition, and explain why neither the most flexible nor the simplest model is optimal.",
+   hint:"Expand the squared error E[(f̂ − Y)²] where Y = f(x) + ε, ε ∼ N(0,σ²). Use the decomposition: E[(f̂ − f)²] = (E[f̂] − f)² + E[(f̂ − E[f̂])²] = Bias² + Variance. The irreducible error σ² comes from ε.",
+   ans:"<strong>Proof of bias-variance decomposition:</strong><br>E[(f̂(x) − Y)²] = E[(f̂ − f − ε)²]<br>= E[(f̂ − f)²] − 2E[(f̂−f)ε] + E[ε²]<br>= E[(f̂ − f)²] + σ² (since ε is independent of f̂)<br><br>For E[(f̂ − f)²]: let μ̂ = E[f̂]. Then:<br>E[(f̂ − f)²] = E[(f̂ − μ̂ + μ̂ − f)²]<br>= E[(f̂ − μ̂)²] + 2(μ̂−f)E[f̂−μ̂] + (μ̂−f)²<br>= Var(f̂) + 0 + Bias(f̂)²<br><br>Therefore: MSE = Bias² + Variance + σ².<br><br><strong>The tradeoff:</strong><br>• High-bias models (very simple, e.g. linear model for nonlinear f): large Bias², small Variance.<br>• High-variance models (very flexible, e.g. polynomial of degree n): Bias→0 but Variance→∞.<br>• Irreducible error σ² is irreducible regardless of model complexity.<br><br>The optimal model balances Bias² and Variance at their sum's minimum. This is why regularisation (ridge, LASSO, cross-validation for tuning) matters: it shifts the model toward higher bias but lower variance when the overall MSE is reduced. There is no universally optimal complexity — it depends on n (more data reduces variance, allowing more complexity) and σ² (high noise → simpler models preferred)."},
+
+  {title:"Kaplan-Meier and the Log-Rank Test",cat:"Inference",src:"Survival Analysis · Non-parametric",diff:"★★★★☆",
+   q:"In a clinical trial comparing survival under treatment A vs B, some patients are still alive at the end (censored). (a) What is the Kaplan-Meier estimator of the survival function S(t) = P(T > t)? (b) What does the log-rank test test, and what is its statistic? (c) Why can't we use a t-test on survival times?",
+   hint:"(a) At each event time tⱼ, let dⱼ be deaths and nⱼ be at-risk. KM product formula. (b) Log-rank: compare observed vs expected deaths at each time point under H₀ of equal hazards. (c) Censoring makes survival times non-normal; censored observations aren't missing values.",
+   ans:"<strong>(a) Kaplan-Meier Estimator:</strong><br>At each distinct event time t₁ &lt; t₂ &lt; ... &lt; tₖ, with dⱼ deaths and nⱼ at risk:<br>Ŝ(t) = ∏_{j: tⱼ≤t} (1 − dⱼ/nⱼ)<br><br>This is the product of survival probabilities at each event time. It handles censored observations correctly: censored individuals contribute to nⱼ until their censoring time but not after.<br><br><strong>(b) Log-rank test:</strong><br>At each event time tⱼ, compute observed deaths in group A (Oⱼ^A) and expected under H₀ (Eⱼ^A = dⱼ·nⱼ^A/nⱼ). The statistic:<br>L = (Σⱼ(Oⱼ^A − Eⱼ^A))² / Var(Σⱼ(Oⱼ^A − Eⱼ^A)) ∼ χ²(1) under H₀.<br><br>H₀ is that the hazard functions are equal: h_A(t) = h_B(t) for all t.<br><br><strong>(c) Why not a t-test?</strong><br>Censored survival times are not observed values — they're lower bounds ('patient still alive at 5 years'). Including them as observed values biases the mean downward. Excluding them biases upward. The Kaplan-Meier and log-rank test correctly incorporate censoring through the at-risk sets, while the t-test has no mechanism to handle partial information."},
+
+  {title:"The Rao-Blackwell Theorem",cat:"Inference",src:"Decision Theory · Estimation",diff:"★★★★☆",
+   q:"Let T be an unbiased estimator of g(θ) and S be a sufficient statistic for θ. Define T* = E[T|S]. (a) Prove that T* is also unbiased for g(θ). (b) Prove Var(T*) ≤ Var(T). (c) Apply this to improve the estimator T(X₁,...,Xₙ) = X₁ for estimating μ when Xᵢ ∼ N(μ,σ²), using the sufficient statistic S = X̄.",
+   hint:"(a) Use the tower property of conditional expectation. (b) Use the variance decomposition: Var(T) = E[Var(T|S)] + Var(E[T|S]) = E[Var(T|S)] + Var(T*) ≥ Var(T*). (c) Compute E[X₁|X̄ = s] using properties of multivariate normal.",
+   ans:"<strong>(a) Unbiasedness of T*:</strong><br>E[T*] = E[E[T|S]] = E[T] = g(θ) by the tower property. ✓<br><br><strong>(b) Variance reduction:</strong><br>Var(T) = E[Var(T|S)] + Var(E[T|S]) = E[Var(T|S)] + Var(T*).<br>Since Var(T|S) ≥ 0, we have E[Var(T|S)] ≥ 0, so Var(T) ≥ Var(T*). ✓<br><br>The only if T* = T a.s., meaning T is already a function of S alone.<br><br><strong>(c) Application:</strong><br>T = X₁ is unbiased for μ with Var(T) = σ².<br>Sufficient statistic: S = X̄ = (ΣXᵢ)/n.<br><br>For multivariate normal (X₁,...,Xₙ), the conditional distribution X₁|X̄=s is normal with mean s (by symmetry and the normal linear conditioning formula).<br><br>T* = E[X₁|X̄] = X̄ (by symmetry, each Xᵢ has the same conditional expectation given X̄, and they must average to X̄).<br><br>Var(T*) = Var(X̄) = σ²/n &lt; σ² = Var(T). ✓<br><br>We've shown that X̄ dominates X₁ in MSE. The Rao-Blackwell theorem formalises the principle that conditioning on sufficient statistics removes 'irrelevant variability' and improves estimation."},
+
+  {title:"The Gambler's Ruin — Absorption Probabilities",cat:"Stochastic Processes",src:"Markov Chains · Absorption",diff:"★★★☆☆",
+   q:"A gambler starts with £k and bets £1 each round: wins with probability p, loses with probability q = 1−p. The game ends when he reaches £0 (ruin) or £N (success). (a) Find the probability of ruin as a function of k, N, and p. (b) What happens as N → ∞ (infinite-stakes opponent)?",
+   hint:"Let uₖ = P(ruin | start at £k). Write the first-step recurrence: uₖ = p·uₖ₊₁ + q·uₖ₋₁. This is a second-order linear recurrence with boundary conditions u₀ = 1, uₙ = 0. Solve the characteristic equation.",
+   ans:"<strong>(a) Gambler's Ruin probability:</strong><br>Recurrence: uₖ = p·uₖ₊₁ + q·uₖ₋₁, u₀=1, uₙ=0.<br><br>For p ≠ q: characteristic equation has roots r=1 and r=q/p. General solution: uₖ = A + B·(q/p)ᵏ.<br>Boundary conditions: u₀ = 1 ⟹ A + B = 1; uₙ = 0 ⟹ A + B(q/p)ᴺ = 0.<br><br>Solving: A = −B(q/p)ᴺ; B(q/p)ᴺ − B = −1; B = 1/((q/p)ᴺ − 1).<br><br>P(ruin | start at k) = [(q/p)ᵏ − (q/p)ᴺ] / [1 − (q/p)ᴺ]<br><br>For p = q = 1/2: solution is uₖ = 1 − k/N (linear).<br><br><strong>(b) Infinite-stakes opponent (N → ∞):</strong><br>For p &lt; 1/2 (unfavourable game): P(ruin) = 1. Certain ruin.<br>For p = 1/2 (fair game): P(ruin) = lim(1 − k/N) = 1. Still certain ruin — a fair game always ruins a finite gambler against an infinitely rich house!<br>For p &gt; 1/2 (favourable game): P(ruin) = (q/p)ᵏ &lt; 1. Non-zero survival probability.<br><br><strong>Practical lesson:</strong> Even a favourable game (p &gt; 1/2) ruins the gambler if the house has infinite resources. The probability of ruin for a casino player with initial fortune £1,000 against a casino worth £10⁹ is approximately (q/p)^{1000/(10^6)} ≈ 1. The house always wins in the long run."},
+
+  {title:"Polya's Urn and Exchangeability",cat:"Stochastic Processes",src:"Exchangeability · Bayesian Theory",diff:"★★★★☆",
+   q:"An urn initially contains α red balls and β blue balls. At each step, one ball is drawn and replaced along with c additional balls of the same colour (Polya urn). (a) What is the probability of any specific sequence of r red and b blue draws in n = r + b draws? (b) What is the marginal probability of drawing a red ball at step n? (c) What does this reveal about exchangeability?",
+   hint:"For part (a), compute the probability of a specific sequence RRBR... by multiplying the conditional probabilities at each step. Notice that the result depends only on r and b, not on the order. This is the hallmark of exchangeability. For (b), by exchangeability, P(Xₙ = Red) = P(X₁ = Red) = α/(α+β).",
+   ans:"<strong>(a) Probability of any specific sequence:</strong><br>P(first r+b balls are specific sequence with r red, b blue) = α(α+c)...(α+(r−1)c) · β(β+c)...(β+(b−1)c) / [(α+β)(α+β+c)...(α+β+(r+b−1)c)]<br><br>= [∏_{k=0}^{r-1}(α+kc)·∏_{j=0}^{b-1}(β+jc)] / ∏_{i=0}^{n-1}(α+β+ic)<br><br>This depends ONLY on r and b, not on the ordering! This means the sequence is exchangeable — the probability of any sequence with r red and b blue draws is the same regardless of their order.<br><br><strong>(b) P(Xₙ = Red) = α/(α+β)</strong> for any n. By exchangeability, P(Xₙ = Red) = P(X₁ = Red) = α/(α+β). The composition of the urn at time n fluctuates, but the marginal probability remains constant.<br><br><strong>(c) De Finetti's theorem:</strong> An exchangeable sequence of {0,1} random variables can be represented as a mixture of i.i.d. Bernoulli trials — specifically, by the Beta distribution. Polya's urn corresponds to a Beta(α/c, β/c) prior on the underlying proportion p. As c→0, the prior concentrates. This is why Polya's urn provides a mechanical simulation of Bayesian updating with a Beta-Binomial model."},
+
+  {title:"The Arc-Sine Laws",cat:"Stochastic Processes",src:"Random Walks · Counter-intuitive Results",diff:"★★★★★",
+   q:"Consider a symmetric simple random walk S₀=0, S₁, S₂,...,S₂ₙ (equal steps ±1). Let L₂ₙ be the last time the walk visits 0 before time 2n. (a) What is P(L₂ₙ = 2k)? (b) What is the limiting distribution of L₂ₙ/(2n) as n → ∞? (c) What counterintuitive conclusion does this give about 'fair games'?",
+   hint:"P(L₂ₙ = 2k) = P(S₂ₙ = 0)·P(S₂(n-k) = 0) for k = 0,...,n, where P(S₂ₘ = 0) = C(2m,m)/4^m. As n → ∞, the distribution of L₂ₙ/(2n) converges to the arc-sine distribution on [0,1].",
+   ans:"<strong>(a) P(L₂ₙ = 2k) = u₂ₖ · u_{2(n-k)}</strong>, where u₂ₖ = C(2k,k)/4ᵏ = P(S₂ₖ=0).<br>= C(2k,k)C(2(n-k),n-k) / 4ⁿ<br><br><strong>(b) Arc-Sine Law:</strong> The distribution of L₂ₙ/(2n) converges as n → ∞ to the arc-sine distribution on [0,1] with PDF:<br>f(x) = 1/(π√(x(1−x))), 0 &lt; x &lt; 1.<br><br>The CDF is F(x) = (2/π)arcsin(√x), hence the name.<br><br><strong>(c) Counterintuitive conclusion:</strong> The arc-sine distribution is U-shaped — it has maximum density near 0 and 1, and minimum density near 1/2. This means:<br><br>The last visit to 0 is most likely to occur very early (near 0) or very late (near 1) in the game. It is LEAST likely to occur in the middle. Equivalently, the walk is most likely to spend almost all its time on one side of zero — either consistently positive or consistently negative — and least likely to oscillate symmetrically. In a fair coin-flipping game for money: the player who is ahead in the first few flips is very likely to remain ahead for most of the rest of the game. 'Who is ahead' does not switch frequently. This destroys the intuition that a fair game means each player leads about half the time."},
+
+  {title:"Characteristic Functions and Weak Convergence",cat:"Distributions",src:"Distribution Theory · Analysis",diff:"★★★★★",
+   q:"(a) Define the characteristic function φ_X(t) = E[e^{itX}]. Why does it always exist? (b) State the continuity theorem (Lévy's theorem). (c) Use characteristic functions to prove the Central Limit Theorem: if X₁,...,Xₙ are i.i.d. mean 0, variance 1, show that (1/√n)ΣXᵢ →ᵈ N(0,1).",
+   hint:"(a) |e^{itX}| = 1 always, so E[e^{itX}] is absolutely bounded. (b) Lévy: φₙ → φ pointwise iff Fₙ → F weakly, where φ is the characteristic function of F. (c) Characteristic function of (1/√n)ΣXᵢ is [φ_X(t/√n)]ⁿ. Taylor expand log φ_X around t=0 using E[X]=0, E[X²]=1.",
+   ans:"<strong>(a)</strong> φ_X(t) = E[e^{itX}] always exists because |e^{itX}| = 1 (bounded integrand), so |φ_X(t)| ≤ E[|e^{itX}|] = 1. The function is uniformly continuous on ℝ and satisfies φ_X(0) = 1.<br><br><strong>(b) Lévy Continuity Theorem:</strong> A sequence of distributions Fₙ converges weakly to F if and only if the characteristic functions φₙ(t) → φ(t) pointwise for all t, where φ is the characteristic function of some distribution F and is continuous at 0.<br><br><strong>(c) Proof of CLT via characteristic functions:</strong><br>Let Sₙ = (X₁+...+Xₙ)/√n. The characteristic function of Sₙ is:<br>φ_{Sₙ}(t) = [φ_X(t/√n)]ⁿ<br><br>Take log: n·log φ_X(t/√n). Taylor expand φ_X(u) around u=0:<br>φ_X(u) = φ_X(0) + φ'_X(0)u + φ''_X(0)u²/2 + o(u²)<br>= 1 + iE[X]u − E[X²]u²/2 + o(u²) = 1 + 0 − u²/2 + o(u²)<br><br>Therefore: log φ_X(t/√n) = log(1 − t²/(2n) + o(1/n)) = −t²/(2n) + o(1/n).<br><br>So n·log φ_X(t/√n) → −t²/2.<br><br>Thus φ_{Sₙ}(t) → e^{-t²/2} = the characteristic function of N(0,1).<br><br>By Lévy's theorem, Sₙ →ᵈ N(0,1). ✓"},
+
+  {title:"Multivariate Normal Conditionals",cat:"Distributions",src:"Multivariate Statistics · Gaussian Models",diff:"★★★★☆",
+   q:"Let (X,Y) ∼ MVN(μ,Σ) where X ∈ ℝᵖ, Y ∈ ℝᵍ. Partition μ = (μₓ, μᵧ)ᵀ and Σ = [[Σₓₓ, Σₓᵧ],[Σᵧₓ, Σᵧᵧ]]. (a) What is the conditional distribution X|Y=y? (b) What is the Schur complement and why does it appear? (c) Derive the formula for the best linear predictor of X from Y.",
+   hint:"Complete the square in the joint density. Factor the joint density as f(x,y) = f(x|y)·f(y). Alternatively, use the multivariate normal identity for block matrix inversion.",
+   ans:"<strong>(a) Conditional distribution X|Y=y:</strong><br>X|Y=y ~ N(μₓ|ᵧ, Σₓ|ᵧ) where:<br>μₓ|ᵧ = μₓ + Σₓᵧ Σᵧᵧ⁻¹(y − μᵧ) (conditional mean)<br>Σₓ|ᵧ = Σₓₓ − Σₓᵧ Σᵧᵧ⁻¹ Σᵧₓ (conditional variance = Schur complement)<br><br><strong>(b) Schur complement:</strong> The matrix Σₓₓ − Σₓᵧ Σᵧᵧ⁻¹ Σᵧₓ is the Schur complement of Σᵧᵧ in Σ. It arises naturally in block matrix inversion: (Σ⁻¹)ₓₓ = (Schur complement)⁻¹. Geometrically, it is the variance 'remaining' in X after removing the part linearly predictable from Y.<br><br><strong>(c) Best linear predictor:</strong> The conditional mean E[X|Y=y] = μₓ + Σₓᵧ Σᵧᵧ⁻¹(y − μᵧ) is the best predictor of X from Y in MSE sense. This is also the best LINEAR predictor even without assuming normality (the Gauss-Markov BLP). The coefficient matrix B = Σₓᵧ Σᵧᵧ⁻¹ is the population regression coefficient matrix.<br><br><strong>Applications:</strong> Gaussian process regression (kriging), Kalman filtering, Bayesian linear regression with Normal prior and Normal likelihood, and multivariate imputation of missing data all use this formula."},
+
+  {title:"The Box-Cox Transformation",cat:"Regression",src:"Regression · Variance Stabilisation",diff:"★★★☆☆",
+   q:"The Box-Cox transformation is: y^(λ) = (yˡ − 1)/λ for λ ≠ 0, and log(y) for λ = 0. (a) Why does λ = 0 give log? (b) How do you estimate λ in practice? (c) What are the three most important special cases and what stabilising effect does each achieve?",
+   hint:"(a) Take the limit of (yˡ − 1)/λ as λ → 0 using L'Hôpital's rule. (b) Profile likelihood: for each λ, transform y and compute the MLE of the regression model. The optimal λ maximises the profile log-likelihood. (c) λ=1: no transformation; λ=1/2: square root; λ=0: log.",
+   ans:"<strong>(a)</strong> lim_{λ→0} (yˡ − 1)/λ = lim (yˡ ln y)/1 = ln y (L'Hôpital). ✓<br><br><strong>(b) Estimation by maximum likelihood:</strong> For each trial value λ, transform y⁽λ⁾ᵢ = (yᵢˡ−1)/λ and fit the linear model y⁽λ⁾ = Xβ + ε, ε ~ N(0,σ²). The profile log-likelihood is:<br>ℓ_max(λ) = −(n/2)log(RSS(λ)/n) + (λ−1)Σlog(yᵢ)<br><br>where the second term adjusts for the Jacobian of the transformation. Maximise over λ by grid search or golden section search.<br><br><strong>(c) Special cases:</strong><br>• λ=1: identity — no transformation needed (errors already homoscedastic and normal).<br>• λ=1/2: square root — stabilises variance when Var(Y) ∝ μ (Poisson-like data, count data from ecology, queuing).<br>• λ=0: log — stabilises variance when Var(Y) ∝ μ² (coefficient of variation constant), appropriate for multiplicative models, incomes, concentrations.<br>• λ=−1: reciprocal — stabilises when variance grows as μ⁴, rare but appears in survival times.<br><br>The Box-Cox family unifies these transformations in one parameterised family, allowing the data to choose the appropriate scale."},
+
+  {title:"Ridge Regression and the Bias-Variance Tradeoff",cat:"Regression",src:"Regularisation · Linear Models",diff:"★★★☆☆",
+   q:"Ridge regression minimises Σ(yᵢ − xᵢᵀβ)² + λ‖β‖². (a) Derive the ridge estimator β̂ᴿ. (b) Show it is biased. (c) Under what conditions does the ridge estimator have lower MSE than OLS?",
+   hint:"(a) Set gradient to zero: Xᵀ(y − Xβ) + λβ = 0. (b) E[β̂ᴿ] = (XᵀX + λI)⁻¹XᵀXβ ≠ β in general. (c) MSE(β̂ᴿ) = Bias² + Variance. The variance is strictly reduced; the bias is introduced. Find the condition on λ for net MSE improvement.",
+   ans:"<strong>(a) Ridge estimator:</strong><br>Minimising ‖y − Xβ‖² + λ‖β‖² gives:<br>∂/∂β[‖y−Xβ‖² + λ‖β‖²] = −2Xᵀ(y−Xβ) + 2λβ = 0<br>(XᵀX + λI)β = Xᵀy<br>β̂ᴿ = (XᵀX + λI)⁻¹Xᵀy<br><br><strong>(b) Bias:</strong><br>E[β̂ᴿ] = (XᵀX + λI)⁻¹XᵀXβ = (I + λ(XᵀX)⁻¹)⁻¹β ≠ β for λ > 0.<br>Bias = E[β̂ᴿ] − β = −λ(XᵀX + λI)⁻¹β ≠ 0.<br><br><strong>(c) MSE comparison:</strong><br>In the spectral decomposition XᵀX = UΛUᵀ (eigenvalues dⱼ²):<br>Var(β̂ᴿ) = σ² Σⱼ dⱼ²/(dⱼ²+λ)² &lt; Var(β̂ᴼᴸˢ) = σ² Σⱼ 1/dⱼ² (variance always decreases)<br>Bias²(β̂ᴿ) = λ² Σⱼ βⱼ'²/(dⱼ²+λ)² (bias introduced)<br><br>Ridge dominates OLS in MSE when the bias introduced is smaller than the variance saved:<br>λ² Σβⱼ'²/(dⱼ²+λ)² &lt; σ² Σ[1/dⱼ² − dⱼ²/(dⱼ²+λ)²]<br><br>This is always satisfied for sufficiently small λ > 0, since the bias is O(λ²) while the variance saving is O(λ). This proves that OLS is inadmissible in MSE — ridge always dominates OLS for sufficiently small λ > 0."},
+
+  {title:"Power Analysis and Sample Size",cat:"Inference",src:"Experimental Design · Hypothesis Testing",diff:"★★★☆☆",
+   q:"You want to detect an effect size δ = μ₁ − μ₀ in a two-sided z-test at significance level α = 0.05 with power 1−β = 0.80. (a) Derive the formula for required sample size n per group. (b) If σ = 1 and δ = 0.5 (Cohen's d = 0.5), what n is needed? (c) How does n scale with d = δ/σ?",
+   hint:"For a one-sample z-test H₀: μ=μ₀ vs H₁: μ=μ₁ with σ known: the critical value is z_{α/2}. Power = P(reject | μ=μ₁) = P(|Z| > z_{α/2} | μ=μ₁). Under H₁, Z = (X̄−μ₀)/(σ/√n) ~ N(δ√n/σ, 1). Set power equal to 1−β and solve for n.",
+   ans:"<strong>(a) Sample size formula:</strong><br>Under H₁: Z = (X̄ − μ₀)/(σ/√n) ~ N(δ√n/σ, 1) where δ = μ₁ − μ₀.<br><br>Power = P(|Z| > z_{α/2} | H₁) ≈ P(Z > z_{α/2} − δ√n/σ) = Φ(δ√n/σ − z_{α/2})<br><br>(Ignoring the left tail, which contributes negligibly for small α and positive δ.)<br><br>Setting power = 1−β:<br>Φ(δ√n/σ − z_{α/2}) = 1−β ⟹ δ√n/σ − z_{α/2} = z_β<br>n = σ²(z_{α/2} + z_β)² / δ²<br><br>For two groups (equal n each): n = 2σ²(z_{α/2} + z_β)² / δ².<br><br><strong>(b)</strong> For α=0.05 (z_{α/2}=1.96), β=0.20 (z_β=0.84), δ/σ=0.5:<br>n = (1.96+0.84)²/0.25 = 7.84/0.25 ≈ <strong>31.4 → 32 per group (64 total)</strong><br><br><strong>(c) Scaling:</strong> n ∝ 1/d² where d = δ/σ is Cohen's d. To detect an effect half as large (d → d/2) requires 4× more subjects. Detecting very small effects (d = 0.1) requires n = (2.8/0.1)² ≈ 784 per group. This is why large randomised trials for small treatment effects (like low-dose aspirin preventing heart attacks) require thousands of patients."},
+
+  {title:"The Portmanteau Test for Autocorrelation",cat:"Distributions",src:"Time Series · Diagnostics",diff:"★★★☆☆",
+   q:"In time series analysis, the Ljung-Box test (portmanteau test) checks whether residuals are consistent with white noise. (a) Define the autocorrelation function ρₖ = Corr(Xₜ, Xₜ₋ₖ). (b) Under H₀ of white noise, what is the distribution of the sample autocorrelations r̂ₖ for large n? (c) What is the Ljung-Box Q statistic?",
+   hint:"(a) ρₖ = E[(Xₜ−μ)(Xₜ₋ₖ−μ)]/Var(X). Under H₀ of white noise, ρₖ = 0 for k > 0. (b) r̂ₖ is approximately N(0, 1/n) for large n. (c) The Ljung-Box statistic is Q = n(n+2) Σₖ₌₁ᵐ r̂ₖ²/(n−k) ~ χ²(m) under H₀.",
+   ans:"<strong>(a) Autocorrelation function (ACF):</strong><br>ρₖ = γₖ/γ₀ where γₖ = E[(Xₜ−μ)(Xₜ₋ₖ−μ)] is the autocovariance at lag k and γ₀ = Var(X). For white noise: ρ₀=1, ρₖ=0 for k ≥ 1.<br><br><strong>(b) Sampling distribution of r̂ₖ:</strong><br>Bartlett's theorem: for white noise, √n·r̂ₖ →ᵈ N(0,1) as n → ∞. So r̂ₖ ≈ N(0, 1/n) for large n. A rule of thumb: |r̂ₖ| > 2/√n indicates significant autocorrelation at lag k at the 5% level.<br><br><strong>(c) Ljung-Box Q statistic:</strong><br>Q(m) = n(n+2) Σₖ₌₁ᵐ r̂ₖ²/(n−k)<br><br>Under H₀ of white noise, Q(m) →ᵈ χ²(m) as n → ∞. Reject H₀ if Q &gt; χ²_{α}(m).<br><br>The improved Ljung-Box statistic (1978) over the earlier Box-Pierce Q = n Σ r̂ₖ² has better finite-sample properties. The choice of m (number of lags to include) is somewhat arbitrary; m ≈ 10-20 for monthly data, or m = log(n) as a rule of thumb.<br><br><strong>After ARIMA fitting:</strong> Apply Ljung-Box to residuals. If Q is not significant, the model has adequately captured the autocorrelation structure."},
+
+  {title:"Convergence of Random Variables: Modes and Implications",cat:"Distributions",src:"Probability Theory · Convergence",diff:"★★★★☆",
+   q:"There are several modes of convergence for random variables. (a) Define almost sure (a.s.), in probability, in L² (mean square), and in distribution convergence. (b) What are the implications among them? (c) Give a sequence Xₙ that converges in probability but NOT almost surely.",
+   hint:"Almost sure is the strongest; in distribution is the weakest. The chain is: a.s. ⟹ in probability ⟹ in distribution; L² ⟹ in probability. For (c), consider the 'sliding block' sequence on [0,1] with uniform distribution. Xₙ = 1_{[k/2ʲ, (k+1)/2ʲ]} where n = 2ʲ + k.",
+   ans:"<strong>(a) Modes of convergence:</strong><br>• <em>Almost surely (a.s.):</em> P(Xₙ → X) = 1, i.e. P(lim Xₙ = X) = 1. The limit holds for all sample paths except a null set.<br>• <em>In probability:</em> ∀ε > 0, P(|Xₙ−X| > ε) → 0 as n → ∞.<br>• <em>In L² (mean square):</em> E[(Xₙ−X)²] → 0.<br>• <em>In distribution:</em> Fₙ(x) → F(x) at all continuity points of F.<br><br><strong>(b) Implications:</strong><br>a.s. ⟹ in probability ⟹ in distribution.<br>L² ⟹ in probability ⟹ in distribution.<br>In distribution does NOT imply in probability (unless X is a constant).<br>In probability does NOT imply a.s. or L².<br><br><strong>(c) Typewriter sequence (sliding block):</strong><br>Let Ω = [0,1] with uniform measure. Define Xₙ = 1_{Iₙ} where Iₙ are intervals:<br>n=1: [0,1]; n=2,3: [0,1/2],[1/2,1]; n=4,5,6,7: [0,1/4],[1/4,1/2],[1/2,3/4],[3/4,1]; etc.<br><br>P(|Xₙ−0| > ε) = P(X∈Iₙ) = |Iₙ| → 0. So Xₙ →ᵖ 0. ✓<br><br>But for any ω ∈ [0,1], ω falls in infinitely many Iₙ (since the intervals cover [0,1] infinitely often). So P(Xₙ(ω)→0) = 0. Xₙ does not converge almost surely."},
+
+  {title:"The Method of Moments vs MLE",cat:"Inference",src:"Estimation Theory",diff:"★★★☆☆",
+   q:"For X₁,...,Xₙ i.i.d. Gamma(α,β) (mean α/β, variance α/β²): (a) Derive the method of moments (MOM) estimators of α and β. (b) State why the MOM estimators are generally less efficient than MLE. (c) Give a case where MOM is preferred despite lower efficiency.",
+   hint:"(a) Set sample mean = α/β and sample variance = α/β² and solve for α̂ and β̂. (b) MLE achieves the Cramér-Rao bound asymptotically; MOM only uses first few moments, losing information. (c) MOM is computationally cheap and gives a starting point for MLE via EM.",
+   ans:"<strong>(a) Method of Moments for Gamma(α,β):</strong><br>The k-th population moment: E[Xᵏ] = products of Gamma moments.<br>First two moments: E[X] = α/β and E[X²] = Var(X) + (E[X])² = α/β² + α²/β².<br><br>Set X̄ = α̂/β̂ and S² = α̂/β̂²:<br>From X̄ = α̂/β̂ and S² = α̂/β̂²:<br>X̄/S² = (α̂/β̂)/(α̂/β̂²) = β̂ ⟹ β̂_MOM = X̄/S²<br>α̂_MOM = X̄·β̂_MOM = X̄²/S²<br><br><strong>(b) Why MLE is more efficient:</strong><br>The MLE uses all the information in the log-likelihood: Σlog f(xᵢ|α,β) = Σ[(α−1)log xᵢ − βxᵢ − log Γ(α) + α log β]. This incorporates log xᵢ terms (related to the digamma function) that MOM ignores. The asymptotic variance of MLE equals the Cramér-Rao lower bound I(θ)⁻¹; MOM asymptotic variance is always ≥ CR bound unless moments fully characterise the score function.<br><br><strong>(c) When MOM is preferred:</strong><br>• When the likelihood is intractable (GMM in economics uses MOM-type estimating equations).<br>• As initialisation for EM algorithm or Newton-Raphson MLE (MOM is closed-form, fast, and almost always gives a reasonable starting point).<br>• In robust statistics: L-moment estimators (linear combinations of order statistics) are more robust to outliers than MLE for heavy-tailed distributions."},
+
+  {title:"The Behrens-Fisher Problem",cat:"Inference",src:"Hypothesis Testing · Two-Sample",diff:"★★★★☆",
+   q:"Two independent samples: X₁,...,Xₙ ~ N(μ₁, σ₁²) and Y₁,...,Yₘ ~ N(μ₂, σ₂²), with σ₁², σ₂² UNKNOWN and POSSIBLY UNEQUAL. (a) Why is the standard two-sample t-test invalid here? (b) What is Welch's t-statistic and what degrees of freedom does it use? (c) Why is this the Behrens-Fisher problem and what makes it difficult?",
+   hint:"(a) The pooled t-test assumes σ₁ = σ₂. If this is violated, the pooled estimate is biased for both, and the test statistic doesn't follow t(n+m−2) exactly. (b) Welch's statistic: T = (X̄−Ȳ)/√(S₁²/n + S₂²/m) with Satterthwaite-Welch degrees of freedom.",
+   ans:"<strong>(a) Pooled t-test failure:</strong><br>The pooled variance S²_p = [(n−1)S₁² + (m−1)S₂²]/(n+m−2) is unbiased only when σ₁ = σ₂. When σ₁ ≠ σ₂, the pooled SE is a biased estimate of SD(X̄−Ȳ) = √(σ₁²/n + σ₂²/m), and the test statistic does not follow t(n+m−2). The Type I error rate can be severely inflated or deflated depending on the variance ratio and sample size ratio.<br><br><strong>(b) Welch's t-test:</strong><br>T_W = (X̄ − Ȳ) / √(S₁²/n + S₂²/m)<br><br>Degrees of freedom (Satterthwaite-Welch approximation):<br>ν = (S₁²/n + S₂²/m)² / [(S₁²/n)²/(n−1) + (S₂²/m)²/(m−1)]<br><br>T_W is approximately t(ν) under H₀, with ν ≤ n+m−2.<br><br><strong>(c) Why it's hard:</strong><br>Behrens (1929) and Fisher (1935) showed that no classical uniformly most powerful test exists for this problem. There is NO EXACT test based on sample means and variances alone. Welch's approximation works well in practice but is not exact. The exact Behrens-Fisher solution requires the Behrens-Fisher distribution (a mixture of t-distributions) and Bayesian arguments. This motivated the study of 'fiducial inference' by Fisher — a framework between frequentist and Bayesian that has never gained full acceptance but anticipated modern credible intervals."},
+
+  {title:"Entropy and the Normal Distribution",cat:"Distributions",src:"Information Theory · Distributions",diff:"★★★☆☆",
+   q:"(a) Define the differential entropy h(X) = −∫f(x)log f(x)dx for a continuous random variable. (b) What is the differential entropy of N(μ, σ²)? (c) Prove that among all distributions with fixed mean μ and variance σ², the Normal has the MAXIMUM differential entropy.",
+   hint:"(a) Differential entropy is the continuous analogue of Shannon entropy, but can be negative. (b) Compute h(N(μ,σ²)) directly by substituting the Gaussian PDF. (c) Lagrangian optimisation: maximise h(f) subject to ∫f=1, ∫xf=μ, ∫x²f=μ²+σ². The maximiser is a Gaussian by the method of Lagrange multipliers.",
+   ans:"<strong>(a)</strong> Differential entropy h(X) = −E[log f(X)] = −∫f(x)log f(x)dx. Unlike discrete entropy, it can be negative and is not invariant under change of variables.<br><br><strong>(b) Normal entropy:</strong><br>For X ∼ N(μ,σ²): log f(x) = −(1/2)log(2πσ²) − (x−μ)²/(2σ²)<br>h(X) = −E[log f(X)] = (1/2)log(2πσ²) + (1/(2σ²))E[(X−μ)²]<br>= (1/2)log(2πσ²) + (1/(2σ²))·σ² = <strong>(1/2)log(2πeσ²)</strong><br><br><strong>(c) Maximality of Normal entropy:</strong><br>Lagrangian: L(f,λ₀,λ₁,λ₂) = −∫f log f + λ₀∫f + λ₁∫xf + λ₂∫x²f<br><br>Functional derivative = 0: −(1 + log f(x)) + λ₀ + λ₁x + λ₂x² = 0<br>⟹ log f(x) = λ₀ − 1 + λ₁x + λ₂x²<br>⟹ f(x) = exp(λ₀−1)·exp(λ₁x + λ₂x²)<br><br>For λ₂ &lt; 0, this is a Gaussian (exponential of a quadratic = Gaussian). The constraints ∫f=1, E[X]=μ, Var(X)=σ² uniquely determine (λ₀,λ₁,λ₂) to give N(μ,σ²). ✓<br><br><strong>Implication:</strong> The Normal is the 'least informative' distribution with given mean and variance — the maximum entropy prior when only the first two moments are known. This justifies the Normal as a default distribution for measurement errors."},
+
+  {title:"Bayes Factors and Model Comparison",cat:"Bayesian",src:"Bayesian Model Selection",diff:"★★★★☆",
+   q:"Two models: M₁ says X ~ N(0,1) and M₂ says X ~ N(θ,1) where θ ~ N(0,τ²). You observe X = 2. (a) Compute the Bayes factor BF₁₂ = P(X=2|M₁)/P(X=2|M₂). (b) Interpret: for what values of τ does M₂ win? (c) As τ → ∞, what does BF₁₂ → and why is this the Lindley-Jeffreys paradox?",
+   hint:"(a) Under M₁: P(X|M₁) = N(2|0,1). Under M₂: marginalise over θ: P(X|M₂) = ∫N(X|θ,1)N(θ|0,τ²)dθ = N(X|0,1+τ²). (b) BF₁₂ = N(2|0,1)/N(2|0,1+τ²). Find when BF₁₂ < 1 (M₂ wins). (c) As τ → ∞, N(2|0,1+τ²) → 0.",
+   ans:"<strong>(a) Computing the Bayes Factor:</strong><br>P(X=2|M₁) = N(2|0,1) = (2π)^{-1/2}·e^{-2} ≈ 0.0539.<br><br>P(X=2|M₂) = ∫N(2|θ,1)N(θ|0,τ²)dθ = N(2|0, 1+τ²) = (2π(1+τ²))^{-1/2}·e^{-2/(1+τ²)}.<br><br>BF₁₂ = P(M₁)/P(M₂) = [N(2|0,1)] / [N(2|0,1+τ²)]<br>= √(1+τ²) · exp{−2 + 2/(1+τ²)} = √(1+τ²) · exp{−2τ²/(1+τ²)}<br><br><strong>(b) When does M₂ win (BF₁₂ &lt; 1)?</strong><br>BF₁₂ &lt; 1 ⟺ √(1+τ²)·exp{−2τ²/(1+τ²)} &lt; 1<br>⟺ (1/2)log(1+τ²) &lt; 2τ²/(1+τ²)<br>This is satisfied for small τ (M₂ is concentrated near 0 and the observation 2 is 2 standard errors away — M₂ wins). For large τ (diffuse prior), M₁ wins.<br><br><strong>(c) Jeffreys-Lindley paradox:</strong><br>As τ → ∞: BF₁₂ = √(1+τ²)·exp{−2τ²/(1+τ²)} ≈ τ·e^{-2} → ∞. BF₁₂ → ∞ — the Bayes factor strongly supports M₁!<br><br>A very diffuse prior on θ under M₂ makes each specific value of θ so improbable that M₂ explains the data poorly — the prior is penalised for being vague. In contrast, M₁ is very specific (θ=0). This is Jeffreys's argument against using improper (unbounded) priors in model comparison: they cause the Bayes factor to always favour the null. Diffuse priors in hypothesis testing systematically favour H₀."},
+
+  {title:"The Neyman-Scott Problem — Incidental Parameters",cat:"Inference",src:"Likelihood Theory · Estimation",diff:"★★★★★",
+   q:"Let Xᵢⱼ ~ N(μᵢ, σ²) for i=1,...,n, j=1,2 (n groups, 2 observations each). The parameters are μ₁,...,μₙ (nuisance) and σ² (of interest). (a) Find the MLE of σ². (b) Is it consistent as n → ∞? (c) What does this reveal about the MLE in the presence of many nuisance parameters?",
+   hint:"The MLE of μᵢ is X̄ᵢ = (Xᵢ₁+Xᵢ₂)/2. Substitute into the log-likelihood and maximise over σ². The residuals (Xᵢⱼ − X̄ᵢ) have only 1 degree of freedom per group. For (b): as n→∞ with fixed p=2, n×σ̂² is NOT consistent.",
+   ans:"<strong>(a) MLE of σ²:</strong><br>Profile likelihood: substitute X̄ᵢ for μᵢ. Residuals: Xᵢⱼ − X̄ᵢ.<br>σ̂²_MLE = (1/(2n)) Σᵢ Σⱼ (Xᵢⱼ − X̄ᵢ)² = (1/(2n)) Σᵢ [(Xᵢ₁−X̄ᵢ)² + (Xᵢ₂−X̄ᵢ)²]<br><br>Each group contributes (Xᵢ₁−Xᵢ₂)²/4 + (Xᵢ₂−Xᵢ₁)²/4 = (Xᵢ₁−Xᵢ₂)²/2.<br>So σ̂²_MLE = (1/(4n)) Σᵢ (Xᵢ₁−Xᵢ₂)².<br><br><strong>(b) Consistency?</strong><br>E[(Xᵢ₁−Xᵢ₂)²] = Var(Xᵢ₁−Xᵢ₂) = 2σ².<br>E[σ̂²_MLE] = (1/(4n)) · n · 2σ² = σ²/2.<br><br>The MLE of σ² converges to σ²/2, not σ². It is INCONSISTENT, with probability limit equal to half the true value!<br><br><strong>(c) Incidental parameters problem:</strong><br>When the number of nuisance parameters grows with n (here n group means), the MLE of structural parameters can be inconsistent. Each nuisance parameter μᵢ is estimated from only 2 observations, introducing a fixed bias. The bias does not diminish as n increases because more observations just add more nuisance parameters (like adding more groups).<br><br><strong>Fixes:</strong> Restricted MLE (REML) divides by the proper degrees of freedom; conditional likelihood (condition on sufficient statistics for nuisance); integrating out nuisance parameters (Bayesian). This problem motivated the development of REML in variance component models."},
+
+  {title:"Markov Chain Monte Carlo — Metropolis-Hastings",cat:"Bayesian",src:"Computational Bayes · MCMC",diff:"★★★★☆",
+   q:"Describe the Metropolis-Hastings algorithm for sampling from a target distribution π(θ) (known up to a constant). (a) Write the algorithm. (b) Show that it satisfies detailed balance with respect to π. (c) Why is the burn-in period necessary, and what is 'mixing'?",
+   hint:"(a) At each step: propose θ* from q(θ*|θ^t); accept with probability min(1, π(θ*)q(θ^t|θ*) / (π(θ^t)q(θ*|θ^t))). (b) Check π(θ)q(θ*|θ)A(θ,θ*) = π(θ*)q(θ|θ*)A(θ*,θ) for the acceptance kernel A = min(1, ratio).",
+   ans:"<strong>(a) Metropolis-Hastings Algorithm:</strong><br>Initialize θ⁰ arbitrarily. At step t:<br>1. Propose θ* ~ q(θ*|θᵗ) (proposal distribution, e.g. N(θᵗ, σ²_prop))<br>2. Compute acceptance ratio: α = min(1, [π(θ*)·q(θᵗ|θ*)] / [π(θᵗ)·q(θ*|θᵗ)])<br>3. Set θᵗ⁺¹ = θ* with probability α, else θᵗ⁺¹ = θᵗ.<br><br>Note: π need only be known up to a normalising constant (it cancels in the ratio).<br><br><strong>(b) Detailed balance:</strong><br>For θ ≠ θ*, the transition kernel density is T(θ→θ*) = q(θ*|θ)·min(1, π(θ*)q(θ|θ*)/(π(θ)q(θ*|θ))).<br><br>We need π(θ)T(θ→θ*) = π(θ*)T(θ*→θ):<br>π(θ)·q(θ*|θ)·min(1, π(θ*)q(θ|θ*)/(π(θ)q(θ*|θ)))<br>= min(π(θ)q(θ*|θ), π(θ*)q(θ|θ*)) = π(θ*)T(θ*→θ). ✓<br><br>Detailed balance ⟹ π is the stationary distribution of the chain.<br><br><strong>(c) Burn-in and mixing:</strong><br>• Burn-in: the chain starts at θ⁰ (arbitrary) far from the stationary distribution. Early samples reflect the starting point, not π. We discard the first B samples (burn-in) to reduce this initialization bias.<br>• Mixing: how quickly the chain forgets its initial state and explores the stationary distribution. A well-mixed chain moves freely across all regions of high probability. Poor mixing (proposed steps too large → few acceptances; too small → slow exploration) is diagnosed by trace plots and autocorrelation in the chain. Effective sample size (ESS) = n/(1 + 2Σₖρₖ) measures mixing quality."},
+
+  {title:"Moment Generating Functions and Their Limits",cat:"Distributions",src:"Distribution Theory · Convergence",diff:"★★★★☆",
+   q:"(a) Prove that if the MGF M_X(t) = E[e^{tX}] exists in a neighbourhood of 0, it uniquely determines the distribution of X. (b) Use MGFs to prove that if Xₙ ~ Binomial(n, λ/n), then Xₙ →ᵈ Poisson(λ). (c) Why is the MGF sometimes inferior to the characteristic function?",
+   hint:"(a) Uniqueness follows from the fact that the MGF is the Laplace transform of the density, which is uniquely invertible. (b) Compute M_{Xₙ}(t) = (1 − λ/n + (λ/n)eᵗ)ⁿ and take n → ∞. (c) MGF may not exist for heavy-tailed distributions (e.g. Cauchy, log-normal for t > 0).",
+   ans:"<strong>(a) Uniqueness:</strong><br>If M_X(t) exists for t ∈ (−δ, δ), then all moments E[Xᵏ] = M_X^{(k)}(0) exist and are finite. The distribution is determined by its moments in this case (moment problem uniqueness for distributions with finite MGF). More precisely, the MGF is the bilateral Laplace transform of the distribution, and the uniqueness of the Laplace transform gives uniqueness of the distribution. ✓<br><br><strong>(b) Binomial → Poisson:</strong><br>M_{Xₙ}(t) = (1 − λ/n + (λ/n)eᵗ)ⁿ = (1 + λ(eᵗ−1)/n)ⁿ<br><br>Take logs: n·log(1 + λ(eᵗ−1)/n) = n·[λ(eᵗ−1)/n − (λ(eᵗ−1))²/(2n²) + ...] → λ(eᵗ−1)<br><br>So M_{Xₙ}(t) → e^{λ(eᵗ−1)} = M_{Poisson(λ)}(t). By MGF continuity theorem (if Mₙ → M pointwise in a neighbourhood of 0 and M is an MGF), Xₙ →ᵈ Poisson(λ). ✓<br><br><strong>(c) MGF limitations:</strong><br>The MGF E[e^{tX}] may not exist for t ≠ 0 when X has heavy tails. Examples:<br>• Cauchy: E[e^{tX}] = ∞ for all t ≠ 0.<br>• Log-normal: E[e^{tX}] = ∞ for all t > 0.<br><br>The characteristic function E[e^{itX}] always exists (since |e^{itX}| = 1) and works for ALL distributions. This is why the CLT is proven via characteristic functions rather than MGFs."},
+
+  {title:"The Concentration of Measure Phenomenon",cat:"Probability",src:"Probability Theory · High Dimensions",diff:"★★★★★",
+   q:"Let X = (X₁,...,Xₙ) be uniformly distributed on the unit sphere Sⁿ⁻¹ in ℝⁿ. (a) Show that the first coordinate X₁ has distribution approximately N(0, 1/n) for large n. (b) Show that ‖X‖ = 1 a.s. but the coordinates individually are small. (c) What is the Lévy-Milman phenomenon and why does it say that 'most of the mass is near the equator'?",
+   hint:"(a) For uniform X on Sⁿ⁻¹, each coordinate Xᵢ ~ sqrt(Beta(1/2,(n-1)/2)) · sign, approximately N(0,1/n). (b) By definition ‖X‖=1, so E[X₁²] = 1/n by symmetry. (c) P(|X₁| > ε) ≤ 2e^{-nε²/2} by Gaussian tail bounds.",
+   ans:"<strong>(a) Coordinate distribution:</strong><br>By symmetry, E[X₁²] = ‖X‖²/n = 1/n. By the central limit theorem for projections on spheres (Maxwell's theorem), X₁ ~ N(0, 1/n) approximately.<br><br><strong>(b) Concentration vs. coordinate size:</strong><br>‖X‖² = ΣXᵢ² = 1 a.s. (by definition of the sphere). But E[X₁²] = 1/n → 0. Each coordinate is small, yet together they sum to 1. This paradox is resolved: in n dimensions, you need many small coordinates to sum to 1.<br><br><strong>(c) Lévy-Milman concentration:</strong><br>For Lipschitz functions f on Sⁿ⁻¹ (with Lipschitz constant 1), the median M_f satisfies:<br>P(|f(X) − M_f| > ε) ≤ 2e^{-nε²/2}<br><br>Any 'reasonable' function on the high-dimensional sphere is concentrated near its median. Specifically, P(|X₁| > ε) ≤ 2e^{-nε²/2}: most of the mass is near the hyperplane {x₁=0} — the 'equator'.<br><br><strong>Applications:</strong> Why neural networks generalise (overparameterised models in high dimensions are concentrated); why random projections work (Johnson-Lindenstrauss lemma); why the kernel trick works in high dimensions; why Gaussian random matrices have predictable spectra (random matrix theory). Concentration of measure is fundamental to modern statistics and machine learning in high dimensions."},
+
+  {title:"Instrumental Variables and Endogeneity",cat:"Regression",src:"Causal Inference · Econometrics",diff:"★★★★★",
+   q:"In the linear model Y = βX + ε, suppose X is endogenous: Cov(X, ε) ≠ 0. (a) Why is OLS biased for β? (b) Define an instrumental variable (IV) Z. What are the required conditions? (c) Derive the IV estimator β̂_IV and show it is consistent.",
+   hint:"(a) Plim(β̂_OLS) = β + Cov(X,ε)/Var(X) ≠ β when Cov(X,ε) ≠ 0. (b) IV conditions: relevance Cov(Z,X) ≠ 0, exogeneity Cov(Z,ε) = 0. (c) β̂_IV = Cov(Z,Y)/Cov(Z,X). Show its probability limit using laws of large numbers.",
+   ans:"<strong>(a) OLS bias from endogeneity:</strong><br>β̂_OLS = Σ(xᵢ−x̄)(yᵢ−ȳ)/Σ(xᵢ−x̄)² = β + Σ(xᵢ−x̄)εᵢ/Σ(xᵢ−x̄)².<br>Plim β̂_OLS = β + Cov(X,ε)/Var(X) ≠ β since Cov(X,ε) ≠ 0.<br><br>Example: wage ~ schooling + ε, where schooling is correlated with unobserved ability in ε. OLS overestimates the returns to schooling.<br><br><strong>(b) Instrumental variable Z:</strong><br>1. <em>Relevance:</em> Cov(Z,X) ≠ 0 (Z is correlated with the endogenous regressor).<br>2. <em>Exogeneity:</em> Cov(Z,ε) = 0 (Z is uncorrelated with the error — exclusion restriction).<br><br>Classic IV: distance to college for schooling (Card, 1995). Z = proximity to college; correlated with schooling attended but unlikely correlated with unobserved ability.<br><br><strong>(c) IV estimator and consistency:</strong><br>β̂_IV = Σ(zᵢ−z̄)(yᵢ−ȳ) / Σ(zᵢ−z̄)(xᵢ−x̄) = Cov̂(Z,Y)/Cov̂(Z,X)<br><br>Plim β̂_IV = Cov(Z,Y)/Cov(Z,X) = Cov(Z,βX+ε)/Cov(Z,X) = β·Cov(Z,X)/Cov(Z,X) + Cov(Z,ε)/Cov(Z,X) = β + 0 = β. ✓<br><br>IV is consistent but has larger variance than OLS when Cov(X,ε)=0. The efficiency tradeoff: IV sacrifices efficiency for consistency. Weak instruments (small Cov(Z,X)) lead to highly variable IV estimates (weak instrument problem)."},
+
+  {title:"The Chi-Square Goodness of Fit",cat:"Inference",src:"Hypothesis Testing · Categorical Data",diff:"★★★☆☆",
+   q:"Pearson (1900) proposed testing H₀: the data follows distribution F₀. Observed counts O₁,...,Oₖ; expected counts Eᵢ = nPF₀(cell i). (a) State the Pearson chi-square statistic. (b) Prove it is asymptotically χ²(k−1). (c) What sample size is required and why?",
+   hint:"(a) χ² = Σ(Oᵢ−Eᵢ)²/Eᵢ. (b) The key insight: k cell proportions live on a k−1 dimensional simplex (one constraint Σpᵢ=1). Use the multivariate CLT on the cell proportions p̂ᵢ = Oᵢ/n, then project onto the null surface. (c) The rule of thumb Eᵢ ≥ 5 per cell.",
+   ans:"<strong>(a) Pearson χ² statistic:</strong><br>χ² = Σᵢ₌₁ᵏ (Oᵢ − Eᵢ)²/Eᵢ where Eᵢ = nπᵢ (expected count under H₀).<br><br><strong>(b) Asymptotic distribution:</strong><br>Let p̂ᵢ = Oᵢ/n. By the multivariate CLT: √n(p̂ − π) →ᵈ N(0, Σ) where Σ = diag(π) − ππᵀ.<br><br>Pearson's statistic = n(p̂−π)ᵀ diag(π)⁻¹(p̂−π). The matrix diag(π)⁻¹ times Σ has rank k−1 (since Σ(p̂ᵢ−πᵢ)=0 always). By the continuous mapping theorem, the quadratic form converges to χ²(k−1), where k−1 is the rank of the limiting covariance. The one lost degree of freedom reflects the constraint Σπᵢ=1.<br><br>If r parameters are estimated (e.g., fitting a Normal to binned data), degrees of freedom become k−1−r.<br><br><strong>(c) Sample size requirement:</strong><br>The rule Eᵢ ≥ 5 per cell ensures the CLT approximation is adequate. With Eᵢ &lt; 5, use Fisher's exact test (for 2×2 tables) or the G-test. For k large and sparse cells (many Eᵢ &lt; 5), either collapse categories or use exact methods. The chi-square approximation is worst when the distribution of Oᵢ under H₀ is very skewed (small πᵢ cells)."},
+
+  {title:"The Dirichlet Distribution and Multinomial Inference",cat:"Bayesian",src:"Bayesian Statistics · Multinomial Models",diff:"★★★☆☆",
+   q:"The Dirichlet distribution Dir(α₁,...,αₖ) is the conjugate prior for the Multinomial distribution. (a) State the PDF of Dir(α). (b) If a Multinomial experiment yields counts n₁,...,nₖ, what is the posterior? (c) What is the predictive probability of outcome j in the next trial?",
+   hint:"(a) PDF ∝ ∏pᵢ^{αᵢ−1} on the (k-1)-simplex. (b) Conjugacy: prior × likelihood gives Dir(α₁+n₁,...,αₖ+nₖ). (c) The predictive distribution integrates out p: P(j next | data) = E[pⱼ | posterior] = (αⱼ + nⱼ)/(Σαᵢ + n).",
+   ans:"<strong>(a) Dirichlet distribution:</strong><br>Dir(α₁,...,αₖ) has PDF f(p₁,...,pₖ) ∝ ∏ᵢ pᵢ^{αᵢ−1} on the simplex {p: pᵢ ≥ 0, Σpᵢ=1}. Normalising constant is Γ(Σαᵢ)/∏Γ(αᵢ).<br>E[pᵢ] = αᵢ/Σαᵢ; Var(pᵢ) = αᵢ(α₀−αᵢ)/(α₀²(α₀+1)) where α₀ = Σαᵢ.<br><br><strong>(b) Conjugate update:</strong><br>Prior: p ~ Dir(α₁,...,αₖ).<br>Likelihood: (n₁,...,nₖ)|p ~ Multinomial(n;p).<br>Posterior: p|(n₁,...,nₖ) ~ Dir(α₁+n₁,...,αₖ+nₖ).<br><br>The hyperparameters αᵢ can be interpreted as prior 'pseudo-counts' of outcome i. The uniform prior Dir(1,...,1) corresponds to no prior information (Laplace's rule of succession).<br><br><strong>(c) Predictive probability:</strong><br>P(next = j | data) = E[pⱼ | posterior] = (αⱼ + nⱼ)/(α₀ + n)<br><br>This is the Laplace-Lidstone smoothed estimate — a weighted average of the prior mean αⱼ/α₀ and the observed proportion nⱼ/n. For α₀ = k (k pseudo-counts), this is add-one smoothing widely used in NLP. As n → ∞, the data dominates: P → nⱼ/n. As data are sparse, the prior dominates."},
+
+  {title:"The Bernstein-von Mises Theorem",cat:"Bayesian",src:"Bayesian Asymptotics",diff:"★★★★★",
+   q:"(a) State the Bernstein-von Mises (BvM) theorem for a regular model. (b) What does it imply about the difference between Bayesian credible intervals and frequentist confidence intervals for large samples? (c) When does BvM fail?",
+   hint:"BvM: under mild conditions, the posterior π(θ|X₁,...,Xₙ) concentrates around θ₀ (the true parameter) and its rescaled version √n(θ−θ̂_MLE) converges to N(0, I(θ₀)⁻¹) in total variation. (c) BvM fails in high dimensions (p grows with n), misspecified models, non-regular models.",
+   ans:"<strong>(a) Bernstein-von Mises Theorem:</strong><br>Let X₁,...,Xₙ i.i.d. with density f(x|θ₀), prior π(θ) positive and continuous at θ₀. Under regularity (Fisher information I(θ₀) finite and positive, identifiability, regularity of f):<br><br>sup_A |π(θ∈A|Xⁿ) − N(θ̂_MLE, I(θ₀)⁻¹/n)(A)| → 0 in probability under P_{θ₀}.<br><br>The posterior converges in total variation to the Normal distribution centered at the MLE with variance equal to the Cramér-Rao bound. This holds for any proper prior with π(θ₀) > 0.<br><br><strong>(b) Credible intervals ≈ Confidence intervals:</strong><br>A 95% Bayesian credible interval [θ_L, θ_U] from the posterior has frequentist coverage approaching 95% as n → ∞, regardless of the prior. Conversely, a frequentist 95% CI has Bayesian posterior probability approaching 95%.<br><br>In large samples: Bayesian and frequentist uncertainty quantification agree asymptotically. The choice of prior becomes irrelevant (prior is 'washed out' by data).<br><br><strong>(c) BvM failures:</strong><br>• <em>High-dimensional p ≫ n:</em> The posterior cannot concentrate if p grows faster than √n. Prior choice remains critical.<br>• <em>Misspecification:</em> If the true model is not in the parametric family, the MLE converges to the 'closest' distribution (KL projection), but the posterior may not track this faithfully.<br>• <em>Non-regular models:</em> Models with non-smooth likelihoods (Uniform(0,θ), non-differentiable models) where standard MLEs converge at non-√n rates.<br>• <em>Semiparametric/nonparametric:</em> In infinite-dimensional settings, BvM requires careful conditions and may fail (Freedman's negative results)."},
+
+  {title:"Sequential Probability Ratio Test",cat:"Inference",src:"Sequential Analysis · Hypothesis Testing",diff:"★★★★☆",
+   q:"The Sequential Probability Ratio Test (SPRT) of Wald (1947) allows stopping as soon as you have enough evidence. Testing H₀: p=p₀ vs H₁: p=p₁ in Bernoulli trials: (a) What is the likelihood ratio Λₙ after n observations? (b) What are the stopping boundaries A and B in terms of Type I error α and Type II error β? (c) Why is the SPRT optimal?",
+   hint:"(a) Λₙ = (p₁/p₀)^Σxᵢ · ((1-p₁)/(1-p₀))^{n-Σxᵢ}. (b) Stop and reject H₀ if Λₙ ≥ A ≈ (1-β)/α; stop and accept H₀ if Λₙ ≤ B ≈ β/(1-α). (c) Wald-Wolfowitz theorem: SPRT minimises expected sample size among all tests with the same error rates.",
+   ans:"<strong>(a) Likelihood ratio:</strong><br>Λₙ = L₁(x₁,...,xₙ)/L₀(x₁,...,xₙ) = ∏ᵢ [p₁^{xᵢ}(1-p₁)^{1-xᵢ}] / ∏ᵢ [p₀^{xᵢ}(1-p₀)^{1-xᵢ}]<br>= (p₁/p₀)^{Σxᵢ} · ((1-p₁)/(1-p₀))^{n-Σxᵢ}<br><br>Taking logs: log Λₙ = Σxᵢ·log(p₁/p₀) + (n−Σxᵢ)·log((1-p₁)/(1-p₀)) — a random walk with different drifts under H₀ and H₁.<br><br><strong>(b) Stopping boundaries:</strong><br>Continue sampling if B &lt; Λₙ &lt; A.<br>Stop and reject H₀ if Λₙ ≥ A = (1−β)/α.<br>Stop and accept H₀ if Λₙ ≤ B = β/(1−α).<br><br>These boundaries guarantee: P(reject H₀|H₀) ≤ α and P(accept H₀|H₁) ≤ β (approximately, with Wald's approximation ignoring overshooting).<br><br><strong>(c) Optimality — Wald-Wolfowitz theorem (1948):</strong><br>Among all sequential tests that control Type I error ≤ α and Type II error ≤ β, the SPRT minimises E₀[N] (expected sample size under H₀) AND minimises E₁[N] (under H₁) simultaneously. This is an extraordinary result: a single test is optimal at BOTH hypotheses simultaneously.<br><br>In clinical trials, adaptive designs based on SPRT allow stopping early for efficacy (Λₙ ≥ A) or futility (Λₙ ≤ B), saving sample size when the effect is either very large or very small."},
+
+  {title:"Nonparametric Density Estimation — Kernel Methods",cat:"Inference",src:"Nonparametric Statistics · Density Estimation",diff:"★★★★☆",
+   q:"Given X₁,...,Xₙ i.i.d. with unknown density f, the kernel density estimator is f̂(x) = (1/(nh)) Σᵢ K((x−Xᵢ)/h), where K is a kernel function and h is the bandwidth. (a) Show E[f̂(x)] ≈ f(x) + (h²/2)f''(x)μ₂(K) for symmetric kernel K. (b) What is the MSE-optimal bandwidth? (c) What is the curse of dimensionality?",
+   hint:"(a) E[f̂(x)] = ∫K((x-u)/h)f(u)du/h = ∫K(v)f(x-vh)dv ≈ f(x) + (h²/2)f''(x)∫v²K(v)dv. (b) MSE = Bias² + Variance; minimise over h. (c) In d dimensions, the optimal h* ~ n^{-1/(d+4)} and MSE* ~ n^{-4/(d+4)} → 0 very slowly for large d.",
+   ans:"<strong>(a) Bias of kernel density estimator:</strong><br>E[f̂(x)] = ∫(1/h)K((x−u)/h)f(u)du. Let v = (x−u)/h:<br>= ∫K(v)f(x−vh)dv<br>≈ ∫K(v)[f(x) − vhf'(x) + v²h²f''(x)/2]dv<br>= f(x)·1 − hf'(x)·∫vK(v)dv + (h²/2)f''(x)·∫v²K(v)dv<br>= f(x) + (h²/2)f''(x)μ₂(K)<br>(since ∫K=1 and ∫vK(v)dv=0 for symmetric K, and μ₂(K) = ∫v²K(v)dv)<br><br>Bias = (h²/2)f''(x)μ₂(K), which shrinks as h → 0 and is smaller where f is smoother.<br><br><strong>(b) Optimal bandwidth:</strong><br>Variance of f̂(x) ≈ f(x)R(K)/(nh) where R(K) = ∫K²(v)dv.<br>MSE ≈ (h²/2)²(f''(x))²μ₂(K)² + f(x)R(K)/(nh)<br>Minimise: h*_opt = [f(x)R(K) / (nμ₂(K)²(f''(x))²)]^{1/5} ~ n^{-1/5}.<br>Optimal MSE ~ n^{-4/5}.<br><br><strong>(c) Curse of dimensionality:</strong><br>In d dimensions, the optimal bandwidth h* ~ n^{-1/(d+4)} and MSE* ~ n^{-4/(d+4)}.<br>For d=1: n^{-4/5} ≈ n^{-0.8} (fast).<br>For d=5: n^{-4/9} ≈ n^{-0.44} (slow).<br>For d=10: n^{-4/14} ≈ n^{-0.29} (very slow).<br><br>You need exponentially more data to maintain the same accuracy as d increases. This is why high-dimensional density estimation is practically impossible without structural assumptions (sparsity, low-dimensional manifold, additive structure)."},
+
+  {title:"The Kolmogorov-Smirnov Test",cat:"Inference",src:"Nonparametric Testing · Goodness of Fit",diff:"★★★☆☆",
+   q:"The KS test statistic is Dₙ = sup_x |F̂ₙ(x) − F₀(x)| where F̂ₙ is the empirical CDF and F₀ is the hypothesised CDF. (a) What is the asymptotic distribution of √n·Dₙ under H₀? (b) What is the Dvoretzky-Kiefer-Wolfowitz inequality? (c) How does the two-sample KS test differ?",
+   hint:"(a) √n·Dₙ →ᵈ sup₀≤t≤1 |B(t)| where B is a standard Brownian bridge. (b) DKW gives a non-asymptotic exponential bound on P(Dₙ > ε). (c) Two-sample: Dₘₙ = sup_x |F̂ₘ(x) − Ĝₙ(x)|.",
+   ans:"<strong>(a) Asymptotic distribution:</strong><br>Under H₀: F = F₀, by the Glivenko-Cantelli theorem F̂ₙ → F uniformly a.s. The Kolmogorov-Smirnov theorem states:<br>√n·Dₙ →ᵈ K = sup₀≤t≤1 |B(t)| (supremum of absolute Brownian bridge)<br><br>The CDF of K: P(K ≤ x) = Σₖ₌₋∞^∞ (−1)ᵏ e^{-2k²x²} (Kolmogorov distribution). Critical values: P(K ≤ 1.358) ≈ 0.95, so reject H₀ at 5% if √n·Dₙ > 1.358.<br><br><strong>(b) DKW Inequality:</strong><br>P(Dₙ > ε) ≤ 2e^{-2nε²} for all n and all ε > 0.<br><br>This is a non-asymptotic exponential tail bound — valid for any n, not just large n. It gives a finite-sample confidence band around the empirical CDF: with probability 1−α, |F̂ₙ(x) − F(x)| ≤ √(log(2/α)/(2n)) uniformly in x.<br><br><strong>(c) Two-sample KS test:</strong><br>Given X₁,...,Xₘ ~ F and Y₁,...,Yₙ ~ G, test H₀: F = G.<br>Statistic: Dₘₙ = sup_x |F̂ₘ(x) − Ĝₙ(x)|.<br>Under H₀: √(mn/(m+n))·Dₘₙ →ᵈ K (same Kolmogorov distribution).<br><br>Advantages over t-test: no normality assumption, sensitive to shape differences (not just mean). Disadvantages: less powerful than t-test when normality holds; not easily extended to regression."},
+
+  {title:"The Expectation-Maximization and Mixture Models",cat:"Bayesian",src:"Latent Variable Models · Computation",diff:"★★★★☆",
+   q:"In a Gaussian mixture model with K components, the model is: zᵢ ~ Categorical(π), Xᵢ|zᵢ=k ~ N(μₖ, σₖ²). (a) Write the ELBO (Evidence Lower Bound) that variational inference maximises. (b) What is the mean-field variational family and the optimal q*(zᵢ)? (c) How does variational EM compare to standard EM?",
+   hint:"(a) ELBO = E_q[log p(X,Z|θ)] − E_q[log q(Z)] = E_q[log p(X|Z,θ)] + E_q[log p(Z|θ)] + H[q(Z)]. (b) Mean-field: q(Z) = ∏ᵢ qᵢ(zᵢ). Each factor is updated as q*(zᵢ=k) ∝ exp(E_{q₋ᵢ}[log p(X,Z|θ)]).",
+   ans:"<strong>(a) Evidence Lower Bound (ELBO):</strong><br>log p(X|θ) = log ∫p(X,Z|θ)dZ ≥ E_q[log p(X,Z|θ)] − E_q[log q(Z)] =: ELBO(q,θ)<br><br>The ELBO = E_q[log p(X|Z,θ)] + E_q[log p(Z|π)] − E_q[log q(Z)]<br>= expected complete-data likelihood + KL(q‖prior)<br>= log p(X|θ) − KL(q‖posterior)<br><br>Maximising ELBO over q tightens the bound (reduces KL to the posterior); maximising over θ is the M-step.<br><br><strong>(b) Mean-field variational family:</strong><br>Assume q(Z) = ∏ᵢ qᵢ(zᵢ) — no dependencies between zᵢ. Optimal update for each qᵢ:<br>log q*(zᵢ) = E_{j≠i}[log p(X,Z|θ)] + const<br>⟹ q*(zᵢ=k) ∝ πₖ·N(xᵢ|μₖ,σₖ²) (same as EM responsibilities)<br><br><strong>(c) Variational EM vs Standard EM:</strong><br>In the Gaussian mixture, variational EM and standard EM coincide because the posterior of zᵢ given the other variables factors exactly: p(zᵢ|X,Z₋ᵢ,θ) = p(zᵢ|xᵢ,θ) (zᵢ are conditionally independent given X and θ).<br><br>In models where the posterior does NOT factorise (e.g., continuous latent variables, coupled hidden variables), variational EM approximates the posterior with a tractable family, trading exactness for computational feasibility. Standard EM would require intractable integrations; variational EM substitutes a factored approximation. The ELBO provides a principled lower bound to monitor convergence."},
+
+  {title:"Extreme Value Theory — Fisher-Tippett-Gnedenko",cat:"Distributions",src:"Extreme Value Theory · Asymptotic Distributions",diff:"★★★★★",
+   q:"Let M_n = max(X₁,...,Xₙ) where Xᵢ are i.i.d. (a) State the Fisher-Tippett-Gnedenko theorem. (b) What are the three extreme value distributions (Gumbel, Fréchet, Weibull EVT) and what tail type generates each? (c) For X ~ Exponential(1), find the normalizing constants aₙ, bₙ such that (Mₙ−bₙ)/aₙ →ᵈ Gumbel.",
+   hint:"(a) The extremal types theorem: if (Mₙ−bₙ)/aₙ converges in distribution, the limit must be one of three types. (b) Gumbel: thin-tailed (exponential decay); Fréchet: heavy-tailed (power decay, finite upper endpoint); Weibull (EVT): bounded support. (c) For Exp(1), bₙ = log n, aₙ = 1.",
+   ans:"<strong>(a) Fisher-Tippett-Gnedenko Theorem (1928/1943):</strong><br>If there exist normalising constants aₙ > 0, bₙ such that P((Mₙ−bₙ)/aₙ ≤ x) → G(x) for some non-degenerate G, then G must be of the form:<br>G(x) = exp(−(1+ξx)^{-1/ξ}) for some ξ ∈ ℝ (Generalized Extreme Value / GEV distribution).<br><br><strong>(b) Three extremal types:</strong><br>• <em>Gumbel (ξ=0):</em> G(x) = exp(−e^{-x}). Arises from thin-tailed distributions (Normal, Exponential, Gamma, log-normal). Tail decays faster than any power law.<br>• <em>Fréchet (ξ>0):</em> G(x) = exp(−x^{-α}) for x > 0 (α=1/ξ > 0). Arises from heavy-tailed distributions (Pareto, Cauchy, Student-t with ν df: ξ=1/ν). All moments of order ≥ α are infinite.<br>• <em>Weibull-EVT (ξ&lt;0):</em> Arises from bounded-support distributions (Uniform, Beta). Has a finite upper endpoint.<br><br><strong>(c) Exponential(1) → Gumbel:</strong><br>For Exp(1): F(x) = 1−e^{-x}, so the n-fold maximum has CDF P(Mₙ≤x) = (1−e^{-x})ⁿ.<br>Set bₙ = log n, aₙ = 1:<br>P((Mₙ−log n)/1 ≤ x) = (1−e^{-(x+log n)})ⁿ = (1−e^{-x}/n)ⁿ → e^{-e^{-x}}. ✓<br><br>This is the Gumbel CDF. Applications: flood frequency analysis, maximum wind speeds, operational risk in finance, network reliability."},
+
+  {title:"The Bootstrap — Theory and Practice",cat:"Inference",src:"Resampling Methods · Confidence Intervals",diff:"★★★☆☆",
+   q:"(a) Describe the nonparametric bootstrap for estimating the variance of the sample median θ̂ = Med(X₁,...,Xₙ). (b) Prove that the bootstrap variance estimate for the sample MEAN is consistent. (c) Give the percentile bootstrap CI and explain why the BCa (bias-corrected accelerated) CI is preferred.",
+   hint:"(a) Draw B bootstrap samples of size n with replacement, compute the median of each, estimate variance by sample variance of these B medians. (b) For the mean, the bootstrap resampling distribution of X̄* − X̄ converges to the sampling distribution of X̄ − μ. (c) Percentile CI uses quantiles of the bootstrap distribution directly; BCa adjusts for bias and skewness.",
+   ans:"<strong>(a) Bootstrap for sample median:</strong><br>For b = 1,...,B:<br>1. Draw X₁*,...,Xₙ* with replacement from {X₁,...,Xₙ}<br>2. Compute θ̂*_b = Med(X₁*,...,Xₙ*)<br>Bootstrap variance: Var̂_boot(θ̂) = (1/(B-1)) Σ_b (θ̂*_b − θ̂*_bar)²<br><br><strong>(b) Bootstrap consistency for the mean:</strong><br>The bootstrap distribution P*(√n(X̄* − X̄) ≤ x | data) converges in probability to P(√n(X̄ − μ) ≤ x) = Φ(x/σ). This follows because X̄ and S² converge, and the empirical distribution Fₙ → F by Glivenko-Cantelli. The bootstrap correctly estimates the asymptotic N(0,σ²) distribution for the mean. ✓<br><br><strong>(c) Bootstrap confidence intervals:</strong><br>• <em>Percentile CI:</em> [θ̂*_{(α/2)}, θ̂*_{(1-α/2)}] — use the α/2 and 1-α/2 quantiles of the bootstrap distribution. Simple but may have poor coverage when the bootstrap distribution is skewed or biased.<br>• <em>BCa CI:</em> Corrects for two problems: (1) Bias: the bootstrap distribution of θ̂* may be centered at θ̂ ± b for bias b; BCa estimates b. (2) Acceleration: the standard error of θ̂ may depend on θ (skewness); BCa estimates this acceleration constant a using the jackknife. Result: second-order accurate CI with coverage error O(n⁻¹) vs O(n^{-1/2}) for percentile. BCa is the recommended default bootstrap CI in practice."},
+
+  {title:"Sufficient Statistics and Exponential Families",cat:"Inference",src:"Statistical Theory · Exponential Family",diff:"★★★★☆",
+   q:"(a) Define the exponential family of distributions. (b) Show that the Bernoulli distribution is an exponential family member and identify its natural parameter and sufficient statistic. (c) Prove that in any exponential family, the order statistics are not necessarily sufficient — only the natural sufficient statistic is.",
+   hint:"(a) f(x|θ) = h(x)exp(η(θ)ᵀT(x) − A(η)). (b) P(X=x|p) = pˣ(1-p)^{1-x} = exp(x log(p/(1-p)) + log(1-p)). (c) The Neyman-Halmos factorisation theorem: T(x) is sufficient iff f(x|θ) = g(T(x),θ)h(x). In the Exponential family, T(x) is a sufficient statistic.",
+   ans:"<strong>(a) Exponential family:</strong><br>f(x|θ) = h(x)·exp(η(θ)ᵀT(x) − A(η(θ)))<br>where η(θ) is the natural parameter, T(x) is the sufficient statistic (same dimension as η), h(x) is the base measure, and A(η) = log∫h(x)exp(η·T(x))dx is the log-partition function (ensures normalisation).<br><br><strong>(b) Bernoulli as exponential family:</strong><br>P(X=x|p) = pˣ(1-p)^{1-x}<br>= exp[x·log(p/(1-p)) + log(1-p)]<br>= 1·exp[η·x − A(η)]<br>where η = log(p/(1-p)) (the log-odds = logit), T(x) = x, h(x) = 1, A(η) = log(1+eη).<br><br>Natural parameter: η = logit(p). Sufficient statistic: T = X (the observation itself, or the sum ΣXᵢ for n i.i.d. observations).<br><br><strong>(c) Sufficiency in exponential families:</strong><br>By the Fisher-Neyman factorisation theorem: T(X) is sufficient for θ iff f(x|θ) = g(T(x),θ)·h(x). In the exponential family, f(x|θ) = h(x)·g(T(x),η), so T(X) is always sufficient. This is the deep reason why exponential families are mathematically tractable: minimal sufficient statistics exist with fixed dimension regardless of sample size n. The order statistics (X₍₁₎,...,X₍ₙ₎) are always sufficient but generally NOT minimal — the exponential family sufficient statistic T̄ = (1/n)ΣT(Xᵢ) is sufficient with fixed dimension k (the number of natural parameters), making it much more powerful."},
+
+  {title:"Conditional Independence and Graphical Models",cat:"Bayesian",src:"Probabilistic Graphical Models",diff:"★★★★☆",
+   q:"In a Bayesian network (DAG), each node Xᵢ is conditionally independent of its non-descendants given its parents Pa(Xᵢ). (a) What is the joint distribution factorisation? (b) What is d-separation and what does it tell us about conditional independence? (c) Give an example showing that two independent variables can become dependent when conditioning on their common effect.",
+   hint:"(a) P(X₁,...,Xₙ) = ∏ᵢ P(Xᵢ|Pa(Xᵢ)). (b) D-separation: a path from A to B is d-separated given C if it contains a non-collider in C, or a collider not in C (and no descendant of the collider in C). (c) Explaining away: A → C ← B.",
+   ans:"<strong>(a) Bayesian network factorisation:</strong><br>P(X₁,...,Xₙ) = ∏ᵢ₌₁ⁿ P(Xᵢ | Pa(Xᵢ))<br><br>This represents the joint distribution compactly. Each conditional distribution P(Xᵢ|Pa(Xᵢ)) encodes only the local dependencies. The DAG structure encodes all conditional independence assumptions.<br><br><strong>(b) D-separation:</strong><br>A path between nodes A and B is 'blocked' given evidence set C when:<br>• The path contains a non-collider (→ V →) or a fork (← V →) where V ∈ C.<br>• The path contains a collider (→ V ←) where V ∉ C AND no descendant of V ∈ C.<br><br>A and B are d-separated given C if all paths from A to B are blocked given C. D-separation implies conditional independence: A ⊥ B | C. Conversely, if A and B are NOT d-separated given C, they are (generically) NOT conditionally independent.<br><br><strong>(c) Explaining away (Berkson's paradox):</strong><br>DAG: A → C ← B (A and B are independent causes of C). Marginally P(A,B) = P(A)P(B) — A and B are independent. But P(A,B|C) ≠ P(A|C)P(B|C): conditioning on C activates the path A → C ← B. If C = 1 (alarm went off) and A = 1 (earthquake), this 'explains' C partly, making B = 1 (burglary) less necessary — negative correlation. This is 'explaining away'. Exactly Berkson's paradox: conditioning on a common effect induces spurious dependence between its causes."},
+
+  {title:"Minimax Estimation and Decision Theory",cat:"Inference",src:"Decision Theory · Minimax",diff:"★★★★★",
+   q:"In statistical decision theory, a decision rule δ(X) estimates θ with loss L(θ,δ). (a) Define the minimax estimator. (b) Prove that any proper Bayes estimator under a least-favourable prior is minimax. (c) Apply this to show that X̄ is minimax for estimating the mean of N(θ,1) data under squared error loss.",
+   hint:"(a) Minimax: min_δ sup_θ R(θ,δ) where R(θ,δ) = E[L(θ,δ(X))]. (b) If δ_π is Bayes under prior π with constant Bayes risk r(π,δ_π) = sup_θ R(θ,δ_π), then δ_π is minimax. (c) For N(θ,1) and squared error: R(θ,X̄) = 1/n (constant), so X̄ is minimax.",
+   ans:"<strong>(a) Minimax estimator:</strong><br>δ* is minimax if sup_θ R(θ,δ*) = min_δ sup_θ R(θ,δ).<br><br>The minimax approach asks: among all estimators, which one has the best worst-case performance?<br><br><strong>(b) Bayes = Minimax if risk is constant:</strong><br>Theorem: if there exists a prior π such that the Bayes estimator δ_π has constant risk R(θ,δ_π) = r for all θ, then δ_π is minimax and π is the least-favourable prior.<br><br>Proof: For any other estimator δ: r(π,δ) ≤ r(π,δ_π) = r (δ_π is Bayes). Also r(π,δ) = ∫R(θ,δ)dπ ≤ sup_θ R(θ,δ). So r ≤ sup_θ R(θ,δ) for all δ. Therefore sup_θ R(θ,δ_π) = r ≤ sup_θ R(θ,δ). δ_π is minimax. ✓<br><br><strong>(c) X̄ is minimax for N(θ,1):</strong><br>For X₁,...,Xₙ i.i.d. N(θ,1) and squared error loss: R(θ,X̄) = E[(X̄−θ)²] = 1/n — constant in θ!<br><br>Consider the sequence of priors πₘ: θ ~ N(0,m). The Bayes estimator is δₘ = (n/(n+1/m))X̄ → X̄ as m → ∞. The Bayes risk r(πₘ, δₘ) = 1/(n+1/m) → 1/n. So X̄ is the limit of Bayes estimators with constant risk — by the above theorem (using the least-favourable limit), X̄ is minimax. ✓"},
+
+  {title:"Time Series: ARIMA Models",cat:"Inference",src:"Time Series · ARIMA",diff:"★★★☆☆",
+   q:"An ARIMA(p,d,q) model is a common framework for stationary time series. (a) Define AR(p), MA(q), and ARMA(p,q) models. (b) When is an AR(1) process stationary and what is its ACF? (c) What is the Box-Jenkins methodology?",
+   hint:"(a) AR(p): Xₜ = φ₁Xₜ₋₁ + ... + φₚXₜ₋ₚ + εₜ. MA(q): Xₜ = εₜ + θ₁εₜ₋₁ + ... + θₙεₜ₋ₙ. (b) AR(1) is stationary iff |φ₁| < 1; ACF ρₖ = φ₁ᵏ. (c) Identify (ACF/PACF) → Estimate → Check residuals → Forecast.",
+   ans:"<strong>(a) Model definitions:</strong><br>AR(p): Xₜ = c + Σⱼ₌₁ᵖ φⱼXₜ₋ⱼ + εₜ. The current value depends on p past values plus noise.<br>MA(q): Xₜ = c + εₜ + Σⱼ₌₁ᵍ θⱼεₜ₋ⱼ. Depends on q past innovations.<br>ARMA(p,q): combines both. ARIMA(p,d,q) differences the series d times before fitting ARMA.<br><br><strong>(b) AR(1) stationarity and ACF:</strong><br>Xₜ = φ₁Xₜ₋₁ + εₜ. Iterating: Xₜ = Σⱼ₌₀^∞ φ₁ʲεₜ₋ⱼ (for |φ₁| &lt; 1). This geometric series converges iff |φ₁| &lt; 1, ensuring stationarity.<br><br>ACF: ρₖ = Corr(Xₜ,Xₜ₋ₖ) = φ₁ᵏ (geometric decay). For φ₁ > 0: positive, smoothly decaying. For φ₁ &lt; 0: alternating. For |φ₁| = 1: random walk (non-stationary, unit root).<br><br>PACF: PACF(1) = φ₁, PACF(k) = 0 for k > 1 (this pattern identifies AR(1)).<br><br><strong>(c) Box-Jenkins methodology (1970):</strong><br>1. <em>Identify:</em> Difference to achieve stationarity (d); examine ACF (MA order q) and PACF (AR order p).<br>2. <em>Estimate:</em> MLE or conditional least squares for φⱼ, θⱼ, σ².<br>3. <em>Diagnostic check:</em> Ljung-Box test on residuals; examine ACF of residuals; check normality.<br>4. <em>Forecast:</em> If model passes diagnostics, use it for prediction with forecast intervals.<br><br>AIC/BIC guide model selection: AIC = −2ℓ + 2K; BIC = −2ℓ + K log n. BIC penalises complexity more and tends to select more parsimonious models."},
+
+  {title:"Survey Sampling — Stratified and Cluster",cat:"Inference",src:"Sampling Theory · Survey Design",diff:"★★★☆☆",
+   q:"In stratified random sampling, the population is divided into H strata with Nₕ units each. A simple random sample of nₕ units is drawn from stratum h. (a) What is the stratified estimator ȳ_st of the population mean? (b) Under what allocation rule is the variance minimised (Neyman/optimal allocation)? (c) Why is cluster sampling less efficient than SRS?",
+   hint:"(a) ȳ_st = Σₕ Wₕ·ȳₕ where Wₕ = Nₕ/N. (b) Optimal allocation: nₕ ∝ Nₕσₕ/√cₕ. (c) Units within a cluster are similar (positive intracluster correlation ρ), so cluster samples contain less information than SRS of the same size.",
+   ans:"<strong>(a) Stratified estimator:</strong><br>ȳ_st = Σₕ₌₁ᴴ Wₕ·ȳₕ where Wₕ = Nₕ/N (stratum weight) and ȳₕ = sample mean in stratum h.<br>ȳ_st is unbiased: E[ȳ_st] = Σₕ Wₕ·μₕ = μ.<br>Variance: Var(ȳ_st) = Σₕ Wₕ²·σₕ²/nₕ (under SRS within strata).<br><br><strong>(b) Optimal (Neyman) allocation:</strong><br>With total cost C = Σₕ cₕnₕ fixed, minimise Var(ȳ_st) subject to Σcₕnₕ = C. By Lagrange multipliers:<br>nₕ* ∝ Nₕσₕ/√cₕ (proportional to stratum size × SD / √(unit cost)).<br><br>If costs are equal: nₕ ∝ Nₕσₕ (proportional to Nₕσₕ). This allocates more sample to larger, more variable strata — intuitive.<br><br>Proportional allocation (nₕ ∝ Nₕ) is simpler and nearly as efficient when σₕ are similar across strata.<br><br><strong>(c) Cluster sampling efficiency loss:</strong><br>The design effect: DEFF = Var(cluster estimator)/Var(SRS of same n) = 1 + (m-1)ρ<br>where m = average cluster size and ρ = intracluster correlation (ICC).<br><br>For typical surveys, ρ ≈ 0.05-0.20, so DEFF ≈ 1.5-4 for clusters of size 10-15. Cluster sampling is less efficient because neighbouring units (same household, same school, same village) share similar characteristics — they provide less new information than randomly chosen individuals. The advantage of clusters: dramatically lower data collection costs (one visit to a village vs. travelling to 50 scattered individuals)."},
+
+  {title:"The LASSO and Sparsity",cat:"Regression",src:"Regularisation · Variable Selection",diff:"★★★★☆",
+   q:"The LASSO minimises Σ(yᵢ − xᵢᵀβ)² + λΣ|βⱼ|. (a) Why does the ℓ₁ penalty produce EXACT zeros while the ridge (ℓ₂) does not? (b) What is the KKT condition for a LASSO coefficient to be exactly zero? (c) What is the Lasso oracle property?",
+   hint:"(a) Geometric argument: the ℓ₁ ball has corners at the axes; the ℓ₂ ball is round. The optimum typically touches a corner of the ℓ₁ ball. (b) KKT: if β̂ⱼ = 0, then |Xⱼᵀ(y − Xβ̂)|/n ≤ λ. (c) Oracle: LASSO is consistent for model selection when the irrepresentability condition holds.",
+   ans:"<strong>(a) Geometric explanation:</strong><br>LASSO constrains Σ|βⱼ| ≤ t (equivalent form). The ℓ₁ constraint set is a diamond (polygon) in 2D, with corners on the coordinate axes. The loss contours (ellipses for OLS) typically touch the ℓ₁ ball first at a corner, where one or more βⱼ = 0. The ℓ₂ ball is a circle (smooth) — the loss ellipse touches it generically at a point NOT on an axis, giving no exact zeros.<br><br><strong>(b) KKT stationarity conditions for LASSO:</strong><br>The subgradient of |βⱼ| at βⱼ = 0 is the interval [−1,1]. Optimality requires:<br>0 = −2Xⱼᵀ(y − Xβ̂)/n + λ·sⱼ where sⱼ ∈ ∂|β̂ⱼ|.<br><br>If β̂ⱼ = 0: sⱼ ∈ [−1,1], so stationarity holds iff |2Xⱼᵀ(y − Xβ̂)/n| ≤ λ.<br><br>This says: variable Xⱼ is excluded if its correlation with the current residuals is below the threshold λ. Larger λ → more variables set to zero.<br><br><strong>(c) Oracle property:</strong><br>Under the irrepresentability condition (no predictor in the true null set is too correlated with the true active set): as n → ∞ with appropriate λ ~ √(log p/n), the LASSO:<br>1. Correctly identifies the true active set (sparsity consistency).<br>2. Estimates the non-zero coefficients as well as if we knew the true model a priori (oracle estimation efficiency).<br><br>This makes LASSO useful for both prediction AND variable selection in high dimensions, provided the signal is strong enough relative to noise."},
+
+  {title:"The Rényi Divergence and Information Theory",cat:"Distributions",src:"Information Theory · Divergences",diff:"★★★★☆",
+   q:"The Rényi divergence of order α is Dα(P‖Q) = log(Σₓ P(x)^α Q(x)^{1-α}) / (α−1). (a) What is D₁(P‖Q) (limit as α→1)? (b) What is D₀, D∞, and their interpretations? (c) How does total variation distance relate to KL divergence?",
+   hint:"(a) L'Hôpital's rule on Dα as α→1 gives KL divergence. (b) D₀ = −log Q(support(P)) = 0 if Q(support(P))=1; D∞ = log sup_x P(x)/Q(x) = log max ratio. (c) Pinsker's inequality: TV(P,Q)² ≤ (1/2)KL(P‖Q).",
+   ans:"<strong>(a) D₁ = KL divergence:</strong><br>lim_{α→1} Dα(P‖Q) = Σₓ P(x)·log(P(x)/Q(x)) = D_{KL}(P‖Q)<br><br>KL divergence is the unique case where Dα is linear in P(x) in the log. All other Rényi divergences are nonlinear.<br><br><strong>(b) Boundary cases:</strong><br>D₀(P‖Q) = −log Q({x: P(x) > 0}) — minus log probability that Q assigns to the support of P. Zero if Q(x) > 0 wherever P(x) > 0 (absolute continuity).<br><br>D∞(P‖Q) = log sup_x [P(x)/Q(x)] = log(maximum likelihood ratio). The minimax connection: D∞ controls the best possible hypothesis test between P and Q.<br><br>D_{1/2}(P‖Q) = −2 log Σ_x √(P(x)Q(x)) = −2 log BC(P,Q) where BC is the Bhattacharyya coefficient. This controls the probability of error in hypothesis testing: P_e ≥ (1/2)e^{-D_{1/2}} (Chernoff bound).<br><br><strong>(c) Pinsker's inequality:</strong><br>TV(P,Q) = (1/2)Σ|P(x)−Q(x)| ≤ √(KL(P‖Q)/2)<br>Equivalently: TV² ≤ (1/2)KL.<br><br>Tight version (Toussaint): a sharper bound uses the hockey-stick divergence Eα(P‖Q) = Σ(P−αQ)₊. The Pinsker inequality shows that small KL divergence implies small total variation — distributions close in information are close in every testing problem."},
+
+  {title:"Multiple Linear Regression — Geometry and Projections",cat:"Regression",src:"Linear Algebra · Regression Theory",diff:"★★★☆☆",
+   q:"In linear regression Y = Xβ + ε, the OLS estimator β̂ = (XᵀX)⁻¹XᵀY. (a) Interpret OLS geometrically as an orthogonal projection. (b) What is the hat matrix H and what does Hᵢᵢ measure? (c) Prove that R² = cos²(θ) where θ is the angle between Y and Xβ̂.",
+   hint:"(a) Ŷ = Xβ̂ = X(XᵀX)⁻¹XᵀY = HY is the projection of Y onto the column space of X. (b) H = X(XᵀX)⁻¹Xᵀ; Hᵢᵢ is the 'leverage' of observation i. (c) R² = ‖Ŷ−Ȳ‖²/‖Y−Ȳ‖².",
+   ans:"<strong>(a) Geometric interpretation:</strong><br>The fitted values Ŷ = X(XᵀX)⁻¹XᵀY is the orthogonal projection of the response vector Y ∈ ℝⁿ onto the column space Col(X) ⊆ ℝⁿ. The residuals e = Y − Ŷ = (I−H)Y are perpendicular to Col(X): Xᵀe = Xᵀ(I−H)Y = (Xᵀ−XᵀH)Y = (Xᵀ−Xᵀ)Y = 0. ✓<br><br>The Pythagorean theorem in ℝⁿ gives: ‖Y‖² = ‖Ŷ‖² + ‖e‖² (orthogonal decomposition).<br><br><strong>(b) Hat matrix and leverage:</strong><br>H = X(XᵀX)⁻¹Xᵀ. Properties: H² = H (idempotent), Hᵀ = H (symmetric), trace(H) = rank(X) = p+1.<br><br>Hᵢᵢ = xᵢᵀ(XᵀX)⁻¹xᵢ ∈ [1/n, 1] measures the leverage of observation i: how much prediction Ŷ at xᵢ depends on the observed Yᵢ. High leverage (Hᵢᵢ &gt; 2(p+1)/n) indicates an influential observation. Cook's distance combines leverage with the residual size.<br><br><strong>(c) R² as cos²(θ):</strong><br>After centering, let ỹ = Y − ȳ and ŷ = Ŷ − ȳ. Then:<br>R² = ‖ŷ‖²/‖ỹ‖² (fraction of variance explained)<br>cos(θ) = ỹᵀŷ/(‖ỹ‖‖ŷ‖) where θ is the angle between Y and Ŷ in the centred space.<br>Since ŷ is the projection of ỹ onto Col(X): ŷ = ỹ·cos(θ)·(ỹ/‖ỹ‖), so ‖ŷ‖ = ‖ỹ‖cos(θ).<br>R² = ‖ŷ‖²/‖ỹ‖² = cos²(θ). ✓<br><br>So R² literally measures how closely the response vector Y aligns with the column space of X."}
+
+];
+
+/* ── SCHOOL ─────────────────────────────────────────────────── */
+
+function renderPuzzles(){
+  const g=document.getElementById('puzzles-grid');
+  if(!g)return;
+  /* Build filter bar */
+  const cats=['all','Probability','Bayesian','Inference','Paradox','Combinatorics',
+    'Stochastic Processes','Distributions','Regression','Information Theory'];
+  const fr=document.getElementById('puz-filter-row');
+  if(fr) fr.innerHTML=cats.map(c=>`<button class="puz-filter${c==='all'?' active':''}" data-pcat="${c}" onclick="togglePuzCat('${c}',this)">${c==='all'?'All':c}</button>`).join('');
+  /* Daily quote */
+  renderDailyQuote('puzzles-daily-quote');
+  /* Cards */
+  g.innerHTML=PUZZLES.map((p,i)=>{
+    const sv=solved.has(i);
+    return `<div class="puz-card" id="puzcard-${i}" data-cat="${p.cat||''}">
+      <div class="puz-hdr" onclick="togglePuz(${i})">
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:.3rem;margin-bottom:.2rem;flex-wrap:wrap">
+            <span class="puz-idx">#${i+1}</span>
+            <div class="puz-title">${p.title}</div>
+          </div>
+          <div class="puz-meta" style="display:flex;flex-wrap:wrap;gap:.3rem;align-items:center">
+            <span class="puz-src">${p.src}</span>
+            ${p.cat?`<span class="puz-cat-chip">${p.cat}</span>`:''}
+            <span class="puz-diff">${p.diff}</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.35rem;flex-shrink:0">
+          ${sv?'<span style="font-family:\'Source Code Pro\',monospace;font-size:.58rem;color:var(--gr);background:var(--gr-l);border:1px solid var(--gr);padding:.08rem .38rem;border-radius:4px">✓</span>':''}
+          <span class="puz-arr" id="puzarr-${i}">▾</span>
+        </div>
+      </div>
+      <div class="puz-body" id="puzbody-${i}">
+        <div class="puz-q">${p.q}</div>
+        <div class="puz-spoiler" id="hint-${i}" onclick="revealSpoiler(this)">
+          <div class="puz-spoiler-inner puz-hint-inner"><strong>💡 Hint:</strong><br>${p.hint}</div>
+          <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">👁 Click to reveal hint</span></div>
+        </div>
+        <div class="puz-spoiler" id="ans-${i}" onclick="revealSpoiler(this)">
+          <div class="puz-spoiler-inner puz-ans-inner"><strong>✓ Solution:</strong><br><br>${p.ans}</div>
+          <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔓 Click to reveal solution</span></div>
+        </div>
+        <div style="margin-top:.55rem">
+          <button class="puz-solved-btn${sv?' solved':''}" id="solvedbtn-${i}" onclick="event.stopPropagation();puzzleMarkSolved(${i})">${sv?'✓ Solved':'○ Mark as solved'}</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  updateSolvedCount();
+}
+
+let _puzCatFilter=new Set(['all']);
+
+function togglePuz(i){
+  const body=document.getElementById('puzbody-'+i);
+  const arr=document.getElementById('puzarr-'+i);
+  const open=body.classList.toggle('show');
+  arr.classList.toggle('open',open);
+}
+
+
+function revealSpoiler(el){
+  el.classList.toggle('revealed');
+}
+
+/* ── SCHOOL ─────────────────────────────────────────────────── */
+
+function togglePuzCat(cat,btn){
+  if(cat==='all'){
+    _puzCatFilter=new Set(['all']);
+    document.querySelectorAll('.puz-filter').forEach(b=>{b.classList.toggle('active',b.dataset.pcat==='all')});
+  } else {
+    _puzCatFilter.delete('all');
+    document.querySelector('[data-pcat="all"]')?.classList.remove('active');
+    btn.classList.toggle('active');
+    if(btn.classList.contains('active'))_puzCatFilter.add(cat);
+    else _puzCatFilter.delete(cat);
+    if(_puzCatFilter.size===0){_puzCatFilter.add('all');document.querySelector('[data-pcat="all"]')?.classList.add('active');}
+  }
+  document.querySelectorAll('.puz-card').forEach(c=>{
+    c.style.display=(_puzCatFilter.has('all')||_puzCatFilter.has(c.dataset.cat||''))?'':'none';
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CONFETTI + SOLVE CELEBRATION
+   ═══════════════════════════════════════════════════════════════ */
+
+function puzzleMarkSolved(i){
+  const wasSolved=solved.has(i);
+  toggleSolved(i);   /* call original */
+  if(!wasSolved&&solved.has(i)){
+    launchConfetti();
+    showToast('🎉 Puzzle solved!','var(--gr)');
+    /* Update button appearance */
+    const btn=document.getElementById('solvedbtn-'+i);
+    if(btn){btn.textContent='✓ Solved';btn.classList.add('solved');}
+  } else {
+    const btn=document.getElementById('solvedbtn-'+i);
+    if(btn){btn.textContent='○ Mark as solved';btn.classList.remove('solved');}
+  }
+}
+
+
+function launchConfetti(){
+  const cols=['#4d7a58','#2a5f78','#916c1a','#5e3a8e','#8f3a2c','#2e6b6b','#7a3e12','#1a6b8a'];
+  for(let i=0;i<55;i++){
+    const el=document.createElement('div');
+    el.className='confetti-piece';
+    el.style.cssText=`left:${Math.random()*100}vw;width:${Math.random()*8+4}px;height:${Math.random()*8+4}px;background:${cols[Math.floor(Math.random()*cols.length)]};opacity:${.3+Math.random()*.7};animation-duration:${.9+Math.random()*.8}s;animation-delay:${Math.random()*.35}s;transform:rotate(${Math.random()*360}deg)`;
+    document.body.appendChild(el);
+    el.addEventListener('animationend',()=>el.remove());
+  }
+}
+
+
+function toggleSolved(i){
+  if(solved.has(i)){solved.delete(i);}else{solved.add(i);}
+  localStorage.setItem('stats-solved',JSON.stringify([...solved]));
+  const btn=document.getElementById('solvedbtn-'+i);
+  if(btn){btn.textContent=solved.has(i)?'✓ Solved':'○ Mark as solved';btn.classList.toggle('solved',solved.has(i));}
+  // update header count if present
+  updateSolvedCount();
+}
+
+function updateSolvedCount(){
+  const el=document.getElementById('solved-count');
+  if(el)el.textContent=solved.size+'/'+PUZZLES.length+' solved';
+}
+
+function openRandomPuzzle(){
+  if(!rendered.has('puzzles')){renderPuzzles();rendered.add('puzzles');}
+  const i=Math.floor(Math.random()*PUZZLES.length);
+  setTimeout(()=>{
+    const card=document.getElementById('puzcard-'+i);
+    if(card){card.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>togglePuz(i),350);}
+  },300);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DISTRIBUTION CDF TOGGLE
+   ═══════════════════════════════════════════════════════════ */
+
+const STAT_QUOTES = [
+  {q:"Statistics is the grammar of science.",a:"Karl Pearson"},
+  {q:"Far better an approximate answer to the right question than an exact answer to the wrong one.",a:"John W. Tukey"},
+  {q:"To call in the statistician after the experiment is done may be no more than asking him to perform a post-mortem examination.",a:"Ronald A. Fisher"},
+  {q:"The best thing about being a statistician is that you get to play in everyone's backyard.",a:"John W. Tukey"},
+  {q:"All models are wrong, but some are useful.",a:"George E. P. Box"},
+  {q:"In God we trust. All others must bring data.",a:"W. Edwards Deming"},
+  {q:"An approximate answer to the right problem is worth a good deal more than an exact answer to an approximate problem.",a:"John W. Tukey"},
+  {q:"Without data, you're just another person with an opinion.",a:"W. Edwards Deming"},
+  {q:"It is a capital mistake to theorize before one has data.",a:"Arthur Conan Doyle (Sherlock Holmes)"},
+  {q:"Statistical thinking will one day be as necessary for efficient citizenship as the ability to read and write.",a:"H.G. Wells"},
+  {q:"The goal is to turn data into information, and information into insight.",a:"Carly Fiorina"},
+  {q:"Torture the data, and it will confess to anything.",a:"Ronald H. Coase"},
+  {q:"The numbers have no way of speaking for themselves. We speak for them. We imbue them with meaning.",a:"Nate Silver"},
+  {q:"Statistics: the only science that enables different experts using the same figures to draw different conclusions.",a:"Evan Esar"},
+  {q:"Probability is the very guide of life.",a:"Cicero"},
+  {q:"You can have data without information, but you cannot have information without data.",a:"Daniel Keys Moran"},
+  {q:"The plural of anecdote is not data.",a:"Roger Brinner"},
+  {q:"It is remarkable that a science which began with the consideration of games of chance should have become the most important object of human knowledge.",a:"Pierre-Simon Laplace"},
+  {q:"We are drowning in information but starved for knowledge.",a:"John Naisbitt"},
+  {q:"Statistics are like bikinis — what they reveal is suggestive, but what they conceal is vital.",a:"Aaron Levenstein"},
+  {q:"The most dangerous phrase in the language is: We've always done it this way.",a:"Grace Hopper"},
+  {q:"Statistics is the science of learning from experience, especially experience that arrives a little bit at a time.",a:"Bradley Efron"},
+  {q:"When you can measure what you are speaking about and express it in numbers, you know something about it.",a:"Lord Kelvin"},
+  {q:"Regression to the mean is perhaps the most powerful law in statistics and the most consistently ignored.",a:"Daniel Kahneman"},
+  {q:"The p-value was never meant to be the sole criterion for scientific truth.",a:"American Statistical Association, 2016 Statement"},
+  {q:"A statistical analysis, properly conducted, is a delicate dissection of uncertainties, a surgery of suppositions.",a:"M.J. Moroney"},
+  {q:"There are lies, damned lies, and statistics.",a:"Mark Twain (attributed to Disraeli)"},
+  {q:"The combination of some data and an aching desire for an answer does not ensure that a reasonable answer can be extracted from a given body of data.",a:"John W. Tukey"},
+  {q:"If your experiment needs statistics, you ought to have done a better experiment.",a:"Ernest Rutherford"},
+  {q:"Bayesian statistics: you start with a prior, you get data, and you update your beliefs — forever.",a:"Andrew Gelman"},
+  {q:"The whole problem with the world is that fools and fanatics are always so certain of themselves, and wiser people so full of doubts.",a:"Bertrand Russell"},
+  {q:"I would rather have a good estimator than an optimal one.",a:"Herman Chernoff"},
+  {q:"Uncertainty is uncomfortable, but certainty is absurd.",a:"Voltaire"},
+  {q:"Correlation is not causation — but it sure is a hint.",a:"Edward Tufte"},
+  {q:"The purpose of computing is insight, not numbers.",a:"Richard Hamming"},
+  {q:"You can fool all the people some of the time with statistics.",a:"Abraham Lincoln (adapted)"}
+];
+
+/* ── TOOLS ──────────────────────────────────────────────────── */
+
+function getDailyQuote(){
+  return STAT_QUOTES[Math.floor(Date.now()/86400000)%STAT_QUOTES.length];
+}
+
+function renderDailyQuote(id){
+  const el=document.getElementById(id);if(!el)return;
+  const q=getDailyQuote();
+  el.innerHTML=`<div class="daily-quote-wrap"><div class="daily-quote-text">"${q.q}"</div><div class="daily-quote-author">— ${q.a}</div></div>`;
+}
+
+const FACTS = [
+  {cat:'History',col:'var(--pk)',text:"Florence Nightingale was a pioneering data scientist. Her polar area diagrams (1858) persuaded the British government that 16,000 soldiers died of preventable disease during the Crimean War — not from enemy action. She is the true inventor of the data visualisation for policy.",math:"Nightingale's 'coxcomb' chart: area ∝ deaths per month"},
+  {cat:'Paradox',col:'var(--rd)',text:"The Prosecutor's Fallacy: confusing P(evidence | innocent) with P(innocent | evidence). In the Sally Clark case (1999), an expert testified that two SIDS deaths in one family had probability 1 in 73 million. This ignored the prior probability of double murder being equally rare. Clark was wrongly convicted.",math:"P(guilty|evidence) ≠ P(evidence|innocent)"},
+  {cat:'Theory',col:'var(--pu)',text:"Fisher's exact test was invented to settle an argument at a tea party. Lady Muriel Bristol claimed she could tell if milk was added before or after tea. Fisher designed the experiment and the exact test at the party. The test that now appears in every statistics textbook was computed on a serviette.",math:"P(X=k) = C(K,k)·C(N-K,n-k)/C(N,n)"},
+  {cat:'Computation',col:'var(--tl)',text:"The first MCMC algorithm was published in 1953 by physicists at Los Alamos to simulate atomic bomb explosions. Metropolis, Rosenbluth, Teller and their collaborators needed to compute multi-dimensional integrals for nuclear physics. The algorithm was generalised by Hastings in 1970 and only reached mainstream statistics in the 1990s.",math:"α = min(1, π(θ*)/π(θ))"},
+  {cat:'Paradox',col:'var(--og)',text:"The Friendship Paradox: on average, your friends have more friends than you do. This follows from Jensen's inequality applied to network degree distributions. It holds for any network with variance in degree and explains why social networks feel skewed — your feed is dominated by popular users.",math:"E[deg(friend)] = E[deg²]/E[deg] ≥ E[deg]"},
+  {cat:'Estimation',col:'var(--gr)',text:"During WWII, statisticians estimated Nazi tank production more accurately from serial numbers than from battlefield intelligence. The MVUE estimator (m(k+1)/k − 1) gave ~255 tanks for June 1944. The actual figure was 270. Intelligence had estimated 1,400. Statistics won by factor of 5.",math:"N̂ = m(k+1)/k − 1"},
+  {cat:'Theory',col:'var(--bl)',text:"Benford's Law: in naturally occurring datasets, the leading digit 1 appears ~30% of the time, while 9 appears only ~5%. This is used by forensic accountants to detect financial fraud — fabricated numbers tend to have too-uniform leading digit distributions.",math:"P(d) = log₁₀(1 + 1/d)"},
+  {cat:'Philosophy',col:'var(--pk)',text:"Stigler's Law of Eponymy states that no scientific discovery is named after its original discoverer. Stigler attributes this discovery to Robert Merton — who was not the original discoverer either. The law is self-referential and demonstrates that academic credit rarely goes where it belongs in science.",math:"P(eponymous discoverer = actual discoverer) ≈ 0"}
+,
+
+  {cat:'History',col:'var(--bl)',text:"Abraham Wald, a Jewish-Austrian statistician working for the US military during WWII, advised reinforcing the parts of returning aircraft that showed NO damage — not where bullet holes were visible. His key insight: planes hit in the unobserved locations had crashed and couldn't be counted. This is the survivorship bias and it remains one of the most important lessons in data collection design.",math:"P(observed | hit in engines) ≪ P(observed | hit in wings)"},
+  {cat:'Computation',col:'var(--tl)',text:"R, the dominant language for statistical computing, was created in 1993 by Ross Ihaka and Robert Gentleman at the University of Auckland as a free clone of the commercial S language. The name 'R' is partly a play on 'S' and partly the first initial of both creators. It is now maintained by the R Core Team of about 20 statisticians worldwide and has over 20,000 packages on CRAN.",math:"R package count: 20,000+ (CRAN, 2024)"},
+  {cat:'Paradox',col:'var(--og)',text:"The Will Rogers Phenomenon: when a group is split into two subgroups, the average of BOTH groups can increase even without adding any new data — just by reclassifying one member from the worse group to the better group. Named after the Oklahoma comedian's quip: 'When the Okies left Oklahoma and moved to California, they raised the average intelligence level in both states.'",math:"E[A∪B] < E[A] and E[B] is possible when moving x from A to B"},
+  {cat:'History',col:'var(--pk)',text:"The Poisson distribution was invented NOT by Siméon Denis Poisson for statistical analysis — Poisson himself considered it a minor result in a 1837 book on probability and judicial decisions. The distribution became famous 61 years later when Ladislaus Bortkiewicz used it in 1898 to model the number of Prussian cavalrymen killed by horse kicks per army corps per year: a perfect fit to rare events.",math:"P(X=k) = e^{-λ}λᵏ/k!, λ=0.61 kicks/year"},
+  {cat:'Theory',col:'var(--gr)',text:"The F-distribution is named after Ronald Fisher, but Fisher himself never used that notation — he always referred to z = (1/2)ln(F). The name 'F-distribution' was coined by George Snedecor in Fisher's honour when he tabulated its critical values in 1934. Fisher was reportedly displeased with having a distribution named after him that he didn't prefer to use.",math:"F = (χ²₁/d₁)/(χ²₂/d₂) — Snedecor's honour"},
+  {cat:'Paradox',col:'var(--pu)',text:"Berkson's Paradox (also called collider bias) causes negative correlations in hospitals even between independent causes of hospitalisation. A study of hospitalised patients found that tall people had lower blood pressure than short people — not because height causes low BP, but because patients were hospitalised for either high BP OR being very tall (orthopedic issues), making them negatively correlated within the hospital sample.",math:"Cov(X,Y|Z) ≠ Cov(X,Y) when Z is a common effect"},
+  {cat:'Estimation',col:'var(--rd)',text:"During the Apollo program, NASA statisticians used Bayesian inference to estimate the probability of O-ring failure before the Challenger launch. The analysis, redone decades later by physicist Richard Feynman and statistician David Draper, showed that a proper Bayesian analysis of the existing data would have revealed the temperature-failure relationship that engineering team had overlooked — suggesting the January 28, 1986 launch was inadvisable.",math:"P(failure | temp = 28°F) vs P(failure | temp > 53°F)"},
+  {cat:'Theory',col:'var(--bl)',text:"The Central Limit Theorem was first proved (for the coin-flipping Binomial case) by Abraham de Moivre in 1733, in a private document circulated among mathematicians. He proved that the Binomial approximates the Normal for large n, but didn't call it a theorem or give it a name. The general CLT was proved by Laplace in 1810, and the name 'Central Limit Theorem' was coined by George Pólya in 1920.",math:"√n(X̄−μ)/σ →ᵈ N(0,1) — de Moivre 1733"},
+  {cat:'Philosophy',col:'var(--gd)',text:"The term 'statistics' comes from the German 'Statistik' (study of state data) coined by Gottfried Achenwall in 1749 to mean a 'political science of the state' — the collection of data about states for governance purposes. The mathematical theory emerged independently in Britain from gambling and probability. Statistics as a mathematical discipline only merged these traditions in the early 20th century.",math:"'Statistics': from Latin 'status' = state (Achenwall, 1749)"},
+  {cat:'Computation',col:'var(--tl)',text:"The word 'algorithm' comes from a 9th-century Persian mathematician Muhammad ibn Musa al-Khwarizmi, whose name 'al-Khwarizmi' became 'algorismus' in medieval Latin. His book 'Kitab al-mukhtasar fi hisab al-jabr wal-muqabala' also gave us the word 'algebra' (from 'al-jabr'). The father of modern statistics (Fisher) and the father of algorithms (al-Khwarizmi) share the honour of naming entire fields.",math:"Algorithm: al-Khwarizmi → algorismus → algorithm"},
+  {cat:'History',col:'var(--pk)',text:"Karl Pearson, who invented the chi-squared test, correlation coefficient, and standard deviation, was also a fervent eugenicist. He and Francis Galton founded the journal Biometrika in 1901 partly to support eugenics research. Pearson's statistics were revolutionary; his ideology was abhorrent. This historical tension — that some of statistics' founding tools were developed in service of racist ideology — is now a central discussion in the history of science.",math:"Biometrika founded 1901 — Pearson and Galton"},
+  {cat:'Theory',col:'var(--gr)',text:"The p-value was invented by Karl Pearson around 1900 and formalised by Ronald Fisher in his 1925 book 'Statistical Methods for Research Workers', where he proposed 0.05 as a 'convenient' (not magical) threshold. Fisher was explicit that p < 0.05 should motivate further investigation, NOT that it constitutes proof. The binary 'significant/not significant' tradition was introduced by Neyman and Pearson's 1933 framework, which Fisher actively opposed his entire career.",math:"Fisher (1925): 'convenient to take p=0.05 as a standard'"},
+  {cat:'Paradox',col:'var(--rd)',text:"The Hot Hand Fallacy was named in 1985 when psychologists Gilovich, Vallone and Tversky showed that basketball players' shooting streaks were statistically indistinguishable from chance. However, a 2019 reanalysis by Miller and Sanjurjo showed the original analysis had a subtle selection bias: looking at shots AFTER a hit underestimates the baseline. When corrected, a modest but real hot-hand effect of ~5 percentage points exists in the data.",math:"P(hit | 3 prev hits) − P(hit) ≈ +5% after correction"},
+  {cat:'Computation',col:'var(--pu)',text:"The first computer-assisted statistical analysis was done on the UNIVAC I in 1952 for the US presidential election. CBS used a statistical model built by Remington Rand employees to predict Eisenhower's win. When the model predicted a landslide for Eisenhower at 11pm (while Stevenson was ahead in the initial vote count), the executives panicked and refused to broadcast the prediction — which turned out to be exactly right.",math:"UNIVAC prediction: Eisenhower wins with 438 electoral votes"},
+  {cat:'Theory',col:'var(--og)',text:"De Finetti's theorem (1931) states that an infinite exchangeable sequence of binary random variables is a mixture of i.i.d. Bernoulli trials. This provides a Bayesian foundation for the 'as if i.i.d.' assumption used throughout classical statistics: even if you don't believe there's a true underlying probability p, exchangeability is a weaker symmetry assumption that implies the same inferential conclusions as if p existed.",math:"Exchangeable ⟺ mixture of i.i.d. (de Finetti, 1931)"},
+  {cat:'History',col:'var(--tl)',text:"John Tukey, who invented the box plot (1977) and the term 'data analysis' (1962), also invented the FFT algorithm (with Cooley, 1965) — one of the most important computational algorithms ever created. Tukey also coined the word 'bit' (for binary digit) and 'software' in 1958. He is arguably the person who contributed most terms and tools to both statistics and computer science simultaneously.",math:"Tukey coined: 'bit', 'software', 'box plot', 'data analysis'"},
+  {cat:'Paradox',col:'var(--bl)',text:"The Inspection Paradox explains why: (1) the average class size experienced by students is larger than the true average class size; (2) the average bus interval experienced by a passenger is larger than the true average interval; (3) your friends have more friends than you do on average. In all cases, you sample proportional to size (big classes, long intervals, popular people), so your sample is biased toward the larger values.",math:"E[size | you're in it] = E[size²]/E[size] ≥ E[size]"},
+  {cat:'Estimation',col:'var(--gd)',text:"The method of maximum likelihood was invented by Ronald Fisher in 1912 when he was just 22 years old, in an undergraduate paper at Cambridge. Karl Pearson rejected it, leading to a bitter lifelong feud between the two statisticians. Fisher's method is now so universal that 'MLE' is taught in every introductory statistics course worldwide, but Fisher himself never saw his greatest statistical contribution properly recognised during his career.",math:"MLE: θ̂ = argmax L(θ;x) — Fisher, 1912 (age 22)"},
+  {cat:'Theory',col:'var(--pk)',text:"John Tukey's 1977 boxplot is one of the most successful statistical graphics ever invented. It displays the median, quartiles, and outliers in a single figure. However, for multimodal or skewed distributions, the boxplot can be misleading — the same boxplot can represent radically different datasets. The violin plot (Hintze & Nelson, 1998) combines box plot information with kernel density estimation to show the full shape.",math:"IQR = Q₃ − Q₁; outliers: > Q₃ + 1.5·IQR"},
+  {cat:'History',col:'var(--rd)',text:"The first randomised controlled trial (RCT) in medicine was conducted in 1948 by Austin Bradford Hill for the UK Medical Research Council, testing streptomycin against tuberculosis. Before Hill, medical treatments were evaluated by giving them to all patients and comparing before/after, which couldn't isolate the treatment effect from natural recovery. The RCT — now called the 'gold standard' in medicine — is less than 80 years old.",math:"RCT: first medical RCT 1948 (Hill, streptomycin vs TB)"},
+  {cat:'Computation',col:'var(--pu)',text:"Google's PageRank algorithm (which made Google dominant over 1999-era search) is fundamentally a stationary distribution problem — the long-run proportion of time a random surfer spends on each page. It is computed by finding the leading eigenvector of a massive transition probability matrix (billions × billions). The mathematical theory used is the Perron-Frobenius theorem about non-negative matrices.",math:"π = Mπ: PageRank = stationary distribution of web surfer Markov chain"},
+  {cat:'Philosophy',col:'var(--gr)',text:"The word 'regression' in regression analysis comes from Francis Galton's study of heredity in 1886. He observed that tall fathers have tall sons on average, but the sons' heights 'regress' (move back) toward the population mean. He called this 'regression toward mediocrity' — a term he later softened to 'regression toward the mean.' The name stuck even though we now use regression for settings that have nothing to do with heredity.",math:"Galton, 1886: son's height = μ + ρ(father's height − μ)"},
+  {cat:'Theory',col:'var(--tl)',text:"Claude Shannon's entropy formula H = −Σp log p (1948) was named 'entropy' after a suggestion by John von Neumann: 'You should call it entropy, for two reasons: the formula is the same as in thermodynamics, and nobody knows what entropy really means in thermodynamics, so in any discussion you will always have the advantage.' Shannon's information theory is now the theoretical foundation of all digital communication.",math:"H(X) = −Σᵢ pᵢ log pᵢ — Shannon 1948"},
+  {cat:'Estimation',col:'var(--bl)',text:"The Jackknife estimator of bias was invented by Maurice Quenouille in 1949 and refined by John Tukey in 1956. Tukey's name comes from a Swiss Army knife (jackknife) — the estimator 'cuts out' the bias. It pre-dates the bootstrap by 30 years. The delete-one jackknife estimator has O(1/n) bias whereas the original estimator may have O(1/n) bias — the jackknife exactly removes the first-order bias term.",math:"θ̂_Jack = nθ̂ − (n−1)·(1/n)Σ θ̂₋ᵢ"},
+  {cat:'History',col:'var(--og)',text:"The Normal distribution was called the 'law of errors' by Gauss and Laplace, who independently derived it around 1800-1810 to model measurement errors in astronomy. The term 'normal' was introduced by Karl Pearson in 1894 — he felt the name was too modest and considered it a mistake, given how many natural phenomena do NOT follow a Normal distribution. He was right: it's normal only in the sense that it's common, not that it's typical.",math:"Gauss, 1809: measurement errors ~ N(0, σ²) in astronomy"},
+  {cat:'Paradox',col:'var(--rd)',text:"Anscombe's Quartet (1973) consists of four datasets with nearly identical summary statistics (same mean, variance, correlation, regression line) but radically different graphs. Francis Anscombe created them to demonstrate that statistical summaries alone are insufficient — visualisation is essential. The quartet is still reproduced in virtually every data analysis textbook and course as the canonical argument for 'always plot your data'.",math:"4 datasets: same x̄, ȳ, σₓ, σᵧ, r, β — radically different plots"},
+  {cat:'Computation',col:'var(--pu)',text:"When Alan Turing cracked the Enigma cipher at Bletchley Park (1940), he used a Bayesian scoring system called the 'Banburismus' — a sequential probability ratio test. Each letter decrypted contributed a log-likelihood ratio ('ban') to a running sum, and the code was considered broken when the sum crossed a threshold. This was independently equivalent to Abraham Wald's 1947 Sequential Probability Ratio Test — both invented in wartime secret.",math:"Banburismus = Bayesian SPRT (Turing, 1940)"},
+  {cat:'Theory',col:'var(--gd)',text:"The geometric series Σ(1-p)^k = 1/p is the key formula behind the Geometric distribution — but it also appears in the analysis of 'infinite monkey theorem': a monkey typing randomly will eventually produce any given text with probability 1, but the expected waiting time is mind-bogglingly large. For typing 'STATISTICS' (10 characters), with a 26-letter keyboard, the expected wait is 26¹⁰ ≈ 1.4 × 10¹⁴ keystrokes.",math:"E[wait for 'STATISTICS'] = 26¹⁰ ≈ 1.4 × 10¹⁴"},
+  {cat:'History',col:'var(--pk)',text:"William Sealy Gosset, who invented the t-distribution, published all his statistical work under the pseudonym 'Student' because his employer, Guinness Brewery, did not want competitors to know they were using statistics to improve beer production. 'Student's t-distribution' is thus named after Gosset's pen name. Gosset corresponded with Fisher and Pearson but attended scientific meetings as 'Mr Student' to maintain his pseudonymity.",math:"Student's t (1908) — W.S. Gosset of Guinness Brewery"},
+  {cat:'Theory',col:'var(--bl)',text:"The Kalman filter (1960), one of the most practically important algorithms in engineering and statistics, is an optimal Bayesian update rule for linear Gaussian state-space models. It is used in GPS navigation, aircraft autopilots, missile guidance, and self-driving cars. Rudolf Kálmán's paper was initially rejected by the Journal of Statistical Physics. It was published in the Journal of Basic Engineering — and cited over 70,000 times.",math:"Kalman gain: Kₜ = Pₜ|ₜ₋₁Hᵀ(HPₜ|ₜ₋₁Hᵀ + R)⁻¹"}
+
+];
+
+
+/* ── STATISTICIAN QUOTES ─────────────────────────────── */
+
+function showRandomFact(){
+  const f=FACTS[Math.floor(Math.random()*FACTS.length)];
+  const t=document.getElementById('toast');
+  document.getElementById('toast-cat').textContent=f.cat;
+  document.getElementById('toast-body').textContent=f.text;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(hideToast,7000);
+}
+
+function hideToast(){
+  document.getElementById('toast').classList.remove('show');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PUZZLE PROGRESS TRACKING
+   ═══════════════════════════════════════════════════════════ */
+const solved=new Set(JSON.parse(localStorage.getItem('stats-solved')||'[]'));
+
+(function(){
+  if(localStorage.getItem('stats-mode')==='night'){
+    document.body.classList.add('night');
+    const mi=document.getElementById('mode-icon'); if(mi)mi.textContent='☀';
+  }
+  
+  setTimeout(function(){
+    if(window.currentUser)return;
+    if(!window.sb)return;
+    window.sb.auth.getSession().then(function(r){
+      if(window.currentUser)return;
+      var u=r&&r.data&&r.data.session&&r.data.session.user;
+      if(!u)return;
+      if(window.renderAuthUI)window.renderAuthUI();
+    }).catch(function(){});
+  },400);
+  if('renderPuzzles();' && document.readyState!=='loading') { renderPuzzles(); }
+  else if('renderPuzzles();') { document.addEventListener('DOMContentLoaded', function(){ renderPuzzles(); }); }
+})();
+</script>
+<script>window._pageKey = 'stats';</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+
+</body>
+</html>

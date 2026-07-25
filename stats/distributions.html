@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Probability Distributions, Interactive | Stargazer</title>
+<meta name="description" content="Every major probability distribution explained and drawn live — adjust the parameters and watch the normal, binomial, Poisson, and other curves respond.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Statistics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/stats/distributions.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Probability Distributions, Interactive | Stargazer">
+<meta property="og:description" content="Every major probability distribution, explained and drawn live as you adjust its parameters.">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/stats/distributions.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Probability Distributions, Interactive | Stargazer">
+<meta name="twitter:description" content="Every major probability distribution, explained and drawn live as you adjust its parameters.">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Probability Distributions, Interactive | Stargazer",
+  "description": "Every major probability distribution, explained and drawn live as you adjust its parameters.",
+  "url": "https://stargazer-9m9.pages.dev/stats/distributions.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Statistics", "sameAs": "https://en.wikipedia.org/wiki/Statistics" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stats.css">
+</head>
+<body>
+
+<!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
+    <span id="mode-icon">☾</span>
+  </button>
+  <a href="../login.html" id="loginBtn">☽ Sign In</a>
+  <div id="userInfo">
+    <span id="userEmailDisplay">✦ Explorer</span>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══ NAV ═════════════════════════════════════════════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Statistics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Distributions</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)" aria-label="Search">🔍</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══ HAMBURGER MENU ══════════════════════════════════════════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home"          onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item"        data-page="books"         onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item"        data-page="puzzles"       onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <button class="hm-item"        data-page="school"        onclick="location.href='school.html'">🏫 School</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="inference"     onclick="location.href='inference.html'">🔬 Inference</button>
+  <button class="hm-item active"        data-page="distributions" onclick="location.href='distributions.html'">📊 Distributions</button>
+  <button class="hm-item"        data-page="bayesian"      onclick="location.href='bayesian.html'">∫ Bayesian</button>
+  <button class="hm-item"        data-page="openproblems"  onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item"        data-page="research"      onclick="location.href='research.html'">🔭 Research</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="careers"       onclick="location.href='careers.html'">💼 Careers</button>
+  <button class="hm-item"        data-page="studyguide"    onclick="location.href='studyguide.html'">🗺️ Study Guide</button>
+  <button class="hm-item"        data-page="facts"         onclick="location.href='facts.html'">✨ Fun Facts</button>
+  <button class="hm-item"        data-page="tools"         onclick="location.href='tools.html'">🛠️ Tools</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="calc"          onclick="location.href='calc.html'">🔢 Calculator</button>
+  <button class="hm-item"        data-page="formulas"      onclick="location.href='formulas.html'">📋 Formulas</button>
+  <button class="hm-item"        data-page="history"       onclick="location.href='history.html'">⏳ History</button>
+  <button class="hm-item"        data-page="comments"      onclick="location.href='comments.html'">💬 Discuss</button>
+</div>
+
+<!-- ═══ SEARCH MODAL ═══════════════════════════════════════════════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search books, puzzles, distributions, tools…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<!-- ═══ TOAST ══════════════════════════════════════════════════════ -->
+<div id="toast">
+  <button id="toast-close" onclick="hideToast()" aria-label="Dismiss notification">✕</button>
+  <div class="toast-cat" id="toast-cat">Fun Fact</div>
+  <div id="toast-body"></div>
+</div>
+
+<!-- ═══ KEYBOARD HINT ══════════════════════════════════════════════ -->
+<div id="shortcut-hint">/ search · ← → pages</div>
+
+<!-- ═══ PAGE: CALCULATOR ═══════════════════════════════════════════ -->
+<div class="page active" id="page-distributions">
+  <section class="section" id="distributions">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:var(--rd-l);color:var(--rd);border:1px solid rgba(143,58,44,.25)">Interactive Distributions</span>
+        <h2 class="s-title font-serif">The Distributions — Building Blocks of All Models</h2>
+        <p class="s-desc">Each distribution includes an interactive graph — move the sliders to see how the shape responds. Skewness, kurtosis, and moment generating functions included.</p>
+      </div>
+      <div class="dist-tabs">
+        <button class="dist-tab active" onclick="switchDistTab('discrete',this)">Discrete</button>
+        <button class="dist-tab" onclick="switchDistTab('continuous',this)">Continuous</button>
+        <button class="dist-tab" onclick="switchDistTab('special',this)">Special / Derived</button>
+      </div>
+      <div class="dist-panel active" id="panel-discrete"><div class="g3" id="dist-discrete"></div></div>
+      <div class="dist-panel" id="panel-continuous"><div class="g3" id="dist-continuous"></div></div>
+      <div class="dist-panel" id="panel-special"><div class="g3" id="dist-special"></div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ PAGE: BAYESIAN ═══════════════════════════════════════════ -->
+<!-- ── CONTACT ── -->
+<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);font-style:italic;font-family:'Source Code Pro',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div style="text-align:center;padding-bottom:2rem;">
+  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+</div>
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
+<script>
+window._nextPage = 'bayesian.html';
+window._prevPage = 'inference.html';
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+
+function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+
+/* ── BOOKS ─────────────────────────────────────────────────── */
+
+function toggleHamburger(){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu)return;
+  const open=menu.classList.toggle('open');
+  btn.classList.toggle('open',open);
+}
+// Close when clicking outside
+document.addEventListener('click',function(e){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu||!menu.classList.contains('open'))return;
+  if(!menu.contains(e.target)&&e.target!==btn&&!btn.contains(e.target)){
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+
+
+/* ═══════════════════════════════════════════════════════════════
+   OVERRIDE: renderPuzzles — index + cat badge + solved button + filters
+   ═══════════════════════════════════════════════════════════════ */
+
+function toggleMode(){
+  const night=document.body.classList.toggle('night');
+  document.getElementById('mode-icon').textContent=night?'☀':'☾';
+  localStorage.setItem('stats-mode',night?'night':'day');
+  // redraw all visible canvases
+  document.querySelectorAll('.dist-canvas').forEach(c=>{
+    const cid=c.id;
+    const params={};
+    document.querySelectorAll(`[id^="sl-${cid}-"]`).forEach(sl=>{
+      params[sl.id.replace('sl-'+cid+'-','')]=parseFloat(sl.value);
+    });
+    // find the slug from DISTRIBUTIONS
+    const slug=getSlugFromCanvas(cid);
+    if(slug){
+      const isDisc=['bernoulli','binomial','geometric','negbin','poisson','hypergeometric'].includes(slug);
+      drawDistCanvas(cid,slug,params,isDisc);
+    }
+  });
+}
+
+
+function getSlugFromCanvas(cid){
+  // cid format: dc-type-idx
+  const parts=cid.split('-');
+  if(parts.length<3)return null;
+  const type=parts[1],idx=parseInt(parts[2]);
+  if(DISTRIBUTIONS[type]&&DISTRIBUTIONS[type][idx])return DISTRIBUTIONS[type][idx].slug;
+  return null;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL EFFECTS
+   ═══════════════════════════════════════════════════════════ */
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  if(btt)btt.classList.toggle('show',window.scrollY>300);
+  document.querySelectorAll('.reveal').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-60)
+      el.classList.add('visible');
+  });
+},{passive:true});
+
+/* ═══════════════════════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════════════════════ */
+
+let SEARCH_INDEX=[];
+function openSearch(){
+  buildSearchIndex();
+  const m=document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(()=>document.getElementById('search-input').focus(),80);
+}
+function closeSearch(){
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value='';
+  document.getElementById('search-results').innerHTML='<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q){
+  const res=document.getElementById('search-results');
+  if(!q.trim()){res.innerHTML='<div class="sr-empty">Start typing…</div>';return;}
+  const lq=q.toLowerCase();
+  const hits=SEARCH_INDEX.filter(x=>x.q.toLowerCase().includes(lq)).slice(0,18);
+  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q+'"</div>';return;}
+  res.innerHTML=hits.map((h,i)=>`<div class="sr-item" tabindex="0" data-idx="${i}" onclick="goSearchResult(${SEARCH_INDEX.indexOf(h)})" onkeydown="if(event.key==='Enter')goSearchResult(${SEARCH_INDEX.indexOf(h)})"><span class="sr-icon">${h.icon}</span><div><div class="sr-title">${highlight(h.title,lq)}</div><div class="sr-meta">${h.meta}</div></div><span class="sr-section">${h.section}</span></div>`).join('');
+}
+function highlight(text,q){
+  if(!q)return text;
+  const idx=text.toLowerCase().indexOf(q);
+  if(idx<0)return text;
+  return text.slice(0,idx)+'<mark style="background:var(--gd-l);color:var(--gd);border-radius:2px">'+text.slice(idx,idx+q.length)+'</mark>'+text.slice(idx+q.length);
+}
+function goSearchResult(idx){ closeSearch(); }
+function searchKeyNav(e){
+  if(e.key==='Escape'){closeSearch();return;}
+  const items=document.querySelectorAll('.sr-item');
+  const cur=document.activeElement;
+  const curIdx=[...items].indexOf(cur);
+  if(e.key==='ArrowDown'){e.preventDefault();(items[curIdx+1]||items[0])?.focus();}
+  if(e.key==='ArrowUp'){e.preventDefault();(items[curIdx-1]||items[items.length-1])?.focus();}
+  if(e.key==='Enter'&&curIdx>=0){items[curIdx].click();}
+}
+
+
+function buildSearchIndex(){
+  if(SEARCH_INDEX.length)return;
+  ['discrete','continuous','special'].forEach(t=>(DISTRIBUTIONS[t]||[]).forEach(d=>SEARCH_INDEX.push({icon:'📊',title:d.name,meta:d.notation,section:'Distributions',page:'distributions',q:d.name+' '+d.notation+' '+d.note})));
+}
+
+
+(function initKeyboard(){
+  const PAGES=['home','precollege_placeholder'];
+  document.addEventListener('keydown',e=>{
+    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
+    if(document.getElementById('search-modal')&&document.getElementById('search-modal').classList.contains('open')){
+      if(e.key==='Escape')closeSearch();
+      return;
+    }
+    if(e.key==='/'){e.preventDefault();openSearch();return;}
+    if(e.key==='ArrowRight'){e.preventDefault();location.href=window._nextPage;}
+    if(e.key==='ArrowLeft'){e.preventDefault();location.href=window._prevPage;}
+    if(e.key==='f'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){if(typeof showRandomFact==='function')showRandomFact();}
+    if(e.key==='Escape'){
+      const hmenu=document.getElementById('hamburger-menu');
+      if(hmenu&&hmenu.classList.contains('open')){
+        hmenu.classList.remove('open');
+        document.getElementById('hamburger-btn')?.classList.remove('open');
+      }
+    }
+  });
+})();
+
+function showToast(msg,bg){
+  const t=document.createElement('div');
+  t.textContent=msg;
+  t.style.cssText=`position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);background:${bg};color:#fff;font-family:'Source Code Pro',monospace;font-size:.72rem;padding:.45rem 1.1rem;border-radius:99px;z-index:9998;animation:fadeUpIn .35s ease;white-space:nowrap;pointer-events:none`;
+  document.body.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .35s';setTimeout(()=>t.remove(),380);},2200);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATISTICIAN QUOTES — daily + 5-hour rotation
+   ═══════════════════════════════════════════════════════════════ */
+
+const DISTRIBUTIONS = {
+  discrete:[
+    {name:'Bernoulli',slug:'bernoulli',notation:'Bern(p)',params:'p ∈ (0,1): probability of success',
+     mean:'p',variance:'p(1−p)',skew:'(1−2p)/√(p(1−p))',exkurt:'(1−6p(1−p))/(p(1−p))',
+     mgf:'1−p + p·eᵗ',
+     note:'The simplest non-trivial distribution: models any binary outcome (success/failure, heads/tails, 0/1). Every more complex distribution is built from Bernoulli building blocks.',
+     sliders:[{id:'p',label:'p',min:0.01,max:0.99,step:0.01,def:0.5}],
+     detail:`<p>The Bernoulli distribution is the foundation of all discrete probability theory. A single trial has outcome 1 (success) with probability p and outcome 0 (failure) with probability 1−p. The PMF is P(X=x) = pˣ(1−p)¹⁻ˣ for x ∈ {0,1}, which is a member of the exponential family with natural parameter η = log(p/(1−p)) (the log-odds, or logit). The sufficient statistic is T(x) = x itself.</p>
+     <p>The information-theoretic entropy of the Bernoulli is H(p) = −p·log(p) − (1−p)·log(1−p), which is maximised at p = 1/2 (completely uncertain) and minimised at p = 0 or p = 1 (deterministic). This is why logistic regression and information gain in decision trees are connected — both use entropy as the fundamental measure of uncertainty in a binary variable.</p>
+     <p>The skewness formula (1−2p)/√(p(1−p)) shows that the distribution is symmetric only at p = 1/2, right-skewed for p &lt; 1/2, and left-skewed for p &gt; 1/2. The excess kurtosis (1−6p(1−p))/(p(1−p)) is always positive (leptokurtic), since Bernoulli distributions have heavier tails than a Gaussian when measured relative to their scale. As p → 0 or p → 1, the kurtosis → ∞, reflecting the extreme concentration of mass near 0 or 1.</p>`
+    },
+    {name:'Binomial',slug:'binomial',notation:'Bin(n, p)',params:'n ∈ ℕ: number of trials; p ∈ (0,1): success probability',
+     mean:'np',variance:'np(1−p)',skew:'(1−2p)/√(np(1−p))',exkurt:'(1−6p(1−p))/(np(1−p))',
+     mgf:'(1−p + p·eᵗ)ⁿ',
+     note:'Models the number of successes in n independent Bernoulli trials. The sum of n i.i.d. Bern(p) random variables. For large np(1-p), converges to Normal by CLT.',
+     sliders:[{id:'n',label:'n',min:1,max:50,step:1,def:10},{id:'p',label:'p',min:0.01,max:0.99,step:0.01,def:0.4}],
+     detail:`<p>The Binomial distribution is the canonical distribution for count data from repeated independent trials. P(X=k) = C(n,k)·pᵏ·(1−p)ⁿ⁻ᵏ for k = 0,1,...,n. The MGF M(t) = (1−p+peᵗ)ⁿ can be used to derive all moments: E[X] = np (differentiate once at t=0), Var(X) = np(1−p) (second cumulant).</p>
+     <p>Two crucial approximations: (1) Poisson approximation: when n is large and p is small with λ = np fixed, Bin(n,p) → Poisson(λ) in distribution. This is the "law of rare events" and is accurate when n &gt; 20 and p &lt; 0.05. (2) Normal approximation (De Moivre-Laplace theorem): when np(1−p) &gt; 5, Bin(n,p) ≈ N(np, np(1−p)). A continuity correction P(X ≤ k) ≈ Φ((k + 0.5 − np)/√(np(1−p))) improves accuracy.</p>
+     <p>In statistical testing: the exact Binomial test and its relation to proportion tests. The Wilson score interval for a proportion p̂ = X/n is far superior to the Wald interval p̂ ± z√(p̂(1−p̂)/n) in small samples, because the Wald interval has coverage dropping far below the nominal level when p is near 0 or 1. The Clopper-Pearson interval is exact but conservative.</p>`
+    },
+    {name:'Geometric',slug:'geometric',notation:'Geom(p)',params:'p ∈ (0,1): success probability per trial',
+     mean:'1/p',variance:'(1−p)/p²',skew:'(2−p)/√(1−p)',exkurt:'6 + p²/(1−p)',
+     mgf:'peᵗ / (1−(1−p)eᵗ), t &lt; −ln(1−p)',
+     note:'Models the number of trials until the first success. The only memoryless discrete distribution — P(X>m+n | X>m) = P(X>n).',
+     sliders:[{id:'p',label:'p',min:0.05,max:0.95,step:0.05,def:0.3}],
+     detail:`<p>The Geometric distribution has the unique property of discrete memorylessness: if you've been waiting k trials without success, the distribution of the remaining wait is identical to starting fresh. P(X=k) = (1−p)^(k−1)·p for k = 1,2,3,.... This is the discrete analogue of the Exponential distribution (which is the unique continuous memoryless distribution).</p>
+     <p>The memorylessness property is formally: P(X &gt; m+n | X &gt; m) = P(X &gt; n). Proof: P(X &gt; m+n | X &gt; m) = P(X &gt; m+n)/P(X &gt; m) = (1−p)^(m+n)/(1−p)^m = (1−p)^n = P(X &gt; n). The characterisation theorem (Flajolet-Sedgewick): the Geometric is the only discrete distribution on ℕ with this property.</p>
+     <p>The sum of k i.i.d. Geometric(p) random variables has the Negative Binomial distribution NB(k,p), which models the number of trials until k successes. This is the discrete analogue of the Gamma distribution. The relationship Geometric → Negative Binomial parallels the continuous Exponential → Gamma.</p>`
+    },
+    {name:'Negative Binomial',slug:'negbin',notation:'NB(r, p)',params:'r &gt; 0: number of successes; p ∈ (0,1): success prob',
+     mean:'r(1−p)/p',variance:'r(1−p)/p²',skew:'(2−p)/√(r(1−p))',exkurt:'6/r + p²/(r(1−p))',
+     mgf:'(p/(1−(1−p)eᵗ))ʳ, t &lt; −ln(1−p)',
+     note:'Models trials until r successes. Generalises Geometric (r=1). Also used as an overdispersed count model — variance > mean, unlike Poisson where variance = mean.',
+     sliders:[{id:'r',label:'r',min:1,max:20,step:1,def:5},{id:'p',label:'p',min:0.1,max:0.9,step:0.05,def:0.4}],
+     detail:`<p>The Negative Binomial distribution has two interpretations: (1) the waiting time for r successes in a sequence of Bernoulli(p) trials, and (2) a Poisson distribution with a Gamma-distributed rate (Poisson-Gamma mixture). This second interpretation makes it the standard model for overdispersed count data — counts where variance &gt; mean, which is extremely common in ecology (species abundance), genomics (RNA-seq read counts), insurance (claim counts), and epidemiology.</p>
+     <p>In the Poisson-Gamma mixture interpretation: if Y|λ ∼ Poisson(λ) and λ ∼ Gamma(r, p/(1−p)), then marginalising over λ gives Y ∼ NB(r, p). This has two implications: (1) overdispersion arises naturally from unobserved heterogeneity in rates, and (2) Bayesian analysis of Poisson counts with Gamma priors produces NB posteriors (Gamma is conjugate to Poisson).</p>
+     <p>The NB excels where the Poisson fails: in RNA-seq analysis, the DESeq2 and edgeR software packages both use NB GLMs to identify differentially expressed genes. The mean-variance relationship Var = μ + μ²/r allows estimation of r (the dispersion parameter) from the data, providing a flexible fit to biological count data.</p>`
+    },
+    {name:'Poisson',slug:'poisson',notation:'Poisson(λ)',params:'λ &gt; 0: mean rate of events per unit time/space',
+     mean:'λ',variance:'λ',skew:'1/√λ',exkurt:'1/λ',
+     mgf:'exp(λ(eᵗ−1))',
+     note:'Models counts of rare independent events in a fixed time/area. Remarkable property: mean equals variance. Limit of Binomial(n,p) as n→∞, p→0, np→λ.',
+     sliders:[{id:'lambda',label:'λ',min:0.5,max:15,step:0.5,def:3}],
+     detail:`<p>The Poisson distribution arises as the limit of Binomial(n,p) when n → ∞, p → 0 with np = λ fixed. Its PMF P(X=k) = e^{-λ}λᵏ/k! for k = 0,1,2,.... The outstanding property: E[X] = Var(X) = λ. The Poisson process (the continuous-time analogue) is the unique point process with stationary independent increments — inter-arrival times are i.i.d. Exponential(λ).</p>
+     <p>The Poisson distribution is ubiquitous in science: radioactive decay (Geiger counter clicks), phone call arrivals at a switchboard (Erlang's original application, 1909), mutations in a DNA sequence per nucleotide, goals in football (roughly), server requests per second, deaths from horse kicks in the Prussian army (Bortkiewicz's classic 1898 demonstration). In each case the key conditions hold approximately: events are rare, independent, and occur at a constant rate.</p>
+     <p>Statistical testing: the dispersion test uses the index I = (n−1)S²/X̄, which under H₀: Poisson follows χ²(n−1). If I significantly exceeds n−1, the data is overdispersed (variance &gt; mean), suggesting clustering or unobserved heterogeneity. If I is significantly below n−1, data is underdispersed (sub-Poisson, e.g. from regularity constraints). The zero-inflated Poisson (ZIP) model handles excess zeros.</p>`
+    },
+    {name:'Hypergeometric',slug:'hypergeometric',notation:'HyperGeo(N,K,n)',params:'N: population; K: successes in population; n: sample size',
+     mean:'nK/N',variance:'nK(N−K)(N−n)/(N²(N−1))',skew:'complex formula',exkurt:'complex formula',
+     mgf:'Complex (hypergeometric series)',
+     note:'Models drawing n items without replacement from N where K are "successes". Unlike Binomial, draws are not independent. As N→∞, K/N→p, converges to Binomial(n,p).',
+     sliders:[{id:'Np',label:'N',min:20,max:100,step:5,def:50},{id:'Kp',label:'K',min:5,max:45,step:1,def:20},{id:'np',label:'n',min:1,max:20,step:1,def:10}],
+     detail:`<p>The Hypergeometric arises in sampling without replacement: a population of N objects contains K "successes". We draw n objects without replacement and count X, the number of successes. P(X=k) = C(K,k)·C(N−K, n−k)/C(N,n) for k = max(0,n−N+K),...,min(n,K).</p>
+     <p>Applications: quality control (sampling from a batch), ecological mark-recapture experiments (estimating population size N: mark M animals, release, recapture n, find X marked — the maximum likelihood estimator of N is Mn/X), poker and card game probabilities (drawing exactly k aces from a deck), and exact tests in 2×2 contingency tables (Fisher's exact test uses the hypergeometric distribution for the null).</p>
+     <p>Fisher's exact test: in a 2×2 table with row totals r₁, r₂ and column totals c₁, c₂, under H₀ of no association, the count in the (1,1) cell follows HyperGeo(n, r₁, c₁). This gives an exact p-value without requiring large-sample approximations, making it the gold standard for small-sample categorical data.</p>`
+    }
+
+    ,{name:'Zipf / Zeta',slug:'zipf',notation:'Zipf(s)',params:'s > 1: exponent',
+     mean:'ζ(s−1)/ζ(s) (for s>2)',variance:'ζ(s−2)/ζ(s) − (ζ(s−1)/ζ(s))² (for s>3)',skew:'Complex',exkurt:'Complex',
+     mgf:'Does not have a useful closed form',
+     note:'Models rank-frequency phenomena: word frequency in text, city populations, website traffic. Named after George Zipf who observed that the k-th most common word appears with frequency ∝ 1/kˢ. The second-most-common word appears about half as often as the most common.',
+     sliders:[{id:'s',label:'s',min:1.1,max:4,step:0.1,def:2}],
+     detail:`<p>The Zipf (or Zeta) distribution has PMF P(X=k) = k^{-s}/ζ(s) for k = 1,2,3,... where ζ(s) = Σₖ₌₁^∞ k^{-s} is the Riemann zeta function. It is defined only for s > 1 (for the PMF to sum to 1). For s ≤ 2, the mean is infinite; for s ≤ 3, the variance is infinite.</p>
+     <p>Zipf's law (1949): in a large natural language corpus, the frequency f of the k-th most common word satisfies f ∝ 1/k. The most common English word ('the') occurs about twice as often as 'of', three times as often as 'and', and so on. This empirical 'law' holds remarkably well across languages, topics, and historical periods — and also for city populations (Zipf originally studied US city sizes), firm sizes, income distributions, and earthquake magnitudes.</p>
+     <p>The origin of Zipf's law is debated. Proposed explanations include: Simon's model (preferential attachment — new words are more likely to be used if already common), information theory (Zipf's law is the distribution that maximises entropy subject to a cost constraint on word length), and random partitioning models (breaking a stick randomly and sorting the pieces). No single explanation is universally accepted.</p>`
+    }
+    ,{name:'Beta-Binomial',slug:'betabin',notation:'BetaBin(n, α, β)',params:'n: trials; α, β > 0: Beta shape params',
+     mean:'nα/(α+β)',variance:'nαβ(α+β+n)/((α+β)²(α+β+1))',skew:'Complex (via Beta moments)',exkurt:'Complex',
+     mgf:'No simple closed form',
+     note:'A Binomial with random success probability drawn from Beta(α,β). Overdispersed relative to Binomial — variance > np(1−p). Models count data with heterogeneous success rates (e.g. student test scores with varying ability).',
+     sliders:[{id:'n',label:'n',min:5,max:30,step:1,def:10},{id:'alpha',label:'α',min:0.5,max:10,step:0.5,def:2},{id:'beta_p',label:'β',min:0.5,max:10,step:0.5,def:2}],
+     detail:`<p>The Beta-Binomial distribution arises as a Poisson-Gamma mixture analogue for the Binomial: if p|α,β ∼ Beta(α,β) and X|p ∼ Bin(n,p), then marginalising over p gives the Beta-Binomial: P(X=k) = C(n,k)·B(α+k,β+n-k)/B(α,β), where B is the Beta function.</p>
+     <p>The key property: variance exceeds the Binomial variance. Var(X) = nαβ(α+β+n)/((α+β)²(α+β+1)) > np(1-p) = nαβ/(α+β)² (the Binomial variance at its mean). The ratio variance/Binomial_variance = (α+β+n)/(α+β+1) > 1. This overdispersion makes Beta-Binomial essential for modelling heterogeneous populations where individual success rates vary.</p>
+     <p>Applications: modelling the number of successes in multi-centre clinical trials (where success rates vary by centre), modelling individual exam scores (where student ability varies), political polling (where 'intention to vote' varies), and ecological studies (where plant survival rates vary by microhabitat). The Beta-Binomial is also the marginal likelihood of the Binomial-Beta model, used in empirical Bayes procedures.</p>`
+    }
+
+  ],
+  continuous:[
+    {name:'Uniform',slug:'uniform',notation:'Uniform(a, b)',params:'a &lt; b: lower and upper bounds',
+     mean:'(a+b)/2',variance:'(b−a)²/12',skew:'0',exkurt:'−6/5',
+     mgf:'(eᵗᵇ − eᵗᵃ)/(t(b−a))',
+     note:'The maximum entropy distribution on a bounded interval. All outcomes equally likely. Foundation of random number generation and simulation.',
+     sliders:[{id:'a',label:'a',min:-5,max:0,step:0.5,def:-2},{id:'b',label:'b',min:0,max:5,step:0.5,def:2}],
+     detail:`<p>Uniform(a,b) has PDF f(x) = 1/(b−a) for x ∈ [a,b], zero elsewhere. The CDF is F(x) = (x−a)/(b−a). The negative excess kurtosis (−6/5) means the distribution is platykurtic — lighter tails and flatter peak than a Gaussian. Zero skewness reflects perfect symmetry about (a+b)/2.</p>
+     <p>The maximum entropy principle: among all distributions on [a,b] with no other constraints, Uniform(a,b) has the highest differential entropy h(X) = log(b−a). This makes it the "least informative" distribution on a bounded interval — the appropriate prior when only upper and lower bounds are known (Laplace's "principle of insufficient reason").</p>
+     <p>Probability integral transform (PIT): if X has continuous CDF F, then F(X) ∼ Uniform(0,1). Conversely, if U ∼ Uniform(0,1), then F⁻¹(U) has CDF F. This is the foundation of all Monte Carlo simulation: pseudo-random number generators produce Uniform samples, and the inverse CDF (or rejection sampling) converts them to any desired distribution.</p>`
+    },
+    {name:'Normal (Gaussian)',slug:'normal',notation:'N(μ, σ²)',params:'μ ∈ ℝ: mean; σ &gt; 0: standard deviation',
+     mean:'μ',variance:'σ²',skew:'0',exkurt:'0',
+     mgf:'exp(μt + σ²t²/2)',
+     note:'The most important distribution in statistics. The Central Limit Theorem guarantees that means of large samples follow this distribution regardless of the underlying population.',
+     sliders:[{id:'mu',label:'μ',min:-3,max:3,step:0.5,def:0},{id:'sigma',label:'σ',min:0.2,max:3,step:0.1,def:1}],
+     detail:`<p>The Normal distribution PDF is f(x) = (2πσ²)^{-1/2} exp(−(x−μ)²/(2σ²)). It is a member of the exponential family with sufficient statistics T(x) = (x, x²) and natural parameters (μ/σ², −1/(2σ²)). The MGF M(t) = exp(μt + σ²t²/2) generates all moments: odd central moments = 0 (symmetry), E[(X−μ)⁴] = 3σ⁴ (hence excess kurtosis = 0).</p>
+     <p>The Central Limit Theorem (CLT): if X₁,...,Xₙ are i.i.d. with mean μ and finite variance σ², then √n(X̄ₙ − μ)/σ →ᵈ N(0,1). This is why Normal distributions appear everywhere in nature — the measurement error in any device is the sum of many small independent errors, each negligible in scale. The CLT has generalisations: the Lindeberg-Feller CLT for independent but not identically distributed variables, and the functional CLT (Donsker's theorem) establishing convergence to Brownian motion.</p>
+     <p>In maximum likelihood, the Normal is special: OLS estimators ARE MLEs when errors are Gaussian, which is why the Normal plays a central role in regression theory. Fisher's use of the Normal to model measurement error (and his early debates with Karl Pearson, who preferred using more flexible families) shaped the development of 20th-century statistics.</p>`
+    },
+    {name:'Exponential',slug:'exponential',notation:'Exp(λ)',params:'λ &gt; 0: rate (events per unit time)',
+     mean:'1/λ',variance:'1/λ²',skew:'2',exkurt:'6',
+     mgf:'λ/(λ−t), t &lt; λ',
+     note:'Models waiting time until the first event in a Poisson process. The unique continuous memoryless distribution. Skewness = 2 always, regardless of λ.',
+     sliders:[{id:'lambda',label:'λ',min:0.2,max:4,step:0.1,def:1}],
+     detail:`<p>The Exponential distribution has PDF f(x) = λe^{-λx} for x ≥ 0. It is the unique continuous distribution satisfying P(X &gt; s+t | X &gt; s) = P(X &gt; t) — memorylessness. This characterisation theorem (Cramér) shows it's the natural model for the time until a Poisson event: the next event doesn't "know" how long we've been waiting.</p>
+     <p>The Exponential is the cornerstone of reliability theory and queuing theory. In an M/M/1 queue (Markovian arrivals, Markovian service, 1 server), both inter-arrival times and service times are Exponential. The steady-state distribution, Little's law (L = λW), and the utilisation ρ = λ/μ all derive from the Exponential's memorylessness. In reliability, the hazard rate h(t) = f(t)/(1−F(t)) = λ is constant — meaning the instantaneous failure rate doesn't depend on age. This is unrealistic for most physical systems (which wear out) but provides the reference case against which bathtub curves (early failure, constant rate, wear-out) are defined.</p>
+     <p>The connection to the Gamma: the sum of k i.i.d. Exp(λ) random variables follows Gamma(k, λ). This links the Exponential to the Erlang distribution (used in queuing for k-stage service) and to chi-squared (χ²(2) = Gamma(1, 1/2) scaled, since 2λX ∼ χ²(2) when X ∼ Exp(λ)).</p>`
+    },
+    {name:'Gamma',slug:'gamma',notation:'Gamma(α, β)',params:'α &gt; 0: shape; β &gt; 0: rate',
+     mean:'α/β',variance:'α/β²',skew:'2/√α',exkurt:'6/α',
+     mgf:'(β/(β−t))^α, t &lt; β',
+     note:'Generalises Exponential (α=1) and χ² (β=1/2, α=k/2). Skewness decreases to 0 as α→∞ (becomes approximately Normal). Conjugate prior for Poisson rate λ.',
+     sliders:[{id:'alpha',label:'α',min:0.5,max:10,step:0.5,def:2},{id:'beta',label:'β',min:0.2,max:4,step:0.2,def:1}],
+     detail:`<p>The Gamma distribution has PDF f(x) = x^{α−1}e^{-βx}β^α/Γ(α) for x &gt; 0. The Gamma function Γ(α) = ∫₀^∞ t^{α−1}e^{-t}dt satisfies Γ(n) = (n−1)! for positive integers and Γ(1/2) = √π. Special cases: Exp(λ) = Gamma(1,λ); Erlang(k,λ) = Gamma(k,λ) with k integer; χ²(k) = Gamma(k/2, 1/2).</p>
+     <p>As α → ∞, the Gamma approaches a Normal distribution (by CLT, since it is the sum of α i.i.d. Exp(β)). The skewness 2/√α and excess kurtosis 6/α both → 0, confirming this. The mode is at (α−1)/β for α ≥ 1, and the median is approximately α/β − 1/(3β) by approximation (no closed form).</p>
+     <p>The Gamma is conjugate to the Poisson: if λ ∼ Gamma(α,β) and X|λ ∼ Poisson(λ), then λ|X ∼ Gamma(α+X, β+1). This makes it the natural Bayesian prior for event rates. It is also conjugate to the Normal precision: if τ ∼ Gamma(α,β) and X|τ ∼ N(μ, 1/τ), then τ|X ∼ Gamma(α + n/2, β + Σ(xᵢ−μ)²/2).</p>`
+    },
+    {name:'Beta',slug:'beta',notation:'Beta(α, β)',params:'α, β &gt; 0: shape parameters',
+     mean:'α/(α+β)',variance:'αβ/((α+β)²(α+β+1))',skew:'2(β−α)√(α+β+1)/((α+β+2)√(αβ))',exkurt:'6(α³+α²(1−2β)+β²(β+1)−2αβ(2β+1))/(αβ(α+β+2)(α+β+3))',
+     mgf:'1 + Σₖ₌₁^∞ (Πᵣ₌₀^{k-1}(α+r)/(α+β+r))·tᵏ/k!',
+     note:'Defined on [0,1], making it the natural model for probabilities and proportions. Conjugate prior for Binomial p. α=β=1 gives Uniform(0,1).',
+     sliders:[{id:'alpha',label:'α',min:0.5,max:8,step:0.5,def:2},{id:'beta_p',label:'β',min:0.5,max:8,step:0.5,def:3}],
+     detail:`<p>The Beta distribution has PDF f(x) = x^{α−1}(1−x)^{β−1}/B(α,β) for x ∈ (0,1), where B(α,β) = Γ(α)Γ(β)/Γ(α+β) is the Beta function. It is the most flexible distribution on [0,1]: U-shaped (α,β &lt; 1), symmetric about 1/2 when α = β, right-skewed when α &lt; β, left-skewed when α &gt; β, and approximately Normal for large α, β (by CLT).</p>
+     <p>Conjugate prior for proportion p in Binomial model: if p ∼ Beta(α,β) and X|p ∼ Bin(n,p), then p|X ∼ Beta(α+X, β+n−X). The hyperparameters α and β can be interpreted as pseudo-counts: α−1 prior successes and β−1 prior failures. The prior mean α/(α+β) is updated to the posterior mean (α+X)/(α+β+n), which is a weighted average of prior mean and sample proportion X/n.</p>
+     <p>The Beta-Binomial model (marginalising over p) appears in overdispersed proportion data. Connections to order statistics: if X₁,...,Xₙ are i.i.d. Uniform(0,1), the k-th order statistic X₍ₖ₎ ∼ Beta(k, n−k+1). This elegant result means the Beta distribution naturally describes the position of the k-th smallest value in a Uniform sample.</p>`
+    },
+    {name:'Log-Normal',slug:'lognormal',notation:'LogNormal(μ, σ²)',params:'μ ∈ ℝ: mean of log; σ &gt; 0: SD of log',
+     mean:'exp(μ + σ²/2)',variance:'(eˢ²−1)·e^(2μ+σ²)',skew:'(eˢ²+2)√(eˢ²−1)',exkurt:'e⁴ˢ²+2e³ˢ²+3e²ˢ²−6',
+     mgf:'No closed form (does not exist for t &gt; 0)',
+     note:'Models quantities that are the product of many small independent factors. Widely used in finance (asset prices), biology (cell sizes, species abundance), and environmental science (pollutant concentrations).',
+     sliders:[{id:'mu',label:'μ',min:-2,max:2,step:0.25,def:0},{id:'sigma',label:'σ',min:0.1,max:2,step:0.1,def:0.5}],
+     detail:`<p>If X ∼ LogNormal(μ, σ²), then ln(X) ∼ N(μ,σ²). The PDF is f(x) = (xσ√2π)^{-1} exp(−(ln(x)−μ)²/(2σ²)) for x &gt; 0. Crucially, the LogNormal has no finite moment generating function for t &gt; 0 — its tails are too heavy. However, all moments exist: E[Xⁿ] = exp(nμ + n²σ²/2).</p>
+     <p>The log-normal arises from the multiplicative central limit theorem: if Y = X₁X₂...Xₙ where the Xᵢ are i.i.d. positive, then ln(Y) = Σln(Xᵢ), and by the additive CLT, ln(Y) is approximately Normal for large n, making Y approximately log-normal. This is why it appears in multiplicative processes: an income that grows by random percentage factors each year, the size of particles after fragmentation, or the time to complete a task that depends on multiple independent steps.</p>
+     <p>Distinguishing log-normal from other heavy-tailed distributions: the log-normal is "intermediate" between the Normal (sub-exponential tails) and power laws (Pareto family with polynomial tails). Empirically, many "natural" size distributions are log-normal (cell sizes, word frequencies, earthquake energies), while the Pareto appears in social phenomena (wealth, city sizes, internet traffic) where there are feedback loops (the rich get richer).</p>`
+    },
+    {name:'Cauchy',slug:'cauchy',notation:'Cauchy(x₀, γ)',params:'x₀ ∈ ℝ: location; γ &gt; 0: scale',
+     mean:'Undefined',variance:'Undefined',skew:'Undefined',exkurt:'Undefined',
+     mgf:'Does not exist',
+     note:'Pathological: no finite mean, variance, or any moment exists (except zero-th). Sample mean = single observation in distribution. The ratio of two independent N(0,1) is Cauchy(0,1).',
+     sliders:[{id:'x0',label:'x₀',min:-3,max:3,step:0.5,def:0},{id:'gamma',label:'γ',min:0.2,max:3,step:0.1,def:1}],
+     detail:`<p>The Cauchy distribution has PDF f(x) = 1/(πγ[1+((x−x₀)/γ)²]) and CDF F(x) = 1/2 + arctan((x−x₀)/γ)/π. Its tails decay as x^{-2} — polynomial, not exponential — making it heavy enough that ∫|x|f(x)dx = ∞. No moments of order ≥ 1 exist. The characteristic function is φ(t) = exp(ix₀t − γ|t|), which is well-defined.</p>
+     <p>The famous theorem: if X ∼ N(0,1) and Y ∼ N(0,1) are independent, then X/Y ∼ Cauchy(0,1). This means the ratio of two z-scores is Cauchy. The Student-t distribution with ν = 1 degree of freedom is exactly Cauchy. As ν → ∞, Student-t → Normal, passing through increasingly regular behaviour.</p>
+     <p>The Cauchy is a stable distribution with index α=1. It belongs to the Lévy stable family where sums Xₙ/n^{1/α} converge in distribution to Stable(α). For the Cauchy, sample means converge NOT to a point mass at zero but to another Cauchy — averaging does not reduce uncertainty. This is why Cauchy data requires fundamentally different estimators: the sample median (which IS consistent), or the M-estimator approach. The Cauchy provides the most important counterexample to the assumption that "more data helps".</p>`
+    }
+
+    ,{name:'Laplace (Double Exponential)',slug:'laplace',notation:'Laplace(μ, b)',params:'μ ∈ ℝ: location; b > 0: scale',
+     mean:'μ',variance:'2b²',skew:'0',exkurt:'3',
+     mgf:'eᵘᵗ / (1 − b²t²), |t| < 1/b',
+     note:'Symmetric distribution with heavier tails than Normal but lighter than Cauchy. LASSO regression corresponds to a Laplace prior on coefficients. Also called double exponential — it looks like two back-to-back Exponentials. Kurtosis = 6 (excess kurtosis 3).',
+     sliders:[{id:'mu',label:'μ',min:-3,max:3,step:0.5,def:0},{id:'b',label:'b',min:0.1,max:3,step:0.1,def:1}],
+     detail:`<p>The Laplace distribution has PDF f(x) = (1/(2b))·exp(−|x−μ|/b) for x ∈ ℝ. The absolute value in the exponent gives it a 'pointed' peak at x=μ (unlike the smooth Gaussian) and heavier tails than the Normal. Its tails decay as e^{-|x|/b} — exponentially but slower than the Gaussian's e^{-x²/2}. The excess kurtosis is 3, compared to 0 for Normal and ∞ for Cauchy.</p>
+     <p>LASSO connection: the MAP estimate of β in a linear regression with a Laplace prior (i.e., iid Laplace(0,1/λ) prior on each βⱼ) is equivalent to LASSO: argmax P(β|y) = argmin [‖y−Xβ‖² + λΣ|βⱼ|]. The pointed peak of the Laplace prior at zero induces sparsity — it encourages many βⱼ to be exactly zero, just as LASSO does.</p>
+     <p>Gauss vs Laplace controversy: around 1800, both Gauss and Legendre developed the method of least squares. Gauss justified it by assuming Normal errors. Laplace simultaneously used L₁ regression (minimising Σ|residuals|), equivalent to Laplace-distributed errors. The least squares (L₂) approach won primarily because of its mathematical tractability with the Normal distribution, not because of any fundamental advantage.</p>`
+    }
+    ,{name:'Pareto',slug:'pareto',notation:'Pareto(α, x_m)',params:'α > 0: shape (tail index); x_m > 0: minimum value',
+     mean:'αx_m/(α−1) for α>1',variance:'x_m²α/((α-1)²(α-2)) for α>2',skew:'2(1+α)/(α-3)·√((α-2)/α) for α>3',exkurt:'6(α³+α²−6α-2)/(α(α-3)(α-4)) for α>4',
+     mgf:'Does not exist',
+     note:'Power law distribution for the size of extreme events: wealth, city sizes, earthquake magnitudes, solar flares. For α ≤ 1: infinite mean. For α ≤ 2: infinite variance. The 80-20 Pareto principle arises from Pareto(1.16, x_m).',
+     sliders:[{id:'alpha',label:'α',min:0.5,max:5,step:0.25,def:2},{id:'xm',label:'x_m',min:0.1,max:2,step:0.1,def:1}],
+     detail:`<p>The Pareto distribution has PDF f(x) = α·x_m^α / x^{α+1} for x ≥ x_m > 0. The CDF is F(x) = 1 − (x_m/x)^α — power law decay in the tail. The shape parameter α (tail index) controls how heavy the tail is: small α → heavier tail → more extreme events. For α = 1: mean = ∞; for α ≤ 2: variance = ∞; for α ≤ 4: kurtosis = ∞.</p>
+     <p>The '80-20 Pareto principle' (Pareto, 1896): 80% of Italy's wealth was held by 20% of the population. This corresponds to Pareto(1.16) approximately. In general, the 'top 100p% holds fraction q of wealth' relationship is: q = (1-p)^{1-1/α}. For α = log(5)/log(4) ≈ 1.16, the top 20% holds 80%. Today, global wealth distributions often have α ≈ 1.5, corresponding to even more extreme concentration.</p>
+     <p>Stable distributions: the Pareto tail P(X>x) = x^{-α} is a power law. For α &lt; 2, the Pareto belongs to the domain of attraction of an α-stable law — the generalised CLT for heavy-tailed distributions. The sum of n i.i.d. Pareto(α&lt;2) variables, properly normalised by n^{1/α}, converges to an α-stable distribution (not the Normal). This is why sums of insurance claim sizes or financial returns with heavy tails do not behave like Normal random variables.</p>`
+    }
+    ,{name:'Gumbel (Extreme Value Type I)',slug:'gumbel',notation:'Gumbel(μ, β)',params:'μ ∈ ℝ: location; β > 0: scale',
+     mean:'μ + γβ (γ ≈ 0.5772 Euler–Mascheroni)',variance:'π²β²/6',skew:'12√6·ζ(3)/π³ ≈ 1.14',exkurt:'12/5',
+     mgf:'eᵘᵗΓ(1 − βt), t < 1/β',
+     note:'The limiting distribution of the maximum of many i.i.d. thin-tailed random variables. Used for flood frequency analysis, extreme weather events, maximum wind speeds, and failure analysis. The CDF is F(x) = exp(−exp(−(x−μ)/β)).',
+     sliders:[{id:'mu',label:'μ',min:-3,max:3,step:0.5,def:0},{id:'beta',label:'β',min:0.1,max:3,step:0.1,def:1}],
+     detail:`<p>The Gumbel distribution is the Type I extreme value distribution (Gumbel, 1958). CDF: F(x) = exp(−e^{-(x-μ)/β}). PDF: f(x) = (1/β)e^{-(x-μ)/β}·exp(−e^{-(x-μ)/β}). It arises as the limiting distribution of the properly normalised maximum Mₙ = max(X₁,...,Xₙ) for thin-tailed distributions (Normal, Gamma, Exponential, Log-normal).</p>
+     <p>Return periods: in hydrology and civil engineering, the 'T-year flood' is the flood level exceeded on average once in T years. If annual maxima follow Gumbel(μ,β), the T-year return level is xₜ = μ − β·ln(−ln(1−1/T)). The 100-year flood level (T=100) is xₜ = μ + β·ln(100) + β·γ approximately. This is the basis of all infrastructure design for extreme events.</p>
+     <p>The Gumbel copula: in multivariate extreme value theory, the Gumbel copula models asymptotic dependence between extremes of multiple variables. It is defined by C(u,v) = exp(−((−ln u)^α + (−ln v)^α)^{1/α}) for α ≥ 1. For α=1: independence; as α→∞: complete dependence. It captures the tendency of extreme events to cluster — multiple high-magnitude floods in nearby river systems simultaneously.</p>`
+    }
+    ,{name:'Inverse Gaussian (Wald)',slug:'invgauss',notation:'IG(μ, λ)',params:'μ > 0: mean; λ > 0: shape',
+     mean:'μ',variance:'μ³/λ',skew:'3√(μ/λ)',exkurt:'15μ/λ',
+     mgf:'exp((λ/μ)(1 − √(1−2μ²t/λ)))',
+     note:'Models the first-passage time of Brownian motion with drift: how long until a diffusing particle (or random walk) first reaches a target level. Skewed right for small λ (high variance). Arises in sequential analysis, reaction times in psychology, and income distributions.',
+     sliders:[{id:'mu',label:'μ',min:0.5,max:5,step:0.25,def:2},{id:'lambda',label:'λ',min:0.5,max:10,step:0.5,def:3}],
+     detail:`<p>The Inverse Gaussian (IG) distribution has PDF f(x) = √(λ/(2πx³))·exp(−λ(x−μ)²/(2μ²x)) for x > 0. It was derived by Wald (1947) and Tweedie (1945) as the distribution of the first passage time of Brownian motion with drift: if X(t) = t + W(t)/√λ is Brownian motion with drift 1 and noise 1/√λ, then the first time X reaches level μ follows IG(μ,λ).</p>
+     <p>As λ/μ → ∞ (small noise relative to drift), the IG converges to a Normal distribution — the first passage time becomes predictable. As λ/μ → 0 (large noise), the distribution becomes extremely right-skewed (the particle may take a very long time to first reach the target). The ratio λ/μ controls the signal-to-noise ratio in the first-passage process.</p>
+     <p>Statistical applications: the IG is a member of the exponential family and admits conjugate Bayesian analysis. It models income distributions (Wald 1947), reaction times in psychological experiments (ex-Gaussian model combines Exponential and Gaussian; IG is a competitor), and is used as a component in Tweedie distributions which unify power law variance models. The IG is also the distribution of the stopping time in the sequential probability ratio test when the observation is a Gaussian random walk.</p>`
+    }
+    ,{name:'Rayleigh',slug:'rayleigh',notation:'Rayleigh(σ)',params:'σ > 0: scale',
+     mean:'σ√(π/2)',variance:'σ²(4−π)/2',skew:'2√π(π−3)/(4−π)^{3/2}',exkurt:'−(6π²−24π+16)/(4−π)²',
+     mgf:'Complex (series form)',
+     note:'The distribution of the magnitude of a 2D Gaussian random vector: if X,Y ~ N(0,σ²) independently, then √(X²+Y²) ~ Rayleigh(σ). Widely used in wireless communications for signal amplitude fading and in wind speed modelling.',
+     sliders:[{id:'sigma',label:'σ',min:0.2,max:3,step:0.1,def:1}],
+     detail:`<p>The Rayleigh distribution has PDF f(x) = (x/σ²)·exp(−x²/(2σ²)) for x ≥ 0. CDF: F(x) = 1 − exp(−x²/(2σ²)). It arises from the norm of a 2D Gaussian vector: if X ∼ N(0,σ²) and Y ∼ N(0,σ²) are independent, then √(X²+Y²) ∼ Rayleigh(σ). More generally, the norm of a 2D isotropic Gaussian with variance σ² per component follows Rayleigh(σ).</p>
+     <p>In wireless communications (Rayleigh fading): when a signal propagates through a multipath environment with many scatterers, the signal amplitude follows a Rayleigh distribution. This is because the in-phase and quadrature components of the received signal are approximately Gaussian (by the CLT, as many paths contribute), so the envelope is Rayleigh. Rayleigh fading is the baseline model for urban mobile communications and underpins the design of 4G/5G cellular systems.</p>
+     <p>Relationship to chi and Weibull: Rayleigh(σ) = χ(2,σ) = Weibull(2, σ√2). The χ distribution (not chi-squared) is the distribution of the L₂ norm of a k-dimensional Gaussian vector — Rayleigh is the k=2 case. The Maxwell speed distribution (velocity of gas molecules) is χ(3,σ) — the L₂ norm of a 3D Gaussian, i.e., the k=3 analogue of Rayleigh.</p>`
+    }
+    ,{name:'Von Mises (Circular Normal)',slug:'vonmises',notation:'vM(μ, κ)',params:'μ ∈ [0, 2π): preferred direction; κ ≥ 0: concentration',
+     mean:'μ (circular mean)',variance:'1 − I₁(κ)/I₀(κ) (circular variance)',skew:'0 (symmetric)',exkurt:'Complex',
+     mgf:'I₀(κ)⁻¹·I|t|(κ) (modified Bessel functions)',
+     note:'The "Normal distribution on the circle." Defined on [0, 2π), used for compass directions, wind directions, astronomical angles, and daily periodicities. κ=0: uniform on circle; κ→∞: point mass at μ (concentrated). The Normal approximation on the circle.',
+     sliders:[{id:'mu',label:'μ (×π/2)',min:0,max:4,step:0.25,def:0},{id:'kappa',label:'κ',min:0,max:8,step:0.5,def:2}],
+     detail:`<p>The Von Mises distribution has PDF f(θ) = exp(κ·cos(θ−μ)) / (2π·I₀(κ)) for θ ∈ [0,2π), where I₀ is the modified Bessel function of order 0, the normalising constant. As κ → ∞, the distribution concentrates around μ with approximately Normal distribution (κ plays the role of 1/σ²). At κ=0, it reduces to the Uniform distribution on the circle.</p>
+     <p>Statistics on circular data requires different methods than linear data because there is no natural zero or ordering. The 'mean direction' θ̄ = arg(Σe^{iθⱼ}) is the angle of the mean of the unit vectors. The 'resultant length' R̄ = |Σe^{iθⱼ}|/n ∈ [0,1] measures concentration: R̄=0 for uniform (random) directions, R̄=1 for all angles equal. The Von Mises MLE gives κ̂ from the equation A(κ̂) = R̄ where A(κ) = I₁(κ)/I₀(κ).</p>
+     <p>Applications: animal orientation and navigation (bird migration compass headings), wind direction in meteorology, daily timing of biological events (circadian rhythms), political opinion orientation on a circular scale, and protein backbone angles (phi/psi angles in Ramachandran plots of protein structure). The Fisher distribution (concentration κ on the sphere) extends Von Mises to 3D directions, used in geophysics for paleomagnetic data.</p>`
+    }
+
+  ],
+  special:[
+    {name:'Chi-Squared',slug:'chisq',notation:'χ²(k)',params:'k ∈ ℕ: degrees of freedom',
+     mean:'k',variance:'2k',skew:'2√(2/k)',exkurt:'12/k',
+     mgf:'(1−2t)^{−k/2}, t &lt; 1/2',
+     note:'The distribution of the sum of squares of k independent standard Normals. Central to hypothesis testing: Pearson\'s χ² test, the test for Normal variance, and the likelihood ratio test all use χ² critical values.',
+     sliders:[{id:'k',label:'k (df)',min:1,max:20,step:1,def:3}],
+     detail:`<p>If Z₁,...,Zₖ are i.i.d. N(0,1), then χ² = Z₁² + ... + Zₖ² ∼ χ²(k). The PDF is f(x) = x^{k/2−1}e^{-x/2}/(2^{k/2}Γ(k/2)) for x &gt; 0. χ²(k) = Gamma(k/2, 1/2), so it inherits all Gamma properties: mean k, variance 2k, and approaches Normal for large k.</p>
+     <p>Applications in testing: (1) Goodness-of-fit: Pearson's χ² = Σ(Oᵢ−Eᵢ)²/Eᵢ ∼ χ²(k−1) asymptotically under H₀. (2) Test for Normal variance: (n−1)S²/σ₀² ∼ χ²(n−1) under H₀: σ² = σ₀². (3) Independence in r×c tables: the test statistic follows χ²((r−1)(c−1)). (4) Likelihood ratio tests: −2·(log L₀ − log L₁) →ᵈ χ²(p₁−p₀) (Wilks' theorem) under H₀, where p₁−p₀ is the difference in number of free parameters.</p>
+     <p>The distribution of quadratic forms in Normals: if X ∼ N(μ, Σ), then Xᵀ Σ⁻¹ X ∼ χ²(p) when μ = 0. For μ ≠ 0, the distribution is noncentral χ², χ²(k, λ) where λ = μᵀΣ⁻¹μ is the noncentrality parameter. Noncentral χ² arises in the power analysis of χ² tests.</p>`
+    },
+    {name:"Student's t",slug:'studentt',notation:'t(ν)',params:'ν &gt; 0: degrees of freedom',
+     mean:'0 (ν&gt;1)',variance:'ν/(ν−2) (ν&gt;2)',skew:'0 (ν&gt;3)',exkurt:'6/(ν−4) (ν&gt;4)',
+     mgf:'Does not exist in closed form',
+     note:'Arises when estimating Normal mean with unknown variance. The ratio of N(0,1) to √(χ²(ν)/ν). Heavier tails than Normal; approaches Normal as ν→∞. At ν=1 is the Cauchy.',
+     sliders:[{id:'nu',label:'ν (df)',min:1,max:30,step:1,def:5}],
+     detail:`<p>Student's t-distribution was derived by William Gosset (publishing as "Student") in 1908 while working at Guinness. If Z ∼ N(0,1) and V ∼ χ²(ν) are independent, then T = Z/√(V/ν) ∼ t(ν). This arises naturally when Y̅ and S² are estimated from normal data: T = (Y̅ − μ)/(S/√n) ∼ t(n−1), providing exact inference for the Normal mean without knowing σ.</p>
+     <p>The t-distribution is symmetric (skewness = 0 for ν &gt; 3) with heavier tails than the Normal. The PDF involves the Gamma function: f(x) = Γ((ν+1)/2)/(√(νπ)Γ(ν/2))·(1+x²/ν)^{−(ν+1)/2}. For ν = 1 this gives the Cauchy; for ν → ∞ the density converges to N(0,1) pointwise. The excess kurtosis 6/(ν−4) → 0 as ν → ∞, confirming this convergence.</p>
+     <p>The noncentral t-distribution: if Z ∼ N(δ,1) and V ∼ χ²(ν) independently, T = Z/√(V/ν) ∼ t(ν,δ). Power calculations for t-tests use this distribution. The connection to effect sizes: Cohen's d = (μ₁−μ₂)/σ is the noncentrality parameter (scaled) for the two-sample t-test. Power = P(t(n₁+n₂−2, δ√(n₁n₂/(n₁+n₂))) &gt; t_{α, n₁+n₂−2}).</p>`
+    },
+    {name:'F Distribution',slug:'fdist',notation:'F(d₁, d₂)',params:'d₁, d₂: numerator and denominator df',
+     mean:'d₂/(d₂−2)',variance:'2d₂²(d₁+d₂−2)/(d₁(d₂−2)²(d₂−4))',skew:'complex',exkurt:'complex',
+     mgf:'Does not exist',
+     note:'The ratio of two independent χ² divided by their df. Central to ANOVA F-test and regression model comparison. If T ∼ t(ν), then T² ∼ F(1,ν).',
+     sliders:[{id:'d1',label:'d₁',min:1,max:20,step:1,def:5},{id:'d2',label:'d₂',min:2,max:30,step:1,def:10}],
+     detail:`<p>If U ∼ χ²(d₁) and V ∼ χ²(d₂) are independent, then F = (U/d₁)/(V/d₂) ∼ F(d₁,d₂). The PDF is f(x) = √((d₁x)^{d₁}d₂^{d₂}/(d₁x+d₂)^{d₁+d₂})/(xB(d₁/2,d₂/2)) for x &gt; 0. The reciprocal 1/F ∼ F(d₂,d₁).</p>
+     <p>In linear regression, the ANOVA F-statistic for testing whether all regression coefficients are zero equals F = (R²/p)/((1−R²)/(n−p−1)) ∼ F(p, n−p−1) under H₀. More generally, for comparing nested linear models with RSS₀ and RSS₁ (with p₀ and p₁ parameters), F = ((RSS₀−RSS₁)/(p₁−p₀))/(RSS₁/(n−p₁)) ∼ F(p₁−p₀, n−p₁) under H₀.</p>
+     <p>The F-distribution arises naturally in ANOVA (Analysis of Variance): testing whether k group means μ₁,...,μₖ are equal. The between-group mean square (measuring group differences) divided by the within-group mean square (measuring random variation) follows F(k−1, N−k) under H₀ of equal means. This decomposition of total variation into explained and unexplained components is Fisher's fundamental ANOVA insight.</p>`
+    },
+    {name:'Weibull',slug:'weibull',notation:'Weibull(k, λ)',params:'k &gt; 0: shape; λ &gt; 0: scale',
+     mean:'λΓ(1+1/k)',variance:'λ²[Γ(1+2/k)−Γ²(1+1/k)]',skew:'via Gamma functions',exkurt:'via Gamma functions',
+     mgf:'Σₙ₌₀^∞ (t^n λ^n / n!) Γ(1+n/k)',
+     note:'Generalises Exponential (k=1). k&lt;1: decreasing hazard (infant mortality); k=1: constant hazard; k&gt;1: increasing hazard (wear-out). The workhorse of reliability analysis and survival analysis.',
+     sliders:[{id:'k',label:'k',min:0.3,max:4,step:0.1,def:1.5},{id:'lambda',label:'λ',min:0.5,max:3,step:0.5,def:1}],
+     detail:`<p>The Weibull distribution has CDF F(x) = 1 − exp(−(x/λ)^k) and hazard function h(x) = (k/λ)(x/λ)^{k−1}. The hazard is monotone: decreasing when k &lt; 1 (early failure dominates, as in electronics burn-in), constant at 1/λ when k = 1 (pure Exponential — memoryless), increasing when k &gt; 1 (wear-out, as in mechanical components). The bathtub hazard curve is typically modelled as a mixture of Weibull distributions for the three phases.</p>
+     <p>The Weibull is the maximum domain of attraction for the Gumbel extreme value distribution: if X₁,...,Xₙ are i.i.d. Weibull(k,λ) then max(Xᵢ), properly normalised, converges in distribution to the Gumbel. This connects the Weibull to extreme value theory, making it relevant for flood heights, maximum wind speeds, and financial tail risk.</p>
+     <p>Survival analysis: the Weibull accelerated failure time model log(T) = μ + σW where W ∼ Gumbel is equivalent to T ∼ Weibull. The proportional hazards model (Cox) assumes h(t|x) = h₀(t)·exp(xᵀβ); when h₀ is Weibull, the Cox model reduces to the parametric Weibull regression. The log-linear relationship log(T) = μ + σW allows straightforward interpretation of covariate effects as multiplicative acceleration of failure time.</p>`
+    }
+
+    ,{name:'Dirichlet',slug:'dirichlet',notation:'Dir(α₁,...,αₖ)',params:'αᵢ > 0: concentration parameters (k components)',
+     mean:'αᵢ/(Σαⱼ) per component',variance:'αᵢ(α₀−αᵢ)/(α₀²(α₀+1)) per component (α₀=Σαⱼ)',skew:'Complex (function of α)',exkurt:'Complex',
+     mgf:'Ratio of Gamma functions (complex form)',
+     note:'Generalises Beta to k dimensions. Defined on the (k-1)-simplex {(p₁,...,pₖ): pᵢ≥0, Σpᵢ=1}. Conjugate prior for Multinomial proportions. K=2 gives Beta(α₁,α₂). Extensively used in topic modelling (LDA) and Bayesian nonparametrics.',
+     sliders:[{id:'a1',label:'α₁',min:0.1,max:10,step:0.1,def:2},{id:'a2',label:'α₂',min:0.1,max:10,step:0.1,def:3}],
+     detail:`<p>The Dirichlet distribution generalises Beta to multiple categories. PDF: f(p₁,...,pₖ) ∝ ∏ᵢ pᵢ^{αᵢ−1} on the (k−1)-simplex. Normalising constant: Γ(Σαᵢ)/∏Γ(αᵢ). The interpretation of αᵢ as prior pseudo-counts makes it the natural conjugate prior for Multinomial models: if p ~ Dir(α) and X|p ~ Mult(n,p), then p|X ~ Dir(α + n_count) where n_count are the observed category counts.</p>
+     <p>Latent Dirichlet Allocation (LDA, Blei et al. 2003): Each document is a mixture of topics (Dirichlet distributed); each topic is a distribution over words (also Dirichlet). LDA is a hierarchical Bayesian model that discovers latent topic structure in text corpora. With κ=50 topics and V=50,000 vocabulary terms, fitting LDA means sampling from a 50×50,000 dimensional posterior — requiring collapsed Gibbs sampling or variational EM. LDA revolutionised text mining.</p>
+     <p>Dirichlet process: the infinite-dimensional generalisation. A Dirichlet process DP(α, G₀) is a distribution over distributions: draws from DP produce discrete distributions (with probability 1) on the sample space. The DP is the infinite limit of Dirichlet distributions as K→∞. It underpins nonparametric Bayesian clustering (Dirichlet process mixture models), allowing the number of clusters to grow with data.</p>`
+    }
+    ,{name:'Multivariate Normal',slug:'mvnormal',notation:'N(μ, Σ)',params:'μ ∈ ℝᵖ: mean vector; Σ ∈ ℝᵖˣᵖ: covariance (pos. def.)',
+     mean:'μ (component-wise)',variance:'Σᵢᵢ per component',skew:'0 (symmetric)',exkurt:'0 (kurtosis = 3, excess = 0)',
+     mgf:'exp(μᵀt + tᵀΣt/2)',
+     note:'The p-dimensional extension of the Normal. Any linear combination of its components is univariate Normal. Characterised by the pair (μ, Σ). Fundamental to multivariate statistics: PCA, discriminant analysis, Kalman filtering, and Gaussian processes all build on this distribution.',
+     sliders:[{id:'rho',label:'ρ (corr)',min:-0.9,max:0.9,step:0.05,def:0.5}],
+     detail:`<p>The Multivariate Normal N(μ, Σ) has PDF f(x) = (2π)^{-p/2}|Σ|^{-1/2}·exp(−(x−μ)ᵀΣ⁻¹(x−μ)/2). The quadratic form (x−μ)ᵀΣ⁻¹(x−μ) is the squared Mahalanobis distance — a generalisation of the z-score that accounts for correlations. Contours of constant density are ellipsoids centred at μ with axes aligned to the eigenvectors of Σ.</p>
+     <p>Key properties: (1) Marginals: any subset of components is MVN. (2) Conditionals: X₁|X₂=x₂ is MVN with conditional mean and variance given by the Schur complement formula. (3) Linear transformations: AX + b ~ N(Aμ+b, AΣAᵀ) for any matrix A. (4) Independence ⟺ zero covariance: for multivariate normal, Cov(Xᵢ,Xⱼ) = 0 implies independence — unlike other distributions. (5) Characteristic function: φ_X(t) = exp(iμᵀt − tᵀΣt/2).</p>
+     <p>Wishart distribution: the multivariate analogue of the chi-squared. If X₁,...,Xₙ are i.i.d. N(0,Σ), then Sₙ = ΣᵢXᵢXᵢᵀ ~ Wishart(n, Σ). Wishart is the distribution of the sample covariance matrix (scaled), analogous to (n-1)S²/σ² ~ χ²(n-1). The Hotelling T² statistic (multivariate t-test) uses Wishart theory. Random Matrix Theory studies the eigenvalue distribution of large Wishart matrices — a major modern research area.</p>`
+    }
+
+  ]
+};
+
+/* ── BAYESIAN ────────────────────────────────────────────────── */
+
+function renderDistributions(){
+  ['discrete','continuous','special'].forEach(type=>{
+    const g=document.getElementById('dist-'+type); if(!g)return;
+    g.innerHTML=DISTRIBUTIONS[type].map((d,idx)=>buildDistCard(d,type,idx)).join('');
+  });
+  // Init all canvases for the visible panel
+  setTimeout(()=>initAllDistCanvases('discrete'),80);
+}
+
+
+function buildDistCard(d,type,idx){
+  const cid='dc-'+type+'-'+idx;
+  const sliderRows=d.sliders.map(s=>`
+    <div class="dist-slider-row">
+      <span class="dist-slider-lbl">${s.label}</span>
+      <input type="range" class="dist-slider" id="sl-${cid}-${s.id}"
+        min="${s.min}" max="${s.max}" step="${s.step}" value="${s.def}"
+        oninput="updateDistSlider('${cid}','${d.slug}',this,'lbl-${cid}-${s.id}')">
+      <span class="dist-slider-val" id="lbl-${cid}-${s.id}">${s.def}</span>
+    </div>`).join('');
+
+  return `<div class="dist-card">
+    <div class="dist-name">${d.name}</div>
+    <span class="dist-notation">${d.notation}</span>
+    <div class="dist-param">${d.params}</div>
+    <div class="dist-view-toggle">
+      <button class="dvt-btn active" id="dvt-pdf-${cid}" onclick="setDistView('${cid}','${d.slug}','pdf',this)">PDF/PMF</button>
+      <button class="dvt-btn" id="dvt-cdf-${cid}" onclick="setDistView('${cid}','${d.slug}','cdf',this)">CDF</button>
+    </div>
+    <div class="dist-graph-wrap">
+      <canvas class="dist-canvas" id="${cid}"></canvas>
+    </div>
+    <div class="dist-sliders">${sliderRows}</div>
+    <div class="dist-stats-grid">
+      <div class="dist-stat-box"><div class="dist-stat-lbl">Mean (μ)</div><div class="dist-stat-val" id="${cid}-mean">${d.mean}</div></div>
+      <div class="dist-stat-box"><div class="dist-stat-lbl">Variance (σ²)</div><div class="dist-stat-val" id="${cid}-var">${d.variance}</div></div>
+      <div class="dist-stat-box"><div class="dist-stat-lbl">Skewness (γ₁)</div><div class="dist-stat-val" id="${cid}-skew">${d.skew}</div></div>
+      <div class="dist-stat-box"><div class="dist-stat-lbl">Excess Kurtosis (γ₂)</div><div class="dist-stat-val" id="${cid}-kurt">${d.exkurt}</div></div>
+      <div class="dist-stat-box dist-mgf-box" style="grid-column:1/-1"><div class="dist-stat-lbl">Moment Generating Function M(t)</div><div class="dist-stat-val" id="${cid}-mgf">${d.mgf}</div></div>
+    </div>
+    <div class="dist-note">${d.note}</div>
+    ${d.detail?`
+    <div class="dist-detail-wrap">
+      <span class="dist-detail-lbl" onclick="toggleDistDetail('${cid}-det')">▸ Deep Dive</span>
+      <div class="dist-detail-body" id="${cid}-det">${d.detail}</div>
+    </div>`:''}
+  </div>`;
+}
+
+
+function toggleDistDetail(id){
+  const el=document.getElementById(id); if(!el)return;
+  el.classList.toggle('show');
+  const lbl=el.previousElementSibling;
+  if(lbl)lbl.textContent=el.classList.contains('show')?'▾ Show less':'▸ Deep Dive';
+}
+
+
+function switchDistTab(type,btn){
+  document.querySelectorAll('.dist-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.dist-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-'+type).classList.add('active');
+  setTimeout(()=>initAllDistCanvases(type),80);
+}
+
+
+function initAllDistCanvases(type){
+  if(!DISTRIBUTIONS[type])return;
+  DISTRIBUTIONS[type].forEach((d,idx)=>{
+    const cid='dc-'+type+'-'+idx;
+    const params={};
+    d.sliders.forEach(s=>{params[s.id]=parseFloat(document.getElementById('sl-'+cid+'-'+s.id)?.value??s.def);});
+    drawDistCanvas(cid,d.slug,params,type==='discrete'||['binomial','bernoulli','geometric','negbin','poisson','hypergeometric','multinomial'].includes(d.slug));
+  });
+}
+
+
+function updateDistSlider(cid,slug,inp,lblId){
+  document.getElementById(lblId).textContent=parseFloat(inp.value).toFixed(inp.step<0.1?2:inp.step<1?1:0);
+  // gather all slider values for this canvas
+  const params={};
+  document.querySelectorAll(`[id^="sl-${cid}-"]`).forEach(sl=>{
+    const key=sl.id.replace('sl-'+cid+'-','');
+    params[key]=parseFloat(sl.value);
+  });
+  const isDisc=['bernoulli','binomial','geometric','negbin','poisson','hypergeometric'].includes(slug);
+  drawDistCanvas(cid,slug,params,isDisc);
+}
+
+/* ── DISTRIBUTION CANVAS DRAWING ──────────────────────────── */
+
+function drawDistCanvas(cid,slug,params,isDiscrete){
+  const canvas=document.getElementById(cid); if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  // HiDPI support
+  const dpr=window.devicePixelRatio||1;
+  const cssW=canvas.offsetWidth||320, cssH=160;
+  if(canvas.width!==cssW*dpr||canvas.height!==cssH*dpr){
+    canvas.width=cssW*dpr; canvas.height=cssH*dpr;
+    canvas.style.width=cssW+'px'; canvas.style.height=cssH+'px';
+    ctx.scale(dpr,dpr);
+  }
+  const W=cssW,H=cssH;
+  const PAD={t:12,r:10,b:28,l:38};
+  const CW=W-PAD.l-PAD.r, CH=H-PAD.t-PAD.b;
+  ctx.clearRect(0,0,W,H);
+  const night=document.body.classList.contains('night');
+  const tc=night?'rgba(226,219,208,0.65)':'rgba(30,27,21,0.55)';
+  const gc=night?'rgba(255,255,255,0.05)':'rgba(0,0,0,0.05)';
+  const cc=night?'#d06050':'#8f3a2c';
+  const cc2=night?'rgba(208,96,80,0.18)':'rgba(143,58,44,0.12)';
+
+  // grid
+  for(let gi=0;gi<=4;gi++){
+    const yg=PAD.t+CH*(gi/4);
+    ctx.beginPath();ctx.moveTo(PAD.l,yg);ctx.lineTo(PAD.l+CW,yg);
+    ctx.strokeStyle=gc;ctx.lineWidth=1;ctx.stroke();
+  }
+
+  // axes
+  ctx.beginPath();
+  ctx.moveTo(PAD.l,PAD.t);ctx.lineTo(PAD.l,PAD.t+CH);
+  ctx.lineTo(PAD.l+CW,PAD.t+CH);
+  ctx.strokeStyle=tc;ctx.lineWidth=1.2;ctx.stroke();
+
+  if(isDiscrete){
+    drawPMF(ctx,cid,slug,params,PAD,CW,CH,cc,cc2,tc);
+  } else {
+    drawPDF(ctx,cid,slug,params,PAD,CW,CH,cc,cc2,tc);
+  }
+}
+
+
+function getDistRange(slug,params){
+  const p=params;
+  switch(slug){
+    case 'bernoulli': return {xMin:0,xMax:1,isDiscrete:true};
+    case 'binomial':  return {xMin:0,xMax:p.n,isDiscrete:true};
+    case 'geometric': return {xMin:1,xMax:Math.min(30,Math.ceil(10/p.p)+2),isDiscrete:true};
+    case 'negbin':    return {xMin:0,xMax:Math.min(60,Math.ceil(p.r/p.p*3)+5),isDiscrete:true};
+    case 'poisson':   return {xMin:0,xMax:Math.max(15,Math.ceil(p.lambda*3+4)),isDiscrete:true};
+    case 'hypergeometric': return {xMin:Math.max(0,p.np-(p.Np-p.Kp)),xMax:Math.min(p.np,p.Kp),isDiscrete:true};
+    case 'uniform':   return {xMin:p.a-0.5,xMax:p.b+0.5};
+    case 'normal':    return {xMin:p.mu-4*p.sigma,xMax:p.mu+4*p.sigma};
+    case 'exponential': return {xMin:0,xMax:6/p.lambda};
+    case 'gamma':     {const a=p.alpha||0.5,b=p.beta||1; return {xMin:0,xMax:Math.max((a+4*Math.sqrt(a))/b, 0.5/b+2/b)};}
+    case 'beta':      return {xMin:0.005,xMax:0.995};
+    case 'lognormal': return {xMin:0,xMax:Math.exp(p.mu+3.5*p.sigma)};
+    case 'cauchy':    return {xMin:p.x0-5*p.gamma,xMax:p.x0+5*p.gamma};
+    case 'chisq':     return {xMin:0,xMax:p.k+5*Math.sqrt(2*p.k)+2};
+    case 'studentt':  return {xMin:-5,xMax:5};
+    case 'fdist':     return {xMin:0,xMax:6};
+    case 'weibull':   return {xMin:0,xMax:p.lambda*(3+3/p.k)};
+    default:          return {xMin:-4,xMax:4};
+  }
+}
+
+
+function pdfVal(slug,x,p){
+  const lg=v=>Math.log(v),exp=Math.exp,abs=Math.abs,pi=Math.PI,sqrt=Math.sqrt;
+  const gamma_fn=n=>{ // Stirling / Lanczos approx
+    if(n<0.5)return pi/(Math.sin(pi*n)*gamma_fn(1-n));
+    n-=1;
+    const g=7;
+    const c=[0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];
+    let x2=c[0];
+    for(let i=1;i<g+2;i++)x2+=c[i]/(n+i);
+    const t=n+g+0.5;
+    return sqrt(2*pi)*Math.pow(t,n+0.5)*exp(-t)*x2;
+  };
+  const beta_fn=(a,b)=>gamma_fn(a)*gamma_fn(b)/gamma_fn(a+b);
+
+  try{
+  switch(slug){
+    case 'normal': return exp(-0.5*((x-p.mu)/p.sigma)**2)/(p.sigma*sqrt(2*pi));
+    case 'uniform': return (x>=p.a&&x<=p.b)?1/(p.b-p.a):0;
+    case 'exponential': return x>=0?p.lambda*exp(-p.lambda*x):0;
+    case 'gamma':{
+      if(x<=0)return 0;
+      const a=p.alpha,b=p.beta;
+      return Math.pow(b,a)*Math.pow(x,a-1)*exp(-b*x)/gamma_fn(a);
+    }
+    case 'beta':{
+      const a=p.alpha,b=p.beta_p||p.beta;
+      if(x<=0||x>=1)return 0;
+      return Math.pow(x,a-1)*Math.pow(1-x,b-1)/beta_fn(a,b);
+    }
+    case 'lognormal':{
+      if(x<=0)return 0;
+      return exp(-0.5*((lg(x)-p.mu)/p.sigma)**2)/(x*p.sigma*sqrt(2*pi));
+    }
+    case 'cauchy': return 1/(pi*p.gamma*(1+((x-p.x0)/p.gamma)**2));
+    case 'chisq':{
+      if(x<=0)return 0;
+      const k=p.k,k2=k/2;
+      return Math.pow(x,k2-1)*exp(-x/2)/(Math.pow(2,k2)*gamma_fn(k2));
+    }
+    case 'studentt':{
+      const v=p.nu;
+      const num=gamma_fn((v+1)/2);
+      const den=sqrt(v*pi)*gamma_fn(v/2);
+      return (num/den)*Math.pow(1+x*x/v,-(v+1)/2);
+    }
+    case 'fdist':{
+      if(x<=0)return 0;
+      const d1=p.d1,d2=p.d2;
+      const num=Math.pow(d1*x,d1)*Math.pow(d2,d2);
+      const den=Math.pow(d1*x+d2,d1+d2);
+      return sqrt(num/den)/(x*beta_fn(d1/2,d2/2));
+    }
+    case 'weibull':{
+      if(x<=0)return 0;
+      const k=p.k,lam=p.lambda;
+      return (k/lam)*Math.pow(x/lam,k-1)*exp(-Math.pow(x/lam,k));
+    }
+    default: return 0;
+  }}catch(e){return 0;}
+}
+
+
+function pmfVal(slug,k,p){
+  const C=(n,r)=>{
+    if(r<0||r>n)return 0;if(r===0||r===n)return 1;
+    r=Math.min(r,n-r); // use smaller r for efficiency
+    let logC=0;
+    for(let i=0;i<r;i++) logC+=Math.log(n-i)-Math.log(i+1);
+    const v=Math.exp(logC);return isFinite(v)?v:0;
+  };
+  const exp=Math.exp;
+  try{
+  switch(slug){
+    case 'bernoulli': return k===0?(1-p.p):k===1?p.p:0;
+    case 'binomial':{
+      const n=Math.round(p.n),pp=p.p;
+      if(k<0||k>n)return 0;
+      return C(n,k)*Math.pow(pp,k)*Math.pow(1-pp,n-k);
+    }
+    case 'geometric':{
+      if(k<1)return 0;
+      return p.p*Math.pow(1-p.p,k-1);
+    }
+    case 'negbin':{
+      const r=Math.round(p.r);
+      if(k<0)return 0;
+      return C(k+r-1,k)*Math.pow(p.p,r)*Math.pow(1-p.p,k);
+    }
+    case 'poisson':{
+      if(k<0)return 0;
+      let lv=-p.lambda;
+      for(let i=1;i<=k;i++)lv+=Math.log(p.lambda/i);
+      return exp(lv);
+    }
+    case 'hypergeometric':{
+      const N=Math.round(p.Np),K=Math.round(p.Kp),n=Math.round(p.np);
+      if(k<0||k>Math.min(n,K)||k<n-(N-K))return 0;
+      return C(K,k)*C(N-K,n-k)/C(N,n);
+    }
+    default: return 0;
+  }}catch(e){return 0;}
+}
+
+
+function drawPDF(ctx,cid,slug,params,PAD,CW,CH,cc,cc2,tc){
+  const r=getDistRange(slug,params);
+  const xMin=r.xMin,xMax=r.xMax;
+  const N=250;
+  const pts=[];
+  let maxY=0;
+  for(let i=0;i<=N;i++){
+    const x=xMin+(xMax-xMin)*i/N;
+    const y=pdfVal(slug,x,params);
+    if(isFinite(y)&&y>maxY)maxY=y;
+    pts.push({x,y:isFinite(y)?y:0});
+  }
+  if(maxY===0)return;
+  const yScale=CH/(maxY*1.12);
+
+  // fill
+  ctx.beginPath();
+  const xScale2=(xMax-xMin)||1;
+  ctx.moveTo(PAD.l,PAD.t+CH); // start at bottom-left
+  pts.forEach(pt=>{
+    const px=PAD.l+(pt.x-xMin)/xScale2*CW;
+    const py=PAD.t+CH-Math.min(pt.y*yScale,CH);
+    ctx.lineTo(px,py);
+  });
+  ctx.lineTo(PAD.l+CW,PAD.t+CH);ctx.closePath();
+  ctx.fillStyle=cc2;ctx.fill();
+
+  // curve
+  ctx.beginPath();
+  pts.forEach((pt,i)=>{
+    const px=PAD.l+(pt.x-xMin)/xScale2*CW;
+    const py=PAD.t+CH-Math.min(pt.y*yScale,CH);
+    i===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+  });
+  ctx.strokeStyle=cc;ctx.lineWidth=2;ctx.stroke();
+
+  // x-axis labels
+  drawAxisLabels(ctx,xMin,xMax,maxY,PAD,CW,CH,tc);
+}
+
+
+function drawPMF(ctx,cid,slug,params,PAD,CW,CH,cc,cc2,tc){
+  const r=getDistRange(slug,params);
+  const kMin=Math.round(r.xMin),kMax=Math.round(r.xMax);
+  const vals=[];
+  let maxY=0;
+  for(let k=kMin;k<=kMax;k++){
+    const y=pmfVal(slug,k,params);
+    vals.push({k,y:isFinite(y)?y:0});
+    if(y>maxY)maxY=y;
+  }
+  if(maxY===0||vals.length===0)return;
+  const yScale=CH/(maxY*1.12);
+  const n=vals.length;
+  const bw=Math.max(2,Math.min(CW/Math.max(n,1)-1,18));
+  const kSpan=kMax-kMin||1; // guard div-by-zero
+
+  vals.forEach(v=>{
+    const px=PAD.l+(v.k-kMin)/kSpan*CW;
+    const barH=v.y*yScale;
+    ctx.fillStyle=cc2;
+    ctx.fillRect(px-bw/2,PAD.t+CH-barH,bw,barH);
+    ctx.strokeStyle=cc;ctx.lineWidth=1.5;
+    ctx.strokeRect(px-bw/2,PAD.t+CH-barH,bw,barH);
+  });
+
+  drawAxisLabels(ctx,kMin,kMax,maxY,PAD,CW,CH,tc);
+}
+
+
+function drawAxisLabels(ctx,xMin,xMax,maxY,PAD,CW,CH,tc){
+  ctx.fillStyle=tc;ctx.font='9px "Source Code Pro",monospace';ctx.textAlign='center';
+  const nTicks=4;
+  for(let i=0;i<=nTicks;i++){
+    const v=xMin+(xMax-xMin)*i/nTicks;
+    const px=PAD.l+CW*i/nTicks;
+    ctx.fillText(v.toFixed(Math.abs(xMax-xMin)<5?1:0),px,PAD.t+CH+11);
+  }
+  ctx.textAlign='right';
+  ctx.fillText(maxY.toFixed(2),PAD.l-3,PAD.t+10);
+  ctx.fillText('0',PAD.l-3,PAD.t+CH+4);
+}
+
+/* ── BAYESIAN ────────────────────────────────────────────────── */
+
+const distViewMode={}; // cid -> 'pdf' | 'cdf'
+function setDistView(cid,slug,mode,btn){
+  distViewMode[cid]=mode;
+  document.querySelectorAll(`#dvt-pdf-${cid},#dvt-cdf-${cid}`).forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const params={};
+  document.querySelectorAll(`[id^="sl-${cid}-"]`).forEach(sl=>{params[sl.id.replace('sl-'+cid+'-','')]=parseFloat(sl.value);});
+  const isDisc=['bernoulli','binomial','geometric','negbin','poisson','hypergeometric'].includes(slug);
+  drawDistCanvas(cid,slug,params,isDisc);
+}
+
+/* CDF integration wrapper */
+
+function cdfVal(slug,x,params,isDiscrete){
+  if(isDiscrete){
+    const r=getDistRange(slug,params);
+    let sum=0;
+    for(let k=Math.round(r.xMin);k<=Math.round(x);k++) sum+=pmfVal(slug,k,params);
+    return Math.min(sum,1);
+  }
+  // Numerical integration for continuous
+  const r=getDistRange(slug,params);
+  const xMin=r.xMin;
+  if(x<=xMin)return 0;
+  const N=200, dx=(x-xMin)/N;
+  let sum=0;
+  for(let i=0;i<N;i++){
+    const xa=xMin+i*dx, xb=xMin+(i+1)*dx;
+    sum+=(pdfVal(slug,xa,params)+pdfVal(slug,xb,params))*dx/2; // trapezoid
+  }
+  return Math.min(Math.max(sum,0),1);
+}
+
+/* Override drawDistCanvas to respect mode */
+const _origDrawDist=drawDistCanvas;
+window.drawDistCanvas=function(cid,slug,params,isDiscrete){
+  const mode=distViewMode[cid]||'pdf';
+  if(mode==='cdf'){
+    drawCDFCanvas(cid,slug,params,isDiscrete);
+  } else {
+    _origDrawDist(cid,slug,params,isDiscrete);
+  }
+};
+
+
+function drawCDFCanvas(cid,slug,params,isDiscrete){
+  const canvas=document.getElementById(cid); if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const dpr=window.devicePixelRatio||1;
+  const cssW=canvas.offsetWidth||320,cssH=160;
+  if(canvas.width!==cssW*dpr||canvas.height!==cssH*dpr){
+    canvas.width=cssW*dpr;canvas.height=cssH*dpr;
+    canvas.style.width=cssW+'px';canvas.style.height=cssH+'px';
+    ctx.scale(dpr,dpr);
+  }
+  const W=cssW,H=cssH;
+  const PAD={t:12,r:10,b:28,l:38};
+  const CW=W-PAD.l-PAD.r,CH=H-PAD.t-PAD.b;
+  ctx.clearRect(0,0,W,H);
+  const night=document.body.classList.contains('night');
+  const tc=night?'rgba(226,219,208,0.65)':'rgba(30,27,21,0.55)';
+  const gc=night?'rgba(255,255,255,0.05)':'rgba(0,0,0,0.05)';
+  const cc=night?'#5aadd0':'#2a5f78';
+  const cc2=night?'rgba(90,173,208,0.15)':'rgba(42,95,120,0.1)';
+  // grid
+  for(let gi=0;gi<=4;gi++){const yg=PAD.t+CH*(gi/4);ctx.beginPath();ctx.moveTo(PAD.l,yg);ctx.lineTo(PAD.l+CW,yg);ctx.strokeStyle=gc;ctx.lineWidth=1;ctx.stroke();}
+  ctx.beginPath();ctx.moveTo(PAD.l,PAD.t);ctx.lineTo(PAD.l,PAD.t+CH);ctx.lineTo(PAD.l+CW,PAD.t+CH);ctx.strokeStyle=tc;ctx.lineWidth=1.2;ctx.stroke();
+  const r=getDistRange(slug,params);
+  const xMin=r.xMin,xMax=r.xMax,xSpan=(xMax-xMin)||1;
+  const N=isDiscrete?Math.min(Math.round(xMax-xMin)+1,80):200;
+  const pts=[];
+  for(let i=0;i<=N;i++){
+    const x=xMin+xSpan*i/N;
+    pts.push({x,y:cdfVal(slug,isDiscrete?Math.round(x):x,params,isDiscrete)});
+  }
+  // fill
+  ctx.beginPath();ctx.moveTo(PAD.l,PAD.t+CH);
+  pts.forEach(pt=>{ctx.lineTo(PAD.l+(pt.x-xMin)/xSpan*CW,PAD.t+CH-pt.y*CH);});
+  ctx.lineTo(PAD.l+CW,PAD.t+CH);ctx.closePath();ctx.fillStyle=cc2;ctx.fill();
+  // step/curve
+  ctx.beginPath();
+  pts.forEach((pt,i)=>{
+    const px=PAD.l+(pt.x-xMin)/xSpan*CW,py=PAD.t+CH-pt.y*CH;
+    i===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+  });
+  ctx.strokeStyle=cc;ctx.lineWidth=2;ctx.stroke();
+  drawAxisLabels(ctx,xMin,xMax,1,PAD,CW,CH,tc);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STATISTICS CALCULATOR
+   ═══════════════════════════════════════════════════════════ */
+const CALCS=[
+  {name:'Normal CDF  Φ(x)',
+   desc:'Probability that a standard Normal N(0,1) is ≤ x. Foundation of z-tests, confidence intervals, and most classical inference.',
+   fields:[{id:'cx',label:'x',def:'1.96'}],
+   fn:p=>{const x=+p.cx;if(!isFinite(x))return'Enter a number';return'Φ('+x+') = '+normalCDF(x).toFixed(6)+'  →  P(Z > '+x+') = '+(1-normalCDF(x)).toFixed(6);}},
+  {name:'Normal Quantile  z_α',
+   desc:'Find z such that P(Z ≤ z) = p. Use for constructing confidence intervals and critical values.',
+   fields:[{id:'cp',label:'p (0–1)',def:'0.975'}],
+   fn:p=>{const v=+p.cp;if(v<=0||v>=1)return'p must be in (0,1)';return'z = '+normalQuantile(v).toFixed(6)+'  (i.e. Φ(z) = '+v+')';}},
+  {name:'t Distribution CDF',
+   desc:'P(T ≤ t) where T ~ t(ν). Used for t-test p-values with small samples.',
+   fields:[{id:'ct',label:'t',def:'2.0'},{id:'cnu',label:'ν (df)',def:'10'}],
+   fn:p=>{const t=+p.ct,nu=+p.cnu;if(nu<1)return'ν must be ≥ 1';return'P(T ≤ '+t+' | ν='+nu+') = '+tCDF(t,nu).toFixed(6)+'  two-tail p = '+(2*(1-tCDF(Math.abs(t),nu))).toFixed(6);}},
+  {name:'Chi-Square CDF',
+   desc:'P(X ≤ x) where X ~ χ²(k). Used for chi-square test p-values.',
+   fields:[{id:'cchi',label:'x',def:'3.84'},{id:'ck',label:'k (df)',def:'1'}],
+   fn:p=>{const x=+p.cchi,k=+p.ck;if(x<0)return'x must be ≥ 0';if(k<1)return'k must be ≥ 1';return'P(χ² ≤ '+x+' | k='+k+') = '+chiSqCDF(x,k).toFixed(6)+'  p-value = '+(1-chiSqCDF(x,k)).toFixed(6);}},
+  {name:'Binomial Probability',
+   desc:'P(X = k) and P(X ≤ k) for X ~ Bin(n, p). Useful for exact binomial tests.',
+   fields:[{id:'cbn',label:'n',def:'20'},{id:'cbp',label:'p',def:'0.5'},{id:'cbk',label:'k',def:'12'}],
+   fn:p=>{
+     const n=Math.round(+p.cbn),pp=+p.cbp,k=Math.round(+p.cbk);
+     if(n<1)return'n must be ≥ 1';if(pp<0||pp>1)return'p must be in [0,1]';if(k<0||k>n)return'k must be in [0,n]';
+     const pmf=binomialPMF(n,pp,k),cdf=binomialCDF(n,pp,k);
+     return'P(X='+k+') = '+pmf.toFixed(6)+'  P(X≤'+k+') = '+cdf.toFixed(6)+'  P(X≥'+k+') = '+(1-cdf+pmf).toFixed(6);
+   }},
+  {name:'Poisson Probability',
+   desc:'P(X = k) and P(X ≤ k) for X ~ Poisson(λ). Useful for count data.',
+   fields:[{id:'clam',label:'λ',def:'3'},{id:'cpk',label:'k',def:'4'}],
+   fn:p=>{
+     const lam=+p.clam,k=Math.round(+p.cpk);
+     if(lam<=0)return'λ must be > 0';if(k<0)return'k must be ≥ 0';
+     const pmf=poissonPMF(lam,k),cdf=poissonCDF(lam,k);
+     return'P(X='+k+') = '+pmf.toFixed(6)+'  P(X≤'+k+') = '+cdf.toFixed(6);
+   }},
+  {name:'Confidence Interval (z)',
+   desc:'95% or custom CI for a proportion or mean with known σ. Classic Wald interval.',
+   fields:[{id:'cxbar',label:'x̄ or p̂',def:'0.62'},{id:'cse',label:'SE',def:'0.04'},{id:'cconf',label:'conf %',def:'95'}],
+   fn:p=>{
+     const xbar=+p.cxbar,se=+p.cse,conf=+p.cconf;
+     if(se<=0)return'SE must be > 0';if(conf<=0||conf>=100)return'conf must be in (0,100)';
+     const z=normalQuantile((1+(conf/100))/2);
+     return'z* = '+z.toFixed(4)+'  CI: ['+( xbar-z*se).toFixed(4)+', '+(xbar+z*se).toFixed(4)+']  width: '+(2*z*se).toFixed(4);
+   }},
+  {name:'Sample Size (Proportion)',
+   desc:'Minimum n for a given margin of error e at confidence level c with proportion p.',
+   fields:[{id:'cssconf',label:'conf %',def:'95'},{id:'csse',label:'margin e',def:'0.05'},{id:'cssp',label:'p estimate',def:'0.5'}],
+   fn:p=>{
+     const conf=+p.cssconf,e=+p.csse,pp=+p.cssp;
+     if(e<=0)return'e must be > 0';if(pp<0||pp>1)return'p must be in [0,1]';
+     const z=normalQuantile((1+(conf/100))/2);
+     const n=Math.ceil(z*z*pp*(1-pp)/(e*e));
+     return'n ≥ '+n+'  (z* = '+z.toFixed(4)+', p(1-p) = '+(pp*(1-pp)).toFixed(4)+')';
+   }}
+
+  ,{name:'Bayes Factor (H₀ vs H₁)',
+   desc:'Compare H₀: p = p₀ vs H₁: p ~ Beta(a,b) after k successes in n trials. Tests specific null vs diffuse prior.',
+   fields:[{id:'cbfn',label:'n (trials)',def:'20'},{id:'cbfk',label:'k (successes)',def:'14'},{id:'cbfp0',label:'p₀ (H₀)',def:'0.5'},{id:'cbfa',label:'a (prior)',def:'1'},{id:'cbfb',label:'b (prior)',def:'1'}],
+   fn:p=>{
+     const n=+p.cbfn,k=+p.cbfk,p0=+p.cbfp0,a=+p.cbfa,b=+p.cbfb;
+     if(n<1||k<0||k>n||p0<=0||p0>=1||a<=0||b<=0)return'Check input values';
+     const logBeta=(x,y)=>{let s=0;for(let i=0;i<500;i++)s+=Math.log((x+i)*(y+i)/((x+y+i)*(i+1)||1));return s;}
+     const lb=(x,y)=>lgamma(x)+lgamma(y)-lgamma(x+y);
+     function lgamma(z){const c=[76.18009172947146,-86.50532032941677,24.01409824083091,-1.231739572450155,0.1208650973866179e-2,-0.5395239384953e-5];let x=z,y=x,tmp=x+5.5,ser=1.000000000190015;for(let j=0;j<6;j++){y++;ser+=c[j]/y;}return Math.log(2.5066282746310005*ser/x)-(tmp-0.5*Math.log(tmp));}
+     const logML0=k*Math.log(p0)+(n-k)*Math.log(1-p0);
+     const logML1=lb(a+k,b+n-k)-lb(a,b);
+     const BF01=Math.exp(logML0-logML1);
+     const evidence=BF01>100?'Decisive for H₀':BF01>10?'Strong for H₀':BF01>3?'Moderate for H₀':BF01>1?'Weak for H₀':BF01>0.33?'Weak for H₁':BF01>0.1?'Moderate for H₁':'Strong for H₁';
+     return'BF₀₁ = '+BF01.toFixed(4)+'  (log = '+(logML0-logML1).toFixed(3)+')  →  '+evidence;
+   }},
+  {name:'KL Divergence (Normals)',
+   desc:'KL(P‖Q) between two Normal distributions — measures information gained when updating belief from P to Q.',
+   fields:[{id:'kmu1',label:'μ₁ (P)',def:'0'},{id:'ks1',label:'σ₁ (P)',def:'1'},{id:'kmu2',label:'μ₂ (Q)',def:'1'},{id:'ks2',label:'σ₂ (Q)',def:'2'}],
+   fn:p=>{const mu1=+p.kmu1,s1=+p.ks1,mu2=+p.kmu2,s2=+p.ks2;if(s1<=0||s2<=0)return'σ must be > 0';const kl=Math.log(s2/s1)+(s1**2+(mu1-mu2)**2)/(2*s2**2)-0.5;return'KL(P‖Q) = '+kl.toFixed(6)+' nats  =  '+(kl/Math.LN2).toFixed(6)+' bits  |  Symmetric KL = '+(kl+Math.log(s1/s2)+(s2**2+(mu1-mu2)**2)/(2*s1**2)-0.5).toFixed(6)+' nats';}},
+  {name:'Power of z-Test',
+   desc:'Achievable power for a two-sided one-sample z-test, given effect size d = δ/σ, n, and α.',
+   fields:[{id:'ptd',label:'d = δ/σ (effect)',def:'0.5'},{id:'ptn',label:'n',def:'30'},{id:'ptalph',label:'α',def:'0.05'}],
+   fn:p=>{const d=+p.ptd,n=+p.ptn,alpha=+p.ptalph;if(n<2||alpha<=0||alpha>=1)return'Check inputs';const ncp=d*Math.sqrt(n),za=normalQuantile(1-alpha/2),power=1-normalCDF(za-ncp)+normalCDF(-za-ncp);return'Power = '+power.toFixed(4)+'  ('+Math.round(power*100)+'%)  |  NCP = '+ncp.toFixed(3)+'  |  Required for 80% power: n ≥ '+Math.ceil((za+normalQuantile(0.8))**2/d**2);}},
+  {name:'Sample Size for z-Test',
+   desc:'Required n per group for a two-sided z-test to achieve target power at given effect size and α.',
+   fields:[{id:'sssd',label:'d = δ/σ (effect)',def:'0.5'},{id:'sssalph',label:'α',def:'0.05'},{id:'sssbet',label:'1 − power (β)',def:'0.20'}],
+   fn:p=>{const d=+p.sssd,alpha=+p.sssalph,beta=+p.sssbet;if(d===0||alpha<=0||alpha>=1||beta<=0||beta>=1)return'Check inputs';const za=normalQuantile(1-alpha/2),zb=normalQuantile(1-beta),n=Math.ceil((za+zb)**2/d**2);return'n = '+n+' per group  ('+2*n+' total for two-sample)  |  z_{α/2} = '+za.toFixed(3)+'  z_β = '+zb.toFixed(3);}},
+  {name:'Shannon Entropy',
+   desc:'H(X) = -Σ pᵢ log₂(pᵢ) for a discrete distribution. Enter comma-separated probabilities summing to 1.',
+   fields:[{id:'entp',label:'p₁, p₂, … (comma-separated)',def:'0.5,0.25,0.25'}],
+   fn:p=>{
+     const probs=p.entp.split(',').map(s=>+s.trim()).filter(v=>isFinite(v)&&v>0);
+     if(!probs.length)return'Enter comma-separated positive probabilities';
+     const s=probs.reduce((a,v)=>a+v,0);if(Math.abs(s-1)>0.02)return'Sum = '+s.toFixed(4)+' — probabilities must sum to 1';
+     const H=-probs.reduce((a,v)=>a+v*Math.log2(v),0);
+     const Hmax=Math.log2(probs.length);
+     return'H = '+H.toFixed(6)+' bits  =  '+(H/Math.LN2*Math.LOG2E).toFixed(6)+' nats  |  Max entropy = '+Hmax.toFixed(4)+' bits  |  Normalised = '+(H/Hmax).toFixed(4);
+   }},
+  {name:'Cramér-Rao Bound',
+   desc:'Lower bound on the variance of any unbiased estimator. Input Fisher information I(θ) to get Var(T̂) ≥ 1/I(θ).',
+   fields:[{id:'crfi',label:'Fisher information I(θ)',def:'10'},{id:'crn',label:'n (sample size)',def:'25'}],
+   fn:p=>{const I=+p.crfi,n=+p.crn;if(I<=0||n<1)return'I(θ) > 0 and n ≥ 1 required';const crb=1/(n*I);return'CR bound = 1/(n·I(θ)) = 1/('+n+'×'+I+') = '+crb.toFixed(8)+'  |  Std dev bound = '+Math.sqrt(crb).toFixed(6)+'  |  Efficiency = Var(T̂) / CR bound (= 1 for efficient estimator)';}}
+
+];
+
+/* Statistical calculation functions */
+
+function normalCDF(x){
+  const t=1/(1+0.2316419*Math.abs(x));
+  const d=0.3989422820*Math.exp(-x*x/2);
+  const p=d*t*(0.3193815+t*(-0.3565638+t*(1.7814779+t*(-1.8212560+t*1.3302744))));
+  return x>0?1-p:p;
+}
+
+function normalQuantile(p){
+  // Beasley-Springer-Moro algorithm
+  if(p<=0)return-Infinity;if(p>=1)return Infinity;
+  const a=[2.50662823884,-18.61500062529,41.39119773534,-25.44106049637];
+  const b=[-8.47351093090,23.08336743743,-21.06224101826,3.13082909833];
+  const c=[0.3374754822726147,0.9761690190917186,0.1607979714918209,0.0276438810333863,0.0038405729373609,0.0003951896511349,0.0000321767881768,0.0000002888167364,0.0000003960315187];
+  const r=p-0.5;
+  if(Math.abs(r)<0.42){
+    const t=r*r;
+    return r*(((a[3]*t+a[2])*t+a[1])*t+a[0])/((((b[3]*t+b[2])*t+b[1])*t+b[0])*t+1);
+  }
+  const s=Math.log(-Math.log(p<0.5?p:1-p));
+  const t=c[0]+s*(c[1]+s*(c[2]+s*(c[3]+s*(c[4]+s*(c[5]+s*(c[6]+s*(c[7]+s*c[8])))))));
+  return p<0.5?-t:t;
+}
+
+function gammaLn(n){
+  if(n<0.5)return Math.log(Math.PI/Math.sin(Math.PI*n))-gammaLn(1-n);
+  n-=1;
+  const g=7;
+  const c=[0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];
+  let x=c[0];
+  for(let i=1;i<g+2;i++)x+=c[i]/(n+i);
+  const t=n+g+0.5;
+  return 0.5*Math.log(2*Math.PI)+(n+0.5)*Math.log(t)-t+Math.log(x);
+}
+
+function regularisedGammaP(a,x){
+  // Series expansion for P(a,x) = γ(a,x)/Γ(a)
+  if(x<0)return 0;if(x===0)return 0;
+  if(x<a+1){
+    // series
+    let term=1/a,sum=term;
+    for(let n=1;n<200;n++){term*=x/(a+n);sum+=term;if(Math.abs(term)<1e-12)break;}
+    return Math.exp(-x+a*Math.log(x)-gammaLn(a))*sum;
+  } else {
+    // continued fraction (Lentz)
+    let f=1e-30,C=f,D=0,delta;
+    for(let n=0;n<=200;n++){
+      const an=n===0?1:(n%2===1?((n+1)/2-a)*x:n/2*x);
+      const bn=n===0?x+1-a:x+2*n+1-a;
+      D=bn+an*D;if(Math.abs(D)<1e-30)D=1e-30;D=1/D;
+      C=bn+an/C;if(Math.abs(C)<1e-30)C=1e-30;
+      delta=C*D;f*=delta;
+      if(Math.abs(delta-1)<1e-12)break;
+    }
+    return 1-Math.exp(-x+a*Math.log(x)-gammaLn(a))/f;
+  }
+}
+
+function chiSqCDF(x,k){return x<=0?0:regularisedGammaP(k/2,x/2);}
+
+function tCDF(t,nu){
+  const x=nu/(nu+t*t);
+  const ibeta=regularisedGammaP(nu/2, nu/2*t*t/(nu+t*t));
+  // Use regularised incomplete beta
+  const p=0.5*regularisedGammaP(0.5, t*t/(nu+t*t));
+  return t<0?p:1-p;
+}
+
+function binomialPMF(n,p,k){
+  if(k<0||k>n)return 0;
+  let logP=0;
+  for(let i=0;i<k;i++) logP+=Math.log(n-i)-Math.log(i+1);
+  logP+=k*Math.log(p)+(n-k)*Math.log(1-p);
+  return Math.exp(logP);
+}
+
+function binomialCDF(n,p,k){let s=0;for(let i=0;i<=k;i++)s+=binomialPMF(n,p,i);return Math.min(s,1);}
+
+function poissonPMF(lam,k){let lv=-lam;for(let i=1;i<=k;i++)lv+=Math.log(lam/i);return Math.exp(lv);}
+
+function poissonCDF(lam,k){let s=0;for(let i=0;i<=k;i++)s+=poissonPMF(lam,i);return Math.min(s,1);}
+
+
+(function(){
+  if(localStorage.getItem('stats-mode')==='night'){
+    document.body.classList.add('night');
+    const mi=document.getElementById('mode-icon'); if(mi)mi.textContent='☀';
+  }
+  
+  setTimeout(function(){
+    if(window.currentUser)return;
+    if(!window.sb)return;
+    window.sb.auth.getSession().then(function(r){
+      if(window.currentUser)return;
+      var u=r&&r.data&&r.data.session&&r.data.session.user;
+      if(!u)return;
+      if(window.renderAuthUI)window.renderAuthUI();
+    }).catch(function(){});
+  },400);
+  if('renderDistributions();' && document.readyState!=='loading') { renderDistributions(); }
+  else if('renderDistributions();') { document.addEventListener('DOMContentLoaded', function(){ renderDistributions(); }); }
+})();
+</script>
+<script>window._pageKey = 'stats';</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+
+</body>
+</html>

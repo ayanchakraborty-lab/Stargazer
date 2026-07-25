@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#faf7f2!important}html.pre-light{background:#faf7f2}</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]}));}else{renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});}"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Lato:ital,wght@0,400;0,700;1,400&family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<title>Community Comments & Discussion | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="Join the Stargazer mathematics community — share favourite problems, study tips, and discoveries. Sign in to add your voice to the conversation.">
+<meta name="keywords" content="mathematics community, math discussion forum, study tips, learn mathematics together, math learners community">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Mathematics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/maths/comments.html">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Community Comments & Discussion | Stargazer">
+<meta property="og:description" content="A place to talk mathematics — favourite problems, study tips, and the ideas that keep you up at night. Join the conversation →">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/maths/comments.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Community Comments & Discussion | Stargazer">
+<meta name="twitter:description" content="Share your favourite problems, study tips, and mathematical discoveries with fellow explorers. Sign in and say hello →">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Stargazer Mathematics Community & Comments",
+  "description": "A community space for mathematics learners to share favourite problems, study tips, and discoveries — part of the Stargazer mathematics section.",
+  "url": "https://stargazer-9m9.pages.dev/maths/comments.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Mathematics", "sameAs": "https://en.wikipedia.org/wiki/Mathematics" }
+}
+</script>
+<link rel="stylesheet" href="maths.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ AUTH TOP BAR ════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <a href="../login.html" id="loginBtn" class="atb-btn atb-signin">☽ Sign In</a>
+  <div id="userInfo" style="display:none;align-items:center;gap:0.4rem">
+    <span class="atb-username" id="userEmailDisplay">✦ Explorer</span>
+    <button class="atb-signout" onclick="doSignOut()">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ NAV ═══════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Mathematics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Comments</span>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══════════════════════════════════════ HAMBURGER MENU ════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home" onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item" data-page="books" onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item" data-page="puzzles" onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="precollege" onclick="location.href='precollege.html'">📐 Pre-College</button>
+  <button class="hm-item" data-page="olympiad" onclick="location.href='olympiad.html'">🏆 Olympiad</button>
+  <button class="hm-item" data-page="undergrad" onclick="location.href='undergrad.html'">🎓 Undergrad</button>
+  <button class="hm-item" data-page="graduate" onclick="location.href='graduate.html'">🔬 Graduate</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="research" onclick="location.href='research.html'">⚡ Research</button>
+  <button class="hm-item" data-page="openproblems" onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item" data-page="careers" onclick="location.href='careers.html'">💼 Careers</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="studyguide" onclick="location.href='studyguide.html'">📖 Study Guide</button>
+  <button class="hm-item" data-page="facts" onclick="location.href='facts.html'">✨ Math Facts</button>
+  <button class="hm-item" data-page="universities" onclick="location.href='universities.html'">🎓 India</button>
+  <button class="hm-item active" data-page="comments" onclick="location.href='comments.html'">💬 Comments</button>
+</div>
+
+<div class="page active" id="page-comments">
+  <section class="section" id="comments-section">
+    <div class="s-inner" style="max-width:740px">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:rgba(139,92,246,0.12);color:#c4b5fd;border:1px solid rgba(139,92,246,0.3)">Community</span>
+        <h1 class="s-title font-serif" style="color:#ede9fe">Community Comments</h1>
+        <p class="s-desc" style="color:#a78bfa">Share your thoughts, favourite problems, study tips, or mathematical discoveries. Sign in to leave a comment.</p>
+      </div>
+
+      <!-- Comment form — shown by shared.js when signed in (id="commentFormWrap") -->
+      <div id="commentFormWrap" style="display:none" class="comment-input-area">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;color:#c4b5fd;margin-bottom:0.6rem">
+          Leave a comment as <span id="userEmailDisplay2" style="color:#a5f3fc"></span>
+        </div>
+        <textarea id="commentText" class="comment-textarea" maxlength="500"
+          placeholder="Write your comment… (mathematical notation welcome!)"></textarea>
+        <div style="display:flex;gap:0.7rem;align-items:center;margin-top:0.4rem;flex-wrap:wrap;justify-content:space-between">
+          <span id="commentCharCount" style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:#6366f1">0 / 500</span>
+          <button class="comment-submit-btn" onclick="submitComment('maths')">💬 Post Comment</button>
+        </div>
+        <div id="commentError"></div>
+      </div>
+
+      <!-- Shown by shared.js when NOT signed in (id="commentLoginMsg") -->
+      <div id="commentLoginMsg" style="display:none;font-size:0.82rem;color:#7c3aed;margin-bottom:1.2rem;padding:0.75rem 1rem;background:rgba(124,58,237,0.07);border-radius:8px;border:1px solid rgba(124,58,237,0.2);align-items:center;gap:0.5rem">
+        <a href="../login.html" style="color:#a78bfa;font-weight:600">Sign in</a> to leave a comment.
+      </div>
+
+      <!-- Comments list — populated by shared.js loadComments() -->
+      <div id="commentLoading" style="display:none;text-align:center;color:#6366f1;font-family:'JetBrains Mono',monospace;font-size:0.72rem;padding:1.5rem">Loading…</div>
+      <div id="commentEmpty"  style="display:none;text-align:center;color:#6366f1;font-family:'JetBrains Mono',monospace;font-size:0.72rem;padding:1.5rem">No comments yet — be the first!</div>
+      <div id="commentList"></div>
+    </div>
+  </section>
+</div>
+
+
+<footer id="footer">
+  <div class="foot-eq">e<sup>iπ</sup> + 1 = 0</div>
+  <p class="foot-txt"><strong style="color:#6d28d9">"Mathematics is not about numbers, equations, computations, or algorithms. It is about understanding."</strong><br>— William Paul Thurston, Fields Medalist</p>
+  <div class="foot-links">
+    <button class="foot-link" onclick="location.href='../ABOUT.html'">📖 About Stargazer</button>
+    <a class="foot-link" onclick="location.href='comments.html'; return false;" href="#">💬 Community Comments</a>
+    <a class="foot-link" href="mailto:ayan.chakraborty6174@gmail.com">✉️ Contact Creator</a>
+    <a class="foot-link" href="https://stargazer-9m9.pages.dev" target="_blank" rel="noopener">🌐 Stargazer Home</a>
+  </div>
+</footer>
+
+<button id="theme-toggle" title="Toggle light / dark theme" aria-label="Toggle light / dark theme" onclick="toggleTheme()">☀️</button>
+<button id="btt" title="Back to top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+window._pageKey = 'maths';
+
+function isAdmin() {
+  return !!(window.currentUser && window.currentUser.email === ADMIN_EMAIL);
+}
+
+window._applyDarkMode = function(isDark) {
+  // isDark=true → dark mode (no light-mode class)
+  // isDark=false → light mode
+  applyTheme(!isDark);   // applyTheme(true) adds light-mode class
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+};
+
+
+window._afterRenderAuthUI = function(user) {
+  // Show/hide admin bars
+  document.querySelectorAll('.admin-bar').forEach(function(el) {
+    if (user && user.email === ADMIN_EMAIL) { el.classList.add('visible'); }
+    else                                    { el.classList.remove('visible'); }
+  });
+  // Mirror display name into comment form header
+  var ud2 = document.getElementById('userEmailDisplay2');
+  if (ud2 && user) {
+    ud2.textContent = user.user_metadata?.display_name
+                    || user.user_metadata?.full_name
+                    || user.email || 'you';
+  }
+  // Trigger admin data load on sign-in
+  if (user) { if (typeof loadAdminData === 'function') loadAdminData(); }
+};
+
+
+function applyTheme(light) {
+  if (light) { document.body.classList.add('light-mode'); }
+  else        { document.body.classList.remove('light-mode'); }
+  var btn = document.getElementById('theme-toggle');
+  if (btn) btn.textContent = light ? '🌙' : '☀️';
+  document.documentElement.classList.remove('pre-light');
+}
+
+
+function toggleTheme() {
+  var nowLight = !document.body.classList.contains('light-mode');
+  applyTheme(nowLight);
+  localStorage.setItem('stargazer_theme', nowLight ? 'light' : 'dark');
+  // Persist via shared.js (writes to Supabase profiles.dark_mode)
+  // isDark param: true = dark mode, false = light mode
+  if (window.sbSaveDarkMode) window.sbSaveDarkMode(!nowLight);
+}
+
+
+// Apply theme immediately on load from localStorage
+(function() {
+  var tm = localStorage.getItem('stargazer_theme');
+  applyTheme(tm === 'light');
+})();
+
+// shared.js calls this after loading dark_mode from profiles
+// (already declared in the auth block above as window._applyDarkMode)
+
+
+function reRevealActivePage() {
+  var p = document.querySelector('.page.active');
+  if (!p) return;
+  p.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
+    el.classList.add('visible');
+  });
+}
+
+
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Close modal on backdrop click
+
+function toggleHamburger() {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu) return;
+  var open = menu.classList.toggle('open');
+  btn.classList.toggle('open', open);
+}
+// Close on outside click
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu || !menu.classList.contains('open')) return;
+  if (!menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var menu = document.getElementById('hamburger-menu');
+    if (menu && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      document.getElementById('hamburger-btn').classList.remove('open');
+    }
+  }
+});
+
+window.addEventListener('scroll', function() {
+  var btt = document.getElementById('btt');
+  if (btt) btt.classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
+
+window._getProgressData = function() { return {}; };
+window._applyProgressData = function(d) {};
+
+document.querySelectorAll('.reveal').forEach(function(el, i) {
+  setTimeout(function() { el.classList.add('visible'); }, Math.min(i * 35, 900));
+});
+</script>
+
+<!-- ═══ SUPABASE + SHARED AUTH/COMMENTS BRIDGE ═══════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+</body>
+</html>

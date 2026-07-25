@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#faf7f2!important}html.pre-light{background:#faf7f2}</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]}));}else{renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});}"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Lato:ital,wght@0,400;0,700;1,400&family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<title>Undergraduate Mathematics: 16 Core Topics | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="16 core undergraduate topics — real analysis, abstract algebra, topology, PDEs, and more — with the best self-study books for each.">
+<meta name="keywords" content="undergraduate mathematics, real analysis, abstract algebra, topology, undergraduate math books, math major topics, self-study mathematics">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Mathematics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/maths/undergrad.html">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Undergraduate Mathematics: 16 Core Topics | Stargazer">
+<meta property="og:description" content="Where mathematics truly opens up — 16 undergraduate topics from real analysis to topology, paired with the best books to learn them. Dive in →">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/maths/undergrad.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Undergraduate Mathematics: 16 Core Topics | Stargazer">
+<meta name="twitter:description" content="Real analysis, abstract algebra, topology, and more — 16 undergraduate topics with the best self-study books for each. Go deeper →">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Undergraduate Mathematics: The Bachelor's Landscape",
+  "description": "16 core undergraduate mathematics topics — from real analysis and abstract algebra to topology and differential equations — each paired with the best self-study books.",
+  "url": "https://stargazer-9m9.pages.dev/maths/undergrad.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Mathematics", "sameAs": "https://en.wikipedia.org/wiki/Mathematics" }
+}
+</script>
+<link rel="stylesheet" href="maths.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ AUTH TOP BAR ════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <a href="../login.html" id="loginBtn" class="atb-btn atb-signin">☽ Sign In</a>
+  <div id="userInfo" style="display:none;align-items:center;gap:0.4rem">
+    <span class="atb-username" id="userEmailDisplay">✦ Explorer</span>
+    <button class="atb-signout" onclick="doSignOut()">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ ADMIN MODAL ══════ -->
+<div id="adminModal">
+  <div class="admin-modal-box">
+    <div class="admin-modal-title" id="adminModalTitle">Admin Panel</div>
+    <div id="adminModalBody"></div>
+    <div class="admin-modal-actions">
+      <button class="admin-cancel-btn" onclick="closeAdminModal()">Cancel</button>
+      <button class="admin-save-btn" id="adminModalSaveBtn" onclick="adminModalSave()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ NAV ═══════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Mathematics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Undergrad</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)">🔍 Search</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══════════════════════════════════════ HAMBURGER MENU ════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home" onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item" data-page="books" onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item" data-page="puzzles" onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="precollege" onclick="location.href='precollege.html'">📐 Pre-College</button>
+  <button class="hm-item" data-page="olympiad" onclick="location.href='olympiad.html'">🏆 Olympiad</button>
+  <button class="hm-item active" data-page="undergrad" onclick="location.href='undergrad.html'">🎓 Undergrad</button>
+  <button class="hm-item" data-page="graduate" onclick="location.href='graduate.html'">🔬 Graduate</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="research" onclick="location.href='research.html'">⚡ Research</button>
+  <button class="hm-item" data-page="openproblems" onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item" data-page="careers" onclick="location.href='careers.html'">💼 Careers</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="studyguide" onclick="location.href='studyguide.html'">📖 Study Guide</button>
+  <button class="hm-item" data-page="facts" onclick="location.href='facts.html'">✨ Math Facts</button>
+  <button class="hm-item" data-page="universities" onclick="location.href='universities.html'">🎓 India</button>
+  <button class="hm-item" data-page="comments" onclick="location.href='comments.html'">💬 Comments</button>
+</div>
+
+<!-- ═══════════════════════════════════════ SEARCH MODAL ════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search this page…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<div id="shortcut-hint">/ search</div>
+
+<div class="page active" id="page-undergrad" style="background:#00050e">
+  <section class="section" id="undergrad">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:rgba(99,102,241,0.08);color:#a5b4fc;border:1px solid rgba(99,102,241,0.22)">Undergraduate Mathematics</span>
+        <h1 class="s-title font-serif" style="color:#e0e7ff">The Bachelor's Landscape</h1>
+        <p class="s-desc" style="color:#6366f1">Where mathematics truly opens up — rigorous analysis, abstract algebra, topology, complex analysis. Only the finest self-study books, each tested and beloved by generations of students.</p>
+      </div>
+      <div class="g3" id="undergrad-grid"></div>
+    </div>
+  </section>
+</div>
+
+
+<footer id="footer">
+  <div class="foot-eq">e<sup>iπ</sup> + 1 = 0</div>
+  <p class="foot-txt"><strong style="color:#6d28d9">"Mathematics is not about numbers, equations, computations, or algorithms. It is about understanding."</strong><br>— William Paul Thurston, Fields Medalist</p>
+  <div class="foot-links">
+    <button class="foot-link" onclick="location.href='../ABOUT.html'">📖 About Stargazer</button>
+    <a class="foot-link" onclick="location.href='comments.html'; return false;" href="#">💬 Community Comments</a>
+    <a class="foot-link" href="mailto:ayan.chakraborty6174@gmail.com">✉️ Contact Creator</a>
+    <a class="foot-link" href="https://stargazer-9m9.pages.dev" target="_blank" rel="noopener">🌐 Stargazer Home</a>
+  </div>
+</footer>
+
+<button id="theme-toggle" title="Toggle light / dark theme" aria-label="Toggle light / dark theme" onclick="toggleTheme()">☀️</button>
+<button id="btt" title="Back to top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+window._pageKey = 'maths';
+
+function isAdmin() {
+  return !!(window.currentUser && window.currentUser.email === ADMIN_EMAIL);
+}
+
+window._applyDarkMode = function(isDark) {
+  // isDark=true → dark mode (no light-mode class)
+  // isDark=false → light mode
+  applyTheme(!isDark);   // applyTheme(true) adds light-mode class
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+};
+
+
+window._afterRenderAuthUI = function(user) {
+  // Show/hide admin bars
+  document.querySelectorAll('.admin-bar').forEach(function(el) {
+    if (user && user.email === ADMIN_EMAIL) { el.classList.add('visible'); }
+    else                                    { el.classList.remove('visible'); }
+  });
+  // Mirror display name into comment form header
+  var ud2 = document.getElementById('userEmailDisplay2');
+  if (ud2 && user) {
+    ud2.textContent = user.user_metadata?.display_name
+                    || user.user_metadata?.full_name
+                    || user.email || 'you';
+  }
+  // Trigger admin data load on sign-in
+  if (user) { if (typeof loadAdminData === 'function') loadAdminData(); }
+};
+
+
+function applyTheme(light) {
+  if (light) { document.body.classList.add('light-mode'); }
+  else        { document.body.classList.remove('light-mode'); }
+  var btn = document.getElementById('theme-toggle');
+  if (btn) btn.textContent = light ? '🌙' : '☀️';
+  document.documentElement.classList.remove('pre-light');
+}
+
+
+function toggleTheme() {
+  var nowLight = !document.body.classList.contains('light-mode');
+  applyTheme(nowLight);
+  localStorage.setItem('stargazer_theme', nowLight ? 'light' : 'dark');
+  // Persist via shared.js (writes to Supabase profiles.dark_mode)
+  // isDark param: true = dark mode, false = light mode
+  if (window.sbSaveDarkMode) window.sbSaveDarkMode(!nowLight);
+}
+
+
+// Apply theme immediately on load from localStorage
+(function() {
+  var tm = localStorage.getItem('stargazer_theme');
+  applyTheme(tm === 'light');
+})();
+
+// shared.js calls this after loading dark_mode from profiles
+// (already declared in the auth block above as window._applyDarkMode)
+
+
+function reRevealActivePage() {
+  var p = document.querySelector('.page.active');
+  if (!p) return;
+  p.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
+    el.classList.add('visible');
+  });
+}
+
+
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Close modal on backdrop click
+
+function toggleHamburger() {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu) return;
+  var open = menu.classList.toggle('open');
+  btn.classList.toggle('open', open);
+}
+// Close on outside click
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu || !menu.classList.contains('open')) return;
+  if (!menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var menu = document.getElementById('hamburger-menu');
+    if (menu && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      document.getElementById('hamburger-btn').classList.remove('open');
+    }
+  }
+});
+
+window.addEventListener('scroll', function() {
+  var btt = document.getElementById('btt');
+  if (btt) btt.classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
+
+window._getProgressData = function() { return {}; };
+window._applyProgressData = function(d) {};
+
+let _adminModalSaveFn = null;
+
+function openAdminModal(title, bodyHTML, saveFn) {
+  document.getElementById('adminModalTitle').textContent = title;
+  document.getElementById('adminModalBody').innerHTML = bodyHTML;
+  _adminModalSaveFn = saveFn;
+  document.getElementById('adminModal').classList.add('open');
+}
+
+function closeAdminModal() {
+  document.getElementById('adminModal').classList.remove('open');
+  _adminModalSaveFn = null;
+}
+
+async function adminModalSave() {
+  if (_adminModalSaveFn) {
+    const btn = document.getElementById('adminModalSaveBtn');
+    btn.textContent = 'Saving…';
+    btn.disabled = true;
+    try {
+      await _adminModalSaveFn();
+      closeAdminModal();
+    } catch(e) {
+      alert('Save failed: ' + (e.message || e));
+    }
+    btn.textContent = 'Save';
+    btn.disabled = false;
+  }
+}
+
+document.getElementById('adminModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAdminModal();
+});
+
+var PAGE_SEARCH_INDEX = [];
+function openSearch() {
+  buildSearchIndex();
+  var m = document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(function() { document.getElementById('search-input').focus(); }, 80);
+}
+function closeSearch() {
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-results').innerHTML = '<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q) {
+  var res = document.getElementById('search-results');
+  if (!q.trim()) { res.innerHTML = '<div class="sr-empty">Start typing…</div>'; return; }
+  var lq = q.toLowerCase();
+  var hits = PAGE_SEARCH_INDEX.filter(function(x) { return x.q.indexOf(lq) !== -1; }).slice(0, 20);
+  if (!hits.length) { res.innerHTML = '<div class="sr-empty">No results for "' + q + '"</div>'; return; }
+  res.innerHTML = hits.map(function(h) {
+    var idx = PAGE_SEARCH_INDEX.indexOf(h);
+    var ti = mathHighlight(h.title, lq);
+    return '<div class="sr-item" tabindex="0" data-idx="' + idx + '" onclick="goPageResult(' + idx + ')" onkeydown="if(event.key===\'Enter\')goPageResult(' + idx + ')">' +
+      '<span class="sr-icon">' + h.icon + '</span>' +
+      '<div><div class="sr-title">' + ti + '</div><div class="sr-meta">' + h.meta + '</div></div>' +
+      '<span class="sr-section">' + h.section + '</span></div>';
+  }).join('');
+}
+function mathHighlight(text, q) {
+  if (!q) return text;
+  var idx = text.toLowerCase().indexOf(q);
+  if (idx < 0) return text;
+  return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
+}
+function goPageResult(idx) {
+  var h = PAGE_SEARCH_INDEX[idx]; if (!h) return;
+  closeSearch();
+  if (h.pre) h.pre();
+  setTimeout(function(){
+    var el = document.getElementById(h.elId);
+    if (el) {
+      el.scrollIntoView({behavior:'smooth', block:'center'});
+      el.style.outline = '3px solid #a855f7'; el.style.outlineOffset = '4px';
+      setTimeout(function(){ el.style.outline=''; el.style.outlineOffset=''; }, 1600);
+    }
+  }, 60);
+}
+function searchKeyNav(e) {
+  if (e.key === 'Escape') { closeSearch(); return; }
+  var items = document.querySelectorAll('.sr-item');
+  var cur = document.activeElement;
+  var curIdx = Array.prototype.indexOf.call(items, cur);
+  if (e.key === 'ArrowDown') { e.preventDefault(); (items[curIdx + 1] || items[0]).focus(); }
+  if (e.key === 'ArrowUp')   { e.preventDefault(); (items[curIdx - 1] || items[items.length - 1]).focus(); }
+  if (e.key === 'Enter' && curIdx >= 0) { items[curIdx].click(); }
+}
+document.addEventListener('keydown', function(e) {
+  if (['INPUT','TEXTAREA','SELECT'].indexOf(e.target.tagName) !== -1) return;
+  var modal = document.getElementById('search-modal');
+  if (modal && modal.classList.contains('open')) {
+    if (e.key === 'Escape') closeSearch();
+    return;
+  }
+  if (e.key === '/') { e.preventDefault(); openSearch(); }
+});
+
+const undergradData=[
+{t:"Single Variable Calculus",tag:"Analysis",desc:"Limits with ε-δ rigour, derivatives, integrals, series — the core language of analysis and the starting point of rigorous mathematics.",books:[{n:"Calculus",au:"Michael Spivak"},{n:"Calculus, Vol. I",au:"Tom Apostol"},{n:"Analysis I",au:"Terence Tao"}],
+detail:"<p>🎯 Think of calculus as the mathematics of change and motion. When your car accelerates, the speedometer reading is a derivative. When you calculate the total distance from a speed-time graph, you're doing integration. Newton invented calculus to describe orbits and gravity. At the university level, you discover that ALL of this rests on one idea: the limit — and you build everything from scratch with iron-clad logic. Calculus is the mathematics of continuous change, and at the undergraduate level you learn it not as a set of rules but as a <em>rigorous logical system</em> built from scratch. Spivak's Calculus opens with 13 axioms for the real numbers — the field axioms plus the completeness axiom — and derives everything from them. The foundational definition is the limit: we say lim<sub>x→a</sub> f(x) = L if for every ε > 0 there exists δ > 0 such that 0 &lt; |x−a| &lt; δ implies |f(x)−L| &lt; ε. This captures an infinite process in a finite, checkable condition — and mastering it changes how your mind works forever.</p><p>From limits come derivatives: f'(x) = lim<sub>h→0</sub> (f(x+h)−f(x))/h. The surprise is that many natural rules (product rule, chain rule) require careful proofs rather than faith. Then comes the Fundamental Theorem of Calculus — that differentiation and integration are inverse operations — which is genuinely surprising when you first understand what integration really is: the infimum of upper Riemann sums over all partitions. The FTC says:<div class='math-block'>∫<sub>a</sub><sup>b</sup> f′(x)&thinsp;dx = f(b) − f(a)</div>connecting the local (derivative) to the global (integral) in one breathtaking equation.</p><p>Power series — Taylor and Maclaurin series — show that smooth functions are locally 'infinite polynomials.' The series<div class='math-block'>e<sup>x</sup> = 1 + x + <span class='frac'><sup>x²</sup><span></span><sub>2!</sub></span> + <span class='frac'><sup>x³</sup><span></span><sub>3!</sub></span> + …</div>converges everywhere; <div class='math-block'>sin x = x − <span class='frac'><sup>x³</sup><span></span><sub>3!</sub></span> + <span class='frac'><sup>x⁵</sup><span></span><sub>5!</sub></span> − …</div> likewise. Substituting x=iπ gives Euler's identity directly. By the end, you see how 17th-century intuitions about infinitesimals were secretly pointing at a precise ε-δ world that took 200 years to make rigorous.</p>"},
+
+{t:"Multivariable Calculus",tag:"Analysis",desc:"Calculus in higher dimensions: gradients, Jacobians, multiple integrals, vector fields, Green's, Stokes' and Divergence theorems.",books:[{n:"Calculus, Vol. II",au:"Tom Apostol"},{n:"Vector Calculus",au:"Marsden & Tromba"},{n:"Advanced Calculus",au:"James Callahan"}],
+detail:"<p>🎯 In school calculus, you had functions of one variable: y = f(x). But the real world has multiple variables: temperature depends on x, y, z AND time. Multivariable calculus extends derivatives and integrals to these higher-dimensional settings. The core results — Stokes' theorem, the Divergence theorem — unify many ideas from physics (fluid flow, electromagnetism) into single beautiful mathematical statements. Moving from one variable to many changes everything non-trivially. A function f: ℝⁿ → ℝᵐ can be approximated near a point by a linear map — its derivative is no longer a number but a matrix, the <em>Jacobian matrix</em> Df = [∂fᵢ/∂xⱼ]. The chain rule becomes: D(g∘f)(x) = Dg(f(x)) · Df(x) — matrix multiplication. This is not just notation; it encodes the essence of how compositions transform in multiple dimensions.</p><p>The major theorems — Green's theorem, Stokes' theorem, and the Divergence theorem — are all special cases of one grand theorem. Stokes' theorem in full generality: ∫<sub>M</sub> dω = ∫<sub>∂M</sub> ω, where ω is a differential form, dω is its exterior derivative, M is an oriented manifold with boundary ∂M. Green's theorem is Stokes' for 2D; the classical Stokes' theorem is for surfaces in ℝ³; the Divergence theorem is for volumes. Learning this unified view via differential forms (∂/∂x dx ∧ dy, the wedge product) reveals that these three 'different' theorems are literally the same formula in different dimensions.</p><p>The implicit function theorem and inverse function theorem are highlights: the IFT says if F(x₀,y₀)=0 and ∂F/∂y(x₀,y₀) ≠ 0, then near x₀ there is a smooth function y=g(x) with F(x,g(x))=0. This simple-sounding result is the rigorous foundation of all of classical mechanics, thermodynamics, and constrained optimization — Lagrange multipliers included.</p>"},
+
+{t:"Linear Algebra",tag:"Algebra",desc:"The mathematics of vector spaces and linear transformations — eigenvalues, determinants, inner products. The universal language of applied mathematics.",books:[{n:"Linear Algebra Done Right",au:"Sheldon Axler"},{n:"Introduction to Linear Algebra",au:"Gilbert Strang"},{n:"Linear Algebra",au:"Hoffman & Kunze"}],
+detail:"<p>🎯 Linear algebra is the mathematics of straight lines, flat planes, and their higher-dimensional generalisations. It answers questions like: given 100 equations in 100 unknowns, does a solution exist? Is it unique? How do you find it efficiently? Google's PageRank, Netflix recommendations, GPS navigation, quantum mechanics, and machine learning ALL reduce to linear algebra under the hood. It is the most widely applied area of mathematics. Linear algebra is the study of linearity: functions f where f(u+v) = f(u)+f(v) and f(λu) = λf(u). Axler's approach begins by defining a vector space V over a field F axiomatically, then defining linear maps T: V→W. The central insight is that a linear map is completely determined by its values on a basis — which has exactly dim(V) elements. The Rank-Nullity Theorem: dim(range T) + dim(null T) = dim(V). Simple to state; incredibly powerful.</p><p>Eigenvalues and eigenvectors are the jewel of the subject. An eigenvector v of T is a direction that T merely scales: Tv = λv. The characteristic polynomial det(T−λI) = 0 encodes all eigenvalues. The spectral theorem — for a real symmetric matrix, there's an orthonormal basis of eigenvectors — is both beautiful and practically essential (it's what makes Google's PageRank, PCA in data science, and quantum mechanics possible). The Jordan normal form says every linear operator over ℂ is, in a suitable basis, a block-diagonal matrix with eigenvalues on the diagonal and possibly 1's above — the most the 'non-diagonalizable' case can look like.</p><p>Inner product spaces add a notion of length and angle: ⟨u,v⟩ with ⟨u,u⟩ ≥ 0. The Cauchy-Schwarz inequality |⟨u,v⟩| ≤ ‖u‖‖v‖ is perhaps the most widely used inequality in all of mathematics, appearing in analysis, probability, physics, and everywhere else. The SVD (singular value decomposition) A = UΣVᵀ expresses any matrix as a composition of rotation, scaling, and rotation — revealing the true geometry of linear transformations.</p>"},
+
+{t:"Abstract Algebra",tag:"Algebra",desc:"Groups, rings, fields, modules — the structural bedrock of modern algebra. Where symmetry becomes rigorous mathematics.",books:[{n:"Abstract Algebra",au:"Dummit & Foote"},{n:"Topics in Algebra",au:"Israel Herstein"},{n:"Algebra",au:"Michael Artin"}],
+detail:"<p>🎯 Abstract algebra asks: what are the minimum rules needed for arithmetic to work? By stripping away all context and keeping only the essential axioms, you discover that addition on integers, rotation of shapes, and shuffling playing cards all obey the SAME algebraic rules — they're all examples of 'groups.' This abstraction reveals hidden connections between geometry, number theory, and physics. The crown jewel is Galois theory: using groups to prove that there is NO formula (like the quadratic formula) for solving degree-5 polynomial equations. Abstract algebra begins with a dazzlingly simple question: what axioms are truly essential for arithmetic? A <em>group</em> (G, ·) needs only associativity, an identity, and inverses. From these three axioms flows an enormous theory. Lagrange's theorem: if H is a subgroup of a finite group G, then |H| divides |G|. Cauchy's theorem: if prime p divides |G|, there's an element of order p. Sylow's theorems describe the prime-power subgroups of any finite group — the first step in classifying groups entirely.</p><p>The classification of finite simple groups — completed in 2004 after 50 years and ~10,000 pages by hundreds of mathematicians — is the deepest theorem in algebra. Every finite simple group is either cyclic (ℤ/pℤ), alternating (Aₙ for n≥5), a group of Lie type, or one of 26 sporadic exceptions. The largest sporadic group is the Monster — with 8×10⁵³ elements — and its deep connections to string theory remain mysterious. This is abstract algebra at full power.</p><p>Galois theory is the pinnacle of the undergraduate curriculum: it proves that polynomial equations of degree ≥ 5 have no formula in radicals — using group theory. For a polynomial f(x) with coefficients in ℚ, define its splitting field K/ℚ. The Galois group Gal(K/ℚ) = {field automorphisms of K fixing ℚ} controls the polynomial entirely. The key theorem: f is solvable by radicals iff Gal(K/ℚ) is a solvable group. Since S₅ is not solvable (no formula for degree 5), the quintic has no radical formula. It's one of the great intellectual achievements in human history.</p>"},
+
+{t:"Real Analysis",tag:"Analysis",desc:"The rigorous backbone of calculus: metric spaces, completeness, uniform convergence, measure theory preview. The transition to real mathematics.",books:[{n:"Principles of Mathematical Analysis",au:"Walter Rudin ('Baby Rudin')"},{n:"Understanding Analysis",au:"Stephen Abbott"},{n:"Analysis I & II",au:"Terence Tao"}],
+detail:"<p>🎯 You learned calculus in school and it worked — but why? Why can you swap the order of a limit and an integral sometimes but not others? Why does a Taylor series converge for some functions but not others? Real analysis answers all these questions rigorously, building calculus from scratch on a foundation of pure logic. The key concept is the 'ε-δ definition of a limit' — a precise way to capture the intuitive idea of 'getting infinitely close.' It's the most intellectually demanding first course at university, and the one that turns you into a genuine mathematician. Real analysis is where calculus grows up. The real numbers ℝ are characterized axiomatically by one crucial property beyond the field axioms: <em>completeness</em> — every Cauchy sequence converges. This single axiom separates ℝ from ℚ and makes calculus possible. Rudin opens with a beautiful construction of ℝ via Dedekind cuts and immediately proves the Archimedean property and existence of square roots — consequences of completeness alone.</p><p>The subtlety of analysis lives in the difference between pointwise and uniform convergence. If fₙ → f pointwise, you cannot necessarily interchange limit and integral: ∫ lim fₙ ≠ lim ∫ fₙ in general. But if fₙ → f uniformly (sup_x |fₙ(x)−f(x)| → 0), you can. This distinction — which looks pedantic — is what separates proofs that work from proofs that seem to work. Weierstrass's approximation theorem shows every continuous function on [a,b] is a uniform limit of polynomials — a startling density result.</p><p>Metric spaces (X,d) generalise ℝ: a distance function d: X×X → ℝ with d(x,y)=0 iff x=y, symmetry, and the triangle inequality. Open sets, closed sets, compactness, connectedness all generalise from ℝ to metric spaces uniformly. The key theorem: a metric space is compact iff every sequence has a convergent subsequence (sequential compactness) iff it is complete and totally bounded. The Heine-Borel theorem is the ℝⁿ special case: compact iff closed and bounded. This framework sets up functional analysis, topology, and the rest of graduate mathematics.</p>"},
+
+{t:"Complex Analysis",tag:"Analysis",desc:"Functions of a complex variable — the most strikingly beautiful area of analysis, connecting geometry, number theory, and physics.",books:[{n:"Complex Analysis",au:"Stein & Shakarchi"},{n:"Functions of One Complex Variable",au:"John Conway"},{n:"Complex Analysis",au:"Lars Ahlfors"}],
+detail:"<p>🎯 What happens when you do calculus with complex numbers (numbers involving √−1)? Something incredible: functions become infinitely more constrained and regular. A complex-differentiable function is automatically infinitely smooth, expressible as a power series, and satisfies Laplace's equation. The most beautiful result is the Residue Theorem: to compute a real integral like ∫sin(x)/x dx from −∞ to ∞, you integrate around a loop in the complex plane and pick up 'residues' at singularities. Integrals that look impossible become trivial. Complex analysis is also the key tool for proving the Prime Number Theorem. Complex analysis is where mathematics becomes magical. A function f: ℂ → ℂ is complex-differentiable (holomorphic) at z₀ if lim<sub>h→0</sub> (f(z₀+h)−f(z₀))/h exists as a complex limit. This looks like the real derivative, but because h can approach from any direction in the complex plane, the Cauchy-Riemann equations must hold: if f=u+iv, then ∂u/∂x = ∂v/∂y and ∂u/∂y = −∂v/∂x. These equations say the real and imaginary parts are harmonically linked — they each satisfy Laplace's equation Δu=0.</p><p>The consequence is stunning: a holomorphic function is automatically infinitely differentiable, analytic (equals its own Taylor series), and conformal (angle-preserving). If f is holomorphic on a disk, then f(z) = Σ aₙ(z−z₀)ⁿ — a convergent power series. Real differentiable functions can fail to have a Taylor series; complex differentiable functions cannot. The famous Cauchy integral formula: f(z₀) = (1/2πi) ∮_γ f(z)/(z−z₀) dz — the value at any interior point is determined entirely by the boundary. This is the mathematical version of saying 'everything is determined by everything else.'</p><p>The crowning glory is the Residue Theorem: ∮_γ f(z)dz = 2πi Σ Res(f,zₖ) — the integral around a closed contour equals 2πi times the sum of residues at poles inside. This turns apparently impossible real integrals into algebra: ∫₋∞^∞ sin(x)/x dx = π, ∫₋∞^∞ e<sup>−x²</sup> dx = √π, and hundreds more computed instantly by contour integration. It also leads directly to the proof of the Prime Number Theorem via the zeros of ζ(s).</p>"},
+
+{t:"Ordinary Differential Equations",tag:"Differential Equations",desc:"Equations governing dynamics — the language of mechanics, ecology, and economics. Qualitative, quantitative, and geometric approaches.",books:[{n:"Ordinary Differential Equations",au:"Tenenbaum & Pollard"},{n:"Ordinary Differential Equations",au:"Vladimir Arnold"},{n:"Differential Equations",au:"Hirsch, Smale & Devaney"}],
+detail:"<p>🎯 Every time you've seen 'rate of change' in physics — F=ma (force = mass × acceleration), population growth, radioactive decay, electrical circuits — you were implicitly using differential equations. An ODE (Ordinary Differential Equation) is an equation involving a function and its derivatives. Solving it means finding the function itself. At university, you learn systematic methods (separation of variables, integrating factors, Laplace transforms) AND you learn something deeper: even when you can't find an explicit formula, you can understand the long-term behaviour of solutions geometrically. An ODE asks: given information about rates of change, reconstruct the function itself. The simplest: dy/dx = f(x), solved by integration. More interesting: dy/dx = f(y) (autonomous), or dy/dx = f(x,y). The existence-uniqueness theorem (Picard-Lindelöf): if f is Lipschitz continuous, the IVP dy/dx = f(x,y), y(x₀)=y₀ has a unique solution in some interval around x₀. This is proved by Picard iteration: yₙ₊₁(x) = y₀ + ∫ₓ₀ˣ f(t,yₙ(t))dt — an infinite fixed-point construction.</p><p>Linear systems ẋ = Ax (A an n×n matrix) are solved via the matrix exponential: x(t) = e<sup>At</sup>x₀ where e<sup>At</sup> = Σ (At)^k/k!. The behavior depends entirely on the eigenvalues of A: if all eigenvalues have negative real part, the origin is a stable equilibrium (all solutions decay). If any eigenvalue has positive real part, it's unstable. The phase portrait — drawing solution curves in the (x,ẋ) plane — reveals global behavior without solving explicitly.</p><p>Arnold's approach reveals ODEs as geometry: a first-order ODE defines a vector field on ℝⁿ, and solutions are integral curves. The Poincaré-Bendixson theorem says a bounded orbit in ℝ² must either converge to a fixed point or a limit cycle — no chaos in 2D! But in 3D, the Lorenz system (Edward Lorenz, 1963) exhibits the first mathematically proven 'strange attractor' — deterministic chaos where tiny initial differences lead to wildly different outcomes. This is the mathematics behind the butterfly effect.</p>"},
+
+{t:"Partial Differential Equations",tag:"Differential Equations",desc:"PDEs govern heat, waves, fluids, and quantum mechanics — the frontier where analysis meets physics.",books:[{n:"Partial Differential Equations",au:"Walter Strauss"},{n:"Introduction to PDEs",au:"Gerald Folland"},{n:"PDEs",au:"Lawrence Evans (graduate level)"}],
+detail:"<p>🎯 PDEs (Partial Differential Equations) govern virtually everything in physics. Heat diffusing through a metal rod, sound waves travelling through air, water waves on the ocean, quantum particles in a box — each is described by a PDE. At school, you may have seen simple examples like y''=−y (giving sine and cosine). PDEs involve functions of MULTIPLE variables and their partial derivatives. The three most important types — heat, wave, and Laplace equations — behave completely differently from each other, and understanding why is a deep insight into the nature of physics. The three canonical PDEs define three fundamentally different mathematical worlds. The <em>heat equation</em> uₜ = Δu (Δ = ∂²/∂x²+∂²/∂y²+∂²/∂z²) models diffusion: initial data instantly becomes infinitely smooth (maximum principle), information spreads at infinite speed. The <em>wave equation</em> uₜₜ = c²Δu models vibrations: solutions travel at speed c, information has finite speed, no smoothing occurs. The <em>Laplace equation</em> Δu = 0 models electrostatics and steady heat: solutions are real-analytic, satisfy the mean value property (u at any point equals the average over any sphere around it).</p><p>Fourier series are the primary tool. Every L² function f on [0,L] can be written f(x) = Σ cₙ sin(nπx/L) where cₙ = (2/L) ∫₀ᴸ f(x)sin(nπx/L)dx. Plugging this into the heat equation: each mode e<sup>−(nπ/L)²t</sup>sin(nπx/L) decays, with high frequencies decaying fastest — this is mathematically why heat smooths things out. The Fourier transform F(ξ) = ∫ f(x)e<sup>−2πiξx</sup>dx extends this to all of ℝ and converts differential equations to algebraic ones (∂/∂x becomes multiplication by 2πiξ).</p><p>Elliptic regularity is the deep theorem: weak solutions of elliptic equations (like Δu = f for nice f) are automatically smooth — much smoother than a priori expected. Sobolev spaces W<sup>k,p</sup> (functions whose weak derivatives up to order k lie in Lp) are the natural function spaces for PDEs. The Sobolev embedding theorem: W<sup>1,p</sup> ⊂ L<sup>p*</sup> for p* = np/(n-p) in ℝⁿ — differential regularity implies pointwise bounds.</p>"},
+
+{t:"Point-Set Topology",tag:"Topology",desc:"The study of abstract spaces and continuity — what remains when distance is forgotten. The language of modern analysis and geometry.",books:[{n:"Topology",au:"James Munkres"},{n:"Introduction to Topology",au:"Bert Mendelson"},{n:"Counterexamples in Topology",au:"Steen & Seebach"}],
+detail:"<p>🎯 Topology is the study of properties that survive stretching and bending — but NOT tearing or gluing. A coffee cup and a donut are topologically identical (both have exactly one hole). A sphere and a torus are different. Topology answers questions like: can you comb the hair on a sphere without creating a 'cowlick'? (No — the Hairy Ball Theorem.) Is the universe finite or infinite? Does it have holes? It's sometimes called 'rubber-sheet geometry' and it provides the language for much of modern mathematics and theoretical physics. Topology keeps only the essential structure of space: which sets are 'open.' A topological space (X,τ) has a collection τ of subsets (open sets) satisfying: X and ∅ are open; arbitrary unions of open sets are open; finite intersections of open sets are open. Every metric space is automatically topological (open sets = unions of ε-balls), but the topological framework is far more general — allowing spaces where no notion of distance exists. Continuity of f: X→Y becomes: preimage of open set is open. So elementary, yet so powerful.</p><p>Compactness is the key notion. In metric spaces, compact means every sequence has a convergent subsequence. In general topological spaces, compact means every open cover has a finite subcover. The Heine-Cantor theorem: a continuous function on a compact space is uniformly continuous — you can't have a compact domain and wildly oscillating continuous function. Tychonoff's theorem: the product of compact spaces is compact (even for infinite products!) — proved using the Axiom of Choice, and in fact equivalent to it.</p><p>Connectedness, path-connectedness, the Jordan curve theorem (a simple closed curve divides ℝ² into two regions — easy to state, notoriously hard to prove rigorously), covering spaces, and fundamental groups all flow from topological axioms alone. Urysohn's lemma — in a normal space, distinct closed sets can be separated by a continuous function — is a beautiful constructive theorem that forms the bridge to functional analysis. The subject trains you to think in radical generality: to ask not 'what is the distance?' but 'what is the structure?'</p>"},
+
+{t:"Elementary Number Theory",tag:"Number Theory",desc:"Primes, congruences, quadratic reciprocity, Diophantine equations — all at the undergraduate level. The starting point for research in number theory.",books:[{n:"An Introduction to the Theory of Numbers",au:"Niven, Zuckerman, Montgomery"},{n:"A Classical Introduction to Modern Number Theory",au:"Ireland & Rosen"},{n:"Elementary Number Theory",au:"David Burton"}],
+detail:"<p>Number theory studies the integers — the most natural mathematical objects — and finds that they conceal astonishing depth. The fundamental theorem of arithmetic: every positive integer n factors uniquely into primes n = p₁<sup>a₁</sup>p₂<sup>a₂</sup>...pₖ<sup>aₖ</sup>. This unique factorization is not obvious! It requires Euclid's lemma: if p is prime and p|ab, then p|a or p|b. The proof: gcd(p,a)=1 (since p is prime), so by Bézout's identity 1=px+ay for some integers x,y, thus b=pbx+aby, so p|b.</p><p>Modular arithmetic: a ≡ b (mod n) means n|(a−b). The integers mod n form a ring ℤ/nℤ. When n=p is prime, ℤ/pℤ is a field — every nonzero element has a multiplicative inverse. Fermat's little theorem: aᵖ ≡ a (mod p) for all a. This powers RSA cryptography! The totient function φ(n) = #{1≤k≤n : gcd(k,n)=1} satisfies Euler's theorem: a<sup>φ(n)</sup> ≡ 1 (mod n) when gcd(a,n)=1. RSA encryption uses: encode m as c ≡ mᵉ (mod n) where n=pq is a product of large primes and e is chosen with gcd(e,φ(n))=1; decrypt with d ≡ e⁻¹ (mod φ(n)) via c^d ≡ m (mod n).</p><p>Quadratic reciprocity (Gauss, 1796) is the first truly deep theorem of number theory. For odd primes p≠q: (p/q)(q/p) = (−1)<sup>(p−1)/2·(q−1)/2</sup>, where (a/p) is the Legendre symbol (1 if a is a perfect square mod p, −1 otherwise). This elegantly links the solvability of x²≡p (mod q) and x²≡q (mod p). Gauss gave eight different proofs in his lifetime. Ireland & Rosen use it to motivate the entire machinery of algebraic number theory.</p>"},
+
+{t:"Combinatorics",tag:"Combinatorics",desc:"Counting, graph theory, generating functions, Ramsey theory, designs — the mathematics of discrete structure at the undergraduate level.",books:[{n:"A Walk Through Combinatorics",au:"Miklós Bóna"},{n:"Introductory Combinatorics",au:"Richard Brualdi"},{n:"A Course in Combinatorics",au:"van Lint & Wilson"}],
+detail:"<p>Combinatorics is the mathematics of counting and structure. Its basic tools — permutations, combinations, the binomial theorem — appear simple but generate deep theory. The binomial theorem: (x+y)ⁿ = Σ C(n,k) xᵏ yⁿ⁻ᵏ, where C(n,k) = n!/(k!(n-k)!) are the binomial coefficients. The elegant proof via generating functions: (1+x)ⁿ expanded formally gives exactly this. Generating functions — formal power series where the coefficient of xⁿ encodes the answer to a counting problem — are the main algebraic tool of combinatorics.</p><p>Graph theory studies networks: sets of vertices with edges between them. Four color theorem: every planar graph has chromatic number ≤ 4. Euler's formula V−E+F=2 for connected planar graphs is the starting point. Kuratowski's theorem: a graph is planar iff it contains no subdivision of K₅ or K₃,₃. The probabilistic method (Erdős): to prove a graph with certain properties exists, show the probability of a random graph having those properties is positive. This non-constructive method has proved the existence of graphs with extraordinarily high girth and chromatic number simultaneously — structures that would be impossible to construct directly.</p><p>Ramsey theory captures the idea that 'complete disorder is impossible.' Ramsey's theorem: R(r,s) is the minimum n such that any 2-colouring of K_n's edges contains either a red K_r or a blue K_s. R(3,3)=6: in any party of 6 people, 3 are mutual friends or 3 are mutual strangers. The bounds on R(r,r) are: 2<sup>r/2</sup> ≤ R(r,r) ≤ 4^r — finding the correct exponential base is one of the great open problems in combinatorics (Erdős: if an alien offered to destroy Earth unless we computed R(6,6), we should try; if they asked for R(7,7), we should attack the alien).</p>"},
+
+{t:"Probability Theory",tag:"Probability",desc:"Rigorous probability: sample spaces, random variables, distributions, law of large numbers, central limit theorem — foundation of statistics and ML.",books:[{n:"A First Course in Probability",au:"Sheldon Ross"},{n:"Introduction to Probability",au:"Blitzstein & Hwang (free online)"},{n:"Probability Theory",au:"William Feller"}],
+detail:"<p>Rigorous probability theory begins with measure theory (though many undergraduate courses approach it informally first). A probability space (Ω, ℱ, P): Ω is the sample space, ℱ is a σ-algebra of events (closed under countable unions and complements), P is a probability measure (P(Ω)=1, countably additive). A random variable X: Ω → ℝ is just a measurable function. The expected value E[X] = ∫ X dP. This set-up makes all of probability self-consistent — no 'hidden' paradoxes.</p><p>The two fundamental limit theorems are the cornerstones. Law of Large Numbers (strong form): if X₁, X₂, ... are i.i.d. with E[X₁]=μ, then (X₁+...+Xₙ)/n → μ almost surely. Central Limit Theorem: (X₁+...+Xₙ−nμ)/(σ√n) → N(0,1) in distribution — the sum of any i.i.d. random variables (with finite variance) becomes Gaussian as n→∞, regardless of the original distribution. This is why the bell curve appears everywhere: it's the universal limiting shape.</p><p>Markov chains — sequences of random variables where Xₙ₊₁ depends only on Xₙ, not on earlier history — model everything from Google's PageRank to DNA evolution. The key theorem: an irreducible, aperiodic finite Markov chain has a unique stationary distribution π satisfying πP = π (matrix equation). Starting from any state, the chain converges to π. This explains why shuffling cards eventually makes them perfectly random: the mixing time of a card-shuffling Markov chain is roughly 7 riffle shuffles (Diaconis-Aldous, 1986).</p>"},
+
+{t:"Mathematical Statistics",tag:"Statistics",desc:"Estimation, hypothesis testing, regression, confidence intervals — the mathematical foundations of data science and scientific inference.",books:[{n:"Statistical Inference",au:"Casella & Berger"},{n:"All of Statistics",au:"Larry Wasserman"},{n:"Mathematical Statistics with Applications",au:"Hogg & Craig"}],
+detail:"<p>Mathematical statistics formalises the question: given data, what can we infer about the world? The likelihood function L(θ|x) = f(x|θ) — the probability density of observing the data x given parameter θ — is central. Maximum likelihood estimation (MLE) chooses θ̂ = argmax L(θ|x). Under regularity conditions, MLE is consistent (θ̂→θ as n→∞), asymptotically normal (√n(θ̂−θ) → N(0, I(θ)⁻¹)), and asymptotically efficient (achieving the Cramér-Rao lower bound: Var(θ̂) ≥ 1/I(θ) where I(θ) = −E[∂²log f/∂θ²] is Fisher information).</p><p>Hypothesis testing: given H₀ (null) vs H₁ (alternative), a test is a function T(x) ∈ {reject H₀, accept H₀}. Type I error: reject H₀ when it's true (false positive). Type II error: accept H₀ when H₁ is true (false negative). The Neyman-Pearson lemma: the most powerful test of H₀: θ=θ₀ vs H₁: θ=θ₁ at level α rejects when f(x|θ₁)/f(x|θ₀) > k — use the likelihood ratio. The p-value is P<sub>H₀</sub>(T(X) ≥ t_obs) — the probability of seeing data at least as extreme as observed, assuming H₀. A p-value &lt; 0.05 does NOT mean H₁ is true with 95% probability; the most common statistical misconception in all of science.</p><p>Bayesian statistics treats θ as a random variable with prior distribution π(θ). The posterior π(θ|x) ∝ f(x|θ)π(θ) (Bayes' theorem) updates beliefs after observing data. Bayesian and frequentist approaches lead to different inferences and have been debated for 200 years. Modern statistics uses both, depending on the problem. The minimax theorem, James-Stein estimator (shrinkage toward zero reduces MSE for n≥3 unknown means simultaneously — a counterintuitive result that won its authors a Nobel Prize), and cross-validation for model selection are all key topics.</p>"},
+
+{t:"Numerical Analysis",tag:"Computation",desc:"Algorithms for solving mathematical problems computationally — interpolation, root-finding, numerical integration, linear systems.",books:[{n:"Numerical Analysis",au:"Burden & Faires"},{n:"Numerical Linear Algebra",au:"Trefethen & Bau"},{n:"Introduction to Numerical Analysis",au:"Stoer & Bulirsch"}],
+detail:"<p>Numerical analysis asks: how do we compute mathematical quantities that cannot be expressed in closed form? The core challenge is that computers work in finite precision — floating-point arithmetic introduces rounding errors at every step, which can compound catastrophically. The condition number κ(A) = ‖A‖‖A⁻¹‖ of a matrix measures sensitivity: if κ is large, small errors in b lead to huge errors in the solution x of Ax=b. Gaussian elimination with partial pivoting controls this in practice.</p><p>Newton's method for root-finding: given f(x)=0, iterate xₙ₊₁ = xₙ − f(xₙ)/f'(xₙ). Near a simple root, convergence is quadratic: the error roughly squares at each step. If the error at step n is ε, at step n+1 it's O(ε²) — 4 correct digits becomes 8, then 16, then 32. Globally Newton's method can be chaotic; the fractal basins of attraction in the complex plane are Newton fractals. QR decomposition A=QR (Q orthogonal, R upper triangular) is the foundation of numerical eigenvalue algorithms.</p><p>Numerical integration (quadrature): ∫ₐᵇ f(x) dx ≈ Σᵢ wᵢ f(xᵢ). Simpson's rule uses three points and achieves O(h⁴) accuracy; Gaussian quadrature with n points achieves exact integration of degree-(2n-1) polynomials, squeezing maximum accuracy from a given number of function evaluations. Runge-Kutta methods for ODEs: the classic RK4 uses four evaluations per step to achieve O(h⁴) accuracy for IVPs — the standard algorithm in scientific computing since the 1900s, still used in spacecraft trajectory calculations today.</p>"},
+
+{t:"Discrete Mathematics",tag:"Discrete",desc:"Logic, sets, proof techniques, graph theory, algorithms — the foundations of computer science and combinatorics.",books:[{n:"Discrete Mathematics and Its Applications",au:"Kenneth Rosen"},{n:"Concrete Mathematics",au:"Graham, Knuth & Patashnik"},{n:"Combinatorial Mathematics",au:"Douglas West"}],
+detail:"<p>Discrete mathematics is the study of mathematical structures that are fundamentally countable — as opposed to the continuous structures of calculus. It is the native language of computer science. Proof techniques are central: direct proof, proof by contradiction, induction (strong and weak), and the pigeonhole principle. The pigeonhole principle — if n+1 objects go into n boxes, some box has at least 2 objects — sounds trivial but proves the Bolzano-Weierstrass theorem (in disguise) and countless non-obvious results.</p><p>Mathematical induction in its strong form: to prove P(n) for all n, prove (a) P(1) and (b) P(k) for all k≤n implies P(n+1). The trick of choosing the right inductive hypothesis is an art. Graham, Knuth and Patashnik's Concrete Mathematics is a masterpiece: it covers sums (Σ notation and closed forms), recurrences (how to solve T(n) = 2T(n/2)+n — the Master theorem), generating functions, and number theory, all woven together with computer science problems. The asymptotic notation O(n log n) — Big-O, Big-Theta — is given rigorous definition and practised extensively.</p><p>Boolean logic — AND, OR, NOT, XOR — is the mathematics of digital circuits. Every Boolean function f: {0,1}ⁿ → {0,1} has a unique representation as a multilinear polynomial over 𝔽₂ (the two-element field). This 'Fourier analysis over the Boolean cube' is the starting point of computational complexity theory and theoretical computer science. The satisfiability problem (SAT) — can a Boolean formula be satisfied? — is NP-complete, making it the canonical hard problem.</p>"},
+
+{t:"Mathematical Logic",tag:"Logic",desc:"Formal systems, Gödel's incompleteness theorems, computability theory, model theory — the foundations and limits of all mathematics.",books:[{n:"A Mathematical Introduction to Logic",au:"Herbert Enderton"},{n:"Introduction to Mathematical Logic",au:"Elliott Mendelson"},{n:"Computability and Logic",au:"Boolos, Burgess, Jeffrey"}],
+detail:"<p>Mathematical logic asks: what exactly is a proof, and what can be proved? The language of first-order logic consists of variables, function symbols, relation symbols, logical connectives (∧, ∨, ¬, →, ↔), and quantifiers (∀, ∃). A formal proof is a finite sequence of formulas, each either an axiom or following from previous formulas by modus ponens. Gödel's Completeness Theorem (1930): if a sentence φ is true in every model of a theory T, then T proves φ. Soundness is the converse. Together they mean first-order logic is completely adequate for formalizing mathematical reasoning — proofs and semantic truth coincide.</p><p>Gödel's Incompleteness Theorems (1931) are the most profound results in the foundations of mathematics. First theorem: any consistent formal system strong enough to express arithmetic (like Peano Arithmetic PA) contains a sentence G that is true but unprovable in the system. The proof is by Gödel numbering: encode every formula as a natural number, then write a sentence that says 'this sentence has no proof in PA.' If it's provable, it's false; so it must be unprovable. But then it's true. Second theorem: no such system can prove its own consistency. This shattered Hilbert's program of formalizing all mathematics and proving it complete and consistent.</p><p>Computability theory (Turing 1936): a Turing machine formalises computation. The halting problem — does a given Turing machine M halt on input w? — is undecidable: no algorithm can solve it for all (M,w). Proof: suppose HALT decides the halting problem. Build D(M) that halts iff HALT says 'M does not halt on M.' Then D(D) halts iff D doesn't halt on D — contradiction. This diagonalisation argument appears throughout logic and computer science. The Church-Turing thesis says every 'effectively computable' function is Turing-computable — a philosophical claim that has never been refuted.</p>"}
+];
+
+let descOverride = {};
+
+function tog(bodyId, arrId) {
+  var b = document.getElementById(bodyId);
+  if (!b) return;
+  // Check inline style first; fall back to computed style
+  var hidden = b.style.display ? b.style.display === 'none' : window.getComputedStyle(b).display === 'none';
+  b.style.display = hidden ? 'block' : 'none';
+  var a = document.getElementById(arrId);
+  if (a) { a.style.transform = hidden ? 'rotate(180deg)' : 'rotate(0deg)'; a.style.transition = 'transform 0.25s'; }
+}
+
+function indiaBuyLinks(title, author) {
+  const q = encodeURIComponent(title + ' ' + author + ' book');
+  return `<div class="buy-links">
+    <a class="buy-link amz" href="https://www.amazon.in/s?k=${q}&i=stripbooks" target="_blank" rel="noopener">🛒 Amazon.in</a>
+  </div>`;
+}
+
+
+function renderUndergrad(){
+  const isAdm = isAdmin();
+  document.getElementById("undergrad-grid").innerHTML=undergradData.map((t,i)=>`
+  <div class="ug-card reveal" id="ugcard${i}">
+    <span class="ug-tag">${t.tag}</span>
+    <div class="ug-topic">${t.t}</div>
+    <div class="ug-desc" id="ugdesc${i}">${t.desc}</div>
+    ${t.books.map(b=>`<div class="ug-book">📗 <b>${b.n}</b> — <i>${b.au}</i>
+      ${indiaBuyLinks(b.n, b.au)}
+    </div>`).join("")}
+    ${t.detail?`<div onclick="tog('ugd${i}','uga${i}')" class="ug-expand-lbl"><span id="uga${i}">▼</span> Explore in Depth</div>
+    <div class="ug-detail" id="ugd${i}" style="display:none">${t.detail}</div>`:""}
+    <div class="admin-bar${isAdm?' visible':''}" id="ugadmin${i}">
+      <button class="admin-btn edit-btn" onclick="adminEditDesc('undergrad',${i})">✏️ Edit Description</button>
+    </div>
+  </div>`).join("");}
+
+
+function latexToHTML(text) {
+  if (!text) return '';
+
+  // Step 1: Convert $$...$$ → \[...\] (display math) and $...$ → \(...\) (inline math)
+  // This makes admin-typed dollar-sign LaTeX compatible with KaTeX auto-render
+  text = text.replace(/\$\$([^$]+)\$\$/g, '\\[$1\\]');
+  text = text.replace(/\$([^$\n]+)\$/g, '\\($1\\)');
+
+  // Step 2: If text has KaTeX delimiters, let KaTeX handle it entirely
+  if (text.indexOf('\\(') !== -1 || text.indexOf('\\[') !== -1) {
+    if (window.katex && window.renderMathInElement) {
+      try {
+        var div = document.createElement('div');
+        div.innerHTML = text;
+        window.renderMathInElement(div, {
+          delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],
+          throwOnError: false
+        });
+        return div.innerHTML;
+      } catch(e) {}
+    }
+    // KaTeX not yet loaded — return as-is; KaTeX onload will process it from the DOM
+    return text;
+  }
+
+  // Step 3: No KaTeX delimiters — apply simple Unicode/HTML substitutions as fallback
+  // Subscripts: a_{cd} → a<sub>cd</sub>
+  text = text.replace(/([a-zA-Z0-9\)])\_{([^}]+)}/g, '$1<sub>$2</sub>');
+  text = text.replace(/([a-zA-Z0-9\)])_([a-zA-Z0-9])/g, '$1<sub>$2</sub>');
+  // Superscripts: a^{e} → a<sup>e</sup>
+  text = text.replace(/([a-zA-Z0-9\)])\^{([^}]+)}/g, '$1<sup>$2</sup>');
+  text = text.replace(/([a-zA-Z0-9\)])\^([a-zA-Z0-9])/g, '$1<sup>$2</sup>');
+  // \frac{a}{b} → a/b
+  text = text.replace(/\\frac{([^}]+)}{([^}]+)}/g, '($1)/($2)');
+  // Common symbols
+  text = text.replace(/\\infty/g, '∞');
+  const bbMap = {R:'ℝ', Q:'ℚ', Z:'ℤ', N:'ℕ', C:'ℂ'};
+  text = text.replace(/\\mathbb{([A-Z])}/g, (m,c) => bbMap[c]||c);
+  text = text.replace(/\\to/g, '→');
+  text = text.replace(/\\leq/g, '≤');
+  text = text.replace(/\\geq/g, '≥');
+  text = text.replace(/\\neq/g, '≠');
+  text = text.replace(/\\alpha/g, 'α');
+  text = text.replace(/\\beta/g, 'β');
+  text = text.replace(/\\gamma/g, 'γ');
+  text = text.replace(/\\delta/g, 'δ');
+  text = text.replace(/\\epsilon/g, 'ε');
+  text = text.replace(/\\pi/g, 'π');
+  text = text.replace(/\\sum/g, 'Σ');
+  text = text.replace(/\\prod/g, 'Π');
+  text = text.replace(/\\int/g, '∫');
+  text = text.replace(/\\sqrt{([^}]+)}/g, '√($1)');
+  text = text.replace(/\\times/g, '×');
+  text = text.replace(/\\cdot/g, '·');
+  return text;
+}
+
+
+function previewLatex(inputId, previewId) {
+  const input = document.getElementById(inputId);
+  const preview = document.getElementById(previewId);
+  if (input && preview) {
+    preview.innerHTML = latexToHTML(input.value);
+  }
+}
+
+
+function adminEditDesc(section, idx) {
+  if (!isAdmin()) return;
+  const key = section + '_' + idx;
+  const currentEl = document.getElementById((section === 'undergrad' ? 'ug' : 'grad') + 'desc' + idx);
+  const current = currentEl ? currentEl.innerText : '';
+  openAdminModal('✏️ Edit Description (LaTeX Supported)', `
+    <div class="admin-field">
+      <label>Description (HTML + LaTeX)</label>
+      <textarea id="descEdit" rows="5" oninput="previewLatex('descEdit','descPreview')"
+        placeholder="Write description. Use LaTeX like a_{cd}^e for subscripts/superscripts.">${escHtml(descOverride[key] || current)}</textarea>
+      <div class="admin-latex-hint">💡 LaTeX: a_{cd}^e → a<sub>cd</sub><sup>e</sup> · \infty → ∞ · \mathbb{R} → ℝ</div>
+    </div>
+    <div class="admin-field">
+      <label>Preview</label>
+      <div class="admin-latex-preview" id="descPreview">${latexToHTML(descOverride[key] || current)}</div>
+    </div>
+  `, async () => {
+    const sb = window.sb;
+    if (!sb) return;
+    const content = document.getElementById('descEdit').value.trim();
+    const rendered = latexToHTML(content);
+    if (sb) {
+      const { error } = await sb.from('math_desc_overrides').upsert([{ key, content, section, item_index: idx }], { onConflict: 'key' });
+      if (error) throw error;
+    } else {
+      descOverride[key] = content;
+      localStorage.setItem('desc_overrides', JSON.stringify(descOverride));
+    }
+    descOverride[key] = content;
+    // Apply immediately
+    if (currentEl) { currentEl.innerHTML = rendered; }
+  });
+}
+
+
+(function loadLocalFallback() {
+  try {
+    const lo = JSON.parse(localStorage.getItem('desc_overrides') || '{}');
+    Object.assign(descOverride, lo);
+  } catch(e) {}
+})();
+
+function buildSearchIndex(){
+  PAGE_SEARCH_INDEX = [];
+  undergradData.forEach(function(u,i){
+    PAGE_SEARCH_INDEX.push({icon:'🎓',title:u.t,meta:'Undergraduate',section:'Undergrad',elId:'ugcard'+i,q:(u.t+' '+(u.desc||'')).toLowerCase()});
+  });
+}
+
+renderUndergrad();
+
+
+document.querySelectorAll('.reveal').forEach(function(el, i) {
+  setTimeout(function() { el.classList.add('visible'); }, Math.min(i * 35, 900));
+});
+</script>
+
+<!-- ═══ SUPABASE + SHARED AUTH/COMMENTS BRIDGE ═══════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+</body>
+</html>

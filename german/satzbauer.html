@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#FFFEF5!important}html.pre-light{background:#FFFEF5}</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<title>AI German Sentence Checker | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="Get a random German word, write your own sentence, and receive instant AI-graded feedback on grammar, with explanations and a better phrasing.">
+<meta name="keywords" content="AI German grammar checker, German sentence practice, German writing practice, AI German feedback, deutsch Satzbauer">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The German Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/german/satzbauer.html">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI German Sentence Checker | Stargazer">
+<meta property="og:description" content="Get a random German word, write a sentence, and get instant AI feedback on grammar with a suggested rephrasing. Try it →">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/german/satzbauer.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/german-og.jpg">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/german-og.jpg">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI German Sentence Checker | Stargazer">
+<meta name="twitter:description" content="Write a sentence with a random German word and get instant AI-graded grammar feedback. Try it →">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "AI German Sentence Checker",
+  "description": "Get a random German word, write your own sentence, and receive instant AI-graded feedback on grammar, with explanations and a better phrasing.",
+  "url": "https://stargazer-9m9.pages.dev/german/satzbauer.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "German grammar", "sameAs": "https://en.wikipedia.org/wiki/German_grammar" }
+}
+</script>
+<link rel="stylesheet" href="german.css">
+</head>
+<body>
+
+<script>if(localStorage.getItem('stargazer_theme')==='light')document.body.classList.add('light');</script>
+
+<!-- Home button -->
+<a href="../index.html" id="homeLink" title="universe"><span class="hl-arrow">←</span> <span class="hl-label">universe</span></a>
+
+<!-- Auth header -->
+<div id="authHeader">
+  <button id="darkToggle" onclick="toggleLight()">☀ Day</button>
+  <a href="../login.html" id="loginBtn">sign in</a>
+  <div id="userInfo" style="display:none;">
+    <span id="userEmailDisplay"></span>
+    <button onclick="doSignOut()" id="signOutBtn">sign out</button>
+  </div>
+</div>
+
+<!-- Hamburger Button -->
+<button id="hamburger-btn" onclick="openSidebar()" aria-label="Open navigation">
+  <span style="font-size:18px;">☰</span>
+  <span class="hb-label">MENÜ</span>
+</button>
+
+<!-- Sidebar Overlay -->
+<div id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!-- Sidebar Navigation -->
+<nav id="sidebar" aria-label="Site navigation">
+  <div class="sidebar-header">
+    <span class="sidebar-logo">Deutsch</span>
+    <button class="sidebar-close" onclick="closeSidebar()">✕</button>
+  </div>
+  <div class="sidebar-flag"><div class="f1"></div><div class="f2"></div><div class="f3"></div></div>
+
+  <div class="sidebar-theme-row">
+    <button id="sidebarDarkToggle" class="sidebar-theme-btn" onclick="toggleLight()">☀ Day Mode</button>
+  </div>
+
+  <ul class="sidebar-nav" style="list-style:none;">
+    <li class="sidebar-divider">Hauptseiten · Main Pages</li>
+    <li><button class="sidebar-item" id="sb-home" onclick="location.href='home.html'">
+      <span class="sidebar-icon">🏠</span>
+      <span class="sidebar-text"><span class="sidebar-de">Startseite</span><span class="sidebar-en">Home · Introduction</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Wortschatz · Vocabulary</li>
+    <li><button class="sidebar-item" id="sb-woerterbuch" onclick="location.href='woerterbuch.html'">
+      <span class="sidebar-icon">📖</span>
+      <span class="sidebar-text"><span class="sidebar-de">Wörterbuch</span><span class="sidebar-en">Dictionary · Word Explorer</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Grammatik · Grammar</li>
+    <li><button class="sidebar-item" id="sb-grammatik" onclick="location.href='grammatik.html'">
+      <span class="sidebar-icon">✏️</span>
+      <span class="sidebar-text"><span class="sidebar-de">Grammatik</span><span class="sidebar-en">Grammar · Practice Questions</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-pruefungen" onclick="location.href='pruefungen.html'">
+      <span class="sidebar-icon">🧪</span>
+      <span class="sidebar-text"><span class="sidebar-de">Prüfungen</span><span class="sidebar-en">Tests · 20 Themed Exams</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-nachschlagen" onclick="location.href='nachschlagen.html'">
+      <span class="sidebar-icon">📋</span>
+      <span class="sidebar-text"><span class="sidebar-de">Nachschlagen</span><span class="sidebar-en">Reference Tables</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Lesen · Reading</li>
+    <li><button class="sidebar-item" id="sb-geschichten" onclick="location.href='geschichten.html'">
+      <span class="sidebar-icon">📚</span>
+      <span class="sidebar-text"><span class="sidebar-de">Geschichten</span><span class="sidebar-en">Stories · A1 to C2 Levels</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-buecher" onclick="location.href='buecher.html'">
+      <span class="sidebar-icon">📕</span>
+      <span class="sidebar-text"><span class="sidebar-de">Bücher</span><span class="sidebar-en">Books · Curated Reading List</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Sprechen · Speaking</li>
+    <li><button class="sidebar-item active" id="sb-satzbauer" onclick="location.href='satzbauer.html'">
+      <span class="sidebar-icon">🤖</span>
+      <span class="sidebar-text"><span class="sidebar-de">Satzbauer</span><span class="sidebar-en">Sentence Builder · AI Checker</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-zungenbrecher" onclick="location.href='zungenbrecher.html'">
+      <span class="sidebar-icon">👅</span>
+      <span class="sidebar-text"><span class="sidebar-de">Zungenbrecher</span><span class="sidebar-en">Tongue Twisters</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Ausdruck · Expression</li>
+    <li><button class="sidebar-item" id="sb-redewendungen" onclick="location.href='redewendungen.html'">
+      <span class="sidebar-icon">💬</span>
+      <span class="sidebar-text"><span class="sidebar-de">Redewendungen</span><span class="sidebar-en">Idioms & Expressions</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Gemeinschaft · Community</li>
+    <li><button class="sidebar-item" id="sb-community" onclick="location.href='community.html'">
+      <span class="sidebar-icon">👥</span>
+      <span class="sidebar-text"><span class="sidebar-de">Gemeinschaft</span><span class="sidebar-en">Community Discussion</span></span>
+    </button></li>
+  </ul>
+
+  <div class="sidebar-footer">
+    Sprache ist das Haus des Seins<br>
+    <span style="color: var(--text-faint); font-size:9px;">— Martin Heidegger</span>
+  </div>
+</nav>
+
+<!-- Particles -->
+<div id="particles"></div>
+
+<!-- NAV (shared.js) -->
+<div id="nav-container"></div>
+
+<main>
+<section class="section active" id="satzbauer">
+  <div class="section-head sh-ocean">
+    <h2>Satzbauer</h2>
+    <p>Sentence Builder · Get a random German word and write a sentence — AI checks your grammar</p>
+  </div>
+  <p class="sb-intro">A random German word appears below. Write a sentence in German using that word. The AI will check for grammatical errors, explain any mistakes with grammar rules, and suggest a better phrasing with improved tone and structure.</p>
+
+  <div class="sb-word-display">
+    <div class="sb-word-label">✦ Dein Wort heute · Your word</div>
+    <div class="sb-current-word"><span class="sb-word-article" id="sb-article"></span> <span id="sb-word"></span></div>
+    <div class="sb-word-en" id="sb-word-en"></div>
+    <div class="sb-word-pos" id="sb-word-pos"></div>
+    <button class="sb-new-word-btn" onclick="pickRandomWord()">↺ New word</button>
+  </div>
+
+  <div class="sb-input-area">
+    <textarea class="sb-textarea" id="sb-input" placeholder="Schreib einen Satz auf Deutsch… (Write a sentence in German…)" rows="3"></textarea>
+    <div style="display:flex;align-items:center;gap:14px;margin-top:10px;">
+      <button class="sb-submit-btn" id="sb-submit" onclick="checkSentence()">
+        <span>🤖</span> Satz prüfen · Check Sentence
+      </button>
+      <div class="sb-loading" id="sb-loading">
+        <div class="sb-spinner"></div>
+        <span>AI is analysing…</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sb-result" id="sb-result"></div>
+</section>
+</main>
+
+<footer id="site-footer" onclick="handleFooterClick(event)">
+  <p>Stargazer · Deutsch · <a href="../index.html">← Zurück zur Hauptseite</a></p>
+  <p style="margin-top:6px;color:var(--text-faint)">Sprache ist das Haus des Seins. — Martin Heidegger</p>
+</footer>
+<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint);font-style:italic;font-family:'Space Mono',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--amber-2);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div style="text-align:center;padding-bottom:2rem;">
+  <a href="../ABOUT.html" style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--amber);opacity:0.45;text-decoration:none;border:1px solid var(--amber);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+</div>
+
+<script>
+/* Must be defined before shared.js loads */
+window._pageKey = 'german';
+
+window._applyDarkMode = function(isDark) {
+  document.body.classList.toggle('light', !isDark);
+  document.documentElement.classList.remove('pre-light');
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+  const btn = document.getElementById('darkToggle');
+  if (btn) btn.textContent = isDark ? '☀ Day' : '🌙 Dark';
+  const sideBtn = document.getElementById('sidebarDarkToggle');
+  if (sideBtn) sideBtn.textContent = isDark ? '☀ Day Mode' : '🌙 Dark Mode';
+};
+</script>
+<script src="../shared.js"></script>
+<script>
+const AI_CHECK_ENDPOINT = 'https://german-sentence-checker.ayanchakrabortyall.workers.dev/check-sentence';
+
+const SB_WORDS = [
+  {w:"Sehnsucht",a:"die",en:"longing, yearning",pos:"Noun (f)"},
+  {w:"wandern",a:"",en:"to hike / wander",pos:"Verb"},
+  {w:"Geheimnis",a:"das",en:"secret, mystery",pos:"Noun (n)"},
+  {w:"vergessen",a:"",en:"to forget",pos:"Verb"},
+  {w:"Hoffnung",a:"die",en:"hope",pos:"Noun (f)"},
+  {w:"nachdenken",a:"",en:"to reflect, think deeply",pos:"Separable Verb"},
+  {w:"Einsamkeit",a:"die",en:"loneliness, solitude",pos:"Noun (f)"},
+  {w:"entstehen",a:"",en:"to originate, come into being",pos:"Verb"},
+  {w:"Grenze",a:"die",en:"border, limit, boundary",pos:"Noun (f)"},
+  {w:"bemerken",a:"",en:"to notice, observe",pos:"Verb"},
+  {w:"Vertrauen",a:"das",en:"trust, confidence",pos:"Noun (n)"},
+  {w:"aufgeben",a:"",en:"to give up / to abandon",pos:"Separable Verb"},
+  {w:"trotzdem",a:"",en:"nevertheless, despite that",pos:"Adverb/Connector"},
+  {w:"Überzeugung",a:"die",en:"conviction, belief",pos:"Noun (f)"},
+  {w:"scheitern",a:"",en:"to fail, to founder",pos:"Verb"},
+  {w:"herausfordernd",a:"",en:"challenging, demanding",pos:"Adjective"},
+  {w:"Verantwortung",a:"die",en:"responsibility",pos:"Noun (f)"},
+  {w:"schweigen",a:"",en:"to be silent, say nothing",pos:"Verb"},
+  {w:"demnächst",a:"",en:"soon, shortly, in the near future",pos:"Adverb"},
+  {w:"Zusammenhang",a:"der",en:"context, connection, coherence",pos:"Noun (m)"},
+  {w:"überwältigen",a:"",en:"to overwhelm",pos:"Verb"},
+  {w:"dennoch",a:"",en:"nevertheless, yet, still",pos:"Adverb/Connector"},
+  {w:"Gleichgewicht",a:"das",en:"balance, equilibrium",pos:"Noun (n)"},
+  {w:"wahrnehmen",a:"",en:"to perceive, notice",pos:"Separable Verb"},
+  {w:"unbewusst",a:"",en:"unconscious, unaware",pos:"Adjective/Adverb"},
+  {w:"Augenblick",a:"der",en:"moment, instant",pos:"Noun (m)"},
+  {w:"untersuchen",a:"",en:"to investigate, examine",pos:"Verb"},
+  {w:"Vorurteil",a:"das",en:"prejudice, preconception",pos:"Noun (n)"},
+  {w:"erkennen",a:"",en:"to recognise, realise",pos:"Verb"},
+  {w:"zweideutig",a:"",en:"ambiguous, double-meaning",pos:"Adjective"}
+];
+
+let sbCurrentWord = null;
+
+function initParticles(){
+  const wrap = document.getElementById('particles');
+  if(!wrap) return;
+  const colors = ['#E8A800','#CC0000','#FFE033','#7C3AED','#10B981'];
+  for(let i=0;i<28;i++){
+    const el = document.createElement('div');
+    el.className = 'needle';
+    const size = 2 + Math.random()*4;
+    el.style.width = size+'px';
+    el.style.height = size+'px';
+    el.style.background = colors[Math.floor(Math.random()*colors.length)];
+    el.style.left = Math.random()*100+'%';
+    el.style.setProperty('--d', (Math.random()*120-60)+'px');
+    el.style.animationDuration = (8+Math.random()*14)+'s';
+    el.style.animationDelay = (Math.random()*14)+'s';
+    el.style.opacity = (0.25+Math.random()*0.45).toFixed(2);
+    wrap.appendChild(el);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   SIDEBAR / NAV
+═══════════════════════════════════════════ */
+
+function openSidebar(){
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sidebar-overlay').classList.add('open');
+}
+
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+}
+
+function toggleLight(){
+  const goingLight = !document.body.classList.contains('light');
+  document.body.classList.toggle('light', goingLight);
+  document.documentElement.classList.remove('pre-light');
+  localStorage.setItem('stargazer_theme', goingLight ? 'light' : 'dark');
+  const label = goingLight ? '🌙 Dark' : '☀ Day';
+  const btn = document.getElementById('darkToggle');
+  if(btn) btn.textContent = label;
+  const sideBtn = document.getElementById('sidebarDarkToggle');
+  if(sideBtn) sideBtn.textContent = goingLight ? '🌙 Dark Mode' : '☀ Day Mode';
+  if (typeof sbSaveDarkMode === 'function') sbSaveDarkMode(!goingLight);
+}
+
+/* ═══════════════════════════════════════════
+   GEHEIMER MODUS · SECRET MODE
+   Triple-clicking the footer text (not the "Zurück zur Hauptseite" link
+   itself) flips a hidden theme. e.detail is the browser's own rapid-click
+   counter, so no manual timers are needed. State persists in localStorage.
+   The Prüfungen section has a themed test ("Der Geheimagent") whose last
+   item plainly tells the player about this — see THEMED_TESTS id 21.
+═══════════════════════════════════════════ */
+
+function handleFooterClick(e){
+  if(e.target.closest('a')) return; // let the real navigation link work normally
+  if(e.detail===3) toggleSecretMode();
+}
+
+function toggleSecretMode(){
+  const on = !document.body.classList.contains('geheim-mode');
+  document.body.classList.toggle('geheim-mode', on);
+  try{ localStorage.setItem('german-geheim-mode', on ? '1' : '0'); }catch(e){}
+  showSecretToast(on);
+}
+
+function showSecretToast(on){
+  const existing = document.querySelector('.geheim-toast');
+  if(existing) existing.remove();
+  const t = document.createElement('div');
+  t.className = 'geheim-toast';
+  t.innerHTML = on
+    ? `🔮 <strong>Geheimer Modus aktiviert</strong><span>Secret mode activated — welcome behind the curtain.</span>`
+    : `Geheimer Modus deaktiviert <span>Secret mode off</span>`;
+  document.body.appendChild(t);
+  requestAnimationFrame(()=>t.classList.add('show'));
+  setTimeout(()=>{ t.classList.remove('show'); setTimeout(()=>t.remove(), 500); }, 3200);
+}
+
+function restoreSecretMode(){
+  try{ if(localStorage.getItem('german-geheim-mode')==='1') document.body.classList.add('geheim-mode'); }catch(e){}
+}
+
+/* ═══════════════════════════════════════════
+   READING LOGIN STATE FROM shared.js's OWN UI
+   shared.js renders into #loginBtn / #userInfo / #userEmailDisplay — this
+   page reads those same elements rather than keeping its own auth state,
+   so it can never drift out of sync with the real session.
+═══════════════════════════════════════════ */
+
+function pickRandomWord(){
+  sbCurrentWord = SB_WORDS[Math.floor(Math.random()*SB_WORDS.length)];
+  document.getElementById('sb-article').textContent = sbCurrentWord.a;
+  document.getElementById('sb-word').textContent = sbCurrentWord.w;
+  document.getElementById('sb-word-en').textContent = sbCurrentWord.en;
+  document.getElementById('sb-word-pos').textContent = sbCurrentWord.pos;
+  document.getElementById('sb-input').value = '';
+  document.getElementById('sb-result').classList.remove('show');
+  document.getElementById('sb-result').innerHTML = '';
+}
+
+/* ⚠️ CONFIGURATION REQUIRED ⚠️
+   This calls a backend endpoint (NOT the Anthropic API directly — browsers cannot
+   safely call api.anthropic.com with a secret key embedded in client-side code).
+   Deploy the included `sentence-checker-worker.js` as a Cloudflare Worker (same
+   pattern as your R2 vault worker), then set the URL below.
+
+   Expected JSON response shape — the *En fields are optional. If the worker
+   doesn't send them, renderSbResult() below fills the gap itself with a free
+   translation API, but having the worker's own LLM write native English
+   directly (e.g. by asking it for both languages in one prompt) will always
+   read better than a bolted-on translation:
+     {
+       usesWord: boolean,
+       errors: [{ issue, explanation, explanationEn? }],
+       praise?: string, praiseEn?: string,
+       suggestion?: string,          // stays German — it IS the corrected sentence
+       toneNote?: string, toneNoteEn?: string
+     } */
+
+async function checkSentence(){
+  const sentence = document.getElementById('sb-input').value.trim();
+  if(!sentence){ alert('Bitte schreibe zuerst einen Satz.'); return; }
+  const btn = document.getElementById('sb-submit');
+  const loading = document.getElementById('sb-loading');
+  btn.disabled = true;
+  loading.classList.add('show');
+  const resultBox = document.getElementById('sb-result');
+  resultBox.classList.remove('show');
+
+  try{
+    const resp = await fetch(AI_CHECK_ENDPOINT, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ word: sbCurrentWord.w, sentence }),
+      signal: AbortSignal.timeout(8000)
+    });
+    if(!resp.ok) throw new Error('Worker endpoint returned '+resp.status);
+    const data = await resp.json();
+    renderSbResult(data);
+  }catch(e){
+    console.warn('AI endpoint not reachable, using local heuristic fallback:', e);
+    renderSbResult(localHeuristicCheck(sentence, sbCurrentWord));
+  }finally{
+    btn.disabled = false;
+    loading.classList.remove('show');
+  }
+}
+
+/* Free, keyless translation fallback for whenever the AI worker's response
+   doesn't already include its own English field. Fails silently — if the
+   network call doesn't pan out, the caller just omits that English line
+   rather than leaving a broken "translating…" placeholder on screen. */
+
+async function translateDeToEn(text){
+  if(!text) return null;
+  const plain = text.replace(/<[^>]+>/g,'').trim();
+  if(!plain) return null;
+  try{
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(plain)}&langpair=de|en`;
+    const resp = await fetch(url, { signal: AbortSignal.timeout(6000) });
+    if(!resp.ok) return null;
+    const json = await resp.json();
+    const t = json && json.responseData && json.responseData.translatedText;
+    if(!t || /MYMEMORY WARNING/i.test(t)) return null;
+    return t;
+  }catch(e){
+    return null;
+  }
+}
+
+function renderSbResult(data){
+  const resultBox = document.getElementById('sb-result');
+  let html = `<div class="sb-result-header">✦ Analyse</div><div class="sb-analysis-block">`;
+  const pending = []; // {id, text} — German strings still needing a live-translated English line
+
+  if(data.usesWord===false){
+    html += `<div class="sb-analysis-section"><div class="sb-anal-label warn">⚠ Wort nicht gefunden</div><div class="sb-anal-text">Dein Satz scheint „${sbCurrentWord.w}" nicht zu enthalten. Versuche es noch einmal!</div></div>`;
+  } else if(data.errors && data.errors.length){
+    html += `<div class="sb-analysis-section"><div class="sb-anal-label warn">⚠ Gefundene Fehler</div>`;
+    data.errors.forEach((err,i)=>{
+      html += `<div class="sb-error-item"><strong>${err.issue}</strong><br>${err.explanation}`;
+      if(err.explanationEn){
+        html += `<div class="sb-en-trans">🇬🇧 ${err.explanationEn}</div>`;
+      } else {
+        html += `<div class="sb-en-trans" id="sb-en-err-${i}">🇬🇧 <span class="sb-en-loading">translating…</span></div>`;
+        pending.push({id:`sb-en-err-${i}`, text: err.explanation});
+      }
+      html += `</div>`;
+    });
+    html += `</div>`;
+  } else {
+    const praiseText = data.praise || 'Gut gemacht — dein Satz ist grammatikalisch korrekt.';
+    html += `<div class="sb-analysis-section"><div class="sb-anal-label good">✓ Grammatik korrekt!</div><div class="sb-anal-text">${praiseText}`;
+    if(data.praiseEn){
+      html += `<div class="sb-en-trans">🇬🇧 ${data.praiseEn}</div>`;
+    } else {
+      html += `<div class="sb-en-trans" id="sb-en-praise">🇬🇧 <span class="sb-en-loading">translating…</span></div>`;
+      pending.push({id:'sb-en-praise', text: praiseText});
+    }
+    html += `</div></div>`;
+  }
+  if(data.suggestion){
+    html += `<div class="sb-analysis-section"><div class="sb-anal-label suggest">✦ Verbesserter Satz &amp; Ton</div><div class="sb-suggestion-block">${data.suggestion}</div></div>`;
+  }
+  if(data.toneNote){
+    html += `<div class="sb-analysis-section"><div class="sb-anal-label suggest">💬 Hinweis zum Ton</div><div class="sb-anal-text">${data.toneNote}`;
+    if(data.toneNoteEn){
+      html += `<div class="sb-en-trans">🇬🇧 ${data.toneNoteEn}</div>`;
+    } else {
+      html += `<div class="sb-en-trans" id="sb-en-tone">🇬🇧 <span class="sb-en-loading">translating…</span></div>`;
+      pending.push({id:'sb-en-tone', text: data.toneNote});
+    }
+    html += `</div></div>`;
+  }
+  html += `</div>`;
+  resultBox.innerHTML = html;
+  resultBox.classList.add('show');
+
+  // Fill in any English lines the API response didn't already provide.
+  pending.forEach(async p=>{
+    const en = await translateDeToEn(p.text);
+    const el = document.getElementById(p.id);
+    if(!el) return; // result box may have been cleared/reset already
+    if(en) el.innerHTML = `🇬🇧 ${en}`;
+    else el.remove();
+  });
+}
+
+/* Local fallback heuristic — used only when the AI Worker endpoint is unreachable.
+   Performs very basic checks so the feature is never completely dead, and clearly
+   labels itself as a fallback rather than full AI analysis. Every German string
+   here ships with its own hand-written English translation (explanationEn /
+   praiseEn / toneNoteEn) rather than relying on the live translateDeToEn() call. */
+
+function localHeuristicCheck(sentence, wordObj){
+  const errors = [];
+  const usesWord = sentence.toLowerCase().includes(wordObj.w.toLowerCase());
+  if(!usesWord) return {usesWord:false};
+
+  const words = sentence.trim().split(/\s+/);
+  if(words.length && words[0] && /^[a-zäöüß]/.test(words[0])){
+    errors.push({
+      issue:'Großschreibung am Satzanfang',
+      explanation:'Im Deutschen beginnt jeder Satz mit einem Großbuchstaben. „'+words[0]+'" sollte groß geschrieben werden.',
+      explanationEn:'In German, every sentence starts with a capital letter. "'+words[0]+'" should be capitalized.'
+    });
+  }
+  if(!/[.!?]$/.test(sentence.trim())){
+    errors.push({
+      issue:'Fehlendes Satzzeichen',
+      explanation:'Dein Satz sollte mit einem Punkt, Ausrufezeichen oder Fragezeichen enden.',
+      explanationEn:'Your sentence should end with a period, exclamation mark, or question mark.'
+    });
+  }
+  const commonNouns = wordObj.pos.includes('Noun') ? [wordObj.w] : [];
+  commonNouns.forEach(n=>{
+    const re = new RegExp('\\\\b'+n.toLowerCase()+'\\\\b');
+    if(re.test(sentence) && !new RegExp('\\\\b'+n+'\\\\b').test(sentence)){
+      errors.push({
+        issue:'Großschreibung von Nomen',
+        explanation:'„'+n+'" ist ein Nomen und muss im Deutschen immer großgeschrieben werden, egal wo es im Satz steht.',
+        explanationEn:'"'+n+'" is a noun, and German nouns are always capitalized, no matter where they fall in the sentence.'
+      });
+    }
+  });
+
+  return {
+    usesWord:true,
+    errors,
+    praise: errors.length===0 ? 'Deine Satzstruktur und Großschreibung sehen gut aus! (Hinweis: Dies ist eine einfache lokale Prüfung — für vollständige KI-Grammatikanalyse richte den Cloudflare Worker ein, siehe sentence-checker-worker.js.)' : undefined,
+    praiseEn: errors.length===0 ? 'Your sentence structure and capitalization look good! (Note: this is a simple local check — for full AI grammar analysis, set up the Cloudflare Worker described in sentence-checker-worker.js.)' : undefined,
+    suggestion: undefined,
+    toneNote: 'ℹ️ Lokale Basisprüfung aktiv (KI-Endpoint nicht erreichbar). Für vollständige Analyse mit Grammatikregeln und Tonverbesserung: richte den beigefügten Cloudflare Worker ein und trage die URL in AI_CHECK_ENDPOINT ein.',
+    toneNoteEn: 'ℹ️ Basic local check active (AI endpoint not reachable). For full analysis with grammar rules and tone feedback: set up the included Cloudflare Worker and enter its URL in AI_CHECK_ENDPOINT.'
+  };
+}
+
+/* ═══════════════════════════════════════════
+   GEMEINSCHAFT (Community) — public discussion wall
+   Needs its own new table — nothing existing matches this shape (`progress`
+   is one private JSON blob per user+page; wrong shape for a public feed).
+   Run this once in the Supabase SQL editor:
+
+     create table german_community_posts (
+       id bigint generated by default as identity primary key,
+       user_id uuid references auth.users(id) not null,
+       author_name text not null,
+       content text not null,
+       created_at timestamptz not null default now()
+     );
+     alter table german_community_posts enable row level security;
+     create policy "public read"          on german_community_posts for select using (true);
+     create policy "authenticated insert" on german_community_posts for insert
+       with check (auth.uid() = user_id);
+     create policy "own delete"           on german_community_posts for delete
+       using (auth.uid() = user_id);
+     create policy "admin delete"         on german_community_posts for delete
+       using (auth.jwt() ->> 'email' = 'ayanchakrabortyall@gmail.com');
+
+   Until that table exists, posting/loading fails gracefully with a note
+   instead of crashing (same pattern as the Bücher PDF uploads above).
+═══════════════════════════════════════════ */
+
+function initApp(){
+  restoreSecretMode()
+  initParticles()
+  pickRandomWord()
+  if (typeof renderNavAuth === 'function') renderNavAuth('nav-container');
+}
+document.addEventListener('DOMContentLoaded', initApp);
+</script>
+</body>
+</html>

@@ -2076,7 +2076,8 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
         <div class="f-divider">◈ Lines Worth Keeping</div>
         <div class="fgrp">
           <label class="flbl">Any lines that stayed with you? <span class="flbl-opt">optional</span></label>
-          <textarea class="ftxt" id="mvQuotes" placeholder="Paste a few lines, one per line if you like…"></textarea>
+          <div class="quote-input-list" id="mvQuotesList"></div>
+          <button type="button" class="btn btn-g quote-add-btn" onclick="addQuoteInput(null,'mvQuotesList')">+ Add Another Quote</button>
         </div>
 
         <div class="f-divider">◈ What It Left You Thinking</div>
@@ -2180,7 +2181,8 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
         <div class="f-divider">◈ Lines Worth Keeping</div>
         <div class="fgrp">
           <label class="flbl">Any lines that stayed with you? <span class="flbl-opt">optional</span></label>
-          <textarea class="ftxt" id="anQuotes" placeholder="Paste a few lines, one per line if you like…"></textarea>
+          <div class="quote-input-list" id="anQuotesList"></div>
+          <button type="button" class="btn btn-g quote-add-btn" onclick="addQuoteInput(null,'anQuotesList')">+ Add Another Quote</button>
         </div>
 
         <div class="f-divider">◈ What It Left You Thinking</div>
@@ -4416,42 +4418,46 @@ function quotesArray(q) {
   return String(q).trim() ? [String(q).trim()] : [];
 }
 
-function addQuoteInput(value) {
-  const list = document.getElementById('bQuotesList');
+// listId defaults to the Books quote list so every existing call site
+// (all of which were written before Movies/Anime got their own quote
+// lists) keeps working unchanged; Movies/Anime pass their own listId
+// explicitly ('mvQuotesList' / 'anQuotesList').
+function addQuoteInput(value, listId='bQuotesList') {
+  const list = document.getElementById(listId);
   const row = document.createElement('div');
   row.className = 'quote-input-row';
   row.innerHTML = `
     <textarea class="ftxt quote-input" placeholder="A line or passage worth keeping…"></textarea>
-    <button type="button" class="quote-input-remove" onclick="removeQuoteInput(this)" title="Remove this quote">✕</button>`;
+    <button type="button" class="quote-input-remove" onclick="removeQuoteInput(this,'${listId}')" title="Remove this quote">✕</button>`;
   if (value) row.querySelector('textarea').value = value;
   list.appendChild(row);
-  updateQuoteRemoveButtons();
+  updateQuoteRemoveButtons(listId);
   return row;
 }
 
-function removeQuoteInput(btn) {
-  const list = document.getElementById('bQuotesList');
+function removeQuoteInput(btn, listId='bQuotesList') {
+  const list = document.getElementById(listId);
   btn.closest('.quote-input-row').remove();
-  if (!list.children.length) addQuoteInput(); // always leave at least one box
-  updateQuoteRemoveButtons();
+  if (!list.children.length) addQuoteInput('', listId); // always leave at least one box
+  updateQuoteRemoveButtons(listId);
 }
 
-function updateQuoteRemoveButtons() {
-  const rows = document.querySelectorAll('#bQuotesList .quote-input-row');
+function updateQuoteRemoveButtons(listId='bQuotesList') {
+  const rows = document.querySelectorAll(`#${listId} .quote-input-row`);
   rows.forEach(r => {
     r.querySelector('.quote-input-remove').style.display = rows.length > 1 ? '' : 'none';
   });
 }
 
-function setQuoteInputs(quotes) {
-  const list = document.getElementById('bQuotesList');
+function setQuoteInputs(quotes, listId='bQuotesList') {
+  const list = document.getElementById(listId);
   list.innerHTML = '';
   const arr = quotesArray(quotes);
-  (arr.length ? arr : ['']).forEach(q => addQuoteInput(q));
+  (arr.length ? arr : ['']).forEach(q => addQuoteInput(q, listId));
 }
 
-function getQuoteInputs() {
-  return Array.from(document.querySelectorAll('#bQuotesList .quote-input'))
+function getQuoteInputs(listId='bQuotesList') {
+  return Array.from(document.querySelectorAll(`#${listId} .quote-input`))
     .map(t => t.value.trim())
     .filter(Boolean);
 }
@@ -4753,6 +4759,7 @@ function openMovieModal(editId) {
   document.getElementById('mvRatingDiamonds').innerHTML = ratingDiamonds(0);
   document.getElementById('mvEditId').value = '';
   document.getElementById('mvPostedDate').value = '';
+  setQuoteInputs(null, 'mvQuotesList'); // always start with a single clean quote box
 
   if (editId != null) {
     (async () => {
@@ -4768,7 +4775,7 @@ function openMovieModal(editId) {
       document.getElementById('mvCritique').value = m.critique || '';
       document.getElementById('mvSummary').value = m.summary || '';
       document.getElementById('mvCast').value = m.cast || '';
-      document.getElementById('mvQuotes').value = m.quotes || '';
+      setQuoteInputs(m.quotes, 'mvQuotesList');
       document.getElementById('mvThoughts').value = m.thoughts || '';
       document.getElementById('mvEditId').value = editId;
       document.getElementById('mvPostedDate').value = m.posted || '';
@@ -4803,7 +4810,7 @@ async function submitMovie() {
     critique: g('mvCritique'),
     summary: g('mvSummary'),
     cast: g('mvCast'),
-    quotes: g('mvQuotes'),
+    quotes: getQuoteInputs('mvQuotesList'),
     thoughts: g('mvThoughts'),
     poster: selMoviePosterDataUrl || null,
     posted: document.getElementById('mvPostedDate').value || today(),
@@ -4922,7 +4929,7 @@ async function showMovieDetail(id) {
       ${df('Your Verdict', m.review, true)}
       ${df('The Critique', m.critique, true)}
       ${df('The People In It', m.cast, true)}
-      ${m.quotes ? `<div class="det-field det-full"><div class="det-key">Lines Worth Keeping</div><div class="quote-block"><svg class="quote-mark" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V14.4Q0 7.2 3.6 3.6 7.2 0 13.2 0V4.8Q9.6 4.8 7.8 6.6 6 8.4 6 12H12V24H0ZM18 24V14.4Q18 7.2 21.6 3.6 25.2 0 31.2 0V4.8Q27.6 4.8 25.8 6.6 24 8.4 24 12H30V24H18Z"/></svg><div class="quote-text">${esc(m.quotes)}</div></div></div>` : df('Lines Worth Keeping', m.quotes, true)}
+      ${quotesBlockHtml('Lines Worth Keeping', m.quotes)}
       ${df('What It Left You Thinking', m.thoughts, true)}
     </div>`;
 
@@ -5020,6 +5027,7 @@ function openAnimeModal(editId) {
   document.getElementById('anRatingDiamonds').innerHTML = ratingDiamonds(0);
   document.getElementById('anEditId').value = '';
   document.getElementById('anPostedDate').value = '';
+  setQuoteInputs(null, 'anQuotesList'); // always start with a single clean quote box
 
   if (editId != null) {
     (async () => {
@@ -5035,7 +5043,7 @@ function openAnimeModal(editId) {
       document.getElementById('anCritique').value = m.critique || '';
       document.getElementById('anSummary').value = m.summary || '';
       document.getElementById('anCharacters').value = m.characters || '';
-      document.getElementById('anQuotes').value = m.quotes || '';
+      setQuoteInputs(m.quotes, 'anQuotesList');
       document.getElementById('anThoughts').value = m.thoughts || '';
       document.getElementById('anEditId').value = editId;
       document.getElementById('anPostedDate').value = m.posted || '';
@@ -5070,7 +5078,7 @@ async function submitAnime() {
     critique: g('anCritique'),
     summary: g('anSummary'),
     characters: g('anCharacters'),
-    quotes: g('anQuotes'),
+    quotes: getQuoteInputs('anQuotesList'),
     thoughts: g('anThoughts'),
     poster: selAnimePosterDataUrl || null,
     posted: document.getElementById('anPostedDate').value || today(),
@@ -5189,7 +5197,7 @@ async function showAnimeDetail(id) {
       ${df('Your Verdict', m.review, true)}
       ${df('The Critique', m.critique, true)}
       ${df('The People In It', m.characters, true)}
-      ${m.quotes ? `<div class="det-field det-full"><div class="det-key">Lines Worth Keeping</div><div class="quote-block"><svg class="quote-mark" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V14.4Q0 7.2 3.6 3.6 7.2 0 13.2 0V4.8Q9.6 4.8 7.8 6.6 6 8.4 6 12H12V24H0ZM18 24V14.4Q18 7.2 21.6 3.6 25.2 0 31.2 0V4.8Q27.6 4.8 25.8 6.6 24 8.4 24 12H30V24H18Z"/></svg><div class="quote-text">${esc(m.quotes)}</div></div></div>` : df('Lines Worth Keeping', m.quotes, true)}
+      ${quotesBlockHtml('Lines Worth Keeping', m.quotes)}
       ${df('What It Left You Thinking', m.thoughts, true)}
     </div>`;
 

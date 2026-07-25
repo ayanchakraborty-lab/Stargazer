@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#FFFEF5!important}html.pre-light{background:#FFFEF5}</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<title>German Grammar Practice Quiz | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="32 adaptive German grammar questions covering cases, Konjunktiv, Passiv, word order & more, with instant explanations, streaks and scoring.">
+<meta name="keywords" content="German grammar practice, German grammar quiz, Konjunktiv, Passiv, German cases, Fälle, German grammar exercises">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The German Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/german/grammatik.html">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="German Grammar Practice Quiz | Stargazer">
+<meta property="og:description" content="32 adaptive questions on cases, Konjunktiv, Passiv and word order, with instant explanations and scoring. Practice →">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/german/grammatik.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/german-og.jpg">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/german-og.jpg">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="German Grammar Practice Quiz | Stargazer">
+<meta name="twitter:description" content="32 adaptive grammar questions with instant explanations, streaks, and scoring. Start practicing →">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "German Grammar Practice: Adaptive Quiz",
+  "description": "32 adaptive German grammar questions covering cases, Konjunktiv, Passiv, word order & more, with instant explanations, streaks and scoring.",
+  "url": "https://stargazer-9m9.pages.dev/german/grammatik.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "German grammar", "sameAs": "https://en.wikipedia.org/wiki/German_grammar" }
+}
+</script>
+<link rel="stylesheet" href="german.css">
+</head>
+<body>
+
+<script>if(localStorage.getItem('stargazer_theme')==='light')document.body.classList.add('light');</script>
+
+<!-- Home button -->
+<a href="../index.html" id="homeLink" title="universe"><span class="hl-arrow">←</span> <span class="hl-label">universe</span></a>
+
+<!-- Auth header -->
+<div id="authHeader">
+  <button id="darkToggle" onclick="toggleLight()">☀ Day</button>
+  <a href="../login.html" id="loginBtn">sign in</a>
+  <div id="userInfo" style="display:none;">
+    <span id="userEmailDisplay"></span>
+    <button onclick="doSignOut()" id="signOutBtn">sign out</button>
+  </div>
+</div>
+
+<!-- Hamburger Button -->
+<button id="hamburger-btn" onclick="openSidebar()" aria-label="Open navigation">
+  <span style="font-size:18px;">☰</span>
+  <span class="hb-label">MENÜ</span>
+</button>
+
+<!-- Sidebar Overlay -->
+<div id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!-- Sidebar Navigation -->
+<nav id="sidebar" aria-label="Site navigation">
+  <div class="sidebar-header">
+    <span class="sidebar-logo">Deutsch</span>
+    <button class="sidebar-close" onclick="closeSidebar()">✕</button>
+  </div>
+  <div class="sidebar-flag"><div class="f1"></div><div class="f2"></div><div class="f3"></div></div>
+
+  <div class="sidebar-theme-row">
+    <button id="sidebarDarkToggle" class="sidebar-theme-btn" onclick="toggleLight()">☀ Day Mode</button>
+  </div>
+
+  <ul class="sidebar-nav" style="list-style:none;">
+    <li class="sidebar-divider">Hauptseiten · Main Pages</li>
+    <li><button class="sidebar-item" id="sb-home" onclick="location.href='home.html'">
+      <span class="sidebar-icon">🏠</span>
+      <span class="sidebar-text"><span class="sidebar-de">Startseite</span><span class="sidebar-en">Home · Introduction</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Wortschatz · Vocabulary</li>
+    <li><button class="sidebar-item" id="sb-woerterbuch" onclick="location.href='woerterbuch.html'">
+      <span class="sidebar-icon">📖</span>
+      <span class="sidebar-text"><span class="sidebar-de">Wörterbuch</span><span class="sidebar-en">Dictionary · Word Explorer</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Grammatik · Grammar</li>
+    <li><button class="sidebar-item active" id="sb-grammatik" onclick="location.href='grammatik.html'">
+      <span class="sidebar-icon">✏️</span>
+      <span class="sidebar-text"><span class="sidebar-de">Grammatik</span><span class="sidebar-en">Grammar · Practice Questions</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-pruefungen" onclick="location.href='pruefungen.html'">
+      <span class="sidebar-icon">🧪</span>
+      <span class="sidebar-text"><span class="sidebar-de">Prüfungen</span><span class="sidebar-en">Tests · 20 Themed Exams</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-nachschlagen" onclick="location.href='nachschlagen.html'">
+      <span class="sidebar-icon">📋</span>
+      <span class="sidebar-text"><span class="sidebar-de">Nachschlagen</span><span class="sidebar-en">Reference Tables</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Lesen · Reading</li>
+    <li><button class="sidebar-item" id="sb-geschichten" onclick="location.href='geschichten.html'">
+      <span class="sidebar-icon">📚</span>
+      <span class="sidebar-text"><span class="sidebar-de">Geschichten</span><span class="sidebar-en">Stories · A1 to C2 Levels</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-buecher" onclick="location.href='buecher.html'">
+      <span class="sidebar-icon">📕</span>
+      <span class="sidebar-text"><span class="sidebar-de">Bücher</span><span class="sidebar-en">Books · Curated Reading List</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Sprechen · Speaking</li>
+    <li><button class="sidebar-item" id="sb-satzbauer" onclick="location.href='satzbauer.html'">
+      <span class="sidebar-icon">🤖</span>
+      <span class="sidebar-text"><span class="sidebar-de">Satzbauer</span><span class="sidebar-en">Sentence Builder · AI Checker</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-zungenbrecher" onclick="location.href='zungenbrecher.html'">
+      <span class="sidebar-icon">👅</span>
+      <span class="sidebar-text"><span class="sidebar-de">Zungenbrecher</span><span class="sidebar-en">Tongue Twisters</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Ausdruck · Expression</li>
+    <li><button class="sidebar-item" id="sb-redewendungen" onclick="location.href='redewendungen.html'">
+      <span class="sidebar-icon">💬</span>
+      <span class="sidebar-text"><span class="sidebar-de">Redewendungen</span><span class="sidebar-en">Idioms & Expressions</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Gemeinschaft · Community</li>
+    <li><button class="sidebar-item" id="sb-community" onclick="location.href='community.html'">
+      <span class="sidebar-icon">👥</span>
+      <span class="sidebar-text"><span class="sidebar-de">Gemeinschaft</span><span class="sidebar-en">Community Discussion</span></span>
+    </button></li>
+  </ul>
+
+  <div class="sidebar-footer">
+    Sprache ist das Haus des Seins<br>
+    <span style="color: var(--text-faint); font-size:9px;">— Martin Heidegger</span>
+  </div>
+</nav>
+
+<!-- Particles -->
+<div id="particles"></div>
+
+<!-- NAV (shared.js) -->
+<div id="nav-container"></div>
+
+<main>
+<section class="section active" id="grammatik">
+  <div class="section-head">
+    <h2>Grammatik</h2>
+    <p>Grammar · 32+ adaptive practice questions across all major topics</p>
+  </div>
+  <div class="grammar-wrap">
+    <aside class="grammar-sidebar">
+      <div class="topic-list" id="topic-list"></div>
+      <div class="score-panel">
+        <div class="score-label">Session Score</div>
+        <div class="score-nums"><span id="score-correct">0</span> / <span id="score-total">0</span></div>
+        <div class="score-bar-bg"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
+        <div class="score-streak" id="score-streak"></div>
+      </div>
+    </aside>
+    <div>
+      <div class="q-progress">
+        <span id="q-progress-txt">Question 1</span>
+        <div class="q-progress-bar"><div class="q-progress-fill" id="q-progress-fill" style="width:0%"></div></div>
+        <span id="q-of-txt">of 32</span>
+      </div>
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-topic-badge" id="q-topic-badge">Fälle</span>
+          <span class="q-num" id="q-num-label">#1</span>
+        </div>
+        <div class="q-body">
+          <div class="q-text" id="q-text"></div>
+          <div class="q-options" id="q-opts"></div>
+          <div class="q-explanation" id="q-exp"></div>
+        </div>
+        <div class="q-footer">
+          <button class="btn" id="btn-prev" onclick="prevQ()" disabled>← Prev</button>
+          <button class="btn btn-primary" id="btn-next" onclick="nextQ()" disabled>Next →</button>
+          <button class="shuffle-toggle" id="shuffle-btn" onclick="toggleShuffle()">
+            Shuffle <span class="tog"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="site-footer" onclick="handleFooterClick(event)">
+  <p>Stargazer · Deutsch · <a href="../index.html">← Zurück zur Hauptseite</a></p>
+  <p style="margin-top:6px;color:var(--text-faint)">Sprache ist das Haus des Seins. — Martin Heidegger</p>
+</footer>
+<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint);font-style:italic;font-family:'Space Mono',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--amber-2);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div style="text-align:center;padding-bottom:2rem;">
+  <a href="../ABOUT.html" style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--amber);opacity:0.45;text-decoration:none;border:1px solid var(--amber);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+</div>
+
+<script>
+/* Must be defined before shared.js loads */
+window._pageKey = 'german';
+
+window._applyDarkMode = function(isDark) {
+  document.body.classList.toggle('light', !isDark);
+  document.documentElement.classList.remove('pre-light');
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+  const btn = document.getElementById('darkToggle');
+  if (btn) btn.textContent = isDark ? '☀ Day' : '🌙 Dark';
+  const sideBtn = document.getElementById('sidebarDarkToggle');
+  if (sideBtn) sideBtn.textContent = isDark ? '☀ Day Mode' : '🌙 Dark Mode';
+};
+</script>
+<script src="../shared.js"></script>
+<script>
+const GRAMMAR = [
+  {id:1,q:"Which sentence correctly uses the dative case?",o:["Ich helfe er.","Ich helfe ihm.","Ich helfe ihn.","Ich helfe sie."],c:1,topic:"Fälle",exp:"<strong>helfen</strong> is a dative verb. The person helped must be in dative — <em>ihm</em> is dative of <em>er</em>. Other dative verbs: <em>danken, folgen, gefallen, gehören, begegnen, schaden.</em>"},
+  {id:2,q:"Complete: <em>Trotz ___ starken Regens blieb er draußen.</em>",o:["des","dem","den","der"],c:0,topic:"Fälle",exp:"<strong>Trotz</strong> governs the <strong>Genitive</strong>. <em>Regen</em> (m) genitive → <em>des Regens</em>. Other genitive prepositions: <em>wegen, während, statt, aufgrund.</em>"},
+  {id:3,q:"<em>Ich erinnere mich ___ unseren ersten Abend.</em>",o:["von","auf","an","über"],c:2,topic:"Fälle",exp:"<em>Sich erinnern</em> takes <strong>an + Akkusativ</strong>. <em>an unseren ersten Abend</em> — accusative after <em>an</em>."},
+  {id:4,q:"Which sentence uses the Genitiv correctly?",o:["Das Auto meines alten Vater.","Das Auto meines alten Vaters.","Das Auto meinem alten Vater.","Das Auto meinen alten Vaters."],c:1,topic:"Fälle",exp:"Masculine nouns in genitive add <em>-s</em> or <em>-es</em>: <em>Vaters</em>. After possessive (like definite article) adjective takes weak <em>-en</em>."},
+  {id:5,q:"No article: <em>___ Wein ist teuer.</em> Correct ending for 'gut'?",o:["Guten","Gut","Guter","Gutem"],c:2,topic:"Adjektivendungen",exp:"<strong>Strong declension</strong> when no article. Masculine nominative → <em>-er</em>: <em>Guter Wein.</em> The ending mirrors what the definite article would be: <em>der → -er.</em>"},
+  {id:6,q:"<em>Sie kaufte einen alt___ Mantel.</em>",o:["er","en","es","em"],c:1,topic:"Adjektivendungen",exp:"After indefinite article <em>einen</em>, adjective takes <strong>mixed declension</strong>. Masculine accusative: <em>-en</em>."},
+  {id:7,q:"<em>Mit gut___ Wein feiert man.</em>",o:["gutem","guten","guter","gutes"],c:0,topic:"Adjektivendungen",exp:"<em>Mit</em> governs Dative. No article → <strong>strong</strong>: masculine dative strong → <em>-em</em>."},
+  {id:8,q:"Complete: <em>Ich habe sie tanzen ___.</em>",o:["gesehen","sehen","geseht","sehend"],c:1,topic:"Verbformen",exp:"<strong>Ersatzinfinitiv</strong>: After perception verbs in compound tenses, the past participle is replaced by an infinitive: <em>habe … tanzen sehen</em>."},
+  {id:9,q:"Which needs <strong>sein</strong> as perfect auxiliary?",o:["Ich habe das Buch gelesen.","Er hat das Auto gewaschen.","Sie ist eingeschlafen.","Wir haben gesprochen."],c:2,topic:"Verbformen",exp:"<em>Einschlafen</em> is a change-of-state verb → uses <strong>sein</strong>. Rule: movement A→B and change of state use <em>sein</em>."},
+  {id:10,q:"Separables in Perfekt: 'aufmachen' →",o:["geaufmacht","aufgemacht","auf-ge-macht","gemachtauf"],c:1,topic:"Verbformen",exp:"With separable verbs, <em>ge-</em> is inserted between prefix and stem: <em>auf+ge+macht = aufgemacht</em>."},
+  {id:11,q:"<em>'sehen' in Konjunktiv II is:</em>",o:["sähe","söhe","sehe","gesehe"],c:0,topic:"Konjunktiv",exp:"K2 from Präteritum stem + umlaut + endings: <em>sah → säh- + -e = sähe.</em>"},
+  {id:12,q:"Indirect speech (K1). Original: „Ich bin müde.\"",o:["Er sagte, er wäre müde.","Er sagte, er ist müde.","Er sagte, er sei müde.","Er sagte, er war müde."],c:2,topic:"Konjunktiv",exp:"<strong>K1</strong> is standard for indirect speech. <em>sein</em> K1 → <em>sei</em>. K2 (<em>wäre</em>) used only when K1 = indicative form."},
+  {id:13,q:"Unreal past: 'If only he had listened.'",o:["Wenn er zuhören würde!","Wenn er nur gehört hätte!","Wenn er nur gehört hat!","Wenn er zuhörte!"],c:1,topic:"Konjunktiv",exp:"Unreal past uses <strong>K2 Perfekt</strong>: <em>hätte/wäre + Partizip II</em>. <em>Wenn er nur gehört hätte!</em>"},
+  {id:14,q:"Choose the Zustandspassiv (resulting state):",o:["Die Tür wird geöffnet.","Die Tür wurde geöffnet.","Die Tür ist geöffnet.","Die Tür ist geöffnet worden."],c:2,topic:"Passiv",exp:"<strong>Zustandspassiv</strong> = <em>sein + Partizip II</em> → resulting state: <em>ist geöffnet</em>. <strong>Vorgangspassiv</strong> = <em>werden + Partizip II</em> → the action."},
+  {id:15,q:"<em>von</em> vs. <em>durch</em> in passive — the difference?",o:["No difference","'von' = direct agent; 'durch' = indirect means","'durch' = agent; 'von' = instrument","'von' = formal only"],c:1,topic:"Passiv",exp:"<strong>von + Dativ</strong> = direct human agent. <strong>durch + Akkusativ</strong> = indirect cause/means."},
+  {id:16,q:"<em>Das Holz, ___ Qualität nicht zu bezweifeln ist.</em>",o:["das","dessen","dem","die"],c:1,topic:"Relativsätze",exp:"<strong>Genitivrelativsatz</strong>: <em>das Holz</em> is neuter → genitive relative = <em>dessen</em>. <em>deren</em> is plural/feminine."},
+  {id:17,q:"<em>Täglich ___ er im Wald.</em> (V2 after adverb)",o:["er arbeitete","arbeitete er","er im Wald arbeitete","im Wald er arbeitete"],c:1,topic:"Wortstellung",exp:"<strong>V2 rule</strong>: After fronted adverb, the subject must follow the verb: <em>Täglich arbeitete er.</em>"},
+  {id:18,q:"<em>Je schwerer die Arbeit, ___ mehr schätzte er die Stille.</em>",o:["desto","umso","so","als"],c:0,topic:"Konnektoren",exp:"<strong>Je … desto</strong>: after <em>desto</em>, order is adjective → verb → subject."},
+  {id:19,q:"<em>Er soll sehr reich sein.</em> What does <em>soll</em> express here?",o:["Obligation","Hearsay — reportedly rich","He wants to be rich","Logical deduction"],c:1,topic:"Modalverben",exp:"<strong>Sollen 3rd person</strong> = hearsay: <em>Er soll reich sein</em> = He's said to be rich."},
+  {id:20,q:"<em>Das Mittel war ___ teuer, als dass sich viele es leisten konnten.</em>",o:["zu","so","dermaßen","viel"],c:0,topic:"Konnektoren",exp:"<strong>Zu … als dass</strong>: 'too X for consequence'. The als-dass clause requires <strong>K2</strong>."},
+  {id:21,q:"Which needs <em>werden</em> as passive auxiliary (Vorgangspassiv)?",o:["Die Tür ist offen.","Das Buch ist gelesen.","Die Tür wird geöffnet.","Er ist gegangen."],c:2,topic:"Passiv",exp:"Vorgangspassiv: <em>werden + Partizip II</em>. <em>Die Tür wird geöffnet</em> = the door is being opened (process)."},
+  {id:22,q:"<em>Kaum ___ der erste Baum gefallen, setzte ein Sturm ein.</em>",o:["war","hatte","ist","wäre"],c:0,topic:"Verbformen",exp:"<strong>Kaum + Plusquamperfekt</strong>: 'no sooner than'. Pluperfect required: <em>war gefallen</em>."},
+  {id:23,q:"<em>Er dürfte es gewusst haben.</em> — meaning?",o:["He was allowed to know it.","He probably knew it.","He had to know it.","He should have known it."],c:1,topic:"Modalverben",exp:"<strong>Dürfen K2 (dürfte)</strong> = epistemic probability: 'he probably knew it'."},
+  {id:24,q:"Which forms Genitive of a proper name correctly?",o:["Goethes Faust ist ein Meisterwerk.","Goethe's Faust ist ein Meisterwerk.","Goethes' Faust ist ein Meisterwerk.","Von Goethe Faust."],c:0,topic:"Fälle",exp:"German proper names form genitive with <strong>-s</strong>, never with apostrophe: <em>Goethes Faust</em>."},
+  {id:25,q:"<em>Er war ___ erschöpft ___ er kaum stehen konnte.</em>",o:["so … dass","zu … als dass","weder … noch","je … desto"],c:0,topic:"Konnektoren",exp:"<strong>So … dass</strong>: degree + real consequence. Uses indicative. <em>Zu … als dass</em> would use K2."},
+  {id:26,q:"Indirect: <em>„Wir haben das Manuskript abgegeben.\"</em> — K1 Perfekt?",o:["Sie hätten abgegeben.","Sie haben abgegeben.","Sie gaben ab.","Sie seien abgegeben worden."],c:0,topic:"Konjunktiv",exp:"<em>haben</em> K1 3rd plural = <em>haben</em> (= indicative!) → use K2: <em>hätten abgegeben</em>."},
+  {id:27,q:"<em>Die Angeklagte schwieg; ___ konnte ihr das Gericht keine Schuld nachweisen.</em>",o:["dennoch","daher","also","somit"],c:0,topic:"Konnektoren",exp:"<strong>Dennoch</strong> = nevertheless (adversative). <em>daher/also/somit</em> are consecutive (therefore)."},
+  {id:28,q:"<em>Die Blumen schließen ___ abends.</em>",o:["sich","einander","—","es"],c:0,topic:"Reflexiv",exp:"<strong>Process reflexive</strong>: <em>sich schließen</em> = to close (spontaneously). The <em>sich</em> marks a natural process without external agent."},
+  {id:29,q:"<em>Die Schwestern helfen ___.</em> — unambiguously reciprocal?",o:["sich","einander","sich gegenseitig","ihnen"],c:1,topic:"Reflexiv",exp:"<strong>Einander</strong> = each other (unambiguously reciprocal). <em>Sich</em> is ambiguous (could mean 'themselves')."},
+  {id:30,q:"<em>Wenn er käme, würden wir essen.</em> — What is unusual?",o:["Nothing — käme is preferred in writing.","Should be: kommen würde.","Käme is plural — should be kämen.","Wenn needs indicative."],c:0,topic:"Konjunktiv",exp:"In <strong>written German</strong>, the wenn-clause prefers direct K2 form (<em>käme</em>) rather than <em>würde kommen</em>."},
+  {id:31,q:"<em>Das Projekt entwickelt ___ positiv.</em>",o:["sich","einander","es","—"],c:0,topic:"Reflexiv",exp:"<strong>Sich entwickeln</strong> = to develop (intransitively). Middle-voice reflexive marking spontaneous process."},
+  {id:32,q:"<em>Er hat sich die Hände ___.</em> — correct form?",o:["gewaschen","waschen","waschend","wäscht"],c:0,topic:"Verbformen",exp:"<em>Die Hände waschen</em> (accusative object) + Reflexiv Dativ: <em>sich die Hände waschen</em>. Perfekt: <em>hat sich die Hände gewaschen.</em>"}
+];
+
+let grammarOrder = GRAMMAR.map((_,i)=>i);
+let grammarIdx = 0;
+let grammarScore = {correct:0,total:0,streak:0};
+let grammarAnswered = {};
+let shuffleOn = false;
+
+function initParticles(){
+  const wrap = document.getElementById('particles');
+  if(!wrap) return;
+  const colors = ['#E8A800','#CC0000','#FFE033','#7C3AED','#10B981'];
+  for(let i=0;i<28;i++){
+    const el = document.createElement('div');
+    el.className = 'needle';
+    const size = 2 + Math.random()*4;
+    el.style.width = size+'px';
+    el.style.height = size+'px';
+    el.style.background = colors[Math.floor(Math.random()*colors.length)];
+    el.style.left = Math.random()*100+'%';
+    el.style.setProperty('--d', (Math.random()*120-60)+'px');
+    el.style.animationDuration = (8+Math.random()*14)+'s';
+    el.style.animationDelay = (Math.random()*14)+'s';
+    el.style.opacity = (0.25+Math.random()*0.45).toFixed(2);
+    wrap.appendChild(el);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   SIDEBAR / NAV
+═══════════════════════════════════════════ */
+
+function openSidebar(){
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sidebar-overlay').classList.add('open');
+}
+
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+}
+
+function toggleLight(){
+  const goingLight = !document.body.classList.contains('light');
+  document.body.classList.toggle('light', goingLight);
+  document.documentElement.classList.remove('pre-light');
+  localStorage.setItem('stargazer_theme', goingLight ? 'light' : 'dark');
+  const label = goingLight ? '🌙 Dark' : '☀ Day';
+  const btn = document.getElementById('darkToggle');
+  if(btn) btn.textContent = label;
+  const sideBtn = document.getElementById('sidebarDarkToggle');
+  if(sideBtn) sideBtn.textContent = goingLight ? '🌙 Dark Mode' : '☀ Day Mode';
+  if (typeof sbSaveDarkMode === 'function') sbSaveDarkMode(!goingLight);
+}
+
+/* ═══════════════════════════════════════════
+   GEHEIMER MODUS · SECRET MODE
+   Triple-clicking the footer text (not the "Zurück zur Hauptseite" link
+   itself) flips a hidden theme. e.detail is the browser's own rapid-click
+   counter, so no manual timers are needed. State persists in localStorage.
+   The Prüfungen section has a themed test ("Der Geheimagent") whose last
+   item plainly tells the player about this — see THEMED_TESTS id 21.
+═══════════════════════════════════════════ */
+
+function handleFooterClick(e){
+  if(e.target.closest('a')) return; // let the real navigation link work normally
+  if(e.detail===3) toggleSecretMode();
+}
+
+function toggleSecretMode(){
+  const on = !document.body.classList.contains('geheim-mode');
+  document.body.classList.toggle('geheim-mode', on);
+  try{ localStorage.setItem('german-geheim-mode', on ? '1' : '0'); }catch(e){}
+  showSecretToast(on);
+}
+
+function showSecretToast(on){
+  const existing = document.querySelector('.geheim-toast');
+  if(existing) existing.remove();
+  const t = document.createElement('div');
+  t.className = 'geheim-toast';
+  t.innerHTML = on
+    ? `🔮 <strong>Geheimer Modus aktiviert</strong><span>Secret mode activated — welcome behind the curtain.</span>`
+    : `Geheimer Modus deaktiviert <span>Secret mode off</span>`;
+  document.body.appendChild(t);
+  requestAnimationFrame(()=>t.classList.add('show'));
+  setTimeout(()=>{ t.classList.remove('show'); setTimeout(()=>t.remove(), 500); }, 3200);
+}
+
+function restoreSecretMode(){
+  try{ if(localStorage.getItem('german-geheim-mode')==='1') document.body.classList.add('geheim-mode'); }catch(e){}
+}
+
+/* ═══════════════════════════════════════════
+   READING LOGIN STATE FROM shared.js's OWN UI
+   shared.js renders into #loginBtn / #userInfo / #userEmailDisplay — this
+   page reads those same elements rather than keeping its own auth state,
+   so it can never drift out of sync with the real session.
+═══════════════════════════════════════════ */
+
+function renderGrammarTopics(){
+  const topics = [...new Set(GRAMMAR.map(g=>g.topic))];
+  document.getElementById('topic-list').innerHTML = topics.map(t=>{
+    const count = GRAMMAR.filter(g=>g.topic===t).length;
+    return `<button class="topic-btn" onclick="jumpToTopic('${t}')"><span>${t}</span><span class="topic-count">${count}</span></button>`;
+  }).join('');
+}
+
+function jumpToTopic(topic){
+  const idx = grammarOrder.findIndex(i=>GRAMMAR[i].topic===topic);
+  if(idx>=0){ grammarIdx = idx; renderGrammarQuestion(); }
+}
+
+function toggleShuffle(){
+  shuffleOn = !shuffleOn;
+  document.getElementById('shuffle-btn').classList.toggle('on', shuffleOn);
+  if(shuffleOn){
+    grammarOrder = GRAMMAR.map((_,i)=>i).sort(()=>Math.random()-0.5);
+  } else {
+    grammarOrder = GRAMMAR.map((_,i)=>i);
+  }
+  grammarIdx = 0;
+  renderGrammarQuestion();
+}
+
+function loadGrammarQuestion(){ renderGrammarQuestion(); }
+
+function renderGrammarQuestion(){
+  const q = GRAMMAR[grammarOrder[grammarIdx]];
+  document.getElementById('q-topic-badge').textContent = q.topic;
+  document.getElementById('q-num-label').textContent = '#'+(grammarIdx+1);
+  document.getElementById('q-text').innerHTML = q.q;
+  document.getElementById('q-progress-txt').textContent = 'Frage '+(grammarIdx+1);
+  document.getElementById('q-of-txt').textContent = 'von '+GRAMMAR.length;
+  document.getElementById('q-progress-fill').style.width = ((grammarIdx+1)/GRAMMAR.length*100)+'%';
+
+  const answered = grammarAnswered[q.id];
+  const optsHtml = q.o.map((opt,i)=>{
+    let cls='q-opt';
+    if(answered!==undefined){
+      if(i===q.c) cls+=' correct';
+      else if(i===answered) cls+=' wrong';
+    }
+    return `<button class="${cls}" ${answered!==undefined?'disabled':''} onclick="answerGrammar(${i})"><span class="opt-letter">${String.fromCharCode(65+i)}</span><span>${opt}</span></button>`;
+  }).join('');
+  document.getElementById('q-opts').innerHTML = optsHtml;
+
+  const expEl = document.getElementById('q-exp');
+  if(answered!==undefined){
+    expEl.innerHTML = q.exp;
+    expEl.classList.add('show');
+  } else {
+    expEl.classList.remove('show');
+    expEl.innerHTML='';
+  }
+  document.getElementById('btn-prev').disabled = grammarIdx===0;
+  document.getElementById('btn-next').disabled = answered===undefined;
+}
+
+function answerGrammar(i){
+  const q = GRAMMAR[grammarOrder[grammarIdx]];
+  if(grammarAnswered[q.id]!==undefined) return;
+  grammarAnswered[q.id]=i;
+  grammarScore.total++;
+  if(i===q.c){ grammarScore.correct++; grammarScore.streak++; }
+  else { grammarScore.streak=0; }
+  updateScorePanel();
+  renderGrammarQuestion();
+}
+
+function nextQ(){
+  if(grammarIdx < GRAMMAR.length-1){ grammarIdx++; renderGrammarQuestion(); }
+}
+
+function prevQ(){
+  if(grammarIdx>0){ grammarIdx--; renderGrammarQuestion(); }
+}
+
+function updateScorePanel(){
+  document.getElementById('score-correct').textContent = grammarScore.correct;
+  document.getElementById('score-total').textContent = grammarScore.total;
+  const pct = grammarScore.total ? (grammarScore.correct/grammarScore.total*100) : 0;
+  document.getElementById('score-bar').style.width = pct+'%';
+  document.getElementById('score-streak').textContent = grammarScore.streak>1 ? `🔥 ${grammarScore.streak} in Folge!` : (grammarScore.total ? `${Math.round(pct)}% korrekt` : 'Beginne die Übung!');
+}
+
+/* ═══════════════════════════════════════════
+   THEMED TESTS (20 tests × 10 Qs)
+═══════════════════════════════════════════ */
+
+function initApp(){
+  restoreSecretMode()
+  initParticles()
+  renderGrammarTopics()
+  loadGrammarQuestion()
+  if (typeof renderNavAuth === 'function') renderNavAuth('nav-container');
+}
+document.addEventListener('DOMContentLoaded', initApp);
+</script>
+</body>
+</html>

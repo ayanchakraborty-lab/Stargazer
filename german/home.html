@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#FFFEF5!important}html.pre-light{background:#FFFEF5}</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<title>Learn German Online: Grammar to Stories | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="Free German learning hub — grammar drills, 20 themed tests, 60 graded stories, an AI sentence checker, and 18 untranslatable words. Start free →">
+<meta name="keywords" content="learn German online, German grammar practice, German short stories, untranslatable German words, deutsch lernen, German vocabulary, German tests">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The German Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/german/home.html">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Learn German Online: Grammar to Stories | Stargazer">
+<meta property="og:description" content="Grammar drills, 20 themed tests, 60 graded stories, an AI sentence checker, and 18 untranslatable words. Begin your immersion →">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/german/home.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/german-og.jpg">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/german-og.jpg">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Learn German Online: Grammar to Stories | Stargazer">
+<meta name="twitter:description" content="Grammar, 20 themed tests, 60 graded stories, an AI sentence checker, and 18 untranslatable words. Begin your immersion →">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Learn German: Grammar, Tests, Stories & Untranslatable Words",
+  "description": "Free German learning hub — grammar drills, 20 themed tests, 60 graded stories, an AI sentence checker, and 18 untranslatable words. Start free →",
+  "url": "https://stargazer-9m9.pages.dev/german/home.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "German language", "sameAs": "https://en.wikipedia.org/wiki/German_language" }
+}
+</script>
+<link rel="stylesheet" href="german.css">
+</head>
+<body>
+
+<script>if(localStorage.getItem('stargazer_theme')==='light')document.body.classList.add('light');</script>
+
+<!-- Home button -->
+<a href="../index.html" id="homeLink" title="universe"><span class="hl-arrow">←</span> <span class="hl-label">universe</span></a>
+
+<!-- Auth header -->
+<div id="authHeader">
+  <button id="darkToggle" onclick="toggleLight()">☀ Day</button>
+  <a href="../login.html" id="loginBtn">sign in</a>
+  <div id="userInfo" style="display:none;">
+    <span id="userEmailDisplay"></span>
+    <button onclick="doSignOut()" id="signOutBtn">sign out</button>
+  </div>
+</div>
+
+<!-- Hamburger Button -->
+<button id="hamburger-btn" onclick="openSidebar()" aria-label="Open navigation">
+  <span style="font-size:18px;">☰</span>
+  <span class="hb-label">MENÜ</span>
+</button>
+
+<!-- Sidebar Overlay -->
+<div id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!-- Sidebar Navigation -->
+<nav id="sidebar" aria-label="Site navigation">
+  <div class="sidebar-header">
+    <span class="sidebar-logo">Deutsch</span>
+    <button class="sidebar-close" onclick="closeSidebar()">✕</button>
+  </div>
+  <div class="sidebar-flag"><div class="f1"></div><div class="f2"></div><div class="f3"></div></div>
+
+  <div class="sidebar-theme-row">
+    <button id="sidebarDarkToggle" class="sidebar-theme-btn" onclick="toggleLight()">☀ Day Mode</button>
+  </div>
+
+  <ul class="sidebar-nav" style="list-style:none;">
+    <li class="sidebar-divider">Hauptseiten · Main Pages</li>
+    <li><button class="sidebar-item active" id="sb-home" onclick="location.href='home.html'">
+      <span class="sidebar-icon">🏠</span>
+      <span class="sidebar-text"><span class="sidebar-de">Startseite</span><span class="sidebar-en">Home · Introduction</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Wortschatz · Vocabulary</li>
+    <li><button class="sidebar-item" id="sb-woerterbuch" onclick="location.href='woerterbuch.html'">
+      <span class="sidebar-icon">📖</span>
+      <span class="sidebar-text"><span class="sidebar-de">Wörterbuch</span><span class="sidebar-en">Dictionary · Word Explorer</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Grammatik · Grammar</li>
+    <li><button class="sidebar-item" id="sb-grammatik" onclick="location.href='grammatik.html'">
+      <span class="sidebar-icon">✏️</span>
+      <span class="sidebar-text"><span class="sidebar-de">Grammatik</span><span class="sidebar-en">Grammar · Practice Questions</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-pruefungen" onclick="location.href='pruefungen.html'">
+      <span class="sidebar-icon">🧪</span>
+      <span class="sidebar-text"><span class="sidebar-de">Prüfungen</span><span class="sidebar-en">Tests · 20 Themed Exams</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-nachschlagen" onclick="location.href='nachschlagen.html'">
+      <span class="sidebar-icon">📋</span>
+      <span class="sidebar-text"><span class="sidebar-de">Nachschlagen</span><span class="sidebar-en">Reference Tables</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Lesen · Reading</li>
+    <li><button class="sidebar-item" id="sb-geschichten" onclick="location.href='geschichten.html'">
+      <span class="sidebar-icon">📚</span>
+      <span class="sidebar-text"><span class="sidebar-de">Geschichten</span><span class="sidebar-en">Stories · A1 to C2 Levels</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-buecher" onclick="location.href='buecher.html'">
+      <span class="sidebar-icon">📕</span>
+      <span class="sidebar-text"><span class="sidebar-de">Bücher</span><span class="sidebar-en">Books · Curated Reading List</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Sprechen · Speaking</li>
+    <li><button class="sidebar-item" id="sb-satzbauer" onclick="location.href='satzbauer.html'">
+      <span class="sidebar-icon">🤖</span>
+      <span class="sidebar-text"><span class="sidebar-de">Satzbauer</span><span class="sidebar-en">Sentence Builder · AI Checker</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-zungenbrecher" onclick="location.href='zungenbrecher.html'">
+      <span class="sidebar-icon">👅</span>
+      <span class="sidebar-text"><span class="sidebar-de">Zungenbrecher</span><span class="sidebar-en">Tongue Twisters</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Ausdruck · Expression</li>
+    <li><button class="sidebar-item" id="sb-redewendungen" onclick="location.href='redewendungen.html'">
+      <span class="sidebar-icon">💬</span>
+      <span class="sidebar-text"><span class="sidebar-de">Redewendungen</span><span class="sidebar-en">Idioms & Expressions</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Gemeinschaft · Community</li>
+    <li><button class="sidebar-item" id="sb-community" onclick="location.href='community.html'">
+      <span class="sidebar-icon">👥</span>
+      <span class="sidebar-text"><span class="sidebar-de">Gemeinschaft</span><span class="sidebar-en">Community Discussion</span></span>
+    </button></li>
+  </ul>
+
+  <div class="sidebar-footer">
+    Sprache ist das Haus des Seins<br>
+    <span style="color: var(--text-faint); font-size:9px;">— Martin Heidegger</span>
+  </div>
+</nav>
+
+<!-- Particles -->
+<div id="particles"></div>
+
+<!-- NAV (shared.js) -->
+<div id="nav-container"></div>
+
+<!-- ═══ HERO / HOME ═══ -->
+<header class="hero active" id="top">
+  <div class="hero-stars"></div>
+  <div class="hero-moon"></div>
+
+  <div class="hero-content">
+    <span class="hero-orn">✦ &nbsp; ✦ &nbsp; ✦</span>
+    <h1 class="hero-title"><span class="frak">D</span>EUTSCH</h1>
+    <div class="hero-flag-stripe" aria-hidden="true">
+      <div class="s1"></div><div class="s2"></div><div class="s3"></div>
+    </div>
+    <p class="hero-sub">Waldeinsamkeit · Bildung · Sehnsucht</p>
+    <p class="hero-desc">German is a language of compounding — of stacking ideas until a single word holds an entire feeling that other languages need a paragraph to explain. This is your immersion.</p>
+
+    <a href="#" class="hero-scroll-cue" onclick="event.preventDefault();document.getElementById('home-explore').scrollIntoView({behavior:'smooth'})">
+      <span>Erkunde alle Bereiche · Explore everything below</span>
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 6L8 11L13 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+
+  <div class="hero-trees">
+    <svg viewBox="0 0 1400 220" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+      <g opacity="0.4" fill="#0D0205">
+        <polygon points="80,220 95,170 110,220"/><polygon points="87,190 102,150 117,190"/><polygon points="93,165 108,130 123,165"/>
+        <polygon points="200,220 218,165 236,220"/><polygon points="207,188 225,148 243,188"/>
+        <polygon points="360,220 380,158 400,220"/><polygon points="367,185 387,145 407,185"/>
+        <polygon points="550,220 565,175 580,220"/><polygon points="700,220 718,162 736,220"/>
+        <polygon points="850,220 870,155 890,220"/><polygon points="1000,220 1015,172 1030,220"/>
+        <polygon points="1150,220 1170,160 1190,220"/><polygon points="1300,220 1315,175 1330,220"/>
+      </g>
+      <g opacity="0.65" fill="#0A0103">
+        <polygon points="0,220 20,155 40,220"/><polygon points="4,180 24,125 44,180"/><polygon points="7,152 27,102 47,152"/>
+        <rect x="17" y="195" width="6" height="25" fill="#0A0103"/>
+        <polygon points="140,220 165,145 190,220"/><polygon points="147,182 172,120 197,182"/>
+        <rect x="160" y="200" width="10" height="20" fill="#0A0103"/>
+        <polygon points="310,220 340,138 370,220"/><polygon points="318,180 348,115 378,180"/>
+        <rect x="335" y="198" width="10" height="22" fill="#0A0103"/>
+        <polygon points="470,220 492,162 514,220"/><rect x="488" y="200" width="8" height="20" fill="#0A0103"/>
+        <polygon points="640,220 665,148 690,220"/><rect x="663" y="200" width="10" height="20" fill="#0A0103"/>
+        <polygon points="800,220 820,165 840,220"/><rect x="816" y="202" width="8" height="18" fill="#0A0103"/>
+        <polygon points="960,220 985,140 1010,220"/><rect x="983" y="198" width="10" height="22" fill="#0A0103"/>
+        <polygon points="1100,220 1120,168 1140,220"/><rect x="1116" y="203" width="8" height="17" fill="#0A0103"/>
+        <polygon points="1260,220 1285,142 1310,220"/><rect x="1283" y="200" width="10" height="20" fill="#0A0103"/>
+        <polygon points="1370,220 1390,160 1410,220"/>
+      </g>
+      <g fill="#060003">
+        <polygon points="-20,220 18,120 56,220"/><polygon points="-12,175 26,88 64,175"/><polygon points="-5,140 33,62 71,140"/>
+        <rect x="14" y="190" width="12" height="30" fill="#060003"/>
+        <polygon points="250,220 295,105 340,220"/><polygon points="260,172 305,78 350,172"/>
+        <rect x="285" y="195" width="14" height="25" fill="#060003"/>
+        <polygon points="580,220 618,125 656,220"/><polygon points="590,178 628,82 666,178"/>
+        <rect x="615" y="198" width="12" height="22" fill="#060003"/>
+        <polygon points="1050,220 1088,118 1126,220"/><polygon points="1060,174 1098,78 1136,174"/>
+        <rect x="1085" y="196" width="13" height="24" fill="#060003"/>
+        <polygon points="1340,220 1375,128 1410,220"/><rect x="1370" y="198" width="10" height="22" fill="#060003"/>
+      </g>
+    </svg>
+  </div>
+</header>
+
+<!-- ═══ WOTD ═══ -->
+<div class="wotd" id="wotd-bar">
+  <button class="wotd-toggle" onclick="document.getElementById('wotd-bar').classList.toggle('open')">
+    <span>✦ <span id="wotd-preview">Wort des Tages</span></span>
+    <svg class="wotd-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6L8 11L13 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </button>
+  <div class="wotd-body">
+    <div class="wotd-main">
+      <div class="wotd-german"><span class="wotd-article" id="wotd-art"></span> <span id="wotd-de"></span></div>
+      <div class="wotd-english" id="wotd-en"></div>
+      <div class="wotd-example" id="wotd-ex"></div>
+    </div>
+    <div class="wotd-decomp" id="wotd-parts"></div>
+  </div>
+</div>
+
+<main>
+<section class="section active" id="home">
+  <div class="section-head">
+    <h2>Willkommen</h2>
+    <p>Your immersive German learning space — from first words to literary mastery. Ten corners to explore below: a dictionary of untranslatable words, adaptive grammar drills, 20 themed exams, graded short stories, a curated reading list, an AI sentence coach, tongue twisters, idioms, quick reference tables, and a community of fellow learners.</p>
+  </div>
+
+  <div class="explore-grid" id="home-explore">
+    <button class="explore-card" onclick="location.href='woerterbuch.html'">
+      <span class="explore-icon">📖</span>
+      <div class="explore-title">Wörterbuch</div>
+      <div class="explore-sub">Dictionary</div>
+      <div class="explore-desc">18 untranslatable words plus 50+ curated entries, each with full etymology.</div>
+    </button>
+    <button class="explore-card" onclick="location.href='grammatik.html'">
+      <span class="explore-icon">✏️</span>
+      <div class="explore-title">Grammatik</div>
+      <div class="explore-sub">Grammar Practice</div>
+      <div class="explore-desc">32+ adaptive questions across every major structure, with streaks &amp; scoring.</div>
+    </button>
+    <button class="explore-card ec-purple" onclick="location.href='pruefungen.html'">
+      <span class="explore-icon">🧪</span>
+      <div class="explore-title">Prüfungen</div>
+      <div class="explore-sub">Themed Tests</div>
+      <div class="explore-desc">20 professions, 200 advanced questions — plus one test that isn't quite like the others.</div>
+    </button>
+    <button class="explore-card" onclick="location.href='nachschlagen.html'">
+      <span class="explore-icon">📋</span>
+      <div class="explore-title">Nachschlagen</div>
+      <div class="explore-sub">Reference Tables</div>
+      <div class="explore-desc">Cases, pronouns, prepositions &amp; strong verbs, all at a glance.</div>
+    </button>
+    <button class="explore-card ec-emerald" onclick="location.href='geschichten.html'">
+      <span class="explore-icon">📚</span>
+      <div class="explore-title">Geschichten</div>
+      <div class="explore-sub">Stories</div>
+      <div class="explore-desc">Ten graded stories per CEFR level, A1 through C2, with vocabulary &amp; summaries.</div>
+    </button>
+    <button class="explore-card ec-amber" onclick="location.href='buecher.html'">
+      <span class="explore-icon">📕</span>
+      <div class="explore-title">Bücher</div>
+      <div class="explore-sub">Books</div>
+      <div class="explore-desc">A curated reading list with a growing library of PDFs.</div>
+    </button>
+    <button class="explore-card ec-ocean" onclick="location.href='satzbauer.html'">
+      <span class="explore-icon">🤖</span>
+      <div class="explore-title">Satzbauer</div>
+      <div class="explore-sub">AI Sentence Builder</div>
+      <div class="explore-desc">Write a sentence with a random word — get instant AI-graded feedback.</div>
+    </button>
+    <button class="explore-card ec-teal" onclick="location.href='zungenbrecher.html'">
+      <span class="explore-icon">👅</span>
+      <div class="explore-title">Zungenbrecher</div>
+      <div class="explore-sub">Tongue Twisters</div>
+      <div class="explore-desc">Pronunciation drills that will absolutely destroy your confidence.</div>
+    </button>
+    <button class="explore-card" onclick="location.href='redewendungen.html'">
+      <span class="explore-icon">💬</span>
+      <div class="explore-title">Redewendungen</div>
+      <div class="explore-sub">Idioms &amp; Expressions</div>
+      <div class="explore-desc">German sayings with their literal and real meanings side by side.</div>
+    </button>
+    <button class="explore-card ec-coral" onclick="location.href='community.html'">
+      <span class="explore-icon">👥</span>
+      <div class="explore-title">Gemeinschaft</div>
+      <div class="explore-sub">Community</div>
+      <div class="explore-desc">Talk German with other Stargazer travelers — ask, share, discuss.</div>
+    </button>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-bottom:40px;">
+    <div style="background:linear-gradient(135deg,rgba(204,0,0,0.08),rgba(255,204,0,0.04));border:1px solid rgba(255,204,0,0.15);border-radius:var(--r-lg);padding:24px;">
+      <div style="font-size:28px;margin-bottom:10px;">🇩🇪</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:var(--gold-2);margin-bottom:10px;">What is German like?</h3>
+      <p style="font-size:12px;color:var(--text-2);line-height:1.8;">German is a <strong style="color:var(--gold-3)">grammatical language</strong> — every noun has a gender, every case changes how articles and adjectives look. It rewards precision and punishes guessing. But it also has extraordinary expressive power: Germans routinely build compound nouns that compress entire philosophical ideas into one word. <em style="color:var(--text-3)">Weltschmerz. Torschlusspanik. Fingerspitzengefühl.</em></p>
+    </div>
+    <div style="background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(167,139,250,0.04));border:1px solid rgba(124,58,237,0.15);border-radius:var(--r-lg);padding:24px;">
+      <div style="font-size:28px;margin-bottom:10px;">🧠</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:var(--purple-2);margin-bottom:10px;">Why learn it?</h3>
+      <p style="font-size:12px;color:var(--text-2);line-height:1.8;">German is spoken by <strong style="color:var(--purple-3)">100 million people</strong> across Europe. It is the language of Goethe, Kafka, Nietzsche, Bach, and Einstein. Germany has the largest economy in Europe. German grammar, once mastered, rewires how you think about language itself — and makes learning other European languages dramatically easier.</p>
+    </div>
+    <div style="background:linear-gradient(135deg,rgba(16,185,129,0.08),rgba(52,211,153,0.04));border:1px solid rgba(16,185,129,0.15);border-radius:var(--r-lg);padding:24px;">
+      <div style="font-size:28px;margin-bottom:10px;">🗺️</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:var(--emerald-2);margin-bottom:10px;">How this page helps</h3>
+      <p style="font-size:12px;color:var(--text-2);line-height:1.8;">This page takes you from <strong style="color:var(--emerald-3)">A1 simple sentences</strong> to <strong style="color:var(--emerald-3)">C2 literary prose</strong>. Grammar practice questions fire in adaptive mode. Twenty themed tests give you 200 advanced challenges. Sixty graded stories let you read German as it's actually written.</p>
+    </div>
+  </div>
+
+  <div style="background:var(--bg-card);border:1px solid rgba(255,204,0,0.1);border-radius:var(--r-lg);padding:28px;max-width:800px;margin-bottom:32px;">
+    <h3 style="font-family:'UnifrakturMaguntia',serif;font-size:28px;color:var(--gold-2);margin-bottom:18px;">Das CEFR-System</h3>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div style="padding:12px;background:rgba(60,180,40,0.08);border:1px solid rgba(60,180,40,0.2);border-radius:var(--r);text-align:center;">
+        <div style="font-size:18px;font-weight:700;color:#66CC44;font-family:'Playfair Display',serif;">A1</div>
+        <div style="font-size:10px;color:var(--text-3);margin-top:4px;line-height:1.4;">Beginner · Basic phrases, greetings, simple sentences</div>
+      </div>
+      <div style="padding:12px;background:rgba(80,160,40,0.08);border:1px solid rgba(80,160,40,0.2);border-radius:var(--r);text-align:center;">
+        <div style="font-size:18px;font-weight:700;color:#5AB838;font-family:'Playfair Display',serif;">A2</div>
+        <div style="font-size:10px;color:var(--text-3);margin-top:4px;line-height:1.4;">Elementary · Past tense, everyday topics</div>
+      </div>
+      <div style="padding:12px;background:rgba(220,180,0,0.08);border:1px solid rgba(220,180,0,0.2);border-radius:var(--r);text-align:center;">
+        <div style="font-size:18px;font-weight:700;color:#E8C820;font-family:'Playfair Display',serif;">B1</div>
+        <div style="font-size:10px;color:var(--text-3);margin-top:4px;line-height:1.4;">Intermediate · Subjunctive, complex sentences</div>
+      </div>
+      <div style="padding:12px;background:rgba(220,100,0,0.08);border:1px solid rgba(220,100,0,0.2);border-radius:var(--r);text-align:center;">
+        <div style="font-size:18px;font-weight:700;color:#E88020;font-family:'Playfair Display',serif;">B2</div>
+        <div style="font-size:10px;color:var(--text-3);margin-top:4px;line-height:1.4;">Upper Intermediate · Nuance, formal register</div>
+      </div>
+      <div style="padding:12px;background:rgba(220,40,40,0.08);border:1px solid rgba(220,40,40,0.2);border-radius:var(--r);text-align:center;">
+        <div style="font-size:18px;font-weight:700;color:#EE5555;font-family:'Playfair Display',serif;">C1</div>
+        <div style="font-size:10px;color:var(--text-3);margin-top:4px;line-height:1.4;">Advanced · Academic, idiomatic, nuanced</div>
+      </div>
+      <div style="padding:12px;background:rgba(180,0,255,0.08);border:1px solid rgba(180,0,255,0.2);border-radius:var(--r);text-align:center;">
+        <div style="font-size:18px;font-weight:700;color:#CC44FF;font-family:'Playfair Display',serif;">C2</div>
+        <div style="font-size:10px;color:var(--text-3);margin-top:4px;line-height:1.4;">Mastery · Literary, philosophical, native-level</div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="site-footer" onclick="handleFooterClick(event)">
+  <p>Stargazer · Deutsch · <a href="../index.html">← Zurück zur Hauptseite</a></p>
+  <p style="margin-top:6px;color:var(--text-faint)">Sprache ist das Haus des Seins. — Martin Heidegger</p>
+</footer>
+<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint);font-style:italic;font-family:'Space Mono',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--amber-2);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div style="text-align:center;padding-bottom:2rem;">
+  <a href="../ABOUT.html" style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--amber);opacity:0.45;text-decoration:none;border:1px solid var(--amber);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+</div>
+
+<script>
+/* Must be defined before shared.js loads */
+window._pageKey = 'german';
+
+window._applyDarkMode = function(isDark) {
+  document.body.classList.toggle('light', !isDark);
+  document.documentElement.classList.remove('pre-light');
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+  const btn = document.getElementById('darkToggle');
+  if (btn) btn.textContent = isDark ? '☀ Day' : '🌙 Dark';
+  const sideBtn = document.getElementById('sidebarDarkToggle');
+  if (sideBtn) sideBtn.textContent = isDark ? '☀ Day Mode' : '🌙 Dark Mode';
+};
+</script>
+<script src="../shared.js"></script>
+<script>
+const DICT = [
+  {w:"Waldeinsamkeit",a:"die",g:"f",pl:"—",e:"the solitude and peace of being alone in a forest",t:"noun",cat:"untranslatable",l:"C1",ex:"Er suchte die Waldeinsamkeit, um seinen Gedanken freien Lauf zu lassen.",ex_en:"He sought the forest solitude to let his thoughts wander.",parts:[{p:"Wald",m:"forest"},{p:"ein",m:"alone"},{p:"sam",m:"-ful"},{p:"keit",m:"-ness"}],note:"Central to German Romanticism — spiritual renewal found in being alone with nature."},
+  {w:"Sehnsucht",a:"die",g:"f",pl:"Sehnsüchte",e:"deep longing, yearning — more intense than mere desire",t:"noun",cat:"untranslatable",l:"B1",ex:"Eine tiefe Sehnsucht nach der Heimat erfasste ihn.",ex_en:"A deep longing for his homeland took hold of him.",parts:[{p:"sehnen",m:"to yearn"},{p:"Sucht",m:"craving"}],note:"C.S. Lewis called it 'the inconsolable longing for we know not what.'"},
+  {w:"Fernweh",a:"das",g:"n",pl:"—",e:"longing for distant places; wanderlust; the ache for far-away",t:"noun",cat:"untranslatable",l:"B2",ex:"Das Fernweh trieb ihn immer wieder in unbekannte Länder.",ex_en:"Wanderlust drove him again and again to unknown lands.",parts:[{p:"fern",m:"far"},{p:"Weh",m:"pain"}],note:"Opposite of Heimweh (homesickness)."},
+  {w:"Weltschmerz",a:"der",g:"m",pl:"—",e:"world-weariness; pain caused by the state of the world",t:"noun",cat:"untranslatable",l:"C1",ex:"Ein dumpfer Weltschmerz hatte sich seiner bemächtigt.",ex_en:"A heavy world-weariness had taken hold of him.",parts:[{p:"Welt",m:"world"},{p:"Schmerz",m:"pain"}],note:"Coined by Jean Paul. The awareness of evil producing melancholy withdrawal."},
+  {w:"Schadenfreude",a:"die",g:"f",pl:"—",e:"pleasure derived from another person's misfortune",t:"noun",cat:"untranslatable",l:"B2",ex:"Mit einer gewissen Schadenfreude sah er zu, wie sein Rivale stolperte.",ex_en:"With schadenfreude he watched his rival stumble.",parts:[{p:"Schaden",m:"harm"},{p:"Freude",m:"joy"}],note:"One of the few German loanwords in English."},
+  {w:"Gemütlichkeit",a:"die",g:"f",pl:"—",e:"coziness, warmth, and convivial ease",t:"noun",cat:"untranslatable",l:"B1",ex:"Das Café hatte eine besondere Gemütlichkeit.",ex_en:"The café had a particular coziness.",parts:[{p:"gemütlich",m:"cozy"},{p:"keit",m:"-ness"}]},
+  {w:"Torschlusspanik",a:"die",g:"f",pl:"—",e:"gate-closing panic; fear that time is running out",t:"noun",cat:"untranslatable",l:"C1",ex:"Mit 35 befiel sie plötzlich die Torschlusspanik.",ex_en:"At 35, gate-closing panic suddenly struck her.",parts:[{p:"Tor",m:"gate"},{p:"Schluss",m:"closing"},{p:"Panik",m:"panic"}]},
+  {w:"Fingerspitzengefühl",a:"das",g:"n",pl:"—",e:"sensitivity, tact; ability to handle delicate situations",t:"noun",cat:"untranslatable",l:"C1",ex:"Diese Verhandlungen erfordern viel Fingerspitzengefühl.",ex_en:"These negotiations require a great deal of tact.",parts:[{p:"Finger",m:"finger"},{p:"Spitze",m:"tip"},{p:"Gefühl",m:"feeling"}]},
+  {w:"Verschlimmbessern",a:"",g:"",pl:"",e:"to make something worse while trying to improve it",t:"verb",cat:"untranslatable",l:"C2",ex:"Er hat das Regal nur verschlimmbessert.",ex_en:"He only made the shelf worse.",parts:[{p:"schlimm",m:"bad"},{p:"besser",m:"better"},{p:"ver-",m:"mis-"}]},
+  {w:"Kummerspeck",a:"der",g:"m",pl:"—",e:"grief bacon; weight gained from emotional eating",t:"noun",cat:"untranslatable",l:"C1",ex:"Nach der Trennung hatte sie einige Kilos Kummerspeck zugenommen.",ex_en:"After the break-up she put on some grief-pounds.",parts:[{p:"Kummer",m:"grief"},{p:"Speck",m:"bacon/fat"}]},
+  {w:"Fremdschämen",a:"",g:"",pl:"",e:"vicarious embarrassment; cringing on behalf of someone else",t:"verb",cat:"untranslatable",l:"B2",ex:"Bei seiner peinlichen Rede musste ich mich fremdschämen.",ex_en:"During his embarrassing speech I had to cringe vicariously.",parts:[{p:"fremd",m:"other"},{p:"schämen",m:"be ashamed"}]},
+  {w:"Innerer Schweinehund",a:"der",g:"m",pl:"",e:"inner pig-dog; the part resisting effort and preferring comfort",t:"noun",cat:"untranslatable",l:"B2",ex:"Ich musste meinen inneren Schweinehund überwinden.",ex_en:"I had to overcome my inner pig-dog.",parts:[{p:"inner",m:"inner"},{p:"Schwein",m:"pig"},{p:"Hund",m:"dog"}]},
+  {w:"Weltanschauung",a:"die",g:"f",pl:"Weltanschauungen",e:"worldview; comprehensive conception of the world",t:"noun",cat:"untranslatable",l:"C1",ex:"Ihre politische Weltanschauung hatte sich gewandelt.",ex_en:"Her political worldview had changed.",parts:[{p:"Welt",m:"world"},{p:"Anschauung",m:"viewing"}]},
+  {w:"Zeitgeist",a:"der",g:"m",pl:"—",e:"the spirit of the age; defining ideas of a period",t:"noun",cat:"untranslatable",l:"B2",ex:"Ihr Roman hat den Zeitgeist der 1980er perfekt eingefangen.",ex_en:"Her novel captured the spirit of the 1980s.",parts:[{p:"Zeit",m:"time"},{p:"Geist",m:"spirit"}]},
+  {w:"Doppelgänger",a:"der",g:"m",pl:"Doppelgänger",e:"a double; look-alike of a living person",t:"noun",cat:"untranslatable",l:"B1",ex:"Sie traf ihren Doppelgänger in Hamburg.",ex_en:"She met her double in Hamburg.",parts:[{p:"doppel",m:"double"},{p:"Gänger",m:"goer"}]},
+  {w:"Zweisamkeit",a:"die",g:"f",pl:"—",e:"intimate togetherness for two; couple-solitude",t:"noun",cat:"untranslatable",l:"C1",ex:"Sie genossen die Zweisamkeit des Wochenendes.",ex_en:"They enjoyed the togetherness of the weekend.",parts:[{p:"zwei",m:"two"},{p:"samkeit",m:"-ness"}]},
+  {w:"Stammtisch",a:"der",g:"m",pl:"Stammtische",e:"reserved table for regulars at a pub; the tradition",t:"noun",cat:"untranslatable",l:"B2",ex:"Jeden Donnerstag traf er sich am Stammtisch.",ex_en:"Every Thursday he met his friends at the regulars' table.",parts:[{p:"Stamm",m:"regular"},{p:"Tisch",m:"table"}]},
+  {w:"Bildung",a:"die",g:"f",pl:"—",e:"cultivation through learning; holistic self-development",t:"noun",cat:"untranslatable",l:"C1",ex:"Bildung ist die Formung des ganzen Menschen.",ex_en:"Bildung is the shaping of the whole person.",parts:[{p:"bilden",m:"to form"},{p:"-ung",m:"noun suffix"}]},
+];
+
+function initParticles(){
+  const wrap = document.getElementById('particles');
+  if(!wrap) return;
+  const colors = ['#E8A800','#CC0000','#FFE033','#7C3AED','#10B981'];
+  for(let i=0;i<28;i++){
+    const el = document.createElement('div');
+    el.className = 'needle';
+    const size = 2 + Math.random()*4;
+    el.style.width = size+'px';
+    el.style.height = size+'px';
+    el.style.background = colors[Math.floor(Math.random()*colors.length)];
+    el.style.left = Math.random()*100+'%';
+    el.style.setProperty('--d', (Math.random()*120-60)+'px');
+    el.style.animationDuration = (8+Math.random()*14)+'s';
+    el.style.animationDelay = (Math.random()*14)+'s';
+    el.style.opacity = (0.25+Math.random()*0.45).toFixed(2);
+    wrap.appendChild(el);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   SIDEBAR / NAV
+═══════════════════════════════════════════ */
+
+function openSidebar(){
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sidebar-overlay').classList.add('open');
+}
+
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+}
+
+function toggleLight(){
+  const goingLight = !document.body.classList.contains('light');
+  document.body.classList.toggle('light', goingLight);
+  document.documentElement.classList.remove('pre-light');
+  localStorage.setItem('stargazer_theme', goingLight ? 'light' : 'dark');
+  const label = goingLight ? '🌙 Dark' : '☀ Day';
+  const btn = document.getElementById('darkToggle');
+  if(btn) btn.textContent = label;
+  const sideBtn = document.getElementById('sidebarDarkToggle');
+  if(sideBtn) sideBtn.textContent = goingLight ? '🌙 Dark Mode' : '☀ Day Mode';
+  if (typeof sbSaveDarkMode === 'function') sbSaveDarkMode(!goingLight);
+}
+
+/* ═══════════════════════════════════════════
+   GEHEIMER MODUS · SECRET MODE
+   Triple-clicking the footer text (not the "Zurück zur Hauptseite" link
+   itself) flips a hidden theme. e.detail is the browser's own rapid-click
+   counter, so no manual timers are needed. State persists in localStorage.
+   The Prüfungen section has a themed test ("Der Geheimagent") whose last
+   item plainly tells the player about this — see THEMED_TESTS id 21.
+═══════════════════════════════════════════ */
+
+function handleFooterClick(e){
+  if(e.target.closest('a')) return; // let the real navigation link work normally
+  if(e.detail===3) toggleSecretMode();
+}
+
+function toggleSecretMode(){
+  const on = !document.body.classList.contains('geheim-mode');
+  document.body.classList.toggle('geheim-mode', on);
+  try{ localStorage.setItem('german-geheim-mode', on ? '1' : '0'); }catch(e){}
+  showSecretToast(on);
+}
+
+function showSecretToast(on){
+  const existing = document.querySelector('.geheim-toast');
+  if(existing) existing.remove();
+  const t = document.createElement('div');
+  t.className = 'geheim-toast';
+  t.innerHTML = on
+    ? `🔮 <strong>Geheimer Modus aktiviert</strong><span>Secret mode activated — welcome behind the curtain.</span>`
+    : `Geheimer Modus deaktiviert <span>Secret mode off</span>`;
+  document.body.appendChild(t);
+  requestAnimationFrame(()=>t.classList.add('show'));
+  setTimeout(()=>{ t.classList.remove('show'); setTimeout(()=>t.remove(), 500); }, 3200);
+}
+
+function restoreSecretMode(){
+  try{ if(localStorage.getItem('german-geheim-mode')==='1') document.body.classList.add('geheim-mode'); }catch(e){}
+}
+
+/* ═══════════════════════════════════════════
+   READING LOGIN STATE FROM shared.js's OWN UI
+   shared.js renders into #loginBtn / #userInfo / #userEmailDisplay — this
+   page reads those same elements rather than keeping its own auth state,
+   so it can never drift out of sync with the real session.
+═══════════════════════════════════════════ */
+
+function renderWotd(){
+  const pool = DICT.filter(d=>d.cat==='untranslatable');
+  const dayIdx = new Date().getDate() % pool.length;
+  const w = pool[dayIdx];
+  document.getElementById('wotd-preview').textContent = `${w.a} ${w.w} — ${w.e}`;
+  document.getElementById('wotd-art').textContent = w.a;
+  document.getElementById('wotd-de').textContent = w.w;
+  document.getElementById('wotd-en').textContent = w.e;
+  document.getElementById('wotd-ex').textContent = '„'+w.ex+'"';
+  const partsWrap = document.getElementById('wotd-parts');
+  if(w.parts){
+    partsWrap.innerHTML = w.parts.map((p,i)=>
+      `<div class="wotd-part"><span class="wotd-part-word">${p.p}</span><span class="wotd-part-mean">${p.m}</span></div>`
+      + (i<w.parts.length-1?'<span class="wotd-plus">+</span>':'')
+    ).join('');
+  } else { partsWrap.innerHTML = ''; }
+}
+
+/* ═══════════════════════════════════════════
+   DICTIONARY
+═══════════════════════════════════════════ */
+
+function initApp(){
+  restoreSecretMode()
+  initParticles()
+  renderWotd()
+  if (typeof renderNavAuth === 'function') renderNavAuth('nav-container');
+}
+document.addEventListener('DOMContentLoaded', initApp);
+</script>
+</body>
+</html>

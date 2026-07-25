@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#faf7f2!important}html.pre-light{background:#faf7f2}</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]}));}else{renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});}"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Lato:ital,wght@0,400;0,700;1,400&family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<title>All of Mathematics - Olympiad, Puzzles, Research, Open Problems & Career Options | Stargazer</title>
+<!-- ── SEO META ── -->
+<meta name="description" content="All of mathematics in one place - olympiad problems, puzzles, research, unsolved open problems, and career paths. Begin exploring →">
+<meta name="keywords" content="mathematics olympiad, math puzzles, undergraduate mathematics, graduate math topics, open problems in mathematics, math career, number theory, calculus, algebra, mathematical proofs, competitive math, beautiful mathematics, math resources, unsolved problems">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Mathematics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/maths/home.html">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="All of Mathematics - Olympiad, Puzzles, Research, Open Problems & Career Options | Stargazer">
+<meta property="og:description" content="From olympiad problems to graduate-level research — mathematics at every depth. Career roadmaps, beautiful theorems, unsolved problems, and puzzles that will haunt you. Begin exploring →">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/maths/home.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="All of Mathematics - Olympiad, Puzzles, Research, Open Problems & Career Options | Stargazer">
+<meta name="twitter:description" content="Olympiad to research-level mathematics. Beautiful theorems, career paths, unsolved problems, and puzzles that rewire how you think. Explore the math universe →">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Mathematics Explored: Olympiads, Proofs & Unsolved Puzzles",
+  "description": "Olympiads, research, career paths, and open problems — mathematics at every depth. Puzzles, theorems, and ideas that will haunt you.",
+  "url": "https://stargazer-9m9.pages.dev/maths/home.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Mathematics", "sameAs": "https://en.wikipedia.org/wiki/Mathematics" }
+}
+</script>
+<link rel="stylesheet" href="maths.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ AUTH TOP BAR ════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <a href="../login.html" id="loginBtn" class="atb-btn atb-signin">☽ Sign In</a>
+  <div id="userInfo" style="display:none;align-items:center;gap:0.4rem">
+    <span class="atb-username" id="userEmailDisplay">✦ Explorer</span>
+    <button class="atb-signout" onclick="doSignOut()">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ NAV ═══════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Mathematics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Home</span>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══════════════════════════════════════ HAMBURGER MENU ════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item active" data-page="home" onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item" data-page="books" onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item" data-page="puzzles" onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="precollege" onclick="location.href='precollege.html'">📐 Pre-College</button>
+  <button class="hm-item" data-page="olympiad" onclick="location.href='olympiad.html'">🏆 Olympiad</button>
+  <button class="hm-item" data-page="undergrad" onclick="location.href='undergrad.html'">🎓 Undergrad</button>
+  <button class="hm-item" data-page="graduate" onclick="location.href='graduate.html'">🔬 Graduate</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="research" onclick="location.href='research.html'">⚡ Research</button>
+  <button class="hm-item" data-page="openproblems" onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item" data-page="careers" onclick="location.href='careers.html'">💼 Careers</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="studyguide" onclick="location.href='studyguide.html'">📖 Study Guide</button>
+  <button class="hm-item" data-page="facts" onclick="location.href='facts.html'">✨ Math Facts</button>
+  <button class="hm-item" data-page="universities" onclick="location.href='universities.html'">🎓 India</button>
+  <button class="hm-item" data-page="comments" onclick="location.href='comments.html'">💬 Comments</button>
+</div>
+
+<div class="page active" id="page-home">
+<section id="hero">
+  <canvas id="starCanvas"></canvas>
+  <div class="hero-inner">
+    <span class="hero-eyebrow">A Complete Atlas of the Mathematical Universe</span>
+    <h1 class="hero-title">Mathematics</h1>
+    <div class="hero-eq">e<sup>iπ</sup> + 1 = 0 · ζ(s) = Σ n<sup>−s</sup> · ∀ε &gt; 0 ∃δ &gt; 0</div>
+    <p class="hero-sub" style="background:linear-gradient(145deg,#f1f5f9 0%,#c4b5fd 35%,#38bdf8 70%,#f0abfc 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">The most profound, beautiful, and endlessly deep human creation — from counting pebbles to reshaping the nature of reality itself.</p>
+    <button class="hero-btn" onclick="location.href='books.html'">Explore the Universe ↓</button>
+  </div>
+</section>
+<section class="section" id="intro">
+  <div class="s-inner">
+    <div class="s-head">
+      <span class="s-eyebrow" style="background:rgba(168,85,247,0.08);color:#d8b4fe;border:1px solid rgba(168,85,247,0.2)">What Mathematics Really Is</span>
+      <h2 class="s-title font-serif" style="color:#f3e8ff">The Fantasy World You Can Actually Live In</h2>
+    </div>
+    <div class="intro-grid">
+      <div class="intro-prose">
+        <p>Most people think mathematics is about numbers. They imagine that as you advance deeper into it, you deal with bigger numbers, longer calculations, and more convoluted formulas. This is as wrong as thinking that music is about pressing keys harder and faster, or that literature is about using longer and rarer words.</p>
+        <p>Mathematics is, at its heart, the science of <em style="color:#c4b5fd">pure structure</em> — of patterns, relationships, and abstract forms that exist independently of any physical reality. It is a world unto itself: one with its own geography, its own history, its own heroes, and breathtaking vistas that reveal themselves only after long, patient travel.</p>
+        <p>Think of mathematics as a fantasy world — not Tolkien's Middle-earth or Martin's Westeros — but something far more extraordinary: a world built entirely from logic and imagination, where <em style="color:#c4b5fd">the rules never break and every truth lasts forever</em>. To enter it you need no expensive equipment — only curiosity, patience, and the willingness to sit with a hard problem and refuse to give up.</p>
+        <p>Advanced mathematics has almost nothing to do with arithmetic. A research mathematician might spend months without computing a single concrete number. Instead they ask: <em style="color:#c4b5fd">Why is this true? In what generality? What hidden symmetry makes this inevitable?</em> These are questions of philosophy, art, and science — asked with the rigour that only mathematics provides.</p>
+      </div>
+      <div>
+        <h3 style="font-family:'Playfair Display',serif;color:#d8b4fe;font-size:1.2rem;margin-bottom:1rem">The Great Misconceptions</h3>
+        <div class="myth-card"><div class="myth-label">✗ Myth: Advanced math = bigger calculations</div><div class="myth-truth">A PhD student in algebraic topology may do almost zero arithmetic. Mathematics is about structure, proof, and abstraction — computation is merely one tool among many.</div></div>
+        <div class="myth-card"><div class="myth-label">✗ Myth: You need to be a genius</div><div class="myth-truth">What distinguishes great mathematicians is not raw intelligence but extraordinary tolerance for confusion and the persistence to keep thinking.</div></div>
+        <div class="myth-card"><div class="myth-label">✗ Myth: Math has no creativity</div><div class="myth-truth">Every proof is a creative act. Hardy called mathematics the most original art. Choosing the right approach is an aesthetic decision as much as a logical one.</div></div>
+        <div class="myth-card"><div class="myth-label">✗ Myth: Everything is already known</div><div class="myth-truth">Thousands of deep unsolved problems await — many elegant enough for a school student to understand, yet resistant to all attempts by the best minds in history.</div></div>
+        <div class="myth-card"><div class="myth-label">✗ Myth: Mathematics isn't beautiful</div><div class="myth-truth">Euler's identity e<sup>iπ</sup>+1=0, Cantor's infinities, the proof that √2 is irrational — these inspire the same awe as any masterpiece. The beauty is structural and inevitable.</div></div>
+        <div style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:0.6rem">
+          <button onclick="location.href='books.html'"       style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;padding:0.65rem 0.5rem;border-radius:10px;border:1px solid rgba(168,85,247,0.3);background:rgba(168,85,247,0.1);color:#d8b4fe;cursor:pointer;transition:all 0.2s">📚 Books</button>
+          <button onclick="location.href='puzzles.html'"     style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;padding:0.65rem 0.5rem;border-radius:10px;border:1px solid rgba(6,182,212,0.3);background:rgba(6,182,212,0.1);color:#22d3ee;cursor:pointer;transition:all 0.2s">🧩 Puzzles</button>
+          <button onclick="location.href='precollege.html'"  style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;padding:0.65rem 0.5rem;border-radius:10px;border:1px solid rgba(59,130,246,0.3);background:rgba(59,130,246,0.1);color:#93c5fd;cursor:pointer;transition:all 0.2s">📐 Pre-College</button>
+          <button onclick="location.href='olympiad.html'"    style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;padding:0.65rem 0.5rem;border-radius:10px;border:1px solid rgba(245,158,11,0.3);background:rgba(245,158,11,0.1);color:#fcd34d;cursor:pointer;transition:all 0.2s">🏆 Olympiad</button>
+          <button onclick="location.href='undergrad.html'"   style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;padding:0.65rem 0.5rem;border-radius:10px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:#a5b4fc;cursor:pointer;transition:all 0.2s">🎓 Undergrad</button>
+          <button onclick="location.href='graduate.html'"    style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;padding:0.65rem 0.5rem;border-radius:10px;border:1px solid rgba(168,85,247,0.3);background:rgba(168,85,247,0.1);color:#d8b4fe;cursor:pointer;transition:all 0.2s">🔬 Graduate</button>
+          <button onclick="location.href='research.html'"    style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;padding:0.65rem 0.5rem;border-radius:10px;border:1px solid rgba(14,165,233,0.3);background:rgba(14,165,233,0.1);color:#7dd3fc;cursor:pointer;transition:all 0.2s">⚡ Research</button>
+          <button onclick="location.href='openproblems.html'" style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;padding:0.65rem 0.5rem;border-radius:10px;border:1px solid rgba(239,68,68,0.3);background:rgba(239,68,68,0.1);color:#fca5a5;cursor:pointer;transition:all 0.2s">❓ Open Problems</button>
+          <button onclick="location.href='careers.html'"     style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;padding:0.65rem 0.5rem;border-radius:10px;border:1px solid rgba(139,92,246,0.3);background:rgba(139,92,246,0.1);color:#c4b5fd;cursor:pointer;transition:all 0.2s">💼 Careers</button>
+          <button onclick="location.href='studyguide.html'"  style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;padding:0.65rem 0.5rem;border-radius:10px;border:1px solid rgba(16,185,129,0.3);background:rgba(16,185,129,0.1);color:#6ee7b7;cursor:pointer;transition:all 0.2s">📖 Study Guide</button>
+          <button onclick="location.href='facts.html'"       style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;padding:0.65rem 0.5rem;border-radius:10px;border:1px solid rgba(236,72,153,0.3);background:rgba(236,72,153,0.1);color:#f9a8d4;cursor:pointer;transition:all 0.2s">✨ Math Facts</button>
+          <button onclick="location.href='universities.html'" style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;padding:0.65rem 0.5rem;border-radius:10px;border:1px solid rgba(249,115,22,0.3);background:rgba(249,115,22,0.1);color:#fdba74;cursor:pointer;transition:all 0.2s">🎓 India</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+
+<footer id="footer">
+  <div class="foot-eq">e<sup>iπ</sup> + 1 = 0</div>
+  <p class="foot-txt"><strong style="color:#6d28d9">"Mathematics is not about numbers, equations, computations, or algorithms. It is about understanding."</strong><br>— William Paul Thurston, Fields Medalist</p>
+  <div class="foot-links">
+    <button class="foot-link" onclick="location.href='../ABOUT.html'">📖 About Stargazer</button>
+    <a class="foot-link" onclick="location.href='comments.html'; return false;" href="#">💬 Community Comments</a>
+    <a class="foot-link" href="mailto:ayan.chakraborty6174@gmail.com">✉️ Contact Creator</a>
+    <a class="foot-link" href="https://stargazer-9m9.pages.dev" target="_blank" rel="noopener">🌐 Stargazer Home</a>
+  </div>
+</footer>
+
+<button id="theme-toggle" title="Toggle light / dark theme" aria-label="Toggle light / dark theme" onclick="toggleTheme()">☀️</button>
+<button id="btt" title="Back to top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+window._pageKey = 'maths';
+
+function isAdmin() {
+  return !!(window.currentUser && window.currentUser.email === ADMIN_EMAIL);
+}
+
+window._applyDarkMode = function(isDark) {
+  // isDark=true → dark mode (no light-mode class)
+  // isDark=false → light mode
+  applyTheme(!isDark);   // applyTheme(true) adds light-mode class
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+};
+
+
+window._afterRenderAuthUI = function(user) {
+  // Show/hide admin bars
+  document.querySelectorAll('.admin-bar').forEach(function(el) {
+    if (user && user.email === ADMIN_EMAIL) { el.classList.add('visible'); }
+    else                                    { el.classList.remove('visible'); }
+  });
+  // Mirror display name into comment form header
+  var ud2 = document.getElementById('userEmailDisplay2');
+  if (ud2 && user) {
+    ud2.textContent = user.user_metadata?.display_name
+                    || user.user_metadata?.full_name
+                    || user.email || 'you';
+  }
+  // Trigger admin data load on sign-in
+  if (user) { if (typeof loadAdminData === 'function') loadAdminData(); }
+};
+
+
+function applyTheme(light) {
+  if (light) { document.body.classList.add('light-mode'); }
+  else        { document.body.classList.remove('light-mode'); }
+  var btn = document.getElementById('theme-toggle');
+  if (btn) btn.textContent = light ? '🌙' : '☀️';
+  document.documentElement.classList.remove('pre-light');
+}
+
+
+function toggleTheme() {
+  var nowLight = !document.body.classList.contains('light-mode');
+  applyTheme(nowLight);
+  localStorage.setItem('stargazer_theme', nowLight ? 'light' : 'dark');
+  // Persist via shared.js (writes to Supabase profiles.dark_mode)
+  // isDark param: true = dark mode, false = light mode
+  if (window.sbSaveDarkMode) window.sbSaveDarkMode(!nowLight);
+}
+
+
+// Apply theme immediately on load from localStorage
+(function() {
+  var tm = localStorage.getItem('stargazer_theme');
+  applyTheme(tm === 'light');
+})();
+
+// shared.js calls this after loading dark_mode from profiles
+// (already declared in the auth block above as window._applyDarkMode)
+
+
+function reRevealActivePage() {
+  var p = document.querySelector('.page.active');
+  if (!p) return;
+  p.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
+    el.classList.add('visible');
+  });
+}
+
+
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Close modal on backdrop click
+
+function toggleHamburger() {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu) return;
+  var open = menu.classList.toggle('open');
+  btn.classList.toggle('open', open);
+}
+// Close on outside click
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu || !menu.classList.contains('open')) return;
+  if (!menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var menu = document.getElementById('hamburger-menu');
+    if (menu && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      document.getElementById('hamburger-btn').classList.remove('open');
+    }
+  }
+});
+
+window.addEventListener('scroll', function() {
+  var btt = document.getElementById('btt');
+  if (btt) btt.classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
+
+window._getProgressData = function() { return {}; };
+window._applyProgressData = function(d) {};
+
+(function() {
+  var cv = document.getElementById('starCanvas');
+  if (!cv) return;
+  var ctx = cv.getContext('2d');
+  var W, H, shapes = [];
+  var COLS = ['#a855f7','#7c3aed','#38bdf8','#6366f1','#c084fc','#818cf8','#f0abfc','#e879f9','#34d399','#60a5fa'];
+  function resize() { W = cv.width = innerWidth; H = cv.height = innerHeight; }
+  function mkShapes(n) {
+    shapes = [];
+    for (var i = 0; i < n; i++) {
+      var sideOpts = [0,0,3,3,4,5,6];
+      var sides = sideOpts[Math.floor(Math.random()*sideOpts.length)];
+      shapes.push({
+        x: Math.random()*W, y: Math.random()*H,
+        vx: (Math.random()-0.5)*0.45, vy: (Math.random()-0.5)*0.45,
+        r: sides===0 ? Math.random()*2+0.8 : Math.random()*9+4,
+        sides: sides,
+        angle: Math.random()*Math.PI*2,
+        rot: (Math.random()-0.5)*0.016,
+        col: COLS[Math.floor(Math.random()*COLS.length)],
+        op: Math.random()*0.5+0.22
+      });
+    }
+  }
+  function hexRgba(h,a){
+    var r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);
+    return 'rgba('+r+','+g+','+b+','+a+')';
+  }
+  function draw() {
+    requestAnimationFrame(draw);
+    if (document.hidden) return;
+    ctx.clearRect(0, 0, W, H);
+    // connection lines
+    for (var i = 0; i < shapes.length; i++) {
+      for (var j = i+1; j < shapes.length; j++) {
+        var dx=shapes[i].x-shapes[j].x, dy=shapes[i].y-shapes[j].y;
+        var dist=Math.sqrt(dx*dx+dy*dy);
+        if (dist < 115) {
+          ctx.beginPath(); ctx.moveTo(shapes[i].x,shapes[i].y); ctx.lineTo(shapes[j].x,shapes[j].y);
+          ctx.strokeStyle='rgba(139,92,246,'+(1-dist/115)*0.2+')';
+          ctx.lineWidth=0.8; ctx.stroke();
+        }
+      }
+    }
+    // shapes
+    shapes.forEach(function(s) {
+      ctx.beginPath();
+      if (s.sides === 0) {
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      } else {
+        for (var k=0; k<s.sides; k++) {
+          var a = s.angle + k*2*Math.PI/s.sides;
+          if (k===0) ctx.moveTo(s.x+s.r*Math.cos(a), s.y+s.r*Math.sin(a));
+          else ctx.lineTo(s.x+s.r*Math.cos(a), s.y+s.r*Math.sin(a));
+        }
+        ctx.closePath();
+      }
+      ctx.fillStyle = hexRgba(s.col, s.op*0.55);
+      ctx.fill();
+      ctx.strokeStyle = hexRgba(s.col, s.op);
+      ctx.lineWidth = 1.3; ctx.stroke();
+      s.x += s.vx; s.y += s.vy; s.angle += s.rot;
+      if (s.x < -20 || s.x > W+20) s.vx *= -1;
+      if (s.y < -20 || s.y > H+20) s.vy *= -1;
+    });
+  }
+  resize(); mkShapes(140); draw();
+  window.addEventListener('resize', function() { resize(); mkShapes(140); }, { passive: true });
+})();
+
+
+document.querySelectorAll('.reveal').forEach(function(el, i) {
+  setTimeout(function() { el.classList.add('visible'); }, Math.min(i * 35, 900));
+});
+</script>
+
+<!-- ═══ SUPABASE + SHARED AUTH/COMMENTS BRIDGE ═══════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+</body>
+</html>

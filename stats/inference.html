@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Statistical Inference Explained | Stargazer</title>
+<meta name="description" content="How statisticians turn data into evidence: confidence intervals, hypothesis tests, p-values, and the frequentist machinery behind most published research.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Statistics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/stats/inference.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Statistical Inference Explained | Stargazer">
+<meta property="og:description" content="How statisticians turn data into evidence — confidence intervals, hypothesis tests, and p-values explained.">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/stats/inference.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Statistical Inference Explained | Stargazer">
+<meta name="twitter:description" content="How statisticians turn data into evidence — confidence intervals, hypothesis tests, and p-values explained.">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Statistical Inference Explained | Stargazer",
+  "description": "How statisticians turn data into evidence — confidence intervals, hypothesis tests, and p-values explained.",
+  "url": "https://stargazer-9m9.pages.dev/stats/inference.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Statistics", "sameAs": "https://en.wikipedia.org/wiki/Statistics" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stats.css">
+</head>
+<body>
+
+<!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
+    <span id="mode-icon">☾</span>
+  </button>
+  <a href="../login.html" id="loginBtn">☽ Sign In</a>
+  <div id="userInfo">
+    <span id="userEmailDisplay">✦ Explorer</span>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══ NAV ═════════════════════════════════════════════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Statistics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Inference</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)" aria-label="Search">🔍</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══ HAMBURGER MENU ══════════════════════════════════════════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home"          onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item"        data-page="books"         onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item"        data-page="puzzles"       onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <button class="hm-item"        data-page="school"        onclick="location.href='school.html'">🏫 School</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item active"        data-page="inference"     onclick="location.href='inference.html'">🔬 Inference</button>
+  <button class="hm-item"        data-page="distributions" onclick="location.href='distributions.html'">📊 Distributions</button>
+  <button class="hm-item"        data-page="bayesian"      onclick="location.href='bayesian.html'">∫ Bayesian</button>
+  <button class="hm-item"        data-page="openproblems"  onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item"        data-page="research"      onclick="location.href='research.html'">🔭 Research</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="careers"       onclick="location.href='careers.html'">💼 Careers</button>
+  <button class="hm-item"        data-page="studyguide"    onclick="location.href='studyguide.html'">🗺️ Study Guide</button>
+  <button class="hm-item"        data-page="facts"         onclick="location.href='facts.html'">✨ Fun Facts</button>
+  <button class="hm-item"        data-page="tools"         onclick="location.href='tools.html'">🛠️ Tools</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="calc"          onclick="location.href='calc.html'">🔢 Calculator</button>
+  <button class="hm-item"        data-page="formulas"      onclick="location.href='formulas.html'">📋 Formulas</button>
+  <button class="hm-item"        data-page="history"       onclick="location.href='history.html'">⏳ History</button>
+  <button class="hm-item"        data-page="comments"      onclick="location.href='comments.html'">💬 Discuss</button>
+</div>
+
+<!-- ═══ SEARCH MODAL ═══════════════════════════════════════════════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search books, puzzles, distributions, tools…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<!-- ═══ TOAST ══════════════════════════════════════════════════════ -->
+<div id="toast">
+  <button id="toast-close" onclick="hideToast()" aria-label="Dismiss notification">✕</button>
+  <div class="toast-cat" id="toast-cat">Fun Fact</div>
+  <div id="toast-body"></div>
+</div>
+
+<!-- ═══ KEYBOARD HINT ══════════════════════════════════════════════ -->
+<div id="shortcut-hint">/ search · ← → pages</div>
+
+<!-- ═══ PAGE: CALCULATOR ═══════════════════════════════════════════ -->
+<div class="page active" id="page-inference">
+  <section class="section" id="inference">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:var(--gr-l);color:var(--gr);border:1px solid rgba(77,122,88,.25)">Frequentist Methods</span>
+        <h2 class="s-title font-serif">Statistical Inference — The Machinery of Evidence</h2>
+        <p class="s-desc">Click any topic to expand its mathematical detail and study resources. These are the core methods that underpin all empirical science.</p>
+      </div>
+      <div class="g2" id="inference-grid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ PAGE: DISTRIBUTIONS ══════════════════════════════════════ -->
+<!-- ── CONTACT ── -->
+<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);font-style:italic;font-family:'Source Code Pro',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div style="text-align:center;padding-bottom:2rem;">
+  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+</div>
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
+<script>
+window._nextPage = 'distributions.html';
+window._prevPage = 'school.html';
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+
+function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+
+/* ── BOOKS ─────────────────────────────────────────────────── */
+
+function toggleHamburger(){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu)return;
+  const open=menu.classList.toggle('open');
+  btn.classList.toggle('open',open);
+}
+// Close when clicking outside
+document.addEventListener('click',function(e){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu||!menu.classList.contains('open'))return;
+  if(!menu.contains(e.target)&&e.target!==btn&&!btn.contains(e.target)){
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+
+
+/* ═══════════════════════════════════════════════════════════════
+   OVERRIDE: renderPuzzles — index + cat badge + solved button + filters
+   ═══════════════════════════════════════════════════════════════ */
+
+function toggleMode(){
+  const night=document.body.classList.toggle('night');
+  document.getElementById('mode-icon').textContent=night?'☀':'☾';
+  localStorage.setItem('stats-mode',night?'night':'day');
+  // redraw all visible canvases
+  document.querySelectorAll('.dist-canvas').forEach(c=>{
+    const cid=c.id;
+    const params={};
+    document.querySelectorAll(`[id^="sl-${cid}-"]`).forEach(sl=>{
+      params[sl.id.replace('sl-'+cid+'-','')]=parseFloat(sl.value);
+    });
+    // find the slug from DISTRIBUTIONS
+    const slug=getSlugFromCanvas(cid);
+    if(slug){
+      const isDisc=['bernoulli','binomial','geometric','negbin','poisson','hypergeometric'].includes(slug);
+      drawDistCanvas(cid,slug,params,isDisc);
+    }
+  });
+}
+
+
+function getSlugFromCanvas(cid){
+  // cid format: dc-type-idx
+  const parts=cid.split('-');
+  if(parts.length<3)return null;
+  const type=parts[1],idx=parseInt(parts[2]);
+  if(DISTRIBUTIONS[type]&&DISTRIBUTIONS[type][idx])return DISTRIBUTIONS[type][idx].slug;
+  return null;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL EFFECTS
+   ═══════════════════════════════════════════════════════════ */
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  if(btt)btt.classList.toggle('show',window.scrollY>300);
+  document.querySelectorAll('.reveal').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-60)
+      el.classList.add('visible');
+  });
+},{passive:true});
+
+/* ═══════════════════════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════════════════════ */
+
+let SEARCH_INDEX=[];
+function openSearch(){
+  buildSearchIndex();
+  const m=document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(()=>document.getElementById('search-input').focus(),80);
+}
+function closeSearch(){
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value='';
+  document.getElementById('search-results').innerHTML='<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q){
+  const res=document.getElementById('search-results');
+  if(!q.trim()){res.innerHTML='<div class="sr-empty">Start typing…</div>';return;}
+  const lq=q.toLowerCase();
+  const hits=SEARCH_INDEX.filter(x=>x.q.toLowerCase().includes(lq)).slice(0,18);
+  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q+'"</div>';return;}
+  res.innerHTML=hits.map((h,i)=>`<div class="sr-item" tabindex="0" data-idx="${i}" onclick="goSearchResult(${SEARCH_INDEX.indexOf(h)})" onkeydown="if(event.key==='Enter')goSearchResult(${SEARCH_INDEX.indexOf(h)})"><span class="sr-icon">${h.icon}</span><div><div class="sr-title">${highlight(h.title,lq)}</div><div class="sr-meta">${h.meta}</div></div><span class="sr-section">${h.section}</span></div>`).join('');
+}
+function highlight(text,q){
+  if(!q)return text;
+  const idx=text.toLowerCase().indexOf(q);
+  if(idx<0)return text;
+  return text.slice(0,idx)+'<mark style="background:var(--gd-l);color:var(--gd);border-radius:2px">'+text.slice(idx,idx+q.length)+'</mark>'+text.slice(idx+q.length);
+}
+function goSearchResult(idx){ closeSearch(); }
+function searchKeyNav(e){
+  if(e.key==='Escape'){closeSearch();return;}
+  const items=document.querySelectorAll('.sr-item');
+  const cur=document.activeElement;
+  const curIdx=[...items].indexOf(cur);
+  if(e.key==='ArrowDown'){e.preventDefault();(items[curIdx+1]||items[0])?.focus();}
+  if(e.key==='ArrowUp'){e.preventDefault();(items[curIdx-1]||items[items.length-1])?.focus();}
+  if(e.key==='Enter'&&curIdx>=0){items[curIdx].click();}
+}
+
+
+function buildSearchIndex(){
+  if(SEARCH_INDEX.length)return;
+  INFERENCE.forEach(i=>SEARCH_INDEX.push({icon:'🔬',title:i.topic,meta:i.tag,section:'Inference',page:'inference',q:i.topic+' '+i.desc+' '+i.tag}));
+}
+
+
+(function initKeyboard(){
+  const PAGES=['home','precollege_placeholder'];
+  document.addEventListener('keydown',e=>{
+    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
+    if(document.getElementById('search-modal')&&document.getElementById('search-modal').classList.contains('open')){
+      if(e.key==='Escape')closeSearch();
+      return;
+    }
+    if(e.key==='/'){e.preventDefault();openSearch();return;}
+    if(e.key==='ArrowRight'){e.preventDefault();location.href=window._nextPage;}
+    if(e.key==='ArrowLeft'){e.preventDefault();location.href=window._prevPage;}
+    if(e.key==='f'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){if(typeof showRandomFact==='function')showRandomFact();}
+    if(e.key==='Escape'){
+      const hmenu=document.getElementById('hamburger-menu');
+      if(hmenu&&hmenu.classList.contains('open')){
+        hmenu.classList.remove('open');
+        document.getElementById('hamburger-btn')?.classList.remove('open');
+      }
+    }
+  });
+})();
+
+function showToast(msg,bg){
+  const t=document.createElement('div');
+  t.textContent=msg;
+  t.style.cssText=`position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);background:${bg};color:#fff;font-family:'Source Code Pro',monospace;font-size:.72rem;padding:.45rem 1.1rem;border-radius:99px;z-index:9998;animation:fadeUpIn .35s ease;white-space:nowrap;pointer-events:none`;
+  document.body.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .35s';setTimeout(()=>t.remove(),380);},2200);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATISTICIAN QUOTES — daily + 5-hour rotation
+   ═══════════════════════════════════════════════════════════════ */
+
+const INFERENCE = [
+  {tag:'Estimation',topic:'Maximum Likelihood Estimation (MLE)',
+   desc:'Finding parameter values that maximise the probability of the observed data.',
+   books:[{t:'All of Statistics',n:'Wasserman ch. 9'},{t:'Statistical Inference',n:'Casella & Berger ch. 7'}],
+   detail:`<p>The MLE is the most important single estimation method in statistics. Given a parametric model f(x|θ) and observed data x₁,...,xₙ, the MLE is θ̂ = argmax L(θ;x) = argmax Σᵢ log f(xᵢ|θ). Taking logarithms converts products to sums, which is both algebraically convenient and numerically stable.</p><p><em>Key properties of the MLE:</em> (1) Consistency: θ̂ₙ →ᵖ θ₀ under mild regularity conditions (Cramér's theorem). (2) Asymptotic normality: √n(θ̂ - θ₀) →ᵈ N(0, I(θ₀)⁻¹) where I(θ) is the Fisher information matrix. (3) Efficiency: the MLE achieves the Cramér-Rao lower bound asymptotically — no consistent estimator can have lower variance in large samples. (4) Equivariance: if g is a one-to-one function, then g(θ̂) is the MLE of g(θ).</p><p>Regularity conditions required: the parameter space must be open; the log-likelihood must be differentiable; the Fisher information must be finite and non-singular at θ₀. When these fail (e.g. Uniform(0,θ) — the MLE is X₍ₙ₎ which converges at rate n, not √n), standard asymptotics break down.</p>`},
+  {tag:'Testing',topic:'Hypothesis Testing & p-values',
+   desc:'Formalising the question: could the observed data have arisen by chance under the null hypothesis?',
+   books:[{t:'Statistical Inference',n:'Casella & Berger ch. 8'},{t:'All of Statistics',n:'Wasserman ch. 10'}],
+   detail:`<p>A hypothesis test specifies a null H₀ and alternative H₁. A test statistic T(X) is computed; if it falls in the rejection region C (calibrated so that P(T ∈ C | H₀) = α), H₀ is rejected. The p-value is p = P(T ≥ t_obs | H₀) — the probability of observing a result at least as extreme as what occurred, under the null. It is NOT the probability that H₀ is true.</p><p><em>Type I and Type II errors:</em> Type I (α) = P(reject H₀ | H₀ true); Type II (β) = P(fail to reject H₀ | H₁ true). Power = 1 − β. The Neyman-Pearson Lemma states that the most powerful test of H₀: θ = θ₀ vs H₁: θ = θ₁ is the likelihood ratio test: reject when L(θ₁;x)/L(θ₀;x) > k.</p><p><em>The p-value is deeply misunderstood:</em> In 2016, the American Statistical Association released an official statement warning that p < 0.05 cannot establish scientific truth, that p-values cannot measure the probability that a hypothesis is true, and that "statistical significance" is not the same as scientific or practical significance. This misuse drives the reproducibility crisis in science.</p>`},
+  {tag:'Intervals',topic:'Confidence Intervals',
+   desc:'Expressing the precision of an estimate as an interval that contains the true value with specified probability.',
+   books:[{t:'Statistical Inference',n:'Casella & Berger ch. 9'},{t:'All of Statistics',n:'Wasserman ch. 11'}],
+   detail:`<p>A 95% confidence interval [L(X), U(X)] satisfies P(L(X) ≤ θ ≤ U(X)) = 0.95 for all θ. Crucially, the interval is random (it varies across repeated samples) and θ is fixed. It is WRONG to say "there is a 95% probability that θ is in [L,U]" — after observing data, the interval is a fixed set, and θ either is or isn't in it.</p><p><em>Correct interpretation:</em> If we construct this interval by the same procedure across many independent experiments, 95% of the resulting intervals will contain the true θ. This is a statement about the long-run coverage of the procedure, not about the probability of any specific realised interval.</p><p><em>Construction methods:</em> Pivotal quantities (e.g., (X̄−μ)/(s/√n) ∼ tₙ₋₁ leads to the standard t-interval); inversion of hypothesis tests (every CI corresponds to a family of tests that fail to reject); likelihood-based intervals (requiring L(θ) ≥ max L · e^{-c/2}). Bootstrap CIs (percentile, BCa, studentised) provide valid CIs without distributional assumptions, at the cost of computational effort.</p>`},
+  {tag:'Regression',topic:'Linear Regression & Least Squares',
+   desc:'Modelling the expected value of a response as a linear combination of predictors.',
+   books:[{t:'Statistical Inference',n:'Casella & Berger ch. 11'},{t:'Applied Regression Analysis',n:'Draper & Smith'}],
+   detail:`<p>The linear model Y = Xβ + ε, where ε ∼ N(0, σ²Iₙ), has OLS estimator β̂ = (XᵀX)⁻¹XᵀY. This is the BLUE (Best Linear Unbiased Estimator) by the Gauss-Markov theorem — it has the smallest variance among all linear unbiased estimators, without assuming normality. With normality, β̂ is also the MLE and is UMVUE.</p><p><em>Gauss-Markov conditions:</em> The theorem requires E[ε] = 0 (zero mean), Var(ε) = σ²I (homoscedasticity and no correlation). It does NOT require normality. Violations: heteroscedasticity (→ use WLS or robust SEs), autocorrelation (→ GLS), multicollinearity (→ ridge/LASSO regularisation), omitted variable bias (→ include confounders).</p><p><em>Model diagnostics:</em> Residuals should show no pattern against fitted values (checking linearity), be approximately normal (QQ plot), have constant spread (checking homoscedasticity), and be independent (Durbin-Watson for time series). The coefficient of determination R² = 1 − RSS/TSS measures fraction of variance explained, but adjusted R² = 1 − (RSS/(n−p))/(TSS/(n−1)) penalises for number of predictors.</p>`},
+  {tag:'Nonparametric',topic:'Rank Tests & Nonparametric Methods',
+   desc:'Inference that avoids distributional assumptions — using ranks rather than raw values.',
+   books:[{t:'Nonparametric Statistics for the Behavioral Sciences',n:'Siegel & Castellan'},{t:'All of Statistics',n:'Wasserman ch. 21'}],
+   detail:`<p>Rank-based methods replace observations with their ranks before computing test statistics. This makes them robust to outliers and applicable when normality is untenable. Key tests: Wilcoxon signed-rank test (paired data, replaces t-test); Mann-Whitney U test (two independent samples, replaces two-sample t-test); Kruskal-Wallis test (k groups, replaces one-way ANOVA); Spearman's rank correlation.</p><p><em>Theoretical basis:</em> Under H₀, the ranks are uniformly distributed over all n! permutations. Exact p-values are computable from this null distribution. The Wilcoxon test statistic W = Σ Rᵢ₊ (sum of positive signed ranks) has known null distribution.</p><p><em>Asymptotic relative efficiency:</em> Against the t-test for truly normal data, the Wilcoxon test has ARE = 3/π ≈ 0.955. In other words, you lose only about 5% of efficiency by using the rank test even when the data truly IS normal. Against t-test for heavy-tailed distributions, the Wilcoxon is far superior. This robustness profile explains why nonparametric tests are widely recommended for small samples and clinical studies.</p>`},
+  {tag:'Bayesian',topic:'Bayesian vs Frequentist Inference',
+   desc:'Two competing philosophies of probability and what it means to "learn from data."',
+   books:[{t:'Bayesian Data Analysis',n:'Gelman et al.'},{t:'The Theory That Would Not Die',n:'Sharon McGrayne'}],
+   detail:`<p>The frequentist defines probability as limiting relative frequency in repeated experiments. Parameters are fixed but unknown constants. Inference procedures are evaluated by their long-run behaviour (Type I error rates, coverage probabilities). The Bayesian defines probability as degree of belief, updated by evidence. Parameters have prior distributions representing initial beliefs; the posterior P(θ|x) ∝ P(x|θ)P(θ) is belief after observing data.</p><p><em>Practical differences:</em> (1) Bayesian inference provides posterior distributions on parameters — the full uncertainty in θ given data, not just point estimates. (2) Bayesian credible intervals have the natural interpretation the CI lacks: P(θ ∈ [L,U] | data) = 0.95. (3) Bayesian model comparison via Bayes factors avoids the multiple testing problem but requires specifying priors over models. (4) Bayesian analysis scales naturally to hierarchical and missing-data problems.</p><p><em>Convergence of the two views:</em> For large samples with proper priors, Bernstein-von Mises theorem states the posterior converges to N(θ₀, I(θ₀)⁻¹/n) — identical to the frequentist sampling distribution of the MLE. The distinction becomes most important in small samples, complex models, and when incorporating prior scientific knowledge.</p>`}
+];
+
+/* ── DISTRIBUTIONS (expanded with MGF / skewness / kurtosis) ── */
+
+function renderInference(){
+  const g=document.getElementById('inference-grid'); if(!g)return;
+  g.innerHTML=INFERENCE.map((item,i)=>`
+    <div class="inf-card" onclick="toggleInf(${i})">
+      <span class="inf-tag">${item.tag}</span>
+      <div class="inf-topic">${item.topic}</div>
+      <div class="inf-desc">${item.desc}</div>
+      ${item.books.map(b=>`<div class="inf-book"><b>${b.t}</b> <i>· ${b.n}</i></div>`).join('')}
+      <span class="inf-expand-lbl" id="inflbl-${i}">▸ Read more</span>
+      <div class="inf-detail" id="infdet-${i}">${item.detail}</div>
+    </div>`).join('');
+}
+
+
+function toggleInf(i){
+  const d=document.getElementById('infdet-'+i);
+  const l=document.getElementById('inflbl-'+i);
+  const open=d.classList.toggle('show');
+  l.textContent=open?'▾ Show less':'▸ Read more';
+}
+
+/* ── DISTRIBUTIONS ──────────────────────────────────────────── */
+
+(function(){
+  if(localStorage.getItem('stats-mode')==='night'){
+    document.body.classList.add('night');
+    const mi=document.getElementById('mode-icon'); if(mi)mi.textContent='☀';
+  }
+  
+  setTimeout(function(){
+    if(window.currentUser)return;
+    if(!window.sb)return;
+    window.sb.auth.getSession().then(function(r){
+      if(window.currentUser)return;
+      var u=r&&r.data&&r.data.session&&r.data.session.user;
+      if(!u)return;
+      if(window.renderAuthUI)window.renderAuthUI();
+    }).catch(function(){});
+  },400);
+  if('renderInference();' && document.readyState!=='loading') { renderInference(); }
+  else if('renderInference();') { document.addEventListener('DOMContentLoaded', function(){ renderInference(); }); }
+})();
+</script>
+<script>window._pageKey = 'stats';</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+
+</body>
+</html>

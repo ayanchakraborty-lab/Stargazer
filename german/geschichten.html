@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#FFFEF5!important}html.pre-light{background:#FFFEF5}</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<title>German Short Stories, Graded A1 to C2 | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="60 graded German short stories, 10 per CEFR level from A1 to C2, each with English toggle, vocabulary lists, and space for your own summary.">
+<meta name="keywords" content="German short stories, German reading practice, graded German texts, A1 A2 B1 B2 C1 C2 German stories, German reading comprehension">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The German Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/german/geschichten.html">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="German Short Stories, Graded A1 to C2 | Stargazer">
+<meta property="og:description" content="60 short stories, 10 per CEFR level from A1 beginner to C2 mastery, with English toggle and vocabulary lists. Start reading →">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/german/geschichten.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/german-og.jpg">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/german-og.jpg">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="German Short Stories, Graded A1 to C2 | Stargazer">
+<meta name="twitter:description" content="60 graded stories from A1 to C2, with English toggle and vocabulary lists. Start reading →">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "German Short Stories, Graded by CEFR Level",
+  "description": "60 graded German short stories, 10 per CEFR level from A1 to C2, each with English toggle, vocabulary lists, and space for your own summary.",
+  "url": "https://stargazer-9m9.pages.dev/german/geschichten.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "German literature", "sameAs": "https://en.wikipedia.org/wiki/German_literature" }
+}
+</script>
+<link rel="stylesheet" href="german.css">
+</head>
+<body>
+
+<script>if(localStorage.getItem('stargazer_theme')==='light')document.body.classList.add('light');</script>
+
+<!-- Home button -->
+<a href="../index.html" id="homeLink" title="universe"><span class="hl-arrow">←</span> <span class="hl-label">universe</span></a>
+
+<!-- Auth header -->
+<div id="authHeader">
+  <button id="darkToggle" onclick="toggleLight()">☀ Day</button>
+  <a href="../login.html" id="loginBtn">sign in</a>
+  <div id="userInfo" style="display:none;">
+    <span id="userEmailDisplay"></span>
+    <button onclick="doSignOut()" id="signOutBtn">sign out</button>
+  </div>
+</div>
+
+<!-- Hamburger Button -->
+<button id="hamburger-btn" onclick="openSidebar()" aria-label="Open navigation">
+  <span style="font-size:18px;">☰</span>
+  <span class="hb-label">MENÜ</span>
+</button>
+
+<!-- Sidebar Overlay -->
+<div id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!-- Sidebar Navigation -->
+<nav id="sidebar" aria-label="Site navigation">
+  <div class="sidebar-header">
+    <span class="sidebar-logo">Deutsch</span>
+    <button class="sidebar-close" onclick="closeSidebar()">✕</button>
+  </div>
+  <div class="sidebar-flag"><div class="f1"></div><div class="f2"></div><div class="f3"></div></div>
+
+  <div class="sidebar-theme-row">
+    <button id="sidebarDarkToggle" class="sidebar-theme-btn" onclick="toggleLight()">☀ Day Mode</button>
+  </div>
+
+  <ul class="sidebar-nav" style="list-style:none;">
+    <li class="sidebar-divider">Hauptseiten · Main Pages</li>
+    <li><button class="sidebar-item" id="sb-home" onclick="location.href='home.html'">
+      <span class="sidebar-icon">🏠</span>
+      <span class="sidebar-text"><span class="sidebar-de">Startseite</span><span class="sidebar-en">Home · Introduction</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Wortschatz · Vocabulary</li>
+    <li><button class="sidebar-item" id="sb-woerterbuch" onclick="location.href='woerterbuch.html'">
+      <span class="sidebar-icon">📖</span>
+      <span class="sidebar-text"><span class="sidebar-de">Wörterbuch</span><span class="sidebar-en">Dictionary · Word Explorer</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Grammatik · Grammar</li>
+    <li><button class="sidebar-item" id="sb-grammatik" onclick="location.href='grammatik.html'">
+      <span class="sidebar-icon">✏️</span>
+      <span class="sidebar-text"><span class="sidebar-de">Grammatik</span><span class="sidebar-en">Grammar · Practice Questions</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-pruefungen" onclick="location.href='pruefungen.html'">
+      <span class="sidebar-icon">🧪</span>
+      <span class="sidebar-text"><span class="sidebar-de">Prüfungen</span><span class="sidebar-en">Tests · 20 Themed Exams</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-nachschlagen" onclick="location.href='nachschlagen.html'">
+      <span class="sidebar-icon">📋</span>
+      <span class="sidebar-text"><span class="sidebar-de">Nachschlagen</span><span class="sidebar-en">Reference Tables</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Lesen · Reading</li>
+    <li><button class="sidebar-item active" id="sb-geschichten" onclick="location.href='geschichten.html'">
+      <span class="sidebar-icon">📚</span>
+      <span class="sidebar-text"><span class="sidebar-de">Geschichten</span><span class="sidebar-en">Stories · A1 to C2 Levels</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-buecher" onclick="location.href='buecher.html'">
+      <span class="sidebar-icon">📕</span>
+      <span class="sidebar-text"><span class="sidebar-de">Bücher</span><span class="sidebar-en">Books · Curated Reading List</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Sprechen · Speaking</li>
+    <li><button class="sidebar-item" id="sb-satzbauer" onclick="location.href='satzbauer.html'">
+      <span class="sidebar-icon">🤖</span>
+      <span class="sidebar-text"><span class="sidebar-de">Satzbauer</span><span class="sidebar-en">Sentence Builder · AI Checker</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-zungenbrecher" onclick="location.href='zungenbrecher.html'">
+      <span class="sidebar-icon">👅</span>
+      <span class="sidebar-text"><span class="sidebar-de">Zungenbrecher</span><span class="sidebar-en">Tongue Twisters</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Ausdruck · Expression</li>
+    <li><button class="sidebar-item" id="sb-redewendungen" onclick="location.href='redewendungen.html'">
+      <span class="sidebar-icon">💬</span>
+      <span class="sidebar-text"><span class="sidebar-de">Redewendungen</span><span class="sidebar-en">Idioms & Expressions</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Gemeinschaft · Community</li>
+    <li><button class="sidebar-item" id="sb-community" onclick="location.href='community.html'">
+      <span class="sidebar-icon">👥</span>
+      <span class="sidebar-text"><span class="sidebar-de">Gemeinschaft</span><span class="sidebar-en">Community Discussion</span></span>
+    </button></li>
+  </ul>
+
+  <div class="sidebar-footer">
+    Sprache ist das Haus des Seins<br>
+    <span style="color: var(--text-faint); font-size:9px;">— Martin Heidegger</span>
+  </div>
+</nav>
+
+<!-- Particles -->
+<div id="particles"></div>
+
+<!-- NAV (shared.js) -->
+<div id="nav-container"></div>
+
+<main>
+<section class="section active" id="geschichten">
+  <div class="section-head sh-emerald">
+    <h2>Geschichten</h2>
+    <p>Stories · 10 per CEFR level (A1–C2) · vocabulary lists · personal summaries</p>
+  </div>
+  <div class="level-tabs">
+    <button class="level-tab active" onclick="switchStoryLevel('a1',this)"><span class="ti">📗</span> A1 <span class="level-tab-sub">Beginner</span></button>
+    <button class="level-tab" onclick="switchStoryLevel('a2',this)"><span class="ti">📘</span> A2 <span class="level-tab-sub">Elementary</span></button>
+    <button class="level-tab" onclick="switchStoryLevel('b1',this)"><span class="ti">📙</span> B1 <span class="level-tab-sub">Intermediate</span></button>
+    <button class="level-tab" onclick="switchStoryLevel('b2',this)"><span class="ti">📒</span> B2 <span class="level-tab-sub">Upper-Int.</span></button>
+    <button class="level-tab" onclick="switchStoryLevel('c1',this)"><span class="ti">📓</span> C1 <span class="level-tab-sub">Advanced</span></button>
+    <button class="level-tab" onclick="switchStoryLevel('c2',this)"><span class="ti">📔</span> C2 <span class="level-tab-sub">Mastery</span></button>
+  </div>
+  <div id="story-panels"></div>
+</section>
+</main>
+
+<footer id="site-footer" onclick="handleFooterClick(event)">
+  <p>Stargazer · Deutsch · <a href="../index.html">← Zurück zur Hauptseite</a></p>
+  <p style="margin-top:6px;color:var(--text-faint)">Sprache ist das Haus des Seins. — Martin Heidegger</p>
+</footer>
+<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint);font-style:italic;font-family:'Space Mono',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--amber-2);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div style="text-align:center;padding-bottom:2rem;">
+  <a href="../ABOUT.html" style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--amber);opacity:0.45;text-decoration:none;border:1px solid var(--amber);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+</div>
+
+<script>
+/* Must be defined before shared.js loads */
+window._pageKey = 'german';
+
+window._applyDarkMode = function(isDark) {
+  document.body.classList.toggle('light', !isDark);
+  document.documentElement.classList.remove('pre-light');
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+  const btn = document.getElementById('darkToggle');
+  if (btn) btn.textContent = isDark ? '☀ Day' : '🌙 Dark';
+  const sideBtn = document.getElementById('sidebarDarkToggle');
+  if (sideBtn) sideBtn.textContent = isDark ? '☀ Day Mode' : '🌙 Dark Mode';
+};
+
+/* Called by shared.js after every auth render */
+window._afterRenderAuthUI = function() { loadAllSummaries(); };
+</script>
+<script src="../shared.js"></script>
+<script>
+const SUPABASE_URL = 'https://daqxabswnrhqpjyfdbwx.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_ClSIuk3B4361beM8n9T7iQ_PIEM-D4j';
+let _sb = null;
+try {
+  if (window.supabase && SUPABASE_URL !== 'https://your-project.supabase.co') {
+    _sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  }
+} catch(e) {}
+
+const STORIES = {
+a1:[
+{id:"a1_1",title:"Mein erster Tag",titleEn:"My First Day",
+de:`<p>Ich heiße Maria. Ich bin 22 Jahre alt. Heute ist mein erster Tag in Deutschland.</p>
+<p>Ich komme aus Indien. Ich wohne jetzt in München. München ist sehr schön.</p>
+<p>Ich stehe um 7 Uhr auf. Ich dusche und frühstücke. Ich trinke Kaffee und esse Brot mit Butter.</p>
+<p>Um 9 Uhr gehe ich in die Stadt. Die Straßen sind sauber. Die Menschen sind freundlich. Ich sehe viele Fahrräder.</p>
+<p>Ich gehe in ein Café. Ich bestelle einen Kaffee. <span class="dialog">„Einen Kaffee, bitte,"</span> sage ich. Die Kellnerin lächelt. Sie bringt den Kaffee schnell.</p>
+<p>Nach dem Café gehe ich in den Supermarkt. Ich kaufe Milch, Brot, Käse und Äpfel. Alles ist nicht teuer.</p>
+<p>Am Abend koche ich Nudeln. Ich esse allein. Aber ich bin nicht traurig. Ich bin aufgeregt. Das Leben in Deutschland beginnt heute.</p>
+<p>Vor dem Schlafen schreibe ich in mein Tagebuch: <span class="dialog">„Deutschland ist anders. Aber es ist gut. Ich lerne viel. Morgen gehe ich in die Sprachschule."</span></p>`,
+en:`<p>My name is Maria. I'm 22 years old. Today is my first day in Germany.</p>
+<p>I come from India. I now live in Munich. Munich is very beautiful.</p>
+<p>I get up at 7 o'clock. I shower and have breakfast. I drink coffee and eat bread with butter.</p>
+<p>At 9 o'clock I go into the city. The streets are clean. The people are friendly. I see many bicycles.</p>
+<p>I go to a café. I order a coffee. "A coffee, please," I say. The waitress smiles. She brings the coffee quickly.</p>
+<p>After the café I go to the supermarket. I buy milk, bread, cheese and apples. Nothing is expensive.</p>
+<p>In the evening I cook pasta. I eat alone. But I am not sad. I am excited. Life in Germany begins today.</p>
+<p>Before sleeping I write in my diary: "Germany is different. But it is good. I learn a lot. Tomorrow I go to the language school."</p>`,
+vocab:[{de:"aufstehen",en:"to get up"},{de:"frühstücken",en:"to have breakfast"},{de:"die Kellnerin",en:"the waitress"},{de:"der Supermarkt",en:"the supermarket"},{de:"das Tagebuch",en:"the diary"},{de:"aufgeregt",en:"excited"},{de:"allein",en:"alone"}]},
+
+{id:"a1_2",title:"Im Supermarkt",titleEn:"At the Supermarket",
+de:`<p>Heute gehe ich in den Supermarkt. Der Supermarkt heißt REWE. Er ist nicht weit von meiner Wohnung.</p>
+<p>Ich nehme einen Einkaufswagen. Ich gehe durch die Gänge. Es gibt viel zu kaufen.</p>
+<p>Ich brauche Milch. Die Milch ist im Kühlregal. Ich nehme einen Liter Vollmilch. Sie kostet 1,29 Euro.</p>
+<p>Dann suche ich Brot. Es gibt viele Sorten: Weißbrot, Graubrot, Roggenbrot. Ich nehme ein Roggenbrot. Es ist dunkel und schwer. In Deutschland ist Roggenbrot sehr beliebt.</p>
+<p>Ich brauche auch Obst. Ich nehme Äpfel und Bananen. Die Äpfel kommen aus Deutschland. Sie sind frisch und rot.</p>
+<p>An der Kasse warte ich. Es gibt eine Warteschlange. Ein Mann vor mir kauft sehr viel. Nach fünf Minuten bin ich dran.</p>
+<p><span class="dialog">„Haben Sie eine Kundenkarte?"</span> fragt die Kassiererin. <span class="dialog">„Nein, leider nicht,"</span> sage ich.</p>
+<p>Ich bezahle 12,50 Euro. Ich bezahle mit Karte. In Deutschland kann man überall mit Karte zahlen.</p>
+<p>Ich packe alles in meinen Rucksack und gehe nach Hause. Das Einkaufen auf Deutsch ist nicht so schwer!</p>`,
+en:`<p>Today I go to the supermarket. The supermarket is called REWE. It is not far from my flat.</p>
+<p>I take a shopping trolley. I walk through the aisles. There is a lot to buy.</p>
+<p>I need milk. The milk is in the refrigerated section. I take one litre of whole milk. It costs 1.29 euros.</p>
+<p>Then I look for bread. There are many kinds: white bread, grey bread, rye bread. I take a rye bread. It is dark and heavy. In Germany rye bread is very popular.</p>
+<p>I also need fruit. I take apples and bananas. The apples come from Germany. They are fresh and red.</p>
+<p>At the checkout I wait. There is a queue. A man in front of me buys a lot. After five minutes it is my turn.</p>
+<p>"Do you have a loyalty card?" asks the cashier. "No, unfortunately not," I say.</p>
+<p>I pay 12.50 euros. I pay by card. In Germany you can pay by card everywhere.</p>
+<p>I pack everything in my rucksack and go home. Shopping in German is not so hard!</p>`,
+vocab:[{de:"der Einkaufswagen",en:"shopping trolley"},{de:"das Kühlregal",en:"refrigerated shelf"},{de:"die Sorte",en:"variety/type"},{de:"die Warteschlange",en:"queue"},{de:"die Kassiererin",en:"cashier (f)"},{de:"die Kundenkarte",en:"loyalty card"},{de:"bezahlen",en:"to pay"}]},
+
+{id:"a1_3",title:"Das Wetter",titleEn:"The Weather",
+de:`<p>In Deutschland gibt es vier Jahreszeiten: Frühling, Sommer, Herbst und Winter.</p>
+<p>Im Winter ist es kalt. Es schneit oft. Die Temperaturen sind manchmal minus fünf Grad. Ich trage eine Jacke, einen Schal und Handschuhe.</p>
+<p>Im Frühling ist es schön. Die Sonne scheint. Die Bäume sind grün. Die Blumen blühen. Es ist warm, aber nicht heiß. Die Temperaturen sind circa 15 Grad.</p>
+<p>Im Sommer ist es heiß. Es gibt manchmal 30 Grad. Die Menschen gehen in den Park oder zum See. Alle essen Eis. Ich mag den Sommer sehr.</p>
+<p>Im Herbst fallen die Blätter. Die Bäume werden rot, orange und gelb. Es regnet oft. Es ist windig. Ich mag den Herbst auch gern.</p>
+<p>Heute ist Montag. Das Wetter ist bewölkt. Es regnet leicht. Ich schaue aus dem Fenster. <span class="dialog">„Typisch deutsches Wetter,"</span> denke ich.</p>
+<p>Ich nehme meinen Regenschirm und gehe trotzdem raus. Im Café trinke ich heißen Tee. Es ist gemütlich.</p>`,
+en:`<p>In Germany there are four seasons: spring, summer, autumn and winter.</p>
+<p>In winter it is cold. It often snows. Temperatures are sometimes minus five degrees. I wear a jacket, scarf and gloves.</p>
+<p>In spring it is nice. The sun shines. The trees are green. The flowers bloom. It is warm but not hot. Around 15 degrees.</p>
+<p>In summer it is hot. Sometimes 30 degrees. People go to the park or lake. Everyone eats ice cream. I like summer very much.</p>
+<p>In autumn the leaves fall. The trees turn red, orange and yellow. It often rains. It is windy. I also like autumn.</p>
+<p>Today is Monday. The weather is cloudy. It is raining lightly. I look out of the window. "Typical German weather," I think.</p>
+<p>I take my umbrella and go out anyway. In the café I drink hot tea. It is cosy.</p>`,
+vocab:[{de:"die Jahreszeit",en:"season"},{de:"der Schal",en:"scarf"},{de:"blühen",en:"to bloom"},{de:"bewölkt",en:"cloudy"},{de:"der Regenschirm",en:"umbrella"},{de:"trotzdem",en:"anyway/nevertheless"},{de:"gemütlich",en:"cosy"}]},
+
+{id:"a1_4",title:"Meine Familie",titleEn:"My Family",
+de:`<p>Meine Familie wohnt in Indien. Ich vermisse sie sehr. Aber wir telefonieren jeden Tag.</p>
+<p>Meine Mutter heißt Priya. Sie ist 50 Jahre alt. Sie ist Lehrerin. Sie ist sehr klug und freundlich.</p>
+<p>Mein Vater heißt Rajesh. Er ist 53 Jahre alt. Er arbeitet in einer Bank. Er ist ruhig und hilfsbereit.</p>
+<p>Ich habe eine Schwester. Sie heißt Ananya. Sie ist 19 Jahre alt. Sie studiert Medizin. Sie ist sehr fleißig.</p>
+<p>Ich habe keinen Bruder. Aber ich habe einen Hund. Er heißt Bruno. Er ist groß und schwarz. Er schläft immer auf dem Sofa.</p>
+<p>Am Wochenende machen wir immer Videoanrufe. Meine Mutter kocht und zeigt mir das Essen. <span class="dialog">„Ich koche dein Lieblingsessen!"</span> sagt sie oft. Das macht mich glücklich.</p>
+<p>Mein Vater fragt immer: <span class="dialog">„Isst du genug? Schläfst du gut? Ist die Wohnung warm?"</span> Väter sind überall gleich.</p>
+<p>Ich liebe meine Familie sehr. Eines Tages kommen sie mich in Deutschland besuchen. Das freue ich mich schon sehr.</p>`,
+en:`<p>My family lives in India. I miss them very much. But we call each other every day.</p>
+<p>My mother's name is Priya. She is 50 years old. She is a teacher. She is very clever and friendly.</p>
+<p>My father's name is Rajesh. He is 53 years old. He works in a bank. He is calm and helpful.</p>
+<p>I have a sister. Her name is Ananya. She is 19 years old. She studies medicine. She is very hardworking.</p>
+<p>I don't have a brother. But I have a dog. His name is Bruno. He is big and black. He always sleeps on the sofa.</p>
+<p>At weekends we always do video calls. My mother cooks and shows me the food. "I'm cooking your favourite meal!" she often says. That makes me happy.</p>
+<p>My father always asks: "Are you eating enough? Are you sleeping well? Is the flat warm?" Fathers are the same everywhere.</p>
+<p>I love my family very much. One day they will come visit me in Germany. I'm already looking forward to it very much.</p>`,
+vocab:[{de:"vermissen",en:"to miss"},{de:"telefonieren",en:"to phone"},{de:"fleißig",en:"hardworking"},{de:"hilfsbereit",en:"helpful"},{de:"der Videoanruf",en:"video call"},{de:"das Lieblingsessen",en:"favourite meal"},{de:"besuchen",en:"to visit"}]},
+
+{id:"a1_5",title:"In der Schule",titleEn:"At School",
+de:`<p>Ich lerne Deutsch in einer Sprachschule. Die Schule heißt Goethe-Institut. Sie ist in der Stadtmitte.</p>
+<p>Meine Lehrerin heißt Frau Schmidt. Sie ist sehr geduldig. Sie spricht langsam und deutlich. Das ist gut für mich.</p>
+<p>In der Klasse sind wir zwölf Schüler. Wir kommen aus vielen Ländern: aus Japan, Brasilien, China, der Türkei und Indien.</p>
+<p>Wir lernen zusammen. Wir üben Dialoge. Wir schreiben Sätze. Wir lesen Texte. Es ist manchmal schwer, aber auch sehr interessant.</p>
+<p>Heute lernen wir die Uhrzeiten. <span class="dialog">„Wie spät ist es?"</span> fragt Frau Schmidt. <span class="dialog">„Es ist halb drei,"</span> antworte ich. <span class="dialog">„Sehr gut, Maria!"</span> sagt sie.</p>
+<p>In der Pause trinken wir Kaffee. Ich spreche mit Kenji aus Japan. Sein Deutsch ist besser als meins. Er lernt schon seit sechs Monaten.</p>
+<p>Nach der Schule mache ich Hausaufgaben. Ich lerne neue Wörter. Ich schreibe sie in mein Heft. Lernen kostet Zeit, aber es macht Spaß.</p>`,
+en:`<p>I learn German at a language school. The school is called Goethe-Institut. It is in the city centre.</p>
+<p>My teacher's name is Ms Schmidt. She is very patient. She speaks slowly and clearly. That is good for me.</p>
+<p>In the class there are twelve students. We come from many countries: from Japan, Brazil, China, Turkey and India.</p>
+<p>We learn together. We practise dialogues. We write sentences. We read texts. It is sometimes hard but also very interesting.</p>
+<p>Today we learn telling the time. "What time is it?" asks Ms Schmidt. "It is half past two," I answer. "Very good, Maria!" she says.</p>
+<p>During the break we drink coffee. I speak with Kenji from Japan. His German is better than mine. He has been learning for six months already.</p>
+<p>After school I do homework. I learn new words. I write them in my exercise book. Learning takes time, but it is fun.</p>`,
+vocab:[{de:"geduldig",en:"patient"},{de:"deutlich",en:"clearly"},{de:"der Schüler",en:"student/pupil"},{de:"üben",en:"to practise"},{de:"die Pause",en:"break"},{de:"die Hausaufgaben",en:"homework"},{de:"das Heft",en:"exercise book"}]},
+
+{id:"a1_6",title:"Ein Tag in München",titleEn:"A Day in Munich",
+de:`<p>Heute ist Samstag. Ich habe keine Schule. Ich besuche München.</p>
+<p>Ich fahre mit der U-Bahn. Die U-Bahn ist sauber und pünktlich. Ich kaufe ein Ticket am Automaten. Es kostet 3,50 Euro.</p>
+<p>Zuerst gehe ich zum Marienplatz. Der Marienplatz ist das Zentrum von München. Es gibt das Neue Rathaus. Um 11 Uhr spielt das Glockenspiel. Viele Touristen schauen zu.</p>
+<p>Dann gehe ich in den Englischen Garten. Er ist sehr groß — größer als der Central Park in New York! Es gibt Wiesen, Bäume und einen See. Menschen sitzen in der Sonne.</p>
+<p>Ich sehe etwas Seltsames: Menschen surfen im Fluss! Das ist der Eisbach. Es ist eine stehende Welle. Die Surfer sind sehr gut.</p>
+<p>Am Mittag esse ich eine Weißwurst mit Brezel und süßem Senf. Das ist typisch bayerisch. Es schmeckt sehr gut.</p>
+<p>Am Abend fahre ich zurück nach Hause. Ich bin müde, aber glücklich. München ist eine wunderbare Stadt. Ich komme bestimmt wieder.</p>`,
+en:`<p>Today is Saturday. I have no school. I visit Munich.</p>
+<p>I travel by underground. The underground is clean and punctual. I buy a ticket at the machine. It costs 3.50 euros.</p>
+<p>First I go to Marienplatz. Marienplatz is the centre of Munich. There is the New Town Hall. At 11 o'clock the carillon plays. Many tourists watch.</p>
+<p>Then I go to the English Garden. It is very large — larger than Central Park in New York! There are meadows, trees and a lake. People sit in the sun.</p>
+<p>I see something strange: people are surfing in the river! This is the Eisbach. It is a standing wave. The surfers are very good.</p>
+<p>At lunchtime I eat a white sausage with pretzel and sweet mustard. That is typically Bavarian. It tastes very good.</p>
+<p>In the evening I travel back home. I am tired but happy. Munich is a wonderful city. I will certainly come back.</p>`,
+vocab:[{de:"die U-Bahn",en:"underground"},{de:"pünktlich",en:"punctual, on time"},{de:"der Automat",en:"machine/vending machine"},{de:"das Glockenspiel",en:"carillon"},{de:"die Wiese",en:"meadow"},{de:"seltsam",en:"strange"},{de:"die Brezel",en:"pretzel"},{de:"wunderbar",en:"wonderful"}]},
+
+{id:"a1_7",title:"Mein Haustier",titleEn:"My Pet",
+de:`<p>Ich habe eine Katze. Sie heißt Luna. Sie ist grau und weiß. Sie ist drei Jahre alt.</p>
+<p>Luna schläft sehr viel. Sie schläft auf dem Bett, auf dem Sofa und auf dem Fußboden. Manchmal schläft sie auch auf meinen Büchern. Das ist nicht so gut.</p>
+<p>Luna isst zweimal am Tag. Morgens um 7 Uhr und abends um 18 Uhr. Sie mag Katzenfutter aus der Dose. Trockenfutter mag sie nicht so gern.</p>
+<p>Ich spiele oft mit Luna. Ich habe einen Spielzeugfisch an einem Stock. Luna springt und läuft. Sie ist dann sehr schnell.</p>
+<p>Manchmal bringt Luna mir Geschenke. Einmal brachte sie eine Maus ins Haus. Ich war nicht sehr glücklich darüber. Aber Luna war sehr stolz.</p>
+<p>Wenn ich traurig bin, kommt Luna zu mir. Sie setzt sich auf meinen Schoß. Sie schnurrt laut. Das macht mich immer besser.</p>
+<p>Ich finde, Haustiere sind sehr wichtig. Sie machen das Leben schöner und wärmer. Ohne Luna wäre meine Wohnung sehr leer.</p>`,
+en:`<p>I have a cat. Her name is Luna. She is grey and white. She is three years old.</p>
+<p>Luna sleeps a lot. She sleeps on the bed, on the sofa and on the floor. Sometimes she also sleeps on my books. That is not so good.</p>
+<p>Luna eats twice a day. In the morning at 7 o'clock and in the evening at 6 o'clock. She likes tinned cat food. She doesn't like dry food so much.</p>
+<p>I often play with Luna. I have a toy fish on a stick. Luna jumps and runs. She is very fast then.</p>
+<p>Sometimes Luna brings me presents. Once she brought a mouse into the house. I was not very happy about that. But Luna was very proud.</p>
+<p>When I am sad, Luna comes to me. She sits on my lap. She purrs loudly. That always makes me feel better.</p>
+<p>I think pets are very important. They make life more beautiful and warmer. Without Luna my flat would be very empty.</p>`,
+vocab:[{de:"schlafen",en:"to sleep"},{de:"das Futter",en:"food (for animals)"},{de:"springen",en:"to jump"},{de:"stolz",en:"proud"},{de:"der Schoß",en:"lap"},{de:"schnurren",en:"to purr"},{de:"leer",en:"empty"}]},
+
+{id:"a1_8",title:"Der Geburtstag",titleEn:"The Birthday",
+de:`<p>Heute ist mein Geburtstag! Ich werde 23 Jahre alt.</p>
+<p>Meine Freunde kommen um 18 Uhr. Ich backe einen Kuchen. Es ist ein Schokoladenkuchen. Er riecht wunderbar.</p>
+<p>Ich dekoriere die Wohnung mit Ballons und Girlanden. Es sieht festlich aus.</p>
+<p>Um 18 Uhr klingelt es. Meine Freundin Ana kommt zuerst. Sie bringt Blumen — rote Rosen. <span class="dialog">„Herzlichen Glückwunsch zum Geburtstag!"</span> sagt sie und umarmt mich.</p>
+<p>Dann kommen Kenji und Marco. Kenji bringt ein Buch über deutsche Geschichte. Marco bringt Wein.</p>
+<p>Wir essen, trinken und lachen viel. Wir spielen Spiele. Wir machen Fotos. Es ist ein wunderschöner Abend.</p>
+<p>Um Mitternacht singen alle: <span class="dialog">„Happy Birthday!"</span> Dann pusten wir die Kerzen aus. Ich mache einen Wunsch — aber ich sage ihn nicht. Wenn man den Wunsch sagt, geht er nicht in Erfüllung.</p>
+<p>Es ist mein erster Geburtstag in Deutschland. Er ist anders als zu Hause, aber er ist sehr schön. Ich bin dankbar für meine neuen Freunde.</p>`,
+en:`<p>Today is my birthday! I am turning 23.</p>
+<p>My friends come at 6 o'clock. I bake a cake. It is a chocolate cake. It smells wonderful.</p>
+<p>I decorate the flat with balloons and garlands. It looks festive.</p>
+<p>At 6 o'clock the doorbell rings. My friend Ana comes first. She brings flowers — red roses. "Happy birthday!" she says and hugs me.</p>
+<p>Then Kenji and Marco come. Kenji brings a book about German history. Marco brings wine.</p>
+<p>We eat, drink and laugh a lot. We play games. We take photos. It is a wonderful evening.</p>
+<p>At midnight everyone sings "Happy Birthday!" Then we blow out the candles. I make a wish — but I don't say it. If you say the wish, it won't come true.</p>
+<p>It is my first birthday in Germany. It is different from home, but it is very nice. I am grateful for my new friends.</p>`,
+vocab:[{de:"backen",en:"to bake"},{de:"dekorieren",en:"to decorate"},{de:"klingeln",en:"to ring (doorbell)"},{de:"umarmen",en:"to hug"},{de:"die Kerze",en:"candle"},{de:"der Wunsch",en:"wish"},{de:"dankbar",en:"grateful"}]},
+
+{id:"a1_9",title:"Im Park",titleEn:"In the Park",
+de:`<p>Am Sonntag gehe ich in den Park. Der Park ist nicht weit von meiner Wohnung.</p>
+<p>Das Wetter ist heute schön. Die Sonne scheint. Es ist warm — ungefähr 20 Grad. Der Himmel ist blau.</p>
+<p>Im Park gibt es viele Menschen. Familien machen Picknick. Kinder spielen Fußball. Hunde laufen frei. Ein Mann liest eine Zeitung unter einem Baum.</p>
+<p>Ich setze mich auf eine Bank. Ich habe mein Buch mitgebracht. Ich lese und genieße die Sonne.</p>
+<p>Neben mir sitzt eine alte Frau. Sie füttert die Tauben mit Brot. <span class="dialog">„Schöner Tag heute, oder?"</span> sagt sie zu mir. <span class="dialog">„Ja, sehr schön,"</span> antworte ich. Wir sprechen ein bisschen. Sie heißt Hannelore. Sie kommt jeden Sonntag in diesen Park.</p>
+<p>Nach einer Stunde gehe ich spazieren. Ich laufe um den See. Das Wasser ist ruhig. Enten schwimmen darauf.</p>
+<p>Um 17 Uhr gehe ich nach Hause. Ich fühle mich frisch und ausgeruht. Der Park ist mein Lieblingsort in der Stadt.</p>`,
+en:`<p>On Sunday I go to the park. The park is not far from my flat.</p>
+<p>The weather is nice today. The sun is shining. It is warm — about 20 degrees. The sky is blue.</p>
+<p>In the park there are many people. Families are having picnics. Children are playing football. Dogs run freely. A man is reading a newspaper under a tree.</p>
+<p>I sit down on a bench. I have brought my book. I read and enjoy the sun.</p>
+<p>Next to me sits an old woman. She is feeding the pigeons with bread. "Beautiful day today, isn't it?" she says to me. "Yes, very beautiful," I answer. We talk a little. Her name is Hannelore. She comes to this park every Sunday.</p>
+<p>After an hour I go for a walk. I walk around the lake. The water is calm. Ducks swim on it.</p>
+<p>At 5 o'clock I go home. I feel fresh and rested. The park is my favourite place in the city.</p>`,
+vocab:[{de:"das Picknick",en:"picnic"},{de:"die Bank",en:"bench"},{de:"genießen",en:"to enjoy"},{de:"füttern",en:"to feed"},{de:"die Taube",en:"pigeon/dove"},{de:"spazieren gehen",en:"to go for a walk"},{de:"ausgeruht",en:"rested"}]},
+
+{id:"a1_10",title:"Das Frühstück",titleEn:"Breakfast",
+de:`<p>Das Frühstück ist meine Lieblingsmahlzeit. Ich frühstücke jeden Morgen um halb acht.</p>
+<p>Ich mache Kaffee in der Kaffeemaschine. Der Kaffee riecht gut. Dann schneide ich Brot. In Deutschland gibt es viele Brotsorten — ich kaufe immer Vollkornbrot.</p>
+<p>Ich esse Brot mit Butter und Marmelade. Heute nehme ich Erdbeermarmelade. Ich esse auch ein gekochtes Ei. Das Ei koche ich vier Minuten lang — so ist es noch weich.</p>
+<p>Manchmal esse ich auch Joghurt mit Früchten. Oder Müsli mit Milch. Das ist schnell und gesund.</p>
+<p>Beim Frühstück lese ich Nachrichten auf meinem Handy. Ich lese auf Deutsch — das ist auch Übung!</p>
+<p>In Deutschland ist das Frühstück sehr wichtig. Am Wochenende gibt es oft ein großes Frühstück mit Familie oder Freunden. Man nimmt sich Zeit. Man redet. Man isst gut.</p>
+<p>Mein Lieblingsfrühstück ist Sonntagsfrühstück im Café: frische Brötchen, Croissants, Lachs, verschiedene Käsesorten und natürlich guter Kaffee. Das ist ein kleines Glück.</p>`,
+en:`<p>Breakfast is my favourite meal. I have breakfast every morning at half past seven.</p>
+<p>I make coffee in the coffee machine. The coffee smells good. Then I slice bread. In Germany there are many types of bread — I always buy wholegrain bread.</p>
+<p>I eat bread with butter and jam. Today I take strawberry jam. I also eat a boiled egg. I boil the egg for four minutes — that way it is still soft.</p>
+<p>Sometimes I also eat yoghurt with fruit. Or muesli with milk. That is quick and healthy.</p>
+<p>At breakfast I read news on my phone. I read in German — that is also practice!</p>
+<p>In Germany breakfast is very important. At the weekend there is often a big breakfast with family or friends. You take your time. You talk. You eat well.</p>
+<p>My favourite breakfast is Sunday breakfast in a café: fresh rolls, croissants, salmon, different types of cheese and of course good coffee. That is a small happiness.</p>`,
+vocab:[{de:"die Mahlzeit",en:"meal"},{de:"schneiden",en:"to cut/slice"},{de:"die Marmelade",en:"jam"},{de:"das Vollkornbrot",en:"wholegrain bread"},{de:"weich",en:"soft"},{de:"die Übung",en:"practice/exercise"},{de:"das Brötchen",en:"bread roll"}]}
+],
+
+a2:[
+{id:"a2_1",title:"Das alte Foto",titleEn:"The Old Photo",
+de:`<p>Meine Oma ist 78 Jahre alt. Letzten Sommer habe ich sie in Hannover besucht. Wir haben zusammen Kaffee getrunken und alte Fotos angeschaut.</p>
+<p>In einer Schachtel fanden wir ein schwarz-weißes Foto. Darauf war eine junge Frau in einem langen Kleid. Sie stand vor einem großen Haus. Ich erkannte sie nicht sofort.</p>
+<p><span class="dialog">„Wer ist das?"</span> fragte ich. Meine Oma lächelte geheimnisvoll. <span class="dialog">„Das bin ich. Ich war damals 19 Jahre alt. Das war 1964."</span></p>
+<p>Ich konnte es kaum glauben. Die Frau auf dem Foto war so schön und jung. Sie trug ihr langes braunes Haar offen. Sie sah glücklich aus.</p>
+<p><span class="dialog">„Wo hast du da gewohnt?"</span> fragte ich. <span class="dialog">„Das war das Haus meiner Eltern in Leipzig,"</span> antwortete sie. <span class="dialog">„Damals war Deutschland geteilt. Leipzig war in der DDR. Wir konnten nicht einfach reisen."</span></p>
+<p>Meine Oma erzählte mir viel über ihr Leben in der DDR. Es war eine andere Zeit. Man konnte nicht alles kaufen. Man konnte nicht überall hinfahren. Aber die Menschen hielten zusammen.</p>
+<p><span class="dialog">„Warst du glücklich?"</span> fragte ich. Sie dachte kurz nach. <span class="dialog">„Ja und nein. Das Leben war schwieriger. Aber wir wussten nicht, wie es anders sein könnte. Wir hatten Familie, Freunde, Arbeit. Das war wichtig."</span></p>
+<p>Ich hielt das Foto in meinen Händen. Geschichte lebt in solchen Bildern. Ich sah meine Oma an. Die junge Frau war noch da — in ihren Augen.</p>`,
+en:`<p>My grandmother is 78 years old. Last summer I visited her in Hanover. We drank coffee together and looked at old photos.</p>
+<p>In a box we found a black-and-white photo. On it was a young woman in a long dress. She stood in front of a large house. I didn't recognise her immediately.</p>
+<p>"Who is that?" I asked. My grandmother smiled mysteriously. "That's me. I was 19 at the time. That was 1964."</p>
+<p>I could hardly believe it. The woman in the photo was so beautiful and young. She wore her long brown hair loose. She looked happy.</p>
+<p>"Where did you live then?" I asked. "That was my parents' house in Leipzig," she answered. "Germany was divided then. Leipzig was in the GDR. We couldn't simply travel."</p>
+<p>My grandmother told me a lot about her life in the GDR. It was a different time. You couldn't buy everything. You couldn't go everywhere. But people stuck together.</p>
+<p>"Were you happy?" I asked. She thought briefly. "Yes and no. Life was harder. But we didn't know how it could be otherwise. We had family, friends, work. That was important."</p>
+<p>I held the photo in my hands. History lives in such pictures. I looked at my grandmother. The young woman was still there — in her eyes.</p>`,
+vocab:[{de:"die Schachtel",en:"box"},{de:"schwarz-weiß",en:"black and white"},{de:"geheimnisvoll",en:"mysterious"},{de:"geteilt",en:"divided"},{de:"zusammenhalten",en:"to stick together"},{de:"nachdenken",en:"to reflect"},{de:"erkennen",en:"to recognise"}]},
+
+{id:"a2_2",title:"Der erste Zug",titleEn:"The First Train",
+de:`<p>Letzten Monat bin ich das erste Mal allein mit dem Zug gefahren. Ich wollte meine Freundin in Hamburg besuchen. Hamburg ist vier Stunden von München entfernt.</p>
+<p>Ich habe mein Ticket online gekauft. Es war ein Sparpreis-Ticket — günstiger, aber nur für einen bestimmten Zug.</p>
+<p>Am Morgen der Reise bin ich früh aufgestanden. Ich habe meinen Koffer gepackt. Kleidung, Bücher, Zahnbürste, Ladekabel — alles dabei.</p>
+<p>Am Bahnhof war es laut und voll. Viele Menschen mit Koffern eilten durch die Hallen. Ich schaute auf die Anzeigetafel. <em>Gleis 7</em>, stand da. Ich fand das richtige Gleis.</p>
+<p>Im Zug hatte ich einen Fensterplatz. Das Landschaft draußen war schön — Felder, Wälder, kleine Dörfer. Ich hörte Musik und sah aus dem Fenster.</p>
+<p>In Nürnberg stiegen viele Leute ein. Ein älterer Herr setzte sich neben mich. Wir kamen ins Gespräch. Er war Ingenieur und fuhr nach Bremen zu seinem Sohn.</p>
+<p>In Hamburg hat mich meine Freundin am Bahnhof abgeholt. Wir haben uns lange umarmt. Das Wochenende war wunderbar — wir haben den Hafen besucht, Fischbrötchen gegessen und viel gelacht.</p>
+<p>Die Rückfahrt war ruhiger. Ich war müde, aber glücklich. Reisen auf Deutsch macht Spaß.</p>`,
+en:`<p>Last month I travelled alone by train for the first time. I wanted to visit my friend in Hamburg. Hamburg is four hours from Munich.</p>
+<p>I bought my ticket online. It was a Sparpreis ticket — cheaper, but only for a specific train.</p>
+<p>On the morning of the journey I got up early. I packed my suitcase. Clothes, books, toothbrush, charging cable — all there.</p>
+<p>At the station it was loud and crowded. Many people with suitcases hurried through the halls. I looked at the departure board. Platform 7, it said. I found the right platform.</p>
+<p>On the train I had a window seat. The landscape outside was beautiful — fields, forests, small villages. I listened to music and looked out the window.</p>
+<p>In Nuremberg many people got on. An older gentleman sat down next to me. We got talking. He was an engineer and was going to Bremen to see his son.</p>
+<p>In Hamburg my friend picked me up at the station. We hugged for a long time. The weekend was wonderful — we visited the harbour, ate fish rolls and laughed a lot.</p>
+<p>The return journey was calmer. I was tired but happy. Travelling in German is fun.</p>`,
+vocab:[{de:"der Sparpreis",en:"discounted fare"},{de:"die Anzeigetafel",en:"departure board"},{de:"das Gleis",en:"platform/track"},{de:"einsteigen",en:"to board/get on"},{de:"ins Gespräch kommen",en:"to start talking"},{de:"abholen",en:"to pick up"},{de:"der Hafen",en:"harbour"}]},
+
+{id:"a2_3",title:"Eine Reise nach Berlin",titleEn:"A Trip to Berlin",
+de:`<p>Berlin ist die Hauptstadt von Deutschland. Sie hat 3,7 Millionen Einwohner. Letztes Jahr habe ich Berlin zum ersten Mal besucht.</p>
+<p>Ich bin mit dem Flugzeug geflogen. Der Flug war kurz — nur eine Stunde. Am Flughafen BER habe ich ein Taxi genommen.</p>
+<p>Mein Hotel war in Mitte, dem Zentrum der Stadt. Von meinem Zimmer konnte ich den Fernsehturm sehen. Er ist 368 Meter hoch und dreht sich langsam.</p>
+<p>Am ersten Tag habe ich das Brandenburger Tor besucht. Es ist das Symbol Berlins. Früher stand die Berliner Mauer daneben. Jetzt ist alles offen.</p>
+<p>Ich bin auch ins Holocaust-Mahnmal gegangen. Es ist sehr eindrucksvoll — 2711 Betonblöcke, unterschiedlich groß. Man fühlt sich klein und nachdenklich darin.</p>
+<p>Am zweiten Tag bin ich mit dem Fahrrad gefahren. Berlin ist sehr fahrradfreundlich. Ich habe Kreuzberg besucht — ein buntes, lebendiges Viertel mit Street Art, Cafés und Märkten.</p>
+<p>Ich habe Currywurst gegessen. Die Currywurst ist eine Berliner Erfindung: Bratwurst mit Tomatensauce und Currypulver. Sie ist lecker.</p>
+<p>Berlin hat mich beeindruckt. Es ist eine Stadt der Geschichte und der Kreativität. Ich möchte unbedingt wiederkommen.</p>`,
+en:`<p>Berlin is the capital of Germany. It has 3.7 million inhabitants. Last year I visited Berlin for the first time.</p>
+<p>I flew by plane. The flight was short — only one hour. At Berlin Airport BER I took a taxi.</p>
+<p>My hotel was in Mitte, the centre of the city. From my room I could see the TV tower. It is 368 metres high and turns slowly.</p>
+<p>On the first day I visited the Brandenburg Gate. It is the symbol of Berlin. The Berlin Wall used to stand beside it. Now everything is open.</p>
+<p>I also went to the Holocaust Memorial. It is very impressive — 2,711 concrete blocks, different sizes. You feel small and thoughtful inside it.</p>
+<p>On the second day I cycled. Berlin is very cycle-friendly. I visited Kreuzberg — a colourful, vibrant neighbourhood with street art, cafés and markets.</p>
+<p>I ate Currywurst. Currywurst is a Berlin invention: grilled sausage with tomato sauce and curry powder. It is delicious.</p>
+<p>Berlin impressed me. It is a city of history and creativity. I absolutely want to come back.</p>`,
+vocab:[{de:"die Hauptstadt",en:"capital city"},{de:"der Einwohner",en:"inhabitant"},{de:"eindrucksvoll",en:"impressive"},{de:"nachdenklich",en:"thoughtful, pensive"},{de:"das Viertel",en:"neighbourhood/quarter"},{de:"die Erfindung",en:"invention"},{de:"beeindrucken",en:"to impress"}]},
+
+{id:"a2_4",title:"Das neue Zuhause",titleEn:"The New Home",
+de:`<p>Vor drei Monaten bin ich in meine neue Wohnung gezogen. Davor habe ich im Studentenwohnheim gewohnt. Jetzt habe ich endlich meine eigene Wohnung.</p>
+<p>Die Wohnung ist im dritten Stock. Sie hat ein Wohnzimmer, ein Schlafzimmer, eine Küche und ein Bad. Sie ist nicht groß, aber sie ist gemütlich.</p>
+<p>Am ersten Tag habe ich viel aufgeräumt und geputzt. Dann habe ich die Möbel gestellt. Das Sofa steht am Fenster. Der Tisch steht in der Mitte. Das Bett steht an der Wand.</p>
+<p>Ich habe Pflanzen gekauft. Grüne Pflanzen machen die Wohnung lebendiger. Ich habe auch Bilder aufgehängt.</p>
+<p>Meine Nachbarin heißt Frau Weber. Sie ist sehr nett. Am ersten Abend hat sie mir einen Kuchen gebracht. <span class="dialog">„Willkommen in unserem Haus!"</span> hat sie gesagt. Ich war sehr gerührt.</p>
+<p>Manchmal ist es still in der Wohnung. Ich vermisse das Wohnheim — dort war immer jemand da. Aber ich genieße auch die Ruhe.</p>
+<p>Jetzt koche ich selbst. Ich probiere neue Rezepte aus. Ich lerne, wie man Schnitzel macht, wie man Suppen kocht und wie man Kuchen backt. Kochen macht mir Spaß.</p>
+<p>Diese Wohnung ist mein Zuhause. Das fühlt sich gut an.</p>`,
+en:`<p>Three months ago I moved into my new flat. Before that I lived in the student dormitory. Now I finally have my own flat.</p>
+<p>The flat is on the third floor. It has a living room, a bedroom, a kitchen and a bathroom. It is not large but it is cosy.</p>
+<p>On the first day I tidied up and cleaned a lot. Then I arranged the furniture. The sofa stands at the window. The table stands in the middle. The bed stands against the wall.</p>
+<p>I bought plants. Green plants make the flat more vibrant. I also hung up pictures.</p>
+<p>My neighbour's name is Mrs Weber. She is very kind. On the first evening she brought me a cake. "Welcome to our building!" she said. I was very touched.</p>
+<p>Sometimes it is quiet in the flat. I miss the dormitory — there was always someone there. But I also enjoy the peace.</p>
+<p>Now I cook for myself. I try out new recipes. I learn how to make schnitzel, how to cook soups and how to bake cakes. I enjoy cooking.</p>
+<p>This flat is my home. That feels good.</p>`,
+vocab:[{de:"umziehen",en:"to move (house)"},{de:"das Wohnheim",en:"dormitory"},{de:"aufräumen",en:"to tidy up"},{de:"gerührt",en:"touched/moved"},{de:"vermissen",en:"to miss"},{de:"ausprobieren",en:"to try out"},{de:"das Zuhause",en:"home"}]},
+
+{id:"a2_5",title:"Der Brief",titleEn:"The Letter",
+de:`<p>Heute habe ich einen Brief bekommen. Das ist ungewöhnlich — normalerweise bekomme ich E-Mails oder Nachrichten auf WhatsApp. Aber ein echter Brief aus Papier ist etwas Besonderes.</p>
+<p>Der Brief kam aus der Schweiz. Die Handschrift auf dem Umschlag war ordentlich und klein. Ich öffnete den Umschlag vorsichtig.</p>
+<p>Drinnen war ein Brief und ein altes Foto. Der Brief war auf Deutsch. Ich las ihn langsam.</p>
+<p>Der Brief war von einem Mann namens Heinrich Braun. Er war 84 Jahre alt und wohnte in Zürich. Er hatte meinen Namen und meine Adresse durch eine Brieffreundschafts-Organisation bekommen.</p>
+<p><span class="dialog">„Liebe Maria,"</span> begann der Brief, <span class="dialog">„ich habe gehört, dass Sie Deutsch lernen und Brieffreunde suchen. Ich schreibe gerne Briefe. Es ist ein altes Hobby von mir."</span></p>
+<p>Herr Braun schrieb über sein Leben. Er war früher Arzt gewesen. Jetzt war er in Rente. Er liebte Bücher, klassische Musik und seinen Garten.</p>
+<p>Das Foto zeigte ihn in seinem Garten. Er lächelte und hielt eine Tomate hoch. Er sah freundlich und glücklich aus.</p>
+<p>Ich war sehr berührt. Ich setzte mich sofort hin und schrieb zurück. Ich erzählte von meinem Leben in München, von meiner Sprache, von meinen Träumen. Es war schön, auf Papier zu schreiben. Viel persönlicher als eine E-Mail.</p>`,
+en:`<p>Today I received a letter. That is unusual — normally I get emails or WhatsApp messages. But a real paper letter is something special.</p>
+<p>The letter came from Switzerland. The handwriting on the envelope was neat and small. I opened the envelope carefully.</p>
+<p>Inside was a letter and an old photo. The letter was in German. I read it slowly.</p>
+<p>The letter was from a man named Heinrich Braun. He was 84 years old and lived in Zurich. He had received my name and address through a pen pal organisation.</p>
+<p>"Dear Maria," the letter began, "I heard that you are learning German and looking for pen friends. I enjoy writing letters. It is an old hobby of mine."</p>
+<p>Mr Braun wrote about his life. He had previously been a doctor. Now he was retired. He loved books, classical music and his garden.</p>
+<p>The photo showed him in his garden. He was smiling and holding up a tomato. He looked friendly and happy.</p>
+<p>I was very moved. I sat down immediately and wrote back. I told him about my life in Munich, my language, my dreams. It was nice to write on paper. Much more personal than an email.</p>`,
+vocab:[{de:"die Handschrift",en:"handwriting"},{de:"der Umschlag",en:"envelope"},{de:"die Brieffreundschaft",en:"pen friendship"},{de:"in Rente",en:"retired"},{de:"berühren",en:"to move/touch emotionally"},{de:"persönlich",en:"personal"},{de:"der Traum",en:"dream"}]},
+
+{id:"a2_6",title:"Freundschaft",titleEn:"Friendship",
+de:`<p>In Deutschland habe ich neue Freunde gefunden. Das war nicht einfach. Deutsche Menschen sind manchmal am Anfang distanziert. Aber wenn man sie besser kennt, sind sie sehr loyal und freundlich.</p>
+<p>Meine beste Freundin hier heißt Sophie. Wir haben uns in der Sprachschule kennengelernt. Sophie kommt aus Frankreich und lernt auch Deutsch.</p>
+<p>Wir haben viel gemeinsam. Wir mögen beide Bücher, Kaffee und lange Spaziergänge. Wir kochen zusammen — manchmal macht Sophie ein französisches Gericht, manchmal koche ich ein indisches.</p>
+<p>Ich habe auch Freunde durch Sport gefunden. Ich spiele einmal pro Woche Volleyball in einem Verein. Die anderen Spieler sind sehr nett. Wir gehen nach dem Training oft zusammen etwas trinken.</p>
+<p>Freundschaft auf Deutsch zu pflegen ist eine Herausforderung. Man muss viel kommunizieren. Man muss Missverständnisse klären. Manchmal verstehe ich einen Witz nicht. Das ist manchmal komisch, manchmal frustrierend.</p>
+<p>Aber Freundschaften über Sprachen und Kulturen hinweg sind sehr wertvoll. Man lernt so viel — nicht nur die Sprache, sondern auch die Denkweise, die Humor, die Werte eines anderen Menschen.</p>
+<p>Ich bin sehr dankbar für meine Freunde in Deutschland. Sie machen das Abenteuer hier leichter und schöner.</p>`,
+en:`<p>In Germany I found new friends. That was not easy. German people are sometimes distant at first. But when you get to know them better, they are very loyal and friendly.</p>
+<p>My best friend here is called Sophie. We met at the language school. Sophie is from France and is also learning German.</p>
+<p>We have a lot in common. We both like books, coffee and long walks. We cook together — sometimes Sophie makes a French dish, sometimes I cook an Indian one.</p>
+<p>I also found friends through sport. I play volleyball once a week in a club. The other players are very kind. We often go for a drink together after training.</p>
+<p>Maintaining friendships in German is a challenge. You have to communicate a lot. You have to clear up misunderstandings. Sometimes I don't understand a joke. That is sometimes funny, sometimes frustrating.</p>
+<p>But friendships across languages and cultures are very valuable. You learn so much — not just the language, but also the way of thinking, the humour, the values of another person.</p>
+<p>I am very grateful for my friends in Germany. They make the adventure here easier and more beautiful.</p>`,
+vocab:[{de:"distanziert",en:"distant/reserved"},{de:"gemeinsam",en:"in common/shared"},{de:"der Verein",en:"club/association"},{de:"pflegen",en:"to maintain/cultivate"},{de:"das Missverständnis",en:"misunderstanding"},{de:"die Herausforderung",en:"challenge"},{de:"wertvoll",en:"valuable"}]},
+
+{id:"a2_7",title:"Der Sprachkurs",titleEn:"The Language Course",
+de:`<p>Ich mache jetzt seit fünf Monaten meinen Deutschkurs. Am Anfang war alles sehr schwer. Aber jetzt merke ich, dass es besser wird.</p>
+<p>In meinem Kurs gibt es 14 Teilnehmer aus acht verschiedenen Ländern. Wir haben alle verschiedene Muttersprachen. Aber im Kurs sprechen wir nur Deutsch.</p>
+<p>Unser Lehrer heißt Thomas. Er ist um die 40, trägt immer Jeans und ist sehr humorvoll. Er erklärt die Grammatik sehr gut. Wenn ich etwas nicht verstehe, frage ich ihn und er erklärt es auf drei verschiedene Arten.</p>
+<p>Letzte Woche haben wir die Vergangenheit gelernt — Perfekt und Präteritum. Das ist kompliziert. Im Perfekt sagt man <em>Ich habe gegessen</em>. Im Präteritum sagt man <em>Ich aß</em>. Wann benutzt man was? Thomas sagte: Präteritum in der Schriftsprache, Perfekt in der gesprochenen Sprache. Aber es gibt Ausnahmen.</p>
+<p>Ich übe zu Hause jeden Tag. Ich schaue deutsche Serien mit Untertiteln. Das hilft sehr. Meine Lieblingsserien sind „Dark" und „Babylon Berlin".</p>
+<p>Nächste Woche schreiben wir eine Prüfung. Ich bin ein bisschen nervös, aber ich bin vorbereitet. Ich habe viel gelernt.</p>
+<p>Deutsch ist schwer. Aber ich gebe nicht auf. Jede neue Sprache öffnet eine neue Tür zur Welt.</p>`,
+en:`<p>I have now been doing my German course for five months. At the beginning everything was very hard. But now I notice that it is getting better.</p>
+<p>In my course there are 14 participants from eight different countries. We all have different mother tongues. But in the course we only speak German.</p>
+<p>Our teacher's name is Thomas. He is around 40, always wears jeans and is very humorous. He explains grammar very well. When I don't understand something, I ask him and he explains it in three different ways.</p>
+<p>Last week we learned the past tense — perfect and simple past. That is complicated. In the perfect you say "I have eaten". In the simple past you say "I ate". When do you use which? Thomas said: simple past in written language, perfect in spoken language. But there are exceptions.</p>
+<p>I practise at home every day. I watch German series with subtitles. That helps a lot. My favourite series are "Dark" and "Babylon Berlin".</p>
+<p>Next week we have an exam. I am a little nervous but I am prepared. I have learned a lot.</p>
+<p>German is hard. But I don't give up. Every new language opens a new door to the world.</p>`,
+vocab:[{de:"der Teilnehmer",en:"participant"},{de:"die Muttersprache",en:"mother tongue"},{de:"humorvoll",en:"humorous"},{de:"die Ausnahme",en:"exception"},{de:"der Untertitel",en:"subtitle"},{de:"vorbereitet",en:"prepared"},{de:"aufgeben",en:"to give up"}]},
+
+{id:"a2_8",title:"Das Interview",titleEn:"The Interview",
+de:`<p>Letzte Woche hatte ich ein Vorstellungsgespräch. Ich hatte mich für eine Stelle als Werkstudentin in einer kleinen Firma beworben.</p>
+<p>Ich war sehr nervös. Ich hatte drei Tage lang geübt. Ich hatte mögliche Fragen vorbereitet. Ich hatte mein Outfit sorgfältig ausgesucht: schwarze Hose, blaue Bluse.</p>
+<p>Die Firma war in Schwabing. Ich bin mit der U-Bahn hingefahren. Ich war 15 Minuten zu früh — in Deutschland ist Pünktlichkeit sehr wichtig.</p>
+<p>Im Wartezimmer habe ich tief geatmet. Dann kam eine Frau herein. <span class="dialog">„Maria? Ich bin Claudia Weber. Schön, Sie kennenzulernen."</span> Wir gaben uns die Hand.</p>
+<p>Das Interview war auf Deutsch. Frau Weber fragte: <span class="dialog">„Warum möchten Sie bei uns arbeiten?"</span> und <span class="dialog">„Was sind Ihre Stärken?"</span> und <span class="dialog">„Wo sehen Sie sich in fünf Jahren?"</span></p>
+<p>Mein Deutsch war nicht perfekt, aber ich konnte alles beantworten. Frau Weber war geduldig und freundlich. Sie sprach langsam und deutlich.</p>
+<p>Drei Tage später kam eine E-Mail. <em>Wir freuen uns, Ihnen mitteilen zu dürfen, dass wir Ihnen die Stelle anbieten möchten.</em> Ich habe laut gejubelt. Ich hatte es geschafft!</p>`,
+en:`<p>Last week I had a job interview. I had applied for a position as a working student at a small company.</p>
+<p>I was very nervous. I had been practising for three days. I had prepared possible questions. I had carefully chosen my outfit: black trousers, blue blouse.</p>
+<p>The company was in Schwabing. I went there by underground. I was 15 minutes early — in Germany punctuality is very important.</p>
+<p>In the waiting room I breathed deeply. Then a woman came in. "Maria? I'm Claudia Weber. Lovely to meet you." We shook hands.</p>
+<p>The interview was in German. Ms Weber asked: "Why would you like to work with us?" and "What are your strengths?" and "Where do you see yourself in five years?"</p>
+<p>My German was not perfect, but I could answer everything. Ms Weber was patient and friendly. She spoke slowly and clearly.</p>
+<p>Three days later an email arrived. "We are pleased to inform you that we would like to offer you the position." I cheered loudly. I had done it!</p>`,
+vocab:[{de:"das Vorstellungsgespräch",en:"job interview"},{de:"sich bewerben",en:"to apply"},{de:"die Pünktlichkeit",en:"punctuality"},{de:"die Stärke",en:"strength"},{de:"beantworten",en:"to answer"},{de:"jubeln",en:"to cheer"},{de:"es schaffen",en:"to manage/achieve it"}]},
+
+{id:"a2_9",title:"Der Umzug",titleEn:"The Move",
+de:`<p>Letzten Samstag bin ich umgezogen. Von der alten Wohnung in der Maximilianstraße in eine neue, größere Wohnung in Schwabing.</p>
+<p>Ich hatte nicht viele Möbel — nur ein Bett, einen Tisch, vier Stühle und einen Kleiderschrank. Aber Bücher hatte ich viele. Bücher sind schwer.</p>
+<p>Meine Freunde haben mir geholfen. Sophie, Kenji und Marco sind um 9 Uhr gekommen. Wir haben Kartons gepackt, Möbel getragen und den Transporter beladen.</p>
+<p>Es hat leicht geregnet. Das war unangenehm. Aber wir haben gelacht und Witze gemacht. Sophie hat eine Playlist gemacht — Musik macht alles besser.</p>
+<p>In der neuen Wohnung haben wir alles ausgeladen und aufgestellt. Das hat fast vier Stunden gedauert. Dann waren wir erschöpft und hungrig.</p>
+<p>Ich habe Pizza bestellt — fünf Pizzas für vier Personen. Wir haben auf dem Boden gegessen, weil der Tisch noch nicht stand. Es war chaotisch und wunderschön.</p>
+<p><span class="dialog">„Willkommen in deinem neuen Zuhause!"</span> hat Marco gesagt und sein Glas erhoben. <span class="dialog">„Danke euch allen,"</span> habe ich gesagt. <span class="dialog">„Ich hätte es ohne euch nicht geschafft."</span></p>
+<p>Freunde, die beim Umzug helfen, sind echte Freunde.</p>`,
+en:`<p>Last Saturday I moved house. From the old flat in Maximilianstraße to a new, larger flat in Schwabing.</p>
+<p>I didn't have many pieces of furniture — just a bed, a table, four chairs and a wardrobe. But I had lots of books. Books are heavy.</p>
+<p>My friends helped me. Sophie, Kenji and Marco came at 9 o'clock. We packed boxes, carried furniture and loaded the van.</p>
+<p>It rained lightly. That was unpleasant. But we laughed and made jokes. Sophie made a playlist — music makes everything better.</p>
+<p>In the new flat we unloaded and set up everything. That took almost four hours. Then we were exhausted and hungry.</p>
+<p>I ordered pizza — five pizzas for four people. We ate on the floor because the table was not yet set up. It was chaotic and wonderful.</p>
+<p>"Welcome to your new home!" said Marco and raised his glass. "Thank you all," I said. "I couldn't have done it without you."</p>
+<p>Friends who help with moving are true friends.</p>`,
+vocab:[{de:"umziehen",en:"to move house"},{de:"der Kleiderschrank",en:"wardrobe"},{de:"beladen",en:"to load"},{de:"ausladen",en:"to unload"},{de:"erschöpft",en:"exhausted"},{de:"erheben",en:"to raise (a glass)"},{de:"echt",en:"true/real"}]},
+
+{id:"a2_10",title:"Die Entscheidung",titleEn:"The Decision",
+de:`<p>Vor einem Jahr stand ich vor einer großen Entscheidung: Soll ich in Deutschland bleiben oder zurück nach Indien gehen?</p>
+<p>Mein Visum lief in drei Monaten ab. Ich musste mich entscheiden.</p>
+<p>In Indien warteten meine Familie, meine alten Freunde und ein Job, den ich schon kannte. Es war sicher und vertraut. Aber es war auch — das wusste ich jetzt — eine Vergangenheit.</p>
+<p>In Deutschland hatte ich neue Freunde, eine neue Sprache und neue Möglichkeiten. Ich hatte einen Studienplatz in München bekommen. Ich hatte angefangen, die Stadt zu lieben.</p>
+<p>Ich habe lange nachgedacht. Ich habe mit meinen Eltern gesprochen. Meine Mutter weinte ein bisschen, als ich ihr sagte, dass ich vielleicht bleibe. Mein Vater sagte: <span class="dialog">„Tu, was dich glücklich macht. Wir sind immer für dich da."</span></p>
+<p>Ich habe Listen geschrieben. Pro und Kontra. Vorteile, Nachteile. Aber am Ende war es kein Kopf-Entscheid, sondern ein Herzentscheid.</p>
+<p>Ich habe den Studienplatz angenommen. Ich habe meinen Aufenthalt verlängert. Ich bin geblieben.</p>
+<p>Manchmal frage ich mich, ob ich die richtige Entscheidung getroffen habe. Dann schaue ich aus meinem Fenster auf die Stadt, die jetzt meine Stadt ist. Und ich weiß: Ja.</p>`,
+en:`<p>A year ago I faced a big decision: should I stay in Germany or go back to India?</p>
+<p>My visa was expiring in three months. I had to decide.</p>
+<p>In India my family, old friends and a job I already knew were waiting. It was safe and familiar. But it was also — I knew this now — a past.</p>
+<p>In Germany I had new friends, a new language and new possibilities. I had received a university place in Munich. I had begun to love the city.</p>
+<p>I thought for a long time. I spoke with my parents. My mother cried a little when I told her I might stay. My father said: "Do what makes you happy. We are always here for you."</p>
+<p>I wrote lists. Pros and cons. Advantages, disadvantages. But in the end it was not a head decision but a heart decision.</p>
+<p>I accepted the university place. I extended my stay. I stayed.</p>
+<p>Sometimes I ask myself whether I made the right decision. Then I look out of my window at the city that is now my city. And I know: yes.</p>`,
+vocab:[{de:"die Entscheidung",en:"decision"},{de:"das Visum",en:"visa"},{de:"ablaufen",en:"to expire"},{de:"vertraut",en:"familiar"},{de:"die Möglichkeit",en:"possibility"},{de:"verlängern",en:"to extend"},{de:"der Aufenthalt",en:"stay/residence"}]}
+],
+
+b1:[
+{id:"b1_1",title:"Waldeinsamkeit",titleEn:"Forest Solitude",
+de:`<h3>I. Der Wald</h3>
+<p>Es gibt Orte auf der Welt, die man nicht sucht — sie finden einen. Der Wald hinter Tobias' Haus war so ein Ort. Er hatte ihn jahrelang ignoriert, obwohl er täglich an ihm vorbeifuhr. Immer zu beschäftigt, immer irgendwo unterwegs, immer mit dem Blick auf das Handy statt auf die Bäume.</p>
+<p>Dann kam der Oktober, in dem alles auseinanderfiel.</p>
+<p>Er verlor seinen Job. Nicht auf dramatische Weise — kein Streit, keine Entlassung, nur eine sachliche E-Mail: <em>Aufgrund von Umstrukturierungen wird Ihre Stelle zum 31. Oktober aufgelöst.</em> Acht Jahre in einer Firma, komprimiert auf zwei Sätze.</p>
+<p>Dann trennte sich Lisa. Auch das ohne Drama. Einfach: <span class="dialog">„Ich glaube, wir haben schon lange aufgehört, uns wirklich zu sehen."</span> Er hatte keine Antwort darauf. Sie hatte recht.</p>
+<h3>II. Der erste Gang</h3>
+<p>An einem Dienstagmorgen stand er um sieben Uhr auf, machte Kaffee, und als er das Haus verlassen wollte — obwohl er nirgendwo hinmuss — fand er sich am Waldrand. Nicht als Plan. Es passierte einfach.</p>
+<p>Der Wald war nass von einer Nacht voll Regen. Die Blätter auf dem Boden waren weich und dunkel. Zwischen den Stämmen hingen Spinnweben mit Wassertropfen. Alles roch nach Erde und Verfall und gleichzeitig nach etwas Lebendigem.</p>
+<p>Er ging. Er wusste nicht wohin. Er folgte einem Weg, der kein Weg war — nur eine Lücke zwischen den Bäumen, die ihn einlud.</p>
+<h3>III. Die Stille</h3>
+<p>Was ihn überraschte, war nicht die Schönheit des Waldes. Es war die Stille. Nicht die Abwesenheit von Geräuschen — der Wald ist voller Geräusche. Vögel, Wind, das Knacken von Ästen, das Rauschen von Blättern. Aber es war eine andere Art von Stille. Eine Stille, in der Gedanken langsamer werden.</p>
+<p>Er saß auf einem umgestürzten Stamm. Er wusste nicht, wie lange. Die Zeit verhielt sich anders hier. Nicht weniger — anders. Wie ein Atemzug, der langsam wurde.</p>
+<p>Er dachte an Lisa. Daran, dass sie recht hatte. Er dachte an die Arbeit. Daran, dass er sich in acht Jahren nie gefragt hatte, ob er glücklich war. Er hatte funktioniert. Das war nicht dasselbe.</p>
+<h3>IV. Die Rückkehr</h3>
+<p>Jeden Tag kam er wieder. Er brachte nichts mit — kein Handy, kein Buch, keinen Plan. Er kam und ging und ließ den Wald tun, was er tat.</p>
+<p>Langsam veränderte sich etwas. Nicht dramatisch. Kein Moment der Erleuchtung, keine Epiphanie. Nur eine allmähliche Verschiebung. Wie wenn man aufhört, gegen den Strom zu schwimmen.</p>
+<p>Im November begann er, wieder zu schlafen. Im Dezember begann er, Bewerbungen zu schreiben — nicht aus Verzweiflung, sondern aus Neugier. Im Januar traf er sich wieder mit alten Freunden, die er jahrelang vernachlässigt hatte.</p>
+<p>Der Wald hatte ihm nichts gegeben, was nicht schon in ihm war. Er hatte ihm nur geholfen, ruhig genug zu werden, um es zu finden.</p>
+<p>Das, dachte Tobias, ist vielleicht die Bedeutung von Waldeinsamkeit. Nicht Einsamkeit als Mangel. Sondern Einsamkeit als Fülle.</p>`,
+en:`<p>There are places in the world that you don't seek — they find you. The forest behind Tobias' house was such a place. He had ignored it for years, although he drove past it every day. Always too busy, always somewhere else, always looking at his phone rather than the trees. Then came the October when everything fell apart...</p>
+<p>[Full English translation available on request — reading in German is recommended for B1 practice]</p>`,
+vocab:[{de:"der Waldrand",en:"forest edge"},{de:"der Stamm",en:"trunk"},{de:"die Spinnwebe",en:"spider web"},{de:"der Verfall",en:"decay"},{de:"umgestürzt",en:"fallen over"},{de:"die Erleuchtung",en:"enlightenment"},{de:"die Fülle",en:"abundance/fullness"},{de:"vernachlässigen",en:"to neglect"},{de:"die Verschiebung",en:"shift"}]},
+
+{id:"b1_2",title:"Die Stille des Sees",titleEn:"The Silence of the Lake",
+de:`<p>Der Starnberger See liegt etwa 25 Kilometer südlich von München. An einem frühen Septembermorgen fährt Marlene dorthin — allein, zum ersten Mal ohne ihren Mann Klaus, der vor einem halben Jahr gestorben ist.</p>
+<p>Sie mietet ein Ruderboot. Der Mann am Bootsverleih sagt kein Wort, als er ihr die Ruder gibt. Vielleicht sieht er ihr an, dass sie allein sein will.</p>
+<p>Sie rudert hinaus. Das Wasser ist spiegelglatt. Die Berge am südlichen Ufer sind in Dunst gehüllt. Es ist so still, dass sie ihren eigenen Herzschlag hören kann.</p>
+<p>Klaus liebte diesen See. Sie kamen jeden Sommer. Manchmal campierten sie. Manchmal mieteten sie eine Ferienwohnung. Einmal, vor 30 Jahren, hatten sie hier eine ganze Woche verbracht — ohne Telefon, ohne Verpflichtungen, nur sie beide und der See.</p>
+<p>Sie hält die Ruder inne. Das Boot treibt langsam. Sie schaut auf das Wasser. Es ist so dunkel und tief und ruhig. Sie weint nicht. Sie hat in den letzten Monaten so viel geweint, dass ihr Körper eine Pause gemacht hat.</p>
+<p>Stattdessen spricht sie. Leise, fast flüsternd. <span class="dialog">„Klaus, ich weiß nicht, wie ich das ohne dich machen soll. Aber ich versuche es."</span></p>
+<p>Eine Ente schwimmt vorbei. Der Dunst lichtet sich. Ein Streifen Sonne fällt aufs Wasser.</p>
+<p>Marlene nimmt die Ruder wieder auf. Sie rudert nicht zurück — noch nicht. Sie rudert weiter hinaus, in die Mitte, wo es am stillsten ist. Dort bleibt sie eine lange Zeit. Sie atmet. Das ist genug.</p>`,
+en:`<p>Lake Starnberg lies about 25 kilometres south of Munich. On an early September morning, Marlene drives there — alone, for the first time without her husband Klaus, who died six months ago. She rents a rowing boat and rows out onto the mirror-smooth water... A quiet story about grief, memory, and continuing on.</p>`,
+vocab:[{de:"spiegelglatt",en:"mirror-smooth"},{de:"der Dunst",en:"haze/mist"},{de:"in Dunst gehüllt",en:"shrouded in haze"},{de:"das Bootsverleih",en:"boat hire"},{de:"treiben",en:"to drift"},{de:"die Verpflichtung",en:"obligation/duty"},{de:"flüstern",en:"to whisper"},{de:"sich lichten",en:"to clear (of mist)"},{de:"der Streifen",en:"strip/band"}]},
+
+{id:"b1_3",title:"Heimweh und Fernweh",titleEn:"Homesickness and Wanderlust",
+de:`<p>Es gibt im Deutschen zwei Wörter, die man mit einem einzigen Laut verstehen kann, wenn man sie beide kennt: <em>Heimweh</em> und <em>Fernweh</em>. Das eine ist der Schmerz des Fehlens. Das andere ist der Schmerz des Bleibens.</p>
+<p>Priya kennt beide.</p>
+<p>Sie lebt seit drei Jahren in Leipzig. Sie ist Computerwissenschaftlerin. Ihr Job ist gut, ihre Wohnung ist schön, ihre Kollegen sind nett. Aber manchmal, wenn sie abends mit dem Fahrrad nach Hause fährt und der Himmel über der Stadt eine bestimmte Farbe hat — das leichte Orange kurz vor dem Dunkel — überkommt sie ein Gefühl, das sie nicht benennen kann.</p>
+<p>In solchen Momenten denkt sie an Pune. An den Geruch von Regen auf heißem Asphalt. An das Geräusch ihrer Mutter in der Küche. An die Abende auf der Dachterrasse, wenn der ganze Stadtteil lebendig war.</p>
+<p>Aber wenn sie in Pune ist — in den Ferien, zu Hause bei der Familie — dann denkt sie an Leipzig. An ihre Wohnung. An ihren Rhythmus. An die Freiheit, abends allein essen zu können, wenn sie das möchte.</p>
+<p><span class="dialog">„Du gehörst nirgends ganz dazu,"</span> hatte ihre Cousine einmal gesagt. Sie meinte es nicht böse. Aber es stimmte und es tat weh.</p>
+<p>Priya hat aufgehört, sich zu fragen, wo ihre Heimat ist. Vielleicht ist Heimat kein Ort. Vielleicht ist sie ein Zustand: das Gefühl, gesehen zu werden. Das Gefühl, ganz zu sein.</p>
+<p>Das findet sie manchmal in Leipzig. Manchmal in Pune. Manchmal nirgends. Manchmal überall.</p>`,
+en:`<p>There are two German words you can understand with a single breath once you know both: Heimweh (homesickness) and Fernweh (wanderlust). One is the pain of absence; the other is the pain of staying. Priya knows both. She has lived in Leipzig for three years... A meditation on belonging, migration, and the question of where home really is.</p>`,
+vocab:[{de:"das Heimweh",en:"homesickness"},{de:"das Fernweh",en:"wanderlust"},{de:"überkommt mich",en:"comes over me"},{de:"benennen",en:"to name/identify"},{de:"der Asphalt",en:"asphalt"},{de:"dazugehören",en:"to belong"},{de:"der Zustand",en:"state/condition"}]},
+
+{id:"b1_4",title:"Das alte Handwerk",titleEn:"The Old Craft",
+de:`<p>Ernst Kirchner ist 71 Jahre alt und der letzte Korbflechter in seinem Dorf in der Oberpfalz. Er hat das Handwerk von seinem Vater gelernt, der es von seinem Vater gelernt hatte, der es wiederum von seinem Vater gelernt hatte. Vier Generationen, eine Kunst.</p>
+<p>Sein Atelier ist eine alte Scheune hinter dem Haus. Es riecht dort nach frischem Weidenholz und Erde. An den Wänden hängen fertige Körbe: rund, oval, lang, klein. Jeder ist anders. Jeder hat einen Charakter.</p>
+<p><span class="dialog">„Man nennt das ein sterbendes Handwerk,"</span> sagt Ernst, während er seine Finger durch feuchte Weidenruten führt. <span class="dialog">„Aber Körbe sterben nicht. Körbe sind da, solange Menschen Dinge tragen wollen."</span></p>
+<p>Er arbeitet langsam. Nicht weil er alt ist — er ist es nicht, in der Art, wie man denkt. Er arbeitet langsam, weil das Geflecht es verlangt. Man kann einen Korb nicht hetzen.</p>
+<p>Ein Journalist hat ihn einmal gefragt, ob er Angst hat, dass das Wissen mit ihm stirbt. Ernst hat lange geschwiegen. Dann sagte er: <span class="dialog">„Wissen stirbt nicht. Es schläft manchmal. Und es wacht wieder auf, wenn jemand Hunger danach hat."</span></p>
+<p>Im letzten Herbst kam ein junger Mann aus München. Er wollte lernen. Ernst hat ihn angeschaut, hat genickt und hat ihm eine Rute in die Hand gedrückt.</p>
+<p>Das Wissen schläft noch nicht.</p>`,
+en:`<p>Ernst Kirchner is 71 and the last basket weaver in his village in the Upper Palatinate. He learned the craft from his father, who learned it from his, who learned it from his. Four generations, one art. A quiet story about craft, memory, and the transmission of knowledge.</p>`,
+vocab:[{de:"das Handwerk",en:"craft/trade"},{de:"der Korbflechter",en:"basket weaver"},{de:"die Scheune",en:"barn"},{de:"die Weidenrute",en:"willow rod"},{de:"das Geflecht",en:"weave/wickerwork"},{de:"hetzen",en:"to rush/hurry"},{de:"nicken",en:"to nod"},{de:"das Wissen",en:"knowledge"}]},
+
+{id:"b1_5",title:"Die Prüfung",titleEn:"The Exam",
+de:`<p>Elena schläft schlecht in der Nacht vor der Prüfung. Das ist jedes Mal so. Sie liegt im Dunkeln, starrt an die Decke und ihr Gehirn produziert alle möglichen Katastrophenszenarien: Sie vergisst alles. Sie liest die Frage falsch. Sie schreibt den Namen des falschen Autors. Die Prüferin hasst sie.</p>
+<p>Um halb fünf gibt sie auf und steht auf. Sie macht Tee — Kamillentee, weil Kaffee jetzt zu viel wäre. Sie sitzt am Küchentisch und öffnet ihre Notizen, ohne wirklich zu lesen. Die Wörter tanzen ein wenig.</p>
+<p>Das Seminar heißt <em>Deutsche Literatur des 20. Jahrhunderts</em>. Sie hat ein Jahr dafür gearbeitet. Sie hat Kafka gelesen, Brecht, Ingeborg Bachmann, Christa Wolf. Sie hat Aufsätze geschrieben und Seminare besucht und mit Kommilitonen diskutiert bis in den späten Abend.</p>
+<p>Sie kann das. Sie weiß, dass sie das kann. Das ist das Problem: Wissen und Fühlen sind in der Nacht vor einer Prüfung zwei völlig verschiedene Dinge.</p>
+<p>Um 9 Uhr sitzt sie in einem kleinen Raum gegenüber von Professor Hartmann. Er ist klein und freundlich und trägt immer denselben braunen Pullover. Er sieht sie an. <span class="dialog">„Erzählen Sie mir von Kafkas Begriff der Schuld."</span></p>
+<p>Und dann — es passiert immer so — öffnet sich etwas. Sie beginnt zu sprechen. Die Wörter kommen. Nicht perfekt, aber richtig. Nicht glatt, aber ehrlich.</p>
+<p>Eine Stunde später steht sie vor dem Gebäude in der Herbstsonne. Sie hat bestanden. Nicht mit Auszeichnung — aber sie hat bestanden. Das ist genug. Heute ist genug.</p>`,
+en:`<p>Elena sleeps badly the night before the exam. Her brain produces all possible catastrophe scenarios. At half past four she gives up and gets up. She has studied German literature of the 20th century for a year: Kafka, Brecht, Bachmann, Christa Wolf. Then in the exam room, Professor Hartmann asks her about Kafka's concept of guilt — and something opens.</p>`,
+vocab:[{de:"das Katastrophenszenario",en:"disaster scenario"},{de:"starren",en:"to stare"},{de:"der Kamillentee",en:"chamomile tea"},{de:"der Kommilitone",en:"fellow student"},{de:"der Begriff",en:"concept/term"},{de:"bestehen",en:"to pass (exam)"},{de:"die Auszeichnung",en:"distinction"},{de:"ehrlich",en:"honest"}]},
+
+{id:"b1_6",title:"Zwischen den Städten",titleEn:"Between Cities",
+de:`<p>Wenn Felix gefragt wird, woher er kommt, zögert er immer kurz. Die ehrliche Antwort wäre: von überall und nirgends. Er wurde in Köln geboren, ist in Freiburg aufgewachsen, hat in Hamburg studiert und lebt jetzt in Berlin. Das ist in Deutschland nicht ungewöhnlich. Aber es bedeutet, dass er sich nirgends vollständig zu Hause fühlt.</p>
+<p>Berlin ist inzwischen seit sieben Jahren seine Stadt. Er kennt die U-Bahn-Linien auswendig, weiß, wo man um 2 Uhr morgens noch Döner bekommt, kennt die Straßen, die man meidet, wenn es geregnet hat. Das ist Heimat der zweiten Art: nicht die Kindheitsheimat, sondern die gewählte.</p>
+<p>Manchmal fährt er nach Freiburg zu seinen Eltern. Die Stadt ist kleiner als er in Erinnerung hat. Die Straßen enger. Die Menschen freundlicher, auf eine Art, die ihm in Berlin fremd geworden ist. Er fährt mit dem Fahrrad durch die Altstadt und ein Gefühl kommt zurück, das er als Kind kannte — ein Gefühl von Sicherheit, das er nicht mehr braucht, aber vermisst.</p>
+<p>Er hat einen Therapeuten, der ihn einmal fragte: <span class="dialog">„Was würde es bedeuten, anzukommen?"</span> Felix hat nachgedacht und schließlich gesagt: <span class="dialog">„Vielleicht, keine Angst mehr zu haben, dass man wieder aufbrechen muss."</span></p>
+<p>Der Therapeut nickte. <span class="dialog">„Oder,"</span> sagte er, <span class="dialog">„vielleicht bedeutet es, das Aufbrechen als Teil des Ankommens zu verstehen."</span></p>
+<p>Felix denkt noch heute daran.</p>`,
+en:`<p>When Felix is asked where he is from, he always hesitates. He was born in Cologne, grew up in Freiburg, studied in Hamburg and now lives in Berlin. He knows Berlin's U-Bahn lines by heart but still doesn't feel fully at home. A story about belonging, chosen cities, and the question of what it means to arrive.</p>`,
+vocab:[{de:"zögern",en:"to hesitate"},{de:"vollständig",en:"completely"},{de:"auswendig kennen",en:"to know by heart"},{de:"meiden",en:"to avoid"},{de:"die Altstadt",en:"old town"},{de:"ankommen",en:"to arrive"},{de:"aufbrechen",en:"to set off/depart"}]},
+
+{id:"b1_7",title:"Das Konzert",titleEn:"The Concert",
+de:`<p>Es war kein großes Konzert. Ein kleiner Club in Neukölln, 200 Plätze, schlechtes Bier und ein Licht, das ständig flackerte. Aber für Selina war es das wichtigste Konzert ihres Lebens.</p>
+<p>Die Band hieß <em>Herbstnacht</em>. Sie hatten ein Album veröffentlicht, das Selina im vergangenen Jahr durch eine der schwersten Phasen ihres Lebens begleitet hatte. Scheidung. Auszug. Neue Wohnung in einer neuen Stadt. Die Songs hatten ihr das Gefühl gegeben, nicht allein zu sein.</p>
+<p>Sie stand in der dritten Reihe. Neben ihr eine Frau mit roten Haaren, die jedes Lied mitsang. Hinter ihr zwei Männer, die leise diskutierten, welches Album besser war. Vorne, auf der kleinen Bühne, stand die Sängerin Laura Kern und spielte Gitarre.</p>
+<p>Beim dritten Song — <em>November, wieder</em> — musste Selina weinen. Nicht aus Trauer. Aus Wiedererkennung. Das Gefühl, dass jemand die genaue Textur ihres Schmerzes gekannt und in Musik verwandelt hat.</p>
+<p>Nach dem Konzert kaufte sie eine CD und wartete geduldig in der Schlange. Als sie schließlich vor Laura Kern stand, sagte sie nur: <span class="dialog">„Danke. Ihr Lied hat mir durch ein schweres Jahr geholfen."</span></p>
+<p>Die Sängerin sah sie an. <span class="dialog">„Das ist das Schönste, was man uns sagen kann,"</span> sagte sie.</p>
+<p>Auf dem Heimweg durch die Berliner Nacht hörte Selina das Konzert in ihrem Kopf noch einmal ab. Die Musik klang anders, jetzt, nachdem sie die Gesichter kannte. Besser. Echter.</p>`,
+en:`<p>It was not a big concert. A small club in Neukölln, 200 seats, bad beer and a flickering light. But for Selina it was the most important concert of her life. The band had released an album that had accompanied her through a difficult year — divorce, moving out, a new city. A story about music, recognition, and what it means when a song knows your pain.</p>`,
+vocab:[{de:"flackern",en:"to flicker"},{de:"begleiten",en:"to accompany"},{de:"die Scheidung",en:"divorce"},{de:"der Auszug",en:"moving out"},{de:"mitsingen",en:"to sing along"},{de:"die Wiedererkennung",en:"recognition"},{de:"die Textur",en:"texture"},{de:"verwandeln",en:"to transform"}]},
+
+{id:"b1_8",title:"Eine Begegnung",titleEn:"An Encounter",
+de:`<p>Es war auf dem Wochenmarkt in Freiburg. Gesine stand vor einem Käsestand und überlegte, welchen Bergkäse sie kaufen sollte, als jemand ihr Taschentuch aufhob.</p>
+<p>Der Mann war vielleicht Ende vierzig, graue Schläfen, Jacke mit einem leichten Riß am Ellbogen. Er reichte ihr das Taschentuch. <span class="dialog">„Ich glaube, das gehört Ihnen."</span></p>
+<p>Sie nahm es. <span class="dialog">„Danke."</span> Das hätte das Ende sein können.</p>
+<p>Aber der Käsehändler fragte ihn: <span class="dialog">„Was darf es für Sie sein?"</span> und der Mann zögerte und sagte: <span class="dialog">„Einen Emmentaler, bitte. Nicht zu viel."</span> Und dann, nach einer Pause: <span class="dialog">„Eigentlich esse ich keinen Käse. Aber man kommt immer wieder vorbei."</span></p>
+<p>Gesine musste lachen. Und er auch.</p>
+<p>Sie standen nebeneinander und aßen die kleinen Probescheiben, die der Händler anbot. Emmentaler, Bergkäse, ein rauchiger Gouda. Sie redeten über Käse und dann über den Markt und dann über Freiburg und dann, irgendwie, über das Leben.</p>
+<p>Sein Name war Felix. Er war Lehrer. Geschieden, ein Kind, das in Hamburg lebte. Er wirkte nicht unglücklich — nur ein bisschen müde, auf die Art, wie Menschen müde aussehen, wenn sie lange alleine sind.</p>
+<p>Nach einer Stunde mussten sie beide weiter. Sie tauschten keine Nummern aus. Es war keine Geschichte mit einem Anfang und einem Ende. Es war ein Augenblick — vollständig in sich selbst, wie manche Begegnungen sind.</p>
+<p>Auf dem Heimweg dachte Gesine an das, was er gesagt hatte, als sie sich trennten: <span class="dialog">„Man vergisst manchmal, wie schön es ist, mit jemandem zu reden."</span></p>`,
+en:`<p>It was at the weekly market in Freiburg. Gesine was standing at a cheese stall when a man picked up her handkerchief. That could have been the end of it. But somehow they ended up standing next to each other eating sample slices and talking about cheese, the market, Freiburg, and life. A story about small encounters and what they mean.</p>`,
+vocab:[{de:"der Bergkäse",en:"mountain cheese"},{de:"der Riß",en:"tear/rip"},{de:"der Ellbogen",en:"elbow"},{de:"die Probescheibe",en:"sample slice"},{de:"wirken",en:"to seem/appear"},{de:"geschieden",en:"divorced"},{de:"der Augenblick",en:"moment"},{de:"sich trennen",en:"to part ways"}]},
+
+{id:"b1_9",title:"Heimweh nach einem Ort",titleEn:"Homesick for a Place",
+de:`<p>Man kann Heimweh nach einem Ort haben, an dem man noch nie war. Anthropologen nennen das <em>anemoia</em> — die Nostalgie für eine Zeit, die man nicht erlebt hat. Für Niklas bedeutete es: Schwarz-Weiß-Fotos von Städten in den 1950er Jahren. Alte Jazz-Aufnahmen. Eckkneipen mit Holztäfelung und schlechter Beleuchtung.</p>
+<p>Er wuchs in einer Neubausiedlung in Hannover auf. Gesichtslose Hochhäuser, breite Straßen, kein Zentrum. Er liebte seine Eltern und hasste den Ort. Das ist keine leichte Kombination.</p>
+<p>Mit 18 zog er nach Berlin. Das war 2003 — das Berlin, das heute in Magazinen steht, war noch im Werden. Günstige Mieten, leere Räume, viele Möglichkeiten.</p>
+<p>Er wurde Fotograf. Er fotografierte Dinge, die fast verschwunden waren: alte Kneipenschilder, Telefonzellen, Fabrikgebäude, Graffiti aus den 1990er Jahren, das langsam verblass. Sein erstes Buch hieß <em>Was noch steht</em>.</p>
+<p>Ein Rezensent schrieb: <em>Niklas Berger fotografiert nicht die Gegenwart. Er fotografiert die Gegenwart der Vergangenheit.</em> Niklas fand das zu intellektuell. Aber es stimmte ein wenig.</p>
+<p>Was er wirklich fotografierte, war das Heimweh selbst: die Form, die ein Verlust in der Welt hinterlässt. Das Negativ des Dings, wenn das Ding weg ist.</p>
+<p>Manchmal fragte er sich, ob er jemals ankommen würde. Dann machte er eine neue Aufnahme — von einer leeren Straße, einer alten Tür, einem Schatten auf einem Kopfsteinpflaster — und dachte: Vielleicht ist das hier genug. Vielleicht ist das mein Zuhause: der Blick selbst.</p>`,
+en:`<p>You can be homesick for a place you've never been. Niklas grew up in a featureless housing estate in Hanover and became a photographer in Berlin, documenting things on the verge of disappearing: old pub signs, phone booths, fading graffiti. His work was about the shape that loss leaves in the world.</p>`,
+vocab:[{de:"die Nostalgie",en:"nostalgia"},{de:"die Neubausiedlung",en:"new housing estate"},{de:"verblassen",en:"to fade"},{de:"die Rezension",en:"review"},{de:"die Gegenwart",en:"present (time)"},{de:"das Negativ",en:"negative (photography)"},{de:"das Kopfsteinpflaster",en:"cobblestones"},{de:"hinterlassen",en:"to leave behind"}]},
+
+{id:"b1_10",title:"Der Wechsel",titleEn:"The Change",
+de:`<p>Nach 15 Jahren als Anwalt entschied sich Markus, Grundschullehrer zu werden. Seine Kollegen dachten, er hätte einen Nervenzusammenbruch. Seine Frau verstand es sofort.</p>
+<p><span class="dialog">„Du warst nie wirklich dort,"</span> sagte sie. <span class="dialog">„Ich meine: du warst körperlich da, aber dein Kopf war immer woanders."</span></p>
+<p>Das stimmte. Er hatte 15 Jahre lang Verträge geprüft, Klagen eingereicht, Mandanten beraten. Er war gut darin. Er verdiente viel Geld. Aber er wachte morgens auf und hatte keine Lust aufzustehen. Das, dachte er, kann kein gutes Zeichen sein.</p>
+<p>Der Anstoß kam von seiner Tochter, Lena, die damals acht war. Sie kam nach Hause und erzählte aufgeregt von ihrem Mathelehrer, Herrn Braun, der ihr gezeigt hatte, wie man Brüche versteht, indem man eine Orange teilt. <span class="dialog">„Papa, er hat mir gezeigt, dass es Sinn macht!"</span></p>
+<p>Markus dachte: Wann habe ich zuletzt jemandem gezeigt, dass etwas Sinn macht?</p>
+<p>Das Studium dauerte zwei Jahre. Er saß in Seminaren mit Menschen, die halb so alt waren wie er. Er war manchmal der Einzige, der wusste, was eine Schreibmaschine war.</p>
+<p>Im dritten Jahr unterrichtete er zum ersten Mal eine eigene Klasse. 24 Kinder, acht Jahre alt, alle mit einer anderen Geschichte. Er war schrecklich nervös. Er vergaß Dinge. Er sprach zu schnell.</p>
+<p>Aber nach der ersten Stunde kam ein Junge namens Luca zu ihm und sagte: <span class="dialog">„Herr Berger, heute habe ich etwas verstanden."</span></p>
+<p>Markus dachte: Das ist genug. Das ist mehr als genug.</p>`,
+en:`<p>After 15 years as a lawyer, Markus decided to become a primary school teacher. His colleagues thought he was having a breakdown. His wife understood immediately. The trigger was his daughter's excitement about a maths teacher who had shown her, using an orange, how fractions make sense. A story about finding meaning and making a change.</p>`,
+vocab:[{de:"der Anwalt",en:"lawyer"},{de:"der Nervenzusammenbruch",en:"nervous breakdown"},{de:"der Vertrag",en:"contract"},{de:"die Klage",en:"lawsuit"},{de:"der Mandant",en:"client"},{de:"der Anstoß",en:"impulse/trigger"},{de:"der Bruch",en:"fraction"},{de:"unterrichten",en:"to teach"}]}
+]
+};
+
+/* B2/C1/C2 stories added to STORIES object - patched in via JS */
+/* These are accessed via STORIES.b2, STORIES.c1, STORIES.c2 */
+Object.assign(STORIES, {
+b2:[
+{id:"b2_1",title:"Der Herbst der Architektin",titleEn:"The Architect's Autumn",
+de:`<h3>I.</h3>
+<p>Katharina Brenner entwirft Gebäude, die man bewohnen, aber nicht betreten kann, ohne inne zu halten. Das ist keine zufällige Eigenschaft ihrer Arbeit — es ist ihr erklärtes Ziel. Sie sagt: <span class="dialog">„Ein Gebäude, das man durchläuft, ohne es zu bemerken, hat versagt."</span></p>
+<p>Seit zwanzig Jahren arbeitet sie in einem Büro im dritten Stock eines Gründerzeithauses in Frankfurt. Das Büro ist ihr Denk-Raum: hohe Decken, ein langer Tisch, an dem immer mehrere Projekte gleichzeitig ausgebreitet sind, und ein Fenster, das auf eine Kastanie zeigt, die Katharina durch alle Jahreszeiten begleitet hat.</p>
+<p>Im Oktober beginnen die Blätter zu fallen. Das ist die Zeit, in der sie am besten arbeitet. Herbst, sagt sie, ist die redlichste Jahreszeit: alles zeigt, was es ist, bevor es geht.</p>
+<h3>II.</h3>
+<p>Das aktuelle Projekt ist ein Altenheim in Hannover — ein Auftrag, der ihr wichtiger ist als der, den sie gerade abgelehnt hat: ein Luxus-Apartmentkomplex in München, der nach dem Willen des Investors <em>ikonisch</em> aussehen sollte. Katharina hat den Begriff <em>ikonisch</em> immer gehasst. Architektur ist kein Instagram-Post.</p>
+<p>Das Altenheim soll Würde haben. Räume, in denen alte Menschen nicht wie Patienten wohnen, sondern wie Menschen, die ihr Leben hinter sich haben — und deshalb Anspruch auf Schönheit haben. Licht, das nicht medizinisch ist. Flure, die nach etwas führen statt zu etwas. Gärten, die nicht nur dekorativ sind.</p>
+<h3>III.</h3>
+<p>Ihr Mann Johannes kommt an diesem Abend früher nach Hause. Er kocht — er kocht immer, wenn er merkt, dass sie zu tief in ein Projekt versunken ist. Er bringt ihr eine Tasse Tee an den Tisch, ohne etwas zu sagen.</p>
+<p>Sie sieht auf. <span class="dialog">„Wie lange sitze ich schon hier?"</span></p>
+<p><span class="dialog">„Seit acht Stunden,"</span> sagt er. <span class="dialog">„Das Essen ist fast fertig."</span></p>
+<p>Sie folgt ihm in die Küche. Durch das Fenster sieht sie die Kastanie — jetzt fast kahl, die letzten Blätter hängend wie zögernde Entscheidungen. Sie denkt an die alten Menschen in Hannover, die eines Tages aus ihrem Fenster auf etwas Ähnliches schauen werden. Sie hofft, dass sie Kastanien gepflanzt hat.</p>
+<p>Sie hat. Sie überprüft die Pläne nach dem Essen. Kastanien — drei Stück, Südseite, mit ausreichend Platz für die Wurzeln. Gut. Das ist gut.</p>
+<h3>IV.</h3>
+<p>Architektur, sagt Katharina manchmal, ist die Kunst des Voraussehens. Man baut nicht für sich. Man baut für Menschen, die man nicht kennt, in einer Zeit, die man nicht erlebt. Das erfordert eine besondere Art von Empathie: die Empathie für das Zukünftige.</p>
+<p>Wenn sie gut arbeitet, denkt sie, hinterlässt sie etwas, das besser ist als sie selbst. Das ist kein bescheidener Gedanke. Es ist ein ehrgeiziger. Aber es ist der richtige.</p>`,
+en:`<p>Katharina Brenner designs buildings that make you stop when you enter them. For twenty years she has worked in Frankfurt, watching a chestnut tree through all seasons. This autumn she is designing a care home in Hanover — a project she chose over a lucrative "iconic" apartment complex. The story follows one working day and her conviction that architecture must have dignity.</p>`,
+vocab:[{de:"redlich",en:"honest/candid"},{de:"ikonisch",en:"iconic"},{de:"die Würde",en:"dignity"},{de:"der Flur",en:"corridor"},{de:"versunken",en:"absorbed/sunken"},{de:"das Voraussehen",en:"foresight"},{de:"ehrgeizg",en:"ambitious"},{de:"hinterlassen",en:"to leave behind"}]},
+
+{id:"b2_2",title:"Die Rückkehr",titleEn:"The Return",
+de:`<p>Mia kehrte nach siebenzehn Jahren nach Rostock zurück — nicht aus Sehnsucht, sondern weil ihre Mutter gestürzt war und für einige Wochen Hilfe brauchte. Sie fuhr mit dem ICE, tauschte in Hamburg um, sah durch das Zugfenster die Ostseeküste auftauchen und spürte etwas, das sie nicht sofort benennen konnte.</p>
+<p>Nicht Freude. Nicht Schmerz. Etwas dazwischen: eine Schwere im Brust, die man hat, wenn man an etwas erinnert wird, das man lange sorgfältig weggepackt hatte.</p>
+<p>Ihre Mutter wohnte noch in derselben Wohnung in der Kröpeliner Straße. Drittes Stockwerk, kein Aufzug — das war das Problem jetzt, nach dem Sturz. Mia trug die Einkaufstaschen hoch und dachte daran, wie sie als Kind diese Treppe zweistufig genommen hatte, immer zwei Stufen auf einmal.</p>
+<p><span class="dialog">„Du bist dünner geworden,"</span> sagte ihre Mutter zur Begrüßung. Das war ihre Art, zu sagen: Ich habe dich vermisst.</p>
+<p>In den nächsten drei Wochen kochte Mia, holte Rezepte aus der Apotheke, fuhr ihre Mutter zur Physiotherapie. Sie schlief in ihrem alten Zimmer, das jetzt als Bügelzimmer diente. Zwischen den Hemden ihres Vaters — der seit acht Jahren tot war — hing noch ihr Poster von Nirvana. Kurt Cobain sah sie aus zusammengekniffenen Augen an.</p>
+<p>Einmal ging sie durch die Altstadt. Die Nikolaikirche, der Universitätsplatz, die Warnow. Manches war anders. Manches war erschreckend gleich. Sie trank Kaffee in einem Café, das früher eine Buchhandlung gewesen war, und dachte: Das ist das Merkwürdige an Heimkehren. Man erkennt den Ort wieder. Aber man erkennt sich selbst nicht mehr in ihm.</p>
+<p>Am letzten Abend saßen sie zusammen am Küchentisch und aßen Labskaus, was Mia seit Kindheitstagen nicht mehr gegessen hatte. Ihre Mutter erzählte Geschichten, die Mia kannte, aber neu zu hören schön war. Und irgendwann, zwischen zwei Sätzen, hielt sie inne und sagte: <span class="dialog">„Es ist schön, dass du da bist."</span></p>
+<p>Mia antwortete nicht sofort. Sie aß. Dann sagte sie: <span class="dialog">„Ja. Es ist schön."</span></p>
+<p>Das war genug.</p>`,
+en:`<p>Mia returns to Rostock after seventeen years — not from longing, but because her mother has fallen. She sleeps in her old room, now used as an ironing room, between her late father's shirts and her childhood Nirvana poster. Over three weeks she cooks, fetches prescriptions, drives her mother to physiotherapy, and gradually reconciles with the city she left behind.</p>`,
+vocab:[{de:"umtauschen",en:"to change (train)"},{de:"die Schwere",en:"heaviness/weight"},{de:"wegpacken",en:"to pack away"},{de:"das Bügeln",en:"ironing"},{de:"zusammengekniffen",en:"squinting"},{de:"erschreckend",en:"alarmingly"},{de:"innehalten",en:"to pause"},{de:"das Labskaus",en:"north German meat and potato dish"}]},
+
+{id:"b2_3",title:"Die Übersetzerin",titleEn:"The Translator",
+de:`<p>Laila übersetzt Bücher aus dem Arabischen ins Deutsche. Das ist eine Arbeit, die man nicht erklärt, ohne ein leises Missverständnis zu erzeugen. Die Leute denken: Sie überträgt Wörter. Aber das ist falsch. Sie überträgt Welten.</p>
+<p>Ein Wort im Arabischen kann ein ganzes kulturelles Sediment transportieren — eine Geschichte, eine Assoziation, eine Melodie. Wenn man dieses Wort ins Deutsche überträgt, verliert man unvermeidlich etwas. Die Frage ist: Was riskiert man zu verlieren, und was entscheidet man zu retten?</p>
+<p>Ihr aktuelles Projekt ist ein Roman des libanesischen Autors Elias Khoury. Es ist ein Buch über den Bürgerkrieg. Über Erinnerung und Vergessen. Über die Unmöglichkeit, das Erlebte in Sprache zu fassen.</p>
+<p><span class="dialog">„Wie übersetzt man Trauma?"</span> fragt sie sich manchmal laut, wenn sie allein in ihrer Wohnung sitzt. Ihre Katze, Scheherazade, antwortet nicht.</p>
+<p>Manchmal schreibt sie einen Satz, löscht ihn, schreibt ihn neu. Nicht weil er grammatisch falsch ist — sondern weil er falsch klingt. Zu glatt. Zu ordentlich. Das Original ist rau und zersplittert und intentional unfertig. Eine saubere Übersetzung wäre ein Verrat.</p>
+<p>Sie ist in Berlin-Kreuzberg aufgewachsen, als Tochter einer Libanesin und eines Deutschen. Zwei Sprachen von Geburt an — aber das bedeutet nicht, dass man keiner vollständig gehört. Es bedeutet manchmal, dass man zwischen beiden steht.</p>
+<p>Vielleicht, denkt sie, ist das der Grund, warum sie übersetzt. Nicht um Sprachen zu verbinden. Sondern um den Raum dazwischen zu kartieren. Den Raum, in dem sie selbst wohnt.</p>`,
+en:`<p>Laila translates books from Arabic into German. She is working on a novel about the Lebanese civil war. A story about what translation really means — not transferring words, but making decisions about what to save and what must inevitably be lost. Also a meditation on growing up between two languages and two cultures.</p>`,
+vocab:[{de:"das Sediment",en:"sediment/layer"},{de:"übertragen",en:"to transfer/translate"},{de:"das Vergessen",en:"forgetting"},{de:"fassen",en:"to grasp/capture"},{de:"zersplittert",en:"fragmented"},{de:"der Verrat",en:"betrayal"},{de:"kartieren",en:"to map"},{de:"intentional",en:"intentional"}]},
+
+{id:"b2_4",title:"Am Rand der Stadt",titleEn:"At the Edge of the City",
+de:`<p>Es gibt Orte in jeder Stadt, die weder Stadt noch Land sind. Industriebrachen, Randbezirke, Gewerbegebiete, die sich in Wohnviertel auflösen. Der Stadtrand. Hier wohnt Dawit.</p>
+<p>Er ist vor sechs Jahren aus Äthiopien nach Deutschland gekommen. Er wohnt jetzt in einem Wohnblock in Marzahn — Ostberlin, einem Viertel, das Berliner gerne vergessen. Die Wohnung ist klein, aber er hat sie eingerichtet: Pflanzen auf dem Balkon, Fotos an der Wand, ein Teppich aus Addis Abeba, den er in seinem Koffer getragen hat wie einen Rest von früher.</p>
+<p>Er arbeitet als Reinigungskraft in einem Krankenhaus. Die Schichten beginnen um 5 Uhr morgens. Er fährt mit der S-Bahn und dann zu Fuß. Die Stadt ist halb leer um diese Zeit. Er mag das.</p>
+<p>Was er nicht mag: die Unsichtbarkeit. Der Weg durch Flure, an Menschen vorbei, die ihn nicht sehen, weil er das Werkzeug der Unsichtbarkeit trägt — einen Wischmopp, einen Wagen voller Reinigungsmittel. Er macht sie sauber, diese Menschen. Er macht ihre Welt sauber. Sie sehen ihn nicht.</p>
+<p>Abends, wenn er nach Hause kommt, kocht er. Injera mit Doro Wat, wenn er Zeit und Zutaten hat. Wenn nicht: Nudeln mit was auch immer da ist. Er ruft seine Mutter in Addis an. Sie fragt, wie es ihm geht. Er sagt: <span class="dialog">„Gut."</span> Das ist nicht gelogen. Es ist nur unvollständig.</p>
+<p>Was fehlt, lässt sich nicht leicht benennen. Nicht die Familie — er ist in Kontakt. Nicht das Essen — er kocht. Nicht die Sprache — sein Deutsch ist gut. Es ist etwas Subtileres: das Gefühl, in einer Welt zu leben, die einen nicht eingeplant hat.</p>
+<p>Aber dann: Samstag. Der Wochenmarkt in Marzahn. Ein äthiopisches Lebensmittelgeschäft, das vor zwei Jahren aufgemacht hat. Der Besitzer kennt ihn. Sein Name. Seine Bestellung. Das kleine Zeichen, gesehen zu werden.</p>
+<p>Es reicht nicht. Aber es ist etwas.</p>`,
+en:`<p>Dawit came from Ethiopia six years ago and lives in Marzahn, East Berlin. He works as a cleaner in a hospital, starting at 5am, invisible to those he cleans for. A precisely observed story about life at the margins, about being unseen, and about the small moments of recognition that make it bearable.</p>`,
+vocab:[{de:"die Industriebrache",en:"industrial wasteland"},{de:"der Randbezirk",en:"peripheral district"},{de:"einrichten",en:"to furnish/set up"},{de:"die Reinigungskraft",en:"cleaning person"},{de:"die Schicht",en:"shift"},{de:"der Wischmopp",en:"mop"},{de:"unvollständig",en:"incomplete"},{de:"eingeplant",en:"planned for/included"}]},
+
+{id:"b2_5",title:"Schriftstellerin bei Nacht",titleEn:"Writer by Night",
+de:`<p>Valeria schreibt ihren ersten Roman zwischen 23 und 2 Uhr morgens, wenn ihre Kinder schlafen und die Wohnung still ist. Tagsüber arbeitet sie als Personalreferentin in einem mittelgroßen Pharmaunternehmen. Das hat nichts mit Literatur zu tun. Das ist der Punkt.</p>
+<p>Der Roman ist seit drei Jahren unfertig. Das ist keine Faulheit — sie schreibt jede Nacht, mit wenigen Ausnahmen. Es ist die Schwierigkeit des Materials: Sie schreibt über ihre Großmutter, eine Frau aus Santiago de Chile, die in den 1970er Jahren flüchten musste und nie darüber gesprochen hat. Die Stille selbst ist das Thema.</p>
+<p>Wie schreibt man über jemanden, der nicht gesprochen hat? Man erfindet. Aber nicht beliebig. Man erfindet in den Zwischenräumen des Bekannten — in den kleinen Gesten, den Schweigen bei Tisch, den Dingen, die nie erklärt wurden.</p>
+<p>Valeria hat Briefe gefunden, als ihre Großmutter starb. Auf Spanisch, von einem Mann namens Rodrigo, aus den Jahren 1973 bis 1975. Sie weiß nicht, wer Rodrigo war. Sie weiß nicht, ob sie es wissen will. Aber die Briefe sind das Herzstück des Romans — paraphrasiert, verwandelt, eingebettet.</p>
+<p>Nachts, wenn sie schreibt, hat sie das Gefühl, an etwas Wichtigerem zu arbeiten als alles andere, was sie tagsüber tut. Das ist nicht arrogant gemeint. Es ist nur: manche Arbeit fühlt sich notwendig an.</p>
+<p>Sie weiß nicht, ob das Buch jemals veröffentlicht wird. Das ist nicht der Punkt. Der Punkt ist, dass ihre Großmutter gesehen wird — zumindest von ihr, zumindest so.</p>`,
+en:`<p>Valeria writes her first novel between 11pm and 2am while her children sleep. By day she works in HR at a pharmaceutical company. By night she works on a novel about her grandmother, a woman from Chile who fled in the 1970s and never spoke about it. A meditation on silence, invention, and the duty we feel to witnesses we've lost.</p>`,
+vocab:[{de:"die Personalreferentin",en:"HR manager (f)"},{de:"der Zwischenraum",en:"in-between space/gap"},{de:"beliebig",en:"arbitrary/random"},{de:"das Herzstück",en:"centrepiece/heart"},{de:"paraphrasieren",en:"to paraphrase"},{de:"einbetten",en:"to embed"},{de:"arrogant",en:"arrogant"},{de:"notwendig",en:"necessary"}]},
+
+{id:"b2_6",title:"Der Zeuge",titleEn:"The Witness",
+de:`<p>Horst Müller ist 84 Jahre alt und einer der letzten Menschen, die sich erinnern können. Er war neun, als der Krieg endete. Neun Jahre alt, in Dresden, eine Woche nach den Bomben.</p>
+<p>Er gibt keine Interviews. Er hat das entschieden. Nicht weil er vergessen will — das ist ihm nicht gelungen, wie er sagt. Sondern weil die Leute das Falsche fragen. Sie wollen das Spektakuläre, das Historische, das Filmische. Aber der Krieg war kein Film. Er war ein Geruch. Er war eine Stille, die falsch war.</p>
+<p>Einmal im Jahr spricht er in einer Schule. Das macht er seit 30 Jahren. Er setzt sich vor eine Klasse von Fünfzehn- oder Sechzehnjährigen und wartet, bis die Unruhe sich legt. Dann sagt er: <span class="dialog">„Stellt mir Fragen. Aber denkt zuerst nach, was ihr wirklich wissen wollt."</span></p>
+<p>Die ersten Fragen sind immer dieselben. Wann? Wie viele? Warum? Er beantwortet sie, knapp, sachlich. Dann kommt irgendwann — in jeder Klasse, ohne Ausnahme — eine andere Frage. Eine, die zeigt, dass jemand nachgedacht hat.</p>
+<p>Letztes Jahr war es ein Mädchen namens Jana, das fragte: <span class="dialog">„Was hat Ihnen geholfen, das normale Leben danach fortzuführen?"</span></p>
+<p>Er hatte lange geschwiegen. Dann sagte er: <span class="dialog">„Es gab kein 'danach'. Es gab nur 'weiter'. Man hört nicht auf zu leben. Das Leben hört nicht auf. Das ist beides gleichzeitig wahr."</span></p>
+<p>Jana hatte das in ihr Heft geschrieben. Horst hatte es gesehen. Das war, warum er jedes Jahr wiederkommt.</p>`,
+en:`<p>Horst Müller is 84 and one of the last people who can remember. He was nine when the war ended, in Dresden, a week after the bombings. He gives no interviews but speaks once a year in schools. A story about witness, testimony, and what the right questions reveal.</p>`,
+vocab:[{de:"der Zeuge",en:"witness"},{de:"das Spektakuläre",en:"the spectacular"},{de:"sachlich",en:"factual/matter-of-fact"},{de:"knapp",en:"brief/concise"},{de:"fortführen",en:"to continue"},{de:"gleichzeitig",en:"simultaneously"},{de:"die Unruhe",en:"restlessness"}]},
+
+{id:"b2_7",title:"Zwischen Tradition und Moderne",titleEn:"Between Tradition and Modernity",
+de:`<p>Leila studiert Islamwissenschaften in Heidelberg und betet fünfmal täglich. Sie trägt kein Kopftuch — das ist eine Entscheidung, die sie nach langer Überlegung getroffen hat. Sie trinkt keinen Alkohol. Sie geht gerne auf Partys.</p>
+<p>Diese Kombination verwirrt die Leute. Sowohl die deutschen Kommilitonen, die nicht verstehen, warum sie betet, als auch die marokkanische Gemeinschaft in der Stadt, die sich fragt, warum sie kein Kopftuch trägt. Sie lebt im Kreuzfeuer der Erwartungen.</p>
+<p><span class="dialog">„Ich bin das, was ich bin,"</span> sagt sie, wenn man fragt. Das klingt einfach. Es ist das Gegenteil von einfach.</p>
+<p>Sie schreibt ihre Abschlussarbeit über muslimische Frauen in Deutschland und die Pluralität islamischer Identitäten. Sie interviewt Frauen aus zehn verschiedenen Ländern, mit zehn verschiedenen Praktiken, zehn verschiedenen Deutungen desselben Glaubens.</p>
+<p>Was sie lernt: Es gibt keinen Islam. Es gibt Muslime. Das ist ein wichtiger Unterschied.</p>
+<p>Ihr Betreuer, Professor Schäfer, ein älterer Mann aus Bayern, liest ihre Zwischenergebnisse und sagt: <span class="dialog">„Sie zwingen mich, meine Kategorien zu überdenken. Das ist das Zeichen einer guten Wissenschaftlerin."</span></p>
+<p>Leila lächelt. Sie nimmt das Kompliment. Aber insgeheim denkt sie: Mein ganzes Leben zwingt die Leute, ihre Kategorien zu überdenken. Das war nie mein Ziel. Es ist nur die Konsequenz, ich selbst zu sein.</p>`,
+en:`<p>Leila studies Islamic studies in Heidelberg, prays five times a day, wears no headscarf, doesn't drink, and enjoys parties. She lives in the crossfire of other people's expectations. Her thesis is on Muslim women in Germany and the plurality of Islamic identities — a topic that mirrors her own experience.</p>`,
+vocab:[{de:"das Kopftuch",en:"headscarf"},{de:"das Kreuzfeuer",en:"crossfire"},{de:"die Erwartung",en:"expectation"},{de:"die Pluralität",en:"plurality"},{de:"die Deutung",en:"interpretation"},{de:"überdenken",en:"to reconsider"},{de:"insgeheim",en:"secretly/inwardly"},{de:"die Konsequenz",en:"consequence"}]},
+
+{id:"b2_8",title:"Verlorene Sprachen",titleEn:"Lost Languages",
+de:`<p>Die Sprache, die Ibrahim Kalfa am besten spricht, ist die, die er nie gelernt hat. Das klingt paradox. Es ist das Genaue.</p>
+<p>Sein Vater kam aus der Türkei. Seine Mutter ist Deutsche. Er ist in Stuttgart aufgewachsen, hat Türkisch nie wirklich gelernt — ein paar Wörter, Familienausdrücke, das Essen. Mit dem Vater sprach er Deutsch. Mit den Großeltern in Istanbul sprach er — gar nicht, eigentlich. Er nickte und lächelte.</p>
+<p>Jetzt ist er 34, und die Großeltern sind tot, und er lernt Türkisch. An der VHS Stuttgart, dienstags und donnerstags, mit 15 anderen Teilnehmern aus verschiedenen Generationen.</p>
+<p>Was er lernt, ist keine Kommunikationssprache. Es ist eine Archäologie. Er gräbt nach etwas, das nie ganz da war — das immer ein Zwischenraum war.</p>
+<p>Manchmal findet er Wörter, die er als Kind gehört hat und nicht verstanden hat, und jetzt versteht er sie, und es ist wie ein kleines Wiedersehen. <em>Hüzün</em> — das Wort für Melancholie im Türkischen, das mehr ist als Melancholie, das eine kollektive Trauer bedeutet, eine städtische Trauer, Istanbuls Trauer. Er liest Orhan Pamuk auf Deutsch und stellt sich vor, was im Original steht.</p>
+<p>Seine Mutter findet es schön, dass er Türkisch lernt. Sein Vater weiß nicht, was er davon halten soll. <span class="dialog">„Du hättest das früher lernen sollen,"</span> sagt er. Das ist kein Vorwurf. Es ist eine Trauer.</p>
+<p>Ibrahim stimmt zu. Aber er denkt auch: Vielleicht ist jetzt der richtige Zeitpunkt. Vielleicht braucht man erst 34 Jahre, um zu verstehen, wonach man sucht.</p>`,
+en:`<p>Ibrahim's father is Turkish, his mother German. He grew up in Stuttgart speaking only German, unable to communicate with his Turkish grandparents. Now at 34, both grandparents dead, he is learning Turkish at evening classes. It is not communication he is learning but archaeology — digging for something that was always a gap.</p>`,
+vocab:[{de:"paradox",en:"paradoxical"},{de:"die Archäologie",en:"archaeology"},{de:"graben",en:"to dig"},{de:"das Wiedersehen",en:"reunion/re-encounter"},{de:"die Melancholie",en:"melancholy"},{de:"kollektiv",en:"collective"},{de:"der Vorwurf",en:"reproach/blame"},{de:"wonach",en:"for what / what for"}]},
+
+{id:"b2_9",title:"Die letzte Schicht",titleEn:"The Last Shift",
+de:`<p>Heinz Bauer hat 42 Jahre lang im Bergwerk gearbeitet. Das Bergwerk in Bottrop war sein Leben — nicht im sentimentalen Sinne, sondern im buchstäblichen: Er war dort jeden Morgen um 5 Uhr, er kannte jeden Stollen, jeden Kollegen, jeden Geruch.</p>
+<p>Am 21. Dezember 2018 wurde das letzte Steinkohlebergwerk in Deutschland geschlossen. Heinz war dabei. Er war einer der letzten, der nach oben fuhr.</p>
+<p>Die Medien berichteten groß. Es war natürlich das Ende einer Ära. Aber für Heinz war es nicht abstrakt — es war konkret: Montag gibt es die Schicht. Dienstag gibt es die Schicht. Mittwoch ist vielleicht freier Tag. Donnerstag und Freitag wieder Schicht. Das ist vorbei.</p>
+<p>Er war nicht sentimental. Er hatte keine Tränungen vor den Kameras. Er schüttelte Hände, trank ein Bier mit seinen Kollegen, fuhr nach Hause.</p>
+<p>Was danach kam, war schwieriger. Nicht die Rente — die war gesichert. Sondern die Struktur. Der Morgen, der nicht anfängt. Der Dienstag, der sich wie Sonntag anfühlt. Das Fehlen des Geruchs von Kohle an seiner Arbeitskleidung.</p>
+<p>Seine Frau Else sagte: <span class="dialog">„Du brauchst ein Hobby."</span> Er sagte: <span class="dialog">„Ich hatte ein Hobby. Es hieß Arbeit."</span></p>
+<p>Im Frühjahr begann er zu gärtnern. Erst widerwillig. Dann mit echtem Interesse. Er lernte, wie man Tomaten anbaut, Kartoffeln, Bohnen. Es war anders als die Arbeit unter der Erde. Aber es war auch unter der Erde, in gewisser Weise: die Hände in der Erde, das Wachsen von Dingen im Dunkeln.</p>
+<p>Er kommt damit zurecht. Das ist genug.</p>`,
+en:`<p>Heinz Bauer worked in the mine for 42 years. On 21 December 2018, the last hard coal mine in Germany closed. He was one of the last to ride the elevator up. A quiet, unsentimental story about the end of an industry and the difficulty of life without the structure of work.</p>`,
+vocab:[{de:"das Bergwerk",en:"mine"},{de:"der Stollen",en:"tunnel/gallery"},{de:"buchstäblich",en:"literally"},{de:"die Ära",en:"era"},{de:"die Rente",en:"pension"},{de:"widerwillig",en:"reluctantly"},{de:"anbauen",en:"to grow/cultivate"},{de:"zurechtkommen",en:"to cope/manage"}]},
+
+{id:"b2_10",title:"Das Sprachinstitut",titleEn:"The Language Institute",
+de:`<p>Das Institut für Linguistik liegt in einem Hinterhof in Leipzig, in einem Gebäude, das früher eine Druckerei war. Die Decken sind hoch, die Fenster schmal, die Heizung unzuverlässig. Aber hier, sagt Professorin Eva Lindner, passiert die interessanteste Arbeit, die man tun kann: Man hört zu, wie Menschen denken.</p>
+<p>Ihre Forschung heißt <em>Diskursanalyse</em>. Sie untersucht, wie Sprache Wirklichkeit konstruiert — wie die Wörter, die wir wählen, bestimmen, was wir sehen und was wir nicht sehen.</p>
+<p>Ihr aktuelles Projekt: Wie sprechen deutsche Medien über Migration? Sie hat 5.000 Artikel aus den letzten zehn Jahren analysiert. Was sie gefunden hat, ist nicht überraschend — aber es ist auf eine bestimmte Art schockierend, es schwarz auf weiß zu sehen.</p>
+<p>Bestimmte Metaphern wiederholen sich: Fluten, Wellen, Ströme. Migranten als Naturgewalt. Migration als Problem, das gelöst werden muss, nicht als Phänomen, das verstanden werden soll.</p>
+<p><span class="dialog">„Sprache ist nicht neutral,"</span> sagt sie zu ihren Studierenden. <span class="dialog">„Sie ist nie neutral. Die Frage ist, wessen Perspektive sie trägt."</span></p>
+<p>Manche Studierenden finden das beunruhigend. Wenn Sprache Wirklichkeit konstruiert — wie kommt man dann zur Wahrheit? Eva sagt: <span class="dialog">„Das ist die richtige Frage. Die Antwort ist nicht Nihilismus. Die Antwort ist: bewusstes Lesen. Mehrere Stimmen. Nie einer Stimme allein glauben."</span></p>
+<p>Das Fenster ihres Büros zeigt auf den Hinterhof, in dem im Sommer Efeu wächst. Sie schaut manchmal hinaus, mitten in einem Gedanken, und denkt: Sprache ist wie Efeu. Sie wächst über alles. Man muss wissen, was sie bedeckt.</p>`,
+en:`<p>Professor Eva Lindner runs a linguistics institute in Leipzig studying discourse analysis — how language constructs reality. Her current project examines how German media speaks about migration. A story about language, power, and the imperative of critical reading.</p>`,
+vocab:[{de:"die Druckerei",en:"printing works"},{de:"die Diskursanalyse",en:"discourse analysis"},{de:"die Wirklichkeit",en:"reality"},{de:"die Naturgewalt",en:"force of nature"},{de:"beunruhigend",en:"unsettling"},{de:"der Nihilismus",en:"nihilism"},{de:"der Efeu",en:"ivy"},{de:"bedecken",en:"to cover"}]}
+],
+
+c1:[
+{id:"c1_1",title:"Das Paradox des Gedächtnisses",titleEn:"The Paradox of Memory",
+de:`<h3>I. Das Archiv</h3>
+<p>Es gibt eine alte Bibliothek in Wien, in deren Kellern Briefe aus dem 18. Jahrhundert lagern — ungeordnet, undigitalisiert, zum Teil unleserlich. Die Kuratorin, Dr. Hanna Fuchs, verbringt dort drei Tage pro Woche. Sie liest, was lesbar ist. Sie transkribiert, was sie lesen kann. Sie schreibt auf, was sie nicht versteht.</p>
+<p>Was sie am meisten beschäftigt, ist eine methodologische Frage, die auch eine philosophische ist: Wenn man ein Dokument transkribiert, verändert man es. Nicht den Text — den überträgt man buchstabengetreu. Aber den Kontext. Die Tintenspuren auf dem Papier. Die Knicke. Das Zittern in einer bestimmten Handschrift. Das, was im Dokument steht und nicht im Text.</p>
+<p>Sie nennt das das Paradox des Archivs: Je zugänglicher man Geschichte macht, desto mehr verliert man von ihr.</p>
+<h3>II. Was bleibt</h3>
+<p>Ein Brief aus dem Jahr 1743 beschreibt eine Reise von Wien nach Prag. Der Autor — ein Adeliger, dem Namen nach — schildert das Wetter, die Qualität der Straßen, die Eigenschaften der Gasthäuser. Nichts Außergewöhnliches. Aber dann, fast beiläufig, zwischen zwei Beschreibungen der Straßenverhältnisse, ein Satz: <em>Ich vermisse Sie jeden Morgen, wie man einen Körperteil vermisst, der nicht mehr da ist.</em></p>
+<p>An wen? Wer war dieser Mensch? Was ist aus ihm geworden? Das sind Fragen, die das Archiv nicht beantwortet. Das sind Fragen, die das Archiv aufwirft und dann offen lässt.</p>
+<p>Hanna schreibt diesen Satz in ihr eigenes Notizbuch — nicht als Zitat, sondern als Frage: Was bedeutet es, jemanden so zu vermissen?</p>
+<h3>III. Die Kuratorin</h3>
+<p>Sie selbst hat keine Kinder. Das war eine Entscheidung, die sich über viele Jahre angesammelt hat — kein einzelner Moment, kein einzelnes Gespräch, sondern eine allmähliche Verschiebung der Prioritäten, die man erst rückblickend als Entscheidung erkennt.</p>
+<p>Manchmal fragt sie sich, was von ihr bleibt. Keine Kinder, keine Bücher unter eigenem Namen — sie veröffentlicht akademische Artikel in Fachzeitschriften, die kaum jemand liest. Aber die Briefe, die sie transkribiert hat, sind jetzt zugänglich. Der Adelige und sein namenloser Gesprächspartner — sie sind jetzt lesbar, für wen immer sie lesen will.</p>
+<p>Ist das genug? Das weiß sie nicht. Aber wenn sie an dem Satz über das Vermissen denkt, hat sie das Gefühl, dass es zumindest etwas ist: eine Stimme aus dem 18. Jahrhundert, die weiterlebt, weil jemand ihr zugehört hat.</p>
+<h3>IV. Das Gedächtnis der Dinge</h3>
+<p>Gedächtnis, schreibt sie in einem unveröffentlichten Aufsatz, ist kein Speicher. Es ist eine Praxis. Man erinnert sich nicht passiv — man erinnert aktiv, man wählt aus, man strukturiert, man verfälscht. Jede Erinnerung ist eine Neu-Erzählung.</p>
+<p>Dasselbe gilt für Archive. Ein Archiv ist keine neutrale Sammlung von Vergangenheit. Es ist eine Entscheidung darüber, was bewahrt wird und was nicht, wessen Stimmen zugänglich gemacht werden und wessen nicht. Jedes Archiv ist politisch — nicht im parteipolitischen Sinne, sondern im etymologischen: Es geht um <em>arche</em>, um Anfang und Herrschaft.</p>
+<p>Wer entscheidet, was beginnt? Wer entscheidet, was bleibt?</p>
+<p>Sie steckt den Brief von 1743 zurück in seine Schachtel. Morgen kommt sie wieder. Der Adelige wartet.</p>`,
+en:`<p>Dr Hanna Fuchs, a Viennese archivist, spends three days a week transcribing 18th-century letters in a basement. A 1743 letter contains a line about missing someone "the way one misses a limb that is no longer there." This sparks a philosophical meditation on memory as practice, archives as political decisions, and what it means to give a voice back to the voiceless.</p>`,
+vocab:[{de:"lagern",en:"to be stored"},{de:"buchstabengetreu",en:"letter-for-letter"},{de:"der Knick",en:"fold/crease"},{de:"beiläufig",en:"casually/in passing"},{de:"aufwerfen",en:"to raise (a question)"},{de:"die Fachzeitschrift",en:"academic journal"},{de:"verfälschen",en:"to distort/falsify"},{de:"bewahren",en:"to preserve"},{de:"etymologisch",en:"etymological"}]},
+
+{id:"c1_2",title:"Die Sprachlosigkeit",titleEn:"The Speechlessness",
+de:`<p>Es gibt Erfahrungen, für die keine Sprache da ist — nicht weil die Sprache arm wäre, sondern weil die Erfahrung jenseits des Sagbaren liegt. Trauer nach dem Tod eines Kindes. Das Erschöpfen aller Worte am Sterbebett. Bestimmte Formen von Glück, die sich auflösen, wenn man versucht, sie zu beschreiben.</p>
+<p>Michael Koch ist Trauerbegleiter in Hamburg. Er begleitet Menschen in den ersten Monaten nach dem Verlust eines nahestehenden Menschen. Seit sieben Jahren. Vorher war er Lehrer.</p>
+<p><span class="dialog">„Was hat Sie zu dieser Arbeit gebracht?"</span> fragen ihn Leute gerne.</p>
+<p>Er antwortet meistens: <span class="dialog">„Mein Sohn."</span> Und dann schweigt er, und die Leute verstehen, dass sie nicht weiterfragen sollen.</p>
+<p>Was er in seiner Arbeit gelernt hat, ist paradox: Je besser er zuhört, desto weniger spricht er. Am Anfang glaubte er, seine Aufgabe sei es, die richtigen Worte zu finden — Trost zu formulieren, Sinn anzubieten, Strukturen der Bewältigung vorzuschlagen. Das war falsch.</p>
+<p>Die richtige Arbeit, hat er gelernt, ist Anwesenheit. Das ist alles. Nicht das Schweigen füllen — das Schweigen halten.</p>
+<p>Manche seiner Klienten sagen am Ende einer Sitzung: <span class="dialog">„Sie haben heute gar nichts gesagt."</span> Er antwortet: <span class="dialog">„Ich weiß."</span> Manchmal fügen sie dann hinzu: <span class="dialog">„Es war trotzdem gut."</span></p>
+<p>Das ist es, was er über Sprache gelernt hat: Ihre Grenze ist nicht ihre Schwäche. Ihre Grenze ist ihr ehrlichstes Angebot.</p>`,
+en:`<p>Michael Koch is a grief counsellor in Hamburg who lost his own son. He has learned that his job is not to find the right words, but to hold the silence. A precise meditation on speechlessness, presence, and the honest limits of language.</p>`,
+vocab:[{de:"jenseits des Sagbaren",en:"beyond what can be said"},{de:"die Trauerbegleitung",en:"grief support"},{de:"der Trost",en:"comfort/consolation"},{de:"die Bewältigung",en:"coping"},{de:"die Anwesenheit",en:"presence"},{de:"der Klient",en:"client"},{de:"die Grenze",en:"limit/border"},{de:"das Angebot",en:"offer"}]},
+
+{id:"c1_3",title:"Das Erbe",titleEn:"The Inheritance",
+de:`<p>Die Wohnung meiner Großmutter riecht nach Mottenkugeln und Lavendel und etwas, das ich nicht benennen kann — dem Geruch langer Anwesenheit, vielleicht, der Akkumulation von Jahrzehnten in einem Raum. Sie ist vor drei Wochen gestorben. Ich bin hergekommen, um aufzuräumen.</p>
+<p>Das Wort "aufräumen" ist falsch. Man räumt nicht ein Leben auf. Man trifft Entscheidungen über Gegenstände, in die sich ein Leben hineingeschrieben hat.</p>
+<p>In der Küche finde ich Dutzende von Gläsern mit selbst gemachter Marmelade, ordentlich beschriftet: <em>Erdbeere, Juni 1999. Zwetschge, August 2003. Johannisbeere, Juli 2011.</em> Drei Jahrzehnte Sommerfrüchte. Sie hat mehr Marmelade gemacht, als sie je essen konnte. Die Marmelade war nicht für sie — sie war für uns, die nach ihr kommen.</p>
+<p>Im Schlafzimmer finde ich in einem Schuhkarton unter dem Bett: Briefe. Hunderte. Gebündelt mit verschiedenfarbigen Gummibändern. Die meisten sind von meinem Großvater, der 1987 gestorben ist. Ich fange an zu lesen und höre nicht auf.</p>
+<p>Mein Großvater, den ich nie kannte — er starb vor meiner Geburt — schreibt über den Alltag, über das Wetter in Berlin, über ein Konzert, das er gehört hat, über seine Angst vor dem Krieg, der sich damals zusammenbraute. Aber immer wieder schreibt er über meine Großmutter. <em>Wenn du lachst, denke ich: Das ist alles. Das ist das Ganze.</em></p>
+<p>Ich sitze auf dem Boden des Schlafzimmers meiner Großmutter und lese Liebesbriefe eines Mannes, den ich nie kennen durfte, an eine Frau, die ich gerade verloren habe. Das Erbe ist selten das Greifbare. Das Greifbare ist nur die Schachtel. Das Erbe ist, was darin ist.</p>`,
+en:`<p>The narrator clears out the grandmother's flat after her death and finds decades of home-made jam jars, labelled with years, and a shoebox of love letters from a grandfather who died before the narrator was born. A meditation on inheritance, grief, and the way lives leave traces in objects.</p>`,
+vocab:[{de:"die Mottenkugel",en:"mothball"},{de:"die Akkumulation",en:"accumulation"},{de:"beschriften",en:"to label"},{de:"bündeln",en:"to bundle"},{de:"sich zusammenbrauen",en:"to brew/gather (storm)"},{de:"greifbar",en:"tangible/graspable"},{de:"das Erbe",en:"inheritance/heritage"},{de:"der Alltag",en:"everyday life"}]},
+
+{id:"c1_4",title:"Nachts im Stadtarchiv",titleEn:"Nights in the City Archive",
+de:`<p>Das Stadtarchiv schließt um 17 Uhr. Danach ist es still. Die Archivarin Petra Gasser bleibt manchmal bis 20, manchmal bis 21 Uhr — nicht offiziell, aber geduldet, weil die Direktorin weiß, was sie tut und warum.</p>
+<p>Sie arbeitet an einem Projekt, das keiner bezahlt und das sie seit vier Jahren beschäftigt: Sie rekonstruiert das Leben von Frauen in der Stadt im 19. Jahrhundert, die in den offiziellen Geschichtsbüchern nicht vorkommen. Nicht weil ihre Leben unwichtig waren. Sondern weil niemand es für wichtig hielt, sie aufzuschreiben.</p>
+<p>Hebammen, Wäscherinnen, Haushälterinnen. Frauen, die Häuser geführt haben, in denen Geschichte geschrieben wurde, ohne dass ihr Name je in einem Satz auftauchte. Sie liest Kirchenbücher, Sterbeurkunden, Einwohnermelderegister. Manchmal findet sie einen Namen. Einen Geburtsort. Eine Berufszuordnung. Das ist schon viel.</p>
+<p>Aus diesen Fragmenten baut sie Biografien — nicht im Sinne von Lebensgeschichten, die vollständig sind, sondern im Sinne von Lebensgeschichten, die zumindest da sind. Die nicht mehr ganz unsichtbar sind.</p>
+<p>Eines Abends findet sie in einem Armenregister aus dem Jahr 1872 den Namen: <em>Mathilde Krieger, 34 J., Näherin, unverh., 3 Kinder, Unterstützung beantragt.</em> Fünf Informationen. Aus diesen fünf Informationen — die Jahrzahl, der Beruf, der Status, die Kinder, die Bedürftigkeit — entfaltet Petra ein Leben, das gelebt worden sein muss, auch wenn die Details erfunden sind, auch wenn die Erfindung eine Form von Ehrlichkeit ist.</p>
+<p>In der Stille des Archivs, in der das einzige Geräusch das Rascheln von Papier und das gelegentliche Stöhnen der Heizung ist, denkt Petra: Ich mache sichtbar, was immer da war. Das ist keine kleine Arbeit.</p>`,
+en:`<p>Archivist Petra Gasser works late in the city archive on an unpaid project: reconstructing the lives of working-class women in the 19th century who never appeared in official history. From fragments — a name, an age, an occupation, a petition for poor relief — she builds biographies that are both research and invention.</p>`,
+vocab:[{de:"dulden",en:"to tolerate/permit"},{de:"die Hebamme",en:"midwife"},{de:"die Wäscherin",en:"laundress"},{de:"die Sterbeurkunde",en:"death certificate"},{de:"die Berufszuordnung",en:"occupational classification"},{de:"das Fragment",en:"fragment"},{de:"die Bedürftigkeit",en:"neediness/poverty"},{de:"entfalten",en:"to unfold"},{de:"das Rascheln",en:"rustling"}]},
+
+{id:"c1_5",title:"Die Grenze der Übersetzbarkeit",titleEn:"The Limits of Translatability",
+de:`<p>Es gibt ein Experiment, das Linguisten gerne beschreiben: Man nimmt einen Satz in einer Sprache und übersetzt ihn mehrfach — vom Deutschen ins Englische ins Chinesische ins Spanische zurück ins Deutsche. Was man am Ende hat, ist nicht mehr der ursprüngliche Satz. Es ist etwas anderes: die Spur des Ursprungs, die durch mehrere Kulturen gegangen ist und dabei Ablagerungen hinterlassen hat.</p>
+<p>Nora ist Literaturübersetzerin. Sie übersetzt aus dem Japanischen ins Deutsche, ein Sprachpaar, das in der Linguistik als "fern" gilt — nicht nur in der geografischen, sondern in der konzeptuellen Distanz. Japanisch hat grammatische Kategorien, die das Deutsche nicht hat; das Deutsche hat Dinge, für die das Japanische keine Entsprechung kennt.</p>
+<p>Was sie beschäftigt, ist nicht das Technische. Das Technische löst man. Was sie beschäftigt, ist die ethische Dimension der Übersetzung: Wenn man einen Text übersetzt, trifft man Hunderte von kleinen Entscheidungen, von denen jede eine Interpretation ist. Jede Übersetzung ist eine Lektüre. Jede Lektüre ist ein Eingriff.</p>
+<p>Sie denkt oft an einen Satz des Übersetzers Gregory Rabassa: <em>Der ideale Übersetzer ist unsichtbar.</em> Sie glaubt das nicht. Sie glaubt das Gegenteil: Der Übersetzer ist immer da. Die Frage ist, ob man es zugibt.</p>
+<p>Ihr aktuelles Projekt ist ein Buch des japanischen Schriftstellers Kawakami Hiromi — ein Roman über eine Frau mittleren Alters und ihre zarte, unbenannte Beziehung zu einem viel älteren Mann. Alles in diesem Buch wird durch Andeutung gesagt. Nichts wird ausgesprochen.</p>
+<p>Deutsche Leser, weiß Nora, sind Direktheit gewohnt. Das Unausgesprochene ist im Deutschen eine Abwesenheit. Im Japanischen ist es eine Form der Anwesenheit.</p>
+<p>Wie übersetzt man eine Anwesenheit, die von Schweigen lebt?</p>
+<p>Sie weiß es noch nicht. Das ist der Grund, warum sie weiterarbeitet.</p>`,
+en:`<p>Literary translator Nora translates from Japanese into German — a linguistically "distant" pair. Her meditation on translation ethics: every translation is an interpretation, every interpreter is present whether they admit it or not. Currently she is translating a Japanese novel where everything is said by implication, and wondering how to translate a silence that is itself a form of presence.</p>`,
+vocab:[{de:"die Ablagerung",en:"deposit/sediment"},{de:"die Entsprechung",en:"equivalent/correspondence"},{de:"die Lektüre",en:"reading"},{de:"der Eingriff",en:"intervention"},{de:"die Andeutung",en:"hint/implication"},{de:"das Unausgesprochene",en:"the unspoken"},{de:"die Abwesenheit",en:"absence"},{de:"die Direktheit",en:"directness"}]},
+
+{id:"c1_6",title:"Zwischenräume",titleEn:"In-Between Spaces",
+de:`<p>Anthropologen beschreiben Räume, die weder hier noch dort sind — Flughäfen, Einkaufszentren, Autobahnen — als <em>Nicht-Orte</em>. Orte ohne Geschichte, ohne Identität, ohne Beziehungen. Sie existieren, um durchquert zu werden.</p>
+<p>Hana verbringt viel Zeit in Nicht-Orten. Sie fährt jeden Morgen 45 Minuten mit dem Zug von Düsseldorf nach Köln und jeden Abend zurück. 90 Minuten täglich, 375 Stunden jährlich, in einem Raum, der kein Raum ist.</p>
+<p>Aber sie liebt diesen Raum. Das ist der Widerspruch, den sie niemandem erklären kann.</p>
+<p>Im Zug passiert etwas, das zu Hause und im Büro nicht passiert: Sie ist nirgends verantwortlich. Niemand kann etwas von ihr verlangen. Sie sitzt, und der Zug bewegt sich, und sie hat das Gefühl, dass die Zeit anders läuft — nicht langsamer, aber anders geformt. Wie Wasser, das durch eine andere Rinne fließt.</p>
+<p>Sie liest. Nicht für die Arbeit. Für sich. Sie hat in den letzten drei Jahren mehr Bücher gelesen als in den zehn Jahren davor.</p>
+<p>Manchmal schaut sie aus dem Fenster und denkt an gar nichts. Das ist schwieriger, als es klingt. Das gelingt ihr nur im Zug.</p>
+<p>In einem Buch hat sie gelesen: <em>Ein Übergangsraum ist ein Raum, in dem man noch nicht angekommen, aber auch nicht mehr aufgebrochen ist. Er ist das Zwischen selbst.</em></p>
+<p>Das, denkt Hana, ist manchmal genau das, was man braucht: einen Raum, in dem man weder noch ist. Wo man nur ist.</p>`,
+en:`<p>Hana commutes 90 minutes a day by train and loves it. The train is a non-place — no responsibilities, no demands. She reads more than she has in years and sometimes manages to think about nothing at all. A reflection on the value of in-between spaces in a world that demands constant productivity.</p>`,
+vocab:[{de:"der Nicht-Ort",en:"non-place"},{de:"durchqueren",en:"to cross/traverse"},{de:"der Widerspruch",en:"contradiction"},{de:"die Rinne",en:"channel/gutter"},{de:"der Übergangsraum",en:"transitional space"},{de:"gelingen",en:"to succeed"},{de:"verlangen",en:"to demand"}]},
+
+{id:"c1_7",title:"Rückblende",titleEn:"Flashback",
+de:`<p>In der Filmtheorie bezeichnet Rückblende den Moment, in dem die Erzählung in die Vergangenheit springt. Im Leben gibt es das auch — aber es kündigt sich nicht an. Es passiert einfach.</p>
+<p>Viktor sitzt in einem Café in Wien, trinkt Kaffee und liest eine Zeitung. Er ist 52. Er lebt seit 20 Jahren in Wien, ist österreichischer Staatsbürger, hat zwei Kinder, eine Wohnung in Währing und einen Job als Buchhalter, der ihn nicht begeistert, aber auch nicht unglücklich macht.</p>
+<p>Dann spielt das Café ein Lied. Ein russisches Lied, das er seit 30 Jahren nicht gehört hat. Und plötzlich ist er nicht mehr in Wien. Er ist in einer Wohnung in Nowosibirsk, er ist 22, es ist Winter, seine Mutter kocht in der Küche, das Lied kommt aus dem Radio, und er denkt: So kann das Leben immer sein.</p>
+<p>Der Moment dauert vielleicht drei Sekunden. Dann ist er zurück im Café. Der Kaffee dampft. Die Zeitung liegt auf dem Tisch. Die Kellnerin fragt, ob er noch etwas möchte.</p>
+<p><span class="dialog">„Nein danke,"</span> sagt er. Seine Stimme klingt normal. Er ist überrascht, dass seine Stimme normal klingt.</p>
+<p>Er zahlt und geht. Auf dem Weg nach Hause denkt er an seine Mutter, die seit zehn Jahren tot ist. An die Wohnung, die jetzt jemand anderem gehört. An den Geruch, der nur ihr gehörte — Lavendel und Tee und noch etwas, das er nicht benennen konnte.</p>
+<p>Erinnerung, denkt Viktor, ist keine Reise in die Vergangenheit. Sie ist die Vergangenheit, die plötzlich in der Gegenwart auftaucht. Ungebeten. Vollständig. Und dann geht sie wieder. Das ist das Schwere.</p>`,
+en:`<p>Viktor sits in a Viennese café when a Russian song he hasn't heard in thirty years begins to play. For three seconds he is twenty-two again, in Novosibirsk, his mother cooking in the kitchen. Then he returns. A precise meditation on involuntary memory and the way the past appears without announcing itself.</p>`,
+vocab:[{de:"die Rückblende",en:"flashback"},{de:"ankündigen",en:"to announce"},{de:"dampfen",en:"to steam"},{de:"ungebeten",en:"uninvited"},{de:"auftauchen",en:"to surface/appear"},{de:"der Staatsbürger",en:"citizen"},{de:"der Buchhalter",en:"bookkeeper/accountant"}]},
+
+{id:"c1_8",title:"Der Nachlass",titleEn:"The Estate",
+de:`<p>Als Schriftstellerin Charlotte Berg stirbt, hinterlässt sie drei veröffentlichte Romane, sieben unveröffentlichte Manuskripte, vier Notizbücher voller Entwürfe und eine handgeschriebene Notiz an ihren Nachlassverwalter: <em>Verbrennt es.</em></p>
+<p>Er verbrennt es nicht. Er ist der Meinung — er wird diese Meinung später verteidigen müssen — dass ein Künstler keine Vollmacht über sein Werk nach dem Tod hat. Dass das Werk der Menschheit gehört. Dass es Aufgabe des Nachlassverwalters ist, zu bewahren, nicht zu zerstören.</p>
+<p>Die unveröffentlichten Manuskripte erscheinen in den folgenden fünf Jahren. Sie werden gelobt. Eines wird als ihr bestes Buch bezeichnet.</p>
+<p>Die Literaturkritik ist sich einig: Es ist ein bedeutsamer Fund. Es bereichert das Verständnis ihres Werks. Es stellt die Chronologie ihrer Entwicklung in ein neues Licht.</p>
+<p>Was niemand laut fragt, aber viele denken: Hatte sie nicht das Recht, Nein zu sagen?</p>
+<p>Das ist die Frage, die das Buch über sie stellt — das Buch, das ich gerade schreibe, und das sie noch nicht kannte, als sie diese Notiz schrieb: Was gehört einem Künstler nach dem Tod? Was gehört dem Werk? Was dem Leser? Was der Geschichte?</p>
+<p>Die Antwort ist nicht klar. Das ist der Grund, warum ich das Buch schreibe.</p>`,
+en:`<p>When novelist Charlotte Berg dies, she leaves instructions to burn everything unpublished. Her literary executor doesn't comply. The manuscripts are published to acclaim. But the story raises the question: did she not have the right to say no? A fiction about artistic estate, posthumous publishing, and who owns a work after its creator is gone.</p>`,
+vocab:[{de:"der Nachlassverwalter",en:"literary/estate executor"},{de:"der Entwurf",en:"draft"},{de:"die Vollmacht",en:"authority/power of attorney"},{de:"bewahren",en:"to preserve"},{de:"die Chronologie",en:"chronology"},{de:"bereichern",en:"to enrich"},{de:"posthum",en:"posthumous"},{de:"sich einig sein",en:"to agree/be in agreement"}]},
+
+{id:"c1_9",title:"Die Spiegelung",titleEn:"The Reflection",
+de:`<p>Es heißt, man erkennt sich in anderen. Aber manchmal erkennt man sich in anderen so vollständig, dass es einen erschreckt. Das ist die Geschichte von Jakob und seinem Bruder Tobias.</p>
+<p>Sie sind keine Zwillinge — Jakob ist drei Jahre älter — aber sie sehen sich ähnlich genug, dass Fremde sie oft verwechseln. Das führte in der Kindheit zu Verwechslungen, die manchmal lustig und manchmal unangenehm waren. Als Erwachsene haben sie gelernt, damit umzugehen.</p>
+<p>Was komplizierter ist, ist die innere Ähnlichkeit. Nicht die des Temperaments — darin sind sie verschieden. Tobias ist impulsiv, Jakob bedächtig. Tobias entscheidet schnell; Jakob überlegt lange. Aber sie haben dieselben Abgründe. Dieselben Angststrukturen. Dieselbe Art, sich in Arbeit zu flüchten, wenn etwas zu nah wird.</p>
+<p>In dem Jahr, in dem Jakob seine Frau verlor — Krebs, acht Monate vom Befund bis zum Ende — war es Tobias, der fast täglich kam. Nicht immer, um zu reden. Manchmal nur, um da zu sein.</p>
+<p>Eines Abends, kurz nach dem Begräbnis, sagte Tobias: <span class="dialog">„Ich weiß nicht, was ich sagen soll."</span> Jakob antwortete: <span class="dialog">„Das musst du nicht."</span></p>
+<p>Und dann schwiegen sie lange. Und in diesem Schweigen war mehr Verständnis als in jedem Satz, den sie je gewechselt hatten. Weil sie dieselbe Leerstelle kannten. Weil einer den anderen wie eine Antwort lesen konnte, ohne dass eine Frage gestellt werden musste.</p>
+<p>Das, denkt Jakob, ist das Merkwürdige an der Geschwisterlichkeit: Man ist nicht allein im eigenen Kopf. Irgendwo lebt eine Version von einem selbst, die einen kennt und von der man nicht weglaufen kann.</p>`,
+en:`<p>Jakob and his brother Tobias aren't twins but are frighteningly similar — not in temperament but in their inner fears and the way they flee into work when things get too close. The year Jakob loses his wife to cancer, Tobias comes daily, often saying nothing. A story about the strange intimacy of siblings who recognize each other's absences.</p>`,
+vocab:[{de:"erschrecken",en:"to frighten/startle"},{de:"verwechseln",en:"to confuse/mix up"},{de:"bedächtig",en:"deliberate/careful"},{de:"der Abgrund",en:"abyss"},{de:"der Befund",en:"diagnosis/finding"},{de:"das Begräbnis",en:"funeral"},{de:"die Leerstelle",en:"gap/blank space"},{de:"die Geschwisterlichkeit",en:"siblinghood"}]},
+
+{id:"c1_10",title:"Was wir nicht sagen",titleEn:"What We Don't Say",
+de:`<p>In jeder Familie gibt es Dinge, die nicht gesagt werden. Nicht aus Grausamkeit — aus Erschöpfung. Weil manche Wahrheiten zu schwer sind, um sie immer wieder zu sagen. Weil manche Verletzungen zu alt sind, um noch frisch zu sein. Weil man irgendwann aufgehört hat, die Sprache für das Schwierige zu suchen, und angefangen hat zu hoffen, dass das Ungesagte sich von selbst auflöst.</p>
+<p>Es löst sich nicht von selbst auf.</p>
+<p>Die Familie Weiss hat drei Generationen lang nicht über den Großvater gesprochen — was er getan hat, wo er war, warum er nach dem Krieg so wurde, wie er wurde. Die Kinder haben nicht gefragt. Die Eltern haben nicht erzählt. Die Enkel haben vielleicht geahnt, aber auch nicht gefragt.</p>
+<p>Dann starb die Großmutter und in ihrem Nachlass fanden sich Dokumente. Nicht viele — drei Seiten, handgeschrieben, aus dem Jahr 1946. Ein Bericht, der nicht für die Öffentlichkeit gedacht war. Der Großvater war kein Monster — aber er hatte Dinge getan, die er hätte nicht tun sollen, und er hatte gewusst, was er tat.</p>
+<p>Die Enkelin, Marlena, ist heute 34 und hält diese Seiten in der Hand und weiß nicht, was sie damit machen soll. Sie kann sie verbrennen. Sie kann sie archivieren. Sie kann über sie schreiben.</p>
+<p>Sie schreibt über sie. Das ist nicht einfach. Es ist das, was sie tun kann.</p>
+<p>Was wir nicht sagen, sagt sie in einem Interview, formt uns genauso wie das, was wir sagen. Vielleicht mehr. Das Ungesagte wird weitergetragen, von Generation zu Generation, in der Form von Ängsten und Schweigen und Leerstellen, die niemand benennen kann, weil man nicht weiß, was darin fehlt.</p>
+<p>Man muss anfangen, es zu sagen. Auch wenn man nicht weiß, wie.</p>`,
+en:`<p>Three generations of the Weiss family have never spoken about the grandfather — what he did during the war, why he became who he became. After the grandmother's death, three handwritten pages from 1946 appear. The granddaughter Marlena holds them and decides: she will write about them. A story about family silence, complicity, and the obligation to speak.</p>`,
+vocab:[{de:"die Grausamkeit",en:"cruelty"},{de:"die Verletzung",en:"wound/injury"},{de:"ahnen",en:"to sense/suspect"},{de:"das Dokument",en:"document"},{de:"die Öffentlichkeit",en:"the public"},{de:"archivieren",en:"to archive"},{de:"weitergetragen",en:"carried forward"},{de:"die Leerstelle",en:"gap/blank"}]}
+],
+
+c2:[
+{id:"c2_1",title:"Palimpsest",titleEn:"Palimpsest",
+de:`<h3>I. Das Wort</h3>
+<p>Ein Palimpsest ist ein Pergament, das man abgeschabt und neu beschrieben hat, auf dem aber noch immer Spuren des ursprünglichen Textes zu sehen sind — durch das Neue hindurch, wenn man in einem bestimmten Winkel das Licht hält. Das Neue hat das Alte nicht ausgelöscht. Es hat es nur überlagert.</p>
+<p>Ich denke oft an dieses Wort, wenn ich über Berlin nachdenke.</p>
+<h3>II. Die Stadt</h3>
+<p>Berlin ist ein Palimpsest. Man muss nur wissen, wo man schauen muss — und wie. Die Narben der Mauer sind noch sichtbar, wenn auch zunehmend unsichtbar. Straßennamen aus verschiedenen Epochen existieren nebeneinander, manchmal widersprüchlich. In der U-Bahn Mohrenstraße — jetzt Bebelhatz — sieht man noch die Kacheln aus den 1950er Jahren, unter denen die Substanz aus den 1930ern liegt, unter der die Fundamente aus den 1900ern ruhen.</p>
+<p>Was eine Stadt ist, ist nicht das, was oben steht. Was eine Stadt ist, ist die Gesamtheit der Schichten, die man nicht sieht, aber die bestimmen, wie sich die oberste anfühlt.</p>
+<h3>III. Das Erinnern</h3>
+<p>In der Gedenkstätte Topographie des Terrors — am Ort, wo die Gestapo und das SS-Hauptamt ihren Sitz hatten — gibt es eine merkwürdige Stille. Nicht die Stille der Leere, sondern die Stille der Übersättigung: zu viel Geschichte auf zu wenig Raum, zu viel Bedeutung, die keinen Ausgang findet.</p>
+<p>Ich bin dreimal dort gewesen. Jedes Mal bin ich länger geblieben als geplant. Nicht weil ich lerne — die Fakten kenne ich. Sondern weil ich das Gewicht spüren will. Weil ich glaube, dass das Gewicht gespürt werden soll.</p>
+<h3>IV. Was bleibt</h3>
+<p>Es gibt einen Satz von Walter Benjamin, der mich nicht loslässt: <em>Die Tradition der Unterdrückten lehrt uns, dass der 'Ausnahmezustand', in dem wir leben, die Regel ist.</em> Benjamin schrieb das 1940, kurz bevor er starb. Er starb auf der Flucht, an der Grenze.</p>
+<p>Das Pergament bleibt. Auch wenn man es abschabt. Auch wenn man neu beginnt. Die Schichten bleiben. Sie bestimmen, was man schreiben kann und wie man es liest.</p>
+<p>Berlin hat mich gelehrt: Man wählt seine Geschichte nicht. Man erbt sie. Aber man entscheidet, was man mit dem Erbe macht. Das ist keine kleine Freiheit. Das ist vielleicht die einzige.</p>`,
+en:`<p>A meditation on Berlin as palimpsest — a city of layers, where the Wall's scars are still visible, where U-Bahn tiles from the 1950s overlay 1930s substrates over 1900s foundations. Moving through the Topography of Terror memorial, the narrator encounters the weight of history as something that must be physically felt. Closes with Walter Benjamin, who died fleeing in 1940, and a reflection on inheriting history without choosing it.</p>`,
+vocab:[{de:"das Palimpsest",en:"palimpsest"},{de:"abschaben",en:"to scrape off"},{de:"überlagern",en:"to overlay"},{de:"widersprüchlich",en:"contradictory"},{de:"die Kachel",en:"tile"},{de:"die Übersättigung",en:"oversaturation"},{de:"die Unterdrückung",en:"oppression"},{de:"der Ausnahmezustand",en:"state of emergency"},{de:"erben",en:"to inherit"}]},
+
+{id:"c2_2",title:"Die Stille zwischen den Worten",titleEn:"The Silence Between Words",
+de:`<p>Es gibt eine philosophische Position, auf die man selten stößt, weil sie den Diskurs verweigert: Wittgensteins <em>Wovon man nicht sprechen kann, davon muss man schweigen.</em> Dieser Satz steht am Ende des Tractatus und ist gleichzeitig das Beeindruckendste und das Frustrierendste, was ich in der Philosophie gelesen habe.</p>
+<p>Frustrierend, weil er die Grenzen der Sprache benennt — und damit implizit zugibt, dass es etwas gibt, was sich jenseits dieser Grenzen befindet, das aber per definitionem unaussprechbar bleibt. Eine Art negativer Theologie der Sprache.</p>
+<p>Beeindruckend aus demselben Grund: Wittgenstein hat das Schweigen geschrieben. Er hat das Unaussprechliche in Sprache formuliert — nicht indem er es beschrieben hat, sondern indem er auf seinen Ort gezeigt hat.</p>
+<p>Ich denke an das, wenn ich Paul Celans Gedichte lese. Celan, der Überlebende der Schoa, der auf Deutsch schrieb — in der Sprache der Täter, wie er selbst sagte. Was für ein Wagnis. Was für ein Akt der Aneignung und der Verweigerung zugleich.</p>
+<p>In der <em>Todesfuge</em> — seinem bekanntesten Gedicht, das ich hier nicht zitieren werde, weil ich keine Zeile aus einem Gedicht nehmen möchte, ohne das ganze zu zeigen — ist Schweigen kein Mangel. Schweigen ist Struktur. Der Rhythmus selbst ist ein Halten der Luft.</p>
+<p>Was Sprache kann, und was Sprache nicht kann. Und was geschieht, wenn jemand versucht, in der Lücke zwischen beiden zu wohnen.</p>
+<p>Das ist das Projekt der Literatur. Es war immer das Projekt der Literatur.</p>`,
+en:`<p>A philosophical and literary meditation beginning with Wittgenstein's "Whereof one cannot speak, thereof one must be silent" and moving to Paul Celan, the Holocaust survivor who wrote in German — the language of the perpetrators. On silence as structure, language as both instrument and failure, and literature's project of inhabiting the gap between what can and cannot be said.</p>`,
+vocab:[{de:"verweigern",en:"to refuse/withhold"},{de:"implizit",en:"implicit"},{de:"per definitionem",en:"by definition"},{de:"die negative Theologie",en:"negative theology"},{de:"der Täter",en:"perpetrator"},{de:"das Wagnis",en:"risk/venture"},{de:"die Aneignung",en:"appropriation"},{de:"die Verweigerung",en:"refusal"},{de:"das Halten",en:"holding"}]},
+
+{id:"c2_3",title:"Schwebezustand",titleEn:"Suspension",
+de:`<p>In der Physik bezeichnet der Schwebezustand den Zustand eines Objekts, das weder sinkt noch steigt — das im Medium hängt, ohne auf den Boden zu fallen oder an die Oberfläche zu steigen. Er ist instabil, aber er existiert.</p>
+<p>Ich habe das Wort immer gemocht, weil es das Inzwischen beschreibt, ohne es aufzulösen.</p>
+<p>Zwischen zwei Kulturen zu leben — ich bin in Japan geboren, in Deutschland aufgewachsen, habe in den USA studiert, lebe jetzt in Berlin — ist ein permanenter Schwebezustand. Man gehört jedem Kontext ein wenig an und keinem vollständig. Das ist keine Klage. Es ist eine Beschreibung eines Zustands, der seine eigene Logik hat.</p>
+<p>Philosophen haben das das Problem der multiplen Identitäten genannt. Ich finde "Problem" das falsche Wort. Vielleicht: die Gabe der multiplen Identitäten. Die Fähigkeit, aus mehr als einem Blickwinkel zu sehen. Die Verweigerung der Eindeutigkeit.</p>
+<p>Was man verliert: das Gefühl der Selbstverständlichkeit. Die Leute, die vollständig dazugehören, bewohnen ihre Zugehörigkeit wie einen Körper — unbewusst, ohne darüber nachzudenken. Man selbst denkt immer darüber nach. Jede Entscheidung, jede Geste, jede Formulierung ist potentiell kulturell markiert, und man sieht die Markierung, weil man sie von außen betrachten kann.</p>
+<p>Was man gewinnt: das Bewusstsein, dass die Selbstverständlichkeit anderer eine Konstruktion ist. Dass Zugehörigkeit keine natürliche Gegebenheit ist, sondern ein sozialer Akt. Dass es immer möglich gewesen wäre, anders zu sein.</p>
+<p>Der Schwebezustand lehrt das. Das Inzwischen lehrt das. Die Grenze lehrt das — nicht als Ort der Ausgrenzung, sondern als Ort des Blicks.</p>`,
+en:`<p>Born in Japan, raised in Germany, educated in the US, now in Berlin — the narrator inhabits permanent suspension. A philosophical reflection on multiple identities as gift rather than problem: you lose the feeling of self-evidence that those who fully belong take for granted, but you gain the awareness that their belonging is a construction. The in-between as a place of seeing.</p>`,
+vocab:[{de:"schweben",en:"to float/hover"},{de:"instabil",en:"unstable"},{de:"das Inzwischen",en:"the in-between"},{de:"die Eindeutigkeit",en:"unambiguity"},{de:"die Selbstverständlichkeit",en:"matter-of-course"},{de:"kulturell markiert",en:"culturally marked"},{de:"die Gegebenheit",en:"given/fact"},{de:"die Ausgrenzung",en:"exclusion"}]},
+
+{id:"c2_4",title:"Im Rauschen des Archivs",titleEn:"In the Noise of the Archive",
+de:`<p>Michel Foucault hat das Archiv nicht als Ort der Vergangenheit verstanden, sondern als das, was ermöglicht, dass bestimmte Aussagen gemacht werden können und andere nicht. Das Archiv ist nicht das, was gesagt wurde. Das Archiv ist das, was gesagt werden konnte.</p>
+<p>Ich denke an diese Distinktion, wenn ich in der Staatsbibliothek sitze und digitale Quellen durchsuche. Nicht alles wurde digitalisiert. Was nicht digitalisiert wurde, ist in einer bestimmten Weise unsichtbar — nicht verschwunden, aber nicht zugänglich, nicht zitierbar, nicht referenzierbar im akademischen Diskurs. Die Digitalisierung als neue Form des Archivs, mit neuen Ein- und Ausschlüssen.</p>
+<p>Wessen Stimmen wurden digitalisiert? Wessen Texte wurden für wichtig genug gehalten, um sie in Daten zu überführen? Wessen Handschriften wurden abfotografiert, wessen Tagebücher erschlossen, wessen Briefe editiert?</p>
+<p>Das sind Fragen mit bekannten Antworten, die trotzdem gesagt werden müssen: Die Texte der Mächtigen, der Gebildeten, der männlichen Gebildeten, der weißen männlichen Gebildeten — sie wurden bevorzugt. Das ist keine Behauptung über schlechten Willen. Es ist eine Beschreibung eines strukturellen Musters.</p>
+<p>Das Rauschen, das ich meine, ist nicht der Lärm. Es ist das, was im Hintergrund ist, das man nicht aufschreibt, weil es immer da ist und deshalb unsichtbar wird. Das Rauschen der Alltäglichkeit. Die Millionen von Gesprächen, die nicht aufgezeichnet wurden, weil sie zu banal schienen. Das Rauschen der Leben, die nicht für historisch gehalten wurden.</p>
+<p>Das Verschwinden des Rauschens ist der größte Verlust in der Geschichte. Es ist das, was wir nie wissen werden.</p>`,
+en:`<p>Beginning with Foucault's conception of the archive as that which makes certain statements possible and others not, this essay considers digitisation as a new form of archival power — with new inclusions and exclusions. What wasn't digitised is invisible in a new way: not gone, but not citable, not referenceable. The deepest loss: the "noise" of everyday life, the millions of conversations not recorded because they seemed too banal.</p>`,
+vocab:[{de:"ermöglichen",en:"to make possible"},{de:"die Aussage",en:"statement/utterance"},{de:"die Distinktion",en:"distinction"},{de:"referenzierbar",en:"referenceable"},{de:"der Einschluss",en:"inclusion"},{de:"der Ausschluss",en:"exclusion"},{de:"das Muster",en:"pattern"},{de:"die Alltäglichkeit",en:"everydayness"},{de:"das Rauschen",en:"noise/hum"}]},
+
+{id:"c2_5",title:"Verlorene Topographie",titleEn:"Lost Topography",
+de:`<p>Es gibt Städte, die man kennt, die aber nicht mehr existieren. Nicht im wörtlichen Sinne — die Stadt ist noch da, die Straßen sind noch da, manche Gebäude sind noch da. Aber das Gewebe der Bedeutungen, das eine Stadt zu einer Stadt macht — das ist verschwunden.</p>
+<p>Ich meine: die Bäckerei an der Ecke, in der die Verkäuferin jeden Stammkunden mit Namen kannte. Das Kino, das Arthouse-Filme zeigte, bevor es zu einer Bankfiliale wurde. Der Platz, auf dem jeden Samstagmorgen Markt war und nun ein Parkplatz ist.</p>
+<p>Das ist kein Konservativismus. Das ist kein Festhalten an der Vergangenheit um der Vergangenheit willen. Das ist eine Klage über das, was Marc Augé <em>l'effacement des lieux</em> genannt hat — das Erlöschen der Orte. Den Vorgang, durch den ein Ort aufhört, eine Geschichte zu haben, und zu einem Nicht-Ort wird: funktional, austauschbar, ohne Gedächtnis.</p>
+<p>Gentrifizierung, das Wort, das man dafür benutzt, greift zu kurz. Es beschreibt den wirtschaftlichen Mechanismus. Es beschreibt nicht den Verlust des Texturellen — das Fehlen der Risse im Bürgersteig, die man kannte; das Verschwinden des Graffitis an der Brandmauer, das seit fünfzehn Jahren da war und das man hasste und liebte und das nun übermalt wurde.</p>
+<p>Eine Stadt ist nicht ihre Infrastruktur. Eine Stadt ist ihre Praxis. Die Wege, die Menschen gehen. Die Orte, an denen Blicke kreuzen. Die Stellen, wo man stehenbleibt, ohne zu wissen, warum.</p>
+<p>Wenn diese Praktiken verschwinden — durch Verdrängung, durch Preisanstieg, durch Umsiedlung — verliert die Stadt ihre Topographie. Nicht die geografische. Die menschliche.</p>`,
+en:`<p>A lament for cities that exist but are no longer themselves — whose bakeries are now banks, whose cinemas are now chains, whose market squares are now car parks. Drawing on Marc Augé's concept of the "erasure of places," this essay distinguishes economic gentrification from the loss of textural life: the cracks in the pavement you knew, the graffiti on the firewall you hated and loved. A city is not its infrastructure but its practice.</p>`,
+vocab:[{de:"das Gewebe",en:"fabric/tissue/web"},{de:"der Stammkunde",en:"regular customer"},{de:"das Erlöschen",en:"extinction/going out"},{de:"austauschbar",en:"interchangeable"},{de:"das Texturelle",en:"the textural"},{de:"die Brandmauer",en:"firewall/party wall"},{de:"die Verdrängung",en:"displacement"},{de:"die Topographie",en:"topography"}]},
+
+{id:"c2_6",title:"Das unübersetzte Gefühl",titleEn:"The Untranslated Feeling",
+de:`<p>Die Japaner haben das Wort <em>amae</em> — eine Form der Abhängigkeit, die gleichzeitig eine Form der Vertrautheit ist, das angenommene Einverständnis, dass man auf die Güte eines anderen zählen kann, ohne es auszusprechen. Der Psychoanalytiker Takeo Doi hat einem ganzen Buch diesem Begriff gewidmet und argumentiert, dass amae der Schlüssel zur japanischen Psyche ist.</p>
+<p>Ich habe dieses Wort gelesen und gedacht: Das gibt es auf Deutsch nicht. Nicht als Wort. Aber als Erfahrung — oh, als Erfahrung ist es durchaus bekannt. Das Schweigen zwischen zwei Menschen, die sich lange kennen. Die Abkürzung des Verständnisses. Das Gefühl, nicht erklären zu müssen, wer man ist.</p>
+<p>Das wirft eine alte Frage auf: Ist die Erfahrung durch das Wort möglich gemacht, oder ist das Wort nur die Benennung einer Erfahrung, die ohne das Wort bereits existiert?</p>
+<p>Die Sapir-Whorf-Hypothese — in ihrer starken Form — behauptet das Erstere: dass die Sprache das Denken bestimmt, dass man ohne das Wort die Erfahrung nicht haben kann. Die schwache Form sagt: Die Sprache strukturiert das Denken, ohne es zu determinieren.</p>
+<p>Ich tendiere zur schwachen Form, aber mit einer Modifikation: Das Wort gibt der Erfahrung Kontur. Es macht sie mitteilbar. Es macht sie sozial. Und das soziale Vorhandensein einer Erfahrung verändert sie: Eine Erfahrung, die benannt und geteilt werden kann, ist eine andere Erfahrung als eine, die man allein hat.</p>
+<p>Die unübersetzten Gefühle — Sehnsucht, Heimweh, Schadenfreude, amae — sind Dokumentationen davon, was eine Gemeinschaft für wichtig genug hielt, in Sprache zu fassen. Sie sind ethnografische Zeugen. Man kann nicht nur Gefühle aus ihnen lernen, sondern Werte, Ängste, kollektive Selbstverständnisse.</p>
+<p>Was wir haben, was andere nicht haben. Was wir nicht haben, was andere haben. Das ist die Landkarte der menschlichen Möglichkeit.</p>`,
+en:`<p>Beginning with the Japanese word amae — an assumed dependence on another's goodwill that need not be spoken — this essay explores the Sapir-Whorf hypothesis and the relationship between words and experience. The conclusion: a word doesn't create an experience, but it gives it contour, makes it communicable, makes it social. Untranslatable words are ethnographic witnesses to what a community considered important enough to name.</p>`,
+vocab:[{de:"die Abhängigkeit",en:"dependency"},{de:"das Einverständnis",en:"agreement/consent"},{de:"die Psyche",en:"psyche"},{de:"die Benennung",en:"naming"},{de:"bestimmen",en:"to determine"},{de:"die Kontur",en:"contour"},{de:"mitteilbar",en:"communicable"},{de:"ethnografisch",en:"ethnographic"},{de:"das Selbstverständnis",en:"self-conception"}]},
+
+{id:"c2_7",title:"Kollision",titleEn:"Collision",
+de:`<p>Wenn zwei Sprachen in einem Menschen zusammentreffen, kollidieren sie nicht immer. Oft koexistieren sie — in verschiedenen Registern, verschiedenen Kontexten, verschiedenen Teilen des Selbst. Man spricht Arabisch mit der Mutter und Deutsch am Telefon und Englisch in der Arbeit, und jede Sprache aktiviert einen leicht anderen Menschen, eine leicht andere Persönlichkeit, einen leicht anderen Blickwinkel.</p>
+<p>Das ist eine Form von Reichtum. Es ist auch eine Form von Erschöpfung.</p>
+<p>Yasmin Khalil, Psychologin und Sprachforscherin in Köln, hat das untersucht, was sie <em>code-switching fatigue</em> nennt — die Erschöpfung, die entsteht, wenn man ständig zwischen sprachlichen Identitäten wechseln muss. Nicht die kognitive Erschöpfung des Übersetzens, sondern die emotionale Erschöpfung des Selbst-Wechsels.</p>
+<p><span class="dialog">„Was ich herausgefunden habe,"</span> sagt sie in einem Interview, das ich gelesen habe und das mich nicht losgelassen hat, <span class="dialog">„ist, dass Bilinguale nicht zwei Sprachen sprechen. Sie bewohnen zwei Sprachen. Das ist ein Unterschied."</span></p>
+<p>Bewohnen — das Wort ist entscheidend. Man kann eine Sprache kennen ohne sie zu bewohnen. Man kann Vokabeln beherrschen, Grammatik kennen, Texte produzieren, ohne die Sprache wirklich zu bewohnen — ohne dass sie einem Raum gibt, in dem man sich selbst erkennt.</p>
+<p>Was ich über das Bewohnen von Sprachen weiß: Man bewohnt eine Sprache, wenn man in ihr träumen kann. Wenn man in ihr fluchen kann. Wenn man in ihr denkt, bevor man denkt — wenn der Gedanke auf Deutsch kommt, bevor man entschieden hat, auf Deutsch zu denken.</p>
+<p>Ich bewohne das Deutsche. Das hat zwanzig Jahre gedauert. Es ist ein Zuhause, das man sich erarbeitet hat — und das deshalb, vielleicht, mehr wert ist als eines, das man einfach geerbt hat.</p>`,
+en:`<p>When two languages meet in one person, they don't always collide — they coexist in different registers, activating slightly different versions of the self. A meditation on "code-switching fatigue," the emotional exhaustion of constantly shifting linguistic identity. The central insight: you can know a language without inhabiting it. You inhabit a language when you can dream in it, swear in it, think in it before you decide to think.</p>`,
+vocab:[{de:"kollidieren",en:"to collide"},{de:"koexistieren",en:"to coexist"},{de:"aktivieren",en:"to activate"},{de:"bewohnen",en:"to inhabit"},{de:"entscheidend",en:"decisive/crucial"},{de:"beherrschen",en:"to master/command"},{de:"sich erarbeiten",en:"to work for/earn through effort"},{de:"erben",en:"to inherit"}]},
+
+{id:"c2_8",title:"Sprachgrenzen",titleEn:"Language Borders",
+de:`<p>Es gibt ein Experiment, das ich mir manchmal vorstelle: Man nimmt einen Menschen, der mehrere Sprachen spricht, und sperrt ihn in einen Raum und sagt: Du darfst nur in einer Sprache denken. Welche wählt er?</p>
+<p>Das ist natürlich unmöglich. Denken ist nicht auf eine Sprache beschränkbar — zumindest nicht bei Menschen, die mehrsprachig aufgewachsen sind. Die Sprachen fließen ineinander, überlappen, beeinflussen sich, stören sich gegenseitig und helfen sich gegenseitig.</p>
+<p>Aber die Frage verweist auf etwas Reales: dass verschiedene Sprachen verschiedene kognitive Räume öffnen. Nicht im deterministischen Sinne der starken Sapir-Whorf-Hypothese. Sondern im phänomenologischen: dass sich die Welt anders anfühlt, wenn man sie auf Arabisch beschreibt als auf Englisch; dass bestimmte Nuancen im Deutschen formulierbar sind, die im Chinesischen anderen Formen bedürfen; dass die Grammatik der Zeit im Englischen und im Deutschen und im Türkischen verschiedene Arten des Erlebens von Zeit konstituieren könnte.</p>
+<p>Der Philosoph Hans-Georg Gadamer schrieb: <em>Sein, das verstanden werden kann, ist Sprache.</em> Das ist keine Reduktion des Seins auf Sprache. Es ist eine Aussage über die Bedingung des Verstehens: dass wir zur Welt immer schon durch Sprache kommen, dass es kein sprachfreies Verstehen gibt.</p>
+<p>Wenn das stimmt — und ich glaube, es stimmt, in einer abgeschwächten Form — dann sind die Grenzen meiner Sprache nicht die Grenzen meiner Welt, wie Wittgenstein schrieb. Die Grenzen meiner Sprachen — im Plural — sind die Ränder meiner Welt, über die hinaus ich nur mit großer Anstrengung schauen kann.</p>
+<p>Aber über die ich schauen kann. Das ist das Versprechen des Lernens.</p>`,
+en:`<p>A thought experiment: if you could only think in one language, which would you choose? The essay uses this as a lens for exploring the phenomenology of multilingualism — how different languages open different cognitive spaces, how grammar shapes the experience of time, how Gadamer's "Being that can be understood is language" might be refined for the multilingual mind. The conclusion: the limits of our languages, plural, are the edges of our world — and learning is the act of extending them.</p>`,
+vocab:[{de:"beschränken",en:"to limit/restrict"},{de:"determinlistisch",en:"deterministic"},{de:"phänomenologisch",en:"phenomenological"},{de:"konstituieren",en:"to constitute"},{de:"die Bedingung",en:"condition/prerequisite"},{de:"abgeschwächt",en:"weakened/attenuated"},{de:"der Rand",en:"edge/margin"},{de:"die Anstrengung",en:"effort"}]},
+
+{id:"c2_9",title:"Der Nachlass des Schweigens",titleEn:"The Estate of Silence",
+de:`<p>Es gibt eine Art von Schweigen, die weitergegeben wird. Nicht wie ein Gen — nicht biologisch — aber epigenetisch im kulturellen Sinne: Die Art, wie eine Generation mit Schmerz umgeht, hinterlässt Muster, die die nächste übernimmt, ohne zu wissen, was sie übernimmt.</p>
+<p>Die Psychologin Yael Danieli hat das bei Überlebenden der Shoah und ihren Kindern untersucht. Die erste Generation schwieg oft: nicht weil sie vergessen wollte, sondern weil es keine Sprache gab, weil die Sprache nicht da war für das, was passiert war, weil die Welt, in die man zurückgekehrt war, die Sprache nicht hören wollte.</p>
+<p>Die zweite Generation wuchs in diesem Schweigen auf. Sie lernten nicht, was das Schweigen enthielt. Sie lernten das Schweigen selbst: das Nicht-Fragen, das Nicht-Drängen, das Spüren, dass bestimmte Räume nicht betreten werden durften.</p>
+<p>Und die dritte Generation — meine Generation, in einem Fall — fängt an zu fragen. Nicht weil wir klüger sind. Weil der zeitliche Abstand groß genug geworden ist, dass das Fragen möglich geworden ist, ohne die Trägerin des Schweigens zu zerstören.</p>
+<p>Ich habe meinen Großvater nie gefragt. Er starb, bevor ich alt genug war. Meine Mutter hat ihn nicht gefragt. Jetzt gibt es niemanden mehr zu fragen.</p>
+<p>Aber es gibt Archive. Es gibt Zeugen. Es gibt Dokumente. Es gibt die Möglichkeit, das Schweigen zu rekonstruieren — nicht zu brechen, denn gebrochen wurde es nie wirklich, es schweigt noch — aber es zu benennen. Es als Schweigen zu sehen. Das ist nicht dasselbe wie Wissen. Aber es ist nicht nichts.</p>`,
+en:`<p>Drawing on Yael Danieli's research on Holocaust survivors and their children, this essay explores how silence is transmitted across generations. The first generation had no language for what happened; the second grew up learning the silence itself; the third begins to ask — not because wiser, but because temporal distance has made questions possible without destroying those who carry the silence. The author's own grandfather died before they were old enough to ask. Now there is only the archive.</p>`,
+vocab:[{de:"epigenetisch",en:"epigenetic"},{de:"das Muster",en:"pattern"},{de:"die Shoah",en:"the Holocaust (Heb.)"},{de:"das Nicht-Fragen",en:"the not-asking"},{de:"drängen",en:"to press/urge"},{de:"die Trägerin",en:"bearer (f)"},{de:"rekonstruieren",en:"to reconstruct"},{de:"benennen",en:"to name"}]},
+
+{id:"c2_10",title:"Was die Sprache hält",titleEn:"What Language Holds",
+de:`<p>Ich schreibe diesen letzten Abschnitt auf Deutsch, obwohl es nicht meine erste Sprache ist. Das ist eine Entscheidung, die ich jeden Morgen neu treffe — nicht bewusst, sondern im Sinne von: die Sprache öffnet sich, und ich gehe hinein.</p>
+<p>Was mich an der deutschen Sprache hält — und ich sage das nicht als Kompliment an eine Nation oder eine Kultur, sondern als Beschreibung einer Spracherfahrung — ist ihre Kapazität, das Abstrakte körperlich zu machen. Sehnsucht hat ein Gewicht. Weltschmerz hat eine Farbe. Schadenfreude ist ein Ding, das man anfassen kann. Das Deutsche benennt nicht nur Gefühle — es verleiht ihnen Materie.</p>
+<p>Das ist nicht einzigartig. Jede Sprache tut das auf ihre Weise. Aber das Deutsche tut es mit einer Radikalität, die ich nirgendwo sonst gefunden habe: durch die Komposita, durch die Möglichkeit, Wörter zu bauen, die noch nicht existieren, durch die strukturelle Erlaubnis, zu komponieren, bis das Zusammengesetzte genau das sagt, was gesagt werden muss.</p>
+<p>Ich denke an das Wort <em>Fingerspitzengefühl</em> — das Gefühl an den Fingerspitzen, das Erspüren, das taktile Wissen. In einer Sprache, in der man Fingerspitzengefühl zu einer Kategorie des Erkennens machen kann, denkt man anders über den Körper und das Wissen. Man denkt vorsichtiger. Tastender.</p>
+<p>Was eine Sprache hält: die Möglichkeiten des Denkens, die sie öffnet. Die Formen der Empfindung, die sie ermöglicht. Die Arten des Schweigens, die sie erzeugt — denn Sprache erzeugt auch Schweigen: sie bestimmt, was sagbar ist, und damit auch, was nicht sagbar ist.</p>
+<p>Das Lernen einer Sprache ist das Lernen einer Möglichkeitsstruktur. Es ist nicht das Lernen von Vokabeln und Grammatik — obwohl es auch das ist. Es ist das Lernen, in einer anderen Konfiguration der Welt zu stehen.</p>
+<p>Das ist das Versprechen. Das ist die Arbeit. Das ist, worum es geht.</p>`,
+en:`<p>A closing meditation on what the German language specifically holds: its capacity to make abstraction physical, to build compound words that give matter to feelings. Sehnsucht has weight, Weltschmerz has colour, Fingerspitzengefühl makes tactile knowledge a category of knowing. Learning a language is learning a structure of possibility — not vocabulary and grammar alone, but a different configuration of the world. The essay closes where the collection began: with language as the house of being.</p>`,
+vocab:[{de:"die Kapazität",en:"capacity"},{de:"verleihen",en:"to lend/confer"},{de:"die Materie",en:"matter/substance"},{de:"das Kompositum",en:"compound word"},{de:"die strukturelle Erlaubnis",en:"structural permission"},{de:"erspüren",en:"to sense/feel"},{de:"taktil",en:"tactile"},{de:"tastend",en:"groping/tentative"},{de:"die Möglichkeitsstruktur",en:"structure of possibility"}]}
+]
+});
+
+/* ═══════════════════════════════════════════
+   REFERENCE TABLES DATA
+═══════════════════════════════════════════ */
+const LEVELS = ['a1','a2','b1','b2','c1','c2'];
+
+let storyLevel = 'a1';
+let currentStoryIdx = {a1:0,a2:0,b1:0,b2:0,c1:0,c2:0};
+let summaryDebounce = null;
+const PROGRESS_PAGE_KEY = 'german_story_summaries';
+
+/* Uses the EXISTING `progress` table (id uuid, user_id uuid, page text,
+   data jsonb, updated_at timestamptz) that the rest of the site already
+   relies on, rather than a new table — one row per user for this page,
+   with all 60 possible summaries packed into the jsonb `data` column as
+   { "a1_0": "...", "b2_5": "...", ... }. */
+
+function initParticles(){
+  const wrap = document.getElementById('particles');
+  if(!wrap) return;
+  const colors = ['#E8A800','#CC0000','#FFE033','#7C3AED','#10B981'];
+  for(let i=0;i<28;i++){
+    const el = document.createElement('div');
+    el.className = 'needle';
+    const size = 2 + Math.random()*4;
+    el.style.width = size+'px';
+    el.style.height = size+'px';
+    el.style.background = colors[Math.floor(Math.random()*colors.length)];
+    el.style.left = Math.random()*100+'%';
+    el.style.setProperty('--d', (Math.random()*120-60)+'px');
+    el.style.animationDuration = (8+Math.random()*14)+'s';
+    el.style.animationDelay = (Math.random()*14)+'s';
+    el.style.opacity = (0.25+Math.random()*0.45).toFixed(2);
+    wrap.appendChild(el);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   SIDEBAR / NAV
+═══════════════════════════════════════════ */
+
+function openSidebar(){
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sidebar-overlay').classList.add('open');
+}
+
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+}
+
+function toggleLight(){
+  const goingLight = !document.body.classList.contains('light');
+  document.body.classList.toggle('light', goingLight);
+  document.documentElement.classList.remove('pre-light');
+  localStorage.setItem('stargazer_theme', goingLight ? 'light' : 'dark');
+  const label = goingLight ? '🌙 Dark' : '☀ Day';
+  const btn = document.getElementById('darkToggle');
+  if(btn) btn.textContent = label;
+  const sideBtn = document.getElementById('sidebarDarkToggle');
+  if(sideBtn) sideBtn.textContent = goingLight ? '🌙 Dark Mode' : '☀ Day Mode';
+  if (typeof sbSaveDarkMode === 'function') sbSaveDarkMode(!goingLight);
+}
+
+/* ═══════════════════════════════════════════
+   GEHEIMER MODUS · SECRET MODE
+   Triple-clicking the footer text (not the "Zurück zur Hauptseite" link
+   itself) flips a hidden theme. e.detail is the browser's own rapid-click
+   counter, so no manual timers are needed. State persists in localStorage.
+   The Prüfungen section has a themed test ("Der Geheimagent") whose last
+   item plainly tells the player about this — see THEMED_TESTS id 21.
+═══════════════════════════════════════════ */
+
+function handleFooterClick(e){
+  if(e.target.closest('a')) return; // let the real navigation link work normally
+  if(e.detail===3) toggleSecretMode();
+}
+
+function toggleSecretMode(){
+  const on = !document.body.classList.contains('geheim-mode');
+  document.body.classList.toggle('geheim-mode', on);
+  try{ localStorage.setItem('german-geheim-mode', on ? '1' : '0'); }catch(e){}
+  showSecretToast(on);
+}
+
+function showSecretToast(on){
+  const existing = document.querySelector('.geheim-toast');
+  if(existing) existing.remove();
+  const t = document.createElement('div');
+  t.className = 'geheim-toast';
+  t.innerHTML = on
+    ? `🔮 <strong>Geheimer Modus aktiviert</strong><span>Secret mode activated — welcome behind the curtain.</span>`
+    : `Geheimer Modus deaktiviert <span>Secret mode off</span>`;
+  document.body.appendChild(t);
+  requestAnimationFrame(()=>t.classList.add('show'));
+  setTimeout(()=>{ t.classList.remove('show'); setTimeout(()=>t.remove(), 500); }, 3200);
+}
+
+function restoreSecretMode(){
+  try{ if(localStorage.getItem('german-geheim-mode')==='1') document.body.classList.add('geheim-mode'); }catch(e){}
+}
+
+/* ═══════════════════════════════════════════
+   READING LOGIN STATE FROM shared.js's OWN UI
+   shared.js renders into #loginBtn / #userInfo / #userEmailDisplay — this
+   page reads those same elements rather than keeping its own auth state,
+   so it can never drift out of sync with the real session.
+═══════════════════════════════════════════ */
+
+function getCurrentUserEmail(){
+  const userInfo = document.getElementById('userInfo');
+  const emailEl = document.getElementById('userEmailDisplay');
+  if(!userInfo || !emailEl) return null;
+  const visible = userInfo.style.display !== 'none' && getComputedStyle(userInfo).display !== 'none';
+  const email = (emailEl.textContent||'').trim();
+  return (visible && email) ? email : null;
+}
+
+async function getCurrentUserId(){
+  if(!_sb) return null;
+  try{
+    const {data:{session}} = await _sb.auth.getSession();
+    return session && session.user ? session.user.id : null;
+  }catch(e){ return null; }
+}
+
+/* ═══════════════════════════════════════════
+   WORT DES TAGES
+═══════════════════════════════════════════ */
+
+function renderStoryLevelPanels(){
+  document.getElementById('story-panels').innerHTML = LEVELS.map(lv=>
+    `<div class="story-panel ${lv==='a1'?'active':''}" id="story-panel-${lv}"></div>`
+  ).join('');
+  LEVELS.forEach(lv=>renderStoryLevelContent(lv));
+}
+
+function switchStoryLevel(level, btn){
+  storyLevel = level;
+  document.querySelectorAll('.level-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.story-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('story-panel-'+level).classList.add('active');
+}
+
+function renderStoryLevelContent(level){
+  const stories = STORIES[level];
+  const panel = document.getElementById('story-panel-'+level);
+  let listNav = `<div class="story-list-nav">` + stories.map((s,i)=>
+    `<button class="story-list-btn ${i===0?'active':''}" id="slbtn-${level}-${i}" onclick="openStory('${level}',${i})">
+      <span class="story-num">${i+1}</span><span>${s.title}</span>
+    </button>`
+  ).join('') + `</div>`;
+  let entries = `<div id="story-entries-${level}">` + stories.map((s,i)=>renderStoryEntry(level,s,i)).join('') + `</div>`;
+  panel.innerHTML = listNav + entries;
+  if(stories.length) document.getElementById(`story-entry-${level}-0`).classList.add('active');
+}
+
+function renderStoryEntry(level, s, idx){
+  const lvUpper = level.toUpperCase();
+  return `<div class="story-entry" id="story-entry-${level}-${idx}">
+    <div class="story-meta">
+      <h3 class="story-title">${s.title}</h3>
+      <div class="story-stats">
+        <span class="stat-pill lv-${level}">${lvUpper}</span>
+        <span class="stat-pill">${s.titleEn}</span>
+      </div>
+    </div>
+    <div class="story-controls">
+      <button class="btn btn-emerald" onclick="toggleTranslation('${level}',${idx})" id="trans-btn-${level}-${idx}">🇬🇧 Show Translation</button>
+      <button class="btn" onclick="toggleVocabBox('${level}',${idx})">📋 Vokabeln (${s.vocab.length})</button>
+    </div>
+    <div class="story-text">
+      <div class="story-de">${s.de}</div>
+      <div class="story-en" id="story-en-${level}-${idx}">${s.en}</div>
+    </div>
+    <div class="story-vocab" id="vocab-box-${level}-${idx}" style="display:none;">
+      <div class="vocab-header">Vokabeln dieser Geschichte</div>
+      <div class="vocab-grid">${s.vocab.map(v=>`<div class="vocab-item"><span class="vocab-de">${v.de}</span><span class="vocab-en">${v.en}</span></div>`).join('')}</div>
+    </div>
+    <div class="story-summary-box">
+      <div class="summary-header"><span>✍️ Deine Zusammenfassung</span><span class="summary-auth-note">privat & gespeichert</span></div>
+      <div class="summary-body">
+        <p id="summary-login-notice-${level}-${idx}" style="font-size:12px;color:var(--text-3);font-style:italic;">Melde dich an, um deine eigene Zusammenfassung dieser Geschichte zu schreiben und zu speichern.</p>
+        <textarea class="summary-textarea" id="summary-text-${level}-${idx}" placeholder="Schreibe hier deine eigene Zusammenfassung auf Deutsch oder Englisch…" oninput="onSummaryInput('${level}',${idx})"></textarea>
+        <div class="summary-save-row" id="summary-save-row-${level}-${idx}">
+          <button class="btn btn-emerald" onclick="saveSummary('${level}',${idx})">💾 Speichern</button>
+          <span class="summary-saved-msg" id="summary-saved-${level}-${idx}">✓ Gespeichert!</span>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function openStory(level, idx){
+  document.querySelectorAll(`#story-panel-${level} .story-list-btn`).forEach(b=>b.classList.remove('active'));
+  document.getElementById(`slbtn-${level}-${idx}`).classList.add('active');
+  document.querySelectorAll(`#story-panel-${level} .story-entry`).forEach(e=>e.classList.remove('active'));
+  document.getElementById(`story-entry-${level}-${idx}`).classList.add('active');
+  currentStoryIdx[level]=idx;
+  window.scrollTo({top: document.getElementById('geschichten').offsetTop - 60, behavior:'smooth'});
+}
+
+function toggleTranslation(level, idx){
+  const el = document.getElementById(`story-en-${level}-${idx}`);
+  const btn = document.getElementById(`trans-btn-${level}-${idx}`);
+  const show = el.classList.toggle('show');
+  btn.textContent = show ? '🇩🇪 Hide Translation' : '🇬🇧 Show Translation';
+}
+
+function toggleVocabBox(level, idx){
+  const el = document.getElementById(`vocab-box-${level}-${idx}`);
+  el.style.display = el.style.display==='none' ? 'block' : 'none';
+}
+
+/* ── Story summary save/load (Supabase + localStorage fallback) ── */
+
+function onSummaryInput(level, idx){
+  clearTimeout(summaryDebounce);
+  summaryDebounce = setTimeout(()=>{ /* auto-save could go here; explicit button used instead */ }, 800);
+}
+
+function summaryKey(level, idx){ return `german-summary-${level}-${idx}`; }
+
+async function fetchProgressRow(userId){
+  if(!_sb || !userId) return null;
+  const {data, error} = await _sb.from('progress').select('data').eq('user_id', userId).eq('page', PROGRESS_PAGE_KEY).maybeSingle();
+  if(error){ console.warn('progress fetch error', error); return null; }
+  return data ? data.data : null;
+}
+
+async function saveSummary(level, idx){
+  const text = document.getElementById(`summary-text-${level}-${idx}`).value;
+  const msgEl = document.getElementById(`summary-saved-${level}-${idx}`);
+  try{
+    const userId = await getCurrentUserId();
+    if(_sb && userId){
+      const existing = (await fetchProgressRow(userId)) || {};
+      existing[`${level}_${idx}`] = text;
+      await _sb.from('progress').upsert({
+        user_id: userId,
+        page: PROGRESS_PAGE_KEY,
+        data: existing,
+        updated_at: new Date().toISOString()
+      }, { onConflict: 'user_id,page' });
+    } else {
+      localStorage.setItem(summaryKey(level,idx), text);
+    }
+    msgEl.classList.add('show');
+    setTimeout(()=>msgEl.classList.remove('show'), 2200);
+  }catch(e){
+    console.warn('Summary save failed, using local fallback', e);
+    localStorage.setItem(summaryKey(level,idx), text);
+    msgEl.classList.add('show');
+    setTimeout(()=>msgEl.classList.remove('show'), 2200);
+  }
+}
+
+async function loadAllSummaries(){
+  const userEmail = getCurrentUserEmail();
+  const loggedIn = !!userEmail;
+  LEVELS.forEach(level=>{
+    STORIES[level].forEach((s,idx)=>{
+      const notice = document.getElementById(`summary-login-notice-${level}-${idx}`);
+      const textarea = document.getElementById(`summary-text-${level}-${idx}`);
+      const saveRow = document.getElementById(`summary-save-row-${level}-${idx}`);
+      if(!textarea) return;
+      if(loggedIn){
+        if(notice) notice.style.display='none';
+        textarea.style.display='block';
+        if(saveRow) saveRow.style.display='flex';
+      } else {
+        if(notice) notice.style.display='block';
+        textarea.style.display='none';
+        if(saveRow) saveRow.style.display='none';
+      }
+      try{
+        const local = localStorage.getItem(summaryKey(level,idx));
+        if(local) textarea.value = local;
+      }catch(e){}
+    });
+  });
+  if(_sb && loggedIn){
+    try{
+      const userId = await getCurrentUserId();
+      if(!userId) return;
+      const summaries = await fetchProgressRow(userId);
+      if(summaries){
+        Object.keys(summaries).forEach(key=>{
+          const us = key.lastIndexOf('_');
+          const level = key.slice(0,us), idx = key.slice(us+1);
+          const textarea = document.getElementById(`summary-text-${level}-${idx}`);
+          if(textarea) textarea.value = summaries[key];
+        });
+      }
+    }catch(e){ console.warn('Could not load summaries from Supabase', e); }
+  }
+}
+
+/* ═══════════════════════════════════════════
+   BOOKS (Bücher) — admin-only PDF upload
+   Mirrors the existing `math_pdf_resources` table shape exactly:
+   id int8, created_at, section text, item_index int4, file_name text,
+   file_url text, uploaded_by text — here with section='german_books'
+   and item_index = the book's position in the BOOKS array below.
+   Run this once in the SQL editor (see chat for full script + RLS):
+     create table german_pdf_resources (like math_pdf_resources including all);
+═══════════════════════════════════════════ */
+
+function initApp(){
+  restoreSecretMode()
+  initParticles()
+  renderStoryLevelPanels()
+  if (typeof renderNavAuth === 'function') renderNavAuth('nav-container');
+}
+document.addEventListener('DOMContentLoaded', initApp);
+</script>
+</body>
+</html>

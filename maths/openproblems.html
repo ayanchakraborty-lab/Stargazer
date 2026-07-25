@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#faf7f2!important}html.pre-light{background:#faf7f2}</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]}));}else{renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});}"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Lato:ital,wght@0,400;0,700;1,400&family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<title>35 Unsolved Problems in Mathematics | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="35 of the greatest unsolved problems in mathematics — from the Riemann Hypothesis to the frontiers of topology and complexity theory.">
+<meta name="keywords" content="unsolved problems in mathematics, open problems mathematics, Riemann Hypothesis, Millennium Prize Problems, hardest math problems, mathematical conjectures, open questions mathematics">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Mathematics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/maths/openproblems.html">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="35 Unsolved Problems in Mathematics | Stargazer">
+<meta property="og:description" content="35 problems no one on Earth can solve — yet. From the $1M Riemann Hypothesis to the frontiers of topology, with a guide to get started →">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/maths/openproblems.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="35 Unsolved Problems in Mathematics | Stargazer">
+<meta name="twitter:description" content="The Riemann Hypothesis and 34 more unsolved mathematics problems — with a real guide to how you could start working on each →">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "The Greatest Unsolved Problems in Mathematics",
+  "description": "35 of the greatest unsolved problems in mathematics, spanning number theory, topology, geometry, and computational complexity, each with a guide to how to begin.",
+  "url": "https://stargazer-9m9.pages.dev/maths/openproblems.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": [
+    { "@type": "Thing", "name": "Mathematics", "sameAs": "https://en.wikipedia.org/wiki/Mathematics" },
+    { "@type": "Thing", "name": "List of unsolved problems in mathematics", "sameAs": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics" }
+  ]
+}
+</script>
+<link rel="stylesheet" href="maths.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ AUTH TOP BAR ════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <a href="../login.html" id="loginBtn" class="atb-btn atb-signin">☽ Sign In</a>
+  <div id="userInfo" style="display:none;align-items:center;gap:0.4rem">
+    <span class="atb-username" id="userEmailDisplay">✦ Explorer</span>
+    <button class="atb-signout" onclick="doSignOut()">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ ADMIN MODAL ══════ -->
+<div id="adminModal">
+  <div class="admin-modal-box">
+    <div class="admin-modal-title" id="adminModalTitle">Admin Panel</div>
+    <div id="adminModalBody"></div>
+    <div class="admin-modal-actions">
+      <button class="admin-cancel-btn" onclick="closeAdminModal()">Cancel</button>
+      <button class="admin-save-btn" id="adminModalSaveBtn" onclick="adminModalSave()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ NAV ═══════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Mathematics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Open Problems</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)">🔍 Search</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══════════════════════════════════════ HAMBURGER MENU ════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home" onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item" data-page="books" onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item" data-page="puzzles" onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="precollege" onclick="location.href='precollege.html'">📐 Pre-College</button>
+  <button class="hm-item" data-page="olympiad" onclick="location.href='olympiad.html'">🏆 Olympiad</button>
+  <button class="hm-item" data-page="undergrad" onclick="location.href='undergrad.html'">🎓 Undergrad</button>
+  <button class="hm-item" data-page="graduate" onclick="location.href='graduate.html'">🔬 Graduate</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="research" onclick="location.href='research.html'">⚡ Research</button>
+  <button class="hm-item active" data-page="openproblems" onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item" data-page="careers" onclick="location.href='careers.html'">💼 Careers</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="studyguide" onclick="location.href='studyguide.html'">📖 Study Guide</button>
+  <button class="hm-item" data-page="facts" onclick="location.href='facts.html'">✨ Math Facts</button>
+  <button class="hm-item" data-page="universities" onclick="location.href='universities.html'">🎓 India</button>
+  <button class="hm-item" data-page="comments" onclick="location.href='comments.html'">💬 Comments</button>
+</div>
+
+<!-- ═══════════════════════════════════════ SEARCH MODAL ════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search this page…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<div id="shortcut-hint">/ search</div>
+
+<div class="page active" id="page-openproblems" style="background:#060004">
+  <section class="section" id="openproblems">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:rgba(239,68,68,0.08);color:#fca5a5;border:1px solid rgba(239,68,68,0.22)">The Unsolved</span>
+        <h1 class="s-title font-serif" style="color:#fee2e2">Open Problems — The Mountains Still Unclimbed</h1>
+        <p class="s-desc" style="color:#ef4444">The greatest unsolved problems in mathematics, across all areas — with a guide to how you can begin working on each one.</p>
+      </div>
+      <div class="g2" id="opprob-grid"></div>
+    </div>
+  </section>
+</div>
+
+
+<footer id="footer">
+  <div class="foot-eq">e<sup>iπ</sup> + 1 = 0</div>
+  <p class="foot-txt"><strong style="color:#6d28d9">"Mathematics is not about numbers, equations, computations, or algorithms. It is about understanding."</strong><br>— William Paul Thurston, Fields Medalist</p>
+  <div class="foot-links">
+    <button class="foot-link" onclick="location.href='../ABOUT.html'">📖 About Stargazer</button>
+    <a class="foot-link" onclick="location.href='comments.html'; return false;" href="#">💬 Community Comments</a>
+    <a class="foot-link" href="mailto:ayan.chakraborty6174@gmail.com">✉️ Contact Creator</a>
+    <a class="foot-link" href="https://stargazer-9m9.pages.dev" target="_blank" rel="noopener">🌐 Stargazer Home</a>
+  </div>
+</footer>
+
+<button id="theme-toggle" title="Toggle light / dark theme" aria-label="Toggle light / dark theme" onclick="toggleTheme()">☀️</button>
+<button id="btt" title="Back to top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+window._pageKey = 'maths';
+
+function isAdmin() {
+  return !!(window.currentUser && window.currentUser.email === ADMIN_EMAIL);
+}
+
+window._applyDarkMode = function(isDark) {
+  // isDark=true → dark mode (no light-mode class)
+  // isDark=false → light mode
+  applyTheme(!isDark);   // applyTheme(true) adds light-mode class
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+};
+
+
+window._afterRenderAuthUI = function(user) {
+  // Show/hide admin bars
+  document.querySelectorAll('.admin-bar').forEach(function(el) {
+    if (user && user.email === ADMIN_EMAIL) { el.classList.add('visible'); }
+    else                                    { el.classList.remove('visible'); }
+  });
+  // Mirror display name into comment form header
+  var ud2 = document.getElementById('userEmailDisplay2');
+  if (ud2 && user) {
+    ud2.textContent = user.user_metadata?.display_name
+                    || user.user_metadata?.full_name
+                    || user.email || 'you';
+  }
+  // Trigger admin data load on sign-in
+  if (user) { if (typeof loadAdminData === 'function') loadAdminData(); }
+};
+
+
+function applyTheme(light) {
+  if (light) { document.body.classList.add('light-mode'); }
+  else        { document.body.classList.remove('light-mode'); }
+  var btn = document.getElementById('theme-toggle');
+  if (btn) btn.textContent = light ? '🌙' : '☀️';
+  document.documentElement.classList.remove('pre-light');
+}
+
+
+function toggleTheme() {
+  var nowLight = !document.body.classList.contains('light-mode');
+  applyTheme(nowLight);
+  localStorage.setItem('stargazer_theme', nowLight ? 'light' : 'dark');
+  // Persist via shared.js (writes to Supabase profiles.dark_mode)
+  // isDark param: true = dark mode, false = light mode
+  if (window.sbSaveDarkMode) window.sbSaveDarkMode(!nowLight);
+}
+
+
+// Apply theme immediately on load from localStorage
+(function() {
+  var tm = localStorage.getItem('stargazer_theme');
+  applyTheme(tm === 'light');
+})();
+
+// shared.js calls this after loading dark_mode from profiles
+// (already declared in the auth block above as window._applyDarkMode)
+
+
+function reRevealActivePage() {
+  var p = document.querySelector('.page.active');
+  if (!p) return;
+  p.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
+    el.classList.add('visible');
+  });
+}
+
+
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Close modal on backdrop click
+
+function toggleHamburger() {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu) return;
+  var open = menu.classList.toggle('open');
+  btn.classList.toggle('open', open);
+}
+// Close on outside click
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu || !menu.classList.contains('open')) return;
+  if (!menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var menu = document.getElementById('hamburger-menu');
+    if (menu && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      document.getElementById('hamburger-btn').classList.remove('open');
+    }
+  }
+});
+
+window.addEventListener('scroll', function() {
+  var btt = document.getElementById('btt');
+  if (btt) btt.classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
+
+window._getProgressData = function() { return {}; };
+window._applyProgressData = function(d) {};
+
+let _adminModalSaveFn = null;
+
+function openAdminModal(title, bodyHTML, saveFn) {
+  document.getElementById('adminModalTitle').textContent = title;
+  document.getElementById('adminModalBody').innerHTML = bodyHTML;
+  _adminModalSaveFn = saveFn;
+  document.getElementById('adminModal').classList.add('open');
+}
+
+function closeAdminModal() {
+  document.getElementById('adminModal').classList.remove('open');
+  _adminModalSaveFn = null;
+}
+
+async function adminModalSave() {
+  if (_adminModalSaveFn) {
+    const btn = document.getElementById('adminModalSaveBtn');
+    btn.textContent = 'Saving…';
+    btn.disabled = true;
+    try {
+      await _adminModalSaveFn();
+      closeAdminModal();
+    } catch(e) {
+      alert('Save failed: ' + (e.message || e));
+    }
+    btn.textContent = 'Save';
+    btn.disabled = false;
+  }
+}
+
+document.getElementById('adminModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAdminModal();
+});
+
+var PAGE_SEARCH_INDEX = [];
+function openSearch() {
+  buildSearchIndex();
+  var m = document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(function() { document.getElementById('search-input').focus(); }, 80);
+}
+function closeSearch() {
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-results').innerHTML = '<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q) {
+  var res = document.getElementById('search-results');
+  if (!q.trim()) { res.innerHTML = '<div class="sr-empty">Start typing…</div>'; return; }
+  var lq = q.toLowerCase();
+  var hits = PAGE_SEARCH_INDEX.filter(function(x) { return x.q.indexOf(lq) !== -1; }).slice(0, 20);
+  if (!hits.length) { res.innerHTML = '<div class="sr-empty">No results for "' + q + '"</div>'; return; }
+  res.innerHTML = hits.map(function(h) {
+    var idx = PAGE_SEARCH_INDEX.indexOf(h);
+    var ti = mathHighlight(h.title, lq);
+    return '<div class="sr-item" tabindex="0" data-idx="' + idx + '" onclick="goPageResult(' + idx + ')" onkeydown="if(event.key===\'Enter\')goPageResult(' + idx + ')">' +
+      '<span class="sr-icon">' + h.icon + '</span>' +
+      '<div><div class="sr-title">' + ti + '</div><div class="sr-meta">' + h.meta + '</div></div>' +
+      '<span class="sr-section">' + h.section + '</span></div>';
+  }).join('');
+}
+function mathHighlight(text, q) {
+  if (!q) return text;
+  var idx = text.toLowerCase().indexOf(q);
+  if (idx < 0) return text;
+  return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
+}
+function goPageResult(idx) {
+  var h = PAGE_SEARCH_INDEX[idx]; if (!h) return;
+  closeSearch();
+  if (h.pre) h.pre();
+  setTimeout(function(){
+    var el = document.getElementById(h.elId);
+    if (el) {
+      el.scrollIntoView({behavior:'smooth', block:'center'});
+      el.style.outline = '3px solid #a855f7'; el.style.outlineOffset = '4px';
+      setTimeout(function(){ el.style.outline=''; el.style.outlineOffset=''; }, 1600);
+    }
+  }, 60);
+}
+function searchKeyNav(e) {
+  if (e.key === 'Escape') { closeSearch(); return; }
+  var items = document.querySelectorAll('.sr-item');
+  var cur = document.activeElement;
+  var curIdx = Array.prototype.indexOf.call(items, cur);
+  if (e.key === 'ArrowDown') { e.preventDefault(); (items[curIdx + 1] || items[0]).focus(); }
+  if (e.key === 'ArrowUp')   { e.preventDefault(); (items[curIdx - 1] || items[items.length - 1]).focus(); }
+  if (e.key === 'Enter' && curIdx >= 0) { items[curIdx].click(); }
+}
+document.addEventListener('keydown', function(e) {
+  if (['INPUT','TEXTAREA','SELECT'].indexOf(e.target.tagName) !== -1) return;
+  var modal = document.getElementById('search-modal');
+  if (modal && modal.classList.contains('open')) {
+    if (e.key === 'Escape') closeSearch();
+    return;
+  }
+  if (e.key === '/') { e.preventDefault(); openSearch(); }
+});
+
+const openProblems=[
+{t:"Riemann Hypothesis",cat:"Number Theory",field:"Analytic Number Theory",prize:"$1M — Millennium Prize",
+q:"All non-trivial zeros of the Riemann zeta function ζ(s) = Σ n⁻ˢ lie on the line Re(s) = 1/2 in the complex plane.",
+simple:"Prime numbers — 2, 3, 5, 7, 11... — are the atoms of arithmetic. Every other number is built from them, yet they appear scattered through the integers with no obvious pattern. In 1859, Bernhard Riemann discovered something breathtaking: the distribution of primes is secretly controlled by a function called the zeta function ζ(s), a machine that takes complex numbers as input. This function equals zero at certain points called 'non-trivial zeros.' The Riemann Hypothesis says ALL these zeros lie on a single vertical line where the real part equals exactly 1/2 — the 'critical line.' If true, it gives the sharpest possible mathematical description of how primes are spread out among the integers. It is considered the most important unsolved problem in all of mathematics.",
+progress:"Verified for all zeros up to imaginary part T ≈ 3×10¹²  (over 10 trillion zeros checked, all on the critical line). Hardy (1914) proved infinitely many zeros lie on Re(s)=1/2. Selberg (1942) proved a positive proportion do. Levinson (1974): at least 1/3 of zeros are on the line. Conrey (1989): at least 2/5. Current estimate: ≥ 41.05% verified by formal proofs. The deep surprise: the statistical spacing between zeros matches the eigenvalue distribution of random Hermitian matrices (GUE — Gaussian Unitary Ensemble), discovered by Montgomery and Odlyzko. This unexpected bridge to quantum chaos suggests the zeros are the 'spectrum' of some unknown quantum system.",
+why:"Directly controls the error in the Prime Number Theorem. If RH is true: |π(x) − li(x)| &lt; (√x · ln x)/8π — the tightest possible bound. Connected to quantum chaos, random matrix theory, and the distribution of L-function zeros across all of mathematics.",
+how:"Step 1: Read Derbyshire's Prime Obsession (popular, no prerequisites). Step 2: Study complex analysis — Conway's Functions of One Complex Variable. Step 3: Read Edwards's Riemann's Zeta Function (technical but readable). Step 4: Study Davenport's Multiplicative Number Theory. Step 5: Understand the explicit formula π(x) = li(x) − Σρ li(x^ρ) − ... where the sum is over zeros ρ. Step 6: Study Montgomery's pair correlation conjecture and the GUE link. The most active research directions: (a) prove that zeros lie on the critical line using functional equations and symmetry; (b) prove zero-free regions; (c) study analogues in function fields where RH is proved (Weil 1948).",
+resources:"Derbyshire 'Prime Obsession' → Edwards 'Riemann's Zeta Function' → Davenport 'Multiplicative Number Theory' → Iwaniec & Kowalski 'Analytic Number Theory'"},
+
+{t:"P vs NP",cat:"Computational Complexity",field:"Computational Complexity",prize:"$1M — Millennium Prize",
+q:"Is P = NP? In other words, is every problem whose solution can be quickly verified also quickly solvable?",
+simple:"Suppose you can check whether a given Sudoku solution is correct in a few seconds — but solving a blank Sudoku from scratch takes you much longer. The P vs NP question asks: is there always an efficient algorithm to FIND a solution whenever one exists and can be VERIFIED efficiently? Computer scientists almost universally believe NO — there are problems (like cracking encryption, finding optimal routes, or solving protein folding) that are fundamentally harder to solve than to check. But nobody has proved this. A proof that P≠NP would explain why creativity and discovery are hard. A proof that P=NP would instantly break all modern cryptography and transform every field of optimization — and would be the most consequential theorem in human history.",
+progress:"1971: Cook proved SAT (can a Boolean formula be satisfied?) is NP-complete — every NP problem reduces to it. 1972: Karp found 21 natural NP-complete problems. 1975: Ladner's theorem — if P≠NP, there exist problems in NP that are neither in P nor NP-complete. 1994: Razborov-Rudich 'Natural Proofs' barrier: most combinatorial techniques provably cannot separate P from NP. 2009: Aaronson-Wigderson 'Algebrization' barrier rules out algebraic relativization. 2010: Deolalikar's attempted proof generated global attention before being refuted. Current frontier: Geometric Complexity Theory (GCT) by Mulmuley proposes using algebraic geometry and representation theory. Best proven lower bound for explicit functions: Ω(n log n) for certain circuit models — far from superpolynomial.",
+why:"If P=NP: modern cryptography collapses instantly. If P≠NP: explains why mathematical creativity is irreplaceable — finding solutions is genuinely harder than checking them. The central question about the nature of computation itself.",
+how:"Step 1: Read Sipser's Introduction to the Theory of Computation (undergraduate level, essential). Step 2: Study Arora & Barak's Computational Complexity — the definitive graduate text. Step 3: Understand circuit complexity: AC⁰, NC¹, TC⁰, and P/poly. Step 4: Read Razborov-Rudich's Natural Proofs paper (1994). Step 5: Study the algebrization barrier (Aaronson-Wigderson 2009). Step 6: Explore GCT through Mulmuley's survey papers. The most promising directions: (a) prove super-polynomial lower bounds for explicit Boolean functions in restricted circuit classes; (b) the 'Complexity Zoo' of intermediate classes (BPP, AM, PH) — separating them could yield partial progress.",
+resources:"Sipser → Arora & Barak → Aaronson 'Shtetl-Optimized' blog → Wigderson 'Mathematics and Computation' (free PDF)"},
+
+{t:"Goldbach's Conjecture",cat:"Number Theory",field:"Additive Number Theory",prize:"No prize (£1M offered 2000–2002, expired)",
+q:"Every even integer greater than 2 is the sum of two prime numbers. E.g. 4=2+2, 100=3+97, 1000=3+997.",
+simple:"Pick any even number bigger than 2 and try to write it as two primes added together: 4=2+2, 6=3+3, 8=3+5, 10=3+7, 12=5+7, 100=3+97... It always works. Goldbach wrote this to Euler in 1742, who replied: 'this is a theorem which I regard as completely certain, though I cannot prove it.' Checked by computer up to 4×10¹⁸ (4 quintillion). Zero exceptions found. Yet despite over 280 years of effort by the greatest mathematicians in history, nobody knows why it's true.",
+progress:"1920: Brun proved the sum of reciprocals of twin primes converges — first serious sieve theory result. 1937: Vinogradov proved every sufficiently large ODD integer is the sum of 3 primes (Waring-Goldbach). 1966: Chen Jingrun proved every large even integer N = p + q where p is prime and q is prime or semiprime (p₁p₂) — 'one step short.' 2013: Helfgott gave an unconditional proof of the odd (ternary) Goldbach conjecture for ALL odd numbers ≥ 7. The count of Goldbach representations of 2n is approximately: 2C₂ × (2n)/(ln 2n)² × ∏<sub>p|n, p&gt;2</sub> (p-1)/(p-2), where C₂ ≈ 0.6601... is the twin prime constant.",
+why:"A proof would represent mastery of additive prime problems — the last frontier of elementary number theory. Chen's theorem (N=p+semiprime) is the current limit of sieve theory's power.",
+how:"Step 1: Study Hardy & Wright, An Introduction to the Theory of Numbers (Ch. 19 on Waring's Problem and additive theory). Step 2: Learn Vaughan's The Hardy-Littlewood Method — the circle method is the primary analytic tool. Step 3: Study Chen's original proof (1973) — a tour de force of large sieve methods. Step 4: Study sieve theory: Friedlander & Iwaniec 'Opera de Cribro.' The main barrier: sieve theory has a 'parity problem' — standard sieves cannot distinguish between numbers with an odd vs even number of prime factors. Any proof of Goldbach must circumvent this fundamental obstruction.",
+resources:"Hardy & Wright Ch.19 → Vaughan 'The Hardy-Littlewood Method' → Friedlander & Iwaniec 'Opera de Cribro'"},
+
+{t:"Twin Prime Conjecture",cat:"Number Theory",field:"Number Theory",prize:"No formal prize",
+q:"There are infinitely many pairs of primes (p, p+2), e.g. (11,13), (17,19), (41,43), (101,103), (1,000,000,007 and 1,000,000,009)...",
+simple:"Twin primes are prime pairs separated by only 2: (3,5), (5,7), (11,13), (17,19), (41,43), (101,103)... The question is simply: do they go on forever? As numbers get larger, primes become rarer, but twin primes still keep appearing — they just get more spread out. The largest known twin prime pair has 388,342 digits. Nobody has proved these pairs continue forever, and nobody has found the last pair. It feels obvious that they should continue, but 'it feels obvious' is not mathematics.",
+progress:"1919: Brun proved Σ (1/p + 1/(p+2)) converges — a counterintuitive analytic result. 2013: Yitang Zhang (a then-unknown lecturer) proved infinitely many prime pairs with gap ≤ 70,000,000 — the first bounded gap theorem. This triggered an explosion: within months, Maynard and Tao independently reduced the gap to ≤ 600. The collaborative Polymath8b project brought it to gap ≤ 246 using an improved sieve. GPY sieve (2005): showed that 'lim inf (pₙ₊₁ − pₙ)/log pₙ = 0' — gaps are infinitely often much smaller than average. Under Elliott-Halberstam conjecture: gap ≤ 6 (tantalizingly close to 2).",
+why:"The simplest assertion about how primes can cluster. Its proof would require genuinely new understanding of prime distribution that would unlock many related results.",
+how:"Step 1: Study Crandall & Pomerance 'Prime Numbers' for computational and analytic background. Step 2: Read Maynard's 2013 paper 'Small gaps between primes' (arXiv:1311.4600) — surprisingly readable. Step 3: Study Goldston-Pintz-Yildirim (GPY) sieve method — the foundation of Zhang's breakthrough. Step 4: Read the Polymath8b project papers. Step 5: Study the Elliott-Halberstam conjecture — conditional on it, gaps ≤ 6 are provable. The current barrier: sieve weights cannot be chosen to force gaps of exactly 2 without additional arithmetic input.",
+resources:"Crandall & Pomerance 'Prime Numbers' → Maynard 2013 arXiv:1311.4600 → Montgomery & Vaughan 'Multiplicative NT'"},
+
+{t:"Collatz Conjecture (3x+1 Problem)",field:"Dynamical Systems / NT",prize:"$1M — Erdős",
+q:"Take any positive integer n. If even, replace by n/2. If odd, replace by 3n+1. Repeat. The conjecture: every sequence eventually reaches 1.",
+simple:"Start with any positive integer. If it's even, halve it. If it's odd, triple it and add 1. Keep going. Try starting with 5: 5 → 16 → 8 → 4 → 2 → 1. Done in 5 steps. Try 27: it takes 111 steps and reaches a peak of 9,232 before crashing down to 1. Every single starting number ever tested eventually reaches 1. Checked for all starting numbers up to about 295 quintillion (2⁶⁸). But nobody can prove it always works. Erdős said 'Mathematics is not yet ready for such problems.' It might be one of those statements that is true but forever unprovable.",
+progress:"Verified computationally for all n ≤ 2⁶⁸ ≈ 295 quintillion (by Oliveira e Silva, 2020). 2019: Terence Tao proved that for any ε > 0, 'almost all' positive integers (in a logarithmic density sense) eventually reach a value below nᵉ — the first nontrivial partial result. Folklore result: the only cycles possible for natural numbers (if any exist besides {1,2}) have length > 10¹⁷⁴ steps. The problem has deep connections to p-adic dynamics and ergodic theory, but no algebraic structure has been found that makes it tractable.",
+why:"Deceptively simple — even a child understands the rule. But it reveals how totally unpredictable deterministic dynamical systems can be. A proof would require understanding a new type of combinatorial chaos.",
+how:"Step 1: Read Lagarias's survey 'The 3x+1 Problem and Its Generalizations' (free online, definitive). Step 2: Study Tao's 2019 paper (arXiv:1909.03562) for the current state of the art. Step 3: Explore p-adic dynamics — the map x↦(3x+1)/2 has nice properties in the 2-adic integers. Step 4: Study ergodic theory — Tao's approach uses measure theory. The fundamental barrier: no algebraic or analytic structure is known that would allow induction or descent arguments. Any proof likely requires a completely new mathematical idea.",
+resources:"Lagarias (ed.) 'The Ultimate Challenge: The 3x+1 Problem' → Tao 2019 arXiv:1909.03562"},
+
+{t:"Birch & Swinnerton-Dyer Conjecture",cat:"Arithmetic Geometry",field:"Arithmetic Geometry",prize:"$1M — Millennium Prize",
+q:"For an elliptic curve E over ℚ, the rank of E(ℚ) equals ord<sub>s=1</sub> L(E,s) — the order of vanishing of its L-function at s=1.",
+simple:"An elliptic curve is a curve defined by an equation like y² = x³ − x + 1. The rational solutions to this — points (x,y) where both x and y are fractions — form a group. How many 'independent' rational solutions are there? This count (the rank) can be 0 (finitely many solutions) or 1, 2, 3... (infinitely many in structured families). The BSD conjecture says you can determine the rank by studying a completely different object — the L-function, an analytic function built from how many solutions exist modulo each prime. If the L-function equals zero at a special point s=1, there are infinitely many rational solutions. This connects discrete (rational points) to continuous (complex analysis) in an almost miraculous way.",
+progress:"1977: Coates-Wiles proved the conjecture for CM elliptic curves with rank 0. 1983: Gross-Zagier formula: relates L'(E,1) to the height of a special Heegner point. 1990: Kolyvagin: if L(E,1) ≠ 0 then E(ℚ) is finite (rank 0). Combined: BSD is true when L(E,1) ≠ 0 (rank 0). 2010s: Skinner-Urban proved BSD for a positive proportion of elliptic curves. 2014-15: Bhargava-Skinner-Zhang: ≥ 66.48% of elliptic curves (ordered by height) satisfy BSD.",
+why:"A proof would give an algorithm to find all rational solutions to any elliptic curve. Elliptic curves are central to modern cryptography (ECC) and number theory (Wiles's proof of Fermat's Last Theorem used elliptic curves).",
+how:"Prerequisites: algebraic number theory, complex analysis, algebraic geometry. Step 1: Silverman 'The Arithmetic of Elliptic Curves' — the essential text. Step 2: Silverman 'Advanced Topics in the Arithmetic of Elliptic Curves.' Step 3: Study modular forms (Wiles's proof). Step 4: Read the Gross-Zagier theorem. Step 5: Study Iwasawa theory — the main algebraic tool.",
+resources:"Silverman 'Arithmetic of Elliptic Curves' → Wiles 1995 Annals paper → Skinner-Urban 2014"},
+
+{t:"Hodge Conjecture",cat:"Algebra",field:"Algebraic Geometry",cat:"Algebra",prize:"$1M — Millennium Prize",
+q:"On a smooth complex projective algebraic variety X, every rational (p,p)-Hodge class is a rational linear combination of classes of algebraic cycles.",
+simple:"A smooth algebraic variety is a surface (or higher-dimensional shape) defined by polynomial equations in complex projective space — the most natural geometric objects in algebra. There are many ways to 'measure' these shapes, producing classes in cohomology (a way of encoding topological information). Some of these classes are 'geometric' — they come from actual algebraic subvarieties (subshapes defined by further polynomial equations). The Hodge Conjecture asks: which cohomology classes of type (p,p) — a specific algebraic type — are always geometric? It says ALL of them are. This would be a profound bridge between the algebraic (polynomial equations) and the topological (abstract shape invariants).",
+progress:"The (1,1) case is Lefschetz's theorem on (1,1) classes (1924) — proved. The (2,2) case for fourfolds: some cases known, others open. Grothendieck's generalization (1969) conjectured a version for motives. The conjecture is known for abelian varieties in special cases (Poincaré, Weil). Counterexamples to a naive integral version were found (Atiyah-Hirzebruch 1961), making the rational version the correct formulation. Voisin proved the integral Hodge conjecture fails even rationally in some contexts.",
+why:"A proof would be a monumental unification of algebra, geometry, and topology. It would confirm that purely algebraic tools are sufficient to detect all topological structure of algebraic varieties.",
+how:"Prerequisites: complex manifolds, de Rham cohomology, sheaf theory. Step 1: Huybrechts 'Complex Geometry.' Step 2: Voisin 'Hodge Theory and Complex Algebraic Geometry' Vol. I & II — the definitive modern treatment. Step 3: Griffiths & Harris 'Principles of Algebraic Geometry.' Step 4: Study Grothendieck's standard conjectures and their status.",
+resources:"Huybrechts 'Complex Geometry' → Voisin Vol I & II → Griffiths & Harris 'Principles of AG'"},
+
+{t:"Navier-Stokes Existence & Smoothness",cat:"Analysis",field:"PDEs / Fluid Mechanics",prize:"$1M — Millennium Prize",
+q:"In 3D, do smooth initial-data solutions to the Navier-Stokes equations ∂u/∂t + (u·∇)u = −∇p + νΔu, ∇·u=0 exist globally and remain smooth, or can they blow up in finite time?",
+simple:"The Navier-Stokes equations describe how fluids flow — water, air, blood, ocean currents, everything. They are the fundamental equations of fluid mechanics, used in weather forecasting, aircraft design, and medicine. In 2D, solutions always stay smooth and well-behaved. But in 3D — the real world — we don't know. Could a perfectly smooth, physically reasonable initial state (still air suddenly set in motion) evolve into a singularity in finite time — a point where velocity becomes infinite? This would mean the equations 'break down.' If smooth global solutions always exist, numerical simulations are reliable. If singularities can form, they represent a fundamental gap in our understanding of nature.",
+progress:"2D: Global smooth solutions always exist — proved (Ladyzhenskaya 1969). 3D: Leray (1934) proved weak solutions exist globally but they may not be smooth. 3D local smooth solutions: exist for short times (any smooth initial data). 3D conditional: Ladyzhenskaya-Prodi-Serrin conditions give sufficient conditions for regularity. 2016: Tao showed a modified version of Navier-Stokes (with averaged nonlinearity) can blow up in finite time — suggesting real Navier-Stokes might too. 2D with forcing: Smooth for all time. The energy is E(t) ≤ E(0) — energy does not increase. But the enstrophy (vorticity squared) can grow, which is what allows 3D blow-up.",
+why:"Fundamental to all of fluid dynamics. Turbulence — one of the great unsolved problems in physics — is directly connected to this question. A solution would transform computational fluid dynamics.",
+how:"Step 1: Evans 'Partial Differential Equations' — the essential graduate PDE text. Step 2: Majda & Bertozzi 'Vorticity and Incompressible Flow.' Step 3: Temam 'Navier-Stokes Equations.' Step 4: Tao's 2016 paper (arXiv:1402.0290). Step 5: Study Caffarelli-Kohn-Nirenberg partial regularity theorem (1982) — the best known regularity result.",
+resources:"Evans 'PDEs' → Majda & Bertozzi → Tao 2016 arXiv:1402.0290"},
+
+{t:"Yang-Mills Existence & Mass Gap",cat:"Mathematical Physics",field:"Mathematical Physics",prize:"$1M — Millennium Prize",
+q:"For any compact simple Lie group G, prove that quantum Yang-Mills theory on ℝ⁴ exists as a well-defined quantum field theory with a positive mass gap Δ > 0.",
+simple:"The Yang-Mills equations describe the fundamental forces of nature (the strong and weak nuclear forces) and are central to the Standard Model of particle physics. In the 1950s, Yang and Mills wrote down beautiful equations — mathematically similar to Maxwell's equations for electromagnetism, but more complex. Physicists use these equations with extraordinary success — they predict experimental results to 12 decimal places. But there is no rigorous mathematical proof that the quantum version of these equations actually EXISTS as a well-defined mathematical object. More strikingly: there should be a 'mass gap' — a minimum energy for any particle described by these equations — which explains why nuclear forces are short-range while gravity is long-range. Proving this rigorously is an unsolved mathematical problem of fundamental importance.",
+progress:"Classical Yang-Mills equations: well understood (Uhlenbeck 1982 proved gauge compactness; Donaldson 1983 used instantons to prove remarkable results about 4-manifolds). Quantum Yang-Mills in 2D: constructed rigorously. Quantum YM in 3D: Balaban (1980s) made major progress. 4D: No rigorous construction exists. The difficulty: renormalization in 4D is subtle, and proving the mass gap requires controlling infrared behavior of the quantum field. The problem sits at the intersection of quantum field theory, differential geometry, and functional analysis.",
+why:"Resolving this would be a foundational achievement for mathematical physics. It would also likely resolve questions about color confinement — why quarks are never seen free.",
+how:"Prerequisites: functional analysis, gauge theory, quantum field theory, Lie groups. Step 1: Naber 'Topology, Geometry and Gauge Fields' — accessible introduction to the geometry. Step 2: Freed & Uhlenbeck 'Geometry and Physics.' Step 3: Glimm & Jaffe 'Quantum Physics' — constructive quantum field theory. Step 4: Study Balaban's work on lattice gauge theory.",
+resources:"Naber 'Topology, Geometry and Gauge Fields' → Freed & Uhlenbeck → Jaffe & Witten Millennium Prize description"},
+
+{t:"ABC Conjecture",field:"Number Theory",prize:"No formal prize",
+q:"For coprime positive integers a+b=c, for every ε>0: c &lt; C(ε)·rad(abc)<sup>1+ε</sup> with at most finitely many exceptions. Here rad(n) = product of distinct prime factors of n.",
+simple:"If a + b = c (three numbers that add up), the ABC conjecture says something surprising about their prime factorizations. The 'radical' of a number — rad(n) — is the product of its distinct prime factors: rad(12) = rad(2²×3) = 2×3 = 6. The conjecture says that whenever a+b=c (with no common factors), the radical of a×b×c is almost always much larger than c itself. It's surprising because a and b can be built from repeated prime factors (like 2^100) making a×b×c 'smooth,' yet their sum c should not be smooth. Shinichi Mochizuki published a 500-page claimed proof in 2012 using 'Inter-Universal Teichmüller Theory,' but it remains disputed by leading experts.",
+progress:"Mochizuki (2012): 4-paper series totaling ~500 pages, claiming a proof via IUT (Inter-Universal Teichmüller Theory). 2018: Scholze-Stix identified what they called a critical gap in the proof; Mochizuki disputes this. As of 2024: The mathematical community remains divided. No independent verification accepted by experts outside Mochizuki's group. Consequences if true: Fermat's Last Theorem (elementary proof), Roth's theorem, Mordell conjecture (Faltings), and dozens of other results would follow as corollaries. Known: c = O(rad(abc)^2) (trivial bound). Best unconditional bound: c &lt; exp(rad(abc)<sup>1/3+ε</sup>).",
+why:"Would be one of the most powerful theorems in all of number theory — implying Fermat's Last Theorem, Roth's theorem, and much more as immediate corollaries.",
+how:"Step 1: Read Granville & Tucker 'It's as Easy as abc' (free survey, excellent introduction). Step 2: Study Baker's theorem on linear forms in logarithms — the primary classical tool. Step 3: Study Vojta's conjectures — the ABC conjecture fits into a grand framework of arithmetic geometry. Step 4: For Mochizuki's approach: Fesenko's survey papers are the most accessible entry.",
+resources:"Granville & Tucker survey → Baker 'Logarithmic Forms' → Mochizuki's RIMS preprints (with awareness of ongoing controversy)"},
+
+{t:"Odd Perfect Numbers",field:"Elementary Number Theory",prize:"No prize",
+q:"Does there exist an odd perfect number — a positive odd integer equal to the sum of its proper divisors?",
+simple:"A perfect number equals the sum of its divisors (excluding itself): 6 = 1+2+3, 28 = 1+2+4+7+14. The ancient Greeks noticed these and were fascinated. All 51 known perfect numbers are even. Euler proved every even perfect number has the form 2^(p-1)(2^p−1) where 2^p−1 is a Mersenne prime. But do ODD perfect numbers exist? Nobody knows. The question has been open since antiquity. If one exists, it must be astronomically large — mathematicians have proved it must exceed 10<sup>1500</sup>, have at least 9 distinct prime factors, and satisfy dozens of other constraints. Yet no contradiction has ever been found.",
+progress:"Euler: proved even perfect numbers all have Mersenne prime form. All 51 known perfect numbers are even; largest has ~50 million digits. Lower bound: any odd perfect number N > 10<sup>1500</sup> (Ochem & Rao 2012). N must have ≥ 9 distinct prime factors (Nielsen 2015). N must have a prime factor > 10^8. If N = p^a × m² (where p is a special prime factor called the Euler prime), then p ≡ a ≡ 1 (mod 4). The prime power in the Euler factor satisfies p^a ≡ 1 (mod 4).",
+why:"One of the oldest unsolved problems in mathematics — over 2,000 years old. Its resolution would require profound new techniques in multiplicative number theory.",
+how:"Step 1: Study elementary number theory: Burton 'Elementary Number Theory.' Step 2: Read Voight's survey 'On the Nonexistence of Odd Perfect Numbers' (free online). Step 3: Study the divisor function σ(n) and multiplicative functions. Step 4: Learn modular arithmetic constraints: properties of σ(p^k)/p^k for prime powers. Active approach: add one more prime factor constraint at a time using the Euler prime analysis.",
+resources:"Dickson 'History of Number Theory' → Voight survey → Nielsen 2015 paper"},
+
+{t:"Hadwiger-Nelson Problem",field:"Combinatorics / Geometry",prize:"No prize",
+q:"What is χ(ℝ²), the chromatic number of the plane — the minimum number of colours needed to colour every point of the plane so that no two points at unit distance receive the same colour?",
+simple:"Colour every point in the flat infinite plane with some number of colours, following one rule: any two points exactly 1 unit apart must get different colours. What is the minimum number of colours you need? It has been known since 1950 that you need at least 4 colours and at most 7. For 68 years this remained stuck at 4 ≤ χ ≤ 7. Then in 2018, Aubrey de Grey — a biologist, not a professional mathematician — found a graph of 1,581 points that requires 5 colours, proving χ ≥ 5 using a computer search. The upper bound of 7 comes from a simple hexagonal tiling. Whether the answer is 5, 6, or 7 remains completely open.",
+progress:"1950: The [4,7] bound was established. Upper bound 7: achieved by a hexagonal lattice colouring with the right scale. Lower bound 4: a unit-distance graph (Moser spindle, 7 vertices) requires 4 colours. 2018: de Grey found a 1,581-vertex unit-distance graph requiring 5 colours — instantly verified by computers, raising the lower bound to 5. Immediately, the Polymath project reduced the smallest known 5-chromatic unit-distance graph to ~500 vertices.",
+why:"A beautiful, simply stated open problem accessible to anyone but requiring deep combinatorial and geometric insight. The answer matters for distributed computing, frequency assignment problems, and combinatorial geometry.",
+how:"Step 1: Study graph colouring — Diestel 'Graph Theory' (free online). Step 2: Read de Grey's 2018 paper (arXiv:1804.02385) — surprisingly accessible. Step 3: Study unit-distance graphs and their chromatic properties. Step 4: Explore fractional chromatic number — χ_f(ℝ²) is known to satisfy 3.5 ≤ χ_f ≤ 4.36.",
+resources:"Soifer 'The Mathematical Coloring Book' → de Grey 2018 arXiv:1804.02385 → Exoo-Ismailescu survey"},
+
+{t:"Kakeya Conjecture (n ≥ 4)",cat:"Analysis",field:"Harmonic Analysis",prize:"No prize",
+q:"Does every Kakeya set in ℝⁿ (a set containing a unit line segment in every direction) have Hausdorff dimension n?",
+simple:"A Kakeya set is a set in n-dimensional space that contains, for EVERY possible direction, a line segment of length 1 pointing in that direction. How small can such a set be? In 2D, Besicovitch (1919) proved Kakeya sets can have area ZERO — you can fit all directions in an arbitrarily small region. But they cannot have dimension less than 2 (still 'full dimension'). The Kakeya conjecture generalises this: a Kakeya set in ℝⁿ must have Hausdorff dimension exactly n (even though it can have Lebesgue measure zero). In 2024, Wang and Zahl proved this for n=3 — a landmark result. The case n ≥ 4 remains open.",
+progress:"1D: trivial. 2D: dim = 2, proved. 3D: Wang-Zahl 2024 — proved Hausdorff dimension = 3! Best previously known: dim ≥ 5/2 (Wolff 1995) and improved to dim ≥ 2.5+ε. 4D: dim ≥ 3 proved; conjectured dim = 4. General n: dim ≥ (2n+2)/3 (Wolff 1999). The 3D proof by Wang-Zahl used the 'polynomial method' combined with new geometric incidence estimates and multi-scale analysis.",
+why:"Deep connections to restriction estimates in harmonic analysis, local smoothing conjectures for wave equations, and the Fourier extension problem. Progress on Kakeya implies progress on key problems in PDE theory.",
+how:"Step 1: Stein 'Harmonic Analysis' — essential background. Step 2: Wolff's survey papers on Kakeya and restriction. Step 3: Study the polynomial method (Dvir 2009 solved the finite field Kakeya). Step 4: Wang-Zahl 2024 paper for the 3D proof — study their multilinear framework.",
+resources:"Stein 'Harmonic Analysis' → Wolff surveys → Dvir 2009 (finite field Kakeya) → Wang-Zahl 2024 arXiv:2402.05514"},
+
+{t:"Erdős–Straus Conjecture",cat:"Number Theory",field:"Number Theory",prize:"No prize",
+q:"For every integer n ≥ 2, the equation 4/n = 1/a + 1/b + 1/c has a solution in positive integers a, b, c.",
+simple:"Every fraction of the form 4/n — where n is any integer ≥ 2 — can be written as the sum of exactly three unit fractions (fractions with numerator 1). Examples: 4/5 = 1/2 + 1/4 + 1/20; 4/7 = 1/2 + 1/15 + 1/210; 4/13 = 1/4 + 1/18 + 1/468. This sounds easy — and it has been verified for all n ≤ 10<sup>14</sup> — but no proof exists. The problem is related to Egyptian fractions (the ancient Egyptians only wrote fractions as sums of distinct unit fractions).",
+progress:"Verified computationally for all n ≤ 10<sup>14</sup>. Analytic results: for almost all n, many representations exist. Known: if n ≡ 0 (mod 4), solution exists trivially (4/4k = 1/k). If n ≡ 1 (mod 4): harder case. Partial results for various residue classes. The hardest cases are when n is prime ≡ 1 (mod 4).",
+why:"Elementary to state, yet completely open. Illustrates how Egyptian fraction representations can be mysteriously constrained.",
+how:"Step 1: Study elementary number theory and modular arithmetic. Step 2: Work through cases: 4/n = 1/⌈n/4⌉ + something gives partial solutions. Step 3: Read Guy 'Unsolved Problems in Number Theory' (Section D11). Step 4: Study Schinzel & Sierpinski's elementary number theory for techniques.",
+resources:"Guy 'Unsolved Problems in Number Theory' → Schinzel & Sierpinski 'Elementary Theory of Numbers'"},
+
+{t:"Langlands Functoriality",cat:"Automorphic Forms / Number Theory",field:"Automorphic Forms / Number Theory",prize:"No prize",
+q:"For any 'functorial transfer' of L-groups φ: ᴸH → ᴸG predicted by the Langlands Program, does a corresponding transfer of automorphic representations exist?",
+simple:"The Langlands Program (proposed by Robert Langlands in 1967) is often called 'a grand unified theory of mathematics.' It claims a deep correspondence between two seemingly unrelated objects: (1) Galois representations — symmetries of solutions to polynomial equations; and (2) automorphic forms — special functions with enormous symmetry groups. Individual instances of this correspondence have been enormously powerful: Wiles proved Fermat's Last Theorem using a special case (modularity of elliptic curves). But the general 'functoriality' conjecture — saying all natural operations on one side correspond to operations on the other — remains mostly open. It is the central unsolved problem of the entire program.",
+progress:"GL(1): Class field theory — completely proved. GL(2): Wiles-Taylor (1995), Langlands-Tunnell (1981). Symmetric power lifts of GL(2): Sym² and Sym³ proved (Gelbart-Jacquet, Kim-Shahidi). Sym⁴ of GL(2): proved (Kim 2003). Sym⁵ of GL(2): open. Base change for GL(n): proved (Langlands, Arthur-Clozel). Geometric Langlands: fully proved by Gaitsgory et al. (2024) in the geometric setting. Functoriality in full: open and considered one of the deepest open problems in mathematics.",
+why:"Individual cases have already produced theorems of extraordinary depth (Fermat's Last Theorem, Sato-Tate conjecture, Serre's conjecture). Full functoriality would be a total unification of number theory.",
+how:"Step 1: Gelbart 'Automorphic Forms on Adele Groups' — the accessible entry. Step 2: Bump 'Automorphic Forms and Representations.' Step 3: Arthur 'An Introduction to the Trace Formula.' Step 4: Study concrete cases — the Ramanujan conjecture, Sato-Tate conjecture (now a theorem).",
+resources:"Gelbart → Bump 'Automorphic Forms' → Arthur 'Trace Formula' → Bernstein & Gelbart survey"},
+
+/* ════ 20 ADDITIONAL OPEN PROBLEMS ════ */
+{t:"Collatz Conjecture (3x+1 Problem)",field:"Dynamical Systems / Number Theory",prize:"$1M — Erdős",cat:"Number Theory",
+q:"For any positive integer n, the sequence n → n/2 (if n even) or n → 3n+1 (if n odd) always eventually reaches 1.",
+simple:"Take any positive integer. If it's even, halve it. If it's odd, multiply by 3 and add 1. Repeat. The Collatz conjecture says no matter what number you start with, you will always eventually reach 1. Checked for all numbers up to 2⁶⁸ (about 3×10²⁰). Zero exceptions. Yet no proof exists for why this happens.",
+progress:"Verified for all starting values up to 2⁶⁸ (Barina 2020). Terras (1976): almost all trajectories eventually decrease. Tao (2019): proved that for 'almost all' starting points, the sequence reaches a value smaller than any prescribed function f(n) → ∞. This is the strongest result to date but still far from full proof.",
+why:"Simple to state, yet involves the deep interaction of multiplication and addition in ways that resist all current analytical tools. Illustrates fundamental gaps in our understanding of iteration of arithmetic maps.",
+how:"Study basic number theory and binary representations. Read Lagarias's 'The 3x+1 Problem and its Generalizations.' Understand why standard tools fail (multiplicative and additive structure interact badly). Study 2-adic valuations and measure theory on ℤ₂.",
+resources:"Lagarias 'Ultimate Challenge' book (free survey arXiv:math/0309224) → Tao arXiv:1909.03562"},
+
+{t:"Abc Conjecture",field:"Number Theory",prize:"No formal prize",cat:"Number Theory",
+q:"For every ε > 0, there are only finitely many triples (a,b,c) of coprime positive integers with a+b=c and c > rad(abc)^{1+ε}, where rad(n) is the product of distinct prime factors of n.",
+simple:"If a+b=c and a,b,c share no common factor, the abc conjecture says c cannot be much larger than the product of the distinct prime factors of abc. The conjecture quantifies a deep tension between addition and multiplication of integers.",
+progress:"Claimed proof by Shinichi Mochizuki (2012) using Inter-Universal Teichmüller Theory (IUT). The mathematical community remains split: Scholze and Stix (2018) identified a flaw in a key lemma that Mochizuki disputes. As of 2024, no consensus that the proof is correct. The conjecture itself is widely believed true.",
+why:"Would imply Fermat's Last Theorem, Roth's theorem, the Mordell conjecture, and many other deep results as simple corollaries. A single theorem unifying multiplicative and additive number theory.",
+how:"Study multiplicative number theory (Hardy & Wright), then algebraic number theory (Neukirch). Read Goldfeld's accessible survey 'Modular forms, elliptic curves, and the abc-conjecture.' Then study Mochizuki's IUT cautiously.",
+resources:"Goldfeld survey → Bombieri & Gubler 'Heights in Diophantine Geometry' → Mochizuki IUT papers (RIMS Preprints 2012)"},
+
+{t:"Schanuel's Conjecture",field:"Transcendence Theory",prize:"No prize",cat:"Number Theory",
+q:"For any n complex numbers z₁,...,zₙ linearly independent over ℚ, the transcendence degree of ℚ(z₁,...,zₙ, e^{z₁},...,e^{zₙ}) over ℚ is at least n.",
+simple:"We know π and e are irrational and transcendental, but are they related? Is e+π transcendental? Is π^e? Schanuel's conjecture, if true, would settle all these questions and far more. It is the 'master conjecture' of transcendence theory.",
+progress:"Special cases proved: Lindemann-Weierstrass (1882); Baker's theorem (1966–69, Fields Medal). The full conjecture is completely open. Even very simple consequences (e.g. that e+π is transcendental) cannot be proved from current tools.",
+why:"Would give a complete description of all algebraic relations among exponentials of algebraic numbers. Implies Grothendieck's period conjecture in special cases.",
+how:"Study algebraic number theory, then Waldschmidt's 'Diophantine Approximation on Linear Algebraic Groups.' Study Baker's theorem on linear forms in logarithms carefully.",
+resources:"Waldschmidt 'Diophantine Approximation' → Baker 'Transcendental Number Theory'"},
+
+{t:"Inverse Galois Problem",field:"Algebra / Number Theory",prize:"No prize",cat:"Algebra",
+q:"Is every finite group the Galois group of some extension of ℚ?",
+simple:"Every polynomial equation has a symmetry group — called its Galois group — that describes how its solutions permute. The inverse Galois problem asks: given any finite group G, can you always find a polynomial over the rationals whose solutions have exactly G as their symmetry group?",
+progress:"Known for: all abelian groups (classical), all solvable groups in many cases, all sporadic groups except M23, all groups of Lie type over finite fields (via rigidity). Shafarevich (1954): every solvable group is a Galois group over ℚ. The Monster group and most sporadic groups are realised. M23 is the only Mathieu group not yet confirmed.",
+why:"A solution would complete our understanding of which symmetry structures arise from arithmetic. Connected to the Langlands program and étale cohomology.",
+how:"Study Galois theory (Dummit & Foote), then Serre's 'Topics in Galois Theory,' then Malle & Matzat 'Inverse Galois Theory.'",
+resources:"Serre 'Topics in Galois Theory' → Malle & Matzat 'Inverse Galois Theory' → Villa Salvador survey (free)"},
+
+{t:"Chromatic Number of the Plane (Hadwiger-Nelson Problem)",field:"Combinatorics / Geometry",prize:"No prize",cat:"Combinatorics",
+q:"What is the minimum number of colours needed to colour the plane ℝ² so that no two points at distance exactly 1 from each other have the same colour?",
+simple:"Colour every point in the plane with one of k colours, such that any two points exactly distance 1 apart have different colours. What is the minimum k? This is called χ(ℝ²). The answer lies between 4 and 7 — but we don't know which.",
+progress:"Lower bound 4 (Moser spindle): proved 1961. Upper bound 7: proved by construction (hexagonal tiling). De Grey (2018): found an explicit graph with 1581 vertices showing χ(ℝ²) ≥ 5. This was a major breakthrough after 60 years of no progress on lower bounds. Current bounds: 5 ≤ χ(ℝ²) ≤ 7.",
+why:"Connects combinatorics, geometry, and graph theory. The problem requires only knowing what 'distance' and 'colour' mean, yet has resisted solution for over 60 years.",
+how:"Study graph theory (Diestel), then distance graphs and unit-distance graphs. Read de Grey's 2018 paper (arXiv:1804.02385). Computational search for graph certificates may push the lower bound to 6.",
+resources:"de Grey arXiv:1804.02385 → Soifer 'The Mathematical Coloring Book'"},
+
+{t:"Erdős Distinct Distances Problem",field:"Combinatorics / Geometry",prize:"Solved 2010 (partial)",cat:"Combinatorics",
+q:"What is the minimum number of distinct distances determined by n points in the plane? Erdős conjectured Ω(n/√log n). [Guth-Katz (2010) proved Ω(n/log n) — very close but fully resolved.] The 3D version remains open.",
+simple:"Place n points in the plane. How many different distances must appear between pairs of points? Erdős conjectured about n/√log n. Guth and Katz (2010) essentially proved this. But the 3D version — n points in space — is wide open.",
+progress:"2D: Guth-Katz 2010 proves Ω(n/log n) — essentially optimal. Uses polynomial partitioning (a new technique from algebraic geometry). 3D: Best known lower bound is Ω(n^{77/141}) by Solymosi-Vu. Erdős's conjectured bound is Ω(n^{2/3}).",
+why:"The 2D solution introduced polynomial partitioning — a revolutionary technique now used across combinatorics and geometric incidence theory.",
+how:"Study Guth's book 'Polynomial Methods in Combinatorics' (free lecture notes at MIT OpenCourseWare). Then read the original Guth-Katz paper. The 3D problem requires both polynomial methods and additional geometric ideas.",
+resources:"Guth 'Polynomial Methods in Combinatorics' → Guth-Katz arXiv:1011.4105"},
+
+{t:"Smooth 4-Dimensional Poincaré Conjecture",field:"Topology",prize:"No formal prize",cat:"Topology",
+q:"Is every smooth homotopy 4-sphere diffeomorphic to the standard S⁴?",
+simple:"In all dimensions except 4, we know whether exotic smooth structures on spheres exist. The 3D Poincaré conjecture was proved by Perelman (2003). The topological 4D version was proved by Freedman (1982). But the smooth 4D version — whether every smooth homotopy 4-sphere is actually the standard smooth S⁴ — is completely open.",
+progress:"Topological 4D Poincaré: proved (Freedman 1982, Fields Medal). Smooth versions in dimensions ≠ 4: fully resolved. Dimension 4 smooth case: open. Attempts using Rasmussen's s-invariant, Floer homology, and handle calculus have all fallen short.",
+why:"The smooth 4-manifold world is genuinely exotic — infinitely many non-diffeomorphic smooth structures on ℝ⁴ exist (only dimension where this happens). Solving this would illuminate the deepest properties of 4-dimensional topology.",
+how:"Study algebraic topology (Hatcher, free), then Freedman's theorem, then Kirby calculus (Gompf-Stipsicz '4-Manifolds and Kirby Calculus'), then Gauge theory (Donaldson, Seiberg-Witten invariants).",
+resources:"Hatcher 'Algebraic Topology' (free) → Gompf-Stipsicz → Donaldson 'The Geometry of Four-Manifolds'"},
+
+{t:"Connes Embedding Conjecture (Refuted 2020)",field:"Operator Algebras",prize:"Historical — refuted by MIP*=RE theorem",cat:"Analysis",
+q:"[Solved 2020 — FALSE] Can every type II₁ von Neumann factor be embedded in the ultrapower of the hyperfinite II₁ factor?",
+simple:"Connes (1976) asked whether every type II₁ von Neumann algebra — an infinite-dimensional operator algebra — can be approximated by finite matrix algebras. For 44 years this seemed true. In 2020, Ji, Natarajan, Vidick, Wright, and Yuen proved it is FALSE, as a consequence of MIP*=RE — a startling result from quantum information theory showing the power of quantum interactive proofs equals all recursively enumerable languages.",
+progress:"REFUTED in 2020 (Ji-Natarajan-Vidick-Wright-Yuen). The proof uses quantum complexity theory: MIP* = RE implies that the Connes Embedding Conjecture is false. The quantum correlation set Cq is not closed, and there exist synchronous quantum correlations not approximable by finite-dimensional ones.",
+why:"One of the deepest results connecting operator algebras with quantum complexity theory. Shows that problems in pure mathematics can be resolved by unexpected routes through computer science.",
+how:"Study operator algebras (Blackadar 'Operator Algebras'), quantum information (Nielsen-Chuang), and read the original MIP*=RE paper (Ji et al. arXiv:2001.04383) for the stunning connection.",
+resources:"Ji et al. arXiv:2001.04383 → Pisier survey on non-commutative Lp spaces"},
+
+{t:"Regularity of Minimal Surfaces",field:"Geometric Analysis / PDEs",prize:"No prize",cat:"Analysis",
+q:"For n ≥ 8, do there exist stable minimal hypersurfaces in ℝⁿ with interior singularities?",
+simple:"A minimal surface is one with zero mean curvature — like a soap film spanning a wire frame. In dimensions ≤ 7, every stable minimal hypersurface is smooth (no singularities). In dimension 8, a singular minimal cone exists (Simons cone). The full classification of singular minimal hypersurfaces in all dimensions is an active research problem.",
+progress:"Simons (1968): stable minimal hypersurfaces in ℝⁿ for n ≤ 7 are smooth. Bombieri-De Giorgi-Giusti (1969): Simons cone is a stable minimal hypersurface in ℝ⁸ with a singularity at the origin. Almgren (1983): area-minimizing currents have singular sets of codimension ≥ 2. Many regularity questions in higher codimension remain open.",
+why:"Understanding singularities of minimal surfaces is central to geometric analysis, optimal shapes, and the Plateau problem in full generality.",
+how:"Study real analysis, Riemannian geometry (do Carmo), then geometric measure theory (Evans-Gariepy), then Colding-Minicozzi 'A Course in Minimal Surfaces.'",
+resources:"Colding-Minicozzi 'Minimal Surfaces' → Almgren's Big Regularity Paper → Simon 'Lectures on Geometric Measure Theory'"},
+
+{t:"Finiteness of Homotopy Groups of Spheres",field:"Algebraic Topology",prize:"No prize",cat:"Topology",
+q:"The stable homotopy groups πₙ₊ₖ(Sⁿ) — the stem πₖˢ — are finite for k > 0. Determine all stable stems.",
+simple:"Spheres — circles, balls, and their higher-dimensional analogues — can be wrapped around each other in increasingly complicated ways. The collection of all topological maps from one sphere to another forms groups called homotopy groups. The stable homotopy groups of spheres encode the most fundamental topological invariants — but despite a century of work, we can only compute finitely many and the pattern remains mysterious.",
+progress:"Computed systematically up to the 90-stem (Adams, Toda, Ravenel et al.). The chromatic perspective (via formal group laws and complex cobordism) organises the computation by 'height.' The telescope conjecture (on what the chromatic filtration sees) was recently refuted by Burklund-Hahn-Levy-Schlank (2023) — a major breakthrough. Motivic and C₂-equivariant methods (Hill-Hopkins-Ravenel) have produced new computations.",
+why:"The stable stems are the most fundamental invariants in algebraic topology. Computing them illuminates the structure of all manifolds.",
+how:"Study algebraic topology (Hatcher), then spectral sequences (McCleary's guide), then Ravenel's 'Complex Cobordism and Stable Homotopy Groups of Spheres' (free online).",
+resources:"Ravenel 'Complex Cobordism' (free) → Burklund et al. 2023 arXiv:2310.17891"},
+
+{t:"Existence of an Odd Perfect Number",field:"Elementary Number Theory",prize:"No prize",cat:"Number Theory",
+q:"Does there exist an odd perfect number? A perfect number equals the sum of its proper divisors: 6=1+2+3, 28=1+2+4+7+14.",
+simple:"A perfect number equals the sum of all its divisors except itself. 6=1+2+3, 28=1+2+4+7+14. All 51 known perfect numbers are even (following Euler's form 2^(p-1)(2^p-1) for prime 2^p-1). Are there any odd perfect numbers? This has been open since antiquity — over 2000 years.",
+progress:"Any odd perfect number must be > 10¹⁵⁰⁰ (Ochem-Rao 2012). Must have at least 9 distinct prime factors (Chein, Nielsen). Must not be divisible by any of the smallest 1400 primes simultaneously. Hundreds of conditions necessary — none sufficient to rule out existence.",
+why:"The oldest open problem in all of mathematics. Its difficulty, despite its elementary statement, reveals deep limits in our number-theoretic tools.",
+how:"Study elementary number theory (Hardy & Wright), then the theory of multiplicative functions. Read the Nielsen survey 'Odd Perfect Numbers.' The current approach is to impose and combine necessary conditions computationally.",
+resources:"Nielsen survey arXiv:math/0602485 → Guy 'Unsolved Problems in Number Theory' → Ochem-Rao 2012"},
+
+{t:"Zauner's Conjecture (SIC-POVMs)",field:"Quantum Information / Number Theory",prize:"No prize",cat:"Mathematical Physics",
+q:"In every dimension d ≥ 2, does there exist a set of d² equiangular lines in ℂᵈ? Equivalently, does a SIC-POVM exist in every dimension?",
+simple:"Can you arrange d² unit vectors in d-dimensional complex space so that every pair has the same magnitude of inner product? These are called SIC-POVMs (Symmetric Informationally Complete Positive Operator-Valued Measures) and are essential in quantum information theory for quantum state tomography. Conjectured to exist in all dimensions. Found explicitly in many, but a general proof is elusive.",
+progress:"Explicitly constructed in dimensions d = 1,...,53, 124, 143, 168, 195, 228, 259, 292, 323 and many more (Appleby et al., Scott-Grassl). Conjectured to always exist. Deep connection to Hilbert's 12th problem (generating class fields via special values of elliptic functions) discovered by Appleby, Bengtsson et al. 2022.",
+why:"Deep applications to quantum information theory, quantum cryptography, and quantum state tomography. Unexpected connections to number theory and modular forms.",
+how:"Study quantum information (Nielsen-Chuang), algebraic number theory, and read Appleby's surveys on SIC-POVMs. Computational searches in new dimensions are accessible with Python/Sage.",
+resources:"Appleby 'SIC-POVMs and the Extended Clifford Group' arXiv:quant-ph/0412001 → Scott-Grassl 2010"},
+
+{t:"Convergence of the QCD Coupling Constant",field:"Mathematical Physics",prize:"Related to Millennium Yang-Mills",cat:"Mathematical Physics",
+q:"Does the strong coupling constant αs(μ) of Quantum Chromodynamics (QCD) remain well-defined (renormalisable) at all energy scales, and does asymptotic freedom persist non-perturbatively?",
+simple:"The strong nuclear force that holds quarks inside protons is described by QCD. At high energies, the coupling becomes weak ('asymptotic freedom') — this was proved by Gross, Politzer, Wilczek (Nobel 2004). But at low energies, the coupling grows — this is called 'confinement' and explains why quarks are never seen alone. Proving confinement rigorously is one of the great open problems in mathematical physics, related to the Yang-Mills Millennium Prize.",
+progress:"Asymptotic freedom: proved rigorously (Gross-Wilczek-Politzer 1973). Non-perturbative confinement: no rigorous proof. Lattice QCD simulations strongly support confinement. Mathematical construction of Yang-Mills quantum field theory in 4D: open (the Millennium Prize problem).",
+why:"A rigorous proof of confinement would be one of the greatest achievements in mathematical physics. Would explain the structure of all hadronic matter.",
+how:"Study quantum field theory (Peskin-Schroeder), lattice gauge theory, and functional analysis. Related to Yang-Mills existence — the Millennium problem is a necessary first step.",
+resources:"Peskin-Schroeder 'Introduction to QFT' → Glimm-Jaffe 'Quantum Physics: A Functional Integral Point of View'"},
+
+{t:"Perfectoid Spaces — Completion of p-adic Langlands",field:"Arithmetic Geometry",prize:"No prize",cat:"Algebra",
+q:"Complete the p-adic local Langlands correspondence for GL_n(F) for n ≥ 3 and p-adic fields F.",
+simple:"Peter Scholze developed 'perfectoid spaces' (Fields Medal 2018) — a revolutionary new type of geometric object that bridges characteristic 0 (ordinary numbers) and characteristic p (clock arithmetic). This machinery has transformed arithmetic geometry. But the p-adic Langlands correspondence — the p-adic version of the grand unified theory connecting Galois symmetries to automorphic forms — is fully proved only for GL₂. For larger groups, the theory is incomplete.",
+progress:"p-adic Langlands for GL₂(ℚp): proved (Berger-Breuil, Colmez 2010). Geometrization via perfectoid spaces: Scholze's program. p-adic Langlands for GL_n for n ≥ 3: in progress, with major partial results. Fargues-Scholze (2021): proved a geometrized local Langlands conjecture — a landmark result enabling further progress.",
+why:"The p-adic Langlands program is central to modern number theory and the Fontaine-Mazur conjecture about Galois representations. Essential for understanding the arithmetic of elliptic curves and motives.",
+how:"Study algebraic number theory, p-adic analysis, then Fontaine theory and (phi,Gamma)-modules. Read Berger's introduction to p-adic Hodge theory. Scholze's Berkeley lectures (free on his website) are the best modern introduction.",
+resources:"Scholze Berkeley Lectures (free) → Fargues-Scholze arXiv:2102.13459 → Berger survey"},
+
+{t:"Existence of Mahler's Conjecture (Sliced Volumes)",field:"Convex Geometry",prize:"No prize",cat:"Geometry",
+q:"For any convex body K in ℝⁿ that is symmetric about the origin, does the Mahler volume vol(K)·vol(K°) ≥ 4ⁿ/n! hold, with equality for the hypercube and cross-polytope?",
+simple:"The Mahler volume of a convex symmetric body is the product of its volume times the volume of its polar dual. Mahler conjectured this product is always at least as large as the Mahler volume of the hypercube. This is a key question in convex geometry and relates to how 'round' a convex body can be.",
+progress:"Proved in dimension 2 (Mahler 1939, Reisner 1986). True for unconditional bodies (Reisner). Proved up to exponential factors (Bourgain-Milman 1987 — inverse Santaló). Kuperberg (2008): vol(K)·vol(K°) ≥ π^n/n! in the symmetric case. Full conjecture: open in ≥ 3 dimensions. Proved for zonotopes (Saint-Raymond, Rogers-Shephard).",
+why:"Central to the local theory of Banach spaces and the geometry of numbers. Related to the Busemann-Petty problem and the hyperplane conjecture.",
+how:"Study convex geometry (Gruber 'Convex and Discrete Geometry'), then Pisier's 'The Volume of Convex Bodies and Banach Space Geometry,' then Brazitikos et al. 'Geometry of Isotropic Convex Bodies.'",
+resources:"Kuperberg arXiv:math/0604184 → Brazitikos et al. 'Geometry of Isotropic Convex Bodies' → Bourgain-Milman 1987"},
+
+{t:"Kadison-Singer Problem — Solved!",field:"Operator Theory / Frame Theory",prize:"Solved 2015",cat:"Analysis",
+q:"[SOLVED 2015] Does every pure state on ℓ∞(ℤ) have a unique extension to a pure state of B(ℓ²(ℤ))? Equivalently, do all frames satisfying the Rao-Sun-Kadison conditions partition into Riesz bases?",
+simple:"The Kadison-Singer problem (1959) asked whether certain quantum observables could always be uniquely extended. It was proved equivalent to fundamental questions about signals and frames in applied mathematics. Marcus-Spielman-Srivastava (2015) proved it TRUE — and in doing so connected quantum mechanics, signal processing, graph theory, and random matrix theory in a stunning way.",
+progress:"PROVED 2015 by Marcus, Spielman, and Srivastava — Fields Medal awarded (Spielman). Proof uses the method of interlacing polynomials. Shows the deep unity of pure and applied mathematics: an abstract operator theory question resolved via polynomial methods originating from algorithm design.",
+why:"The proof established the 'paving conjecture' in Banach space theory and had immediate applications to signal processing, quantum information, and numerical analysis.",
+how:"Study functional analysis, then frames and Riesz bases. Read the original Marcus-Spielman-Srivastava paper (arXiv:1306.3969). Study the method of interlacing polynomials — used also in other breakthroughs.",
+resources:"Marcus-Spielman-Srivastava arXiv:1306.3969 → Casazza 'The Kadison-Singer Problem in Mathematics and Engineering'"},
+
+{t:"Sunflower Conjecture",field:"Combinatorics",prize:"No prize",cat:"Combinatorics",
+q:"Is there a constant C such that any family of more than C^k sets each of size k contains a sunflower — p sets whose pairwise intersections are all equal to a common 'core'?",
+simple:"A sunflower is a collection of sets where every pair shares exactly the same elements — the 'core.' The sunflower conjecture asks: if you have many sets of the same size k, must some p of them form a sunflower? Erdős and Ko conjectured the answer is yes with an exponential bound in k, not doubly exponential. Seemingly simple, yet completely open for 60+ years.",
+progress:"Erdős-Ko (1960): proved with bound (p-1)^k · k! — doubly exponential. Razborov (1992): used sunflowers to prove circuit lower bounds. Alweiss-Lovett-Wu-Zhang (2019): proved bound (log k)^{O(k)} — exponentially closer to the conjectured C^k. This was a breakthrough. The full conjecture (C^k bound) remains open.",
+why:"Sunflowers appear throughout combinatorics, complexity theory, and pseudorandomness. Progress on this problem has yielded improved circuit complexity lower bounds.",
+how:"Study combinatorics (van Lint & Wilson), then complexity theory. Read the Alweiss et al. 2019 paper. Study spread approximations and sunflower lemmas.",
+resources:"Alweiss-Lovett-Wu-Zhang arXiv:1908.08483 → Rao 2019 survey on sunflowers"},
+
+{t:"Existence of non-trivial zeros of Selberg Zeta Functions",field:"Spectral Theory / Analytic NT",prize:"No prize",cat:"Number Theory",
+q:"For hyperbolic Riemann surfaces, do the non-trivial zeros of the Selberg zeta function Z(s) on the line Re(s)=1/2 correspond exactly to eigenvalues of the Laplacian — and does the Selberg trace formula generalise to all non-compact Riemann surfaces with no exceptional eigenvalues?",
+simple:"The Selberg zeta function is defined for hyperbolic surfaces (negatively curved spaces) and behaves analogously to the Riemann zeta function. Its zeros encode lengths of closed geodesics (prime-like objects on the surface). Questions about exceptional eigenvalues of the Laplacian on arithmetic hyperbolic surfaces connect to the Ramanujan conjecture and the distribution of primes in arithmetic progressions.",
+progress:"Selberg (1956): the trace formula connects spectra of hyperbolic surfaces to prime geodesics. Selberg conjectured no exceptional eigenvalues (Selberg 1/4 conjecture). Best: λ₁ ≥ 975/4096 (Kim-Sarnak 2003). Full Selberg conjecture (λ₁ ≥ 1/4): open. Equivalent to Ramanujan conjecture for GL₂.",
+why:"Connects spectral geometry, analytic number theory, and the Langlands program. Progress on Selberg's conjecture is equivalent to the Ramanujan conjecture.",
+how:"Study hyperbolic geometry, spectral theory of automorphic forms (Iwaniec 'Spectral Methods'), then Selberg's original paper and Kim-Sarnak's 2003 appendix.",
+resources:"Iwaniec 'Spectral Methods in Automorphic Forms' → Kim-Sarnak 2003 Annals appendix → Borthwick 'Spectral Theory of Infinite-Area Hyperbolic Surfaces'"},
+
+{t:"Grothendieck Standard Conjectures",field:"Algebraic Geometry",prize:"No prize",cat:"Algebra",
+q:"For smooth projective varieties over a field k, do the cycle class map Cl: Z^r(X)⊗ℚ → H^{2r}(X,ℚ) satisfy: (C) Künneth projectors are algebraic? (B) The Lefschetz involution is algebraic? (I) The numerical and homological equivalence coincide?",
+simple:"Alexander Grothendieck proposed four conjectures about algebraic cycles on smooth projective varieties in 1968. These conjectures, if proved, would complete the theory of motives — a 'universal cohomology theory' that would unify all cohomological invariants of algebraic varieties. They are also necessary for a proof of the Weil conjectures via motivic cohomology (Deligne proved the Weil conjectures differently).",
+progress:"Proved in characteristic 0 for abelian varieties and special classes. Conj. C is open in general. Conj. B implies the existence of a motivic t-structure. Jannsen (1992): numerical equivalence equals homological equivalence over finite fields for all cohomology theories. The standard conjectures are related to the Hodge Conjecture — Conj. B follows from the Hodge Conjecture in characteristic 0.",
+why:"Would complete Grothendieck's motivic program and give a uniform theory of cohomology in all characteristics.",
+how:"Study algebraic geometry (Hartshorne, Vakil), then étale cohomology (Milne free notes), then Kleiman's original survey 'Algebraic Cycles and the Weil Conjectures.'",
+resources:"Kleiman survey in 'Dix Exposés' → Milne étale cohomology notes (free) → André 'Une introduction aux motifs'"},
+
+{t:"Geometric Measure Theory: Plateau Problem in Full Generality",field:"Geometric Analysis",prize:"No prize",cat:"Analysis",
+q:"For every compact boundary curve (or cycle) in Riemannian manifolds, does an area-minimising surface of integer multiplicity exist? And what is the regularity of such surfaces?",
+simple:"Given a closed wire in space, is there always a soap film — a minimal area surface — spanning it? Yes, and this was proved by Douglas and Radó (1931), winning Douglas the first Fields Medal. But for higher-dimensional 'soap films' spanning curves and surfaces in higher-dimensional spaces, the full existence and regularity theory is an ongoing research programme.",
+progress:"Existence: Federer-Fleming currents (1960) give weak solutions in full generality. Regularity in dimension 2: complete (Osserman, Alt-Caffarelli). Regularity in higher codimension: Almgren's 'Big Regularity Paper' (1983, 1700 pages) — proves area-minimising cycles are regular outside a set of codimension ≥ 2. Full higher-codimension regularity: partially open. Branched vs unbranched minimal immersions in codimension ≥ 2: active area.",
+why:"Central to geometric analysis and the calculus of variations. Techniques developed (geometric measure theory) have transformed adjacent fields.",
+how:"Study real analysis, Riemannian geometry, then Evans-Gariepy 'Measure Theory and Fine Properties of Functions,' then Simon 'Lectures on Geometric Measure Theory,' then Almgren's Big Regularity Paper.",
+resources:"Simon 'Lectures on Geometric Measure Theory' (free PDF) → De Lellis survey on Almgren's work → Colding-Minicozzi survey"}
+
+];
+
+let researchPDFs = {}; let openProblemPDFs = {}; let careerPDFs = {};
+
+function tog(bodyId, arrId) {
+  var b = document.getElementById(bodyId);
+  if (!b) return;
+  // Check inline style first; fall back to computed style
+  var hidden = b.style.display ? b.style.display === 'none' : window.getComputedStyle(b).display === 'none';
+  b.style.display = hidden ? 'block' : 'none';
+  var a = document.getElementById(arrId);
+  if (a) { a.style.transform = hidden ? 'rotate(180deg)' : 'rotate(0deg)'; a.style.transition = 'transform 0.25s'; }
+}
+
+function renderOpenProblems(){
+  const isAdm = isAdmin();
+  // Build categorized groups
+  const catDefs = [
+    {key:"Number Theory", label:"Number Theory", color:"#f59e0b"},
+    {key:"Algebra", label:"Algebra & Algebraic Geometry", color:"#a78bfa"},
+    {key:"Analysis", label:"Analysis & Geometric Analysis", color:"#34d399"},
+    {key:"Topology", label:"Topology & Geometry", color:"#60a5fa"},
+    {key:"Combinatorics", label:"Combinatorics & Discrete Math", color:"#fb923c"},
+    {key:"Mathematical Physics", label:"Mathematical Physics", color:"#f472b6"},
+    {key:"Computational Complexity", label:"Computational Complexity", color:"#e879f9"},
+    {key:"Automorphic Forms / Number Theory", label:"Automorphic Forms / Langlands", color:"#818cf8"},
+    {key:"Analytic Number Theory", label:"Analytic Number Theory", color:"#fbbf24"},
+    {key:"PDEs / Fluid Mechanics", label:"PDEs & Fluid Mechanics", color:"#38bdf8"},
+    {key:"Additive Number Theory", label:"Additive Number Theory", color:"#f9a8d4"},
+    {key:"Spectral Theory / Analytic NT", label:"Spectral Theory", color:"#86efac"},
+    {key:"Arithmetic Geometry", label:"Arithmetic Geometry", color:"#c4b5fd"},
+  ];
+
+  // Global numbering for all problems
+  let globalIdx = 0;
+  let catHTML = '';
+  // Ungrouped fallback
+  let ungrouped = openProblems.filter(p => !p.cat);
+
+  // Collect assigned problems per cat
+  const catMap = {};
+  openProblems.forEach((p,i) => {
+    const key = p.cat || p.field || 'Other';
+    if (!catMap[key]) catMap[key] = [];
+    catMap[key].push({p, origIdx: i});
+  });
+
+  // Render in category order
+  const seenCats = new Set();
+  const orderedCats = [];
+  openProblems.forEach(p => {
+    const key = p.cat || p.field || 'Other';
+    if (!seenCats.has(key)) { seenCats.add(key); orderedCats.push(key); }
+  });
+
+  orderedCats.forEach(catKey => {
+    const entries = catMap[catKey] || [];
+    const catDef = catDefs.find(c => c.key === catKey) || {label: catKey, color:'#94a3b8'};
+    catHTML += `<div class="op-cat-section">
+      <div class="op-cat-label" style="color:${catDef.color};border-color:${catDef.color}22">
+        ${catDef.label}
+      </div>`;
+    entries.forEach(({p, origIdx}) => {
+      globalIdx++;
+      const gnum = globalIdx;
+      catHTML += `
+      <div class="op-card reveal" id="opcard${origIdx}">
+        <div class="op-hdr" onclick="tog('op${origIdx}','opa${origIdx}')">
+          <div style="display:flex;align-items:flex-start;gap:0.5rem">
+            <span class="op-num-badge">#${gnum}</span>
+            <div>
+              <div class="op-title">${p.t}</div>
+              <div class="op-field">${p.field}</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.3rem">
+            ${p.prize&&p.prize.includes('$')?`<span class="op-prize">${p.prize}</span>`:""}
+            <span class="op-arr" id="opa${origIdx}">▼</span>
+          </div>
+        </div>
+        <div class="op-body" id="op${origIdx}" style="display:none">
+          <div class="op-lbl" style="color:#fde68a">🔍 In Plain English</div>
+          <div class="op-simple">${p.simple}</div>
+          <div class="op-lbl" style="color:#fca5a5">📐 The Formal Statement</div>
+          <div class="op-stmt">${p.q}</div>
+          <div class="op-lbl" style="color:#a7f3d0">📊 Current Mathematical Progress</div>
+          <div class="op-progress">${p.progress}</div>
+          <div class="op-lbl" style="color:#ef4444">💥 Why It Matters</div>
+          <div class="op-why">${p.why}</div>
+          <div class="op-lbl" style="color:#10b981;margin-top:0.55rem">🧭 How to Start Investigating</div>
+          <div class="op-how">${p.how}<br><br><strong>Key Resources:</strong> ${p.resources}</div>
+          ${(openProblemPDFs[origIdx]||[]).map(pdf=>`
+            <a class="pdf-resource-link" href="${pdf.url}" target="_blank" rel="noopener">📄 ${pdf.name}</a>`).join('')}
+          <div class="admin-bar${isAdm?' visible':''}">
+            <button class="admin-btn add-btn" onclick="adminUploadPDF('openprob',${origIdx})">📎 Add PDF Resource</button>
+          </div>
+        </div>
+      </div>`;
+    });
+    catHTML += '</div>';
+  });
+
+  document.getElementById("opprob-grid").innerHTML = catHTML;
+}
+
+
+function adminUploadPDF(section, itemIdx) {
+  if (!isAdmin()) return;
+  const existing = (
+    section === 'research' ? researchPDFs[itemIdx] :
+    section === 'openprob' ? openProblemPDFs[itemIdx] :
+    careerPDFs[itemIdx]
+  ) || [];
+
+  const existingHTML = existing.map((pdf, pi) =>
+    `<div class="admin-pdf-item">📄 <a href="${pdf.url}" target="_blank" rel="noopener">${escHtml(pdf.name)}</a>
+     <button class="remove-pdf" onclick="adminRemovePDF('${section}',${itemIdx},${pi})">✕ Remove</button></div>`
+  ).join('');
+
+  openAdminModal('📎 Add PDF Resource', `
+    ${existing.length ? `<div class="admin-field"><label>Existing PDFs</label><div class="admin-pdf-list">${existingHTML}</div></div>` : ''}
+    <div class="admin-field">
+      <label>PDF Display Name</label>
+      <input id="pdfName" placeholder="e.g. Wiles 1995 - Modular Elliptic Curves and Fermat's Last Theorem"></div>
+    <div class="admin-field">
+      <label>Upload PDF File</label>
+      <input type="file" id="pdfFile" accept=".pdf" style="color:#e2e8f0;padding:0.4rem 0"></div>
+    <div class="admin-field">
+      <label>OR Paste External URL</label>
+      <input id="pdfUrl" placeholder="https://arxiv.org/pdf/..."></div>
+    <p style="font-size:0.72rem;color:#7dd3fc;margin-top:0.3rem">PDFs are stored in Supabase Storage and visible to all users.</p>
+  `, async () => {
+    const sb = window.sb;
+    if (!sb) return;
+    const name = document.getElementById('pdfName').value.trim();
+    const file = document.getElementById('pdfFile').files[0];
+    const extUrl = document.getElementById('pdfUrl').value.trim();
+    if (!name) throw new Error('Display name is required.');
+    if (!file && !extUrl) throw new Error('Upload a file or provide a URL.');
+
+    let fileUrl = extUrl;
+    if (file && sb) {
+      const filePath = `${section}/${itemIdx}/${Date.now()}_${file.name.replace(/\s/g,'_')}`;
+      const { error: upErr } = await sb.storage.from('vault-files').upload(filePath, file, { upsert: true });
+      if (upErr) throw upErr;
+      const { data: urlData } = sb.storage.from('vault-files').getPublicUrl(filePath);
+      fileUrl = urlData.publicUrl;
+    } else if (file) {
+      // Fallback: use object URL (temporary)
+      fileUrl = URL.createObjectURL(file);
+    }
+
+    const record = { section, item_index: itemIdx, file_name: name, file_url: fileUrl, uploaded_by: window.currentUser.email };
+    if (sb) {
+      const { error } = await sb.from('math_pdf_resources').insert([record]);
+      if (error) throw error;
+    }
+    await loadAdminData();
+  });
+}
+
+
+async function adminRemovePDF(section, itemIdx, pdfIdx) {
+  if (!isAdmin()) return;
+  const sb = window.sb;
+  const arr = section === 'research' ? researchPDFs[itemIdx] :
+              section === 'openprob' ? openProblemPDFs[itemIdx] :
+              careerPDFs[itemIdx];
+  if (!arr || !arr[pdfIdx]) return;
+  const pdf = arr[pdfIdx];
+  if (!confirm('Remove PDF "' + pdf.name + '"?')) return;
+  if (sb && pdf.id) {
+    const { error } = await sb.from('math_pdf_resources').delete().eq('id', pdf.id);
+    if (error) { alert('Remove failed: ' + error.message); return; }
+  }
+  await loadAdminData();
+  // Re-open modal to reflect changes
+  adminUploadPDF(section, itemIdx);
+}
+
+
+async function loadAdminData() {
+  const sb = window.sb;
+  if (!sb || !isAdmin()) return;
+  try {
+    const { data: pdfs } = await sb.from('math_pdf_resources').select('*').order('created_at', { ascending: true });
+    openProblemPDFs = {};
+    (pdfs || []).forEach(r => {
+      if (r.section === 'openprob') {
+        const idx = r.item_index;
+        if (!openProblemPDFs[idx]) openProblemPDFs[idx] = [];
+        openProblemPDFs[idx].push({ id: r.id, name: r.file_name, url: r.file_url });
+      }
+    });
+  } catch(e) { console.warn('loadAdminData error:', e); }
+  renderOpenProblems();
+  reRevealActivePage();
+}
+
+function buildSearchIndex(){
+  PAGE_SEARCH_INDEX = [];
+  openProblems.forEach(function(p,i){
+    PAGE_SEARCH_INDEX.push({icon:'❓',title:p.t,meta:(p.field||'')+(p.prize?' · '+p.prize:''),section:'Open Problems',elId:'opcard'+i,q:(p.t+' '+(p.simple||'')+' '+(p.why||'')).toLowerCase()});
+  });
+}
+
+renderOpenProblems();
+
+
+document.querySelectorAll('.reveal').forEach(function(el, i) {
+  setTimeout(function() { el.classList.add('visible'); }, Math.min(i * 35, 900));
+});
+</script>
+
+<!-- ═══ SUPABASE + SHARED AUTH/COMMENTS BRIDGE ═══════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+</body>
+</html>

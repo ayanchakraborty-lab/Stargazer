@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Chess Deep Dive: Games, Openings & Records | Stargazer</title>
+
+<!-- SEO META -->
+<meta name="description" content="Three annotated immortal games, essential opening theory, the Elo rating system, and chess's greatest records. Go deeper.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Stargazer: Lost in the Cosmos">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/chess/deepdive.html">
+
+<!-- OPEN GRAPH -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chess Deep Dive: Games, Openings & Records | Stargazer">
+<meta property="og:description" content="Three annotated immortal games, essential opening theory, the Elo rating system, and chess's greatest records. Go deeper.">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/chess/deepdive.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/chess.png">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/chess.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="https://stargazer-9m9.pages.dev/about.html">
+
+<!-- TWITTER / X CARD -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chess Deep Dive: Games, Openings & Records | Stargazer">
+<meta name="twitter:description" content="Three annotated immortal games, essential opening theory, the Elo rating system, and chess's greatest records. Go deeper.">
+
+<!-- STRUCTURED DATA -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "Chess Deep Dive",
+  "headline": "Famous Games, Opening Theory & Chess Records",
+  "description": "Three annotated immortal games, essential opening theory, the Elo rating system, and chess's greatest records. Go deeper.",
+  "url": "https://stargazer-9m9.pages.dev/chess/deepdive.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Chess Theory" },
+  "publisher": { "@type": "Organization", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev" }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="chess.css">
+</head>
+<body>
+<div id="read-progress"></div>
+<button id="backToTop" title="Back to top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button id="pageDown" title="Page down" aria-label="Page down" onclick="window.scrollBy({top:window.innerHeight*0.85,behavior:'smooth'})">↓</button>
+
+
+<!-- HOME LINK (top-left, fixed) -->
+<a href="../index.html" id="homeLink" title="Back to Stargazer Universe">← home</a>
+
+<!-- AUTH HEADER (top-right, fixed) -->
+<div id="authHeader">
+  <button id="contentsBtn" aria-label="Toggle navigation" aria-expanded="false">
+    <div class="hb-icon" aria-hidden="true"><span></span><span></span><span></span></div>
+    ♟ contents
+  </button>
+  <a href="../login.html" id="loginBtn">⌖ sign in</a>
+  <div id="userInfo" style="display:none;">
+    <span id="userEmailDisplay"></span>
+    <button onclick="doSignOut()" id="signOutBtn">sign out</button>
+  </div>
+</div>
+
+<!-- DROPDOWN PANEL -->
+<div id="navDropdown" role="dialog" aria-label="Chess section navigation">
+  <div style="padding:0.45rem 0.75rem; border-bottom:1px solid rgba(212,175,55,0.1);">
+    <input id="navSearch" type="text" placeholder="Search this section…" oninput="filterNav(this.value)" autocomplete="off" style="width:100%; background:rgba(255,255,255,0.04); border:1px solid rgba(212,175,55,0.2); border-radius:4px; padding:0.3rem 0.55rem; color:var(--text-main); font-family:'Crimson Pro',serif; font-size:0.82rem; outline:none; transition:border-color 0.15s;" onfocus="this.style.borderColor='rgba(212,175,55,0.5)'" onblur="this.style.borderColor='rgba(212,175,55,0.2)'">
+  </div>
+  <div id="navMain" style="padding:0.4rem 0 0.6rem;">
+    <div class="nav-drop-section">
+      <div class="nav-drop-section-label">The Chess Chronicle</div>
+      <a href="home.html"><span class="nav-num">✦</span> Overview</a>
+      <a href="history.html"><span class="nav-num">♔</span> History — Parts I–XXIII</a>
+      <a href="puzzles.html"><span class="nav-num">⚔</span> 50 GM Puzzles</a>
+      <a href="deepdive.html" class="nav-current"><span class="nav-num">📜</span> Deep Dive — Games &amp; Theory</a>
+      <a href="more.html"><span class="nav-num">♛</span> Women, Prodigies &amp; Variants</a>
+      <a href="afterword.html"><span class="nav-num">♟</span> Afterword &amp; Glossary</a>
+    </div>
+  </div>
+  <div class="nav-meta-row">
+    <a href="../ABOUT.html" class="nav-meta-link"><span class="nav-meta-icon">✦</span> About Stargazer</a>
+    <a href="mailto:ayan.chakraborty6174@gmail.com" class="nav-meta-link"><span class="nav-meta-icon">✉</span> Contact</a>
+    <a href="comments.html" class="nav-meta-link"><span class="nav-meta-icon">♟</span> Leave a Thought</a>
+  </div>
+</div>
+<div id="navOverlay"></div>
+
+
+<div class="fade-in" style="max-width:var(--max-w); margin:5rem auto 0; padding:0 2rem;">
+  <a href="home.html" style="font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.2em; color:var(--text-dim); text-decoration:none; opacity:0.75;">← Back to Chess Overview</a>
+</div>
+
+<!-- ============================================================
+     DEEP DIVE: FAMOUS GAMES, OPENING THEORY, RECORDS
+     ============================================================ -->
+<section id="deepdive-games" style="background:linear-gradient(180deg,#0d0a20,#09071a);padding:var(--section-pad);border-top:1px solid var(--border-gold);">
+  <div class="section-inner">
+    <div class="part-banner fade-in" style="border-bottom:1px solid rgba(155,89,182,0.35);padding-bottom:2rem;margin-bottom:3rem;">
+      <span style="font-size:3rem;display:block;margin-bottom:1rem;opacity:0.7;">📜</span>
+      <span style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.6em;color:var(--amethyst-pale);text-transform:uppercase;display:block;margin-bottom:0.8rem;">Deep Dive</span>
+      <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.4rem,3.5vw,2.4rem);color:var(--chess-light);border:none;padding:0;margin:0 0 0.6rem;">Famous Games, <span style="color:var(--amethyst-pale);">Theory &amp; Records</span></h2>
+    </div>
+
+    <div class="fade-in">
+    <div class="player-card" style="--era-accent:#c41e3a;">
+      <h3>The Immortal Game — Annotated</h3>
+      <div class="player-dates">Adolf Anderssen vs. Lionel Kieseritzky · London 1851 · King's Gambit</div>
+      <p>The most celebrated attacking game of the 19th century. Anderssen sacrifices one knight, two rooks, and his queen to force checkmate with just two bishops and a knight. Named by Ernst Falkbeer, who published it in La Régence as "die unsterbliche Partie."</p>
+      <div class="notation-block">1.e4 e5  2.f4 exf4  3.Bc4 Qh4+  4.Kf1 b5  5.Bxb5 Nf6
+6.Nf3 Qh6  7.d3 Nh5  8.Nh4 Qg5  9.Nf5 c6  10.g4 Nf6
+11.Rg1! cxb5  12.h4! Qg6  13.h5 Qg5  14.Qf3! Ng8
+15.Bxf4 Qf6  16.Nc3 Bc5  17.Nd5 Qxb2  18.Bd6! Bxg1
+19.Qxg7!! Rxg7  20.Be7+ Nxe7  21.Nxg7+ Kd8  22.Bc7#  1-0</div>
+      <div class="callout callout-insight" style="margin-top:1.2rem;">
+        <span class="callout-label">Key Annotations</span>
+        <ul>
+          <li><strong>11.Rg1!</strong> — Voluntarily en prise; secures the g-file. Kieseritzky grabs it greedily.</li>
+          <li><strong>18.Bd6!</strong> — Quiet blockade removes the last defender of g7.</li>
+          <li><strong>19.Qxg7!!</strong> — Queen sacrifice. White is down both rooks + queen yet delivers mate in three. Extraordinary for 1851.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="player-card" style="--era-accent:#d4af37;">
+      <h3>The Pearl of Reykjavik — Game 6, Fischer-Spassky 1972</h3>
+      <div class="player-dates">Robert Fischer vs. Boris Spassky · World Championship Reykjavik · Queen's Gambit Declined, Tartakower</div>
+      <p>Fischer, an almost exclusive 1.e4 player, played 1.d4. The resulting positional masterpiece combined Capablanca-level strategic clarity with Fischer's meticulous preparation. When Fischer played his key pawn advance on move 25, Spassky stood up and applauded — then resigned on move 41.</p>
+      <div class="notation-block">1.d4 d5  2.c4 e6  3.Nf3 Nf6  4.Nc3 Be7  5.Bg5 0-0
+6.e3 h6  7.Bh4 b6  8.cxd5 Nxd5  9.Bxe7 Qxe7
+10.Nxd5 exd5  11.Rc1 Be6  12.Qa4! c5  13.Qa3! Rc8
+14.Bb5! a6  15.dxc5 bxc5  16.0-0! Ra7  17.Be2 Nd7
+18.Nd4! Qf8  19.Nxe6! fxe6  20.e4! d4  21.f4! Qe7
+22.e5! Rcc7  23.Be2-f3 ...  25.b4!! [key advance]  1-0 (move 41)</div>
+      <div class="callout callout-drama" style="margin-top:1.2rem;">
+        <span class="callout-label">The Standing Ovation</span>
+        <p>Boris Spassky, still at the board after playing his 41st move and seeing Fischer's reply, stood up and led the audience in applause for his opponent before shaking hands to resign. A gesture unique in World Championship history — and one of the most sportsmanlike moments in any sport.</p>
+      </div>
+    </div>
+
+    <div class="player-card" style="--era-accent:#00b4d8;">
+      <h3>Kasparov vs. Topalov 1999 — The Game of the Century</h3>
+      <div class="player-dates">Garry Kasparov vs. Veselin Topalov · Wijk aan Zee 1999 · Pirc Defense</div>
+      <p>Voted the greatest chess game of the 20th century in multiple polls. Kasparov plays a rook sacrifice on move 24 (Rxd4!!) that initiates a king-hunt lasting 16 moves, pursued with machine-like accuracy yet under tournament conditions with no computer assistance. The final position after 44.Qa4+ Kb1 45.Qxa7 cannot be reached without seeing the entire cascade from move 24.</p>
+      <div class="notation-block">1.e4 d6  2.d4 Nf6  3.Nc3 g6  4.Be3 Bg7  5.Qd2 c6
+6.f3 b5  7.Nge2 Nbd7  8.Bh6 Bxh6  9.Qxh6 Bb7
+10.a3 e5  11.0-0-0 Qe7  12.Kb1 a6  13.Nc1 0-0-0
+14.Nb3 exd4  15.Rxd4! c5  16.Rd1 Nb6  17.g3 Kb8
+18.Na5 Ba8  19.Bh3 d5  20.Qf4+ Ka7  21.Rhe1 d4
+22.Nd5 Nbxd5  23.exd5 Qd6  24.Rxd4!! cxd4  25.Re7+ Kb6
+26.Qxd4+ Ka5  27.b4+! Kxb4  28.Qc3+ Ka4  29.Qa3+ Kb5
+30.Qb3+ Ka5  31.Qa4+ Kb6  32.Qb4+ Ka6  33.Bb3+ Ka5
+34.Ba4! b5  35.Bxb5! Qc3  36.Qxa3+ Kxb5  37.c4+ Bxc4
+38.Nd6+ Bxd6  39.Qa4+ Kb1  40.Qxa7  1-0</div>
+    </div>
+
+    <div id="deepdive-openings"></div>
+    <h2 style="font-family:'Cinzel',serif;color:var(--gold);border-left:3px solid var(--gold);padding-left:1rem;margin:3rem 0 1.8rem;">Essential Opening Theory</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Opening</th><th>Moves</th><th>Character</th><th>Masters</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Ruy López</strong></td><td>1.e4 e5 2.Nf3 Nc6 3.Bb5</td><td>Positional, slow pressure</td><td>Kasparov, Carlsen</td></tr>
+          <tr><td><strong>Sicilian Defense</strong></td><td>1.e4 c5</td><td>Sharp, asymmetrical</td><td>Fischer, Kasparov, Tal</td></tr>
+          <tr><td><strong>French Defense</strong></td><td>1.e4 e6</td><td>Solid, structural</td><td>Korchnoi, Botvinnik</td></tr>
+          <tr><td><strong>Caro-Kann</strong></td><td>1.e4 c6</td><td>Reliable, solid</td><td>Petrosian, Karpov, Carlsen</td></tr>
+          <tr><td><strong>Nimzo-Indian</strong></td><td>1.d4 Nf6 2.c4 e6 3.Nc3 Bb4</td><td>Pin, dynamic imbalance</td><td>Nimzowitsch, Kasparov</td></tr>
+          <tr><td><strong>King's Indian</strong></td><td>1.d4 Nf6 2.c4 g6 3.Nc3 Bg7</td><td>Hyper-sharp counterattack</td><td>Fischer, Kasparov, Tal</td></tr>
+          <tr><td><strong>Grünfeld Defense</strong></td><td>1.d4 Nf6 2.c4 g6 3.Nc3 d5</td><td>Center exchange, counterplay</td><td>Fischer, Kasparov</td></tr>
+          <tr><td><strong>Queen's Gambit Declined</strong></td><td>1.d4 d5 2.c4 e6</td><td>Classical, enduring</td><td>Lasker, Capablanca, Fischer</td></tr>
+          <tr><td><strong>King's Gambit</strong></td><td>1.e4 e5 2.f4</td><td>Romantic, sacrificial</td><td>Anderssen, Morphy, Fischer</td></tr>
+          <tr><td><strong>English Opening</strong></td><td>1.c4</td><td>Flexible, hypermodern</td><td>Kramnik, Carlsen, Botvinnik</td></tr>
+          <tr><td><strong>Réti Opening</strong></td><td>1.Nf3</td><td>Hypermodern, distance control</td><td>Réti, Nimzowitsch</td></tr>
+          <tr><td><strong>Berlin Defense</strong></td><td>1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6</td><td>Queen trade early, endgame</td><td>Kramnik (beat Kasparov with it)</td></tr>
+          <tr><td><strong>Alekhine's Defense</strong></td><td>1.e4 Nf6</td><td>Provoke pawns, counterattack</td><td>Alekhine (inventor)</td></tr>
+          <tr><td><strong>Scotch Game</strong></td><td>1.e4 e5 2.Nf3 Nc6 3.d4</td><td>Open, direct</td><td>Kasparov (revived 1990s)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:'Cinzel',serif;color:var(--gold);border-left:3px solid var(--gold);padding-left:1rem;margin:3rem 0 1.8rem;">The FIDE Rating System</h2>
+    <div class="callout callout-fact">
+      <span class="callout-label">Elo — How Chess Measures Mastery</span>
+      <p>The <strong>Elo rating system</strong>, designed by Hungarian-American physics professor <strong>Arpad Elo</strong> and adopted by FIDE in 1970, is the mathematical backbone of chess ranking — later adopted by sports, video games, and competitive fields worldwide. New Rating = Old Rating + K × (Actual Score − Expected Score), where K is a volatility factor and Expected Score is calculated from the rating difference between players.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Elo Range</th><th>Title / Level</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>&lt;1000</td><td>Beginner</td><td>Learning the rules</td></tr>
+          <tr><td>1000–1400</td><td>Novice–Intermediate</td><td>Understanding fundamentals</td></tr>
+          <tr><td>1400–1800</td><td>Club Player – Expert</td><td>Tactics, basic strategy solid</td></tr>
+          <tr><td>1800–2000</td><td>Expert / Candidate Master</td><td>Top 5% of rated players</td></tr>
+          <tr><td>2000–2200</td><td>FIDE Master (FM)</td><td>Top 1%</td></tr>
+          <tr><td>2200–2400</td><td>International Master (IM)</td><td>Top 0.1%</td></tr>
+          <tr><td>2400–2500</td><td>Grandmaster (GM)</td><td>World elite ~2000 active GMs</td></tr>
+          <tr><td>2600–2700</td><td>Super-GM</td><td>World top 50–100</td></tr>
+          <tr><td>2700–2800</td><td>Elite Super-GM</td><td>World top 10–20</td></tr>
+          <tr><td>2800+</td><td>World Champion tier</td><td>5–8 players ever in history</td></tr>
+          <tr><td><strong>2882</strong></td><td><strong>Magnus Carlsen — Peak 2014</strong></td><td><strong>Highest Elo in human history</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="deepdive-records"></div>
+    <h2 style="font-family:'Cinzel',serif;color:var(--gold);border-left:3px solid var(--gold);padding-left:1rem;margin:3rem 0 1.8rem;">Chess Records &amp; Superlatives</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Record</th><th>Holder</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td>Highest Elo rating ever</td><td>Magnus Carlsen</td><td>2882 (May 2014)</td></tr>
+          <tr><td>Longest World Championship reign</td><td>Emanuel Lasker</td><td>27 years (1894–1921)</td></tr>
+          <tr><td>Most WCh match games</td><td>Kasparov &amp; Karpov</td><td>144 games across 5 matches</td></tr>
+          <tr><td>Longest unbeaten streak</td><td>Capablanca</td><td>~8 years (1916–1924)</td></tr>
+          <tr><td>Youngest World Champion (ever)</td><td>Gukesh Dommaraju</td><td>18 years old, December 2024</td></tr>
+          <tr><td>Youngest Grandmaster (ever)</td><td>Javokhir Sindarov</td><td>12 years, 7 months, 21 days (2023)</td></tr>
+          <tr><td>Perfect score in major championship</td><td>Robert Fischer</td><td>11/11, US Championship 1963</td></tr>
+          <tr><td>Longest tournament game</td><td>Nikolic vs. Arsovic</td><td>269 moves (Belgrade, 1989)</td></tr>
+          <tr><td>Fastest checkmate (Fool's Mate)</td><td>Any beginner</td><td>2 moves: 1.f3 e5 2.g4?? Qh4#</td></tr>
+          <tr><td>Largest blindfold simultaneous</td><td>Timur Gareyev</td><td>48 boards blindfolded, Las Vegas 2016</td></tr>
+          <tr><td>First computer to defeat world champion</td><td>Deep Blue (IBM)</td><td>Game 1, Philadelphia 1996</td></tr>
+          <tr><td>Possible game positions</td><td>—</td><td>~10<sup>120</sup> (Shannon Number)</td></tr>
+          <tr><td>Endgame tablebases solved</td><td>—</td><td>All 7-piece positions (~549 trillion)</td></tr>
+          <tr><td>Largest chess event (participants)</td><td>India open tournaments</td><td>1,500+ participants in single events</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:'Cinzel',serif;color:var(--gold);border-left:3px solid var(--gold);padding-left:1rem;margin:3rem 0 1.8rem;">Chess in Art, Literature &amp; Culture</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Work</th><th>Creator</th><th>Year</th><th>Connection</th></tr></thead>
+        <tbody>
+          <tr><td><em>The Morals of Chess</em></td><td>Benjamin Franklin</td><td>1779</td><td>First major chess essay in English</td></tr>
+          <tr><td><em>Through the Looking-Glass</em></td><td>Lewis Carroll</td><td>1871</td><td>Chess game as structural framework; Alice becomes a Queen</td></tr>
+          <tr><td><em>The Seventh Seal</em></td><td>Ingmar Bergman</td><td>1957</td><td>Knight plays chess with Death — most iconic chess image in film</td></tr>
+          <tr><td><em>Chess Story (Schachnovelle)</em></td><td>Stefan Zweig</td><td>1942</td><td>Masterwork on obsession; written in exile before Zweig's suicide</td></tr>
+          <tr><td><em>The Luzhin Defence</em></td><td>Vladimir Nabokov</td><td>1930</td><td>Chess genius's mental disintegration; Nabokov was a serious study composer</td></tr>
+          <tr><td><em>The Queen's Gambit</em></td><td>Walter Tevis / Netflix</td><td>1983/2020</td><td>Netflix adaptation sparked the global chess boom of 2020</td></tr>
+          <tr><td><em>Searching for Bobby Fischer</em></td><td>Fred Waitzkin / film</td><td>1984/1993</td><td>Prodigy Josh Waitzkin; humanized chess for mainstream audiences</td></tr>
+          <tr><td><em>Pawn Sacrifice</em></td><td>Edward Zwick (film)</td><td>2014</td><td>Tobey Maguire as Fischer; the 1972 match dramatized</td></tr>
+          <tr><td>2001: A Space Odyssey</td><td>Stanley Kubrick</td><td>1968</td><td>HAL 9000 plays chess; game shown is Roesch–Schlage, Hamburg 1910 (real)</td></tr>
+          <tr><td>Marcel Duchamp — chess career</td><td>Marcel Duchamp</td><td>1923–1968</td><td>Most famous artist-chess player; retired from art entirely for chess</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:'Cinzel',serif;color:var(--gold);border-left:3px solid var(--gold);padding-left:1rem;margin:3rem 0 1.8rem;">The Mathematics of Chess — Numbers Beyond Imagination</h2>
+    <div class="callout callout-tech">
+      <span class="callout-label">Scale of Chess Complexity</span>
+      <ul>
+        <li><strong>Possible legal positions:</strong> ~10<sup>43</sup> — the Shannon estimate</li>
+        <li><strong>Possible games (Shannon Number):</strong> ~10<sup>120</sup> — vastly exceeds atoms in the observable universe (~10<sup>80</sup>)</li>
+        <li><strong>Tablebases:</strong> All 7-piece positions solved — ~549 trillion positions with perfect play known</li>
+        <li><strong>Stockfish search depth:</strong> 30–40 half-moves (plies) in typical middlegame; millions of positions per second</li>
+        <li><strong>Is chess solved?</strong> Almost certainly a theoretical draw with perfect play, but unprovable with current or foreseeable computation</li>
+        <li><strong>After 1.e4 e5 2.Nf3 — possible positions by move 10:</strong> approximately 69 trillion</li>
+        <li><strong>Storage required for 8-piece tablebases:</strong> Approximately 100+ petabytes — beyond current practical storage</li>
+      </ul>
+    </div>
+
+    <div class="stat-strip" style="margin-top:2rem;">
+      <div class="stat-box"><span class="num" style="color:var(--amethyst-pale);">10<sup style="font-size:1rem">120</sup></span><span class="label">Possible Games</span></div>
+      <div class="stat-box"><span class="num" style="color:var(--amethyst-pale);">10<sup style="font-size:1rem">43</sup></span><span class="label">Legal Positions</span></div>
+      <div class="stat-box"><span class="num" style="color:var(--amethyst-pale);">549T</span><span class="label">7-Piece Positions Solved</span></div>
+      <div class="stat-box"><span class="num" style="color:var(--amethyst-pale);">100+</span><span class="label">Petabytes for 8-Piece TBs</span></div>
+    </div>
+    </div><!-- end fade-in -->
+  </div>
+</section>
+
+
+
+<section id="aboutContactSection">
+  <span class="contact-label">Stargazer Universe</span>
+  <div class="about-contact-row">
+    <a href="../ABOUT.html" class="about-link">About</a>
+    <span class="contact-sep">·</span>
+    <a href="mailto:ayan.chakraborty6174@gmail.com" class="contact-email">ayan.chakraborty6174@gmail.com</a>
+  </div>
+</section>
+
+<div id="siteFooterBottom">
+  <div class="sfb-inner">
+    <div class="sfb-glyph">♛</div>
+    <div class="sfb-brand">Stargazer</div>
+    <div class="sfb-tagline">Lost in the Cosmos</div>
+    <div class="sfb-divider"></div>
+    <div class="sfb-links">
+      <a href="../ABOUT.html" class="sfb-link">About</a>
+      <span class="sfb-dot">·</span>
+      <a href="mailto:ayan.chakraborty6174@gmail.com" class="sfb-email">ayan.chakraborty6174@gmail.com</a>
+      <span class="sfb-dot">·</span>
+      <a href="../index.html" class="sfb-link">← Home</a>
+    </div>
+    <div class="sfb-copy">© 2026 Stargazer: Lost in the Cosmos</div>
+  </div>
+</div>
+
+
+<script src="chess.js"></script>
+<script>
+window._pageKey = 'chess-deepdive';
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/shared.js"></script>
+</body>
+</html>

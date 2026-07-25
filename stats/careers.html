@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Careers in Statistics & Data Science | Stargazer</title>
+<meta name="description" content="Where statisticians actually work: data science, biostatistics, actuarial science, government statistics, and machine learning, and what each involves.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Statistics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/stats/careers.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Careers in Statistics & Data Science | Stargazer">
+<meta property="og:description" content="Where statisticians actually work — data science, biostatistics, actuarial science, and government roles.">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/stats/careers.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Careers in Statistics & Data Science | Stargazer">
+<meta name="twitter:description" content="Where statisticians actually work — data science, biostatistics, actuarial science, and government roles.">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Careers in Statistics & Data Science | Stargazer",
+  "description": "Where statisticians actually work — data science, biostatistics, actuarial science, and government roles.",
+  "url": "https://stargazer-9m9.pages.dev/stats/careers.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Statistics", "sameAs": "https://en.wikipedia.org/wiki/Statistics" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stats.css">
+</head>
+<body>
+
+<!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
+    <span id="mode-icon">☾</span>
+  </button>
+  <a href="../login.html" id="loginBtn">☽ Sign In</a>
+  <div id="userInfo">
+    <span id="userEmailDisplay">✦ Explorer</span>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══ NAV ═════════════════════════════════════════════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Statistics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Careers</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)" aria-label="Search">🔍</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══ HAMBURGER MENU ══════════════════════════════════════════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home"          onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item"        data-page="books"         onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item"        data-page="puzzles"       onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <button class="hm-item"        data-page="school"        onclick="location.href='school.html'">🏫 School</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="inference"     onclick="location.href='inference.html'">🔬 Inference</button>
+  <button class="hm-item"        data-page="distributions" onclick="location.href='distributions.html'">📊 Distributions</button>
+  <button class="hm-item"        data-page="bayesian"      onclick="location.href='bayesian.html'">∫ Bayesian</button>
+  <button class="hm-item"        data-page="openproblems"  onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item"        data-page="research"      onclick="location.href='research.html'">🔭 Research</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item active"        data-page="careers"       onclick="location.href='careers.html'">💼 Careers</button>
+  <button class="hm-item"        data-page="studyguide"    onclick="location.href='studyguide.html'">🗺️ Study Guide</button>
+  <button class="hm-item"        data-page="facts"         onclick="location.href='facts.html'">✨ Fun Facts</button>
+  <button class="hm-item"        data-page="tools"         onclick="location.href='tools.html'">🛠️ Tools</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="calc"          onclick="location.href='calc.html'">🔢 Calculator</button>
+  <button class="hm-item"        data-page="formulas"      onclick="location.href='formulas.html'">📋 Formulas</button>
+  <button class="hm-item"        data-page="history"       onclick="location.href='history.html'">⏳ History</button>
+  <button class="hm-item"        data-page="comments"      onclick="location.href='comments.html'">💬 Discuss</button>
+</div>
+
+<!-- ═══ SEARCH MODAL ═══════════════════════════════════════════════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search books, puzzles, distributions, tools…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<!-- ═══ TOAST ══════════════════════════════════════════════════════ -->
+<div id="toast">
+  <button id="toast-close" onclick="hideToast()" aria-label="Dismiss notification">✕</button>
+  <div class="toast-cat" id="toast-cat">Fun Fact</div>
+  <div id="toast-body"></div>
+</div>
+
+<!-- ═══ KEYBOARD HINT ══════════════════════════════════════════════ -->
+<div id="shortcut-hint">/ search · ← → pages</div>
+
+<!-- ═══ PAGE: CALCULATOR ═══════════════════════════════════════════ -->
+<div class="page active" id="page-careers">
+  <section class="section" id="careers">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:var(--tl-l);color:var(--tl);border:1px solid rgba(46,107,107,.25)">Careers</span>
+        <h2 class="s-title font-serif">Where Statisticians Work</h2>
+        <p class="s-desc">Statistics is one of the most versatile quantitative disciplines — its practitioners work across medicine, finance, government, sports, tech, and academia.</p>
+      </div>
+      <div class="g4" id="careers-grid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ PAGE: STUDY GUIDE ════════════════════════════════════════ -->
+<!-- ── CONTACT ── -->
+<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);font-style:italic;font-family:'Source Code Pro',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div style="text-align:center;padding-bottom:2rem;">
+  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+</div>
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
+<script>
+window._nextPage = 'studyguide.html';
+window._prevPage = 'research.html';
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+
+function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+
+/* ── BOOKS ─────────────────────────────────────────────────── */
+
+function toggleHamburger(){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu)return;
+  const open=menu.classList.toggle('open');
+  btn.classList.toggle('open',open);
+}
+// Close when clicking outside
+document.addEventListener('click',function(e){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu||!menu.classList.contains('open'))return;
+  if(!menu.contains(e.target)&&e.target!==btn&&!btn.contains(e.target)){
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+
+
+/* ═══════════════════════════════════════════════════════════════
+   OVERRIDE: renderPuzzles — index + cat badge + solved button + filters
+   ═══════════════════════════════════════════════════════════════ */
+
+function toggleMode(){
+  const night=document.body.classList.toggle('night');
+  document.getElementById('mode-icon').textContent=night?'☀':'☾';
+  localStorage.setItem('stats-mode',night?'night':'day');
+  // redraw all visible canvases
+  document.querySelectorAll('.dist-canvas').forEach(c=>{
+    const cid=c.id;
+    const params={};
+    document.querySelectorAll(`[id^="sl-${cid}-"]`).forEach(sl=>{
+      params[sl.id.replace('sl-'+cid+'-','')]=parseFloat(sl.value);
+    });
+    // find the slug from DISTRIBUTIONS
+    const slug=getSlugFromCanvas(cid);
+    if(slug){
+      const isDisc=['bernoulli','binomial','geometric','negbin','poisson','hypergeometric'].includes(slug);
+      drawDistCanvas(cid,slug,params,isDisc);
+    }
+  });
+}
+
+
+function getSlugFromCanvas(cid){
+  // cid format: dc-type-idx
+  const parts=cid.split('-');
+  if(parts.length<3)return null;
+  const type=parts[1],idx=parseInt(parts[2]);
+  if(DISTRIBUTIONS[type]&&DISTRIBUTIONS[type][idx])return DISTRIBUTIONS[type][idx].slug;
+  return null;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL EFFECTS
+   ═══════════════════════════════════════════════════════════ */
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  if(btt)btt.classList.toggle('show',window.scrollY>300);
+  document.querySelectorAll('.reveal').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-60)
+      el.classList.add('visible');
+  });
+},{passive:true});
+
+/* ═══════════════════════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════════════════════ */
+
+let SEARCH_INDEX=[];
+function openSearch(){
+  buildSearchIndex();
+  const m=document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(()=>document.getElementById('search-input').focus(),80);
+}
+function closeSearch(){
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value='';
+  document.getElementById('search-results').innerHTML='<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q){
+  const res=document.getElementById('search-results');
+  if(!q.trim()){res.innerHTML='<div class="sr-empty">Start typing…</div>';return;}
+  const lq=q.toLowerCase();
+  const hits=SEARCH_INDEX.filter(x=>x.q.toLowerCase().includes(lq)).slice(0,18);
+  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q+'"</div>';return;}
+  res.innerHTML=hits.map((h,i)=>`<div class="sr-item" tabindex="0" data-idx="${i}" onclick="goSearchResult(${SEARCH_INDEX.indexOf(h)})" onkeydown="if(event.key==='Enter')goSearchResult(${SEARCH_INDEX.indexOf(h)})"><span class="sr-icon">${h.icon}</span><div><div class="sr-title">${highlight(h.title,lq)}</div><div class="sr-meta">${h.meta}</div></div><span class="sr-section">${h.section}</span></div>`).join('');
+}
+function highlight(text,q){
+  if(!q)return text;
+  const idx=text.toLowerCase().indexOf(q);
+  if(idx<0)return text;
+  return text.slice(0,idx)+'<mark style="background:var(--gd-l);color:var(--gd);border-radius:2px">'+text.slice(idx,idx+q.length)+'</mark>'+text.slice(idx+q.length);
+}
+function goSearchResult(idx){ closeSearch(); }
+function searchKeyNav(e){
+  if(e.key==='Escape'){closeSearch();return;}
+  const items=document.querySelectorAll('.sr-item');
+  const cur=document.activeElement;
+  const curIdx=[...items].indexOf(cur);
+  if(e.key==='ArrowDown'){e.preventDefault();(items[curIdx+1]||items[0])?.focus();}
+  if(e.key==='ArrowUp'){e.preventDefault();(items[curIdx-1]||items[items.length-1])?.focus();}
+  if(e.key==='Enter'&&curIdx>=0){items[curIdx].click();}
+}
+
+
+function buildSearchIndex(){
+  if(SEARCH_INDEX.length)return;
+  CAREERS.forEach(c=>SEARCH_INDEX.push({icon:c.icon,title:c.title,meta:(c.tags||[]).join(', '),section:'Careers',page:'careers',q:c.title+' '+c.desc}));
+}
+
+
+(function initKeyboard(){
+  const PAGES=['home','precollege_placeholder'];
+  document.addEventListener('keydown',e=>{
+    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
+    if(document.getElementById('search-modal')&&document.getElementById('search-modal').classList.contains('open')){
+      if(e.key==='Escape')closeSearch();
+      return;
+    }
+    if(e.key==='/'){e.preventDefault();openSearch();return;}
+    if(e.key==='ArrowRight'){e.preventDefault();location.href=window._nextPage;}
+    if(e.key==='ArrowLeft'){e.preventDefault();location.href=window._prevPage;}
+    if(e.key==='f'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){if(typeof showRandomFact==='function')showRandomFact();}
+    if(e.key==='Escape'){
+      const hmenu=document.getElementById('hamburger-menu');
+      if(hmenu&&hmenu.classList.contains('open')){
+        hmenu.classList.remove('open');
+        document.getElementById('hamburger-btn')?.classList.remove('open');
+      }
+    }
+  });
+})();
+
+function showToast(msg,bg){
+  const t=document.createElement('div');
+  t.textContent=msg;
+  t.style.cssText=`position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);background:${bg};color:#fff;font-family:'Source Code Pro',monospace;font-size:.72rem;padding:.45rem 1.1rem;border-radius:99px;z-index:9998;animation:fadeUpIn .35s ease;white-space:nowrap;pointer-events:none`;
+  document.body.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .35s';setTimeout(()=>t.remove(),380);},2200);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATISTICIAN QUOTES — daily + 5-hour rotation
+   ═══════════════════════════════════════════════════════════════ */
+
+const CAREERS = [
+  {icon:'🧬',title:'Biostatistician',tags:['Clinical Trials','Survival Analysis','R','SAS'],
+   desc:'Design and analyse clinical trials, epidemiological studies, and genomics research at pharmaceutical companies, hospitals, and research institutes.',
+   sal:'₹8–25 LPA (India) · $90–160K (US)',
+   detail:{
+    dayToDay:'Design Phase I–III clinical trials: randomisation schemes, sample size calculations, adaptive designs. Write Statistical Analysis Plans (SAPs). Perform survival analysis (Kaplan-Meier, Cox PH), mixed-effects models, and multiple imputation for missing data. Prepare regulatory submissions to FDA/EMA. Present to clinical teams and regulators.',
+    skills:'<strong>Core statistics:</strong> Probability, survival analysis, longitudinal data, Bayesian adaptive designs, FDR/multiplicity control. <strong>Regulation:</strong> ICH E9/E9(R1), GCP. <strong>Software:</strong> SAS (clinical trial standard), R (lme4, survival, ggplot2), STATA.',
+    resources:'<strong>Foundational:</strong> Casella &amp; Berger — Statistical Inference. <strong>Clinical:</strong> Collett — Modelling Survival Data; Senn — Statistical Issues in Drug Development. <strong>Courses:</strong> Coursera Biostatistics (Johns Hopkins), FDA statistical guidance documents (fda.gov).',
+    companies:'AstraZeneca, Pfizer, GSK, Roche, Novartis, Eli Lilly, MSD, ICON, PPD, Covance, MHRA, CDC, WHO, ICMR.',
+    apply:'MSc Biostatistics or MSc Statistics strongly preferred; PhD for Principal Statistician roles. Expect: clinical trial design case study, ICH E9 questions, R or SAS coding test. SAS certification adds strong credibility. Many roles recruit directly from CRO internships.',
+    competition:'Low-to-moderate — chronic global shortage of biostatisticians with SAS and clinical trial experience. Typical postings receive 30–80 applicants vs 300+ for data science roles. FDA-facing biostatisticians are among the most in-demand healthcare statisticians worldwide.'
+   }
+  },
+  {icon:'📈',title:'Quantitative Analyst (Quant)',tags:['Stochastic Calculus','Time Series','Python','C++'],
+   desc:'Build mathematical models for pricing derivatives, managing portfolio risk, and developing quantitative trading strategies at banks, hedge funds, and asset managers.',
+   sal:'₹15–80 LPA (India) · $150–500K (US)',
+   detail:{
+    dayToDay:'Build and validate models for pricing complex derivatives (options, swaps, structured products). Write Python/C++ implementing Monte Carlo simulations and finite difference PDE solvers. Run statistical back-tests on trading strategies. Calibrate models to live market data. Produce daily risk reports and P&amp;L attribution.',
+    skills:'<strong>Mathematics:</strong> Stochastic calculus (Itô lemma, Girsanov theorem), measure-theoretic probability, PDEs (Black-Scholes, heat equation), numerical analysis (Monte Carlo, finite differences, Fourier methods). <strong>Statistics:</strong> Time series, regression, Bayesian inference. <strong>Programming:</strong> Python (NumPy, pandas), C++, MATLAB, SQL.',
+    resources:'<strong>Essential:</strong> Shreve — Stochastic Calculus for Finance I &amp; II; Øksendal — Stochastic Differential Equations; Hull — Options, Futures and Other Derivatives. <strong>Computation:</strong> Wilmott — Paul Wilmott on Quantitative Finance (3 vols). <strong>Online:</strong> MIT 18.S096 Mathematics in Finance.',
+    companies:'Jane Street, Citadel, Two Sigma, DE Shaw, Optiver, Akuna Capital, SIG (Susquehanna), Jump Trading, Goldman Sachs (Strats), Morgan Stanley (Model Risk), Bloomberg (Quant Research), BlackRock (Systematic).',
+    apply:'Firms recruit on-campus at IITs, MIT, Cambridge, Imperial, CMU, ETH Zurich. Expect: (1) online numeracy screening, (2) phone round (probability puzzles, mental maths, finance basics), (3) full-day on-site with coding test, brain-teasers, and senior-quant interviews. Internship almost guarantees return offer.',
+    competition:'Extremely competitive. Top firms see 10,000–30,000 applications for 20–100 graduate roles. Citadel and Jane Street acceptance rates below 1%. First-class degree in Maths/Physics/Stats plus strong programming is the absolute bare minimum.'
+   }
+  },
+  {icon:'🤖',title:'Machine Learning Engineer',tags:['Deep Learning','Python','Statistics','A/B Testing'],
+   desc:'Develop statistical learning systems — recommenders, NLP models, forecasting pipelines — that make predictions at scale. The largest employer of statisticians in the modern economy.',
+   sal:'₹12–60 LPA (India) · $130–300K (US)',
+   detail:{
+    dayToDay:'Design A/B experiments and compute sample sizes for product features. Build predictive models (classification, regression, time-series) with scikit-learn, XGBoost, PyTorch. Clean large datasets via SQL/pandas. Train models on GPU clusters from published architectures. Deploy via model serving. Monitor production model drift.',
+    skills:'<strong>Mathematics:</strong> Linear algebra (SVD, PCA), multivariable calculus (backpropagation), probability, statistical inference, optimisation (gradient descent, convex optimisation), information theory. <strong>Programming:</strong> Python (PyTorch/JAX, scikit-learn, pandas), SQL, distributed systems (Ray, DeepSpeed). <strong>Cloud:</strong> AWS/GCP/Azure.',
+    resources:'<strong>Maths:</strong> Strang — Introduction to Linear Algebra; Boyd — Convex Optimization (free). <strong>ML:</strong> Goodfellow — Deep Learning (free); Hastie — Elements of Statistical Learning (free). <strong>Practice:</strong> fast.ai, Stanford CS231n/CS224n (free). <strong>Research:</strong> arXiv cs.LG, Papers With Code.',
+    companies:'Google DeepMind, OpenAI, Anthropic, Meta AI, Netflix, Spotify, Amazon Science, Microsoft Research, NVIDIA, Hugging Face, Stability AI, Waymo, every major bank and insurer.',
+    apply:'Strong GitHub portfolio essential. Kaggle grandmaster status or NeurIPS/ICML paper helps enormously. Expect: (1) take-home data challenge, (2) ML system design interview, (3) Python/PyTorch coding round, (4) research discussion. Open-source contributions are strong differentiators.',
+    competition:'Top AI labs (Anthropic, OpenAI, DeepMind) have &lt;0.1% acceptance rates. Broader MLE roles reachable with a strong portfolio. Field growing at 35% per year globally. Senior MLE at top labs earns $300K–$1M+ total compensation.'
+   }
+  },
+  {icon:'🔬',title:'Research Statistician (Academia)',tags:['Methodology','Theory','R','Publishing'],
+   desc:'Develop new statistical methodology — causal inference, high-dimensional statistics, Bayesian nonparametrics — and publish in Annals of Statistics, JASA, or Biometrika.',
+   sal:'₹8–20 LPA (India) · $80–200K (US)',
+   detail:{
+    dayToDay:'Formulate new statistical problems, prove theorems, write simulation code to verify asymptotic results. Submit to Annals of Statistics, JASA, Bernoulli, Biometrika. Teach graduate courses, supervise PhD students. Apply for grants (DST, NSF, ERC). Attend JSM, IMS, and Bernoulli Society conferences.',
+    skills:'Mathematical statistics at research level: measure-theoretic probability, empirical process theory, minimax theory, Bayesian asymptotics, high-dimensional statistics. Programming: R (advanced), Python, Stan for computation. Precise mathematical exposition for top journals.',
+    resources:'<strong>Research foundation:</strong> van der Vaart — Asymptotic Statistics; van der Vaart &amp; Wellner — Weak Convergence and Empirical Processes. <strong>Modern areas:</strong> Bühlmann &amp; van de Geer — Statistics for High-Dimensional Data; Ghosh &amp; Ramamoorthi — Bayesian Nonparametrics.',
+    companies:'IIT Statistics departments, ISI Kolkata, CMI, IISc, IISERs, US/UK research universities, Max Planck Institute, Fields Institute, Simons Institute Berkeley, Turing Institute London.',
+    apply:'Path: BSc → MSc → PhD (5 years) → postdoc (2–3 years) → faculty/research scientist. PhD applications require strong mathematical background, research statement, three reference letters. Faculty positions posted on AcademicJobsOnline and departmental sites.',
+    competition:'Very competitive at research universities. Top positions attract 100–400 applicants. Strong publication record in top journals plus international reputation is non-negotiable. However, industry demand for methodologists (tech companies, national labs) is growing rapidly.'
+   }
+  },
+  {icon:'🏛️',title:'Government Statistician',tags:['Survey Methods','ISS','SAS','National Accounts'],
+   desc:'Produce official statistics for the Census, CPI, national accounts, and policy evaluation. Work at MOSPI, RBI, NSSO, UN Statistics Division, World Bank, or IMF.',
+   sal:'₹7–18 LPA (India) · $70–150K (US/UN)',
+   detail:{
+    dayToDay:'Design and conduct surveys (NSSO, NFHS, PLFS). Process and clean large administrative datasets. Compute national accounts (GDP), price indices (CPI/WPI), and social indicators. Write technical methodology notes. Advise policymakers on statistical evidence. Prepare data for public dissemination.',
+    skills:'Survey sampling theory (stratified, cluster, systematic), calibration weighting, imputation methods, time series (X-13ARIMA-SEATS), index number theory, SAS, R, SPSS, CSPro. Strong documentation and communication for non-technical audiences.',
+    resources:'Cochran — Sampling Techniques; Lohr — Sampling: Design and Analysis; Kish — Survey Sampling. <strong>India-specific:</strong> NSSO methodology notes (mospi.gov.in). <strong>Gateway exam:</strong> ISS (Indian Statistical Service) — the central government entry route.',
+    companies:'MOSPI (CSO/NSSO), RBI, SEBI, NITI Aayog, UN Statistics Division, World Bank Data Group, IMF Statistics Department, national statistical offices worldwide.',
+    apply:'ISS (Indian Statistical Service) exam for central government — fills 15–30 posts annually. State PSC statistics posts for state government. International organisations through UN competitive examinations or direct recruitment. Statistics degree required.',
+    competition:'Moderate for government roles. ISS is achievable with ISI/IIT-level preparation. International organisation posts are more competitive — UN Young Professionals Programme has &lt;1% acceptance across all disciplines.'
+   }
+  },
+  {icon:'🏥',title:'Epidemiologist / Biostatistician (Public Health)',tags:['Epidemiology','R','Cox Regression','Public Health'],
+   desc:'Study the distribution and determinants of disease in populations. Track outbreaks, design vaccination studies, and advise public health policy using longitudinal and survival methods.',
+   sal:'₹6–20 LPA (India) · $80–150K (US)',
+   detail:{
+    dayToDay:'Design prospective/retrospective cohort and case-control studies. Compute incidence rates, odds ratios, relative risks, hazard ratios. Fit Cox PH models for survival data. Analyse outbreak data and build SIR/SEIR epidemic models. Write policy briefs and peer-reviewed papers for journals like Lancet, NEJM, BMJ.',
+    skills:'Epidemiological study design, survival analysis, logistic/Poisson regression, mixed-effects models, GIS for spatial epidemiology, R (epiR, survival, ggplot2), Stata, Python for epidemic modelling. Knowledge of ICD coding and health administrative data.',
+    resources:'Rothman — Epidemiology: An Introduction; Szklo &amp; Nieto — Epidemiology: Beyond the Basics; Hosmer &amp; Lemeshow — Applied Survival Analysis. <strong>Courses:</strong> Coursera Epidemiology (Johns Hopkins), CDC PHAP fellowship, MPH programmes at AIIMS/TISS/SPH.',
+    companies:'ICMR, AIIMS public health divisions, state health departments, WHO, CDC, ECDC, MSF, PATH, The Lancet commissions, pharmaceutical epidemiology teams (Pfizer, GSK, Sanofi).',
+    apply:'MPH or MSc Epidemiology is standard entry. PhD for research leadership. India: ICMR fellowships, NPCDCS positions, state directorates of health. Global: WHO internships, CDC Epidemic Intelligence Service (EIS), EPIET (ECDC European programme).',
+    competition:'Moderate overall; strong demand in India post-COVID with government investment in disease surveillance. Spatial epidemiology skills (GIS + R) and bioinformatics (for genomic epidemiology) are strong differentiators.'
+   }
+  },
+  {icon:'📊',title:'Data Scientist (Industry)',tags:['SQL','Python','A/B Testing','Causal Inference'],
+   desc:'Apply statistics and ML to business problems: A/B testing product features, churn prediction, pricing optimisation, and communicating insights across every industry sector.',
+   sal:'₹10–40 LPA (India) · $110–200K (US)',
+   detail:{
+    dayToDay:'Design and analyse A/B experiments for product features. Build churn prediction, customer segmentation, LTV forecasting models. Write SQL to extract data from Snowflake/BigQuery. Visualise results in Tableau/Looker. Present statistical findings to non-technical stakeholders clearly and convincingly.',
+    skills:'SQL (advanced), Python (pandas, scikit-learn, matplotlib), statistical inference, experiment design (power, MDE, sequential testing), causal inference (DiD, RDD, IV), communication. Version control (Git), dbt, Airflow. Business understanding of product metrics (DAU, retention, revenue).',
+    resources:'Practical Statistics for Data Scientists (Bruce et al.); Trustworthy Online Controlled Experiments (Kohavi et al.). <strong>Causal inference:</strong> Cunningham — Causal Inference: The Mixtape (free online). <strong>SQL:</strong> Mode Analytics tutorial, LeetCode SQL.',
+    companies:'Flipkart, Meesho, Swiggy, Zomato, Razorpay, CRED, PhonePe (India). Google, Meta, Amazon, Airbnb, Spotify, Netflix, Uber, Booking.com (global).',
+    apply:'Build a portfolio of 2–3 data science projects on GitHub with clear write-ups. Expect: (1) SQL take-home test, (2) statistics/probability round, (3) product case study (metric design, experiment analysis), (4) ML coding. Communication is equally weighted with technical skill at most companies.',
+    competition:'Moderate. Strong market for data scientists with both SQL fluency and causal inference skills. ML-heavy research roles are more competitive. Senior roles bottleneck on communication and business sense, not pure technical skill.'
+   }
+  },
+  {icon:'⚕️',title:'Actuary',tags:['Insurance','Pensions','Risk Modelling','Exams'],
+   desc:'Model financial risk using probability and statistics. Requires passing the IFoA/CAS professional exam series — one of the most consistently well-compensated maths-based careers globally.',
+   sal:'₹6–30 LPA (India) · $80–200K (US)',
+   detail:{
+    dayToDay:'Model insurance risks: mortality, morbidity, catastrophe events, longevity. Price life insurance, annuities, health plans, property &amp; casualty products. Value liabilities (reserving). Perform stress-tests for regulatory reporting (Solvency II, IFRS 17). Present results to boards, regulators, and investment teams.',
+    skills:'<strong>Mathematics:</strong> Probability, stochastic processes, survival analysis, regression, time-series, extreme value theory. <strong>Finance:</strong> Present value, yield curves, asset-liability management. <strong>Software:</strong> R, Python, Excel/VBA, actuarial modelling software (Prophet, MoSes).',
+    resources:'<strong>Exams:</strong> IFoA CS1/CS2 (probability &amp; statistics, stochastic processes) and CM1/CM2 (financial maths). ActEd study notes are essential. AMLCR (Dickson, Hardy, Waters) for life contingencies. Ross — A First Course in Probability for foundations.',
+    companies:'Deloitte, PwC, KPMG, Milliman, Aon, Willis Towers Watson, Swiss Re, Munich Re, Allianz, Aviva, Legal &amp; General, LIC, ICICI Prudential, Max Life.',
+    apply:'Apply for actuarial trainee or graduate schemes via company websites. Most firms accept applicants who have passed 1–3 professional exams before joining. CV should show: quantitative degree, exam passes, any insurance internship. Firms fund further exams and study days.',
+    competition:'Moderate. Demand is consistently strong — actuaries are legally required by insurance regulators. The bottleneck is the exam series (12–15 exams over 5–8 years), not the job market. Qualified Fellows have unemployment rates below 2% globally.'
+   }
+  }
+];
+
+/* ── STUDY TIPS ─────────────────────────────────────────────── */
+
+function renderCareers(){
+  const g=document.getElementById('careers-grid');if(!g)return;
+  g.innerHTML=CAREERS.map((c,i)=>`
+    <div class="car-card">
+      <span class="car-icon">${c.icon}</span>
+      <div class="car-title">${c.title}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.25rem;margin-bottom:.4rem">
+        ${(c.tags||[]).map(t=>`<span class="car-tag">${t}</span>`).join('')}
+      </div>
+      <div class="car-desc">${c.desc}</div>
+      <div class="car-sal" style="font-family:'Source Code Pro',monospace;font-size:.68rem;color:var(--gr);margin-top:.35rem">💰 ${c.sal}</div>
+      ${c.detail?`<button class="car-expand-btn" id="carbtn${i}" onclick="toggleCarDetail(${i})">▼ Full Career Details</button>
+      <div class="car-detail-wrap" id="cardet${i}">
+        ${c.detail.dayToDay?`<div class="car-section"><div class="car-section-lbl">📋 Day-to-Day Work</div><div class="car-section-body">${c.detail.dayToDay}</div></div>`:''}
+        ${c.detail.skills?`<div class="car-section"><div class="car-section-lbl">🧮 Skills Required</div><div class="car-section-body">${c.detail.skills}</div></div>`:''}
+        ${c.detail.resources?`<div class="car-section"><div class="car-section-lbl">📚 How to Prepare</div><div class="car-section-body">${c.detail.resources}</div></div>`:''}
+        ${c.detail.companies?`<div class="car-section"><div class="car-section-lbl">🏢 Companies &amp; Organisations</div><div class="car-section-body">${c.detail.companies}</div></div>`:''}
+        ${c.detail.apply?`<div class="car-section"><div class="car-section-lbl">📝 How to Apply</div><div class="car-section-body">${c.detail.apply}</div></div>`:''}
+        ${c.detail.competition?`<div class="car-section"><div class="car-section-lbl">⚔️ Competition &amp; Market</div><div class="car-section-body">${c.detail.competition}</div></div>`:''}
+      </div>`:''}
+    </div>`).join('');
+}
+
+function toggleCarDetail(i){
+  const d=document.getElementById('cardet'+i),b=document.getElementById('carbtn'+i);
+  if(!d)return;d.classList.toggle('open');
+  b.textContent=d.classList.contains('open')?'▲ Hide Details':'▼ Full Career Details';
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   OVERRIDE: renderFacts — admin edit + add
+   ═══════════════════════════════════════════════════════════════ */
+
+(function(){
+  if(localStorage.getItem('stats-mode')==='night'){
+    document.body.classList.add('night');
+    const mi=document.getElementById('mode-icon'); if(mi)mi.textContent='☀';
+  }
+  
+  setTimeout(function(){
+    if(window.currentUser)return;
+    if(!window.sb)return;
+    window.sb.auth.getSession().then(function(r){
+      if(window.currentUser)return;
+      var u=r&&r.data&&r.data.session&&r.data.session.user;
+      if(!u)return;
+      if(window.renderAuthUI)window.renderAuthUI();
+    }).catch(function(){});
+  },400);
+  if('renderCareers();' && document.readyState!=='loading') { renderCareers(); }
+  else if('renderCareers();') { document.addEventListener('DOMContentLoaded', function(){ renderCareers(); }); }
+})();
+</script>
+<script>window._pageKey = 'stats';</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+
+</body>
+</html>

@@ -333,6 +333,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
 .creator-note {
   text-align: center; padding: 1.5rem 2rem 2rem;
   border-top: 1px solid var(--bdr);
+  max-width: 880px; margin: 0 auto;
 }
 .creator-avatar { font-size: 1.25rem; color: var(--gold); margin-bottom: 0.5rem; }
 .creator-name { font-family: var(--font); font-size: 1rem; font-style: italic; color: var(--gold2); margin-bottom: 0.3rem; }
@@ -432,9 +433,10 @@ main { position: relative; z-index: 1; padding-top: 52px; }
     Nodes at angles: -90°, -54°, -18°, 18°, 54°, 90°, 126°, 162°, 198°, 234°
   -->
   <div class="orrery-wrap">
-    <svg class="orrery-svg" viewBox="0 0 560 520" xmlns="http://www.w3.org/2000/svg"
+    <svg class="orrery-svg" viewBox="-30 -45 610 610" xmlns="http://www.w3.org/2000/svg"
          role="img" aria-label="Ten-domain constellation map of Stargazer">
 
+    <g transform="translate(280,260) scale(1.4) translate(-280,-260)">
       <!-- Ambient guide rings -->
       <circle cx="280" cy="260" r="170" fill="none" stroke="rgba(201,168,76,0.06)" stroke-width="1"/>
       <circle cx="280" cy="260" r="170" fill="none" stroke="rgba(201,168,76,0.025)" stroke-width="0.5" stroke-dasharray="2 9"/>
@@ -501,7 +503,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
       </a>
 
       <!-- ── 04 MATHS  (lower-right, 18°) ── -->
-      <a href="MATHS.html">
+      <a href="maths/home.html">
         <g class="orrery-node">
           <circle cx="442" cy="312" r="23" fill="rgba(45,212,191,0.13)" stroke="#2dd4bf" stroke-width="1.4"/>
           <text x="442" y="313" text-anchor="middle" dominant-baseline="middle"
@@ -534,7 +536,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
       </a>
 
       <!-- ── 07 STATS  (lower-left, 126°) ── -->
-      <a href="STATS.html">
+      <a href="stats/home.html">
         <g class="orrery-node">
           <circle cx="180" cy="398" r="23" fill="rgba(74,222,128,0.13)" stroke="#4ade80" stroke-width="1.4"/>
           <text x="180" y="399" text-anchor="middle" dominant-baseline="middle"
@@ -545,7 +547,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
       </a>
 
       <!-- ── 08 GERMAN  (left, 162°) ── -->
-      <a href="GERMAN.html">
+      <a href="german/home.html">
         <g class="orrery-node">
           <circle cx="118" cy="312" r="23" fill="rgba(251,146,60,0.13)" stroke="#fb923c" stroke-width="1.4"/>
           <text x="118" y="313" text-anchor="middle" dominant-baseline="middle"
@@ -556,7 +558,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
       </a>
 
       <!-- ── 09 JAPANESE  (upper-left, 198°) ── -->
-      <a href="JAPANESE.html">
+      <a href="japanese/home.html">
         <g class="orrery-node">
           <circle cx="118" cy="208" r="23" fill="rgba(251,113,133,0.13)" stroke="#fb7185" stroke-width="1.4"/>
           <text x="118" y="209" text-anchor="middle" dominant-baseline="middle"
@@ -577,6 +579,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
         </g>
       </a>
 
+    </g>
     </svg>
   </div>
 </section>
@@ -586,12 +589,12 @@ main { position: relative; z-index: 1; padding-top: 52px; }
   <a href="MOVIES.html"   class="stat-item"><div class="stat-num">133</div><div class="stat-lbl">films</div></a>
   <a href="BOOKS.html"    class="stat-item"><div class="stat-num">121</div><div class="stat-lbl">books</div></a>
   <a href="ANIME.html"    class="stat-item"><div class="stat-num">88</div> <div class="stat-lbl">anime</div></a>
-  <a href="MATHS.html"    class="stat-item"><div class="stat-num">∞</div>  <div class="stat-lbl">maths</div></a>
-  <a href="TANTRA.html"   class="stat-item"><div class="stat-num">∞</div>  <div class="stat-lbl">texts</div></a>
-  <a href="CHESS.html"    class="stat-item"><div class="stat-num">∞</div>  <div class="stat-lbl">chess</div></a>
-  <a href="STATS.html"    class="stat-item"><div class="stat-num">∞</div>  <div class="stat-lbl">stats</div></a>
-  <a href="GERMAN.html"   class="stat-item"><div class="stat-num">18</div> <div class="stat-lbl">words</div></a>
-  <a href="JAPANESE.html" class="stat-item"><div class="stat-num">∞</div>  <div class="stat-lbl">日本語</div></a>
+  <a href="maths/home.html"    class="stat-item"><div class="stat-num">🧮</div>  <div class="stat-lbl">maths</div></a>
+  <a href="TANTRA.html"   class="stat-item"><div class="stat-num">20</div>  <div class="stat-lbl">tantra</div></a>
+  <a href="CHESS.html"    class="stat-item"><div class="stat-num">♟</div>  <div class="stat-lbl">chess</div></a>
+  <a href="stats/home.html"    class="stat-item"><div class="stat-num">📊</div>  <div class="stat-lbl">stats</div></a>
+  <a href="german/home.html"   class="stat-item"><div class="stat-num">18</div> <div class="stat-lbl">words</div></a>
+  <a href="japanese/home.html" class="stat-item"><div class="stat-num">⛩</div>  <div class="stat-lbl">日本語</div></a>
   <a href="PERSONAL.html" class="stat-item"><div class="stat-num">?</div>  <div class="stat-lbl">vault</div></a>
 </div>
 
@@ -729,7 +732,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
           </div>
         </div>
         <p class="d-body">Everything: school arithmetic through Millennium Prize Problems, olympiad training, recreational puzzles, beautiful theorems, great expository texts — Men of Mathematics, Gödel Escher Bach, A Mathematician's Apology — career paths through the infinite, and the open problems that remain unsolved. The territory that never ends. Every other path here connects to it somehow, from somewhere unexpected.</p>
-        <a href="MATHS.html" class="d-link">enter the infinite path →</a>
+        <a href="maths/home.html" class="d-link">enter the infinite path →</a>
       </article>
 
       <!-- 05 TANTRA -->
@@ -771,7 +774,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
           </div>
         </div>
         <p class="d-body">Statistics from school probability to Bayesian inference — the Monty Hall problem, Simpson's Paradox, distributions, hypothesis testing, the Central Limit Theorem, p-values, open research problems, and 12 essential textbooks. The art of drawing meaning from noise, and of not lying to yourself about what the data is telling you. Statistics is not calculation; it is the discipline of honest inference.</p>
-        <a href="STATS.html" class="d-link">enter the uncertainty atlas →</a>
+        <a href="stats/home.html" class="d-link">enter the uncertainty atlas →</a>
       </article>
 
       <!-- 08 GERMAN -->
@@ -785,7 +788,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
           </div>
         </div>
         <p class="d-body">18 German words that English cannot translate: Sehnsucht, Waldeinsamkeit, Weltschmerz, Schadenfreude, Verschlimmbessern, and more — each a concept entire civilisations have needed and found no single name for. Grammar deep-dives, leveled short stories, idioms, tongue twisters, and the architecture of thought in one of history's most philosophically precise languages. The word is not the concept; the language is the thinking.</p>
-        <a href="GERMAN.html" class="d-link">enter the german cosmos →</a>
+        <a href="german/home.html" class="d-link">enter the german cosmos →</a>
       </article>
 
       <!-- 09 JAPANESE -->
@@ -799,7 +802,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
           </div>
         </div>
         <p class="d-body">Japan through two lenses: the historical — ink-and-paper civilisation, ancient courts, the Meiji transformation — and the contemporary — neon-lit, algorithm-dense, quietly poetic. From kana to kanji, immersion methods, grammar paths, and the extraordinary richness hidden inside the act of writing in Japanese itself. Two eras, three writing systems, one endlessly layered people.</p>
-        <a href="JAPANESE.html" class="d-link">enter the japan cosmos →</a>
+        <a href="japanese/home.html" class="d-link">enter the japan cosmos →</a>
       </article>
 
       <!-- 10 PERSONAL -->
@@ -845,25 +848,6 @@ main { position: relative; z-index: 1; padding-top: 52px; }
     <p class="closing-text">The cosmos is not something you find at the end. It is what you are already inside — you just need a map of the parts you haven't seen yet.</p>
   </div>
 
-  <!-- ─── CREATOR NOTE ───────────────────────────────────────── -->
-  <div class="creator-note reveal">
-    <div class="creator-avatar">✦</div>
-    <div class="creator-name">Ayan Chakraborty</div>
-    <div class="creator-meta">curator · stargazer project</div>
-    <div class="creator-links">
-      <a href="mailto:ayan.chakraborty6174@gmail.com" class="creator-link">✉ contact</a>
-      <a href="MOVIES.html"   class="creator-link">🎬 films</a>
-      <a href="BOOKS.html"    class="creator-link">📚 books</a>
-      <a href="ANIME.html"    class="creator-link">📡 anime</a>
-      <a href="TANTRA.html"   class="creator-link">🜂 tantra</a>
-      <a href="MATHS.html"    class="creator-link">∞ maths</a>
-      <a href="CHESS.html"    class="creator-link">♟ chess</a>
-      <a href="STATS.html"    class="creator-link">📊 stats</a>
-      <a href="GERMAN.html"   class="creator-link">🏰 german</a>
-      <a href="JAPANESE.html" class="creator-link">⛩ japanese</a>
-    </div>
-  </div>
-
 </div><!-- /content-well -->
 
 
@@ -876,15 +860,25 @@ main { position: relative; z-index: 1; padding-top: 52px; }
     <a href="MOVIES.html"   class="fnl"><span class="fnl-icon">🎬</span><span class="fnl-name">Films</span>      <span class="fnl-sub">133 entries</span></a>
     <a href="BOOKS.html"    class="fnl"><span class="fnl-icon">📚</span><span class="fnl-name">Books</span>      <span class="fnl-sub">121 volumes</span></a>
     <a href="ANIME.html"    class="fnl"><span class="fnl-icon">📡</span><span class="fnl-name">Anime</span>      <span class="fnl-sub">88 transmissions</span></a>
-    <a href="MATHS.html"    class="fnl"><span class="fnl-icon" style="font-family:serif;font-size:1.2rem;">∞</span><span class="fnl-name">Mathematics</span><span class="fnl-sub">the infinite path</span></a>
+    <a href="maths/home.html"    class="fnl"><span class="fnl-icon" style="font-family:serif;font-size:1.2rem;">∞</span><span class="fnl-name">Mathematics</span><span class="fnl-sub">the infinite path</span></a>
     <a href="TANTRA.html"   class="fnl"><span class="fnl-icon">🜂</span><span class="fnl-name">Tantra</span>     <span class="fnl-sub">hidden library</span></a>
     <a href="CHESS.html"    class="fnl"><span class="fnl-icon">♟</span><span class="fnl-name">Chess</span>      <span class="fnl-sub">complete history</span></a>
-    <a href="STATS.html"    class="fnl"><span class="fnl-icon">📊</span><span class="fnl-name">Statistics</span> <span class="fnl-sub">atlas of uncertainty</span></a>
-    <a href="GERMAN.html"   class="fnl"><span class="fnl-icon">🏰</span><span class="fnl-name">German</span>     <span class="fnl-sub">18 untranslatable words</span></a>
-    <a href="JAPANESE.html" class="fnl"><span class="fnl-icon">⛩️</span><span class="fnl-name">Japanese</span>   <span class="fnl-sub">日本 · Japan</span></a>
+    <a href="stats/home.html"    class="fnl"><span class="fnl-icon">📊</span><span class="fnl-name">Statistics</span> <span class="fnl-sub">atlas of uncertainty</span></a>
+    <a href="german/home.html"   class="fnl"><span class="fnl-icon">🏰</span><span class="fnl-name">German</span>     <span class="fnl-sub">18 untranslatable words</span></a>
+    <a href="japanese/home.html" class="fnl"><span class="fnl-icon">⛩️</span><span class="fnl-name">Japanese</span>   <span class="fnl-sub">日本 · Japan</span></a>
     <a href="PERSONAL.html" class="fnl"><span class="fnl-icon">🗝️</span><span class="fnl-name">Personal</span>   <span class="fnl-sub">the vault</span></a>
   </div>
 </nav>
+
+<!-- ─── CREATOR NOTE ───────────────────────────────────────── -->
+<div class="creator-note reveal">
+  <div class="creator-avatar">✦</div>
+  <div class="creator-name">Ayan Chakraborty</div>
+  <div class="creator-meta">curator · stargazer project</div>
+  <div class="creator-links">
+    <a href="mailto:ayan.chakraborty6174@gmail.com" class="creator-link">✉ contact</a>
+  </div>
+</div>
 
 </main>
 

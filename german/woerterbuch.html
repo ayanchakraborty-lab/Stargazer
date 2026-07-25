@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#FFFEF5!important}html.pre-light{background:#FFFEF5}</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<title>German Dictionary & Untranslatable Words | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="Search a curated German dictionary with 18 untranslatable words like Waldeinsamkeit and Sehnsucht, plus core nouns, verbs & adjectives with etymology.">
+<meta name="keywords" content="untranslatable German words, German dictionary, German vocabulary list, Waldeinsamkeit, Sehnsucht, German word etymology, deutsch Wörterbuch">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The German Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/german/woerterbuch.html">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="German Dictionary & Untranslatable Words | Stargazer">
+<meta property="og:description" content="18 untranslatable German words like Waldeinsamkeit and Sehnsucht, with etymology and word-part breakdowns. Explore →">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/german/woerterbuch.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/german-og.jpg">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/german-og.jpg">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="German Dictionary & Untranslatable Words | Stargazer">
+<meta name="twitter:description" content="18 untranslatable German words with etymology, examples, and word-part breakdowns. Explore the dictionary →">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "German Dictionary: Untranslatable Words & Vocabulary",
+  "description": "Search a curated German dictionary with 18 untranslatable words like Waldeinsamkeit and Sehnsucht, plus core nouns, verbs & adjectives with etymology.",
+  "url": "https://stargazer-9m9.pages.dev/german/woerterbuch.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Untranslatability", "sameAs": "https://en.wikipedia.org/wiki/Untranslatability" }
+}
+</script>
+<link rel="stylesheet" href="german.css">
+</head>
+<body>
+
+<script>if(localStorage.getItem('stargazer_theme')==='light')document.body.classList.add('light');</script>
+
+<!-- Home button -->
+<a href="../index.html" id="homeLink" title="universe"><span class="hl-arrow">←</span> <span class="hl-label">universe</span></a>
+
+<!-- Auth header -->
+<div id="authHeader">
+  <button id="darkToggle" onclick="toggleLight()">☀ Day</button>
+  <a href="../login.html" id="loginBtn">sign in</a>
+  <div id="userInfo" style="display:none;">
+    <span id="userEmailDisplay"></span>
+    <button onclick="doSignOut()" id="signOutBtn">sign out</button>
+  </div>
+</div>
+
+<!-- Hamburger Button -->
+<button id="hamburger-btn" onclick="openSidebar()" aria-label="Open navigation">
+  <span style="font-size:18px;">☰</span>
+  <span class="hb-label">MENÜ</span>
+</button>
+
+<!-- Sidebar Overlay -->
+<div id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!-- Sidebar Navigation -->
+<nav id="sidebar" aria-label="Site navigation">
+  <div class="sidebar-header">
+    <span class="sidebar-logo">Deutsch</span>
+    <button class="sidebar-close" onclick="closeSidebar()">✕</button>
+  </div>
+  <div class="sidebar-flag"><div class="f1"></div><div class="f2"></div><div class="f3"></div></div>
+
+  <div class="sidebar-theme-row">
+    <button id="sidebarDarkToggle" class="sidebar-theme-btn" onclick="toggleLight()">☀ Day Mode</button>
+  </div>
+
+  <ul class="sidebar-nav" style="list-style:none;">
+    <li class="sidebar-divider">Hauptseiten · Main Pages</li>
+    <li><button class="sidebar-item" id="sb-home" onclick="location.href='home.html'">
+      <span class="sidebar-icon">🏠</span>
+      <span class="sidebar-text"><span class="sidebar-de">Startseite</span><span class="sidebar-en">Home · Introduction</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Wortschatz · Vocabulary</li>
+    <li><button class="sidebar-item active" id="sb-woerterbuch" onclick="location.href='woerterbuch.html'">
+      <span class="sidebar-icon">📖</span>
+      <span class="sidebar-text"><span class="sidebar-de">Wörterbuch</span><span class="sidebar-en">Dictionary · Word Explorer</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Grammatik · Grammar</li>
+    <li><button class="sidebar-item" id="sb-grammatik" onclick="location.href='grammatik.html'">
+      <span class="sidebar-icon">✏️</span>
+      <span class="sidebar-text"><span class="sidebar-de">Grammatik</span><span class="sidebar-en">Grammar · Practice Questions</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-pruefungen" onclick="location.href='pruefungen.html'">
+      <span class="sidebar-icon">🧪</span>
+      <span class="sidebar-text"><span class="sidebar-de">Prüfungen</span><span class="sidebar-en">Tests · 20 Themed Exams</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-nachschlagen" onclick="location.href='nachschlagen.html'">
+      <span class="sidebar-icon">📋</span>
+      <span class="sidebar-text"><span class="sidebar-de">Nachschlagen</span><span class="sidebar-en">Reference Tables</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Lesen · Reading</li>
+    <li><button class="sidebar-item" id="sb-geschichten" onclick="location.href='geschichten.html'">
+      <span class="sidebar-icon">📚</span>
+      <span class="sidebar-text"><span class="sidebar-de">Geschichten</span><span class="sidebar-en">Stories · A1 to C2 Levels</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-buecher" onclick="location.href='buecher.html'">
+      <span class="sidebar-icon">📕</span>
+      <span class="sidebar-text"><span class="sidebar-de">Bücher</span><span class="sidebar-en">Books · Curated Reading List</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Sprechen · Speaking</li>
+    <li><button class="sidebar-item" id="sb-satzbauer" onclick="location.href='satzbauer.html'">
+      <span class="sidebar-icon">🤖</span>
+      <span class="sidebar-text"><span class="sidebar-de">Satzbauer</span><span class="sidebar-en">Sentence Builder · AI Checker</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-zungenbrecher" onclick="location.href='zungenbrecher.html'">
+      <span class="sidebar-icon">👅</span>
+      <span class="sidebar-text"><span class="sidebar-de">Zungenbrecher</span><span class="sidebar-en">Tongue Twisters</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Ausdruck · Expression</li>
+    <li><button class="sidebar-item" id="sb-redewendungen" onclick="location.href='redewendungen.html'">
+      <span class="sidebar-icon">💬</span>
+      <span class="sidebar-text"><span class="sidebar-de">Redewendungen</span><span class="sidebar-en">Idioms & Expressions</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Gemeinschaft · Community</li>
+    <li><button class="sidebar-item" id="sb-community" onclick="location.href='community.html'">
+      <span class="sidebar-icon">👥</span>
+      <span class="sidebar-text"><span class="sidebar-de">Gemeinschaft</span><span class="sidebar-en">Community Discussion</span></span>
+    </button></li>
+  </ul>
+
+  <div class="sidebar-footer">
+    Sprache ist das Haus des Seins<br>
+    <span style="color: var(--text-faint); font-size:9px;">— Martin Heidegger</span>
+  </div>
+</nav>
+
+<!-- Particles -->
+<div id="particles"></div>
+
+<!-- NAV (shared.js) -->
+<div id="nav-container"></div>
+
+<main>
+<section class="section active" id="woerterbuch">
+  <div class="section-head">
+    <h2>Wörterbuch</h2>
+    <p>Dictionary · Untranslatable words, nouns, verbs &amp; adjectives with etymology</p>
+  </div>
+  <div class="dict-controls">
+    <div class="search-wrap"><input type="text" id="dict-search" placeholder="Search in German or English…" oninput="filterDict()"></div>
+    <div class="filter-chips" id="dict-filters"></div>
+    <div id="dict-count"></div>
+  </div>
+  <div class="dict-grid" id="dict-grid"></div>
+</section>
+</main>
+
+<footer id="site-footer" onclick="handleFooterClick(event)">
+  <p>Stargazer · Deutsch · <a href="../index.html">← Zurück zur Hauptseite</a></p>
+  <p style="margin-top:6px;color:var(--text-faint)">Sprache ist das Haus des Seins. — Martin Heidegger</p>
+</footer>
+<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint);font-style:italic;font-family:'Space Mono',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--amber-2);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div style="text-align:center;padding-bottom:2rem;">
+  <a href="../ABOUT.html" style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--amber);opacity:0.45;text-decoration:none;border:1px solid var(--amber);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+</div>
+
+<script>
+/* Must be defined before shared.js loads */
+window._pageKey = 'german';
+
+window._applyDarkMode = function(isDark) {
+  document.body.classList.toggle('light', !isDark);
+  document.documentElement.classList.remove('pre-light');
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+  const btn = document.getElementById('darkToggle');
+  if (btn) btn.textContent = isDark ? '☀ Day' : '🌙 Dark';
+  const sideBtn = document.getElementById('sidebarDarkToggle');
+  if (sideBtn) sideBtn.textContent = isDark ? '☀ Day Mode' : '🌙 Dark Mode';
+};
+</script>
+<script src="../shared.js"></script>
+<script>
+const DICT = [
+  {w:"Waldeinsamkeit",a:"die",g:"f",pl:"—",e:"the solitude and peace of being alone in a forest",t:"noun",cat:"untranslatable",l:"C1",ex:"Er suchte die Waldeinsamkeit, um seinen Gedanken freien Lauf zu lassen.",ex_en:"He sought the forest solitude to let his thoughts wander.",parts:[{p:"Wald",m:"forest"},{p:"ein",m:"alone"},{p:"sam",m:"-ful"},{p:"keit",m:"-ness"}],note:"Central to German Romanticism — spiritual renewal found in being alone with nature."},
+  {w:"Sehnsucht",a:"die",g:"f",pl:"Sehnsüchte",e:"deep longing, yearning — more intense than mere desire",t:"noun",cat:"untranslatable",l:"B1",ex:"Eine tiefe Sehnsucht nach der Heimat erfasste ihn.",ex_en:"A deep longing for his homeland took hold of him.",parts:[{p:"sehnen",m:"to yearn"},{p:"Sucht",m:"craving"}],note:"C.S. Lewis called it 'the inconsolable longing for we know not what.'"},
+  {w:"Fernweh",a:"das",g:"n",pl:"—",e:"longing for distant places; wanderlust; the ache for far-away",t:"noun",cat:"untranslatable",l:"B2",ex:"Das Fernweh trieb ihn immer wieder in unbekannte Länder.",ex_en:"Wanderlust drove him again and again to unknown lands.",parts:[{p:"fern",m:"far"},{p:"Weh",m:"pain"}],note:"Opposite of Heimweh (homesickness)."},
+  {w:"Weltschmerz",a:"der",g:"m",pl:"—",e:"world-weariness; pain caused by the state of the world",t:"noun",cat:"untranslatable",l:"C1",ex:"Ein dumpfer Weltschmerz hatte sich seiner bemächtigt.",ex_en:"A heavy world-weariness had taken hold of him.",parts:[{p:"Welt",m:"world"},{p:"Schmerz",m:"pain"}],note:"Coined by Jean Paul. The awareness of evil producing melancholy withdrawal."},
+  {w:"Schadenfreude",a:"die",g:"f",pl:"—",e:"pleasure derived from another person's misfortune",t:"noun",cat:"untranslatable",l:"B2",ex:"Mit einer gewissen Schadenfreude sah er zu, wie sein Rivale stolperte.",ex_en:"With schadenfreude he watched his rival stumble.",parts:[{p:"Schaden",m:"harm"},{p:"Freude",m:"joy"}],note:"One of the few German loanwords in English."},
+  {w:"Gemütlichkeit",a:"die",g:"f",pl:"—",e:"coziness, warmth, and convivial ease",t:"noun",cat:"untranslatable",l:"B1",ex:"Das Café hatte eine besondere Gemütlichkeit.",ex_en:"The café had a particular coziness.",parts:[{p:"gemütlich",m:"cozy"},{p:"keit",m:"-ness"}]},
+  {w:"Torschlusspanik",a:"die",g:"f",pl:"—",e:"gate-closing panic; fear that time is running out",t:"noun",cat:"untranslatable",l:"C1",ex:"Mit 35 befiel sie plötzlich die Torschlusspanik.",ex_en:"At 35, gate-closing panic suddenly struck her.",parts:[{p:"Tor",m:"gate"},{p:"Schluss",m:"closing"},{p:"Panik",m:"panic"}]},
+  {w:"Fingerspitzengefühl",a:"das",g:"n",pl:"—",e:"sensitivity, tact; ability to handle delicate situations",t:"noun",cat:"untranslatable",l:"C1",ex:"Diese Verhandlungen erfordern viel Fingerspitzengefühl.",ex_en:"These negotiations require a great deal of tact.",parts:[{p:"Finger",m:"finger"},{p:"Spitze",m:"tip"},{p:"Gefühl",m:"feeling"}]},
+  {w:"Verschlimmbessern",a:"",g:"",pl:"",e:"to make something worse while trying to improve it",t:"verb",cat:"untranslatable",l:"C2",ex:"Er hat das Regal nur verschlimmbessert.",ex_en:"He only made the shelf worse.",parts:[{p:"schlimm",m:"bad"},{p:"besser",m:"better"},{p:"ver-",m:"mis-"}]},
+  {w:"Kummerspeck",a:"der",g:"m",pl:"—",e:"grief bacon; weight gained from emotional eating",t:"noun",cat:"untranslatable",l:"C1",ex:"Nach der Trennung hatte sie einige Kilos Kummerspeck zugenommen.",ex_en:"After the break-up she put on some grief-pounds.",parts:[{p:"Kummer",m:"grief"},{p:"Speck",m:"bacon/fat"}]},
+  {w:"Fremdschämen",a:"",g:"",pl:"",e:"vicarious embarrassment; cringing on behalf of someone else",t:"verb",cat:"untranslatable",l:"B2",ex:"Bei seiner peinlichen Rede musste ich mich fremdschämen.",ex_en:"During his embarrassing speech I had to cringe vicariously.",parts:[{p:"fremd",m:"other"},{p:"schämen",m:"be ashamed"}]},
+  {w:"Innerer Schweinehund",a:"der",g:"m",pl:"",e:"inner pig-dog; the part resisting effort and preferring comfort",t:"noun",cat:"untranslatable",l:"B2",ex:"Ich musste meinen inneren Schweinehund überwinden.",ex_en:"I had to overcome my inner pig-dog.",parts:[{p:"inner",m:"inner"},{p:"Schwein",m:"pig"},{p:"Hund",m:"dog"}]},
+  {w:"Weltanschauung",a:"die",g:"f",pl:"Weltanschauungen",e:"worldview; comprehensive conception of the world",t:"noun",cat:"untranslatable",l:"C1",ex:"Ihre politische Weltanschauung hatte sich gewandelt.",ex_en:"Her political worldview had changed.",parts:[{p:"Welt",m:"world"},{p:"Anschauung",m:"viewing"}]},
+  {w:"Zeitgeist",a:"der",g:"m",pl:"—",e:"the spirit of the age; defining ideas of a period",t:"noun",cat:"untranslatable",l:"B2",ex:"Ihr Roman hat den Zeitgeist der 1980er perfekt eingefangen.",ex_en:"Her novel captured the spirit of the 1980s.",parts:[{p:"Zeit",m:"time"},{p:"Geist",m:"spirit"}]},
+  {w:"Doppelgänger",a:"der",g:"m",pl:"Doppelgänger",e:"a double; look-alike of a living person",t:"noun",cat:"untranslatable",l:"B1",ex:"Sie traf ihren Doppelgänger in Hamburg.",ex_en:"She met her double in Hamburg.",parts:[{p:"doppel",m:"double"},{p:"Gänger",m:"goer"}]},
+  {w:"Zweisamkeit",a:"die",g:"f",pl:"—",e:"intimate togetherness for two; couple-solitude",t:"noun",cat:"untranslatable",l:"C1",ex:"Sie genossen die Zweisamkeit des Wochenendes.",ex_en:"They enjoyed the togetherness of the weekend.",parts:[{p:"zwei",m:"two"},{p:"samkeit",m:"-ness"}]},
+  {w:"Stammtisch",a:"der",g:"m",pl:"Stammtische",e:"reserved table for regulars at a pub; the tradition",t:"noun",cat:"untranslatable",l:"B2",ex:"Jeden Donnerstag traf er sich am Stammtisch.",ex_en:"Every Thursday he met his friends at the regulars' table.",parts:[{p:"Stamm",m:"regular"},{p:"Tisch",m:"table"}]},
+  {w:"Bildung",a:"die",g:"f",pl:"—",e:"cultivation through learning; holistic self-development",t:"noun",cat:"untranslatable",l:"C1",ex:"Bildung ist die Formung des ganzen Menschen.",ex_en:"Bildung is the shaping of the whole person.",parts:[{p:"bilden",m:"to form"},{p:"-ung",m:"noun suffix"}]},
+  {w:"das Haus",a:"das",g:"n",pl:"die Häuser",e:"house",t:"noun",cat:"noun",l:"A1",ex:"Das alte Haus hat einen großen Garten.",ex_en:"The old house has a large garden."},
+  {w:"die Stadt",a:"die",g:"f",pl:"die Städte",e:"city, town",t:"noun",cat:"noun",l:"A1",ex:"München ist eine der schönsten Städte Deutschlands.",ex_en:"Munich is one of Germany's most beautiful cities."},
+  {w:"die Stille",a:"die",g:"f",pl:"—",e:"silence, stillness",t:"noun",cat:"noun",l:"B1",ex:"In der Stille des Waldes hörte er seinen Herzschlag.",ex_en:"In the silence of the forest he heard his heartbeat."},
+  {w:"die Hoffnung",a:"die",g:"f",pl:"die Hoffnungen",e:"hope",t:"noun",cat:"noun",l:"A2",ex:"Die Hoffnung stirbt zuletzt.",ex_en:"Hope dies last."},
+  {w:"das Geheimnis",a:"das",g:"n",pl:"die Geheimnisse",e:"secret, mystery",t:"noun",cat:"noun",l:"A2",ex:"Jeder Mensch hat Geheimnisse.",ex_en:"Every person has secrets."},
+  {w:"werden",a:"",g:"",pl:"",e:"to become; auxiliary for future/passive",t:"verb",cat:"verb",l:"A1",ex:"Er wird eines Tages verstehen, was ich meinte.",ex_en:"He will one day understand what I meant.",conj:{pre:["ich werde","du wirst","er wird","wir werden","ihr werdet","sie werden"],perf:"ist geworden",pret:"wurde",note:"Three uses: to become, future auxiliary, passive auxiliary."}},
+  {w:"denken",a:"",g:"",pl:"",e:"to think",t:"verb",cat:"verb",l:"A1",ex:"Ich denke, also bin ich.",ex_en:"I think, therefore I am.",conj:{pre:["ich denke","du denkst","er denkt","wir denken","ihr denkt","sie denken"],perf:"hat gedacht",pret:"dachte",note:"Mixed verb: regular present, irregular past."}},
+  {w:"bleiben",a:"",g:"",pl:"",e:"to stay, to remain",t:"verb",cat:"verb",l:"A1",ex:"Bleib, wie du bist.",ex_en:"Stay as you are.",conj:{pre:["ich bleibe","du bleibst","er bleibt","wir bleiben","ihr bleibt","sie bleiben"],perf:"ist geblieben",pret:"blieb",note:"Strong verb using 'sein' as perfect auxiliary."}},
+  {w:"still",a:"",g:"",pl:"",e:"quiet, silent, still",t:"adj",cat:"adj",l:"A2",ex:"Er war ein stilles Kind, das lieber beobachtete.",ex_en:"He was a quiet child who preferred to observe.",note:"Predicate: Das Kind ist still. Attributive: ein stilles Kind."},
+  {w:"vergänglich",a:"",g:"",pl:"",e:"transient, fleeting, ephemeral",t:"adj",cat:"adj",l:"C1",ex:"Alles Schöne ist vergänglich — das macht es kostbar.",ex_en:"All beautiful things are fleeting — that makes them precious."},
+  {w:"sachlich",a:"",g:"",pl:"",e:"objective, matter-of-fact, factual",t:"adj",cat:"adj",l:"B2",ex:"Bleib sachlich — es geht hier nicht um Gefühle.",ex_en:"Stay objective — this isn't about feelings.",note:"Related to Sache (thing/matter)."},
+  {w:"unheimlich",a:"",g:"",pl:"",e:"uncanny, eerie; (colloquial) incredibly",t:"adj",cat:"adj",l:"B1",ex:"Das alte Haus hatte eine unheimliche Stille.",ex_en:"The old house had an eerie silence.",note:"Freud's 'das Unheimliche' derives from this word."}
+];
+
+let dictFilterState = 'all';
+
+function initParticles(){
+  const wrap = document.getElementById('particles');
+  if(!wrap) return;
+  const colors = ['#E8A800','#CC0000','#FFE033','#7C3AED','#10B981'];
+  for(let i=0;i<28;i++){
+    const el = document.createElement('div');
+    el.className = 'needle';
+    const size = 2 + Math.random()*4;
+    el.style.width = size+'px';
+    el.style.height = size+'px';
+    el.style.background = colors[Math.floor(Math.random()*colors.length)];
+    el.style.left = Math.random()*100+'%';
+    el.style.setProperty('--d', (Math.random()*120-60)+'px');
+    el.style.animationDuration = (8+Math.random()*14)+'s';
+    el.style.animationDelay = (Math.random()*14)+'s';
+    el.style.opacity = (0.25+Math.random()*0.45).toFixed(2);
+    wrap.appendChild(el);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   SIDEBAR / NAV
+═══════════════════════════════════════════ */
+
+function openSidebar(){
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sidebar-overlay').classList.add('open');
+}
+
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+}
+
+function toggleLight(){
+  const goingLight = !document.body.classList.contains('light');
+  document.body.classList.toggle('light', goingLight);
+  document.documentElement.classList.remove('pre-light');
+  localStorage.setItem('stargazer_theme', goingLight ? 'light' : 'dark');
+  const label = goingLight ? '🌙 Dark' : '☀ Day';
+  const btn = document.getElementById('darkToggle');
+  if(btn) btn.textContent = label;
+  const sideBtn = document.getElementById('sidebarDarkToggle');
+  if(sideBtn) sideBtn.textContent = goingLight ? '🌙 Dark Mode' : '☀ Day Mode';
+  if (typeof sbSaveDarkMode === 'function') sbSaveDarkMode(!goingLight);
+}
+
+/* ═══════════════════════════════════════════
+   GEHEIMER MODUS · SECRET MODE
+   Triple-clicking the footer text (not the "Zurück zur Hauptseite" link
+   itself) flips a hidden theme. e.detail is the browser's own rapid-click
+   counter, so no manual timers are needed. State persists in localStorage.
+   The Prüfungen section has a themed test ("Der Geheimagent") whose last
+   item plainly tells the player about this — see THEMED_TESTS id 21.
+═══════════════════════════════════════════ */
+
+function handleFooterClick(e){
+  if(e.target.closest('a')) return; // let the real navigation link work normally
+  if(e.detail===3) toggleSecretMode();
+}
+
+function toggleSecretMode(){
+  const on = !document.body.classList.contains('geheim-mode');
+  document.body.classList.toggle('geheim-mode', on);
+  try{ localStorage.setItem('german-geheim-mode', on ? '1' : '0'); }catch(e){}
+  showSecretToast(on);
+}
+
+function showSecretToast(on){
+  const existing = document.querySelector('.geheim-toast');
+  if(existing) existing.remove();
+  const t = document.createElement('div');
+  t.className = 'geheim-toast';
+  t.innerHTML = on
+    ? `🔮 <strong>Geheimer Modus aktiviert</strong><span>Secret mode activated — welcome behind the curtain.</span>`
+    : `Geheimer Modus deaktiviert <span>Secret mode off</span>`;
+  document.body.appendChild(t);
+  requestAnimationFrame(()=>t.classList.add('show'));
+  setTimeout(()=>{ t.classList.remove('show'); setTimeout(()=>t.remove(), 500); }, 3200);
+}
+
+function restoreSecretMode(){
+  try{ if(localStorage.getItem('german-geheim-mode')==='1') document.body.classList.add('geheim-mode'); }catch(e){}
+}
+
+/* ═══════════════════════════════════════════
+   READING LOGIN STATE FROM shared.js's OWN UI
+   shared.js renders into #loginBtn / #userInfo / #userEmailDisplay — this
+   page reads those same elements rather than keeping its own auth state,
+   so it can never drift out of sync with the real session.
+═══════════════════════════════════════════ */
+
+function renderDictFilters(){
+  const cats = [
+    {k:'all',l:'Alle'},{k:'untranslatable',l:'Unübersetzbar'},
+    {k:'noun',l:'Nomen'},{k:'verb',l:'Verben'},{k:'adj',l:'Adjektive'}
+  ];
+  document.getElementById('dict-filters').innerHTML = cats.map(c=>
+    `<button class="chip ${c.k==='all'?'active':''}" data-cat="${c.k}" onclick="setDictFilter('${c.k}', this)">${c.l}</button>`
+  ).join('');
+}
+
+function setDictFilter(cat, btn){
+  dictFilterState = cat;
+  document.querySelectorAll('#dict-filters .chip').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  renderDictionary();
+}
+
+function filterDict(){ renderDictionary(); }
+
+function renderDictionary(){
+  if(!document.getElementById('dict-filters').innerHTML) renderDictFilters();
+  const q = (document.getElementById('dict-search').value||'').toLowerCase().trim();
+  let list = DICT.filter(d=>{
+    const matchCat = dictFilterState==='all' || d.cat===dictFilterState;
+    const matchQ = !q || d.w.toLowerCase().includes(q) || d.e.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+  document.getElementById('dict-count').textContent = `${list.length} Einträge gefunden`;
+  document.getElementById('dict-grid').innerHTML = list.map((d,i)=>{
+    const idx = DICT.indexOf(d);
+    const special = d.cat==='untranslatable' ? 'special' : '';
+    let badges = `<span class="badge ${d.l.toLowerCase()}">${d.l}</span>`;
+    if(d.cat==='untranslatable') badges = `<span class="badge untranslatable">Unübersetzbar</span>` + badges;
+    let expand = `<div class="dict-expand">
+      <div class="dict-example"><div class="de">„${d.ex}"</div><div class="en">${d.ex_en||''}</div></div>`;
+    if(d.parts){
+      expand += `<div class="etymology-box"><div class="etymology-label">Etymologie</div><div class="decomp-row">`+
+        d.parts.map((p,pi)=>`<div class="decomp-part"><span class="p-word">${p.p}</span><span class="p-mean">${p.m}</span></div>`+(pi<d.parts.length-1?'<span class="decomp-plus">+</span>':'')).join('')+
+        `</div></div>`;
+    }
+    if(d.conj){
+      expand += `<div class="etymology-box"><div class="etymology-label">Konjugation (Präsens)</div><div class="conj-grid">`+
+        d.conj.pre.map(c=>{const [pron,...rest]=c.split(' ');return `<div class="conj-row"><span class="conj-pron">${pron}</span><span class="conj-form">${rest.join(' ')}</span></div>`;}).join('')+
+        `</div><div style="margin-top:8px;font-size:11px;color:var(--text-3)">Perfekt: <span class="text-amber">${d.conj.perf}</span> · Präteritum: <span class="text-amber">${d.conj.pret}</span></div></div>`;
+    }
+    if(d.note) expand += `<div class="dict-note">${d.note}</div>`;
+    expand += `</div>`;
+    return `<div class="dict-card ${special}" onclick="this.classList.toggle('expanded')">
+      <div class="dict-top">
+        <div class="dict-german">${d.a?`<span class="dict-article">${d.a}</span> `:''}${d.w}</div>
+        <div class="dict-badges">${badges}</div>
+      </div>
+      <div class="dict-english">${d.e}</div>
+      <div class="dict-meta"><span>${d.t}</span>${d.pl&&d.pl!=='—'?`<span>Pl: ${d.pl}</span>`:''}</div>
+      ${expand}
+    </div>`;
+  }).join('') || '<p style="color:var(--text-3);grid-column:1/-1;text-align:center;padding:40px;">Keine Einträge gefunden.</p>';
+}
+
+/* ═══════════════════════════════════════════
+   GRAMMAR QUIZ (free practice section)
+═══════════════════════════════════════════ */
+
+function initApp(){
+  restoreSecretMode()
+  initParticles()
+  renderDictionary()
+  if (typeof renderNavAuth === 'function') renderNavAuth('nav-container');
+}
+document.addEventListener('DOMContentLoaded', initApp);
+</script>
+</body>
+</html>

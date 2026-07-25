@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#faf7f2!important}html.pre-light{background:#faf7f2}</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]}));}else{renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});}"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Lato:ital,wght@0,400;0,700;1,400&family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<title>30 Fascinating Mathematics Facts | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="30 mathematical curiosities — from Gauss's schoolboy trick to research-level mind-benders — proof that mathematics constantly exceeds expectations.">
+<meta name="keywords" content="math facts, interesting mathematics facts, mathematical curiosities, fun math facts, cool math facts, number theory facts, math trivia">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Mathematics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/maths/facts.html">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="30 Fascinating Mathematics Facts | Stargazer">
+<meta property="og:description" content="30 facts that make mathematics feel like magic — from an 8-year-old Gauss outsmarting his teacher to results that still surprise researchers. Get curious →">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/maths/facts.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="30 Fascinating Mathematics Facts | Stargazer">
+<meta name="twitter:description" content="From Gauss's schoolboy trick to research-level mind-benders — 30 facts proving mathematics never stops surprising. Explore →">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Mathematical Facts That Will Astonish You",
+  "description": "30 mathematical curiosities spanning arithmetic, number theory, and beyond — from classroom-level surprises to results that still astonish researchers.",
+  "url": "https://stargazer-9m9.pages.dev/maths/facts.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Mathematics", "sameAs": "https://en.wikipedia.org/wiki/Mathematics" }
+}
+</script>
+<link rel="stylesheet" href="maths.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ AUTH TOP BAR ════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <a href="../login.html" id="loginBtn" class="atb-btn atb-signin">☽ Sign In</a>
+  <div id="userInfo" style="display:none;align-items:center;gap:0.4rem">
+    <span class="atb-username" id="userEmailDisplay">✦ Explorer</span>
+    <button class="atb-signout" onclick="doSignOut()">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ ADMIN MODAL ══════ -->
+<div id="adminModal">
+  <div class="admin-modal-box">
+    <div class="admin-modal-title" id="adminModalTitle">Admin Panel</div>
+    <div id="adminModalBody"></div>
+    <div class="admin-modal-actions">
+      <button class="admin-cancel-btn" onclick="closeAdminModal()">Cancel</button>
+      <button class="admin-save-btn" id="adminModalSaveBtn" onclick="adminModalSave()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ NAV ═══════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Mathematics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Math Facts</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)">🔍 Search</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══════════════════════════════════════ HAMBURGER MENU ════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home" onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item" data-page="books" onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item" data-page="puzzles" onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="precollege" onclick="location.href='precollege.html'">📐 Pre-College</button>
+  <button class="hm-item" data-page="olympiad" onclick="location.href='olympiad.html'">🏆 Olympiad</button>
+  <button class="hm-item" data-page="undergrad" onclick="location.href='undergrad.html'">🎓 Undergrad</button>
+  <button class="hm-item" data-page="graduate" onclick="location.href='graduate.html'">🔬 Graduate</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="research" onclick="location.href='research.html'">⚡ Research</button>
+  <button class="hm-item" data-page="openproblems" onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item" data-page="careers" onclick="location.href='careers.html'">💼 Careers</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="studyguide" onclick="location.href='studyguide.html'">📖 Study Guide</button>
+  <button class="hm-item active" data-page="facts" onclick="location.href='facts.html'">✨ Math Facts</button>
+  <button class="hm-item" data-page="universities" onclick="location.href='universities.html'">🎓 India</button>
+  <button class="hm-item" data-page="comments" onclick="location.href='comments.html'">💬 Comments</button>
+</div>
+
+<!-- ═══════════════════════════════════════ SEARCH MODAL ════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search this page…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<div id="shortcut-hint">/ search</div>
+
+<div class="page active" id="page-facts" style="background:#060612">
+  <section class="section" id="facts">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:rgba(236,72,153,0.08);color:#f9a8d4;border:1px solid rgba(236,72,153,0.22)">Curiosities &amp; Wonders</span>
+        <h1 class="s-title font-serif" style="color:#fce7f3">Mathematical Facts That Will Astonish You</h1>
+        <p class="s-desc" style="color:#ec4899">From school-level surprises to research-level mind-benders — mathematics constantly, joyfully exceeds all expectations.</p>
+      </div>
+      <div class="facts-single-col" id="facts-grid"></div>
+    </div>
+  </section>
+</div>
+
+
+<footer id="footer">
+  <div class="foot-eq">e<sup>iπ</sup> + 1 = 0</div>
+  <p class="foot-txt"><strong style="color:#6d28d9">"Mathematics is not about numbers, equations, computations, or algorithms. It is about understanding."</strong><br>— William Paul Thurston, Fields Medalist</p>
+  <div class="foot-links">
+    <button class="foot-link" onclick="location.href='../ABOUT.html'">📖 About Stargazer</button>
+    <a class="foot-link" onclick="location.href='comments.html'; return false;" href="#">💬 Community Comments</a>
+    <a class="foot-link" href="mailto:ayan.chakraborty6174@gmail.com">✉️ Contact Creator</a>
+    <a class="foot-link" href="https://stargazer-9m9.pages.dev" target="_blank" rel="noopener">🌐 Stargazer Home</a>
+  </div>
+</footer>
+
+<button id="theme-toggle" title="Toggle light / dark theme" aria-label="Toggle light / dark theme" onclick="toggleTheme()">☀️</button>
+<button id="btt" title="Back to top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+window._pageKey = 'maths';
+
+function isAdmin() {
+  return !!(window.currentUser && window.currentUser.email === ADMIN_EMAIL);
+}
+
+window._applyDarkMode = function(isDark) {
+  // isDark=true → dark mode (no light-mode class)
+  // isDark=false → light mode
+  applyTheme(!isDark);   // applyTheme(true) adds light-mode class
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+};
+
+
+window._afterRenderAuthUI = function(user) {
+  // Show/hide admin bars
+  document.querySelectorAll('.admin-bar').forEach(function(el) {
+    if (user && user.email === ADMIN_EMAIL) { el.classList.add('visible'); }
+    else                                    { el.classList.remove('visible'); }
+  });
+  // Mirror display name into comment form header
+  var ud2 = document.getElementById('userEmailDisplay2');
+  if (ud2 && user) {
+    ud2.textContent = user.user_metadata?.display_name
+                    || user.user_metadata?.full_name
+                    || user.email || 'you';
+  }
+  // Trigger admin data load on sign-in
+  if (user) { if (typeof loadAdminData === 'function') loadAdminData(); }
+};
+
+
+function applyTheme(light) {
+  if (light) { document.body.classList.add('light-mode'); }
+  else        { document.body.classList.remove('light-mode'); }
+  var btn = document.getElementById('theme-toggle');
+  if (btn) btn.textContent = light ? '🌙' : '☀️';
+  document.documentElement.classList.remove('pre-light');
+}
+
+
+function toggleTheme() {
+  var nowLight = !document.body.classList.contains('light-mode');
+  applyTheme(nowLight);
+  localStorage.setItem('stargazer_theme', nowLight ? 'light' : 'dark');
+  // Persist via shared.js (writes to Supabase profiles.dark_mode)
+  // isDark param: true = dark mode, false = light mode
+  if (window.sbSaveDarkMode) window.sbSaveDarkMode(!nowLight);
+}
+
+
+// Apply theme immediately on load from localStorage
+(function() {
+  var tm = localStorage.getItem('stargazer_theme');
+  applyTheme(tm === 'light');
+})();
+
+// shared.js calls this after loading dark_mode from profiles
+// (already declared in the auth block above as window._applyDarkMode)
+
+
+function reRevealActivePage() {
+  var p = document.querySelector('.page.active');
+  if (!p) return;
+  p.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
+    el.classList.add('visible');
+  });
+}
+
+
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Close modal on backdrop click
+
+function toggleHamburger() {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu) return;
+  var open = menu.classList.toggle('open');
+  btn.classList.toggle('open', open);
+}
+// Close on outside click
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu || !menu.classList.contains('open')) return;
+  if (!menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var menu = document.getElementById('hamburger-menu');
+    if (menu && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      document.getElementById('hamburger-btn').classList.remove('open');
+    }
+  }
+});
+
+window.addEventListener('scroll', function() {
+  var btt = document.getElementById('btt');
+  if (btt) btt.classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
+
+window._getProgressData = function() { return {}; };
+window._applyProgressData = function(d) {};
+
+let _adminModalSaveFn = null;
+
+function openAdminModal(title, bodyHTML, saveFn) {
+  document.getElementById('adminModalTitle').textContent = title;
+  document.getElementById('adminModalBody').innerHTML = bodyHTML;
+  _adminModalSaveFn = saveFn;
+  document.getElementById('adminModal').classList.add('open');
+}
+
+function closeAdminModal() {
+  document.getElementById('adminModal').classList.remove('open');
+  _adminModalSaveFn = null;
+}
+
+async function adminModalSave() {
+  if (_adminModalSaveFn) {
+    const btn = document.getElementById('adminModalSaveBtn');
+    btn.textContent = 'Saving…';
+    btn.disabled = true;
+    try {
+      await _adminModalSaveFn();
+      closeAdminModal();
+    } catch(e) {
+      alert('Save failed: ' + (e.message || e));
+    }
+    btn.textContent = 'Save';
+    btn.disabled = false;
+  }
+}
+
+document.getElementById('adminModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAdminModal();
+});
+
+var PAGE_SEARCH_INDEX = [];
+function openSearch() {
+  buildSearchIndex();
+  var m = document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(function() { document.getElementById('search-input').focus(); }, 80);
+}
+function closeSearch() {
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-results').innerHTML = '<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q) {
+  var res = document.getElementById('search-results');
+  if (!q.trim()) { res.innerHTML = '<div class="sr-empty">Start typing…</div>'; return; }
+  var lq = q.toLowerCase();
+  var hits = PAGE_SEARCH_INDEX.filter(function(x) { return x.q.indexOf(lq) !== -1; }).slice(0, 20);
+  if (!hits.length) { res.innerHTML = '<div class="sr-empty">No results for "' + q + '"</div>'; return; }
+  res.innerHTML = hits.map(function(h) {
+    var idx = PAGE_SEARCH_INDEX.indexOf(h);
+    var ti = mathHighlight(h.title, lq);
+    return '<div class="sr-item" tabindex="0" data-idx="' + idx + '" onclick="goPageResult(' + idx + ')" onkeydown="if(event.key===\'Enter\')goPageResult(' + idx + ')">' +
+      '<span class="sr-icon">' + h.icon + '</span>' +
+      '<div><div class="sr-title">' + ti + '</div><div class="sr-meta">' + h.meta + '</div></div>' +
+      '<span class="sr-section">' + h.section + '</span></div>';
+  }).join('');
+}
+function mathHighlight(text, q) {
+  if (!q) return text;
+  var idx = text.toLowerCase().indexOf(q);
+  if (idx < 0) return text;
+  return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
+}
+function goPageResult(idx) {
+  var h = PAGE_SEARCH_INDEX[idx]; if (!h) return;
+  closeSearch();
+  if (h.pre) h.pre();
+  setTimeout(function(){
+    var el = document.getElementById(h.elId);
+    if (el) {
+      el.scrollIntoView({behavior:'smooth', block:'center'});
+      el.style.outline = '3px solid #a855f7'; el.style.outlineOffset = '4px';
+      setTimeout(function(){ el.style.outline=''; el.style.outlineOffset=''; }, 1600);
+    }
+  }, 60);
+}
+function searchKeyNav(e) {
+  if (e.key === 'Escape') { closeSearch(); return; }
+  var items = document.querySelectorAll('.sr-item');
+  var cur = document.activeElement;
+  var curIdx = Array.prototype.indexOf.call(items, cur);
+  if (e.key === 'ArrowDown') { e.preventDefault(); (items[curIdx + 1] || items[0]).focus(); }
+  if (e.key === 'ArrowUp')   { e.preventDefault(); (items[curIdx - 1] || items[items.length - 1]).focus(); }
+  if (e.key === 'Enter' && curIdx >= 0) { items[curIdx].click(); }
+}
+document.addEventListener('keydown', function(e) {
+  if (['INPUT','TEXTAREA','SELECT'].indexOf(e.target.tagName) !== -1) return;
+  var modal = document.getElementById('search-modal');
+  if (modal && modal.classList.contains('open')) {
+    if (e.key === 'Escape') closeSearch();
+    return;
+  }
+  if (e.key === '/') { e.preventDefault(); openSearch(); }
+});
+
+const factsData=[
+{cat:"Arithmetic",acc:"f59e0b",heading:"The Genius Who Added 1 to 100 in Seconds",text:"Gauss, at age 8, was told to sum 1+2+3+...+100 to keep him busy. He answered 5050 in seconds — by noticing 1+100=101, 2+99=101, giving 50 pairs of 101.",math:"Σi = n(n+1)/2 = 5050"},
+{cat:"Number Theory",acc:"10b981",heading:"The Repunit Palindrome That Climbs and Falls",text:"111,111,111 × 111,111,111 = 12,345,678,987,654,321. The digits climb from 1 to 9 and back down — a perfect digit palindrome as the product of two repunits.",math:"111,111,111² = 12,345,678,987,654,321"},
+{cat:"Probability",acc:"06b6d4",heading:"23 Strangers Have a 50% Chance of Sharing a Birthday",text:"In a room of just 23 people, there is a greater than 50% probability that two share a birthday. With 70 people, it's 99.9%. Our intuition about coincidence is systematically, catastrophically wrong.",math:"P(shared birthday) > 50% when n = 23"},
+{cat:"Analysis",acc:"a855f7",heading:"The Infinite Decimal That Equals Exactly One",text:"0.999... = 1. This is not an approximation. The infinite decimal 0.999... is exactly, rigorously, precisely equal to 1. Proof: let x = 0.999...; then 10x = 9.999... = 9+x; so 9x=9; x=1.",math:"0.999... = 1 exactly"},
+{cat:"Complex Analysis",acc:"ef4444",heading:"The Most Beautiful Equation in All of Mathematics",text:"Euler's identity connects five fundamental constants in one equation — e, i, π, 1, and 0 — with the simplest possible arithmetic. Feynman called it 'the most remarkable formula in mathematics.'",math:"e<sup>iπ</sup> + 1 = 0"},
+{cat:"Set Theory",acc:"8b5cf6",heading:"Infinity Comes in Different Sizes — Some Are Larger",text:"There are different sizes of infinity. The infinity of real numbers is strictly larger than the infinity of integers. Cantor proved this in 1874 using the diagonal argument — arguably the most beautiful proof ever conceived.",math:"|ℝ| > |ℕ|   (uncountable vs countable)"},
+{cat:"Measure Theory",acc:"f43f5e",heading:"You Can Reassemble One Ball Into Two Identical Balls",text:"The Banach-Tarski Paradox: a solid ball can be decomposed into 5 pieces and reassembled into TWO solid balls of the same size. No physical trick — pure mathematics using the Axiom of Choice and non-measurable sets.",math:"1 ball → 2 identical balls"},
+{cat:"Logic",acc:"fbbf24",heading:"Mathematics Cannot Prove Its Own Completeness",text:"Gödel's First Incompleteness Theorem (1931): In any sufficiently powerful consistent formal system, there exist true statements that cannot be proved within the system. Mathematics contains truths forever beyond its own reach.",math:"T consistent ⟹ ∃G: T⊨G but T⊬G"},
+{cat:"Number Theory",acc:"10b981",heading:"The Cab Number That Became Mathematical Legend",text:"Ramanujan's taxicab number: 1729 = 1³+12³ = 9³+10³ — the smallest number expressible as the sum of two perfect cubes in two different ways. Hardy visited the ill Ramanujan, mentioning 'rather dull' cab number 1729. Ramanujan replied: 'No, it is very interesting.'",math:"1729 = 12³+1³ = 10³+9³"},
+{cat:"Topology",acc:"06b6d4",heading:"One Side, One Edge: The Möbius Strip's Impossible Geometry",text:"A Möbius strip has only ONE side and ONE edge. An ant walking on its surface covers the entire strip without ever crossing an edge. Cut it down the middle — it doesn't separate, it becomes a longer loop.",math:"χ(Möbius strip) = 0"},
+{cat:"Number Theory",acc:"a855f7",heading:"π Cannot Be Caught by Any Algebraic Equation",text:"π is transcendental — not merely irrational, but not the root of any polynomial with rational coefficients. This proves that 'squaring the circle' with compass and straightedge is forever, provably, impossible.",math:"π is transcendental (Lindemann, 1882)"},
+{cat:"Graph Theory",acc:"ef4444",heading:"Four Colours Are Always Enough — Proved by Computer",text:"The four color theorem: any flat map can be coloured with just 4 colours so no adjacent regions share a colour. Proved in 1976 by Appel & Haken using 1,200 computer-hours — the first major theorem proved with essential computer assistance.",math:"χ(planar graph) ≤ 4"},
+{cat:"Geometry",acc:"f59e0b",heading:"Only Five Perfect Solids Have Ever Existed or Will Exist",text:"There are exactly 5 Platonic solids — no more, no less. Euclid proved this 2,300 years ago. The proof uses Euler's polyhedral formula V−E+F=2: only finitely many triples (V,E,F) satisfy it with all faces regular and identical.",math:"V − E + F = 2"},
+{cat:"Geometry",acc:"10b981",heading:"180° — But Only in Flat Space",text:"The sum of angles in a triangle is 180° — but only in flat Euclidean space. On the surface of a sphere, it's always more than 180°. On a saddle shape (hyperbolic plane), it's always less. Geometry depends on curvature.",math:"Σangles > 180° (positive curvature)"},
+{cat:"Analysis",acc:"8b5cf6",heading:"A Curve With No Slope at Any Point — Continuous Chaos",text:"Weierstrass (1872) shocked mathematics by constructing a function that is continuous everywhere but differentiable nowhere — a perfectly 'smooth' curve with no well-defined slope at any single point. Continuous chaos.",math:"∃f: continuous everywhere, differentiable nowhere"},
+{cat:"Number Theory",acc:"fbbf24",heading:"Primes Are Distributed Exactly as Gauss Predicted at 15",text:"The Prime Number Theorem: the number of primes up to N is approximately N/ln(N). Conjectured by Gauss at age 15 in 1792. Proved in 1896 independently by Hadamard and de la Vallée Poussin using complex analysis.",math:"π(N) ~ N / ln(N)  as N → ∞"},
+{cat:"Algebra",acc:"06b6d4",heading:"Why Degree-5 Equations Have No Formula — It's About Symmetry",text:"The symmetric group S₅ is the smallest symmetric group that is not solvable. This is precisely why there is no general formula for roots of degree-5 polynomials — Abel and Galois proved this using group theory, settling a 250-year-old question.",math:"S₅ not solvable ⟹ no quintic formula"},
+{cat:"Real Analysis",acc:"a855f7",heading:"Most Real Numbers Are Irrational — And Uncountably More So",text:"There are infinitely many more irrational numbers than rational numbers. The rationals are countably infinite (same size as the integers). The irrationals are uncountably infinite — a strictly larger infinity. 'Almost all' real numbers are irrational.",math:"|irrationals| > |rationals| ∞"},
+{cat:"Number Theory",acc:"ef4444",heading:"358 Years From Conjecture to Proof: Fermat's Last Theorem",text:"Fermat's Last Theorem: xⁿ+yⁿ=zⁿ has no positive integer solutions for n ≥ 3. Fermat wrote 'I have discovered a truly remarkable proof' in 1637 and died without writing it down. It took Andrew Wiles 358 years and 130 pages to actually prove it (1995).",math:"xⁿ + yⁿ = zⁿ  impossible for n ≥ 3"},
+{cat:"Number Theory",acc:"10b981",heading:"The Elegant Formula That Detects Primes With Factorials",text:"Wilson's Theorem: n is prime ⟺ (n−1)! ≡ −1 (mod n). For n=5: 4!=24≡−1≡4 (mod 5) ✓. For n=6: 5!=120≡0 (mod 6) ✗. A perfect, exact, algebraic characterisation of primality.",math:"p prime ⟺ (p−1)! ≡ −1 (mod p)"},
+{cat:"Olympiad",acc:"f59e0b",heading:"Every Prime Squared Minus One Is Divisible by 24",text:"For ANY prime p > 3, p² ≡ 1 (mod 24). In other words: the square of every prime greater than 3, when you subtract 1, is divisible by 24. Example: 5²−1=24, 7²−1=48=2×24, 11²−1=120=5×24. Always. Without exception.",math:"p² − 1 ≡ 0 (mod 24) for all primes p > 3"},
+{cat:"Olympiad",acc:"a855f7",heading:"Four Consecutive Integers + 1 Always Equals a Perfect Square",text:"The product of any four consecutive integers is always one less than a perfect square. For example: 1×2×3×4+1=25=5², and 3×4×5×6+1=361=19². The algebraic identity n(n+1)(n+2)(n+3)+1 = (n²+3n+1)² makes this inevitable.",math:"n(n+1)(n+2)(n+3) + 1 = (n²+3n+1)²"},
+{cat:"Olympiad",acc:"06b6d4",heading:"Six People Always Contain Three Friends or Three Strangers",text:"Among any 6 people, there are always either 3 mutual friends or 3 mutual strangers — no exceptions possible. This is Ramsey theory's R(3,3)=6, proved by pure Pigeonhole logic. With only 5 people, it's possible to avoid both configurations.",math:"R(3,3) = 6  (Ramsey Theory)"},
+{cat:"Advanced",acc:"8b5cf6",heading:"The Sum of Reciprocal Squares Equals Exactly π²/6",text:"The Basel Problem (solved by Euler, 1734): 1 + 1/4 + 1/9 + 1/16 + ... = π²/6. The sum of reciprocals of all perfect squares equals π²/6. Euler's proof — connecting a power series to its roots — is one of history's most audacious mathematical leaps.",math:"Σ 1/n² = π²/6  (Euler, 1734)"},
+{cat:"Advanced",acc:"ef4444",heading:"Every Polynomial Has a Root — Topology Proves It",text:"The Fundamental Theorem of Algebra says every non-constant polynomial with complex coefficients has a root in ℂ. The simplest proof uses topology: if f(z) had no root, the map z↦f(z)/|f(z)| would contract large circles to a point — topologically impossible.",math:"Every p(z) ∈ ℂ[z], deg ≥ 1 has a root in ℂ"},
+{cat:"Combinatorics",acc:"fbbf24",heading:"The Catalan Numbers: One Sequence Rules Countless Problems",text:"Catalan numbers Cₙ = C(2n,n)/(n+1) appear everywhere: C₃=5 ways to triangulate a hexagon, 5 ways to bracket (ab)cd, 5 paths under the diagonal in a 3×3 grid, 5 full binary trees with 4 leaves. The same sequence rules an astonishing variety of counting problems.",math:"Cₙ = C(2n,n)/(n+1)  (1, 1, 2, 5, 14, 42, 132...)"},
+{cat:"Number Theory",acc:"10b981",heading:"Between Any n and 2n, There Is Always a Prime",text:"Bertrand's Postulate (proved by Chebyshev 1852): for every n ≥ 1, there is always a prime between n and 2n. Between 10 and 20: primes 11, 13, 17, 19. Between 100 and 200: there are 21 primes. The gap never exceeds doubling.",math:"∀n ≥ 1: ∃ prime p with n < p ≤ 2n"},
+{cat:"Olympiad",acc:"06b6d4",heading:"The Series That Grows Forever — But Impossibly Slowly",text:"The harmonic series 1 + 1/2 + 1/3 + 1/4 + ... diverges to infinity, yet crawls agonizingly slowly. To exceed a sum of 100 requires adding more than 15 quintillion terms. Yet it provably never converges — and no finite partial sum is ever an integer (for n ≥ 2).",math:"Σ 1/n → ∞  (but Hₙ ∉ ℤ for n ≥ 2)"},
+{cat:"Advanced",acc:"a855f7",heading:"Every Matrix Obeys Its Own Characteristic Equation",text:"The Cayley-Hamilton Theorem: every square matrix satisfies its own characteristic polynomial. A 3×3 matrix M with characteristic polynomial p(λ) satisfies p(M)=0 exactly. This means every matrix is a root of a polynomial — matrices are algebraic numbers in disguise.",math:"p(M) = 0  (Cayley-Hamilton)"},
+{cat:"Olympiad",acc:"ef4444",heading:"Sophie Germain's Identity: An Algebraic Trick That Proves Infinity",text:"Sophie Germain's identity: a⁴ + 4b⁴ = (a²+2b²+2ab)(a²+2b²−2ab). This means n⁴+4^n is always composite for n > 1. Setting a=n and b=2<sup>(n-1)/2</sup> for odd n instantly factors it into two integers each greater than 1 — a proof by pure algebra.",math:"a⁴ + 4b⁴ = (a²+2b²+2ab)(a²+2b²−2ab)"}
+];
+
+const FACT_COLS=[{a:"#f59e0b",b:"rgba(245,158,11,0.1)"},{a:"#10b981",b:"rgba(16,185,129,0.1)"},{a:"#06b6d4",b:"rgba(6,182,212,0.1)"},{a:"#8b5cf6",b:"rgba(139,92,246,0.1)"},{a:"#ef4444",b:"rgba(239,68,68,0.1)"},{a:"#f43f5e",b:"rgba(244,63,94,0.1)"},{a:"#fbbf24",b:"rgba(251,191,36,0.1)"},{a:"#a855f7",b:"rgba(168,85,247,0.1)"},{a:"#06b6d4",b:"rgba(6,182,212,0.1)"},{a:"#10b981",b:"rgba(16,185,129,0.1)"}];
+
+let factsOverride = {};
+
+function latexToHTML(text) {
+  if (!text) return '';
+
+  // Step 1: Convert $$...$$ → \[...\] (display math) and $...$ → \(...\) (inline math)
+  // This makes admin-typed dollar-sign LaTeX compatible with KaTeX auto-render
+  text = text.replace(/\$\$([^$]+)\$\$/g, '\\[$1\\]');
+  text = text.replace(/\$([^$\n]+)\$/g, '\\($1\\)');
+
+  // Step 2: If text has KaTeX delimiters, let KaTeX handle it entirely
+  if (text.indexOf('\\(') !== -1 || text.indexOf('\\[') !== -1) {
+    if (window.katex && window.renderMathInElement) {
+      try {
+        var div = document.createElement('div');
+        div.innerHTML = text;
+        window.renderMathInElement(div, {
+          delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],
+          throwOnError: false
+        });
+        return div.innerHTML;
+      } catch(e) {}
+    }
+    // KaTeX not yet loaded — return as-is; KaTeX onload will process it from the DOM
+    return text;
+  }
+
+  // Step 3: No KaTeX delimiters — apply simple Unicode/HTML substitutions as fallback
+  // Subscripts: a_{cd} → a<sub>cd</sub>
+  text = text.replace(/([a-zA-Z0-9\)])\_{([^}]+)}/g, '$1<sub>$2</sub>');
+  text = text.replace(/([a-zA-Z0-9\)])_([a-zA-Z0-9])/g, '$1<sub>$2</sub>');
+  // Superscripts: a^{e} → a<sup>e</sup>
+  text = text.replace(/([a-zA-Z0-9\)])\^{([^}]+)}/g, '$1<sup>$2</sup>');
+  text = text.replace(/([a-zA-Z0-9\)])\^([a-zA-Z0-9])/g, '$1<sup>$2</sup>');
+  // \frac{a}{b} → a/b
+  text = text.replace(/\\frac{([^}]+)}{([^}]+)}/g, '($1)/($2)');
+  // Common symbols
+  text = text.replace(/\\infty/g, '∞');
+  const bbMap = {R:'ℝ', Q:'ℚ', Z:'ℤ', N:'ℕ', C:'ℂ'};
+  text = text.replace(/\\mathbb{([A-Z])}/g, (m,c) => bbMap[c]||c);
+  text = text.replace(/\\to/g, '→');
+  text = text.replace(/\\leq/g, '≤');
+  text = text.replace(/\\geq/g, '≥');
+  text = text.replace(/\\neq/g, '≠');
+  text = text.replace(/\\alpha/g, 'α');
+  text = text.replace(/\\beta/g, 'β');
+  text = text.replace(/\\gamma/g, 'γ');
+  text = text.replace(/\\delta/g, 'δ');
+  text = text.replace(/\\epsilon/g, 'ε');
+  text = text.replace(/\\pi/g, 'π');
+  text = text.replace(/\\sum/g, 'Σ');
+  text = text.replace(/\\prod/g, 'Π');
+  text = text.replace(/\\int/g, '∫');
+  text = text.replace(/\\sqrt{([^}]+)}/g, '√($1)');
+  text = text.replace(/\\times/g, '×');
+  text = text.replace(/\\cdot/g, '·');
+  return text;
+}
+
+
+function previewLatex(inputId, previewId) {
+  const input = document.getElementById(inputId);
+  const preview = document.getElementById(previewId);
+  if (input && preview) {
+    preview.innerHTML = latexToHTML(input.value);
+  }
+}
+
+
+function renderFacts(){
+  const isAdm = isAdmin();
+  document.getElementById("facts-grid").innerHTML=factsData.map((f,i)=>{
+    const c=FACT_COLS[i%FACT_COLS.length];
+    // Apply admin overrides if present
+    const ov = factsOverride[i] || {};
+    const heading = ov.heading || f.heading || f.text.slice(0,60)+'…';
+    const text = ov.text || f.text || '';
+    const math = ov.math || f.math || '';
+    const renderedHeading = latexToHTML ? latexToHTML(heading) : heading;
+    const renderedText = latexToHTML ? latexToHTML(text) : text;
+    return`<div class="fact-card reveal" id="factcard${i}" style="--fa:${c.a};--fb:${c.a}33;--fc:${c.b};cursor:pointer" onclick="togFact(${i})">
+      <div class="fact-cat">${f.cat}</div>
+      <div class="fact-heading" id="facth${i}">${renderedHeading}</div>
+      <div class="fact-body" id="factbody${i}" style="display:none">
+        <div class="fact-text" id="facttxt${i}">${renderedText}</div>
+        ${math?`<span class="fact-math" id="factmath${i}">${latexToHTML?latexToHTML(math):math}</span>`:""}
+      </div>
+      <div class="fact-tap-hint" id="facttap${i}">↓ tap to reveal</div>
+      <div class="admin-bar${isAdm?' visible':''}" style="margin-top:0.5rem" onclick="event.stopPropagation()">
+        <button class="admin-btn edit-btn" onclick="adminEditFact(${i});event.stopPropagation()">✏️ Edit Fact</button>
+      </div>
+    </div>`;}).join("");}
+
+function togFact(i){
+  var b=document.getElementById('factbody'+i);
+  var h=document.getElementById('facttap'+i);
+  var open=b.style.display!=='none';
+  b.style.display=open?'none':'block';
+  if(h)h.style.display=open?'block':'none';
+}
+
+
+function adminEditFact(idx) {
+  if (!isAdmin()) return;
+  const override = factsOverride[idx] || {};
+  const f = factsData[idx];
+  openAdminModal('✏️ Edit Math Fact', `
+    <div class="admin-field"><label>Heading</label>
+      <input id="efHeading" value="${escHtml(override.heading || f.heading || '')}" 
+             oninput="previewLatex('efHeading','efHeadPreview')"></div>
+    <div class="admin-latex-preview" id="efHeadPreview" style="margin-bottom:0.7rem">${latexToHTML(override.heading || f.heading || '')}</div>
+    <div class="admin-field"><label>Full Text (LaTeX supported)</label>
+      <textarea id="efText" rows="4" oninput="previewLatex('efText','efTextPreview')">${escHtml(override.text || f.text || '')}</textarea></div>
+    <div class="admin-latex-preview" id="efTextPreview" style="margin-bottom:0.7rem">${latexToHTML(override.text || f.text || '')}</div>
+    <div class="admin-field"><label>Math Expression (optional)</label>
+      <input id="efMath" value="${escHtml(override.math || f.math || '')}" 
+             placeholder="e.g. e^{i\pi} + 1 = 0"></div>
+    <div class="admin-latex-hint">💡 LaTeX shortcuts: a_{sub}^{sup}, \infty, \mathbb{R}, \sum, \int, \sqrt{x}</div>
+  `, async () => {
+    const sb = window.sb;
+    if (!sb) return;
+    const update = {
+      fact_index: idx,
+      heading: document.getElementById('efHeading').value.trim(),
+      text: document.getElementById('efText').value.trim(),
+      math: document.getElementById('efMath').value.trim(),
+      updated_by: window.currentUser.email
+    };
+    if (sb) {
+      const { error } = await sb.from('math_facts_overrides').upsert([update], { onConflict: 'fact_index' });
+      if (error) throw error;
+    } else {
+      factsOverride[idx] = update;
+      localStorage.setItem('facts_overrides', JSON.stringify(factsOverride));
+    }
+    factsOverride[idx] = update;
+    // Apply immediately
+    const hEl = document.getElementById('facth' + idx);
+    const tEl = document.getElementById('facttxt' + idx);
+    const mEl = document.getElementById('factmath' + idx);
+    if (hEl) hEl.innerHTML = latexToHTML(update.heading) || hEl.innerHTML;
+    if (tEl) tEl.innerHTML = latexToHTML(update.text);
+    if (mEl && update.math) mEl.textContent = update.math;
+  });
+}
+
+
+async function loadAdminData() {
+  const sb = window.sb;
+  if (!sb || !isAdmin()) return;
+  try {
+    const { data: facts } = await sb.from('math_facts_overrides').select('*');
+    factsOverride = {};
+    (facts || []).forEach(r => { factsOverride[r.fact_index] = r; });
+  } catch(e) { console.warn('loadAdminData error:', e); }
+  renderFacts();
+  reRevealActivePage();
+  setTimeout(function(){
+    if (window.renderMathInElement){
+      window.renderMathInElement(document.body,{
+        delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],
+        throwOnError:false
+      });
+    }
+  }, 80);
+}
+
+(function loadLocalFallback() {
+  try {
+    const lf = JSON.parse(localStorage.getItem('facts_overrides') || '{}');
+    Object.assign(factsOverride, lf);
+  } catch(e) {}
+})();
+
+function buildSearchIndex(){
+  PAGE_SEARCH_INDEX = [];
+  factsData.forEach(function(f,i){
+    PAGE_SEARCH_INDEX.push({
+      icon:'✨', title:(f.heading||f.cat||''), meta:f.cat||'', section:'Math Facts', elId:'factcard'+i,
+      pre:(function(idx){ return function(){ togFact(idx); }; })(i),
+      q:((f.heading||'')+' '+(f.text||'')+' '+(f.cat||'')).toLowerCase()
+    });
+  });
+}
+
+renderFacts();
+
+
+document.querySelectorAll('.reveal').forEach(function(el, i) {
+  setTimeout(function() { el.classList.add('visible'); }, Math.min(i * 35, 900));
+});
+</script>
+
+<!-- ═══ SUPABASE + SHARED AUTH/COMMENTS BRIDGE ═══════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Surprising Facts About Statistics | Stargazer</title>
+<meta name="description" content="Facts that should astonish any statistician: counterintuitive results, famous paradoxes, and the moments statistics has quietly changed the world.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Statistics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/stats/facts.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Surprising Facts About Statistics | Stargazer">
+<meta property="og:description" content="Facts that should astonish any statistician — counterintuitive results and famous paradoxes explained.">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/stats/facts.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Surprising Facts About Statistics | Stargazer">
+<meta name="twitter:description" content="Facts that should astonish any statistician — counterintuitive results and famous paradoxes explained.">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Surprising Facts About Statistics | Stargazer",
+  "description": "Facts that should astonish any statistician — counterintuitive results and famous paradoxes explained.",
+  "url": "https://stargazer-9m9.pages.dev/stats/facts.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Statistics", "sameAs": "https://en.wikipedia.org/wiki/Statistics" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stats.css">
+</head>
+<body>
+
+<!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
+    <span id="mode-icon">☾</span>
+  </button>
+  <a href="../login.html" id="loginBtn">☽ Sign In</a>
+  <div id="userInfo">
+    <span id="userEmailDisplay">✦ Explorer</span>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══ NAV ═════════════════════════════════════════════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Statistics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Fun Facts</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)" aria-label="Search">🔍</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══ HAMBURGER MENU ══════════════════════════════════════════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home"          onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item"        data-page="books"         onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item"        data-page="puzzles"       onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <button class="hm-item"        data-page="school"        onclick="location.href='school.html'">🏫 School</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="inference"     onclick="location.href='inference.html'">🔬 Inference</button>
+  <button class="hm-item"        data-page="distributions" onclick="location.href='distributions.html'">📊 Distributions</button>
+  <button class="hm-item"        data-page="bayesian"      onclick="location.href='bayesian.html'">∫ Bayesian</button>
+  <button class="hm-item"        data-page="openproblems"  onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item"        data-page="research"      onclick="location.href='research.html'">🔭 Research</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="careers"       onclick="location.href='careers.html'">💼 Careers</button>
+  <button class="hm-item"        data-page="studyguide"    onclick="location.href='studyguide.html'">🗺️ Study Guide</button>
+  <button class="hm-item active"        data-page="facts"         onclick="location.href='facts.html'">✨ Fun Facts</button>
+  <button class="hm-item"        data-page="tools"         onclick="location.href='tools.html'">🛠️ Tools</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="calc"          onclick="location.href='calc.html'">🔢 Calculator</button>
+  <button class="hm-item"        data-page="formulas"      onclick="location.href='formulas.html'">📋 Formulas</button>
+  <button class="hm-item"        data-page="history"       onclick="location.href='history.html'">⏳ History</button>
+  <button class="hm-item"        data-page="comments"      onclick="location.href='comments.html'">💬 Discuss</button>
+</div>
+
+<!-- ═══ SEARCH MODAL ═══════════════════════════════════════════════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search books, puzzles, distributions, tools…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<!-- ═══ TOAST ══════════════════════════════════════════════════════ -->
+<div id="toast">
+  <button id="toast-close" onclick="hideToast()" aria-label="Dismiss notification">✕</button>
+  <div class="toast-cat" id="toast-cat">Fun Fact</div>
+  <div id="toast-body"></div>
+</div>
+
+<!-- ═══ KEYBOARD HINT ══════════════════════════════════════════════ -->
+<div id="shortcut-hint">/ search · ← → pages</div>
+
+<!-- ═══ PAGE: CALCULATOR ═══════════════════════════════════════════ -->
+<div class="page active" id="page-facts">
+  <section class="section" id="facts">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:var(--pk-l);color:var(--pk);border:1px solid rgba(122,32,80,.25)">Surprising Facts</span>
+        <h2 class="s-title font-serif">Facts That Should Astonish Any Statistician</h2>
+        <p class="s-desc">History, paradoxes, and results that reveal just how counterintuitive and wonderful statistics really is.</p>
+      </div>
+      <div style="text-align:center;margin-bottom:1.5rem"><button onclick="showRandomFact()" style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.55rem 1.3rem;border-radius:99px;background:var(--pk-l);color:var(--pk);border:1px solid var(--pk);cursor:pointer;transition:all .2s" onmouseover="this.style.background='var(--pk)';this.style.color='#fff'" onmouseout="this.style.background='var(--pk-l)';this.style.color='var(--pk)'">✨ Show Random Fact as Toast</button></div>
+      <div class="g3" id="facts-grid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ PAGE: TOOLS ══════════════════════════════════════════════ -->
+<!-- ── CONTACT ── -->
+<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);font-style:italic;font-family:'Source Code Pro',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div style="text-align:center;padding-bottom:2rem;">
+  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+</div>
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
+<script>
+window._nextPage = 'tools.html';
+window._prevPage = 'studyguide.html';
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+
+function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+
+/* ── BOOKS ─────────────────────────────────────────────────── */
+
+function toggleHamburger(){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu)return;
+  const open=menu.classList.toggle('open');
+  btn.classList.toggle('open',open);
+}
+// Close when clicking outside
+document.addEventListener('click',function(e){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu||!menu.classList.contains('open'))return;
+  if(!menu.contains(e.target)&&e.target!==btn&&!btn.contains(e.target)){
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+
+
+/* ═══════════════════════════════════════════════════════════════
+   OVERRIDE: renderPuzzles — index + cat badge + solved button + filters
+   ═══════════════════════════════════════════════════════════════ */
+
+function toggleMode(){
+  const night=document.body.classList.toggle('night');
+  document.getElementById('mode-icon').textContent=night?'☀':'☾';
+  localStorage.setItem('stats-mode',night?'night':'day');
+  // redraw all visible canvases
+  document.querySelectorAll('.dist-canvas').forEach(c=>{
+    const cid=c.id;
+    const params={};
+    document.querySelectorAll(`[id^="sl-${cid}-"]`).forEach(sl=>{
+      params[sl.id.replace('sl-'+cid+'-','')]=parseFloat(sl.value);
+    });
+    // find the slug from DISTRIBUTIONS
+    const slug=getSlugFromCanvas(cid);
+    if(slug){
+      const isDisc=['bernoulli','binomial','geometric','negbin','poisson','hypergeometric'].includes(slug);
+      drawDistCanvas(cid,slug,params,isDisc);
+    }
+  });
+}
+
+
+function getSlugFromCanvas(cid){
+  // cid format: dc-type-idx
+  const parts=cid.split('-');
+  if(parts.length<3)return null;
+  const type=parts[1],idx=parseInt(parts[2]);
+  if(DISTRIBUTIONS[type]&&DISTRIBUTIONS[type][idx])return DISTRIBUTIONS[type][idx].slug;
+  return null;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL EFFECTS
+   ═══════════════════════════════════════════════════════════ */
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  if(btt)btt.classList.toggle('show',window.scrollY>300);
+  document.querySelectorAll('.reveal').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-60)
+      el.classList.add('visible');
+  });
+},{passive:true});
+
+/* ═══════════════════════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════════════════════ */
+
+let SEARCH_INDEX=[];
+function openSearch(){
+  buildSearchIndex();
+  const m=document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(()=>document.getElementById('search-input').focus(),80);
+}
+function closeSearch(){
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value='';
+  document.getElementById('search-results').innerHTML='<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q){
+  const res=document.getElementById('search-results');
+  if(!q.trim()){res.innerHTML='<div class="sr-empty">Start typing…</div>';return;}
+  const lq=q.toLowerCase();
+  const hits=SEARCH_INDEX.filter(x=>x.q.toLowerCase().includes(lq)).slice(0,18);
+  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q+'"</div>';return;}
+  res.innerHTML=hits.map((h,i)=>`<div class="sr-item" tabindex="0" data-idx="${i}" onclick="goSearchResult(${SEARCH_INDEX.indexOf(h)})" onkeydown="if(event.key==='Enter')goSearchResult(${SEARCH_INDEX.indexOf(h)})"><span class="sr-icon">${h.icon}</span><div><div class="sr-title">${highlight(h.title,lq)}</div><div class="sr-meta">${h.meta}</div></div><span class="sr-section">${h.section}</span></div>`).join('');
+}
+function highlight(text,q){
+  if(!q)return text;
+  const idx=text.toLowerCase().indexOf(q);
+  if(idx<0)return text;
+  return text.slice(0,idx)+'<mark style="background:var(--gd-l);color:var(--gd);border-radius:2px">'+text.slice(idx,idx+q.length)+'</mark>'+text.slice(idx+q.length);
+}
+function goSearchResult(idx){ closeSearch(); }
+function searchKeyNav(e){
+  if(e.key==='Escape'){closeSearch();return;}
+  const items=document.querySelectorAll('.sr-item');
+  const cur=document.activeElement;
+  const curIdx=[...items].indexOf(cur);
+  if(e.key==='ArrowDown'){e.preventDefault();(items[curIdx+1]||items[0])?.focus();}
+  if(e.key==='ArrowUp'){e.preventDefault();(items[curIdx-1]||items[items.length-1])?.focus();}
+  if(e.key==='Enter'&&curIdx>=0){items[curIdx].click();}
+}
+
+
+function buildSearchIndex(){
+  if(SEARCH_INDEX.length)return;
+  FACTS.forEach(f=>SEARCH_INDEX.push({icon:'✨',title:f.cat+': '+f.text.slice(0,60),meta:f.cat,section:'Fun Facts',page:'facts',q:f.text+' '+f.cat}));
+}
+
+
+(function initKeyboard(){
+  const PAGES=['home','precollege_placeholder'];
+  document.addEventListener('keydown',e=>{
+    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
+    if(document.getElementById('search-modal')&&document.getElementById('search-modal').classList.contains('open')){
+      if(e.key==='Escape')closeSearch();
+      return;
+    }
+    if(e.key==='/'){e.preventDefault();openSearch();return;}
+    if(e.key==='ArrowRight'){e.preventDefault();location.href=window._nextPage;}
+    if(e.key==='ArrowLeft'){e.preventDefault();location.href=window._prevPage;}
+    if(e.key==='f'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){if(typeof showRandomFact==='function')showRandomFact();}
+    if(e.key==='Escape'){
+      const hmenu=document.getElementById('hamburger-menu');
+      if(hmenu&&hmenu.classList.contains('open')){
+        hmenu.classList.remove('open');
+        document.getElementById('hamburger-btn')?.classList.remove('open');
+      }
+    }
+  });
+})();
+
+function showToast(msg,bg){
+  const t=document.createElement('div');
+  t.textContent=msg;
+  t.style.cssText=`position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);background:${bg};color:#fff;font-family:'Source Code Pro',monospace;font-size:.72rem;padding:.45rem 1.1rem;border-radius:99px;z-index:9998;animation:fadeUpIn .35s ease;white-space:nowrap;pointer-events:none`;
+  document.body.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .35s';setTimeout(()=>t.remove(),380);},2200);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATISTICIAN QUOTES — daily + 5-hour rotation
+   ═══════════════════════════════════════════════════════════════ */
+
+let toastTimer=null;
+
+const FACTS = [
+  {cat:'History',col:'var(--pk)',text:"Florence Nightingale was a pioneering data scientist. Her polar area diagrams (1858) persuaded the British government that 16,000 soldiers died of preventable disease during the Crimean War — not from enemy action. She is the true inventor of the data visualisation for policy.",math:"Nightingale's 'coxcomb' chart: area ∝ deaths per month"},
+  {cat:'Paradox',col:'var(--rd)',text:"The Prosecutor's Fallacy: confusing P(evidence | innocent) with P(innocent | evidence). In the Sally Clark case (1999), an expert testified that two SIDS deaths in one family had probability 1 in 73 million. This ignored the prior probability of double murder being equally rare. Clark was wrongly convicted.",math:"P(guilty|evidence) ≠ P(evidence|innocent)"},
+  {cat:'Theory',col:'var(--pu)',text:"Fisher's exact test was invented to settle an argument at a tea party. Lady Muriel Bristol claimed she could tell if milk was added before or after tea. Fisher designed the experiment and the exact test at the party. The test that now appears in every statistics textbook was computed on a serviette.",math:"P(X=k) = C(K,k)·C(N-K,n-k)/C(N,n)"},
+  {cat:'Computation',col:'var(--tl)',text:"The first MCMC algorithm was published in 1953 by physicists at Los Alamos to simulate atomic bomb explosions. Metropolis, Rosenbluth, Teller and their collaborators needed to compute multi-dimensional integrals for nuclear physics. The algorithm was generalised by Hastings in 1970 and only reached mainstream statistics in the 1990s.",math:"α = min(1, π(θ*)/π(θ))"},
+  {cat:'Paradox',col:'var(--og)',text:"The Friendship Paradox: on average, your friends have more friends than you do. This follows from Jensen's inequality applied to network degree distributions. It holds for any network with variance in degree and explains why social networks feel skewed — your feed is dominated by popular users.",math:"E[deg(friend)] = E[deg²]/E[deg] ≥ E[deg]"},
+  {cat:'Estimation',col:'var(--gr)',text:"During WWII, statisticians estimated Nazi tank production more accurately from serial numbers than from battlefield intelligence. The MVUE estimator (m(k+1)/k − 1) gave ~255 tanks for June 1944. The actual figure was 270. Intelligence had estimated 1,400. Statistics won by factor of 5.",math:"N̂ = m(k+1)/k − 1"},
+  {cat:'Theory',col:'var(--bl)',text:"Benford's Law: in naturally occurring datasets, the leading digit 1 appears ~30% of the time, while 9 appears only ~5%. This is used by forensic accountants to detect financial fraud — fabricated numbers tend to have too-uniform leading digit distributions.",math:"P(d) = log₁₀(1 + 1/d)"},
+  {cat:'Philosophy',col:'var(--pk)',text:"Stigler's Law of Eponymy states that no scientific discovery is named after its original discoverer. Stigler attributes this discovery to Robert Merton — who was not the original discoverer either. The law is self-referential and demonstrates that academic credit rarely goes where it belongs in science.",math:"P(eponymous discoverer = actual discoverer) ≈ 0"}
+,
+
+  {cat:'History',col:'var(--bl)',text:"Abraham Wald, a Jewish-Austrian statistician working for the US military during WWII, advised reinforcing the parts of returning aircraft that showed NO damage — not where bullet holes were visible. His key insight: planes hit in the unobserved locations had crashed and couldn't be counted. This is the survivorship bias and it remains one of the most important lessons in data collection design.",math:"P(observed | hit in engines) ≪ P(observed | hit in wings)"},
+  {cat:'Computation',col:'var(--tl)',text:"R, the dominant language for statistical computing, was created in 1993 by Ross Ihaka and Robert Gentleman at the University of Auckland as a free clone of the commercial S language. The name 'R' is partly a play on 'S' and partly the first initial of both creators. It is now maintained by the R Core Team of about 20 statisticians worldwide and has over 20,000 packages on CRAN.",math:"R package count: 20,000+ (CRAN, 2024)"},
+  {cat:'Paradox',col:'var(--og)',text:"The Will Rogers Phenomenon: when a group is split into two subgroups, the average of BOTH groups can increase even without adding any new data — just by reclassifying one member from the worse group to the better group. Named after the Oklahoma comedian's quip: 'When the Okies left Oklahoma and moved to California, they raised the average intelligence level in both states.'",math:"E[A∪B] < E[A] and E[B] is possible when moving x from A to B"},
+  {cat:'History',col:'var(--pk)',text:"The Poisson distribution was invented NOT by Siméon Denis Poisson for statistical analysis — Poisson himself considered it a minor result in a 1837 book on probability and judicial decisions. The distribution became famous 61 years later when Ladislaus Bortkiewicz used it in 1898 to model the number of Prussian cavalrymen killed by horse kicks per army corps per year: a perfect fit to rare events.",math:"P(X=k) = e^{-λ}λᵏ/k!, λ=0.61 kicks/year"},
+  {cat:'Theory',col:'var(--gr)',text:"The F-distribution is named after Ronald Fisher, but Fisher himself never used that notation — he always referred to z = (1/2)ln(F). The name 'F-distribution' was coined by George Snedecor in Fisher's honour when he tabulated its critical values in 1934. Fisher was reportedly displeased with having a distribution named after him that he didn't prefer to use.",math:"F = (χ²₁/d₁)/(χ²₂/d₂) — Snedecor's honour"},
+  {cat:'Paradox',col:'var(--pu)',text:"Berkson's Paradox (also called collider bias) causes negative correlations in hospitals even between independent causes of hospitalisation. A study of hospitalised patients found that tall people had lower blood pressure than short people — not because height causes low BP, but because patients were hospitalised for either high BP OR being very tall (orthopedic issues), making them negatively correlated within the hospital sample.",math:"Cov(X,Y|Z) ≠ Cov(X,Y) when Z is a common effect"},
+  {cat:'Estimation',col:'var(--rd)',text:"During the Apollo program, NASA statisticians used Bayesian inference to estimate the probability of O-ring failure before the Challenger launch. The analysis, redone decades later by physicist Richard Feynman and statistician David Draper, showed that a proper Bayesian analysis of the existing data would have revealed the temperature-failure relationship that engineering team had overlooked — suggesting the January 28, 1986 launch was inadvisable.",math:"P(failure | temp = 28°F) vs P(failure | temp > 53°F)"},
+  {cat:'Theory',col:'var(--bl)',text:"The Central Limit Theorem was first proved (for the coin-flipping Binomial case) by Abraham de Moivre in 1733, in a private document circulated among mathematicians. He proved that the Binomial approximates the Normal for large n, but didn't call it a theorem or give it a name. The general CLT was proved by Laplace in 1810, and the name 'Central Limit Theorem' was coined by George Pólya in 1920.",math:"√n(X̄−μ)/σ →ᵈ N(0,1) — de Moivre 1733"},
+  {cat:'Philosophy',col:'var(--gd)',text:"The term 'statistics' comes from the German 'Statistik' (study of state data) coined by Gottfried Achenwall in 1749 to mean a 'political science of the state' — the collection of data about states for governance purposes. The mathematical theory emerged independently in Britain from gambling and probability. Statistics as a mathematical discipline only merged these traditions in the early 20th century.",math:"'Statistics': from Latin 'status' = state (Achenwall, 1749)"},
+  {cat:'Computation',col:'var(--tl)',text:"The word 'algorithm' comes from a 9th-century Persian mathematician Muhammad ibn Musa al-Khwarizmi, whose name 'al-Khwarizmi' became 'algorismus' in medieval Latin. His book 'Kitab al-mukhtasar fi hisab al-jabr wal-muqabala' also gave us the word 'algebra' (from 'al-jabr'). The father of modern statistics (Fisher) and the father of algorithms (al-Khwarizmi) share the honour of naming entire fields.",math:"Algorithm: al-Khwarizmi → algorismus → algorithm"},
+  {cat:'History',col:'var(--pk)',text:"Karl Pearson, who invented the chi-squared test, correlation coefficient, and standard deviation, was also a fervent eugenicist. He and Francis Galton founded the journal Biometrika in 1901 partly to support eugenics research. Pearson's statistics were revolutionary; his ideology was abhorrent. This historical tension — that some of statistics' founding tools were developed in service of racist ideology — is now a central discussion in the history of science.",math:"Biometrika founded 1901 — Pearson and Galton"},
+  {cat:'Theory',col:'var(--gr)',text:"The p-value was invented by Karl Pearson around 1900 and formalised by Ronald Fisher in his 1925 book 'Statistical Methods for Research Workers', where he proposed 0.05 as a 'convenient' (not magical) threshold. Fisher was explicit that p < 0.05 should motivate further investigation, NOT that it constitutes proof. The binary 'significant/not significant' tradition was introduced by Neyman and Pearson's 1933 framework, which Fisher actively opposed his entire career.",math:"Fisher (1925): 'convenient to take p=0.05 as a standard'"},
+  {cat:'Paradox',col:'var(--rd)',text:"The Hot Hand Fallacy was named in 1985 when psychologists Gilovich, Vallone and Tversky showed that basketball players' shooting streaks were statistically indistinguishable from chance. However, a 2019 reanalysis by Miller and Sanjurjo showed the original analysis had a subtle selection bias: looking at shots AFTER a hit underestimates the baseline. When corrected, a modest but real hot-hand effect of ~5 percentage points exists in the data.",math:"P(hit | 3 prev hits) − P(hit) ≈ +5% after correction"},
+  {cat:'Computation',col:'var(--pu)',text:"The first computer-assisted statistical analysis was done on the UNIVAC I in 1952 for the US presidential election. CBS used a statistical model built by Remington Rand employees to predict Eisenhower's win. When the model predicted a landslide for Eisenhower at 11pm (while Stevenson was ahead in the initial vote count), the executives panicked and refused to broadcast the prediction — which turned out to be exactly right.",math:"UNIVAC prediction: Eisenhower wins with 438 electoral votes"},
+  {cat:'Theory',col:'var(--og)',text:"De Finetti's theorem (1931) states that an infinite exchangeable sequence of binary random variables is a mixture of i.i.d. Bernoulli trials. This provides a Bayesian foundation for the 'as if i.i.d.' assumption used throughout classical statistics: even if you don't believe there's a true underlying probability p, exchangeability is a weaker symmetry assumption that implies the same inferential conclusions as if p existed.",math:"Exchangeable ⟺ mixture of i.i.d. (de Finetti, 1931)"},
+  {cat:'History',col:'var(--tl)',text:"John Tukey, who invented the box plot (1977) and the term 'data analysis' (1962), also invented the FFT algorithm (with Cooley, 1965) — one of the most important computational algorithms ever created. Tukey also coined the word 'bit' (for binary digit) and 'software' in 1958. He is arguably the person who contributed most terms and tools to both statistics and computer science simultaneously.",math:"Tukey coined: 'bit', 'software', 'box plot', 'data analysis'"},
+  {cat:'Paradox',col:'var(--bl)',text:"The Inspection Paradox explains why: (1) the average class size experienced by students is larger than the true average class size; (2) the average bus interval experienced by a passenger is larger than the true average interval; (3) your friends have more friends than you do on average. In all cases, you sample proportional to size (big classes, long intervals, popular people), so your sample is biased toward the larger values.",math:"E[size | you're in it] = E[size²]/E[size] ≥ E[size]"},
+  {cat:'Estimation',col:'var(--gd)',text:"The method of maximum likelihood was invented by Ronald Fisher in 1912 when he was just 22 years old, in an undergraduate paper at Cambridge. Karl Pearson rejected it, leading to a bitter lifelong feud between the two statisticians. Fisher's method is now so universal that 'MLE' is taught in every introductory statistics course worldwide, but Fisher himself never saw his greatest statistical contribution properly recognised during his career.",math:"MLE: θ̂ = argmax L(θ;x) — Fisher, 1912 (age 22)"},
+  {cat:'Theory',col:'var(--pk)',text:"John Tukey's 1977 boxplot is one of the most successful statistical graphics ever invented. It displays the median, quartiles, and outliers in a single figure. However, for multimodal or skewed distributions, the boxplot can be misleading — the same boxplot can represent radically different datasets. The violin plot (Hintze & Nelson, 1998) combines box plot information with kernel density estimation to show the full shape.",math:"IQR = Q₃ − Q₁; outliers: > Q₃ + 1.5·IQR"},
+  {cat:'History',col:'var(--rd)',text:"The first randomised controlled trial (RCT) in medicine was conducted in 1948 by Austin Bradford Hill for the UK Medical Research Council, testing streptomycin against tuberculosis. Before Hill, medical treatments were evaluated by giving them to all patients and comparing before/after, which couldn't isolate the treatment effect from natural recovery. The RCT — now called the 'gold standard' in medicine — is less than 80 years old.",math:"RCT: first medical RCT 1948 (Hill, streptomycin vs TB)"},
+  {cat:'Computation',col:'var(--pu)',text:"Google's PageRank algorithm (which made Google dominant over 1999-era search) is fundamentally a stationary distribution problem — the long-run proportion of time a random surfer spends on each page. It is computed by finding the leading eigenvector of a massive transition probability matrix (billions × billions). The mathematical theory used is the Perron-Frobenius theorem about non-negative matrices.",math:"π = Mπ: PageRank = stationary distribution of web surfer Markov chain"},
+  {cat:'Philosophy',col:'var(--gr)',text:"The word 'regression' in regression analysis comes from Francis Galton's study of heredity in 1886. He observed that tall fathers have tall sons on average, but the sons' heights 'regress' (move back) toward the population mean. He called this 'regression toward mediocrity' — a term he later softened to 'regression toward the mean.' The name stuck even though we now use regression for settings that have nothing to do with heredity.",math:"Galton, 1886: son's height = μ + ρ(father's height − μ)"},
+  {cat:'Theory',col:'var(--tl)',text:"Claude Shannon's entropy formula H = −Σp log p (1948) was named 'entropy' after a suggestion by John von Neumann: 'You should call it entropy, for two reasons: the formula is the same as in thermodynamics, and nobody knows what entropy really means in thermodynamics, so in any discussion you will always have the advantage.' Shannon's information theory is now the theoretical foundation of all digital communication.",math:"H(X) = −Σᵢ pᵢ log pᵢ — Shannon 1948"},
+  {cat:'Estimation',col:'var(--bl)',text:"The Jackknife estimator of bias was invented by Maurice Quenouille in 1949 and refined by John Tukey in 1956. Tukey's name comes from a Swiss Army knife (jackknife) — the estimator 'cuts out' the bias. It pre-dates the bootstrap by 30 years. The delete-one jackknife estimator has O(1/n) bias whereas the original estimator may have O(1/n) bias — the jackknife exactly removes the first-order bias term.",math:"θ̂_Jack = nθ̂ − (n−1)·(1/n)Σ θ̂₋ᵢ"},
+  {cat:'History',col:'var(--og)',text:"The Normal distribution was called the 'law of errors' by Gauss and Laplace, who independently derived it around 1800-1810 to model measurement errors in astronomy. The term 'normal' was introduced by Karl Pearson in 1894 — he felt the name was too modest and considered it a mistake, given how many natural phenomena do NOT follow a Normal distribution. He was right: it's normal only in the sense that it's common, not that it's typical.",math:"Gauss, 1809: measurement errors ~ N(0, σ²) in astronomy"},
+  {cat:'Paradox',col:'var(--rd)',text:"Anscombe's Quartet (1973) consists of four datasets with nearly identical summary statistics (same mean, variance, correlation, regression line) but radically different graphs. Francis Anscombe created them to demonstrate that statistical summaries alone are insufficient — visualisation is essential. The quartet is still reproduced in virtually every data analysis textbook and course as the canonical argument for 'always plot your data'.",math:"4 datasets: same x̄, ȳ, σₓ, σᵧ, r, β — radically different plots"},
+  {cat:'Computation',col:'var(--pu)',text:"When Alan Turing cracked the Enigma cipher at Bletchley Park (1940), he used a Bayesian scoring system called the 'Banburismus' — a sequential probability ratio test. Each letter decrypted contributed a log-likelihood ratio ('ban') to a running sum, and the code was considered broken when the sum crossed a threshold. This was independently equivalent to Abraham Wald's 1947 Sequential Probability Ratio Test — both invented in wartime secret.",math:"Banburismus = Bayesian SPRT (Turing, 1940)"},
+  {cat:'Theory',col:'var(--gd)',text:"The geometric series Σ(1-p)^k = 1/p is the key formula behind the Geometric distribution — but it also appears in the analysis of 'infinite monkey theorem': a monkey typing randomly will eventually produce any given text with probability 1, but the expected waiting time is mind-bogglingly large. For typing 'STATISTICS' (10 characters), with a 26-letter keyboard, the expected wait is 26¹⁰ ≈ 1.4 × 10¹⁴ keystrokes.",math:"E[wait for 'STATISTICS'] = 26¹⁰ ≈ 1.4 × 10¹⁴"},
+  {cat:'History',col:'var(--pk)',text:"William Sealy Gosset, who invented the t-distribution, published all his statistical work under the pseudonym 'Student' because his employer, Guinness Brewery, did not want competitors to know they were using statistics to improve beer production. 'Student's t-distribution' is thus named after Gosset's pen name. Gosset corresponded with Fisher and Pearson but attended scientific meetings as 'Mr Student' to maintain his pseudonymity.",math:"Student's t (1908) — W.S. Gosset of Guinness Brewery"},
+  {cat:'Theory',col:'var(--bl)',text:"The Kalman filter (1960), one of the most practically important algorithms in engineering and statistics, is an optimal Bayesian update rule for linear Gaussian state-space models. It is used in GPS navigation, aircraft autopilots, missile guidance, and self-driving cars. Rudolf Kálmán's paper was initially rejected by the Journal of Statistical Physics. It was published in the Journal of Basic Engineering — and cited over 70,000 times.",math:"Kalman gain: Kₜ = Pₜ|ₜ₋₁Hᵀ(HPₜ|ₜ₋₁Hᵀ + R)⁻¹"}
+
+];
+
+
+/* ── STATISTICIAN QUOTES ─────────────────────────────── */
+
+function renderFacts(){
+  const g=document.getElementById('facts-grid');if(!g)return;
+  const adm=isAdmin();
+  g.innerHTML=FACTS.map((f,i)=>`
+    <div class="fact-card" style="--fa:${f.col}">
+      <div class="fact-cat">${f.cat}</div>
+      <div class="fact-text">${f.text}</div>
+      <span class="fact-math">${f.math}</span>
+      ${adm?`<div class="fact-admin-btns">
+        <button class="fact-edit-btn" onclick="editFact(${i})">✎ Edit</button>
+        <button class="fact-del-btn" onclick="deleteFact(${i})">✕ Delete</button>
+      </div>`:''}
+    </div>`).join('')+
+    (adm?`<div class="fact-card fact-add-card" style="--fa:var(--gr)" onclick="addFact()">
+      <span style="font-size:1.4rem">+</span>
+      <span style="font-size:.78rem;font-family:'Outfit',sans-serif">Add Fun Fact</span>
+    </div>`:'');
+}
+
+function editFact(i){
+  const t=prompt('Edit fact text:',FACTS[i].text);
+  if(t?.trim()){FACTS[i].text=t.trim();renderFacts();}
+}
+
+function deleteFact(i){
+  if(!confirm('Delete this fun fact?'))return;
+  FACTS.splice(i,1);renderFacts();
+}
+
+function addFact(){
+  const text=prompt('New fun fact text:');if(!text?.trim())return;
+  const cat=prompt('Category (History / Theory / Paradox / Computation / Estimation / Philosophy):','Theory');
+  const math=prompt('Math expression (optional):','');
+  const cols=['var(--gr)','var(--bl)','var(--tl)','var(--pu)','var(--og)','var(--rd)','var(--gd)','var(--pk)'];
+  FACTS.push({cat:cat||'Theory',col:cols[FACTS.length%cols.length],text:text.trim(),math:math||''});
+  renderFacts();
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   OVERRIDE: renderBooks — filters + read marking
+   ═══════════════════════════════════════════════════════════════ */
+const _booksRead=new Set(JSON.parse(localStorage.getItem('stats-books-read')||'[]'));
+
+function showRandomFact(){
+  const f=FACTS[Math.floor(Math.random()*FACTS.length)];
+  const t=document.getElementById('toast');
+  document.getElementById('toast-cat').textContent=f.cat;
+  document.getElementById('toast-body').textContent=f.text;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(hideToast,7000);
+}
+
+function hideToast(){
+  document.getElementById('toast').classList.remove('show');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PUZZLE PROGRESS TRACKING
+   ═══════════════════════════════════════════════════════════ */
+const solved=new Set(JSON.parse(localStorage.getItem('stats-solved')||'[]'));
+
+(function(){
+  if(localStorage.getItem('stats-mode')==='night'){
+    document.body.classList.add('night');
+    const mi=document.getElementById('mode-icon'); if(mi)mi.textContent='☀';
+  }
+  window._afterRenderAuthUI = function(){ renderFacts(); };
+  setTimeout(function(){
+    if(window.currentUser)return;
+    if(!window.sb)return;
+    window.sb.auth.getSession().then(function(r){
+      if(window.currentUser)return;
+      var u=r&&r.data&&r.data.session&&r.data.session.user;
+      if(!u)return;
+      if(window.renderAuthUI)window.renderAuthUI();
+    }).catch(function(){});
+  },400);
+  if('renderFacts();' && document.readyState!=='loading') { renderFacts(); }
+  else if('renderFacts();') { document.addEventListener('DOMContentLoaded', function(){ renderFacts(); }); }
+})();
+</script>
+<script>window._pageKey = 'stats';</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+
+</body>
+</html>

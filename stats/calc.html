@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Free Statistics Calculator | Stargazer</title>
+<meta name="description" content="A quick statistics calculator for the tests and distributions students use most often, built for checking homework and building intuition fast.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Statistics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/stats/calc.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Statistics Calculator | Stargazer">
+<meta property="og:description" content="A quick statistics calculator for the tests and distributions students use most often.">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/stats/calc.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Statistics Calculator | Stargazer">
+<meta name="twitter:description" content="A quick statistics calculator for the tests and distributions students use most often.">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Free Statistics Calculator | Stargazer",
+  "description": "A quick statistics calculator for the tests and distributions students use most often.",
+  "url": "https://stargazer-9m9.pages.dev/stats/calc.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Statistics", "sameAs": "https://en.wikipedia.org/wiki/Statistics" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stats.css">
+</head>
+<body>
+
+<!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
+    <span id="mode-icon">☾</span>
+  </button>
+  <a href="../login.html" id="loginBtn">☽ Sign In</a>
+  <div id="userInfo">
+    <span id="userEmailDisplay">✦ Explorer</span>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══ NAV ═════════════════════════════════════════════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Statistics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Calculator</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)" aria-label="Search">🔍</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══ HAMBURGER MENU ══════════════════════════════════════════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home"          onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item"        data-page="books"         onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item"        data-page="puzzles"       onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <button class="hm-item"        data-page="school"        onclick="location.href='school.html'">🏫 School</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="inference"     onclick="location.href='inference.html'">🔬 Inference</button>
+  <button class="hm-item"        data-page="distributions" onclick="location.href='distributions.html'">📊 Distributions</button>
+  <button class="hm-item"        data-page="bayesian"      onclick="location.href='bayesian.html'">∫ Bayesian</button>
+  <button class="hm-item"        data-page="openproblems"  onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item"        data-page="research"      onclick="location.href='research.html'">🔭 Research</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="careers"       onclick="location.href='careers.html'">💼 Careers</button>
+  <button class="hm-item"        data-page="studyguide"    onclick="location.href='studyguide.html'">🗺️ Study Guide</button>
+  <button class="hm-item"        data-page="facts"         onclick="location.href='facts.html'">✨ Fun Facts</button>
+  <button class="hm-item"        data-page="tools"         onclick="location.href='tools.html'">🛠️ Tools</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item active"        data-page="calc"          onclick="location.href='calc.html'">🔢 Calculator</button>
+  <button class="hm-item"        data-page="formulas"      onclick="location.href='formulas.html'">📋 Formulas</button>
+  <button class="hm-item"        data-page="history"       onclick="location.href='history.html'">⏳ History</button>
+  <button class="hm-item"        data-page="comments"      onclick="location.href='comments.html'">💬 Discuss</button>
+</div>
+
+<!-- ═══ SEARCH MODAL ═══════════════════════════════════════════════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search books, puzzles, distributions, tools…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<!-- ═══ TOAST ══════════════════════════════════════════════════════ -->
+<div id="toast">
+  <button id="toast-close" onclick="hideToast()" aria-label="Dismiss notification">✕</button>
+  <div class="toast-cat" id="toast-cat">Fun Fact</div>
+  <div id="toast-body"></div>
+</div>
+
+<!-- ═══ KEYBOARD HINT ══════════════════════════════════════════════ -->
+<div id="shortcut-hint">/ search · ← → pages</div>
+
+<!-- ═══ PAGE: CALCULATOR ═══════════════════════════════════════════ -->
+<div class="page active" id="page-calc">
+  <section class="section" id="calc">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:var(--bl-l);color:var(--bl);border:1px solid rgba(42,95,120,.25)">Quick Calculations</span>
+        <h2 class="s-title font-serif">Statistics Calculator</h2>
+        <p class="s-desc">Instant CDF / quantile / probability calculations — no tables needed. All computations happen in-browser.</p>
+      </div>
+      <div class="calc-search-wrap">
+        <span class="calc-search-icon">🔍</span>
+        <input class="calc-search-inp" id="calc-search-inp" placeholder="Search calculators — try 'entropy', 'power', 'confidence', 'Bayes'…" autocomplete="off" oninput="calcSearch(this.value)">
+        <button class="calc-search-clear" id="calc-search-clr" onclick="calcSearchClear()" aria-label="Clear search">✕</button>
+        <div class="calc-hint" id="calc-hint"></div>
+      </div>
+      <div class="g3" id="calc-grid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ PAGE: FORMULA SHEET ════════════════════════════════════════ -->
+<!-- ── CONTACT ── -->
+<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);font-style:italic;font-family:'Source Code Pro',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div style="text-align:center;padding-bottom:2rem;">
+  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+</div>
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
+<script>
+window._nextPage = 'formulas.html';
+window._prevPage = 'tools.html';
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+
+function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+
+/* ── BOOKS ─────────────────────────────────────────────────── */
+
+function toggleHamburger(){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu)return;
+  const open=menu.classList.toggle('open');
+  btn.classList.toggle('open',open);
+}
+// Close when clicking outside
+document.addEventListener('click',function(e){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu||!menu.classList.contains('open'))return;
+  if(!menu.contains(e.target)&&e.target!==btn&&!btn.contains(e.target)){
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+
+
+/* ═══════════════════════════════════════════════════════════════
+   OVERRIDE: renderPuzzles — index + cat badge + solved button + filters
+   ═══════════════════════════════════════════════════════════════ */
+
+function toggleMode(){
+  const night=document.body.classList.toggle('night');
+  document.getElementById('mode-icon').textContent=night?'☀':'☾';
+  localStorage.setItem('stats-mode',night?'night':'day');
+  // redraw all visible canvases
+  document.querySelectorAll('.dist-canvas').forEach(c=>{
+    const cid=c.id;
+    const params={};
+    document.querySelectorAll(`[id^="sl-${cid}-"]`).forEach(sl=>{
+      params[sl.id.replace('sl-'+cid+'-','')]=parseFloat(sl.value);
+    });
+    // find the slug from DISTRIBUTIONS
+    const slug=getSlugFromCanvas(cid);
+    if(slug){
+      const isDisc=['bernoulli','binomial','geometric','negbin','poisson','hypergeometric'].includes(slug);
+      drawDistCanvas(cid,slug,params,isDisc);
+    }
+  });
+}
+
+
+function getSlugFromCanvas(cid){
+  // cid format: dc-type-idx
+  const parts=cid.split('-');
+  if(parts.length<3)return null;
+  const type=parts[1],idx=parseInt(parts[2]);
+  if(DISTRIBUTIONS[type]&&DISTRIBUTIONS[type][idx])return DISTRIBUTIONS[type][idx].slug;
+  return null;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL EFFECTS
+   ═══════════════════════════════════════════════════════════ */
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  if(btt)btt.classList.toggle('show',window.scrollY>300);
+  document.querySelectorAll('.reveal').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-60)
+      el.classList.add('visible');
+  });
+},{passive:true});
+
+/* ═══════════════════════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════════════════════ */
+
+let SEARCH_INDEX=[];
+function openSearch(){
+  buildSearchIndex();
+  const m=document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(()=>document.getElementById('search-input').focus(),80);
+}
+function closeSearch(){
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value='';
+  document.getElementById('search-results').innerHTML='<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q){
+  const res=document.getElementById('search-results');
+  if(!q.trim()){res.innerHTML='<div class="sr-empty">Start typing…</div>';return;}
+  const lq=q.toLowerCase();
+  const hits=SEARCH_INDEX.filter(x=>x.q.toLowerCase().includes(lq)).slice(0,18);
+  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q+'"</div>';return;}
+  res.innerHTML=hits.map((h,i)=>`<div class="sr-item" tabindex="0" data-idx="${i}" onclick="goSearchResult(${SEARCH_INDEX.indexOf(h)})" onkeydown="if(event.key==='Enter')goSearchResult(${SEARCH_INDEX.indexOf(h)})"><span class="sr-icon">${h.icon}</span><div><div class="sr-title">${highlight(h.title,lq)}</div><div class="sr-meta">${h.meta}</div></div><span class="sr-section">${h.section}</span></div>`).join('');
+}
+function highlight(text,q){
+  if(!q)return text;
+  const idx=text.toLowerCase().indexOf(q);
+  if(idx<0)return text;
+  return text.slice(0,idx)+'<mark style="background:var(--gd-l);color:var(--gd);border-radius:2px">'+text.slice(idx,idx+q.length)+'</mark>'+text.slice(idx+q.length);
+}
+function goSearchResult(idx){ closeSearch(); }
+function searchKeyNav(e){
+  if(e.key==='Escape'){closeSearch();return;}
+  const items=document.querySelectorAll('.sr-item');
+  const cur=document.activeElement;
+  const curIdx=[...items].indexOf(cur);
+  if(e.key==='ArrowDown'){e.preventDefault();(items[curIdx+1]||items[0])?.focus();}
+  if(e.key==='ArrowUp'){e.preventDefault();(items[curIdx-1]||items[items.length-1])?.focus();}
+  if(e.key==='Enter'&&curIdx>=0){items[curIdx].click();}
+}
+
+
+function buildSearchIndex(){
+  if(SEARCH_INDEX.length)return;
+  // no index for this page
+}
+
+
+(function initKeyboard(){
+  const PAGES=['home','precollege_placeholder'];
+  document.addEventListener('keydown',e=>{
+    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
+    if(document.getElementById('search-modal')&&document.getElementById('search-modal').classList.contains('open')){
+      if(e.key==='Escape')closeSearch();
+      return;
+    }
+    if(e.key==='/'){e.preventDefault();openSearch();return;}
+    if(e.key==='ArrowRight'){e.preventDefault();location.href=window._nextPage;}
+    if(e.key==='ArrowLeft'){e.preventDefault();location.href=window._prevPage;}
+    if(e.key==='f'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){if(typeof showRandomFact==='function')showRandomFact();}
+    if(e.key==='Escape'){
+      const hmenu=document.getElementById('hamburger-menu');
+      if(hmenu&&hmenu.classList.contains('open')){
+        hmenu.classList.remove('open');
+        document.getElementById('hamburger-btn')?.classList.remove('open');
+      }
+    }
+  });
+})();
+
+function showToast(msg,bg){
+  const t=document.createElement('div');
+  t.textContent=msg;
+  t.style.cssText=`position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);background:${bg};color:#fff;font-family:'Source Code Pro',monospace;font-size:.72rem;padding:.45rem 1.1rem;border-radius:99px;z-index:9998;animation:fadeUpIn .35s ease;white-space:nowrap;pointer-events:none`;
+  document.body.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .35s';setTimeout(()=>t.remove(),380);},2200);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATISTICIAN QUOTES — daily + 5-hour rotation
+   ═══════════════════════════════════════════════════════════════ */
+
+function renderCalc(){
+  const g=document.getElementById('calc-grid'); if(!g)return;
+  g.innerHTML=CALCS.map((c,ci)=>`
+    <div class="calc-card">
+      <div class="calc-name">${c.name}</div>
+      <div class="calc-desc">${c.desc}</div>
+      ${c.fields.map(f=>`<div class="calc-row"><span class="calc-lbl">${f.label}</span><input class="calc-inp" id="ci-${ci}-${f.id}" value="${f.def}" onkeydown="if(event.key==='Enter')runCalc(${ci})"></div>`).join('')}
+      <button class="calc-btn" onclick="runCalc(${ci})">Calculate →</button>
+      <div class="calc-result" id="cr-${ci}">—</div>
+    </div>`).join('');
+}
+
+function runCalc(ci){
+  const c=CALCS[ci]; if(!c)return;
+  const p={};
+  c.fields.forEach(f=>{p[f.id]=(document.getElementById('ci-'+ci+'-'+f.id)||{}).value||f.def;});
+  const res=document.getElementById('cr-'+ci); if(!res)return;
+  try{
+    const out=c.fn(p);
+    res.textContent=out;
+    res.classList.remove('error');
+  }catch(e){res.textContent='Error: '+e.message;res.classList.add('error');}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FORMULA SHEET
+   ═══════════════════════════════════════════════════════════ */
+const FORMULAS=[
+  {section:'Probability Fundamentals',items:[
+    {name:"Bayes' Theorem",eq:"P(A|B) = P(B|A)·P(A) / P(B)",desc:"The fundamental updating rule — posterior ∝ likelihood × prior"},
+    {name:'Law of Total Probability',eq:"P(B) = Σᵢ P(B|Aᵢ)·P(Aᵢ)",desc:"Marginalise over a partition {Aᵢ} of the sample space"},
+    {name:'Conditional Probability',eq:"P(A|B) = P(A∩B) / P(B)",desc:"Probability of A given B has occurred"},
+    {name:'Independence',eq:"P(A∩B) = P(A)·P(B)",desc:"A and B are independent iff their joint = product of marginals"},
+    {name:"De Morgan's Laws",eq:"(A∪B)ᶜ = Aᶜ∩Bᶜ  ;  (A∩B)ᶜ = Aᶜ∪Bᶜ",desc:"Complement of union/intersection"},
+    {name:"Inclusion–Exclusion",eq:"P(A∪B) = P(A)+P(B)−P(A∩B)",desc:"Corrects for double-counting the intersection"},
+  ]},
+  {section:'Expectation & Variance',items:[
+    {name:'Expectation (discrete)',eq:"E[X] = Σₓ x·P(X=x)",desc:"Probability-weighted average of all values"},
+    {name:'Expectation (continuous)',eq:"E[X] = ∫ x·f(x) dx",desc:"Integral of x weighted by PDF"},
+    {name:'Law of Total Expectation',eq:"E[X] = E[E[X|Y]]",desc:"E[X] = Σᵧ E[X|Y=y]·P(Y=y) — tower property"},
+    {name:'Variance',eq:"Var(X) = E[X²] − (E[X])²",desc:"Second central moment; measures spread around mean"},
+    {name:'Law of Total Variance',eq:"Var(X) = E[Var(X|Y)] + Var(E[X|Y])",desc:"ANOVA decomposition — within-group + between-group variance"},
+    {name:'Covariance',eq:"Cov(X,Y) = E[XY] − E[X]E[Y]",desc:"Measures linear co-movement; Cov(X,X) = Var(X)"},
+    {name:'Correlation',eq:"ρ(X,Y) = Cov(X,Y) / (σₓ·σᵧ)   ∈ [−1,1]",desc:"Scale-free version of covariance"},
+    {name:'Chebyshev Inequality',eq:"P(|X−μ| ≥ kσ) ≤ 1/k²",desc:"Distribution-free bound on tail probability for any distribution with finite variance"},
+  ]},
+  {section:'Estimation & Inference',items:[
+    {name:'MLE (Score Equation)',eq:"∂/∂θ Σᵢ log f(xᵢ|θ) = 0",desc:"Setting derivative of log-likelihood to zero gives MLE"},
+    {name:'Fisher Information',eq:"I(θ) = −E[∂²log f/∂θ²] = E[(∂log f/∂θ)²]",desc:"Measures curvature of the log-likelihood; inversely proportional to variance"},
+    {name:'Cramér–Rao Lower Bound',eq:"Var(T) ≥ [∂τ/∂θ]² / I(θ)",desc:"No unbiased estimator of τ(θ) can have lower variance"},
+    {name:'95% Confidence Interval (z)',eq:"x̄ ± 1.96·σ/√n",desc:"For Normal data with known σ; use 1.645 for 90%, 2.576 for 99%"},
+    {name:'t Confidence Interval',eq:"x̄ ± t_{α/2,n-1}·s/√n",desc:"For Normal data with unknown σ; uses Student's t distribution"},
+    {name:'p-value (two-sided)',eq:"p = 2·P(|Z| ≥ |z_obs|)  under H₀",desc:"Probability of test statistic as extreme as observed, under the null"},
+    {name:'Likelihood Ratio Test',eq:"−2(ℓ₀ − ℓ₁) →ᵈ χ²(p₁−p₀)  under H₀",desc:"Wilks theorem: LRT statistic is asymptotically chi-squared"},
+  ]},
+  {section:'Regression',items:[
+    {name:'OLS Estimator',eq:"β̂ = (XᵀX)⁻¹XᵀY",desc:"Minimises Σ(yᵢ − xᵢᵀβ)²; BLUE by Gauss-Markov theorem"},
+    {name:'Residual',eq:"eᵢ = yᵢ − ŷᵢ = yᵢ − xᵢᵀβ̂",desc:"Difference between observed and fitted value"},
+    {name:'R² (Coefficient of Determination)',eq:"R² = 1 − RSS/TSS  =  SSR/TSS",desc:"Fraction of total variance explained by the model"},
+    {name:'F-test for Regression',eq:"F = (R²/p) / ((1−R²)/(n−p−1)) ~ F(p, n−p−1)",desc:"Tests whether all regression coefficients are simultaneously zero"},
+    {name:'Variance Inflation Factor',eq:"VIF(j) = 1 / (1 − R²ⱼ)",desc:"Measures multicollinearity; VIF > 10 indicates severe collinearity"},
+  ]},
+  {section:'Bayesian',items:[
+    {name:'Posterior',eq:"π(θ|x) ∝ L(θ;x) · π(θ)",desc:"Unnormalised posterior; normalise by ∫L·π dθ"},
+    {name:'Beta-Binomial Update',eq:"Beta(α,β) → Beta(α+x, β+n−x)",desc:"Conjugate update: prior pseudo-successes + observed successes"},
+    {name:'Normal-Normal Update',eq:"μ|x ~ N( (μ₀/τ₀² + nx̄/σ²)/(1/τ₀²+n/σ²), (1/τ₀²+n/σ²)⁻¹ )",desc:"Conjugate update for Normal mean with Normal prior; precision-weighted average"},
+    {name:'Bayes Factor',eq:"BF₁₂ = P(x|M₁) / P(x|M₂)",desc:"Ratio of marginal likelihoods; BF > 10 is strong evidence for M₁"},
+    {name:'Bernstein-von Mises',eq:"π(θ|Xⁿ) →ᵈ N(θ₀, I(θ₀)⁻¹/n)  as n→∞",desc:"Posterior concentrates around true θ₀ and matches frequentist sampling dist"},
+    {name:"ELBO (Variational Bayes)",eq:"ℒ(q) = E_q[log p(x,θ)] − E_q[log q(θ)]  ≤ log p(x)",desc:"Objective maximised in variational inference; equals log p(x) iff q=posterior"},
+  ]},
+  {section:'Key Distributions — PDF/PMF',items:[
+    {name:'Normal N(μ,σ²)',eq:"f(x) = (1/σ√2π) exp(−(x−μ)²/2σ²)",desc:"The central distribution in statistics; CLT convergence target"},
+    {name:'Poisson(λ)',eq:"P(X=k) = e⁻λ λᵏ/k!",desc:"Count of rare events; mean = variance = λ"},
+    {name:'Exponential(λ)',eq:"f(x) = λ e⁻λˣ  ,  x≥0",desc:"Waiting time until Poisson event; memoryless"},
+    {name:'Binomial(n,p)',eq:"P(X=k) = C(n,k) pᵏ(1−p)ⁿ⁻ᵏ",desc:"Successes in n independent Bernoulli trials"},
+    {name:'Beta(α,β)',eq:"f(x) = xᵃ⁻¹(1−x)ᵝ⁻¹/B(α,β)  ,  x∈(0,1)",desc:"Conjugate prior for Binomial proportion"},
+    {name:'Gamma(α,β)',eq:"f(x) = βᵃ xᵃ⁻¹ e⁻ᵝˣ / Γ(α)  ,  x>0",desc:"Conjugate prior for Poisson rate; sum of α Exponential(β)"},
+  ]},
+];
+
+
+function calcSearch(q){
+  const clr=document.getElementById('calc-search-clr');
+  const hint=document.getElementById('calc-hint');
+  if(clr)clr.style.display=q?'':'none';
+  q=q.toLowerCase().trim();
+  if(!q){document.querySelectorAll('.calc-card').forEach(c=>c.style.display='');if(hint)hint.textContent='';return;}
+  /* Fuzzy scoring */
+  const cards=document.querySelectorAll('.calc-card');
+  let shown=0;
+  cards.forEach((card,ci)=>{
+    const c=CALCS[ci];if(!c){card.style.display='none';return;}
+    const target=(c.name+' '+c.desc).toLowerCase();
+    let score=target.includes(q)?10:0;
+    q.split(/\s+/).forEach(tok=>{if(tok.length>1&&target.includes(tok))score+=3;});
+    /* char-sequence fuzzy */
+    let ti=0,qi=0,tl=target.length,ql=q.length;
+    while(ti<tl&&qi<ql){if(target[ti]===q[qi])qi++;ti++;}
+    if(qi===ql)score+=ql*.5;
+    card.style.display=score>0?'':'none';
+    if(score>0)shown++;
+  });
+  if(hint)hint.textContent=shown===0?'No results — try different terms':shown===CALCS.length?'':shown+' result'+(shown!==1?'s':'');
+}
+
+function calcSearchClear(){
+  const inp=document.getElementById('calc-search-inp');
+  if(inp){inp.value='';calcSearch('');inp.focus();}
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COMMENTS — wrap shared.js with topic prefix
+   ═══════════════════════════════════════════════════════════════ */
+/* shared.js handles loadComments, deleteComment, renderAuthUI etc.
+   We only need a wrapper that prepends the topic tag */
+
+function normalCDF(x){
+  const t=1/(1+0.2316419*Math.abs(x));
+  const d=0.3989422820*Math.exp(-x*x/2);
+  const p=d*t*(0.3193815+t*(-0.3565638+t*(1.7814779+t*(-1.8212560+t*1.3302744))));
+  return x>0?1-p:p;
+}
+
+function normalQuantile(p){
+  // Beasley-Springer-Moro algorithm
+  if(p<=0)return-Infinity;if(p>=1)return Infinity;
+  const a=[2.50662823884,-18.61500062529,41.39119773534,-25.44106049637];
+  const b=[-8.47351093090,23.08336743743,-21.06224101826,3.13082909833];
+  const c=[0.3374754822726147,0.9761690190917186,0.1607979714918209,0.0276438810333863,0.0038405729373609,0.0003951896511349,0.0000321767881768,0.0000002888167364,0.0000003960315187];
+  const r=p-0.5;
+  if(Math.abs(r)<0.42){
+    const t=r*r;
+    return r*(((a[3]*t+a[2])*t+a[1])*t+a[0])/((((b[3]*t+b[2])*t+b[1])*t+b[0])*t+1);
+  }
+  const s=Math.log(-Math.log(p<0.5?p:1-p));
+  const t=c[0]+s*(c[1]+s*(c[2]+s*(c[3]+s*(c[4]+s*(c[5]+s*(c[6]+s*(c[7]+s*c[8])))))));
+  return p<0.5?-t:t;
+}
+
+function gammaLn(n){
+  if(n<0.5)return Math.log(Math.PI/Math.sin(Math.PI*n))-gammaLn(1-n);
+  n-=1;
+  const g=7;
+  const c=[0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];
+  let x=c[0];
+  for(let i=1;i<g+2;i++)x+=c[i]/(n+i);
+  const t=n+g+0.5;
+  return 0.5*Math.log(2*Math.PI)+(n+0.5)*Math.log(t)-t+Math.log(x);
+}
+
+function regularisedGammaP(a,x){
+  // Series expansion for P(a,x) = γ(a,x)/Γ(a)
+  if(x<0)return 0;if(x===0)return 0;
+  if(x<a+1){
+    // series
+    let term=1/a,sum=term;
+    for(let n=1;n<200;n++){term*=x/(a+n);sum+=term;if(Math.abs(term)<1e-12)break;}
+    return Math.exp(-x+a*Math.log(x)-gammaLn(a))*sum;
+  } else {
+    // continued fraction (Lentz)
+    let f=1e-30,C=f,D=0,delta;
+    for(let n=0;n<=200;n++){
+      const an=n===0?1:(n%2===1?((n+1)/2-a)*x:n/2*x);
+      const bn=n===0?x+1-a:x+2*n+1-a;
+      D=bn+an*D;if(Math.abs(D)<1e-30)D=1e-30;D=1/D;
+      C=bn+an/C;if(Math.abs(C)<1e-30)C=1e-30;
+      delta=C*D;f*=delta;
+      if(Math.abs(delta-1)<1e-12)break;
+    }
+    return 1-Math.exp(-x+a*Math.log(x)-gammaLn(a))/f;
+  }
+}
+
+function chiSqCDF(x,k){return x<=0?0:regularisedGammaP(k/2,x/2);}
+
+function tCDF(t,nu){
+  const x=nu/(nu+t*t);
+  const ibeta=regularisedGammaP(nu/2, nu/2*t*t/(nu+t*t));
+  // Use regularised incomplete beta
+  const p=0.5*regularisedGammaP(0.5, t*t/(nu+t*t));
+  return t<0?p:1-p;
+}
+
+function binomialPMF(n,p,k){
+  if(k<0||k>n)return 0;
+  let logP=0;
+  for(let i=0;i<k;i++) logP+=Math.log(n-i)-Math.log(i+1);
+  logP+=k*Math.log(p)+(n-k)*Math.log(1-p);
+  return Math.exp(logP);
+}
+
+function binomialCDF(n,p,k){let s=0;for(let i=0;i<=k;i++)s+=binomialPMF(n,p,i);return Math.min(s,1);}
+
+function poissonPMF(lam,k){let lv=-lam;for(let i=1;i<=k;i++)lv+=Math.log(lam/i);return Math.exp(lv);}
+
+function poissonCDF(lam,k){let s=0;for(let i=0;i<=k;i++)s+=poissonPMF(lam,i);return Math.min(s,1);}
+
+
+(function(){
+  if(localStorage.getItem('stats-mode')==='night'){
+    document.body.classList.add('night');
+    const mi=document.getElementById('mode-icon'); if(mi)mi.textContent='☀';
+  }
+  
+  setTimeout(function(){
+    if(window.currentUser)return;
+    if(!window.sb)return;
+    window.sb.auth.getSession().then(function(r){
+      if(window.currentUser)return;
+      var u=r&&r.data&&r.data.session&&r.data.session.user;
+      if(!u)return;
+      if(window.renderAuthUI)window.renderAuthUI();
+    }).catch(function(){});
+  },400);
+  if('renderCalc();' && document.readyState!=='loading') { renderCalc(); }
+  else if('renderCalc();') { document.addEventListener('DOMContentLoaded', function(){ renderCalc(); }); }
+})();
+</script>
+<script>window._pageKey = 'stats';</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+
+</body>
+</html>

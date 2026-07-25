@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Chess — Thoughts & Reflections | Stargazer</title>
+
+<!-- SEO META -->
+<meta name="description" content="Share your thoughts on chess history, puzzles, and the game itself with the Stargazer community.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Stargazer: Lost in the Cosmos">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/chess/comments.html">
+
+<!-- OPEN GRAPH -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chess — Thoughts & Reflections | Stargazer">
+<meta property="og:description" content="Share your thoughts on chess history, puzzles, and the game itself with the Stargazer community.">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/chess/comments.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/chess.png">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/chess.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="https://stargazer-9m9.pages.dev/about.html">
+
+<!-- TWITTER / X CARD -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chess — Thoughts & Reflections | Stargazer">
+<meta name="twitter:description" content="Share your thoughts on chess history, puzzles, and the game itself with the Stargazer community.">
+
+<!-- STRUCTURED DATA -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "Chess — Thoughts & Reflections",
+  "headline": "Reader Reflections on Chess",
+  "description": "Share your thoughts on chess history, puzzles, and the game itself with the Stargazer community.",
+  "url": "https://stargazer-9m9.pages.dev/chess/comments.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Chess Community" },
+  "publisher": { "@type": "Organization", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev" }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="chess.css">
+</head>
+<body>
+<div id="read-progress"></div>
+<button id="backToTop" title="Back to top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button id="pageDown" title="Page down" aria-label="Page down" onclick="window.scrollBy({top:window.innerHeight*0.85,behavior:'smooth'})">↓</button>
+
+
+<!-- HOME LINK (top-left, fixed) -->
+<a href="../index.html" id="homeLink" title="Back to Stargazer Universe">← home</a>
+
+<!-- AUTH HEADER (top-right, fixed) -->
+<div id="authHeader">
+  <button id="contentsBtn" aria-label="Toggle navigation" aria-expanded="false">
+    <div class="hb-icon" aria-hidden="true"><span></span><span></span><span></span></div>
+    ♟ contents
+  </button>
+  <a href="../login.html" id="loginBtn">⌖ sign in</a>
+  <div id="userInfo" style="display:none;">
+    <span id="userEmailDisplay"></span>
+    <button onclick="doSignOut()" id="signOutBtn">sign out</button>
+  </div>
+</div>
+
+<!-- DROPDOWN PANEL -->
+<div id="navDropdown" role="dialog" aria-label="Chess section navigation">
+  <div style="padding:0.45rem 0.75rem; border-bottom:1px solid rgba(212,175,55,0.1);">
+    <input id="navSearch" type="text" placeholder="Search this section…" oninput="filterNav(this.value)" autocomplete="off" style="width:100%; background:rgba(255,255,255,0.04); border:1px solid rgba(212,175,55,0.2); border-radius:4px; padding:0.3rem 0.55rem; color:var(--text-main); font-family:'Crimson Pro',serif; font-size:0.82rem; outline:none; transition:border-color 0.15s;" onfocus="this.style.borderColor='rgba(212,175,55,0.5)'" onblur="this.style.borderColor='rgba(212,175,55,0.2)'">
+  </div>
+  <div id="navMain" style="padding:0.4rem 0 0.6rem;">
+    <div class="nav-drop-section">
+      <div class="nav-drop-section-label">The Chess Chronicle</div>
+      <a href="home.html"><span class="nav-num">✦</span> Overview</a>
+      <a href="history.html"><span class="nav-num">♔</span> History — Parts I–XXIII</a>
+      <a href="puzzles.html"><span class="nav-num">⚔</span> 50 GM Puzzles</a>
+      <a href="deepdive.html"><span class="nav-num">📜</span> Deep Dive — Games &amp; Theory</a>
+      <a href="more.html"><span class="nav-num">♛</span> Women, Prodigies &amp; Variants</a>
+      <a href="afterword.html"><span class="nav-num">♟</span> Afterword &amp; Glossary</a>
+    </div>
+  </div>
+  <div class="nav-meta-row">
+    <a href="../ABOUT.html" class="nav-meta-link"><span class="nav-meta-icon">✦</span> About Stargazer</a>
+    <a href="mailto:ayan.chakraborty6174@gmail.com" class="nav-meta-link"><span class="nav-meta-icon">✉</span> Contact</a>
+    <a href="comments.html" class="nav-meta-link"><span class="nav-meta-icon">♟</span> Leave a Thought</a>
+  </div>
+</div>
+<div id="navOverlay"></div>
+
+
+<div class="fade-in" style="max-width:var(--max-w); margin:5rem auto 0; padding:0 2rem;">
+  <a href="home.html" style="font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.2em; color:var(--text-dim); text-decoration:none; opacity:0.75;">← Back to Chess Overview</a>
+</div>
+
+<section id="commentSection">
+  <div class="comment-section-inner">
+    <h3 class="comment-heading">♟ &nbsp; Thoughts &amp; Reflections</h3>
+    <div id="commentLoginMsg" class="comment-login-msg">
+      <span>Sign in to share your thoughts on chess</span>
+      <a href="../login.html" class="comment-signin-btn">⌖ Sign in</a>
+    </div>
+    <div id="commentFormWrap" style="display:none;">
+      <div class="comment-form">
+        <textarea id="commentText" placeholder="Share a thought on chess… (max 500 chars)" maxlength="500"></textarea>
+        <div class="comment-form-footer">
+          <span id="commentCharCount" class="comment-char-count">0 / 500</span>
+          <button onclick="submitComment('chess')" class="comment-submit">Leave a note</button>
+        </div>
+      </div>
+    </div>
+    <div class="comment-list" id="commentList">
+      <div class="comment-loading" id="commentLoading">Loading reflections…</div>
+      <div class="comment-empty" id="commentEmpty" style="display:none;">No reflections yet. Be the first.</div>
+    </div>
+  </div>
+</section>
+
+<section id="aboutContactSection">
+  <span class="contact-label">Stargazer Universe</span>
+  <div class="about-contact-row">
+    <a href="../ABOUT.html" class="about-link">About</a>
+    <span class="contact-sep">·</span>
+    <a href="mailto:ayan.chakraborty6174@gmail.com" class="contact-email">ayan.chakraborty6174@gmail.com</a>
+  </div>
+</section>
+
+<div id="siteFooterBottom">
+  <div class="sfb-inner">
+    <div class="sfb-glyph">♛</div>
+    <div class="sfb-brand">Stargazer</div>
+    <div class="sfb-tagline">Lost in the Cosmos</div>
+    <div class="sfb-divider"></div>
+    <div class="sfb-links">
+      <a href="../ABOUT.html" class="sfb-link">About</a>
+      <span class="sfb-dot">·</span>
+      <a href="mailto:ayan.chakraborty6174@gmail.com" class="sfb-email">ayan.chakraborty6174@gmail.com</a>
+      <span class="sfb-dot">·</span>
+      <a href="../index.html" class="sfb-link">← Home</a>
+    </div>
+    <div class="sfb-copy">© 2026 Stargazer: Lost in the Cosmos</div>
+  </div>
+</div>
+
+
+<script src="chess.js"></script>
+<script>
+window._pageKey = 'chess-comments';
+
+(function() {
+  const ta    = document.getElementById('commentText');
+  const count = document.getElementById('commentCharCount');
+  if (!ta || !count) return;
+  ta.addEventListener('input', function() {
+    count.textContent = ta.value.length + ' / 500';
+  });
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/shared.js"></script>
+</body>
+</html>

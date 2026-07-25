@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#faf7f2!important}html.pre-light{background:#faf7f2}</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]}));}else{renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});}"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Lato:ital,wght@0,400;0,700;1,400&family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<title>Olympiad Mathematics: Problems & Solutions | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="Olympiad-level problems across number theory, combinatorics, and geometry — with hints and full solution strategies. Elementary to state, hard to solve.">
+<meta name="keywords" content="mathematical olympiad, olympiad mathematics problems, IMO problems, competition math, number theory olympiad, combinatorics olympiad, geometry olympiad, math olympiad training">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Mathematics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/maths/olympiad.html">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Olympiad Mathematics: Problems & Solutions | Stargazer">
+<meta property="og:description" content="Seven topics, hundreds of hours of insight — olympiad problems that are easy to state and brutally hard to solve. Test yourself →">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/maths/olympiad.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Olympiad Mathematics: Problems & Solutions | Stargazer">
+<meta name="twitter:description" content="Number theory, combinatorics, geometry, and more — olympiad problems with hints and full solutions. Elementary to state, hard to crack →">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Olympiad Mathematics: The Art of the Proof",
+  "description": "Olympiad-level problems across seven major topics — number theory, algebra and inequalities, combinatorics, Euclidean geometry, functional equations, and induction — with hints and solution strategies.",
+  "url": "https://stargazer-9m9.pages.dev/maths/olympiad.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": [
+    { "@type": "Thing", "name": "Mathematics", "sameAs": "https://en.wikipedia.org/wiki/Mathematics" },
+    { "@type": "Thing", "name": "Mathematical olympiad" }
+  ]
+}
+</script>
+<link rel="stylesheet" href="maths.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ AUTH TOP BAR ════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <a href="../login.html" id="loginBtn" class="atb-btn atb-signin">☽ Sign In</a>
+  <div id="userInfo" style="display:none;align-items:center;gap:0.4rem">
+    <span class="atb-username" id="userEmailDisplay">✦ Explorer</span>
+    <button class="atb-signout" onclick="doSignOut()">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ ADMIN MODAL ══════ -->
+<div id="adminModal">
+  <div class="admin-modal-box">
+    <div class="admin-modal-title" id="adminModalTitle">Admin Panel</div>
+    <div id="adminModalBody"></div>
+    <div class="admin-modal-actions">
+      <button class="admin-cancel-btn" onclick="closeAdminModal()">Cancel</button>
+      <button class="admin-save-btn" id="adminModalSaveBtn" onclick="adminModalSave()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ NAV ═══════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Mathematics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Olympiad</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)">🔍 Search</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══════════════════════════════════════ HAMBURGER MENU ════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home" onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item" data-page="books" onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item" data-page="puzzles" onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="precollege" onclick="location.href='precollege.html'">📐 Pre-College</button>
+  <button class="hm-item active" data-page="olympiad" onclick="location.href='olympiad.html'">🏆 Olympiad</button>
+  <button class="hm-item" data-page="undergrad" onclick="location.href='undergrad.html'">🎓 Undergrad</button>
+  <button class="hm-item" data-page="graduate" onclick="location.href='graduate.html'">🔬 Graduate</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="research" onclick="location.href='research.html'">⚡ Research</button>
+  <button class="hm-item" data-page="openproblems" onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item" data-page="careers" onclick="location.href='careers.html'">💼 Careers</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="studyguide" onclick="location.href='studyguide.html'">📖 Study Guide</button>
+  <button class="hm-item" data-page="facts" onclick="location.href='facts.html'">✨ Math Facts</button>
+  <button class="hm-item" data-page="universities" onclick="location.href='universities.html'">🎓 India</button>
+  <button class="hm-item" data-page="comments" onclick="location.href='comments.html'">💬 Comments</button>
+</div>
+
+<!-- ═══════════════════════════════════════ SEARCH MODAL ════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search this page…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<div id="shortcut-hint">/ search</div>
+
+<div class="page active" id="page-olympiad" style="background:#0c0600">
+  <section class="section" id="olympiad">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:rgba(245,158,11,0.12);color:#fcd34d;border:1px solid rgba(245,158,11,0.3);font-weight:700">Mathematical Olympiads</span>
+        <h1 class="s-title font-serif" style="color:#fef9c3">Olympiad Mathematics — The Art of the Proof</h1>
+        <p class="s-desc" style="color:#fcd34d;font-weight:500">Select a topic, then expand any problem to see its solution strategy. All are elementary to state but demand genuine creative insight to solve.</p>
+      </div>
+
+      <!-- IMPORTANCE BOX -->
+      <div class="oly-importance-box">
+        <div class="oly-importance-title">⚡ Why Mathematical Olympiads Are Indispensable</div>
+        <p class="oly-importance-text">Mathematical Olympiad problems represent the highest art form in elementary mathematics — problems that a twelve-year-old can understand but that stump brilliant minds for hours or days. They are not a mere extension of the 12th-grade curriculum. They are its <em>deep completion</em> — taking the tools of school mathematics and revealing what they are truly capable of when wielded with creativity, patience, and strategic thinking.</p>
+        <p class="oly-importance-text"><strong style="color:#fcd34d">Bridge to Undergraduate Mathematics:</strong> Olympiad training is the single most effective preparation for university mathematics. The abstract reasoning, proof-writing, and structural thinking demanded by olympiad problems map directly onto real analysis, abstract algebra, and number theory. Students who have seriously engaged with olympiad mathematics find that the transition to university-level proofs feels natural rather than catastrophic. They have already internalized what it means to <em>argue rigorously from first principles</em>.</p>
+        <p class="oly-importance-text"><strong style="color:#fcd34d">Mathematical Abstraction and Generalization:</strong> Every olympiad problem teaches you to see the <em>general in the particular</em>. When you prove that a certain property holds for n=6, the olympiad mindset compels you to ask: does this hold for all n? What is the minimal assumption needed? This habit of generalization — of seeking the theorem behind the example — is the defining intellectual move of research mathematics. Olympiads train this reflex relentlessly.</p>
+        <p class="oly-importance-text"><strong style="color:#fcd34d">Methodical Thinking for Real Life:</strong> The skills that olympiad mathematics develops are not confined to mathematics itself. The discipline of <em>decomposing a hard problem into manageable cases</em>, of checking every edge case, of refusing to trust an answer until it has been completely verified — these transfer directly to programming, engineering, law, medicine, and every field where structured reasoning under uncertainty matters. An olympiad-trained mind is a precision instrument for any domain that rewards careful analysis.</p>
+        <p class="oly-importance-text"><strong style="color:#fcd34d">Mathematical Thinking as a Life Skill:</strong> Olympiads teach you that hard problems <em>yield to patient persistence</em>. The experience of struggling with a problem for three hours and then suddenly seeing the elegant key insight — Vieta jumping, parity, extremal principle — rewires how you approach all obstacles. You learn that confusion is the beginning of understanding, not a signal to give up. This psychological transformation may be the most valuable thing olympiads teach.</p>
+        <p class="oly-importance-text"><strong style="color:#fcd34d">Beyond 12th Grade — The Philosophy of Proof:</strong> School mathematics teaches you <em>what</em> is true and how to calculate. Olympiad mathematics teaches you <em>why</em> it is true and how to prove. This shift — from computation to reasoning — is the single most important intellectual transition in a mathematical education. It is the difference between knowing that √2 is irrational and understanding <em>why it cannot possibly be a fraction</em> — a philosophical certainty beyond any calculation.</p>
+      </div>
+
+      <div class="oly-tabs" id="oly-tabs"></div>
+      <div id="oly-panels"></div>
+    </div>
+  </section>
+</div>
+
+
+<footer id="footer">
+  <div class="foot-eq">e<sup>iπ</sup> + 1 = 0</div>
+  <p class="foot-txt"><strong style="color:#6d28d9">"Mathematics is not about numbers, equations, computations, or algorithms. It is about understanding."</strong><br>— William Paul Thurston, Fields Medalist</p>
+  <div class="foot-links">
+    <button class="foot-link" onclick="location.href='../ABOUT.html'">📖 About Stargazer</button>
+    <a class="foot-link" onclick="location.href='comments.html'; return false;" href="#">💬 Community Comments</a>
+    <a class="foot-link" href="mailto:ayan.chakraborty6174@gmail.com">✉️ Contact Creator</a>
+    <a class="foot-link" href="https://stargazer-9m9.pages.dev" target="_blank" rel="noopener">🌐 Stargazer Home</a>
+  </div>
+</footer>
+
+<button id="theme-toggle" title="Toggle light / dark theme" aria-label="Toggle light / dark theme" onclick="toggleTheme()">☀️</button>
+<button id="btt" title="Back to top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+window._pageKey = 'maths';
+
+function isAdmin() {
+  return !!(window.currentUser && window.currentUser.email === ADMIN_EMAIL);
+}
+
+window._applyDarkMode = function(isDark) {
+  // isDark=true → dark mode (no light-mode class)
+  // isDark=false → light mode
+  applyTheme(!isDark);   // applyTheme(true) adds light-mode class
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+};
+
+
+window._afterRenderAuthUI = function(user) {
+  // Show/hide admin bars
+  document.querySelectorAll('.admin-bar').forEach(function(el) {
+    if (user && user.email === ADMIN_EMAIL) { el.classList.add('visible'); }
+    else                                    { el.classList.remove('visible'); }
+  });
+  // Mirror display name into comment form header
+  var ud2 = document.getElementById('userEmailDisplay2');
+  if (ud2 && user) {
+    ud2.textContent = user.user_metadata?.display_name
+                    || user.user_metadata?.full_name
+                    || user.email || 'you';
+  }
+  // Trigger admin data load on sign-in
+  if (user) { if (typeof loadAdminData === 'function') loadAdminData(); }
+};
+
+
+function applyTheme(light) {
+  if (light) { document.body.classList.add('light-mode'); }
+  else        { document.body.classList.remove('light-mode'); }
+  var btn = document.getElementById('theme-toggle');
+  if (btn) btn.textContent = light ? '🌙' : '☀️';
+  document.documentElement.classList.remove('pre-light');
+}
+
+
+function toggleTheme() {
+  var nowLight = !document.body.classList.contains('light-mode');
+  applyTheme(nowLight);
+  localStorage.setItem('stargazer_theme', nowLight ? 'light' : 'dark');
+  // Persist via shared.js (writes to Supabase profiles.dark_mode)
+  // isDark param: true = dark mode, false = light mode
+  if (window.sbSaveDarkMode) window.sbSaveDarkMode(!nowLight);
+}
+
+
+// Apply theme immediately on load from localStorage
+(function() {
+  var tm = localStorage.getItem('stargazer_theme');
+  applyTheme(tm === 'light');
+})();
+
+// shared.js calls this after loading dark_mode from profiles
+// (already declared in the auth block above as window._applyDarkMode)
+
+
+function reRevealActivePage() {
+  var p = document.querySelector('.page.active');
+  if (!p) return;
+  p.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
+    el.classList.add('visible');
+  });
+}
+
+
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Close modal on backdrop click
+
+function toggleHamburger() {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu) return;
+  var open = menu.classList.toggle('open');
+  btn.classList.toggle('open', open);
+}
+// Close on outside click
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu || !menu.classList.contains('open')) return;
+  if (!menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var menu = document.getElementById('hamburger-menu');
+    if (menu && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      document.getElementById('hamburger-btn').classList.remove('open');
+    }
+  }
+});
+
+window.addEventListener('scroll', function() {
+  var btt = document.getElementById('btt');
+  if (btt) btt.classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
+
+window._getProgressData = function() { return {}; };
+window._applyProgressData = function(d) {};
+
+let _adminModalSaveFn = null;
+
+function openAdminModal(title, bodyHTML, saveFn) {
+  document.getElementById('adminModalTitle').textContent = title;
+  document.getElementById('adminModalBody').innerHTML = bodyHTML;
+  _adminModalSaveFn = saveFn;
+  document.getElementById('adminModal').classList.add('open');
+}
+
+function closeAdminModal() {
+  document.getElementById('adminModal').classList.remove('open');
+  _adminModalSaveFn = null;
+}
+
+async function adminModalSave() {
+  if (_adminModalSaveFn) {
+    const btn = document.getElementById('adminModalSaveBtn');
+    btn.textContent = 'Saving…';
+    btn.disabled = true;
+    try {
+      await _adminModalSaveFn();
+      closeAdminModal();
+    } catch(e) {
+      alert('Save failed: ' + (e.message || e));
+    }
+    btn.textContent = 'Save';
+    btn.disabled = false;
+  }
+}
+
+document.getElementById('adminModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAdminModal();
+});
+
+var PAGE_SEARCH_INDEX = [];
+function openSearch() {
+  buildSearchIndex();
+  var m = document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(function() { document.getElementById('search-input').focus(); }, 80);
+}
+function closeSearch() {
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-results').innerHTML = '<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q) {
+  var res = document.getElementById('search-results');
+  if (!q.trim()) { res.innerHTML = '<div class="sr-empty">Start typing…</div>'; return; }
+  var lq = q.toLowerCase();
+  var hits = PAGE_SEARCH_INDEX.filter(function(x) { return x.q.indexOf(lq) !== -1; }).slice(0, 20);
+  if (!hits.length) { res.innerHTML = '<div class="sr-empty">No results for "' + q + '"</div>'; return; }
+  res.innerHTML = hits.map(function(h) {
+    var idx = PAGE_SEARCH_INDEX.indexOf(h);
+    var ti = mathHighlight(h.title, lq);
+    return '<div class="sr-item" tabindex="0" data-idx="' + idx + '" onclick="goPageResult(' + idx + ')" onkeydown="if(event.key===\'Enter\')goPageResult(' + idx + ')">' +
+      '<span class="sr-icon">' + h.icon + '</span>' +
+      '<div><div class="sr-title">' + ti + '</div><div class="sr-meta">' + h.meta + '</div></div>' +
+      '<span class="sr-section">' + h.section + '</span></div>';
+  }).join('');
+}
+function mathHighlight(text, q) {
+  if (!q) return text;
+  var idx = text.toLowerCase().indexOf(q);
+  if (idx < 0) return text;
+  return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
+}
+function goPageResult(idx) {
+  var h = PAGE_SEARCH_INDEX[idx]; if (!h) return;
+  closeSearch();
+  if (h.pre) h.pre();
+  setTimeout(function(){
+    var el = document.getElementById(h.elId);
+    if (el) {
+      el.scrollIntoView({behavior:'smooth', block:'center'});
+      el.style.outline = '3px solid #a855f7'; el.style.outlineOffset = '4px';
+      setTimeout(function(){ el.style.outline=''; el.style.outlineOffset=''; }, 1600);
+    }
+  }, 60);
+}
+function searchKeyNav(e) {
+  if (e.key === 'Escape') { closeSearch(); return; }
+  var items = document.querySelectorAll('.sr-item');
+  var cur = document.activeElement;
+  var curIdx = Array.prototype.indexOf.call(items, cur);
+  if (e.key === 'ArrowDown') { e.preventDefault(); (items[curIdx + 1] || items[0]).focus(); }
+  if (e.key === 'ArrowUp')   { e.preventDefault(); (items[curIdx - 1] || items[items.length - 1]).focus(); }
+  if (e.key === 'Enter' && curIdx >= 0) { items[curIdx].click(); }
+}
+document.addEventListener('keydown', function(e) {
+  if (['INPUT','TEXTAREA','SELECT'].indexOf(e.target.tagName) !== -1) return;
+  var modal = document.getElementById('search-modal');
+  if (modal && modal.classList.contains('open')) {
+    if (e.key === 'Escape') closeSearch();
+    return;
+  }
+  if (e.key === '/') { e.preventDefault(); openSearch(); }
+});
+
+const olympiadData=[
+{name:"Number Theory",icon:"ℕ",color:"#f59e0b",
+ desc:"The queen of mathematics — ancient, deep, elementary to state yet fiendishly hard to prove. Studies primes, divisibility, modular arithmetic, and Diophantine equations. The most accessible entry point to olympiad mathematics and the most beautiful branch for beginners.",
+ books:[
+  {t:"104 Number Theory Problems",a:"Andreescu, Andrica & Feng",n:"Best single olympiad NT book — precise and comprehensive"},
+  {t:"Number Theory: Structures, Examples, Problems",a:"Titu Andreescu & Dorin Andrica",n:"Very readable; excellent problem selection"},
+  {t:"Elementary Number Theory",a:"David Burton",n:"Best for a rigorous undergraduate-level foundation"},
+  {t:"An Intro to the Theory of Numbers",a:"Niven, Zuckerman, Montgomery",n:"Classical reference, thorough and rigorous"}
+ ],
+ probs:[
+  {n:1,d:2,t:"The Josephus Problem",q:"n people stand in a circle numbered 1 to n. Starting from person 1, every second person is eliminated: person 2 is out, person 4 is out, wrapping around until one survivor remains. Find a closed formula J(n) for the survivor's position. Compute J(6), J(7), J(8), and J(100).",i:"Write n = 2ᵐ + r where 0 ≤ r &lt; 2ᵐ. Then J(n) = 2r + 1. Results: J(6) = J(4+2) = 5, J(7) = J(4+3) = 7, J(8) = J(8+0) = 1, J(100) = J(64+36) = 73. The beautiful binary insight: if n = (1 bₘ₋₁ ... b₁ b₀)₂ in binary, then J(n) = (bₘ₋₁ ... b₁ b₀ 1)₂ — a single cyclic left bit-rotation! For n=6=(110)₂: rotate to (101)₂ = 5 ✓. Proof: track positions through each halving phase. One of the most elegant applications of binary representation in discrete mathematics.",src:"Josephus, 70 CE / Knuth TAOCP"},
+  {n:2,d:3,t:"Chinese Remainder Theorem — Full Construction",q:"Find ALL integers x satisfying: x ≡ 2 (mod 3), x ≡ 3 (mod 5), x ≡ 2 (mod 7). Then state and prove the general theorem: if m₁,...,mₖ are pairwise coprime, the system x ≡ aᵢ (mod mᵢ) has a unique solution modulo M = m₁m₂⋯mₖ.",i:"Set M=105. For each i, define Mᵢ=M/mᵢ and find yᵢ = Mᵢ⁻¹ (mod mᵢ). M₁=35: 35≡2(mod 3), 2⁻¹≡2(mod 3) since 2·2=4≡1, so y₁=2. M₂=21: 21≡1(mod 5), so y₂=1. M₃=15: 15≡1(mod 7), so y₃=1. Then x ≡ a₁M₁y₁+a₂M₂y₂+a₃M₃y₃ = 2·35·2 + 3·21·1 + 2·15·1 = 140+63+30 = 233 ≡ 23 (mod 105). Verify: 23=7·3+2✓, 23=4·5+3✓, 23=3·7+2✓. General proof: the ring homomorphism ℤ/Mℤ → ℤ/m₁ℤ × ⋯ × ℤ/mₖℤ is an isomorphism when the mᵢ are pairwise coprime.",src:"Sun Tzu Suan Jing, ~300 CE"},
+  {n:3,d:4,t:"Fermat's Christmas Theorem",q:"Which primes p can be written as p = a² + b² for positive integers a, b? Prove that p=2 and every prime p ≡ 1 (mod 4) can, and no prime p ≡ 3 (mod 4) can.",i:"Impossibility: Squares are ≡ 0 or 1 (mod 4), so a²+b² ≡ 0,1, or 2 (mod 4) — never 3. So p ≡ 3 (mod 4) is impossible. Existence for p ≡ 1 (mod 4): use Gaussian integers ℤ[i] = {a+bi}. By Euler, −1 is a quadratic residue mod p, so ∃m: m²+1 ≡ 0 (mod p). Then p | (m+i)(m−i) in ℤ[i]. But p ∤ (m±i) individually (if p | m+i then p | 1, impossible). Since ℤ[i] is a UFD and p is not prime in ℤ[i], it factors: p = (a+bi)(a−bi) = a²+b². Fermat stated this in a letter dated Christmas Day, 1640 — and it took Euler 100 years to prove it.",src:"Fermat 1640 / Euler 1749"},
+  {n:4,d:2,t:"Chicken McNugget Theorem (Frobenius)",q:"For two coprime positive integers m and n, prove that the largest integer that CANNOT be expressed as am+bn (with a,b ≥ 0 integers) is exactly mn−m−n. With m=3, n=5: prove 7 is the largest non-representable number.",i:"For m=3, n=5: 8=3+5, 9=3+3+3, 10=5+5, 11=3+3+5, and every integer k≥8 follows by adding 3s. Check 7: we need 3a+5b=7 with a,b≥0 → no solution (b=0: 3∤7; b=1: 3a=2, no; b≥2: too large). General proof: partition non-negative integers into classes modulo m. In class r (mod m), the smallest representable number is r·n·(n⁻¹ mod m) — the minimum multiple of n in that class. The largest non-representable in class r is this minimum minus m. Taking the maximum over all classes gives mn−m−n. Proof of coprimality requirement: if gcd(m,n)=d>1, then no multiple of d other than 0 is representable.",src:"Sylvester 1882 / Frobenius"},
+  {n:5,d:4,t:"Lagrange's Four-Square Theorem",q:"Prove every positive integer can be expressed as the sum of four perfect squares. Show: 7=4+1+1+1, 15=9+4+1+1, 23=9+9+4+1, and give the general proof.",i:"Step 1 — Euler's identity (the algebraic engine): (a²+b²+c²+d²)(e²+f²+g²+h²) = (ae+bf+cg+dh)²+(af−be+ch−dg)²+(ag−bh−ce+df)²+(ah+bg−cf−de)². So products of four-square sums are four-square sums. It suffices to prove every prime is a four-square sum. Step 2 — existence: the sets {x² mod p : 0≤x≤(p−1)/2} and {−1−y² mod p : 0≤y≤(p−1)/2} each have (p+1)/2 elements, so by Pigeonhole they overlap: ∃x,y with x²+y²+1≡0 (mod p), giving mp = x²+y²+1² + 0² for some m&lt;p. Step 3 — Descent (Euler): show m can always be reduced to 1 by finding a four-square representation of mp with smaller multiplier.",src:"Lagrange 1770"},
+  {n:6,d:2,t:"42 Divides n⁷ − n For Every Integer n",q:"Prove that 42 | n⁷ − n for every integer n. (Note: 42 = 2 × 3 × 7.)",i:"By Fermat's Little Theorem, nᵖ ≡ n (mod p) for any prime p. Apply to p=2: n²≡n, so n⁷ = n·(n²)³ ≡ n·n³ = n⁴ ≡ n·n = n² ≡ n (mod 2). Apply to p=3: n³≡n (mod 3), so n⁷ = n·(n³)² ≡ n·n² = n³ ≡ n (mod 3). Apply to p=7: n⁷≡n (mod 7) directly. So 2|(n⁷−n), 3|(n⁷−n), 7|(n⁷−n). Since gcd(2,3,7)=1 pairwise, their product 42 divides n⁷−n. This is the most elegant application of FLT at the olympiad level.",src:"Fermat's Little Theorem"},
+  {n:7,d:3,t:"The Harmonic Sum Is Never an Integer",q:"Prove that Hₙ = 1 + 1/2 + 1/3 + ⋯ + 1/n is not an integer for any n ≥ 2.",i:"By Bertrand's Postulate, there exists a prime p with n/2 &lt; p ≤ n. This prime appears exactly ONCE as a denominator among 1,2,...,n. Let 2ˢ be the largest power of 2 with 2ˢ ≤ n. Multiply Hₙ by 2ˢ·M, where M = product of all odd numbers from 1 to n except p. Every term aⱼ = 2ˢ·M/j becomes an integer EXCEPT the term from j=p, which gives 2ˢ·M/p — not an integer, since p is an odd prime not equal to 2 and p∤M. So 2ˢ·M·Hₙ = (integer) + (non-integer) which is non-integer. Therefore Hₙ ∉ ℤ.",src:"Classic"},
+  {n:8,d:2,t:"Sophie Germain: n⁴ + 4ⁿ Is Always Composite (n > 1)",q:"Prove that n⁴ + 4ⁿ is composite for every integer n > 1.",i:"Sophie Germain's algebraic identity: a⁴ + 4b⁴ = (a²+2b²+2ab)(a²+2b²−2ab). For odd n: let a=n, b=2<sup>(n−1)/2</sup> (so b⁴ = 2<sup>n−1</sup>, and 4b⁴ = 2<sup>n+1</sup> → check: 4·(2<sup>(n-1)/2</sup>)⁴ = 4·2<sup>2(n-1)</sup> = 2<sup>2n-1</sup> ≠ 4ⁿ in general). Better: for n odd, n⁴+4ⁿ = n⁴+(2<sup>n/2</sup>)⁴ if n≡0... Actual approach: for odd n, write 4ⁿ = (2^n)² and apply Sophie Germain with a=n², b=2<sup>(n−1)/2</sup>: n⁴+4^n = (n²+2^n+n·2<sup>(n+1)/2</sup>)(n²+2^n−n·2<sup>(n+1)/2</sup>). Both factors exceed 1. For even n>1: n⁴ and 4ⁿ are both even, so n⁴+4ⁿ is even and greater than 2, hence composite.",src:"Sophie Germain Identity"},
+  {n:9,d:3,t:"Fermat Numbers Are Pairwise Coprime",q:"Let Fₙ = 2^(2ⁿ) + 1 (so F₀=3, F₁=5, F₂=17, F₃=257, F₄=65537). Prove F₀,F₁,F₂,... are pairwise coprime. Deduce a new proof of infinitely many primes.",i:"Key identity: F₀·F₁·F₂⋯Fₙ₋₁ = Fₙ − 2. Proof by induction: F₀−2=1, and (F₀⋯Fₙ₋₁)·Fₙ = (Fₙ−2)·Fₙ = Fₙ²−2Fₙ = (2^(2^n)+1)²−2(2^(2^n)+1) = 2^(2^(n+1))−1 = Fₙ₊₁−2. Now suppose d|Fₘ and d|Fₙ for m&lt;n. Then d|F₀⋯Fₙ₋₁=Fₙ−2, so d|(Fₙ−(Fₙ−2))=2. But every Fermat number is odd (2^k+1 with k≥1), so d=1. Hence the Fₙ are pairwise coprime, each has a distinct prime factor, giving infinitely many primes.",src:"Goldbach to Euler, 1730"},
+  {n:10,d:5,t:"IMO 1988 Problem 6 — Vieta Root Jumping",q:"Let a, b be positive integers with (ab+1) | (a²+b²). Prove that (a²+b²)/(ab+1) is a perfect square.",i:"Fix k = (a²+b²)/(ab+1). Among ALL positive integer solutions (a,b) giving this k, choose the one with a+b MINIMAL, with a ≥ b. View the equation as a quadratic in a: a² − (kb)a + (b²−k) = 0. The other root by Vieta's formulas is a' = kb−a, and a·a' = b²−k. Since b²≥k (from ka≤a² &lt; k·ab+k implies k≤b²), we get a'≥0. Since a'=(b²−k)/a is an integer (k is an integer, a|b²−k from the equation), we check: if a'>0, then a' &lt; a (since a·a'=b²−k ≤ b² ≤ a², giving a' ≤ a; equality gives a=b and k=1, a square ✓). But then (a',b) is a smaller positive solution — contradicting minimality. So a'=0, giving b²=k — a perfect square. In 1988, only 11 of 268 contestants solved it. Widely considered the greatest IMO problem ever posed.",src:"IMO 1988, Problem 6"}
+ ]},
+{name:"Algebra & Inequalities",icon:"≤",color:"#10b981",
+ desc:"The study of structure through symbolic manipulation — and the art of comparing quantities elegantly. Olympiad algebra prizes clever manipulation, substitutions, and strategies like SOS (Sum of Squares) and mixing variables.",
+ books:[
+  {t:"Algebraic Inequalities: Old and New Methods",a:"Pham Kim Hung",n:"The most comprehensive inequality book"},
+  {t:"Inequalities: A Mathematical Olympiad Approach",a:"Manfrino, Ortega, Delgado",n:"Accessible and very well organised"},
+  {t:"Putnam and Beyond",a:"Titu Andreescu & Razvan Gelca",n:"AMC through Putnam — broad algebraic coverage"},
+  {t:"The Cauchy-Schwarz Master Class",a:"J. Michael Steele",n:"Comprehensive treatment of inequalities"}
+ ],
+ probs:[
+  {n:1,d:1,t:"AM–GM Inequality",q:"For positive real numbers a and b, prove (a+b)/2 ≥ √(ab), with equality iff a = b.",i:"Note (√a − √b)² ≥ 0 expands to a − 2√(ab) + b ≥ 0, giving a + b ≥ 2√(ab). Or: (a+b)/2 − √(ab) = (√a − √b)²/2 ≥ 0. Multiple proofs exist — through completing the square, through convexity, through rearrangement — each illuminating a different aspect.",src:"Ancient / Classical"},
+  {n:2,d:2,t:"Sum of Squares Inequality",q:"For all real a, b, c prove that a² + b² + c² ≥ ab + bc + ca.",i:"The most elegant approach: a²+b²+c² − ab − bc − ca = ½[(a−b)² + (b−c)² + (c−a)²] ≥ 0. Recognising the right-hand form requires insight; once seen, the proof is immediate. Equality holds iff a = b = c.",src:"Classic olympiad"},
+  {n:3,d:2,t:"Nesbitt's Inequality",q:"For positive reals a, b, c, prove a/(b+c) + b/(a+c) + c/(a+b) ≥ 3/2.",i:"Add 1 to each fraction: (a+b+c)/(b+c) + (a+b+c)/(a+c) + (a+b+c)/(a+b) ≥ 9 (by AM-HM on the denominators, or directly by AM-GM). Dividing gives the result. Equality at a=b=c.",src:"Classic olympiad"},
+  {n:4,d:2,t:"Product Inequality",q:"For positive reals a, b, c, prove (a+b)(b+c)(c+a) ≥ 8abc.",i:"Apply AM-GM to each factor: a+b ≥ 2√(ab), b+c ≥ 2√(bc), c+a ≥ 2√(ca). Multiply: (a+b)(b+c)(c+a) ≥ 8·√(ab)·√(bc)·√(ca) = 8√(a²b²c²) = 8abc. Equality iff a=b=c.",src:"Classic AM-GM application"},
+  {n:5,d:2,t:"Cauchy-Schwarz Inequality",q:"Prove (a₁b₁+⋯+aₙbₙ)² ≤ (a₁²+⋯+aₙ²)(b₁²+⋯+bₙ²) for all real aᵢ, bᵢ.",i:"Consider f(t) = Σ(aᵢt−bᵢ)² = t²Σaᵢ² − 2tΣaᵢbᵢ + Σbᵢ² ≥ 0 for all real t. As a quadratic in t with no real roots, its discriminant ≤ 0: 4(Σaᵢbᵢ)² − 4(Σaᵢ²)(Σbᵢ²) ≤ 0. The result follows. Alternatively, use Lagrange's identity: the difference equals Σᵢ&lt;ⱼ(aᵢbⱼ−aⱼbᵢ)² ≥ 0.",src:"Cauchy 1821"},
+  {n:6,d:2,t:"The Golden Ratio Continued Fraction",q:"Evaluate x = 1 + 1/(1 + 1/(1 + 1/(1 + ⋯))), the infinite continued fraction for √5 harmony.",i:"If the expression converges to x, then x = 1 + 1/x (self-similarity). So x² = x + 1, giving x² − x − 1 = 0. The positive root is x = (1+√5)/2 = φ ≈ 1.618..., the Golden Ratio. This is one of the most beautiful ways φ naturally arises.",src:"Golden Ratio / Algebra"},
+  {n:7,d:3,t:"Constrained Sum Lower Bound",q:"For positive reals a, b, c with ab + bc + ca = 1, prove a + b + c ≥ √3.",i:"Use the identity (a+b+c)² = a²+b²+c² + 2(ab+bc+ca) = a²+b²+c² + 2. Since a²+b²+c² ≥ ab+bc+ca = 1 (by the sum of squares inequality), we get (a+b+c)² ≥ 1+2 = 3. Taking positive square roots gives a+b+c ≥ √3, with equality iff a=b=c=1/√3.",src:"Classic olympiad"},
+  {n:8,d:4,t:"Schur's Inequality",q:"For non-negative reals a, b, c and t > 0, prove aᵗ(a−b)(a−c) + bᵗ(b−a)(b−c) + cᵗ(c−a)(c−b) ≥ 0.",i:"WLOG a ≥ b ≥ c ≥ 0. The first term aᵗ(a−b)(a−c) ≥ 0 and third term cᵗ(c−a)(c−b) ≥ 0; the middle term bᵗ(b−a)(b−c) ≤ 0. Carefully bound the positive terms below by the absolute value of the negative term using a ≥ b ≥ c. For t=1: gives the useful form a³+b³+c³+abc ≥ ab(a+b)+bc(b+c)+ca(c+a).",src:"Issai Schur"},
+  {n:9,d:2,t:"Infinite Nested Radical",q:"Evaluate the infinite nested radical √(2 + √(2 + √(2 + ⋯))).",i:"Let x = √(2+x) (assuming convergence, which can be verified). Then x² = 2+x, giving x² − x − 2 = (x−2)(x+1) = 0. Taking the positive root: x = 2. More generally: √(a + √(a + √(a + ⋯))) = (1+√(1+4a))/2 for any a > 0.",src:"Classic algebra"},
+  {n:10,d:3,t:"Power Mean Inequality",q:"For positive reals a, b and p > q > 0, prove the Power Mean inequality: the p-mean ((aᵖ+bᵖ)/2)^(1/p) ≥ the q-mean ((aᵍ+bᵍ)/2)^(1/q).",i:"Set f(t) = log((aᵗ+bᵗ)/2) for t > 0. Show f(t)/t is non-decreasing by proving f is convex (compute f'' using Jensen). Alternatively, apply Hölder's inequality with the right exponents. This generalises: M_r ≥ M_s for r > s, encompassing AM ≥ GM ≥ HM as special cases.",src:"Classical analysis"}
+ ]},
+{name:"Combinatorics",icon:"⊂",color:"#06b6d4",
+ desc:"The mathematics of counting, arrangement, and structure. Olympiad combinatorics rewards clean arguments: Pigeonhole, double counting, bijections, parity, extremal principle, and graph-theoretic reasoning. Often the most creative branch.",
+ books:[
+  {t:"A Walk Through Combinatorics",a:"Miklós Bóna",n:"Best introductory combinatorics textbook"},
+  {t:"Combinatorial Problems and Exercises",a:"László Lovász",n:"Challenging and comprehensive — classic"},
+  {t:"A Course in Combinatorics",a:"van Lint & Wilson",n:"Rigorous and deep; excellent reference"},
+  {t:"Mathematical Olympiad Challenges",a:"Andreescu & Gelca",n:"Strong combinatorics chapter"}
+ ],
+ probs:[
+  {n:1,d:2,t:"Ramsey R(3,3) = 6",q:"Prove that among any 6 people, either 3 are mutually acquainted or 3 are mutually strangers.",i:"Fix person A. Of their 5 relationships, by Pigeonhole at least 3 are the same type — say friendships (to B, C, D). If any two of B, C, D are friends, they form a friend-triangle with A. If no two of B, C, D are friends, then B, C, D form a stranger-triangle. Both cases give the required triple.",src:"Ramsey Theory / Classic"},
+  {n:2,d:1,t:"Pigeonhole: Sharing Birthdays",q:"Show that among 366 people, at least two share a birthday.",i:"There are 365 possible birthdays (pigeonholes) and 366 people (pigeons). By the Pigeonhole Principle: if n+1 objects are distributed among n containers, some container holds ≥ 2. Generalization: the strong Pigeonhole principle says if mn+1 objects go in n boxes, some box holds ≥ m+1.",src:"Pigeonhole Principle"},
+  {n:3,d:3,t:"Catalan Numbers: Triangulations",q:"In how many ways can a convex (n+2)-gon be divided into triangles by non-crossing diagonals?",i:"The answer is the nth Catalan number: Cₙ = C(2n,n)/(n+1). These appear in an astonishing variety of combinatorial structures: balanced parenthesisations, non-crossing partitions, full binary trees with n+1 leaves, monotone lattice paths never crossing the diagonal. The Catalan numbers are one of the most ubiquitous sequences in combinatorics.",src:"Euler / Catalan"},
+  {n:4,d:1,t:"Handshaking Lemma",q:"In any graph, prove that the number of vertices with odd degree is even.",i:"In any graph, Σ deg(v) = 2|E| (each edge contributes 2 to the total degree sum). So the sum of all degrees is even. The vertices with even degree contribute an even sum. The remaining vertices have odd degree, and their sum must also be even — so there must be an even number of them.",src:"Graph Theory / Euler"},
+  {n:5,d:4,t:"Ballot Problem",q:"In an election, A gets a votes and B gets b votes with a > b. What is the probability that A leads B strictly throughout the entire count?",i:"Reflection Principle: the probability equals (a−b)/(a+b). Proof: model as lattice paths from (0,0) to (a,b). 'Bad' paths (where B ever ties A) biject with ALL paths from (−1,1) to (a,b) by reflecting at the diagonal y=x+1. Counting gives: bad paths = C(a+b−1, a−1), total = C(a+b,a). The formula (a−b)/(a+b) follows.",src:"Bertrand Ballot Problem"},
+  {n:6,d:2,t:"Stars and Bars",q:"In how many ways can n identical balls be placed into k distinct boxes (boxes may be empty)?",i:"Represent distributions as strings of n stars and k−1 dividing bars (total length n+k−1). Any placement of k−1 bars among n+k−1 positions gives a unique distribution. Answer: C(n+k−1, k−1). This is one of the most useful bijections in all of combinatorics — the stars-and-bars technique.",src:"Classic combinatorics"},
+  {n:7,d:3,t:"Derangements via Inclusion-Exclusion",q:"In how many ways can n letters be placed into n addressed envelopes so that no letter goes to its correct address?",i:"D(n) = n! × Σₖ₌₀ⁿ (−1)^k / k! By inclusion-exclusion: start with n! total, subtract arrangements with ≥1 correct letter, add back ≥2 correct, etc. Remarkably, D(n)/n! → 1/e as n→∞ — so roughly 36.8% of random permutations are derangements regardless of n.",src:"Inclusion-Exclusion"},
+  {n:8,d:3,t:"Erdős–Szekeres Theorem",q:"Any sequence of more than mn distinct real numbers contains an increasing subsequence of length > m or a decreasing one of length > n.",i:"Assign each position i the value f(i) = length of the longest increasing subsequence ending at position i. If all f(i) ≤ m, then by Pigeonhole among mn+1 values with only m distinct possibilities, n+1 positions share the same f-value. For these n+1 positions i₁ &lt; i₂ &lt; ... &lt; iₙ₊₁ with f(iⱼ) all equal, we must have the sequence values decreasing — giving a decreasing subsequence of length n+1.",src:"Erdős–Szekeres Theorem (1935)"},
+  {n:9,d:3,t:"Burnside's Lemma: Counting Necklaces",q:"How many distinct necklaces can be made with n beads of 2 colours, where rotations are considered the same?",i:"Burnside's Lemma: distinct objects = (1/|G|) × Σ<sub>g∈G</sub> |Fix(g)|, where Fix(g) = objects unchanged by symmetry g. For n beads under rotation by k positions: |Fix(rotation k)| = 2^gcd(k,n). Sum this over k=0,1,...,n−1 and divide by n. For n=4: (2⁴ + 2¹ + 2² + 2¹)/4 = (16+2+4+2)/4 = 6 distinct necklaces.",src:"Burnside's Lemma"},
+  {n:10,d:4,t:"Graph Colouring and Chromatic Polynomial",q:"Show that K₅ (the complete graph on 5 vertices) cannot be coloured with 3 colours (in the sense that χ(K₅) = 5), and explain what the chromatic polynomial encodes.",i:"K₅ has 5 vertices, all mutually adjacent. Each vertex must receive a different colour from all others — so 5 colours are required: χ(Kₙ) = n. The chromatic polynomial P(G, k) counts proper k-colourings: P(Kₙ, k) = k(k−1)(k−2)⋯(k−n+1). The Four Colour Theorem says P(G, 4) > 0 for all planar graphs G.",src:"Graph Theory / Chromatic Polynomial"}
+ ]},
+{name:"Euclidean Geometry",icon:"△",color:"#8b5cf6",
+ desc:"Classical geometry at its most beautiful: elegant proofs about circles, triangles, and points with only Euclidean tools. Rewards deep geometric intuition and mastery of classical theorems. The training ground for spatial reasoning.",
+ books:[
+  {t:"Euclidean Geometry in Mathematical Olympiads",a:"Evan Chen",n:"The finest modern olympiad geometry text — free online"},
+  {t:"Problems in Plane Geometry",a:"Prasolov",n:"Russian classic — over 1,000 problems with solutions"},
+  {t:"Geometry Revisited",a:"Coxeter & Greitzer",n:"Beautiful, elegant, essential for olympiad prep"},
+  {t:"Introduction to Geometry",a:"HSM Coxeter",n:"The classical comprehensive textbook"}
+ ],
+ probs:[
+  {n:1,d:1,t:"Pythagorean Theorem by Areas",q:"Prove the Pythagorean theorem a² + b² = c² using only the areas of geometric figures.",i:"Rearrangement proof: arrange 4 congruent right triangles (legs a, b, hypotenuse c) inside a square of side (a+b). The inner square has side c. Area equation: (a+b)² = 4·(ab/2) + c². Expanding: a²+2ab+b² = 2ab+c², so a²+b² = c². No algebra, no coordinates — pure area comparison. One of 370+ known proofs of this theorem.",src:"Multiple ancient cultures"},
+  {n:2,d:2,t:"Inscribed Angle Theorem",q:"Prove that an inscribed angle is exactly half the central angle subtending the same arc.",i:"Connect vertex P (on circle) to centre O. Two cases: (1) O lies inside angle — triangle OAP and OBP are isoceles (equal radii), so ∠OAP = ∠OPA and ∠OBP = ∠OPB; external angle formula gives ∠AOB = 2∠APB. (2) O lies outside: similar but involving supplementary angles. Three cases total cover all configurations.",src:"Euclid, Book III"},
+  {n:3,d:2,t:"Angle Bisector Theorem",q:"In triangle ABC, the angle bisector from A meets BC at D. Prove BD/DC = AB/AC.",i:"Method 1 (Area): [ABD]/[ACD] = BD/DC (same height from A). Also [ABD]/[ACD] = AB/AC (using the sine rule: [ABD] = ½·AB·AD·sin(∠BAD), [ACD] = ½·AC·AD·sin(∠CAD), and ∠BAD = ∠CAD by bisector). Equating gives BD/DC = AB/AC. Method 2 (Sine Rule in sub-triangles) gives the same result.",src:"Classic / Euclid"},
+  {n:4,d:3,t:"Simson Line",q:"Let P be a point on the circumcircle of triangle ABC. Prove the feet of the perpendiculars from P to the three sides are collinear.",i:"Let D, E, F be the feet on BC, CA, AB. Show BDFP and AFPE are cyclic quadrilaterals (by right angles). Then ∠FDP = ∠FBP (cyclic quad BDFP) = ∠FAP (same arc) = ∠FEP (cyclic quad AFPE). Hence ∠FDE + ∠FEP = ∠FEP + ∠FEP... the angle-chasing shows D, E, F are collinear. This is the Simson (Wallace) Line.",src:"Robert Simson (1749)"},
+  {n:5,d:3,t:"Ptolemy's Theorem",q:"For a cyclic quadrilateral ABCD inscribed in a circle, prove AC · BD = AB · CD + AD · BC.",i:"Elegant proof via spiral similarity: let P on BD satisfy ∠BAP = ∠CAD. Then △BAP ~ △CAD (AA), so AP/AD = BP/CD, giving AP·CD = AD·BP. Also △ABD ~ △ACP (AA via cyclic quad angles), so AC·BD = AB·CP + CP·CD... the algebraic steps lead to the required identity. An alternative: use Ptolemy via the complex number representation of points on the circle.",src:"Claudius Ptolemy, ~150 CE"},
+  {n:6,d:3,t:"Napoleon's Theorem",q:"On the outside of each side of any triangle ABC, construct equilateral triangles. Prove the centroids of these three equilateral triangles form an equilateral triangle.",i:"The cleanest proof uses complex numbers. Represent the vertices as complex numbers. The centroid of the equilateral triangle on side AB is (A + B + ωAB)/3 where ω = e<sup>iπ/3</sup> is the rotation. Compute all three centroids explicitly and show their pairwise differences have equal magnitude and are separated by 120° — proving equilateral.",src:"Napoleon Bonaparte (disputed attribution)"},
+  {n:7,d:4,t:"Morley's Trisector Theorem",q:"The three points of intersection of the adjacent angle trisectors of any triangle always form an equilateral triangle.",i:"One of the most surprising theorems in elementary geometry — nothing in the construction suggests equilateral. John Conway's proof: start with the desired equilateral triangle, build outward using specific scalene triangles at each vertex, and show the result is similar to any original triangle. The actual algebra is intricate but the surprise comes from how nothing in the statement signals the equilateral conclusion.",src:"Frank Morley (1899)"},
+  {n:8,d:2,t:"Power of a Point",q:"Prove that for any point P and circle, the product PA · PB is constant for all chords/secants AB through P.",i:"For P inside: chords AB and CD through P give △PAC ~ △PDB (inscribed angles on the same arc). So PA/PD = PC/PB, hence PA·PB = PC·PD = constant. For P outside: use secants with the same similar triangle argument. The constant equals |PO² − r²| where O is the centre. This 'power of a point' is fundamental to circle geometry.",src:"Classical / Apollonius"},
+  {n:9,d:4,t:"Nine-Point Circle",q:"Show that the midpoints of the three sides, the feet of the three altitudes, and the midpoints of the segments from each vertex to the orthocentre — all nine points — lie on a single circle.",i:"The nine-point circle has centre N (midpoint of segment OH, where H is orthocentre) and radius R/2 (half the circumradius). The proof uses the fact that the nine points form three groups, each lying on the circumcircle of a triangle homothetic to ABC. A homothety centred at H with ratio 1/2 maps the circumcircle to the nine-point circle.",src:"Feuerbach (1822)"},
+  {n:10,d:4,t:"Radical Axis Theorem",q:"Given three circles in the plane, prove that the three radical axes (loci of equal-power points) of the three pairs of circles are concurrent.",i:"The radical axis of two circles is the locus of points with equal power with respect to both. If P lies on the radical axis of (C₁,C₂) and on the radical axis of (C₂,C₃), then pow(P,C₁) = pow(P,C₂) and pow(P,C₂) = pow(P,C₃), hence pow(P,C₁) = pow(P,C₃) — so P also lies on the radical axis of (C₁,C₃). The three axes therefore meet at a single 'radical centre.'",src:"Classical geometry"}
+ ]},
+{name:"Functional Equations",icon:"f(x)",color:"#ec4899",
+ desc:"Finding all functions satisfying algebraic identities. Olympiad FEs require systematic substitution, regularity assumptions, and pattern recognition. A branch where creativity and algebra meet at their finest.",
+ books:[
+  {t:"Functional Equations and How to Solve Them",a:"Christopher Small",n:"Best focused treatment of olympiad FEs"},
+  {t:"Mathematical Olympiad Challenges",a:"Andreescu & Gelca",n:"Excellent FE chapter with beautiful problems"},
+  {t:"Problems in Combinatorics and FE",a:"Various MO compilations",n:"Problem collections from national olympiads"}
+ ],
+ probs:[
+  {n:1,d:2,t:"Cauchy's Functional Equation",q:"Find all functions f: ℝ → ℝ satisfying f(x + y) = f(x) + f(y) for all x, y ∈ ℝ.",i:"Step 1: f(0) = 0 (set x=y=0). Step 2: f(n) = nf(1) for all n ∈ ℤ. Step 3: f(p/q) = (p/q)f(1) for all rationals. Without additional assumptions (e.g. continuity, monotonicity, or boundedness on an interval), pathological solutions exist. With any regularity condition: f(x) = cx where c = f(1). Fundamental to the study of FEs.",src:"Augustin-Louis Cauchy"},
+  {n:2,d:2,t:"Multiplicative Cauchy",q:"Find all continuous functions f: ℝ → ℝ satisfying f(x + y) = f(x) · f(y) for all x, y.",i:"If f is not identically 0, then f(x) > 0 everywhere (f(x) = f(x/2)² ≥ 0, and f(0)=1). Define g = ln∘f; then g satisfies Cauchy's equation. With continuity: g(x) = cx, so f(x) = e<sup>cx</sup> = aˣ where a = e^c > 0. Alternatively, a ≡ 0. These are exactly the exponential functions.",src:"Classical"},
+  {n:3,d:3,t:"d'Alembert's Equation",q:"Find all continuous f: ℝ → ℝ satisfying f(x+y) + f(x−y) = 2f(x)f(y) for all x, y.",i:"Setting x=y=0: 2f(0) = 2f(0)², so f(0)=0 or f(0)=1. For f(0)=0: setting y=x gives f(2x)+f(0) = 2f(x)² ≥ 0, showing f ≡ 0. For f(0)=1: this is the cosine functional equation. Setting y=x: f(2x)+1 = 2f(x)². Under continuity, all solutions are f(x) = cos(cx) or f(x) = cosh(cx). This equation characterises cosine.",src:"Jean le Rond d'Alembert"},
+  {n:4,d:4,t:"The Classic IMO Functional Equation",q:"Find all f: ℝ → ℝ satisfying f(x² + f(y)) = y + (f(x))² for all x, y ∈ ℝ.",i:"Substitute x=0: f(f(y)) = y + f(0)². This shows f is a bijection. Set c = f(0). Setting y=0: f(x²+c) = (f(x))². From f(f(y)) = y+c², substitute y ↦ f(y): f(y+c²) = f(y)+c². So f is periodic-shifted. Eventually one shows c=0 and f(x)=x is the only solution.",src:"IMO 1992, Problem 1"},
+  {n:5,d:2,t:"Continuous Involutions",q:"Find all continuous functions f: ℝ → ℝ satisfying f(f(x)) = x for all x.",i:"f∘f = id means f is its own inverse — a bijection. If continuous and f ≠ id, f must be strictly monotone. Strictly increasing with f(f(x))=x implies f(x)=x for all x (Banach fixed point argument). Strictly decreasing: f(f(x)) = x with f decreasing means f crosses the line y=x exactly once. All continuous solutions: f(x) = x or f(x) = c − x for any constant c.",src:"Classical analysis"},
+  {n:6,d:2,t:"Multiplicative on Positives",q:"Find all continuous f: ℝ⁺ → ℝ⁺ satisfying f(xy) = f(x)f(y) for all positive x, y.",i:"Setting x=y=1: f(1)=1. The substitution x = eˢ, y = eᵗ transforms this to g(s+t) = g(s)g(t) where g = f∘exp — the exponential Cauchy equation. With continuity: g(t) = e<sup>ct</sup>, so f(x) = x^c for some c ∈ ℝ. These are exactly the power functions.",src:"Classical"},
+  {n:7,d:3,t:"Jensen's Equation",q:"Find all continuous f: ℝ → ℝ satisfying f((x+y)/2) = (f(x)+f(y))/2 for all x, y (Jensen functional equation).",i:"Define g(x) = f(x) − f(0). Then g satisfies g((x+y)/2) = (g(x)+g(y))/2 with g(0)=0. Setting y=0: g(x/2) = g(x)/2. By induction, g(nx) = ng(x). For rationals, g(rx) = rg(x). With continuity: g(x) = g(1)·x. So all solutions are f(x) = cx + d — affine (linear) functions.",src:"Jensen (1905)"},
+  {n:8,d:3,t:"Quadratic Functional Equation",q:"Find all continuous f: ℝ → ℝ satisfying f(x+y) + f(x−y) = 2f(x) + 2f(y) for all x, y.",i:"Setting x=y=0: 4f(0)=0 so f(0)=0. Setting y=x: f(2x)=4f(x). Setting x=y: same. These are the properties of f(x)=x². Define g(x)=f(x)−f(1)x²: show g satisfies Cauchy's equation. With continuity, g ≡ 0, so f(x) = cx² for some constant c. These are exactly the quadratic functions through the origin.",src:"Quadratic FE"},
+  {n:9,d:4,t:"Babbage-Type Composition",q:"Find all continuous f: ℝ → ℝ satisfying f(f(f(x))) = x for all x (f is an involution of order 3).",i:"f³ = id with f continuous. If f is not the identity, it must permute ℝ in 3-cycles. A continuous bijection on ℝ must be strictly monotone. Strictly increasing with f³ = id: the only strictly increasing solution with period 3 is f = id. Strictly decreasing: f² = increasing, f³ = f∘(increasing) = decreasing ≠ id. So no non-identity continuous solution exists on ℝ.",src:"Functional equations / topology"},
+  {n:10,d:4,t:"FE with Divisor Condition",q:"Find all functions f: ℕ → ℕ satisfying f(f(m) + f(n)) = m + n for all m, n ∈ ℕ.",i:"Setting m=n: f(2f(n)) = 2n — so f is surjective (onto even sums) and injective. Setting n=m in f(f(m)+f(n))=2m: f(2f(m))=2m. This forces f(n) = n for all n: substitute and check consistency. Suppose f(k)≠k for some k; the injectivity and the equation f(f(m)+f(n))=m+n force a contradiction via substitution chains.",src:"Classic olympiad FE"}
+ ]},
+{name:"Induction & Descent",icon:"→",color:"#f97316",
+ desc:"Mathematical induction and infinite descent are the backbone of number theory and combinatorics proofs. Induction proves universal statements; descent proves impossibility by showing any assumed solution generates a smaller one — forever.",
+ books:[
+  {t:"How to Prove It",a:"Daniel Velleman",n:"Best introduction to proof techniques including induction"},
+  {t:"Problem Solving Strategies",a:"Arthur Engel",n:"Comprehensive coverage of induction methods"},
+  {t:"Concrete Mathematics",a:"Graham, Knuth & Patashnik",n:"Induction in a computational context — masterful"}
+ ],
+ probs:[
+  {n:1,d:1,t:"Sum of First n Integers",q:"Prove by induction that 1+2+3+⋯+n = n(n+1)/2 for all positive integers n.",i:"Base: n=1: 1 = 1·2/2 ✓. Inductive step: assume true for k. Then 1+⋯+k+(k+1) = k(k+1)/2 + (k+1) = (k+1)(k/2+1) = (k+1)(k+2)/2. QED. Alternative: Gauss's pairing trick — pair (1+n), (2+n−1), ..., each summing to n+1; n/2 pairs give n(n+1)/2. Both perspectives are illuminating.",src:"Classic"},
+  {n:2,d:2,t:"Power Dominance: 2ⁿ > n²",q:"Prove by induction that 2ⁿ > n² for all integers n ≥ 5.",i:"Base: 2⁵=32 > 25=5² ✓. Inductive step: assume 2^k > k². Then 2<sup>k+1</sup> = 2·2^k > 2k². Need 2k² ≥ (k+1)² = k²+2k+1, i.e., k² ≥ 2k+1 = (k+1)²−k², i.e., k(k−2)≥1, which holds for k≥3 (and certainly for k≥5). So 2<sup>k+1</sup> > 2k² ≥ (k+1)².",src:"Classic induction"},
+  {n:3,d:3,t:"Tiling with L-Trominoes",q:"Prove that any 2ⁿ × 2ⁿ chessboard with one corner square removed can be tiled by L-shaped trominoes.",i:"The tromino tiling proof is a masterpiece of inductive construction. Divide the 2ⁿ×2ⁿ board into four 2<sup>n−1</sup>×2<sup>n−1</sup> quadrants. One quadrant contains the missing square. Place one tromino covering one cell from each of the other three quadrants at their meeting corner. Now all four quadrants have exactly one cell missing — apply the induction hypothesis.",src:"Solomon Golomb / Classic"},
+  {n:4,d:3,t:"AM-GM by Forward-Backward Induction",q:"Prove AM-GM for all n using Cauchy's forward-backward induction.",i:"Prove for n=2 (base). (1) Forward: if true for n, prove for 2n by applying the n-variable AM-GM twice. (2) Backward: if true for n, prove for n−1 by setting the nth variable equal to the AM of the others. Together these give AM-GM for all n. Cauchy's 1821 proof is one of the most elegant induction proofs ever devised.",src:"Cauchy's proof (1821)"},
+  {n:5,d:3,t:"Cassini's Fibonacci Identity",q:"Prove Fₙ₋₁Fₙ₊₁ − Fₙ² = (−1)ⁿ for the Fibonacci sequence (Cassini's identity).",i:"Base: F₀F₂ − F₁² = 0·1 − 1² = −1 = (−1)¹ ✓. Inductive step: Fₙ Fₙ₊₂ − Fₙ₊₁² = Fₙ(Fₙ+Fₙ₊₁) − Fₙ₊₁² = Fₙ² + FₙFₙ₊₁ − Fₙ₊₁² = Fₙ² − Fₙ₊₁(Fₙ₊₁−Fₙ) = Fₙ² − Fₙ₊₁Fₙ₋₁ = −(Fₙ₋₁Fₙ₊₁−Fₙ²) = −(−1)ⁿ = (−1)ⁿ⁺¹.",src:"Giovanni Cassini (1680)"},
+  {n:6,d:2,t:"Power of 2 Divides Factorials",q:"Prove that the highest power of 2 dividing n! is exactly ⌊n/2⌋+⌊n/4⌋+⌊n/8⌋+⋯ (Legendre's formula).",i:"Legendre's formula: νₚ(n!) = Σₖ₌₁^∞ ⌊n/pᵏ⌋. Proof by counting: among 1,...,n, exactly ⌊n/2⌋ are divisible by 2, ⌊n/4⌋ by 4, etc. Each multiple of 2^k contributes one factor of 2 to this count (beyond its contribution via lower powers). Summing gives the total.",src:"Adrien-Marie Legendre"},
+  {n:7,d:2,t:"Binomial Theorem",q:"Prove (a+b)ⁿ = Σₖ₌₀ⁿ C(n,k) aᵏ bⁿ⁻ᵏ for all non-negative integers n.",i:"Base: n=0: (a+b)⁰=1=C(0,0)a⁰b⁰ ✓. Inductive step: (a+b)<sup>n+1</sup> = (a+b)(a+b)^n = (a+b)Σ C(n,k)aᵏbⁿ⁻ᵏ. Separating and using Pascal's identity C(n,k)+C(n,k−1) = C(n+1,k) assembles the n+1 case. This is perhaps the most instructive inductive proof in all of elementary algebra.",src:"Pascal / Newton"},
+  {n:8,d:3,t:"Infinite Descent: √2 Irrational",q:"Prove √2 is irrational using Fermat's method of infinite descent rather than the standard contradiction proof.",i:"Assume √2 = a/b with a, b positive integers (not necessarily in lowest terms). Then a² = 2b². Consider the pair (a−b, 2b−a): these are positive integers (since b &lt; a &lt; 2b from 1 &lt; √2 &lt; 2). Moreover (a−b)² = 2(2b−a)² — so (a−b, 2b−a) is also a solution with a−b &lt; a. This gives an infinite descending sequence of positive integers — contradiction by well-ordering.",src:"Fermat's infinite descent"},
+  {n:9,d:4,t:"Sylvester-Gallai by Descent",q:"Prove: given n points in the plane, not all collinear, there exists a line passing through exactly 2 of them.",i:"Among all pairs (point P, line ℓ through ≥ 2 of the remaining points with P not on ℓ), let (P, ℓ) minimise the distance d(P, ℓ). Claim: ℓ contains exactly 2 points. If ℓ passes through 3+ points Q₁, Q₂, Q₃ (one on each side of or at the perpendicular foot from P), then one of these — say Q₁ — is closer to the foot of the perpendicular than its nearest neighbour on ℓ. One can find a pair (Q₁, ℓ') with d(Q₁,ℓ') &lt; d(P,ℓ) — contradicting minimality.",src:"Kelly's proof (1948)"},
+  {n:10,d:3,t:"Strong Induction: Every Integer Has Prime Factorisation",q:"Prove that every integer n ≥ 2 can be expressed as a product of primes.",i:"Strong induction: base n=2 (prime, done). Inductive step: assume all integers 2,...,n−1 are products of primes. If n is prime, done. If n is composite: n = ab with 2 ≤ a, b &lt; n. By the induction hypothesis, both a and b are products of primes. Their product ab = n is therefore also a product of primes. This gives existence (but not uniqueness — that requires more work).",src:"Classic"}
+ ]},
+{name:"Combinatorics — Extremal",icon:"⊂✦",color:"#14b8a6",
+ desc:"The extremal principle — assume a maximum or minimum configuration exists, then derive forced structural properties. A subsection of combinatorics, and one of the most powerful proof strategies in olympiad mathematics. Often leads to stunningly elegant solutions to apparently impossible problems.",
+ books:[
+  {t:"Problem Solving Strategies",a:"Arthur Engel",n:"Comprehensive coverage of extremal methods"},
+  {t:"Problems from the Book",a:"Andreescu & Dospinescu",n:"Many striking extremal principle applications"},
+  {t:"Mathematical Olympiad Handbook",a:"A. Gardiner",n:"Good selection of extremal problems"}
+ ],
+ probs:[
+  {n:1,d:2,t:"Minimum Spanning Configuration",q:"Among all triangles inscribed in a unit circle, which has the maximum area? Prove your answer.",i:"Take the triangle with maximum area. Claim: it must be equilateral. Proof by contradiction: if the triangle is not equilateral, some side is not 'maximally placed.' By fixing the base and moving the opposite vertex along the arc, area = ½·base·height is maximised when the vertex is at the midpoint of the arc, making the two non-base sides equal. Apply this to all three sides: the optimal triangle must be equilateral. Area = 3√3/4 for unit circumradius.",src:"Extremal / Calculus-free"},
+  {n:2,d:3,t:"Graph Colouring: Greedy Bound",q:"Prove that any graph G with maximum degree Δ can be properly vertex-coloured using at most Δ+1 colours.",i:"Greedy colouring: order vertices arbitrarily. Colour each vertex in turn with the smallest available colour. When colouring v, at most Δ neighbours have been previously coloured. So at most Δ colours are 'used up,' and at least one of the Δ+1 available colours remains free. The extremal element: the vertex of maximum degree is the hardest to colour — needing at most Δ+1 colours.",src:"Graph Theory / Brooks' Theorem"},
+  {n:3,d:4,t:"Sylvester-Gallai by Extremal Distance",q:"Prove the Sylvester-Gallai theorem: n non-collinear points determine a line through exactly 2 of them.",i:"Among all pairs (point P, line ℓ through ≥2 other points), minimise the distance d(P,ℓ). This minimum exists since the set is finite. Claim: the minimising ℓ passes through exactly 2 points. If ℓ contains 3+ points, drop a perpendicular from P to ℓ. By Pigeonhole, the foot lies between two consecutive points, say Q₁ and Q₂. Then d(Q₁, line PQ₂) &lt; d(P, ℓ) — contradicting minimality.",src:"Kelly's proof (1948)"},
+  {n:4,d:3,t:"Turán's Theorem: Triangle-Free Graphs",q:"Prove that a graph on n vertices with no triangle has at most n²/4 edges (Turán's theorem for r=2).",i:"Take a triangle-free graph G with the maximum number of edges. Extremal argument: (1) G must be bipartite (if a vertex has two neighbours connected by an edge, we could modify G to have more edges and a triangle — contradiction). (2) Among bipartite graphs, the complete bipartite graph K<sub>n/2, n/2</sub> maximises edges = n²/4. Therefore every triangle-free graph has ≤ n²/4 edges.",src:"Pál Turán (1941)"},
+  {n:5,d:3,t:"Erdős–Szekeres: Monotone Subsequences",q:"Prove that any sequence of mn+1 distinct real numbers contains an increasing subsequence of length > m or a decreasing one of length > n.",i:"Define f(i) = length of longest increasing subsequence ending at position i. If all f(i) ≤ m, there are only m distinct values for f over mn+1 positions. By Pigeonhole, n+1 positions share the same f-value. For these indices i₁ &lt; i₂ &lt; ⋯ &lt; iₙ₊₁ with equal f-values: the sequence values must be strictly decreasing (else some f(iⱼ) would be strictly larger). This gives a decreasing subsequence of length n+1.",src:"Erdős–Szekeres Theorem"},
+  {n:6,d:2,t:"Extreme Point of Convex Set",q:"Prove every bounded convex polygon has an extreme point (a point not in the interior of any segment between two other polygon points).",i:"Take the point P with maximum x-coordinate (exists by boundedness). Suppose P = λQ + (1−λ)R for Q,R in the polygon and 0 &lt; λ &lt; 1. Then x(P) = λx(Q) + (1−λ)x(R) ≤ max(x(Q),x(R)). But x(P) is the maximum, so x(Q) = x(R) = x(P). Both Q and R lie on the vertical line through P — but then P cannot be strictly between Q and R in the x-direction, giving a contradiction.",src:"Convex geometry / Extremal principle"},
+  {n:7,d:3,t:"Minimum Distance in Point Set",q:"Given n points in the plane with no three collinear, take P, Q at minimum pairwise distance. Prove no other point lies strictly inside the circle with diameter PQ.",i:"Suppose R lies inside the open disk with diameter PQ. Then ∠PRQ > 90° (angle in semicircle is 90°; strictly inside gives > 90°). By the law of cosines, the longest side of triangle PRQ is not PQ — meaning either PR &lt; PQ or QR &lt; PQ. But PQ was the minimum pairwise distance. Contradiction.",src:"Extremal principle / Geometry"},
+  {n:8,d:4,t:"Hall's Theorem: Perfect Matching",q:"In a bipartite graph G = (A∪B, E), a perfect matching exists iff for every S ⊆ A, |N(S)| ≥ |S| (Hall's condition). Prove the necessity.",i:"Necessity (easy direction): if a perfect matching M exists and S ⊆ A, then M matches each vertex in S to a distinct neighbour in B. So N(S) ⊇ {M(v) : v ∈ S}, giving |N(S)| ≥ |S|. Sufficiency is proved by induction: take the extremal set S ('tightest' Hall set) and build the matching inward. The extremal approach ensures the induction step works.",src:"Philip Hall (1935)"},
+  {n:9,d:4,t:"Max-Flow Min-Cut Theorem",q:"In any flow network, the maximum flow equals the minimum cut capacity. Prove via the extremal principle.",i:"Take a maximum flow f. The set of vertices reachable from the source via unsaturated paths forms a cut S. Any edge from S to V\\ S is saturated (else we could augment, contradicting maximality). Any edge from V\\S to S carries no flow. The cut capacity = flow on these forward edges = total flow value. So max-flow ≤ min-cut. Constructing the maximum flow achieves this bound, giving equality.",src:"Ford–Fulkerson / Menger"},
+  {n:10,d:3,t:"Pigeonhole as Extremal",q:"Show that among any n+1 integers chosen from {1, 2, ..., 2n}, some two differ by exactly 1 (i.e., are consecutive).",i:"Pair up {1,2}, {3,4}, ..., {2n−1, 2n} — exactly n pairs. We are choosing n+1 integers from n pairs. By Pigeonhole, two chosen integers lie in the same pair. Numbers in the same pair differ by exactly 1. Note this is stronger than the coprimality result — consecutive integers differ by 1.",src:"Pigeonhole Principle / Classic"}
+ ]}
+];
+
+let customOlympiadProbs = {};
+
+function stars(n){return"★".repeat(n)+"☆".repeat(5-n)}
+
+function indiaBuyLinks(title, author) {
+  const q = encodeURIComponent(title + ' ' + author + ' book');
+  return `<div class="buy-links">
+    <a class="buy-link amz" href="https://www.amazon.in/s?k=${q}&i=stripbooks" target="_blank" rel="noopener">🛒 Amazon.in</a>
+  </div>`;
+}
+
+
+function switchTab(idx) {
+  // Update tab button highlight
+  document.querySelectorAll('.oly-tab').forEach(function(t, i) {
+    t.classList.toggle('active', i === idx);
+  });
+  // Show/hide panels by ID — bulletproof
+  for (var i = 0; i < olympiadData.length; i++) {
+    var p = document.getElementById('opanel' + i);
+    if (p) p.style.display = (i === idx) ? 'block' : 'none';
+  }
+  // Re-animate reveals in the newly visible panel
+  var panel = document.getElementById('opanel' + idx);
+  if (panel) {
+    panel.querySelectorAll('.reveal').forEach(function(el, i) {
+      el.classList.remove('visible');
+      setTimeout(function() { el.classList.add('visible'); }, Math.min(i * 40, 800));
+    });
+  }
+}
+
+function toggleOlySolution(btnEl, bodyId) {
+  var body = document.getElementById(bodyId);
+  var inner = document.getElementById(bodyId + '_inner');
+  if (!body) return;
+
+  var state = btnEl.dataset.state || 'hidden'; // hidden → revealed-blurred → revealed-clear
+
+  if (state === 'hidden') {
+    // First click: show body, keep content blurred
+    body.style.display = 'block';
+    if (inner) inner.classList.add('oly-sol-blurred');
+    btnEl.textContent = '🔓 Click again to read the solution';
+    btnEl.dataset.state = 'revealed-blurred';
+  } else if (state === 'revealed-blurred') {
+    // Second click: unblur
+    if (inner) inner.classList.remove('oly-sol-blurred');
+    btnEl.textContent = '🔒 Hide Solution';
+    btnEl.dataset.state = 'revealed-clear';
+  } else {
+    // Third click: hide again
+    body.style.display = 'none';
+    if (inner) inner.classList.add('oly-sol-blurred');
+    btnEl.textContent = '👁 Reveal Solution';
+    btnEl.dataset.state = 'hidden';
+  }
+}
+
+
+function renderOlympiad(){
+  const isAdm = isAdmin();
+  document.getElementById("oly-tabs").innerHTML=olympiadData.map((t,i)=>`<button class="oly-tab${i===0?" active":""}" onclick="switchTab(${i})" id="otab${i}">${t.icon} ${t.name}</button>`).join("");
+  document.getElementById("oly-panels").innerHTML=olympiadData.map((t,i)=>`
+  <div class="oly-panel" id="opanel${i}" style="display:${i===0?'block':'none'}">
+    <div class="oly-phd">
+      <div>
+        <p class="oly-desc">${t.desc}</p>
+      </div>
+      <div class="oly-bk-box">
+        <div class="oly-bk-lbl">📚 Best Books</div>
+        ${t.books.map(b=>`<div class="oly-bk-item">
+          <div class="oly-bk-t">${b.t}</div><div class="oly-bk-a">${b.a}</div><div class="oly-bk-n">${b.n}</div>
+          ${indiaBuyLinks(b.t, b.a)}
+        </div>`).join("")}
+      </div>
+    </div>
+    <div class="prob-list">
+      ${[...t.probs, ...(customOlympiadProbs[i]||[])].map((p,pi)=>{
+        const isCustom = pi >= t.probs.length;
+        const cIdx = isCustom ? pi - t.probs.length : -1;
+        const solId = `olysol_${i}_${pi}`;
+        return `<div class="prob-card" id="olyprob_${i}_${pi}">
+        <div class="prob-stmt-visible">${p.q}</div>
+        <div class="prob-meta-row">
+          <div class="prob-title-line">
+            <span class="prob-num">#${p.n||pi+1}</span>
+            <span class="prob-ttl">${p.t}</span>
+          </div>
+          <div class="prob-info-line">
+            <span class="prob-dif">${stars(p.d||3)}</span>
+            <span class="prob-src-lbl">${p.src||''}</span>
+          </div>
+        </div>
+        <div style="padding:0.45rem 0.95rem">
+          <span class="oly-sol-reveal-btn" onclick="toggleOlySolution(this,'${solId}')">👁 Reveal Solution</span>
+        </div>
+        <div class="prob-body" id="${solId}" style="display:none">
+          <div class="oly-sol-blurred" id="${solId}_inner">
+            <div class="prob-insight"><div class="ins-lbl">Key Insight / Solution Strategy</div>${p.i||''}</div>
+          </div>
+          ${isAdm?`<div class="admin-bar visible" style="margin-top:0.6rem">
+            ${isCustom
+              ? `<button class="admin-btn edit-btn" onclick="adminEditOlyProb(${i},${cIdx})">✏️ Edit</button>
+                 <button class="admin-btn del-btn" onclick="adminDeleteOlyProb(${i},${cIdx})">🗑 Delete</button>`
+              : `<span style="font-size:0.62rem;color:#6366f1;font-family:monospace">Built-in problem</span>`}
+          </div>`:''}
+        </div>
+      </div>`;}).join("")}
+    </div>
+    ${isAdm?`<div style="margin-top:1rem;padding:0.75rem">
+      <button class="admin-btn add-btn" style="font-size:0.78rem;padding:0.45rem 1.2rem" onclick="adminAddOlyProb(${i})">➕ Add Problem to ${t.name}</button>
+    </div>`:''}
+  </div>`).join("");
+}
+
+
+function adminAddOlyProb(tabIdx) {
+  if (!isAdmin()) return;
+  openAdminModal('➕ Add Olympiad Problem', `
+    <div class="admin-field"><label>Problem Title</label>
+      <input id="aopTitle" placeholder="e.g. Quadratic Residues Trick"></div>
+    <div class="admin-field"><label>Problem Statement</label>
+      <textarea id="aopProblem" rows="4" placeholder="State the problem clearly..."></textarea></div>
+    <div class="admin-field"><label>Solution / Key Insight</label>
+      <textarea id="aopInsight" rows="3" placeholder="The key insight and solution..."></textarea></div>
+    <div class="admin-field"><label>Source</label>
+      <input id="aopSource" placeholder="e.g. IMO 2024 P3"></div>
+    <div class="admin-field"><label>Difficulty (1-5)</label>
+      <select id="aopDiff">
+        <option value="1">1 ★ — Easy</option><option value="2">2 ★★ — Medium-Easy</option>
+        <option value="3" selected>3 ★★★ — Medium</option><option value="4">4 ★★★★ — Hard</option>
+        <option value="5">5 ★★★★★ — Very Hard</option>
+      </select></div>
+  `, async () => {
+    const sb = window.sb;
+    if (!sb) return;
+    const problem = {
+      tab_index: tabIdx,
+      title: document.getElementById('aopTitle').value.trim(),
+      problem: document.getElementById('aopProblem').value.trim(),
+      insight: document.getElementById('aopInsight').value.trim(),
+      source: document.getElementById('aopSource').value.trim() || 'Admin Added',
+      difficulty_num: parseInt(document.getElementById('aopDiff').value),
+      number: 99 + (customOlympiadProbs[tabIdx]||[]).length,
+      created_by: window.currentUser.email
+    };
+    if (!problem.title || !problem.problem) throw new Error('Title and problem statement are required.');
+    if (sb) {
+      const { error } = await sb.from('math_olympiad_problems').insert([problem]);
+      if (error) throw error;
+    } else {
+      const key = 'oly_probs_' + tabIdx;
+      const stored = JSON.parse(localStorage.getItem(key) || '[]');
+      stored.push({...problem, id: Date.now()});
+      localStorage.setItem(key, JSON.stringify(stored));
+    }
+    await loadAdminData();
+  });
+}
+
+
+function adminEditOlyProb(tabIdx, cIdx) {
+  if (!isAdmin()) return;
+  const p = (customOlympiadProbs[tabIdx]||[])[cIdx];
+  if (!p) return;
+  openAdminModal('✏️ Edit Olympiad Problem', `
+    <div class="admin-field"><label>Problem Title</label>
+      <input id="eopTitle" value="${escHtml(p.t)}"></div>
+    <div class="admin-field"><label>Problem Statement</label>
+      <textarea id="eopProblem" rows="4">${escHtml(p.q)}</textarea></div>
+    <div class="admin-field"><label>Solution / Key Insight</label>
+      <textarea id="eopInsight" rows="3">${escHtml(p.i)}</textarea></div>
+    <div class="admin-field"><label>Source</label>
+      <input id="eopSource" value="${escHtml(p.src)}"></div>
+  `, async () => {
+    const sb = window.sb;
+    if (!sb) return;
+    const updates = {
+      title: document.getElementById('eopTitle').value.trim(),
+      problem: document.getElementById('eopProblem').value.trim(),
+      insight: document.getElementById('eopInsight').value.trim(),
+      source: document.getElementById('eopSource').value.trim()
+    };
+    if (sb && p.id) {
+      const { error } = await sb.from('math_olympiad_problems').update(updates).eq('id', p.id);
+      if (error) throw error;
+    }
+    await loadAdminData();
+  });
+}
+
+
+async function adminDeleteOlyProb(tabIdx, cIdx) {
+  const sb = window.sb;
+  if (!sb) return;
+  if (!isAdmin()) return;
+  const p = (customOlympiadProbs[tabIdx]||[])[cIdx];
+  if (!p || !confirm('Delete this problem?')) return;
+  if (sb && p.id) {
+    const { error } = await sb.from('math_olympiad_problems').delete().eq('id', p.id);
+    if (error) { alert('Delete failed: ' + error.message); return; }
+  }
+  await loadAdminData();
+}
+
+
+async function loadAdminData() {
+  const sb = window.sb;
+  if (!sb || !isAdmin()) return;
+  try {
+    const { data: olyProbs } = await sb.from('math_olympiad_problems').select('*').order('tab_index', { ascending: true });
+    customOlympiadProbs = {};
+    (olyProbs || []).forEach(r => {
+      const ti = r.tab_index ?? 0;
+      if (!customOlympiadProbs[ti]) customOlympiadProbs[ti] = [];
+      customOlympiadProbs[ti].push({ id: r.id, t: r.title, q: r.problem, i: r.insight, src: r.source || 'Admin Added', diff: r.difficulty_num || 3, n: r.number });
+    });
+  } catch(e) { console.warn('loadAdminData error:', e); }
+  renderOlympiad();
+  reRevealActivePage();
+  setTimeout(function(){
+    if (window.renderMathInElement){
+      window.renderMathInElement(document.body,{
+        delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],
+        throwOnError:false
+      });
+    }
+  }, 80);
+}
+
+function buildSearchIndex(){
+  PAGE_SEARCH_INDEX = [];
+  olympiadData.forEach(function(tab,ti){
+    var probs = (tab.probs||[]).concat(customOlympiadProbs[ti]||[]);
+    probs.forEach(function(p,pi){
+      PAGE_SEARCH_INDEX.push({
+        icon: tab.icon||'🏆', title: p.t, meta: tab.name||'', section:'Olympiad',
+        elId: 'olyprob_'+ti+'_'+pi,
+        pre: (function(idx){ return function(){ switchTab(idx); }; })(ti),
+        q: (p.t+' '+(p.q||'')+' '+(tab.name||'')).toLowerCase()
+      });
+    });
+  });
+}
+
+renderOlympiad();
+
+
+document.querySelectorAll('.reveal').forEach(function(el, i) {
+  setTimeout(function() { el.classList.add('visible'); }, Math.min(i * 35, 900));
+});
+</script>
+
+<!-- ═══ SUPABASE + SHARED AUTH/COMMENTS BRIDGE ═══════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+</body>
+</html>

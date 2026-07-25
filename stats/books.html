@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Best Statistics & Probability Books | Stargazer</title>
+<meta name="description" content="A shelf of statistics and probability books, from friendly first introductions to the graduate texts every statistician eventually works through.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Statistics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/stats/books.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Best Statistics & Probability Books | Stargazer">
+<meta property="og:description" content="A shelf of statistics books worth reading, from friendly first introductions to graduate-level texts.">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/stats/books.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Best Statistics & Probability Books | Stargazer">
+<meta name="twitter:description" content="A shelf of statistics books worth reading, from friendly first introductions to graduate-level texts.">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Best Statistics & Probability Books | Stargazer",
+  "description": "A shelf of statistics books worth reading, from friendly first introductions to graduate-level texts.",
+  "url": "https://stargazer-9m9.pages.dev/stats/books.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Statistics", "sameAs": "https://en.wikipedia.org/wiki/Statistics" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stats.css">
+</head>
+<body>
+
+<!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
+    <span id="mode-icon">☾</span>
+  </button>
+  <a href="../login.html" id="loginBtn">☽ Sign In</a>
+  <div id="userInfo">
+    <span id="userEmailDisplay">✦ Explorer</span>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══ NAV ═════════════════════════════════════════════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Statistics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Books</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)" aria-label="Search">🔍</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══ HAMBURGER MENU ══════════════════════════════════════════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home"          onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item active"        data-page="books"         onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item"        data-page="puzzles"       onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <button class="hm-item"        data-page="school"        onclick="location.href='school.html'">🏫 School</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="inference"     onclick="location.href='inference.html'">🔬 Inference</button>
+  <button class="hm-item"        data-page="distributions" onclick="location.href='distributions.html'">📊 Distributions</button>
+  <button class="hm-item"        data-page="bayesian"      onclick="location.href='bayesian.html'">∫ Bayesian</button>
+  <button class="hm-item"        data-page="openproblems"  onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item"        data-page="research"      onclick="location.href='research.html'">🔭 Research</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="careers"       onclick="location.href='careers.html'">💼 Careers</button>
+  <button class="hm-item"        data-page="studyguide"    onclick="location.href='studyguide.html'">🗺️ Study Guide</button>
+  <button class="hm-item"        data-page="facts"         onclick="location.href='facts.html'">✨ Fun Facts</button>
+  <button class="hm-item"        data-page="tools"         onclick="location.href='tools.html'">🛠️ Tools</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="calc"          onclick="location.href='calc.html'">🔢 Calculator</button>
+  <button class="hm-item"        data-page="formulas"      onclick="location.href='formulas.html'">📋 Formulas</button>
+  <button class="hm-item"        data-page="history"       onclick="location.href='history.html'">⏳ History</button>
+  <button class="hm-item"        data-page="comments"      onclick="location.href='comments.html'">💬 Discuss</button>
+</div>
+
+<!-- ═══ SEARCH MODAL ═══════════════════════════════════════════════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search books, puzzles, distributions, tools…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<!-- ═══ TOAST ══════════════════════════════════════════════════════ -->
+<div id="toast">
+  <button id="toast-close" onclick="hideToast()" aria-label="Dismiss notification">✕</button>
+  <div class="toast-cat" id="toast-cat">Fun Fact</div>
+  <div id="toast-body"></div>
+</div>
+
+<!-- ═══ KEYBOARD HINT ══════════════════════════════════════════════ -->
+<div id="shortcut-hint">/ search · ← → pages</div>
+
+<!-- ═══ PAGE: CALCULATOR ═══════════════════════════════════════════ -->
+<div class="page active" id="page-books">
+  <section class="section" id="books">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:var(--gd-l);color:var(--gd);border:1px solid rgba(122,90,14,.25)">Popular &amp; Academic</span>
+        <h2 class="s-title font-serif">Books to Fall in Love with Statistics</h2>
+        <p class="s-desc">From popular narratives to graduate textbooks — every rung of the ladder, chosen for quality and depth. Admins can upload PDFs; buy links provided for India.</p>
+      </div>
+      <div id="admin-book-status" style="display:none;text-align:center;margin-bottom:1rem;font-family:'Source Code Pro',monospace;font-size:.7rem;color:var(--gd)">✦ Admin mode — PDF uploads enabled</div>
+      <div class="bk-filter-wrap" id="books-filter-row"></div>
+      <div class="g3" id="books-grid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ PAGE: PUZZLES ════════════════════════════════════════════ -->
+<!-- ── CONTACT ── -->
+<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);font-style:italic;font-family:'Source Code Pro',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div style="text-align:center;padding-bottom:2rem;">
+  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+</div>
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
+<script>
+window._nextPage = 'puzzles.html';
+window._prevPage = 'home.html';
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+
+function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+
+/* ── BOOKS ─────────────────────────────────────────────────── */
+
+function toggleHamburger(){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu)return;
+  const open=menu.classList.toggle('open');
+  btn.classList.toggle('open',open);
+}
+// Close when clicking outside
+document.addEventListener('click',function(e){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu||!menu.classList.contains('open'))return;
+  if(!menu.contains(e.target)&&e.target!==btn&&!btn.contains(e.target)){
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+
+
+/* ═══════════════════════════════════════════════════════════════
+   OVERRIDE: renderPuzzles — index + cat badge + solved button + filters
+   ═══════════════════════════════════════════════════════════════ */
+
+function toggleMode(){
+  const night=document.body.classList.toggle('night');
+  document.getElementById('mode-icon').textContent=night?'☀':'☾';
+  localStorage.setItem('stats-mode',night?'night':'day');
+  // redraw all visible canvases
+  document.querySelectorAll('.dist-canvas').forEach(c=>{
+    const cid=c.id;
+    const params={};
+    document.querySelectorAll(`[id^="sl-${cid}-"]`).forEach(sl=>{
+      params[sl.id.replace('sl-'+cid+'-','')]=parseFloat(sl.value);
+    });
+    // find the slug from DISTRIBUTIONS
+    const slug=getSlugFromCanvas(cid);
+    if(slug){
+      const isDisc=['bernoulli','binomial','geometric','negbin','poisson','hypergeometric'].includes(slug);
+      drawDistCanvas(cid,slug,params,isDisc);
+    }
+  });
+}
+
+
+function getSlugFromCanvas(cid){
+  // cid format: dc-type-idx
+  const parts=cid.split('-');
+  if(parts.length<3)return null;
+  const type=parts[1],idx=parseInt(parts[2]);
+  if(DISTRIBUTIONS[type]&&DISTRIBUTIONS[type][idx])return DISTRIBUTIONS[type][idx].slug;
+  return null;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL EFFECTS
+   ═══════════════════════════════════════════════════════════ */
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  if(btt)btt.classList.toggle('show',window.scrollY>300);
+  document.querySelectorAll('.reveal').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-60)
+      el.classList.add('visible');
+  });
+},{passive:true});
+
+/* ═══════════════════════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════════════════════ */
+
+let SEARCH_INDEX=[];
+function openSearch(){
+  buildSearchIndex();
+  const m=document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(()=>document.getElementById('search-input').focus(),80);
+}
+function closeSearch(){
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value='';
+  document.getElementById('search-results').innerHTML='<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q){
+  const res=document.getElementById('search-results');
+  if(!q.trim()){res.innerHTML='<div class="sr-empty">Start typing…</div>';return;}
+  const lq=q.toLowerCase();
+  const hits=SEARCH_INDEX.filter(x=>x.q.toLowerCase().includes(lq)).slice(0,18);
+  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q+'"</div>';return;}
+  res.innerHTML=hits.map((h,i)=>`<div class="sr-item" tabindex="0" data-idx="${i}" onclick="goSearchResult(${SEARCH_INDEX.indexOf(h)})" onkeydown="if(event.key==='Enter')goSearchResult(${SEARCH_INDEX.indexOf(h)})"><span class="sr-icon">${h.icon}</span><div><div class="sr-title">${highlight(h.title,lq)}</div><div class="sr-meta">${h.meta}</div></div><span class="sr-section">${h.section}</span></div>`).join('');
+}
+function highlight(text,q){
+  if(!q)return text;
+  const idx=text.toLowerCase().indexOf(q);
+  if(idx<0)return text;
+  return text.slice(0,idx)+'<mark style="background:var(--gd-l);color:var(--gd);border-radius:2px">'+text.slice(idx,idx+q.length)+'</mark>'+text.slice(idx+q.length);
+}
+function goSearchResult(idx){ closeSearch(); }
+function searchKeyNav(e){
+  if(e.key==='Escape'){closeSearch();return;}
+  const items=document.querySelectorAll('.sr-item');
+  const cur=document.activeElement;
+  const curIdx=[...items].indexOf(cur);
+  if(e.key==='ArrowDown'){e.preventDefault();(items[curIdx+1]||items[0])?.focus();}
+  if(e.key==='ArrowUp'){e.preventDefault();(items[curIdx-1]||items[items.length-1])?.focus();}
+  if(e.key==='Enter'&&curIdx>=0){items[curIdx].click();}
+}
+
+
+function buildSearchIndex(){
+  if(SEARCH_INDEX.length)return;
+  BOOKS.forEach(b=>SEARCH_INDEX.push({icon:'📚',title:b.title,meta:b.author+' · '+b.year,section:'Books',page:'books',q:b.title+' '+b.author+' '+(b.cats||[]).join(' ')}));
+}
+
+
+(function initKeyboard(){
+  const PAGES=['home','precollege_placeholder'];
+  document.addEventListener('keydown',e=>{
+    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
+    if(document.getElementById('search-modal')&&document.getElementById('search-modal').classList.contains('open')){
+      if(e.key==='Escape')closeSearch();
+      return;
+    }
+    if(e.key==='/'){e.preventDefault();openSearch();return;}
+    if(e.key==='ArrowRight'){e.preventDefault();location.href=window._nextPage;}
+    if(e.key==='ArrowLeft'){e.preventDefault();location.href=window._prevPage;}
+    if(e.key==='f'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){if(typeof showRandomFact==='function')showRandomFact();}
+    if(e.key==='Escape'){
+      const hmenu=document.getElementById('hamburger-menu');
+      if(hmenu&&hmenu.classList.contains('open')){
+        hmenu.classList.remove('open');
+        document.getElementById('hamburger-btn')?.classList.remove('open');
+      }
+    }
+  });
+})();
+
+function showToast(msg,bg){
+  const t=document.createElement('div');
+  t.textContent=msg;
+  t.style.cssText=`position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);background:${bg};color:#fff;font-family:'Source Code Pro',monospace;font-size:.72rem;padding:.45rem 1.1rem;border-radius:99px;z-index:9998;animation:fadeUpIn .35s ease;white-space:nowrap;pointer-events:none`;
+  document.body.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .35s';setTimeout(()=>t.remove(),380);},2200);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATISTICIAN QUOTES — daily + 5-hour rotation
+   ═══════════════════════════════════════════════════════════════ */
+
+const BOOKS = [
+  {
+    slug:'lady-tasting-tea',
+    title:'The Lady Tasting Tea',
+    author:'David Salsburg',
+    year:2001,
+    cats:['History','Popular'],
+    desc:`<p>David Salsburg's masterpiece of scientific biography narrates the birth of modern statistics through the lives of its founders. The title refers to the famous experiment devised by Sir Ronald Fisher: could a lady tell from a single cup of tea whether the milk was poured before or after? Fisher's mathematically rigorous answer to this trivial question gave science the conceptual framework it had lacked for a century. Salsburg uses this story to unfurl the entire 20th-century development of statistical reasoning.</p><p>The book is populated by remarkably human figures: Galton and his obsession with heredity and measurement; Karl Pearson, combative and brilliant, inventing the chi-square test and the correlation coefficient; "Student" (William Gosset) developing the t-distribution in secret at the Guinness brewery because his employer feared revealing that they used statistics at all; Jerzy Neyman and Egon Pearson constructing the Neyman–Pearson lemma in a bitter rivalry with Fisher. Each chapter reads like a detective story, following how each person's personal obsessions collided with the mathematical structures that became our tools for knowing.</p><p>Written for the general reader without a single equation, the book nevertheless conveys the depth of the conceptual revolution. After reading it you will understand why p-values work the way they do, why ANOVA is attributed to Fisher, and why the frequentist vs. Bayesian debate is not merely technical but philosophical and personal. Essential reading for anyone who wants to know where statistical ideas come from before they start applying them.</p>`,
+    links:[
+      {label:'Amazon India',url:'https://www.amazon.in/s?k=Lady+Tasting+Tea+Salsburg',cls:'amz'},
+      {label:'Flipkart',url:'https://www.flipkart.com/search?q=Lady+Tasting+Tea+Salsburg',cls:'flip'}
+    ]
+  },
+  {
+    slug:'how-to-lie-statistics',
+    title:'How to Lie with Statistics',
+    author:'Darrell Huff',
+    year:1954,
+    cats:['Popular','Literacy'],
+    desc:`<p>First published in 1954 and illustrated by Irving Geis with gleeful cartoons, this slender volume remains the most widely read statistics book ever written — and the most dangerous to dishonest communicators. Darrell Huff, a journalist, set out to catalogue every weapon in the arsenal of the statistical liar: the sample with a built-in bias, the well-chosen average that conceals a distribution, the comparison of incomparable quantities, the gee-whiz graph with a truncated y-axis that makes a 1% change look like a 100% change, and the impressively precise statistic manufactured from nowhere.</p><p>What makes Huff's treatment timeless is that these deceptions are not exotic tricks used only by propagandists — they appear every day in news reports, corporate presentations, political speeches, and academic papers. "The average family income in our town is $48,000" means nothing without knowing whether it's a mean or median, whether it includes outlier billionaires, and how "family" is defined. Huff walks you through these illusions with patient wit until you can never read a statistic the same way again.</p><p>More than simply a catalogue of errors, the book builds the reader's intuition for what questions to ask of any statistic: Who says so? How do they know? What's missing? What changed? Does it make sense? These five questions, applied rigorously, immunise the reader against a majority of statistical manipulation. Seventy years on, in an era of viral charts and data journalism, the book is more essential than ever. Readable in a single afternoon; applicable for a lifetime.</p>`,
+    links:[
+      {label:'Amazon India',url:'https://www.amazon.in/s?k=How+to+Lie+with+Statistics+Darrell+Huff',cls:'amz'},
+      {label:'Flipkart',url:'https://www.flipkart.com/search?q=How+to+Lie+with+Statistics',cls:'flip'}
+    ]
+  },
+  {
+    slug:'drunkards-walk',
+    title:"The Drunkard's Walk",
+    author:'Leonard Mlodinow',
+    year:2008,
+    cats:['Popular','Probability'],
+    desc:`<p>Physicist and author Leonard Mlodinow opens with a personal confession: his father survived the Holocaust partly because of random chance — being sent to one camp rather than another, encountering one guard rather than another. This frame of mortality and randomness underlies the entire book, which argues that human life is far more shaped by random processes than we acknowledge, and that our cognitive architecture actively resists seeing this truth.</p><p>Mlodinow takes the reader through the law of large numbers, the gambler's fallacy, regression to the mean, conditional probability (via a memorable treatment of the Monty Hall problem), and Bayesian reasoning — all through case studies that avoid abstraction. A Hollywood movie executive's successful run of six blockbusters is dissected to show that, given the distribution of outcomes in the film industry, we'd expect several such "geniuses" by chance alone even if no one had any predictive skill. Baseball batting averages, wine critic ratings, investment manager performance — all show the same pattern: short-run variation wildly dominates long-run underlying skill, yet we systematically attribute the variation to talent or its absence.</p><p>The cognitive science sections are particularly strong. Mlodinow draws on Kahneman and Tversky's work to explain the availability heuristic (we judge probability by how easily examples come to mind), confirmation bias, and the narrative fallacy (our compulsive need to construct causal stories from what are actually random sequences). The title itself is a metaphor: just as a drunkard stumbling in the dark cannot find a coherent path, the human brain stumbling through probability cannot find reliable intuitions without deliberate mathematical discipline.</p>`,
+    links:[
+      {label:'Amazon India',url:'https://www.amazon.in/s?k=Drunkard+Walk+Mlodinow',cls:'amz'},
+      {label:'Flipkart',url:'https://www.flipkart.com/search?q=Drunkards+Walk+Mlodinow',cls:'flip'}
+    ]
+  },
+  {
+    slug:'all-of-statistics',
+    title:'All of Statistics',
+    author:'Larry Wasserman',
+    year:2004,
+    cats:['Graduate','Textbook'],
+    desc:`<p>Larry Wasserman's "All of Statistics" is perhaps the most efficient introduction to mathematical statistics ever written. It covers, in a single slim volume, the entire scope of a two-year graduate statistics curriculum: probability, random variables, convergence, inference, estimation theory, hypothesis testing, linear models, nonparametric methods, Bayesian methods, and statistical decision theory. The title is not modesty — Wasserman genuinely covers it all.</p><p>What distinguishes the book from other graduate texts is its deliberate clarity. Each chapter states its goals, develops the theory in sequence, and provides a set of exercises calibrated to test understanding rather than punish. Wasserman writes with precision but not pedantry — every concept is illustrated with a concrete example before the abstraction is introduced. The treatment of exponential families, sufficient statistics, and the Cramér–Rao lower bound is particularly lucid, and the chapters on minimax estimation and admissibility provide some of the clearest introductions to statistical decision theory available.</p><p>The book is ideally suited to computer scientists and mathematicians entering statistics, because it assumes real analysis but not measure theory, and it bridges the gap between probabilistic thinking and statistical inference cleanly. The final chapters on bootstrap methods and the EM algorithm bring the material to practical relevance. For anyone who wants to understand statistics at a deep level before specialising, "All of Statistics" is the single best investment of time and money available.</p>`,
+    links:[
+      {label:'Amazon India',url:'https://www.amazon.in/s?k=All+of+Statistics+Wasserman',cls:'amz'},
+      {label:'Free PDF (CMU)',url:'https://www.stat.cmu.edu/~larry/all-of-statistics/',cls:'free'}
+    ]
+  },
+  {
+    slug:'bda3',
+    title:'Bayesian Data Analysis',
+    author:'Gelman, Carlin, Stern, Dunson, Vehtari, Rubin',
+    year:2013,
+    cats:['Graduate','Bayesian'],
+    desc:`<p>Known universally as BDA3, this is the authoritative graduate text on Bayesian statistical methods. Written by six leading statisticians — including Andrew Gelman at Columbia and Aki Vehtari at Aalto — it covers both the theoretical foundations of Bayesian reasoning and the practical workflows of Bayesian data analysis in contemporary research. The third edition (2013, reprinted with corrections) remains the field's most comprehensive reference.</p><p>The book is structured in five parts. Part I develops Bayesian fundamentals: the prior–likelihood–posterior framework, conjugate models, hierarchical priors, and posterior predictive checks. Part II covers advanced single-parameter and multiparameter models. Part III is dedicated to computation: Markov chain Monte Carlo, the Metropolis-Hastings algorithm, Gibbs sampling, Hamiltonian Monte Carlo (the algorithm underlying the Stan library), and modern variational methods. Part IV covers a wide range of models including regression, generalised linear models, survival analysis, and mixture models. Part V addresses the philosophy of Bayesian inference, model comparison using WAIC and LOO-CV, and the practical workflow of checking and expanding models.</p><p>What elevates BDA3 above a textbook is its emphasis on the full Bayesian workflow: not just fitting a model but checking whether it fits, diagnosing convergence, and iteratively improving the model until it captures the structure of the data. The book's philosophy — that a statistical model is a story about data-generating processes, not a mathematical object to be optimised — represents a genuinely different way of thinking about inference. The third edition's PDF is available free from the authors' websites.</p>`,
+    links:[
+      {label:'Amazon India',url:'https://www.amazon.in/s?k=Bayesian+Data+Analysis+Gelman',cls:'amz'},
+      {label:'Free PDF (authors)',url:'http://www.stat.columbia.edu/~gelman/book/',cls:'free'}
+    ]
+  },
+  {
+    slug:'casella-berger',
+    title:'Statistical Inference',
+    author:'George Casella & Roger Berger',
+    year:2001,
+    cats:['Graduate','Textbook'],
+    desc:`<p>Casella and Berger is the bible of classical mathematical statistics. Used in first-year PhD programmes at virtually every major statistics department in the world, it covers the theory of statistical inference with mathematical precision, starting from probability axioms and working through to the most sophisticated classical inference methods. After completing this book — truly completing it, exercises and all — a student can claim genuine fluency in the mathematical language of frequentist statistics.</p><p>The book's greatest strength is its logical organisation. It develops probability theory from measure-theoretic fundamentals, establishes the key convergence theorems (LLN, CLT), derives the major distribution families, and then builds inference systematically: sufficiency, completeness, the exponential family, UMVUEs via the Lehmann–Scheffé theorem, the Fisher information and Cramér–Rao bound, MLEs and their asymptotic properties, hypothesis testing through the Neyman–Pearson lemma and UMP tests, confidence intervals via duality with tests, and interval estimation theory. The coverage of decision theory in the final chapter connects classical inference to Bayesian methods.</p><p>The exercises are notoriously difficult and genuinely illuminating — working through them is what converts knowledge into understanding. Casella and Berger pairs naturally with Wasserman's "All of Statistics" (which is more modern and applied) and BDA3 (which provides the Bayesian counterpart). For serious students of statistics at the research level, this book is not optional.</p>`,
+    links:[
+      {label:'Amazon India (import)',url:'https://www.amazon.in/s?k=Statistical+Inference+Casella+Berger',cls:'amz'}
+    ]
+  },
+  {
+    slug:'statistical-rethinking',
+    title:'Statistical Rethinking',
+    author:'Richard McElreath',
+    year:2020,
+    cats:['Graduate','Bayesian','Applied'],
+    desc:`<p>Richard McElreath's "Statistical Rethinking" has become, since its second edition in 2020, the most beloved introduction to Bayesian data analysis for applied researchers. Where BDA3 is encyclopaedic and technical, Rethinking is pedagogically exceptional — it is the book that actually teaches you <em>how to think</em> about statistical modelling, not merely how to execute it. McElreath is a behavioural ecologist who came to Bayesian methods through practical frustration with classical approaches, and this background gives the book an unusual blend of philosophical depth and scientific grounding.</p><p>The book's distinctive approach uses causal diagrams (DAGs — directed acyclic graphs) as the scaffolding for model construction. Before fitting any model, McElreath asks: what is the data-generating process? What are we actually trying to estimate? Which variables should be included or excluded, and why? This causal-first approach cuts through the confusion that surrounds multivariate modelling and enables readers to reason about selection bias, mediation, and confounding in a principled way. The treatment of multilevel (hierarchical) models is particularly accessible and motivates why partial pooling — borrowing statistical strength across groups — is almost always preferable to either complete pooling or no pooling.</p><p>The second edition includes chapters on Hamiltonian Monte Carlo, measurement error, missing data, ordinal variables, and Gaussian processes. All code examples use the rethinking R package and Stan, but the ideas translate to any computational framework. The accompanying YouTube lecture series (free) makes this one of the most accessible graduate-level statistics courses ever produced.</p>`,
+    links:[
+      {label:'Amazon India',url:'https://www.amazon.in/s?k=Statistical+Rethinking+McElreath',cls:'amz'},
+      {label:'Free lectures (YouTube)',url:'https://www.youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus',cls:'free'}
+    ]
+  },
+  {
+    slug:'think-bayes',
+    title:'Think Bayes',
+    author:'Allen B. Downey',
+    year:2021,
+    cats:['Popular','Bayesian','Python'],
+    desc:`<p>Allen Downey's "Think Bayes" occupies a unique niche: it teaches Bayesian reasoning through code rather than calculus, making the ideas accessible to any programmer without requiring probability theory prerequisites. The second edition (2021) uses Python with NumPy and Pandas, walking through Bayesian inference entirely computationally — updating probability distributions with new evidence using grid approximation and MCMC rather than analytical conjugate formulas.</p><p>The book's pedagogy is elegantly simple: a probability distribution is a dictionary mapping hypotheses to probabilities. Bayes' theorem is a multiplication followed by normalisation. Every update is the same operation applied to increasingly complex models. By the time Downey introduces the full machinery of hierarchical models and MCMC via PyMC, the reader has already understood the underlying logic through dozens of toy examples — the Monty Hall problem, cookie jars, medical testing, lighthouse problems, the Lincoln index for estimating population size.</p><p>The book is available free online and on GitHub, which fits Downey's open-access philosophy. It pairs exceptionally well with McElreath's Statistical Rethinking for practitioners who want mathematical depth alongside the computational intuition. For data scientists, engineers, or anyone comfortable with Python who wants to understand Bayesian inference without a statistics degree, Think Bayes is the clearest on-ramp available.</p>`,
+    links:[
+      {label:'Amazon India',url:'https://www.amazon.in/s?k=Think+Bayes+Downey',cls:'amz'},
+      {label:'Free online',url:'https://allendowney.github.io/ThinkBayes2/',cls:'free'}
+    ]
+  },
+  {
+    slug:'signal-noise',
+    title:'The Signal and the Noise',
+    author:'Nate Silver',
+    year:2012,
+    cats:['Popular','Applied','Forecasting'],
+    desc:`<p>Nate Silver became famous by correctly predicting 49 out of 50 states in the 2008 US presidential election using probabilistic polling aggregation, then all 50 in 2012. "The Signal and the Noise" is his account of what makes prediction work — and, crucially, what makes it fail. The book is simultaneously a popular science account of forecasting across domains and a sustained argument for Bayesian probabilistic thinking over point predictions and false certainty.</p><p>Silver examines prediction across twelve domains: weather forecasting, earthquake prediction, economics (and the failure of financial models in 2008), flu pandemics, baseball (where he developed his PECOTA batting average prediction system), chess, poker, stock markets, and politics. In each domain he identifies the same pattern: the best forecasters combine explicit probabilistic models with calibrated uncertainty, continuously update their predictions as new information arrives (the Bayesian ideal), and are brutally honest about what they do and do not know. The worst forecasters make confident point predictions, rarely update, and treat confidence and accuracy as synonyms.</p><p>The book's intellectual centre is the distinction between risk (known probability distributions over outcomes) and uncertainty (situations where the distribution itself is unknown, as Keynes and Knight emphasised). Much of what passes for statistical prediction in economics and social science is actually deep uncertainty dressed in the costume of risk — Silver argues this is systematically dangerous. The Bayesian chapters are particularly readable, making this one of the best popular introductions to probabilistic reasoning for people who don't think of themselves as mathematicians.</p>`,
+    links:[
+      {label:'Amazon India',url:'https://www.amazon.in/s?k=Signal+and+Noise+Nate+Silver',cls:'amz'},
+      {label:'Flipkart',url:'https://www.flipkart.com/search?q=Signal+Noise+Nate+Silver',cls:'flip'}
+    ]
+  },
+  {
+    slug:'art-of-statistics',
+    title:'The Art of Statistics',
+    author:'David Spiegelhalter',
+    year:2019,
+    cats:['Popular','Literacy'],
+    desc:`<p>David Spiegelhalter is one of Britain's most prominent statisticians — Winton Professor of the Public Understanding of Risk at Cambridge, knighted for services to statistics, and the author of the Royal Statistical Society's weekly COVID statistical commentaries. "The Art of Statistics" is his magnum opus of public communication: a complete tour of statistical thinking for literate non-specialists, from exploratory data analysis through to Bayesian inference and algorithmic fairness.</p><p>The book's organising principle is the PPDAC cycle — Problem, Plan, Data, Analysis, Conclusion — which Spiegelhalter uses to structure the entire practice of statistics as an iterative, question-driven discipline. Each chapter begins with a real case study (Harold Shipman's murder detection, the Titanic survivors, clinical trials for new drugs) and uses the data to introduce the concept in question: visualisation, sampling variation, regression, correlation, significance testing, Bayesian updating, and the ethics of algorithmic decision-making.</p><p>Spiegelhalter is particularly strong on the limitations and abuses of statistics, dedicating substantial space to publication bias, the replication crisis, and the multiple comparisons problem. His treatment is fair and honest: statistics doesn't fail because statisticians are fraudulent but because the incentive structures of academic publication systematically reward exciting results over true ones. The chapter on "What we can expect in the future" — covering AI, causal inference, and responsible data science — is one of the most balanced assessments of the field's direction available for a general audience.</p>`,
+    links:[
+      {label:'Amazon India',url:'https://www.amazon.in/s?k=Art+of+Statistics+Spiegelhalter',cls:'amz'},
+      {label:'Flipkart',url:'https://www.flipkart.com/search?q=Art+of+Statistics+Spiegelhalter',cls:'flip'}
+    ]
+  },
+  {
+    slug:'naked-statistics',
+    title:'Naked Statistics',
+    author:'Charles Wheelan',
+    year:2013,
+    cats:['Popular','Literacy'],
+    desc:`<p>Charles Wheelan, an economist who teaches public policy at Dartmouth, wrote "Naked Statistics" as the statistics book he wished had existed when he was a student. It covers the essential ideas of statistical reasoning — central tendency, dispersion, the normal distribution, correlation, regression, statistical inference, and hypothesis testing — in plain English with amusing, politically eclectic examples drawn from economics, public health, sports, and pop culture.</p><p>The book is deliberately gentle with mathematics, using almost no formulas, which makes it an ideal first contact with statistical ideas for readers who are intimidated by quantitative subjects. Wheelan's gift is for analogy and narrative — he explains regression to the mean through the Sports Illustrated cover curse, conditional probability through drunk driving stops, and the central limit theorem through dice simulations described in plain prose. The result is a book that anyone with a high-school education can read cover to cover in a weekend and emerge from with genuine conceptual clarity about what statistics can and cannot tell us.</p><p>Particularly strong are the chapters on regression, which explain the concept of "holding other variables constant" with unusual clarity, and the chapter on program evaluation (how do you know if an intervention actually worked?) which provides an accessible gateway to the much harder topics of causal inference and experimental design. Naked Statistics is best read as a companion to a more technical text, providing the intuition that the technical books assume you already have.</p>`,
+    links:[
+      {label:'Amazon India',url:'https://www.amazon.in/s?k=Naked+Statistics+Wheelan',cls:'amz'},
+      {label:'Flipkart',url:'https://www.flipkart.com/search?q=Naked+Statistics+Wheelan',cls:'flip'}
+    ]
+  },
+  {
+    slug:'intro-probability-blitzstein',
+    title:'Introduction to Probability',
+    author:'Blitzstein & Hwang',
+    year:2019,
+    cats:['Undergraduate','Textbook','Probability'],
+    desc:`<p>Joseph Blitzstein's legendary Harvard course "Statistics 110: Probability" has over two million views on YouTube, and this textbook — co-authored with Jessica Hwang — captures both the rigour and the infectious enthusiasm of those lectures. The book is the definitive modern undergraduate probability text: mathematically honest (proofs are always given), computationally engaged (R simulations accompany many examples), and pedagogically exceptional (each concept is developed from multiple angles until it truly settles).</p><p>The book covers the core probability curriculum comprehensively: counting methods (with a particularly lucid treatment of the story proof approach), conditional probability and Bayes' theorem, random variables, expectation and variance, the classic named distributions with their stories and connections, joint distributions, the law of large numbers and central limit theorem, Markov chains and their long-run behaviour, and an introduction to Markov chain Monte Carlo. The "stories" approach — always asking "what is the random phenomenon that this distribution models?" — prevents the formulas from ever feeling like floating abstractions.</p><p>The exercises are exceptionally well-designed, ranging from straightforward application to genuinely challenging problems that require creative use of the symmetry and linearity arguments introduced in the chapters. The book is free in PDF form from the authors' website, and the Harvard Statistics 110 course (with Blitzstein's video lectures) is available completely free online — making this one of the most accessible high-quality undergraduate mathematics courses in the world.</p>`,
+    links:[
+      {label:'Amazon India',url:'https://www.amazon.in/s?k=Introduction+to+Probability+Blitzstein',cls:'amz'},
+      {label:'Free PDF',url:'https://projects.iq.harvard.edu/stat110/home',cls:'free'},
+      {label:'Free lectures',url:'https://www.youtube.com/playlist?list=PL2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo',cls:'free'}
+    ]
+  }
+];
+
+/* ── PUZZLES ────────────────────────────────────────────────── */
+
+function renderBooks(){
+  const g=document.getElementById('books-grid');if(!g)return;
+  const adm=isAdmin();
+  const abs=document.getElementById('admin-book-status');
+  if(abs)abs.style.display=adm?'block':'none';
+  /* Build category filter */
+  const allCats=new Set();
+  BOOKS.forEach(b=>(b.cats||[]).forEach(c=>allCats.add(c)));
+  const fr=document.getElementById('books-filter-row');
+  if(fr) fr.innerHTML=`<span class="puz-filter-lbl">Category:</span>`+
+    ['all',...allCats].map(c=>`<button class="bk-filter${c==='all'?' active':''}" onclick="filterBooks('${c}',this)">${c==='all'?'All':c}</button>`).join('');
+  g.innerHTML=BOOKS.map((b,idx)=>`
+    <div class="book-card" data-cats="${(b.cats||[]).join(',')}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.2rem">
+        <span style="font-family:'Source Code Pro',monospace;font-size:.6rem;color:var(--text-3)">#${idx+1}</span>
+        <button class="book-read-btn${_booksRead.has(b.slug)?' read':''}" onclick="toggleBookRead('${b.slug}',this)">${_booksRead.has(b.slug)?'✓ Read':'○ Mark Read'}</button>
+      </div>
+      <div class="book-title">${b.title}</div>
+      <div class="book-author">${b.author}</div>
+      <div class="book-year">${b.year}</div>
+      <div class="book-desc">${b.desc}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.4rem">
+        ${(b.cats||[]).map(c=>`<span class="book-cat">${c}</span>`).join('')}
+      </div>
+      <div class="book-links" style="margin-top:.6rem">
+        ${(b.links||[]).map(l=>`<a href="${l.url}" target="_blank" rel="noopener" class="book-link book-link-${l.cls}">${l.label} ↗</a>`).join('')}
+        <a class="book-pdf-btn" id="pdfbtn-${b.slug}" style="display:none" href="#" target="_blank" rel="noopener">📄 Read PDF</a>
+      </div>
+      ${adm?`<div class="book-upload-wrap" style="margin-top:.4rem">
+        <input type="file" accept=".pdf" class="book-upload-input" id="uinp-${b.slug}" onchange="handleBookPdfUpload('${b.slug}',this)">
+        <label for="uinp-${b.slug}" class="book-upload-label">📤 Upload PDF</label>
+      </div>`:''}
+    </div>`).join('');
+  loadBookPdfs();
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SMART CALCULATOR SEARCH
+   ═══════════════════════════════════════════════════════════════ */
+
+async function handleBookPdfUpload(slug,inp){
+  const file=inp.files[0]; if(!file)return;
+  if(!window.sb){alert('Supabase not connected');return;}
+  const btn=document.getElementById('pdfbtn-'+slug);
+  if(!btn)return;
+  btn.textContent='⏳ Uploading…';btn.style.display='inline-flex';
+  const path='books/'+slug+'.pdf';
+  const{error}=await window.sb.storage.from('vault-files').upload(path,file,{upsert:true});
+  if(error){alert('Upload error: '+error.message);btn.style.display='none';return;}
+  const{data}=window.sb.storage.from('vault-files').getPublicUrl(path);
+  btn.href=data.publicUrl;btn.textContent='📄 Read PDF';btn.style.display='inline-flex';
+  alert('PDF uploaded successfully!');
+}
+
+
+async function loadBookPdfs(){
+  if(!window.sb)return;
+  try{
+    const{data,error}=await window.sb.storage.from('vault-files').list('books',{limit:100});
+    if(error||!data)return;
+    data.forEach(f=>{
+      const slug=f.name.replace('.pdf','');
+      const btn=document.getElementById('pdfbtn-'+slug);
+      if(btn){
+        const{data:u}=window.sb.storage.from('vault-files').getPublicUrl('books/'+f.name);
+        btn.href=u.publicUrl;btn.style.display='inline-flex';
+      }
+    });
+  }catch(e){}
+}
+
+/* ── PUZZLES (see override renderPuzzles below) ─────────────── */
+
+
+function toggleBookRead(slug,btn){
+  if(_booksRead.has(slug)){_booksRead.delete(slug);btn.textContent='○ Mark Read';btn.classList.remove('read');}
+  else{_booksRead.add(slug);btn.textContent='✓ Read';btn.classList.add('read');}
+  localStorage.setItem('stats-books-read',JSON.stringify([..._booksRead]));
+}
+let _bkCatFilter='all';
+
+function filterBooks(cat,btn){
+  _bkCatFilter=cat;
+  document.querySelectorAll('.bk-filter').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.book-card').forEach(card=>{
+    const cats=(card.dataset.cats||'').split(',');
+    card.style.display=(cat==='all'||cats.includes(cat))?'':'none';
+  });
+}
+
+(function(){
+  if(localStorage.getItem('stats-mode')==='night'){
+    document.body.classList.add('night');
+    const mi=document.getElementById('mode-icon'); if(mi)mi.textContent='☀';
+  }
+  window._afterRenderAuthUI = function(){ renderBooks(); };
+  setTimeout(function(){
+    if(window.currentUser)return;
+    if(!window.sb)return;
+    window.sb.auth.getSession().then(function(r){
+      if(window.currentUser)return;
+      var u=r&&r.data&&r.data.session&&r.data.session.user;
+      if(!u)return;
+      if(window.renderAuthUI)window.renderAuthUI();
+    }).catch(function(){});
+  },400);
+  if('renderBooks();' && document.readyState!=='loading') { renderBooks(); }
+  else if('renderBooks();') { document.addEventListener('DOMContentLoaded', function(){ renderBooks(); }); }
+})();
+</script>
+<script>window._pageKey = 'stats';</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+
+</body>
+</html>

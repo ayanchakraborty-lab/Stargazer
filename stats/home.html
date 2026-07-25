@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Statistics, Explained — School to Research | Stargazer</title>
+<meta name="description" content="A complete map of statistics: school basics, distributions, inference, Bayesian methods, puzzles, careers, and open problems researchers are tackling now.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Statistics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/stats/home.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Statistics, Explained — School to Research | Stargazer">
+<meta property="og:description" content="A complete map of statistics — from school foundations to the open problems researchers are working on today.">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/stats/home.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Statistics, Explained — School to Research | Stargazer">
+<meta name="twitter:description" content="A complete map of statistics — from school foundations to the open problems researchers are working on today.">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Statistics, Explained — School to Research | Stargazer",
+  "description": "A complete map of statistics — from school foundations to the open problems researchers are working on today.",
+  "url": "https://stargazer-9m9.pages.dev/stats/home.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Statistics", "sameAs": "https://en.wikipedia.org/wiki/Statistics" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stats.css">
+</head>
+<body>
+
+<!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
+    <span id="mode-icon">☾</span>
+  </button>
+  <a href="../login.html" id="loginBtn">☽ Sign In</a>
+  <div id="userInfo">
+    <span id="userEmailDisplay">✦ Explorer</span>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══ NAV ═════════════════════════════════════════════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Statistics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Home</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)" aria-label="Search">🔍</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══ HAMBURGER MENU ══════════════════════════════════════════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item active" data-page="home"          onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item"        data-page="books"         onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item"        data-page="puzzles"       onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <button class="hm-item"        data-page="school"        onclick="location.href='school.html'">🏫 School</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="inference"     onclick="location.href='inference.html'">🔬 Inference</button>
+  <button class="hm-item"        data-page="distributions" onclick="location.href='distributions.html'">📊 Distributions</button>
+  <button class="hm-item"        data-page="bayesian"      onclick="location.href='bayesian.html'">∫ Bayesian</button>
+  <button class="hm-item"        data-page="openproblems"  onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item"        data-page="research"      onclick="location.href='research.html'">🔭 Research</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="careers"       onclick="location.href='careers.html'">💼 Careers</button>
+  <button class="hm-item"        data-page="studyguide"    onclick="location.href='studyguide.html'">🗺️ Study Guide</button>
+  <button class="hm-item"        data-page="facts"         onclick="location.href='facts.html'">✨ Fun Facts</button>
+  <button class="hm-item"        data-page="tools"         onclick="location.href='tools.html'">🛠️ Tools</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="calc"          onclick="location.href='calc.html'">🔢 Calculator</button>
+  <button class="hm-item"        data-page="formulas"      onclick="location.href='formulas.html'">📋 Formulas</button>
+  <button class="hm-item"        data-page="history"       onclick="location.href='history.html'">⏳ History</button>
+  <button class="hm-item"        data-page="comments"      onclick="location.href='comments.html'">💬 Discuss</button>
+</div>
+
+<!-- ═══ SEARCH MODAL ═══════════════════════════════════════════════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search books, puzzles, distributions, tools…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<!-- ═══ TOAST ══════════════════════════════════════════════════════ -->
+<div id="toast">
+  <button id="toast-close" onclick="hideToast()" aria-label="Dismiss notification">✕</button>
+  <div class="toast-cat" id="toast-cat">Fun Fact</div>
+  <div id="toast-body"></div>
+</div>
+
+<!-- ═══ KEYBOARD HINT ══════════════════════════════════════════════ -->
+<div id="shortcut-hint">/ search · ← → pages</div>
+
+<!-- ═══ PAGE: CALCULATOR ═══════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+<section id="hero">
+  <canvas id="dataCanvas"></canvas>
+  <div class="hero-inner">
+    <span class="hero-eyebrow">A Complete Atlas of the Statistical Universe</span>
+    <h1 class="hero-title">Statistics</h1>
+    <div class="hero-eq">x̄ ± 1.96·σ/√n &nbsp;·&nbsp; P(A|B) = P(B|A)P(A)/P(B) &nbsp;·&nbsp; L(θ;x) = Πᵢ f(xᵢ|θ)</div>
+    <p class="hero-sub">The science of learning from data — extracting signal from noise, quantifying uncertainty, and drawing confident inferences from the finite and imperfect.</p>
+    <button class="hero-btn" onclick="location.href='books.html'">Explore the Universe ↓</button>
+  </div>
+</section>
+<section class="section" id="intro">
+  <div class="s-inner">
+    <div class="s-head">
+      <span class="s-eyebrow" style="background:var(--pu-l);color:var(--pu);border:1px solid rgba(94,58,142,.2)">What Statistics Really Is</span>
+      <h2 class="s-title font-serif">The Invisible Architecture Behind Every Fact You Believe</h2>
+    </div>
+    <div class="intro-grid">
+      <div class="intro-prose">
+        <p>Most people think statistics is about collecting data and computing averages. They imagine it as the tedious part of science — the filing and counting that precedes the real discoveries. This is as wrong as thinking music is about pressing keys harder and faster.</p>
+        <p>Statistics is the science of learning under uncertainty. It is the art of extracting signal from noise, of inferring from the particular to the general, of quantifying exactly how much we don't know alongside exactly what we do. In this sense, statistics is the <em style="color:var(--gr)">epistemological backbone of all empirical science</em> — the language in which the universe speaks to us through limited, imperfect, noisy observations.</p>
+        <p>Consider what rests on statistical inference: every drug reaching a pharmacy was validated by statistical tests. Every economic forecast, climate projection, polling result, genome-wide association study. Statistics sits between hypothesis and certainty — the rigorous bridge that allows us to say not merely "I think this is true" but <em style="color:var(--bl)">"this is true with known confidence, and here is the precise limit of what my evidence permits."</em></p>
+        <p>The founders of statistics were extraordinary polymaths. Francis Galton, Darwin's cousin, discovered regression to the mean while studying inherited heights, thereby inventing correlation. William Gosset, working at Guinness to analyse small barley samples, published the t-distribution pseudonymously as "Student." Florence Nightingale's polar area charts persuaded the British government that disease — not combat — killed soldiers. Statistics was never abstract: it always served the most urgent real questions.</p>
+      </div>
+      <div>
+        <h3 style="font-family:'Cormorant Garamond',serif;color:var(--text);font-size:1.2rem;margin-bottom:1rem;font-weight:700">The Great Misconceptions</h3>
+        <div class="myth-card"><div class="myth-label">✗ Myth: Statistics = deception</div><div class="myth-truth">"Lies, damned lies, and statistics" is the motto of the innumerate. Proper statistical thinking is precisely the antidote to manipulation. The problem is misuse and misreading — not the discipline itself.</div></div>
+        <div class="myth-card"><div class="myth-label">✗ Myth: p &lt; 0.05 means the result is true</div><div class="myth-truth">A p-value of 0.03 does NOT mean "97% chance my result is real." It means: if the null hypothesis were true, data this extreme occurs 3% of the time. The probability of the hypothesis requires a prior and Bayes' theorem.</div></div>
+        <div class="myth-card"><div class="myth-label">✗ Myth: Bigger sample = better answer</div><div class="myth-truth">A random sample of 1,000 tells you more than a self-selected survey of 100,000. The 1936 Literary Digest poll of 2.4 million predicted the wrong president. Sampling design matters far more than sample size.</div></div>
+        <div class="myth-card"><div class="myth-label">✗ Myth: Correlation implies causation</div><div class="myth-truth">Ice cream sales and drowning rates are correlated — both peak in summer. Causation requires experimental design. Medicine is littered with treatments that correlated with recovery while being useless or harmful.</div></div>
+        <div class="myth-card"><div class="myth-label">✗ Myth: Statistical ≡ practical significance</div><div class="myth-truth">With enough data, trivially small effects become "statistically significant." A drug reducing cholesterol by 0.001 mg/dL might reach p = 0.001 in a study of millions. Statistical significance measures evidence, not effect size.</div></div>
+        <div style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:.6rem">
+          <button onclick="location.href='books.html'"         style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--gd-l);background:var(--gd-l);color:var(--gd);cursor:pointer;transition:all .2s">📚 Books</button>
+          <button onclick="location.href='puzzles.html'"       style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--tl-l);background:var(--tl-l);color:var(--tl);cursor:pointer;transition:all .2s">🎲 Puzzles</button>
+          <button onclick="location.href='school.html'"        style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--bl-l);background:var(--bl-l);color:var(--bl);cursor:pointer;transition:all .2s">🏫 School</button>
+          <button onclick="location.href='inference.html'"     style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--gr-l);background:var(--gr-l);color:var(--gr);cursor:pointer;transition:all .2s">🔬 Inference</button>
+          <button onclick="location.href='distributions.html'" style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--rd-l);background:var(--rd-l);color:var(--rd);cursor:pointer;transition:all .2s">📊 Distributions</button>
+          <button onclick="location.href='bayesian.html'"      style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--pu-l);background:var(--pu-l);color:var(--pu);cursor:pointer;transition:all .2s">∫ Bayesian</button>
+          <button onclick="location.href='openproblems.html'"  style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--og-l);background:var(--og-l);color:var(--og);cursor:pointer;transition:all .2s">❓ Open Problems</button>
+          <button onclick="location.href='careers.html'"       style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--tl-l);background:var(--tl-l);color:var(--tl);cursor:pointer;transition:all .2s">💼 Careers</button>
+          <button onclick="location.href='studyguide.html'"    style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--gr-l);background:var(--gr-l);color:var(--gr);cursor:pointer;transition:all .2s">📖 Study Guide</button>
+          <button onclick="location.href='facts.html'"         style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--pk-l);background:var(--pk-l);color:var(--pk);cursor:pointer;transition:all .2s">✨ Fun Facts</button>
+          <button onclick="location.href='tools.html'"         style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--bl-l);background:var(--bl-l);color:var(--bl);cursor:pointer;transition:all .2s">🛠 Tools</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="foot-eq">x̄ ± 1.96 · s / √n</div>
+  <p class="foot-txt"><strong style="color:var(--gr)">"To consult the statistician after an experiment is finished is often merely to ask him to conduct a post mortem examination. He can perhaps say what the experiment died of."</strong><br>— Sir Ronald A. Fisher, 1938</p>
+</footer>
+</div><!-- /page-home -->
+
+<!-- ═══ PAGE: CURRENT RESEARCH ══════════════════════════════ -->
+<!-- ── CONTACT ── -->
+<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);font-style:italic;font-family:'Source Code Pro',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div style="text-align:center;padding-bottom:2rem;">
+  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+</div>
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
+<script>
+window._nextPage = 'books.html';
+window._prevPage = 'comments.html';
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+
+function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+
+/* ── BOOKS ─────────────────────────────────────────────────── */
+
+function toggleHamburger(){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu)return;
+  const open=menu.classList.toggle('open');
+  btn.classList.toggle('open',open);
+}
+// Close when clicking outside
+document.addEventListener('click',function(e){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu||!menu.classList.contains('open'))return;
+  if(!menu.contains(e.target)&&e.target!==btn&&!btn.contains(e.target)){
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+
+
+/* ═══════════════════════════════════════════════════════════════
+   OVERRIDE: renderPuzzles — index + cat badge + solved button + filters
+   ═══════════════════════════════════════════════════════════════ */
+
+function toggleMode(){
+  const night=document.body.classList.toggle('night');
+  document.getElementById('mode-icon').textContent=night?'☀':'☾';
+  localStorage.setItem('stats-mode',night?'night':'day');
+  // redraw all visible canvases
+  document.querySelectorAll('.dist-canvas').forEach(c=>{
+    const cid=c.id;
+    const params={};
+    document.querySelectorAll(`[id^="sl-${cid}-"]`).forEach(sl=>{
+      params[sl.id.replace('sl-'+cid+'-','')]=parseFloat(sl.value);
+    });
+    // find the slug from DISTRIBUTIONS
+    const slug=getSlugFromCanvas(cid);
+    if(slug){
+      const isDisc=['bernoulli','binomial','geometric','negbin','poisson','hypergeometric'].includes(slug);
+      drawDistCanvas(cid,slug,params,isDisc);
+    }
+  });
+}
+
+
+function getSlugFromCanvas(cid){
+  // cid format: dc-type-idx
+  const parts=cid.split('-');
+  if(parts.length<3)return null;
+  const type=parts[1],idx=parseInt(parts[2]);
+  if(DISTRIBUTIONS[type]&&DISTRIBUTIONS[type][idx])return DISTRIBUTIONS[type][idx].slug;
+  return null;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL EFFECTS
+   ═══════════════════════════════════════════════════════════ */
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  if(btt)btt.classList.toggle('show',window.scrollY>300);
+  document.querySelectorAll('.reveal').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-60)
+      el.classList.add('visible');
+  });
+},{passive:true});
+
+/* ═══════════════════════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════════════════════ */
+
+let SEARCH_INDEX=[];
+function openSearch(){
+  buildSearchIndex();
+  const m=document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(()=>document.getElementById('search-input').focus(),80);
+}
+function closeSearch(){
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value='';
+  document.getElementById('search-results').innerHTML='<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q){
+  const res=document.getElementById('search-results');
+  if(!q.trim()){res.innerHTML='<div class="sr-empty">Start typing…</div>';return;}
+  const lq=q.toLowerCase();
+  const hits=SEARCH_INDEX.filter(x=>x.q.toLowerCase().includes(lq)).slice(0,18);
+  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q+'"</div>';return;}
+  res.innerHTML=hits.map((h,i)=>`<div class="sr-item" tabindex="0" data-idx="${i}" onclick="goSearchResult(${SEARCH_INDEX.indexOf(h)})" onkeydown="if(event.key==='Enter')goSearchResult(${SEARCH_INDEX.indexOf(h)})"><span class="sr-icon">${h.icon}</span><div><div class="sr-title">${highlight(h.title,lq)}</div><div class="sr-meta">${h.meta}</div></div><span class="sr-section">${h.section}</span></div>`).join('');
+}
+function highlight(text,q){
+  if(!q)return text;
+  const idx=text.toLowerCase().indexOf(q);
+  if(idx<0)return text;
+  return text.slice(0,idx)+'<mark style="background:var(--gd-l);color:var(--gd);border-radius:2px">'+text.slice(idx,idx+q.length)+'</mark>'+text.slice(idx+q.length);
+}
+function goSearchResult(idx){ closeSearch(); }
+function searchKeyNav(e){
+  if(e.key==='Escape'){closeSearch();return;}
+  const items=document.querySelectorAll('.sr-item');
+  const cur=document.activeElement;
+  const curIdx=[...items].indexOf(cur);
+  if(e.key==='ArrowDown'){e.preventDefault();(items[curIdx+1]||items[0])?.focus();}
+  if(e.key==='ArrowUp'){e.preventDefault();(items[curIdx-1]||items[items.length-1])?.focus();}
+  if(e.key==='Enter'&&curIdx>=0){items[curIdx].click();}
+}
+
+
+function buildSearchIndex(){
+  if(SEARCH_INDEX.length)return;
+  // no index for this page
+}
+
+
+(function initKeyboard(){
+  const PAGES=['home','precollege_placeholder'];
+  document.addEventListener('keydown',e=>{
+    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
+    if(document.getElementById('search-modal')&&document.getElementById('search-modal').classList.contains('open')){
+      if(e.key==='Escape')closeSearch();
+      return;
+    }
+    if(e.key==='/'){e.preventDefault();openSearch();return;}
+    if(e.key==='ArrowRight'){e.preventDefault();location.href=window._nextPage;}
+    if(e.key==='ArrowLeft'){e.preventDefault();location.href=window._prevPage;}
+    if(e.key==='f'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){if(typeof showRandomFact==='function')showRandomFact();}
+    if(e.key==='Escape'){
+      const hmenu=document.getElementById('hamburger-menu');
+      if(hmenu&&hmenu.classList.contains('open')){
+        hmenu.classList.remove('open');
+        document.getElementById('hamburger-btn')?.classList.remove('open');
+      }
+    }
+  });
+})();
+
+function showToast(msg,bg){
+  const t=document.createElement('div');
+  t.textContent=msg;
+  t.style.cssText=`position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);background:${bg};color:#fff;font-family:'Source Code Pro',monospace;font-size:.72rem;padding:.45rem 1.1rem;border-radius:99px;z-index:9998;animation:fadeUpIn .35s ease;white-space:nowrap;pointer-events:none`;
+  document.body.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .35s';setTimeout(()=>t.remove(),380);},2200);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATISTICIAN QUOTES — daily + 5-hour rotation
+   ═══════════════════════════════════════════════════════════════ */
+
+(function initHeroCanvas(){
+  const canvas=document.getElementById('dataCanvas'); if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  let W,H,pts=[];
+  function resize(){
+    const dpr=window.devicePixelRatio||1;
+    W=canvas.offsetWidth; H=canvas.offsetHeight;
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    canvas.style.width=W+'px'; canvas.style.height=H+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function makePts(n){
+    pts=[];
+    const COLS=['#6aab80','#5aadd0','#e0a52a','#5abfb5','#a87ee8','#e07a5f','#7abfb5','#c8a44a','#88c0d0','#6a9e7a'];
+    for(let i=0;i<n;i++){
+      const sides=[0,0,3,3,3,4,4,5,6][Math.floor(Math.random()*9)];
+      pts.push({
+        x:Math.random()*W, y:Math.random()*H,
+        vx:(Math.random()-.5)*.5, vy:(Math.random()-.5)*.5,
+        sides:sides,
+        r:sides===0?Math.random()*2.2+.8:Math.random()*8+4,
+        angle:Math.random()*Math.PI*2,
+        rot:(Math.random()-.5)*.018,
+        col:COLS[Math.floor(Math.random()*COLS.length)],
+        op:Math.random()*.45+.25
+      });
+    }
+  }
+  function hexRgba(h,a){
+    const r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);
+    return `rgba(${r},${g},${b},${a})`;
+  }
+  function draw(){
+    requestAnimationFrame(draw);
+    if(document.hidden||!document.getElementById('page-home').classList.contains('active'))return;
+    const night=document.body.classList.contains('night');
+    ctx.clearRect(0,0,W,H);
+    // connections
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<120){
+          ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);
+          ctx.strokeStyle=`rgba(${night?'106,171,128':'77,122,88'},${(1-dist/120)*(night?.22:.16)})`;
+          ctx.lineWidth=.8;ctx.stroke();
+        }
+      }
+    }
+    // shapes
+    pts.forEach(p=>{
+      ctx.beginPath();
+      if(p.sides===0){
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      } else {
+        for(let k=0;k<p.sides;k++){
+          const a=p.angle+k*2*Math.PI/p.sides;
+          k===0?ctx.moveTo(p.x+p.r*Math.cos(a),p.y+p.r*Math.sin(a)):ctx.lineTo(p.x+p.r*Math.cos(a),p.y+p.r*Math.sin(a));
+        }
+        ctx.closePath();
+      }
+      const opacity=p.op*(night?1:.75);
+      ctx.fillStyle=hexRgba(p.col,opacity*.6);ctx.fill();
+      ctx.strokeStyle=hexRgba(p.col,opacity);ctx.lineWidth=1.4;ctx.stroke();
+      p.x+=p.vx;p.y+=p.vy;p.angle+=p.rot;
+      if(p.x<-20||p.x>W+20)p.vx*=-1;
+      if(p.y<-20||p.y>H+20)p.vy*=-1;
+    });
+  }
+  resize();makePts(130);draw();
+  window.addEventListener('resize',()=>{resize();makePts(130);});
+})();
+
+/* ═══════════════════════════════════════════════════════════
+   DAY / NIGHT TOGGLE
+   ═══════════════════════════════════════════════════════════ */
+
+(function(){
+  if(localStorage.getItem('stats-mode')==='night'){
+    document.body.classList.add('night');
+    const mi=document.getElementById('mode-icon'); if(mi)mi.textContent='☀';
+  }
+  
+  setTimeout(function(){
+    if(window.currentUser)return;
+    if(!window.sb)return;
+    window.sb.auth.getSession().then(function(r){
+      if(window.currentUser)return;
+      var u=r&&r.data&&r.data.session&&r.data.session.user;
+      if(!u)return;
+      if(window.renderAuthUI)window.renderAuthUI();
+    }).catch(function(){});
+  },400);
+  if('' && document.readyState!=='loading') {  }
+  else if('') { document.addEventListener('DOMContentLoaded', function(){  }); }
+})();
+</script>
+<script>window._pageKey = 'stats';</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+
+</body>
+</html>

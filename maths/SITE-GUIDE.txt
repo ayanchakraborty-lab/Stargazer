@@ -1,0 +1,322 @@
+MATHEMATICS SECTION — SITE GUIDE
+══════════════════════════════════════════════════════════════════════
+What this document is: a plain map of every file, so you can find
+where to make a change without hunting through code.
+
+UPDATE — bug fixes applied (read this if you're wondering what changed)
+──────────────────────────────────────────────────────────────────────
+Two real bugs were found and fixed after the first version:
+
+  1. THE BLANK-PAGE BUG (the important one). In the original file,
+     every page's content div was hidden by default (display:none) —
+     the old single-page app made it visible with JavaScript only
+     when you navigated to it. Home's div happened to already be
+     marked visible in the source, which is why only Home worked.
+     Every other page's div still had that "hidden by default" class
+     and nothing was left to un-hide it once real page navigation
+     replaced the old JavaScript switcher. Fixed by marking every
+     page's content permanently visible, since each file now only
+     ever shows one page anyway.
+
+  2. MISSING FOOTER. The footer (About / Comments / Contact / Home
+     links) only existed once in the original file, inside the Home
+     section. It's now part of the shared footer.html template and
+     included on all 14 pages.
+
+Also, at your request:
+  - The "About Stargazer" footer link on every page now points to the
+    real site-wide ABOUT.html (the comprehensive one covering all ten
+    sections), instead of a separate small math-only about page. That
+    smaller page has been removed — it was never linked from the
+    hamburger menu anyway, only from this one footer button, so
+    nothing else changes.
+  - The site's main index.html now links its Mathematics card to
+    maths/home.html instead of the old single MATHS.html file.
+
+  3. BROKEN LINKS TO ABOUT.HTML / LOGIN.HTML / INDEX.HTML / shared.js.
+     These were written as "/ABOUT.html" (a leading slash). That only
+     works once the site is live on a real server with the site at
+     the domain root. If you test by double-clicking the files on
+     your own computer, "/ABOUT.html" tries to open a file at your
+     computer's actual root drive, not your project folder, and
+     fails. Fixed by changing these to "../ABOUT.html" style paths
+     (go up one folder, since maths/ sits one level below index.html,
+     ABOUT.html, login.html, and shared.js). This works correctly
+     both when testing locally by double-clicking files AND once
+     deployed for real, as long as maths/ stays exactly one folder
+     below those files — which is the intended structure.
+
+There are 14 pages now (not 15) as a result.
+
+
+THE BIG IDEA — TWO LAYERS
+══════════════════════════════════════════════════════════════════════
+There are now two folders that matter:
+
+  maths-source/     ← EDIT THIS. Small pieces: templates + per-page
+                       content. This is your "recipe."
+
+  maths-source/output/  ← DON'T EDIT THIS BY HAND. This is what you
+                       actually upload to your site. It's 15 complete,
+                       self-contained HTML files, generated FROM the
+                       source folder.
+
+The rule: change something in maths-source/, then run one command,
+and all 14 pages rebuild themselves automatically. You never hand-edit
+the 15 output files directly — if you do, your edit gets wiped out
+next time you rebuild.
+
+
+HOW TO MAKE A CHANGE (the whole workflow)
+══════════════════════════════════════════════════════════════════════
+Example: "I want to change the footer text."
+
+  1. Open  maths-source/templates/footer.html
+  2. Edit the text.
+  3. Run:   python3 build_site.py
+  4. All 15 files in maths-source/output/ are regenerated with the
+     new footer, automatically.
+  5. Upload the contents of maths-source/output/ to your site.
+
+Example: "I want to add a 16th page, say 'Timeline'."
+
+  1. Add a new folder  maths-source/pages/timeline/  with a
+     content.html (and data.js/script.js if it needs any).
+  2. Add one entry to nav-items.json (so it shows in the hamburger)
+     and one entry to pages.json (title, whether it needs search/admin).
+  3. Run the build script. timeline.html appears in output/,
+     and every other page's hamburger menu now includes it too —
+     because the menu is built from nav-items.json, not copy-pasted.
+
+That's the entire point of doing it this way: one edit, 14 pages
+updated, instead of 15 manual edits.
+
+
+PART 1 — WHAT'S INSIDE  maths-source/  (the recipe)
+══════════════════════════════════════════════════════════════════════
+
+  build_site.py
+      The script that does the assembly. You basically never need to
+      edit this — you edit the files it reads, and run it.
+
+  nav-items.json
+      The hamburger menu, as a simple list: which pages appear, in
+      what order, with what icon/label, grouped into which section
+      (the thin divider lines in the menu). Add/remove/reorder pages
+      here and the menu updates everywhere on next build.
+
+  pages.json
+      One entry per page: its <title> tag text, and two on/off
+      switches — has_search (does this page get a search box?) and
+      has_admin (does this page have admin-editable content?).
+
+  maths.css
+      Every visual style for the whole section — colors, fonts, card
+      layouts, animations, dark/light mode, the hamburger menu's look,
+      everything. One file, linked (not copied) into all 14 pages, so
+      editing this instantly changes every page — no rebuild needed.
+
+  templates/   (pieces shared by some or all pages)
+  ────────────────────────────────────────────────────────────────
+    head-common.html        Google Analytics tag, favicon, viewport,
+                             the tiny "prevent dark/light flash" script,
+                             and the Google Fonts / KaTeX (math
+                             rendering) links. Same on every page.
+
+    seo-home.html            The full SEO block (meta description,
+                             Open Graph, Twitter card, structured data
+                             JSON-LD) — used ONLY on home.html. Every
+                             other page currently gets a one-line
+                             placeholder in pages.json's "title" field;
+                             you said you'll design their SEO later.
+
+    auth-topbar.html          The thin bar at the very top: "Stargazer
+                             Home" link, Sign In button / signed-in
+                             user display. Identical on every page.
+
+    admin-modal.html          The popup box used for adding/editing
+                             content when you're signed in as admin.
+                             Only included on pages where has_admin
+                             is true in pages.json.
+
+    search-modal.html         The search popup (box + results list).
+                             Only included where has_search is true.
+
+    footer.html               The footer with the equation, Thurston
+                             quote, and links to About / Comments /
+                             Contact / Stargazer Home. Same on every
+                             page.
+
+    theme-toggle-buttons.html The floating dark/light switch and
+                             "back to top" button, bottom-right corner.
+
+    tail.html                 The two script tags at the very bottom
+                             that load Supabase and your shared.js
+                             (handles sign-in, comments, cross-device
+                             sync — same file your whole site uses).
+
+    universal.js              JS logic every page needs: admin email
+                             check, dark/light theme logic, hamburger
+                             open/close, "scroll to top" button,
+                             reveal-on-scroll fade-ins, HTML-escaping
+                             helper, and the hook shared.js calls after
+                             sign-in.
+
+    admin-modal.js            The logic that opens/closes/saves the
+                             admin popup. Only pulled in for pages
+                             with has_admin = true.
+
+    search-core.js            The logic that runs a search, highlights
+                             matches, and jumps to the right card when
+                             you click a result. Only pulled in for
+                             pages with has_search = true. (Note: each
+                             page only searches its OWN content now,
+                             not the whole site — see the note at the
+                             bottom of this guide.)
+
+    reveal-on-load.js         Six lines: makes cards fade in gently as
+                             the page loads instead of popping in.
+
+    book-progress-stub.js     A safe "do nothing" placeholder for the
+                             book read/unread tracking hooks, used on
+                             every page except books.html (which has
+                             the real version, since only Books needs
+                             it).
+
+  pages/<slug>/   (one folder per page — the UNIQUE content)
+  ────────────────────────────────────────────────────────────────
+  Every page folder follows the same 3-file pattern:
+
+    content.html   The actual HTML for that page — the hero section
+                   for Home, the empty grid placeholders for Books/
+                   Puzzles/etc. (their cards are drawn by JavaScript,
+                   not hand-written HTML).
+
+    data.js        The raw content: book list, puzzle list, olympiad
+                   problems, career descriptions, etc. — whatever that
+                   page is about. (Home and Comments have no
+                   data.js because they have no data list.)
+
+    script.js      The page's own logic: functions that draw the data
+                   as cards, the admin add/edit functions (if any),
+                   the search index for that page's content, and the
+                   line(s) at the bottom that actually run everything
+                   when the page loads.
+
+  Below is what's inside each page's script.js specifically:
+
+  home/         No data.js. script.js: the animated star-field
+                background on the hero, plus the fade-in effect.
+
+  books/        data.js: every book entry. script.js: draws book
+                cards, the filter bar (fiction/nonfiction/etc.),
+                "mark as read" tracking, the Amazon/Flipkart buy-link
+                builder, LaTeX preview helper, the admin edit-book
+                function, and the search index.
+
+  puzzles/      data.js: built-in puzzles. script.js: draws puzzle
+                cards, hint/answer blur-reveal, expand/collapse,
+                admin add/edit/delete, loads any admin-added puzzles
+                from Supabase, and the search index.
+
+  precollege/   data.js: pre-college topics. script.js: draws the
+                topic cards and the search index. (No admin editing
+                on this page — it's fixed reference content.)
+
+  olympiad/     data.js: problems grouped by difficulty tab. script.js:
+                tab switching, star difficulty rating, solution
+                reveal/hide, admin add/edit/delete problems, loads
+                admin-added problems from Supabase, and the search
+                index (jumps to the right tab AND the right problem).
+
+  undergrad/    data.js: undergraduate topics. script.js: draws topic
+                cards, expandable "explore in depth" sections, admin
+                description-editing, LaTeX preview, and the search
+                index.
+
+  graduate/     Same pattern as undergrad/, for graduate-level topics.
+
+  research/     data.js: research area descriptions. script.js: draws
+                cards, admin PDF upload/remove for resources, loads
+                any admin-uploaded PDFs from Supabase, and the search
+                index.
+
+  openproblems/ data.js: the unsolved-problems list. script.js: same
+                PDF-upload pattern as research/, plus the search index.
+
+  careers/      data.js: career path descriptions. script.js: same
+                PDF-upload pattern again, plus the search index.
+
+  studyguide/   data.js: study tips. script.js: the "quote of the day"
+                picker, draws the tip cards, and the search index.
+
+  facts/        data.js: math facts. script.js: draws fact cards
+                (click to expand), LaTeX rendering for formulas, admin
+                fact-editing, loads admin edits from Supabase, and the
+                search index.
+
+  universities/ data.js: Indian university list with tiers. script.js:
+                draws the cards and the search index. (No admin
+                editing — fixed reference content.)
+
+  comments/     No data.js, no page-specific script.js beyond the
+                fade-in effect — the entire comment form, posting, and
+                display is handled by your shared.js, the same as on
+                every other page of your whole site.
+
+
+PART 2 — WHAT'S INSIDE  maths-source/output/  (the 15 files you upload)
+══════════════════════════════════════════════════════════════════════
+Every one of the 15 HTML files is built the same way, in this order:
+
+  1. <head>          — head-common.html, then the page's <title>,
+                        then (home.html only) the full SEO block, then
+                        a link to maths.css.
+  2. Auth bar         — auth-topbar.html
+  3. Admin popup      — admin-modal.html   (only if that page has one)
+  4. Nav + hamburger  — built fresh from nav-items.json, with THIS
+                        page marked "active" in the menu
+  5. Search popup     — search-modal.html  (only if that page has one)
+  6. The page content — pages/<slug>/content.html
+  7. Theme/scroll buttons — theme-toggle-buttons.html
+  8. <script> block   — universal.js, then admin-modal.js and/or
+                        search-core.js if needed, then that page's
+                        own data.js and script.js
+  9. Supabase + shared.js script tags — tail.html
+
+So if you ever open one of the 15 files and want to know "where did
+this bit come from", it's always one of the pieces listed above, in
+that order.
+
+File sizes (with CSS now external instead of duplicated 15 times):
+
+  home.html           24 KB      studyguide.html      28 KB
+  books.html          50 KB      facts.html           35 KB
+  puzzles.html        42 KB      universities.html    21 KB
+  precollege.html     21 KB      comments.html        13 KB
+  olympiad.html       73 KB      maths.css            98 KB (shared,
+  undergrad.html      59 KB                            loads once,
+  graduate.html       61 KB                            cached after)
+  research.html       55 KB
+  openproblems.html   87 KB
+  careers.html        49 KB
+
+Total first visit: roughly 640 KB across all files combined (vs. the
+original single 530 KB monolith that would have grown past several MB
+once you add the extra content you mentioned). Every visit after the
+first only re-downloads the one page you clicked — maths.css and all
+the shared template pieces are already in the browser's memory for
+that page load, and maths.css itself is cached by the browser across
+page-to-page navigation too.
+
+
+ONE HONEST TRADE-OFF TO KNOW ABOUT: SEARCH
+══════════════════════════════════════════════════════════════════════
+In the original single-file version, the search box could find
+anything anywhere on the site. Now that each page is a separate file,
+each page's search box only searches that page's own content — the
+Puzzles search won't surface a matching Olympiad problem. This was a
+necessary trade for making each page truly self-contained and light.
+If full site-wide search matters to you later, that would need a
+small shared search-index file fetched by JavaScript — a solvable
+problem, just not part of this pass.

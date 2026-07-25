@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#faf7f2!important}html.pre-light{background:#faf7f2}</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]}));}else{renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});}"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Lato:ital,wght@0,400;0,700;1,400&family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<title>40 Best Mathematics Books for Every Reader | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="A curated library of 40 mathematics books — popular science, biography, fiction, and rigorous texts — chosen to enchant beginners and reward experts alike.">
+<meta name="keywords" content="mathematics books, best math books, popular mathematics books, math biographies, mathematics reading list, books to learn mathematics, math book recommendations, recreational mathematics books">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Mathematics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/maths/books.html">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="40 Best Mathematics Books for Every Reader | Stargazer">
+<meta property="og:description" content="40 books that turn mathematics into a story worth falling for — popular science, biography, classic fiction, and the occasional proof. Start reading →">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/maths/books.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="40 Best Mathematics Books for Every Reader | Stargazer">
+<meta name="twitter:description" content="40 mathematics books, from gentle popular science to rigorous texts that reward a second read. Find your next favourite →">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "40 Mathematics Books to Fall in Love With the Subject",
+  "description": "A curated library of 40 mathematics books — popular science, biography, fiction, and rigorous texts — spanning every level from complete beginner to specialist.",
+  "url": "https://stargazer-9m9.pages.dev/maths/books.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Mathematics", "sameAs": "https://en.wikipedia.org/wiki/Mathematics" }
+}
+</script>
+<link rel="stylesheet" href="maths.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ AUTH TOP BAR ════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <a href="../login.html" id="loginBtn" class="atb-btn atb-signin">☽ Sign In</a>
+  <div id="userInfo" style="display:none;align-items:center;gap:0.4rem">
+    <span class="atb-username" id="userEmailDisplay">✦ Explorer</span>
+    <button class="atb-signout" onclick="doSignOut()">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ ADMIN MODAL ══════ -->
+<div id="adminModal">
+  <div class="admin-modal-box">
+    <div class="admin-modal-title" id="adminModalTitle">Admin Panel</div>
+    <div id="adminModalBody"></div>
+    <div class="admin-modal-actions">
+      <button class="admin-cancel-btn" onclick="closeAdminModal()">Cancel</button>
+      <button class="admin-save-btn" id="adminModalSaveBtn" onclick="adminModalSave()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ NAV ═══════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Mathematics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Books</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)">🔍 Search</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══════════════════════════════════════ HAMBURGER MENU ════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home" onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item active" data-page="books" onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item" data-page="puzzles" onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="precollege" onclick="location.href='precollege.html'">📐 Pre-College</button>
+  <button class="hm-item" data-page="olympiad" onclick="location.href='olympiad.html'">🏆 Olympiad</button>
+  <button class="hm-item" data-page="undergrad" onclick="location.href='undergrad.html'">🎓 Undergrad</button>
+  <button class="hm-item" data-page="graduate" onclick="location.href='graduate.html'">🔬 Graduate</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="research" onclick="location.href='research.html'">⚡ Research</button>
+  <button class="hm-item" data-page="openproblems" onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item" data-page="careers" onclick="location.href='careers.html'">💼 Careers</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="studyguide" onclick="location.href='studyguide.html'">📖 Study Guide</button>
+  <button class="hm-item" data-page="facts" onclick="location.href='facts.html'">✨ Math Facts</button>
+  <button class="hm-item" data-page="universities" onclick="location.href='universities.html'">🎓 India</button>
+  <button class="hm-item" data-page="comments" onclick="location.href='comments.html'">💬 Comments</button>
+</div>
+
+<!-- ═══════════════════════════════════════ SEARCH MODAL ════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search this page…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<div id="shortcut-hint">/ search</div>
+
+<div class="page active" id="page-books" style="background:#0d0800">
+  <section class="section" id="books">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:rgba(217,119,6,0.12);color:#92400e;border:1px solid rgba(217,119,6,0.25)">Popular Mathematics</span>
+        <h1 class="s-title font-serif" style="color:#fef3c7">Books to Fall in Love With Mathematics</h1>
+        <p class="s-desc" style="color:#92400e">No prerequisites needed. These are the doors into the mathematical world — narratives, biographies, and gentle explorations written to enchant and inspire anyone.</p>
+      </div>
+      <div class="book-filter-bar" id="books-filter-bar"></div>
+      <div class="g3" id="books-grid"></div>
+    </div>
+  </section>
+</div>
+
+
+<footer id="footer">
+  <div class="foot-eq">e<sup>iπ</sup> + 1 = 0</div>
+  <p class="foot-txt"><strong style="color:#6d28d9">"Mathematics is not about numbers, equations, computations, or algorithms. It is about understanding."</strong><br>— William Paul Thurston, Fields Medalist</p>
+  <div class="foot-links">
+    <button class="foot-link" onclick="location.href='../ABOUT.html'">📖 About Stargazer</button>
+    <a class="foot-link" onclick="location.href='comments.html'; return false;" href="#">💬 Community Comments</a>
+    <a class="foot-link" href="mailto:ayan.chakraborty6174@gmail.com">✉️ Contact Creator</a>
+    <a class="foot-link" href="https://stargazer-9m9.pages.dev" target="_blank" rel="noopener">🌐 Stargazer Home</a>
+  </div>
+</footer>
+
+<button id="theme-toggle" title="Toggle light / dark theme" aria-label="Toggle light / dark theme" onclick="toggleTheme()">☀️</button>
+<button id="btt" title="Back to top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+window._pageKey = 'maths';
+
+function isAdmin() {
+  return !!(window.currentUser && window.currentUser.email === ADMIN_EMAIL);
+}
+
+window._applyDarkMode = function(isDark) {
+  // isDark=true → dark mode (no light-mode class)
+  // isDark=false → light mode
+  applyTheme(!isDark);   // applyTheme(true) adds light-mode class
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+};
+
+
+window._afterRenderAuthUI = function(user) {
+  // Show/hide admin bars
+  document.querySelectorAll('.admin-bar').forEach(function(el) {
+    if (user && user.email === ADMIN_EMAIL) { el.classList.add('visible'); }
+    else                                    { el.classList.remove('visible'); }
+  });
+  // Mirror display name into comment form header
+  var ud2 = document.getElementById('userEmailDisplay2');
+  if (ud2 && user) {
+    ud2.textContent = user.user_metadata?.display_name
+                    || user.user_metadata?.full_name
+                    || user.email || 'you';
+  }
+  // Trigger admin data load on sign-in
+  if (user) { if (typeof loadAdminData === 'function') loadAdminData(); }
+};
+
+
+function applyTheme(light) {
+  if (light) { document.body.classList.add('light-mode'); }
+  else        { document.body.classList.remove('light-mode'); }
+  var btn = document.getElementById('theme-toggle');
+  if (btn) btn.textContent = light ? '🌙' : '☀️';
+  document.documentElement.classList.remove('pre-light');
+}
+
+
+function toggleTheme() {
+  var nowLight = !document.body.classList.contains('light-mode');
+  applyTheme(nowLight);
+  localStorage.setItem('stargazer_theme', nowLight ? 'light' : 'dark');
+  // Persist via shared.js (writes to Supabase profiles.dark_mode)
+  // isDark param: true = dark mode, false = light mode
+  if (window.sbSaveDarkMode) window.sbSaveDarkMode(!nowLight);
+}
+
+
+// Apply theme immediately on load from localStorage
+(function() {
+  var tm = localStorage.getItem('stargazer_theme');
+  applyTheme(tm === 'light');
+})();
+
+// shared.js calls this after loading dark_mode from profiles
+// (already declared in the auth block above as window._applyDarkMode)
+
+
+function reRevealActivePage() {
+  var p = document.querySelector('.page.active');
+  if (!p) return;
+  p.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
+    el.classList.add('visible');
+  });
+}
+
+
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Close modal on backdrop click
+
+function toggleHamburger() {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu) return;
+  var open = menu.classList.toggle('open');
+  btn.classList.toggle('open', open);
+}
+// Close on outside click
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu || !menu.classList.contains('open')) return;
+  if (!menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var menu = document.getElementById('hamburger-menu');
+    if (menu && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      document.getElementById('hamburger-btn').classList.remove('open');
+    }
+  }
+});
+
+window.addEventListener('scroll', function() {
+  var btt = document.getElementById('btt');
+  if (btt) btt.classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
+
+let _adminModalSaveFn = null;
+
+function openAdminModal(title, bodyHTML, saveFn) {
+  document.getElementById('adminModalTitle').textContent = title;
+  document.getElementById('adminModalBody').innerHTML = bodyHTML;
+  _adminModalSaveFn = saveFn;
+  document.getElementById('adminModal').classList.add('open');
+}
+
+function closeAdminModal() {
+  document.getElementById('adminModal').classList.remove('open');
+  _adminModalSaveFn = null;
+}
+
+async function adminModalSave() {
+  if (_adminModalSaveFn) {
+    const btn = document.getElementById('adminModalSaveBtn');
+    btn.textContent = 'Saving…';
+    btn.disabled = true;
+    try {
+      await _adminModalSaveFn();
+      closeAdminModal();
+    } catch(e) {
+      alert('Save failed: ' + (e.message || e));
+    }
+    btn.textContent = 'Save';
+    btn.disabled = false;
+  }
+}
+
+document.getElementById('adminModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAdminModal();
+});
+
+var PAGE_SEARCH_INDEX = [];
+function openSearch() {
+  buildSearchIndex();
+  var m = document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(function() { document.getElementById('search-input').focus(); }, 80);
+}
+function closeSearch() {
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-results').innerHTML = '<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q) {
+  var res = document.getElementById('search-results');
+  if (!q.trim()) { res.innerHTML = '<div class="sr-empty">Start typing…</div>'; return; }
+  var lq = q.toLowerCase();
+  var hits = PAGE_SEARCH_INDEX.filter(function(x) { return x.q.indexOf(lq) !== -1; }).slice(0, 20);
+  if (!hits.length) { res.innerHTML = '<div class="sr-empty">No results for "' + q + '"</div>'; return; }
+  res.innerHTML = hits.map(function(h) {
+    var idx = PAGE_SEARCH_INDEX.indexOf(h);
+    var ti = mathHighlight(h.title, lq);
+    return '<div class="sr-item" tabindex="0" data-idx="' + idx + '" onclick="goPageResult(' + idx + ')" onkeydown="if(event.key===\'Enter\')goPageResult(' + idx + ')">' +
+      '<span class="sr-icon">' + h.icon + '</span>' +
+      '<div><div class="sr-title">' + ti + '</div><div class="sr-meta">' + h.meta + '</div></div>' +
+      '<span class="sr-section">' + h.section + '</span></div>';
+  }).join('');
+}
+function mathHighlight(text, q) {
+  if (!q) return text;
+  var idx = text.toLowerCase().indexOf(q);
+  if (idx < 0) return text;
+  return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
+}
+function goPageResult(idx) {
+  var h = PAGE_SEARCH_INDEX[idx]; if (!h) return;
+  closeSearch();
+  if (h.pre) h.pre();
+  setTimeout(function(){
+    var el = document.getElementById(h.elId);
+    if (el) {
+      el.scrollIntoView({behavior:'smooth', block:'center'});
+      el.style.outline = '3px solid #a855f7'; el.style.outlineOffset = '4px';
+      setTimeout(function(){ el.style.outline=''; el.style.outlineOffset=''; }, 1600);
+    }
+  }, 60);
+}
+function searchKeyNav(e) {
+  if (e.key === 'Escape') { closeSearch(); return; }
+  var items = document.querySelectorAll('.sr-item');
+  var cur = document.activeElement;
+  var curIdx = Array.prototype.indexOf.call(items, cur);
+  if (e.key === 'ArrowDown') { e.preventDefault(); (items[curIdx + 1] || items[0]).focus(); }
+  if (e.key === 'ArrowUp')   { e.preventDefault(); (items[curIdx - 1] || items[items.length - 1]).focus(); }
+  if (e.key === 'Enter' && curIdx >= 0) { items[curIdx].click(); }
+}
+document.addEventListener('keydown', function(e) {
+  if (['INPUT','TEXTAREA','SELECT'].indexOf(e.target.tagName) !== -1) return;
+  var modal = document.getElementById('search-modal');
+  if (modal && modal.classList.contains('open')) {
+    if (e.key === 'Escape') closeSearch();
+    return;
+  }
+  if (e.key === '/') { e.preventDefault(); openSearch(); }
+});
+
+const booksData=[
+{t:"Alex's Adventures in Numberland",a:"Alex Bellos",y:2010,cat:"Popular",d:"A thrilling world tour of mathematical ideas, told with the storytelling flair of a seasoned journalist. Bellos travels to the Amazon to meet a tribe who count only to five, visits a mental calculator competition in Japan, explores the mathematical nature of beauty, and dives into the infinite strangeness of zero. Every chapter is a standalone adventure, yet together they build a picture of mathematics as a living, human enterprise — playful, surprising, and endlessly deep. Perfect first mathematics book for anyone."},
+{t:"Men of Mathematics",a:"E.T. Bell",y:1937,cat:"Biography",d:"Twenty-three compelling biographical portraits of history's greatest mathematicians — from Zeno and Archimedes through Newton, Euler, Gauss, and Riemann to Cantor. Occasionally dramatic and selectively accurate, but irresistibly inspiring: Bell writes with the urgency of a novelist, conveying the human passions, rivalries, and obsessions behind mathematical discovery. Credited with sending an extraordinary number of young people into mathematics careers, including John Nash and Freeman Dyson, who both cited this book as decisive."},
+{t:"The Joy of Mathematics",a:"Theoni Pappas",y:1989,cat:"Popular",d:"A beautifully illustrated collection of short, self-contained vignettes on mathematical ideas from every corner of the subject — the golden ratio in nature, the surprising mathematics of knots, Möbius strips, fractals, magic squares, topology, number theory, and much more. Each entry can be read in minutes, yet leaves you with a genuine mathematical insight. Perfect for dipping into anywhere. The sequel, More Joy of Mathematics, is equally rewarding."},
+{t:"Gödel, Escher, Bach",a:"Douglas Hofstadter",y:1979,cat:"Philosophy",d:"A Pulitzer Prize-winning masterpiece that braids together mathematics, music, visual art, and the philosophy of mind into a profound meditation on self-reference, recursion, and the emergence of consciousness from formal systems. Hofstadter takes Gödel's incompleteness theorems, Bach's fugues, and Escher's impossible drawings as three windows onto the same deep mystery: how does meaning arise from symbol manipulation? How can a system refer to itself? Changed how thousands of people understand their own minds, and remains one of the most intellectually ambitious books ever written."},
+{t:"What Is Mathematics?",a:"Richard Courant & Herbert Robbins",y:1941,cat:"Survey",d:"Perhaps the finest one-volume survey of elementary mathematics ever written — rigorous without being forbidding, deep without being inaccessible. Covers number theory, geometry, topology, calculus, and the philosophy of mathematics with exceptional clarity and genuine mathematical honesty. Einstein described it as 'a lucid representation of mathematics that no layman should miss and no professional neglect.' Revised edition updated by Ian Stewart in 1996. Essential for any serious mathematical education."},
+{t:"How to Solve It",a:"George Pólya",y:1945,cat:"Problem-Solving",d:"The most influential book on mathematical problem-solving ever written. Pólya distils a lifetime of mathematical experience into a four-step strategy (Understand, Plan, Execute, Review) and a rich collection of heuristics: draw a diagram, consider a simpler problem, work backwards, find an analogous problem. The insights apply not just across all mathematics but to all structured thinking. Translated into 17 languages, it has shaped how several generations of teachers teach and students learn. Read it slowly, and keep it forever."},
+{t:"Fermat's Last Theorem",a:"Simon Singh",y:1997,cat:"History",d:"The gripping narrative of Andrew Wiles's proof of Fermat's Last Theorem — one of the greatest intellectual achievements of the 20th century. Singh traces the 350-year history of the problem, from Fermat's cryptic marginal note through the revolutionary work of Shimura, Taniyama, and Weil, to Wiles's seven-year secret obsession, his apparent 1993 triumph, the shattering gap discovered a few months later, and the extraordinary final repair. Conveys the emotional reality of mathematical research — the isolation, the obsession, the ecstasy and despair — better than almost any other book."},
+{t:"The Music of the Primes",a:"Marcus du Sautoy",y:2003,cat:"Number Theory",d:"A beautifully written journey through the Riemann Hypothesis — arguably the deepest unsolved problem in mathematics. Du Sautoy explains why prime numbers are the atoms of arithmetic, why their irregular distribution conceals hidden musical patterns, and why Riemann's 1859 paper connecting prime distribution to the zeros of the zeta function still guides research today. Along the way we meet the cast of characters — Gauss, Riemann, Hardy, Ramanujan, Turing, Selberg — whose lives intertwine with the problem. Reads like a thriller."},
+{t:"Prime Obsession",a:"John Derbyshire",y:2003,cat:"Number Theory",d:"The most mathematically substantive popular account of the Riemann Hypothesis. Derbyshire alternates historical chapters (tracing the problem's human story) with mathematical chapters that build, step by step, the genuine mathematical content — complex analysis, the zeta function, the critical strip. By the end the reader has a genuine understanding of what the hypothesis actually claims and why it matters. One of the most intellectually honest popular mathematics books ever written: it treats readers as adults who can handle real mathematics."},
+{t:"The Man Who Loved Only Numbers",a:"Paul Hoffman",y:1998,cat:"Biography",d:"The enchanting biography of Paul Erdős — the most prolific mathematician in history, who published nearly 1,500 papers and collaborated with more than 500 mathematicians. Erdős owned almost nothing, lived out of a suitcase, slept on colleagues' sofas, showed up unannounced at mathematical departments around the world, and gave away almost all his prize money. Hoffman captures both the genius and the profound eccentricity, and uses Erdős's life to illuminate the collaborative nature of mathematics, the concept of the Erdős number, and the mathematical communities of the 20th century."},
+{t:"Love and Math",a:"Edward Frenkel",y:2013,cat:"Memoir",d:"A passionate dual narrative: the author's own journey from a Soviet Jewish teenager denied university admission on antisemitic grounds to a leading research mathematician at Harvard, interleaved with an accessible account of the Langlands Program — the grandest unifying vision in all of mathematics, connecting number theory, representation theory, and geometry. Frenkel writes with a missionary conviction that mathematical beauty is a universal human experience, as profound and as moving as the greatest art or music. One of the most inspiring mathematics memoirs ever written."},
+{t:"The Road to Reality",a:"Roger Penrose",y:2004,cat:"Physics/Math",d:"An encyclopedic 1,000-page tour of the mathematics underlying modern physics — from the real and complex number systems through calculus, differential geometry, Lie groups, fibre bundles, quantum field theory, general relativity, and quantum gravity. Penrose does not condescend: this is the genuine mathematics, presented with genuine rigour. Nothing else like it exists for readers who want to understand the mathematical fabric of the universe. Challenging, demanding, occasionally opinionated (particularly on quantum mechanics), and profoundly rewarding for those who engage with it seriously."},
+{t:"How Not to Be Wrong",a:"Jordan Ellenberg",y:2014,cat:"Popular",d:"Brilliantly argues that mathematical thinking is not a specialised technical skill but a refined form of everyday reasoning — and that the failure to think mathematically leads to systematic, repeatable errors in how we interpret elections, lotteries, cancer screening, financial investments, and statistical claims. Each chapter takes a concrete, counterintuitive real-world example and uses it to illuminate deep mathematical ideas: the law of large numbers, regression to the mean, conditional probability, the geometry of high dimensions. Sharp, funny, politically clear-eyed, and genuinely important."},
+{t:"Infinite Powers",a:"Steven Strogatz",y:2019,cat:"Calculus",d:"The story of calculus told beautifully from first principles — how humanity learned to think about the infinitely small and the infinitely large, and how this transformed science, engineering, medicine, and the modern world. Strogatz traces the development from Archimedes's method of exhaustion through Kepler, Galileo, Newton, and Leibniz to the modern applications in GPS, medical imaging, and machine learning. The best introduction to why calculus matters for readers without a technical background — and a wonderful refresher for those who have forgotten why they loved it."},
+{t:"Uncle Petros and Goldbach's Conjecture",a:"Apostolos Doxiadis",y:1992,cat:"Fiction",d:"A short, elegant novel about a brilliant mathematician who spends his career attempting to prove Goldbach's Conjecture — that every even number greater than two is the sum of two primes — and what this obsession costs him. Doxiadis captures the psychological truth of mathematical research: the isolation, the years of apparent failure, the terrible question of whether the problem is even solvable, and the ambiguous relationship between mathematical genius and ordinary human happiness. A book that anyone seriously interested in research mathematics should read."},
+{t:"The Housekeeper and the Professor",a:"Yoko Ogawa",y:2003,cat:"Fiction",d:"A deeply moving Japanese novel about a brilliant mathematician whose memory resets every 80 minutes — the result of a 1975 car accident — and the housekeeper and her young son who form a friendship with him through mathematics. The Professor, who can hold no continuous memories, lives entirely in mathematical time — the eternal truths of prime numbers, perfect numbers, and Euler's identity. Ogawa uses this premise to explore what it means to know, to remember, to understand, and to be understood. Beautiful, gentle, and quietly profound."},
+{t:"Zero: The Biography of a Dangerous Idea",a:"Charles Seife",y:2000,cat:"History",d:"The cultural and intellectual history of zero — from its independent invention in India and Mesoamerica to its adoption in Europe (after centuries of ecclesiastical resistance), and its eventual central role in calculus, physics, and the theory of black holes. Seife shows how zero and its twin, infinity, are genuinely dangerous concepts: they overturned Greek philosophy, unsettled medieval theology, enabled the differential calculus, and lie at the heart of the worst infinities in quantum field theory. A short, intellectually bold, and enormously entertaining book."},
+{t:"An Imaginary Tale: The Story of √−1",a:"Paul Nahin",y:1998,cat:"History",d:"A rigorous and historically deep account of the complex numbers — from the shock of their appearance in 16th-century Italian algebra (where they appeared as a computational trick in solving cubic equations, long before anyone believed they made sense) through their gradual acceptance, their geometric interpretation by Argand and Gauss, their triumph in analysis, and their ultimate indispensability in quantum mechanics. More technically demanding than most popular mathematics books — and far more rewarding. Nahin includes actual mathematics, which is why the book lasts."},
+{t:"e: The Story of a Number",a:"Eli Maor",y:1994,cat:"History",d:"Everything you might want to know about Euler's number e = 2.718... — its historical discovery through compound interest and logarithms, its central role in calculus (it is the unique number whose exponential function is its own derivative), its deep connection with π through Euler's identity, its appearance in probability, complex analysis, and statistical physics. One of the finest popular treatments of a mathematical constant, written with precision and genuine mathematical love. Complements Paul Nahin's book on i."},
+{t:"A Mathematician's Lament",a:"Paul Lockhart",y:2009,cat:"Philosophy",d:"A devastating, passionate critique of how mathematics is taught in schools — stripping away the joy, the creativity, the human element, replacing them with a meaningless ritual of procedures and rules. Lockhart argues that mathematics is fundamentally an art form — a practice of creative exploration, pattern recognition, and proof-building — and that the school curriculum as designed is the mathematical equivalent of teaching music theory without ever letting students hear a note. A short book (expanded from a 25-page essay) that every mathematics teacher and every parent of a mathematically inclined child should read."},
+{t:"Proofs from THE BOOK",a:"Aigner & Ziegler",y:1998,cat:"Beauty",d:"Paul Erdős imagined that God maintains a Book containing the most elegant proof of every theorem — and that mathematicians' goal is to glimpse its pages. This collection, compiled in consultation with Erdős before his death and updated in subsequent editions, gathers the most beautiful proofs known in number theory, geometry, analysis, combinatorics, and graph theory. Some require only secondary school mathematics; others need undergraduate algebra or analysis. What they share is an inevitability — the sense that no other proof could possibly be this right. An aesthetic experience, not just a mathematical one."},
+{t:"Euler's Gem",a:"David Richeson",y:2008,cat:"Topology",d:"The story of Euler's polyhedral formula V − E + F = 2 — how it was discovered, how it resisted proof for decades, how its eventual proof spawned an entirely new branch of mathematics, and how its generalisation (the Euler characteristic) became a central invariant in topology. Richeson tells the full historical story from Descartes through Euler, Legendre, Cauchy, and Riemann, explains the mathematics accessibly, and shows how a single equation about vertices, edges, and faces opened a window into the shape of space itself."},
+{t:"Journey Through Genius",a:"William Dunham",y:1990,cat:"History",d:"Twelve Great Theorems of mathematics, each presented in its full historical context with complete, readable proofs: Hippocrates on lunes, Euclid on prime infinitude, Heron's formula, Cardano's cubic formula, Newton's generalised binomial theorem, Euler's solution of the Basel problem, and Cantor's theorem on the uncountability of the reals. Dunham's gift is to make the proofs feel surprising and inevitable simultaneously — you follow each argument and end up at the conclusion thinking 'of course, and yet: how could anyone have thought of that?' One of the most rewarding popular mathematics books ever written."},
+{t:"Dr. Euler's Fabulous Formula",a:"Paul Nahin",y:2006,cat:"Analysis",d:"A deep exploration of Euler's identity e<sup>iπ</sup>+1=0 and the complex analysis that surrounds it, for readers who want genuine mathematical understanding rather than superficial wonder. Nahin covers complex arithmetic, the geometry of the complex plane, Fourier series, the uses of complex numbers in electrical engineering and signal processing, and the deeper mathematics that makes Euler's formula not merely surprising but inevitable. More technically demanding than most popular mathematics books, and all the better for it. Assumes some familiarity with calculus."},
+{t:"Birth of a Theorem",a:"Cédric Villani",y:2012,cat:"Memoir",d:"An intimate diary of the two years spent proving the theorem on Landau damping that earned Villani the Fields Medal — the highest prize in mathematics. Extraordinarily honest about the actual texture of mathematical research: the false starts, the half-glimpsed ideas, the emails with Clément Mouhot, the late-night breakthroughs, the periods of grinding non-progress. Villani writes with a poet's sensitivity and a scientist's precision. The mathematical content is largely inaccessible to non-specialists, but the human experience of deep mathematical work is conveyed with unique authenticity."},
+{t:"Logicomix",a:"Doxiadis & Papadimitriou",y:2008,cat:"Graphic Novel",d:"A graphic novel about Bertrand Russell's lifelong quest to find the logical foundations of all mathematics — and about the madness that seemed to haunt those who pursued absolute logical certainty. The story moves through Russell's stormy personal life, his collaborations and disputes with Frege, Whitehead, Wittgenstein, and Gödel, and the eventual collapse of the foundational project under Gödel's incompleteness theorems. Stunning artwork by Alecos Papadatos and Annie Di Donna. Manages to be simultaneously a beautiful comic, a reliable intellectual history, and a meditation on the relationship between logic and madness."},
+{t:"The Princeton Companion to Mathematics",a:"Tim Gowers (ed.)",y:2008,cat:"Reference",d:"The single most comprehensive reference for mathematics at the advanced undergraduate and beginning graduate level — over 1,000 pages of essays written by leading mathematicians on every major area of the subject. Divided into sections on mathematical concepts, branches of mathematics, mathematicians, theorems and open problems, influences of mathematics, and final perspectives. Gowers's own introductory essay on 'The Language and Grammar of Mathematics' is alone worth the price of the book. An irreplaceable companion for anyone pursuing serious mathematical study, and a wonderful book to browse randomly."},
+{t:"Flatland",a:"Edwin A. Abbott",y:1884,cat:"Classic Fiction",d:"A Victorian mathematical novella narrated by A. Square, a two-dimensional being living in a flat society strictly ordered by the number of one's sides. When a Sphere visits from the third dimension and drags A. Square upward into 3-space, he experiences a revolution of perception — and is imprisoned for heresy when he tries to share it. Abbott's satire targets Victorian class rigidity and the limits of human perception simultaneously. Still astonishing after 140 years. The essential thought experiment for understanding what dimension means and why it is hard to visualise spaces beyond our own."},
+{t:"Mathematics for the Million",a:"Lancelot Hogben",y:1936,cat:"Popular",d:"A sweeping, politically engaged popular account of mathematics from ancient Egypt and Babylon through Greek geometry, Arabic algebra, the invention of logarithms, the development of calculus, and the statistics of Galton and Pearson. Hogben wrote with the explicit conviction that mathematical literacy is a democratic right, not an elite privilege — and proved the point by reaching a vast popular audience. Still one of the most readable accounts of how mathematical ideas developed from practical problems of measurement, navigation, and commerce. A model of how mathematics can be made genuinely accessible."},
+{t:"Number: The Language of Science",a:"Tobias Dantzig",y:1930,cat:"History",d:"Einstein called it his favourite popular mathematics book. Dantzig traces the evolution of the number concept from primitive counting, through the discovery of zero and negative numbers, the shock of irrational numbers in Greek mathematics, the gradual acceptance of complex numbers, and finally Cantor's breathtaking theory of transfinite numbers. Written with a philosopher's attention to what 'number' actually means and a mathematician's precision about what can be proved. Short, timeless, profound — a book that rewards re-reading at every stage of mathematical development."},
+{t:"The Drunkard's Walk",a:"Leonard Mlodinow",y:2008,cat:"Probability",d:"A rigorous but accessible account of how randomness shapes our lives far more deeply and systematically than we intuitively believe. Mlodinow covers the key theorems of probability and statistics — the law of large numbers, the central limit theorem, Bayes's theorem, regression to the mean — and applies them devastatingly to our misreading of sports performance, financial markets, legal testimony, medical trials, and career success. Particularly powerful on the 'hot hand' fallacy and on why successful people consistently underestimate the role of luck in their own achievements."},
+{t:"Mathematical Circles",a:"Fomin, Genkin & Itenberg",y:1996,cat:"Olympiad Prep",d:"Problems and mathematical ideas drawn from the legendary Russian tradition of mathematical olympiad circles — the after-school groups that produced an extraordinary density of world-class mathematicians in the 20th century. Fomin and his co-authors present combinatorics, number theory, geometry, and induction through problems that are playful, deep, and pedagogically brilliant — each one revealing a genuine mathematical idea, not just a technique. The spirit is that mathematics is a conversation, not a performance. Essential for any student who wants to develop genuine mathematical maturity."},
+{t:"The Art and Craft of Problem Solving",a:"Paul Zeitz",y:1999,cat:"Problem-Solving",d:"The finest bridge between school mathematics and the olympiad world. Zeitz teaches not just techniques but mathematical psychology: how to notice what is interesting about a problem, how to generate examples, when to persist and when to change strategy, how to read solutions productively. The mathematical content ranges from elementary combinatorics and number theory through geometry and inequalities to complex numbers and generating functions. The final chapter on 'Parting Shots' — on mathematical community, mathematical development, and what problem-solving ultimately teaches — is worth reading by every student."},
+{t:"In Pursuit of the Unknown",a:"Ian Stewart",y:2012,cat:"History",d:"Seventeen equations that changed the world — from Pythagoras's theorem through Newton's law of gravity, Maxwell's equations, the Fourier transform, the Schrödinger equation, to the Black-Scholes equation and the logistic map. For each equation, Stewart explains what it says, how it was discovered, why it matters, and what it made possible. Unusually honest about mathematics as a human enterprise: equations have histories, political contexts, unintended consequences. The chapter on Black-Scholes and the 2008 financial crisis is sobering reading."},
+{t:"Mathematics: Its Content, Methods and Meaning",a:"Aleksandrov, Kolmogorov, Lavrentiev",y:1963,cat:"Survey",d:"A three-volume masterwork originally commissioned by the Soviet Academy of Sciences, written by leading Soviet mathematicians including Kolmogorov (one of the greatest mathematicians of the 20th century) and covering the whole of mathematics with extraordinary depth, rigour, and pedagogical care. Covers analysis, algebra, geometry, probability, topology, functional analysis, differential equations, and more. Not a popular book — it demands serious engagement — but it is one of the most complete mathematical educations available between two covers. A genuine university course in book form."},
+{t:"How to Think Like a Mathematician",a:"Kevin Houston",y:2009,cat:"Transition",d:"A superb guide to the transition from school mathematics to university mathematics — specifically, to the culture of rigorous proof that defines undergraduate mathematical study. Houston covers logical notation, quantifiers, the structure of mathematical statements, how to read a definition, how to write a proof, how to find counterexamples, and how to approach examination questions. Written with warmth and realism about the difficulties students face. The best practical companion for first-year mathematics undergraduates in any country, and recommended reading for any serious A-level student."},
+{t:"The Simpsons and Their Mathematical Secrets",a:"Simon Singh",y:2013,cat:"Fun",d:"Many of the writers of The Simpsons hold advanced mathematics degrees from MIT and Harvard — and they have systematically smuggled genuine mathematical content into the show for 25 years. Singh hunts down Fermat near-misses, perfect numbers, Mersenne primes, the P vs NP problem, and correct approximations to π hidden in episode backgrounds and dialogue. The mathematical content is real and explained well. As much a meditation on mathematical culture as an analysis of a TV show — and a reminder that mathematicians are funnier than their stereotype suggests."},
+{t:"Prime Numbers and the Riemann Hypothesis",a:"Mazur & Stein",y:2016,cat:"Number Theory",d:"A short, visually striking, and genuinely illuminating introduction to the Riemann Hypothesis for readers with varying levels of mathematical background. Mazur and Stein develop the connection between prime counting and the zeros of the Riemann zeta function through beautiful spectral diagrams that make the key ideas genuinely visible. The book is divided into sections for different levels of reader, from the curious layperson to the advanced undergraduate. One of the best recent popular mathematics books, and a genuine contribution to mathematical exposition."},
+{t:"The Mathematics of Love",a:"Hannah Fry",y:2015,cat:"Popular",d:"A witty and mathematically honest application of game theory, topology, statistics, and network science to the mathematics of human relationships — attraction, dating strategy, marriage stability, the geometry of beauty, and the mathematics of online matchmaking. Fry draws on the Gale-Shapley stable marriage algorithm, Gottman's differential equation model of couple dynamics, and online dating network theory, always explaining the genuine mathematics and never overstating what it can tell us. Short, entertaining, and more mathematically substantive than its cheerful presentation suggests."},
+{t:"Imagining Numbers",a:"Barry Mazur",y:2003,cat:"Philosophy",d:"A Harvard mathematician's meditation on the act of mathematical imagination itself, taking as its starting point a single question: what does it feel like to imagine the square root of negative fifteen? Mazur proceeds slowly and carefully, examining what mathematicians actually do when they extend the number system, what poetry shares with mathematics, and what it means to accept a new kind of number as real. The mathematical content is elementary — Mazur is interested in the phenomenology of mathematical thinking, not its results. Unusual, gentle, and quietly profound."}
+];
+
+var currentBookFilter = 'all';
+
+
+function renderBooks(){
+  var isAdm = isAdmin();
+  var html = booksData
+    .map(function(b, i){ return {b:b, i:i}; })
+    .filter(function(entry){
+      return currentBookFilter === 'all' || (entry.b.cat || 'General') === currentBookFilter;
+    })
+    .map(function(entry){
+      var b = entry.b, i = entry.i;
+      var isRead = _bookReadSet.has(i);
+      var readStyle = isRead
+        ? 'background:linear-gradient(135deg,#064e3b,#065f46)!important;border-color:#10b981!important;box-shadow:0 0 0 2px #10b981,0 8px 24px rgba(16,185,129,0.3)!important;'
+        : '';
+      var readBadge = isRead
+        ? '<span style="display:inline-flex;align-items:center;gap:0.25rem;font-size:0.63rem;background:rgba(16,185,129,0.2);color:#34d399;border:1px solid rgba(16,185,129,0.4);padding:0.12rem 0.42rem;border-radius:99px;font-family:\'Space Grotesk\',sans-serif;font-weight:600;margin-bottom:0.4rem">✓ Read</span>'
+        : '';
+      return '<div class="book-card reveal'+(isRead?' book-read':'')+'" id="bookcard'+i+'" style="'+readStyle+'">'
+        + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.4rem">'
+        + '<span style="font-family:\'JetBrains Mono\',monospace;font-size:0.62rem;color:#f59e0b;background:rgba(245,158,11,0.1);padding:0.1rem 0.38rem;border-radius:4px">#'+(i+1)+'</span>'
+        + readBadge
+        + '</div>'
+        + '<div class="book-title">'+(b._title||b.t)+'</div>'
+        + '<div class="book-author">'+(b._author||b.a)+'</div>'
+        + '<div class="book-year">'+(b.y||'')+'</div>'
+        + '<div class="book-desc">'+(b._desc||b.d)+'</div>'
+        + '<span class="book-cat">'+(b.cat||'General')+'</span>'
+        + indiaBuyLinks(b.t, b.a)
+        + '<div style="margin-top:0.6rem;display:flex;gap:0.5rem;flex-wrap:wrap">'
+        + '<button onclick="toggleBookRead('+i+')" style="font-family:\'Space Grotesk\',sans-serif;font-size:0.67rem;font-weight:600;padding:0.22rem 0.65rem;border-radius:99px;border:1px solid rgba(16,185,129,0.4);background:rgba(16,185,129,0.1);color:#34d399;cursor:pointer;transition:all 0.2s">'
+        + (isRead ? '↩ Mark Unread' : '✓ Mark as Read') + '</button>'
+        + (isAdm ? '<button class="admin-btn edit-btn" onclick="adminEditBook('+i+')" style="font-size:0.62rem">✏️ Edit</button>' : '')
+        + '</div>'
+        + '</div>';
+    }).join('');
+  document.getElementById("books-grid").innerHTML = html;
+}
+
+
+function renderBookFilters(){
+  var el = document.getElementById('books-filter-bar');
+  if (!el) return;
+  var cats = ['all'];
+  booksData.forEach(function(b){
+    var c = b.cat || 'General';
+    if (cats.indexOf(c) === -1) cats.push(c);
+  });
+  el.innerHTML = cats.map(function(c){
+    return '<button class="book-filter-btn'+(currentBookFilter===c?' active':'')+'" onclick="setBookFilter(\''+c+'\')">'+(c==='all'?'All Books':c)+'</button>';
+  }).join('');
+}
+
+
+function setBookFilter(cat){
+  currentBookFilter = cat;
+  renderBooks();
+  renderBookFilters();
+  reRevealActivePage();
+}
+
+
+function indiaBuyLinks(title, author) {
+  const q = encodeURIComponent(title + ' ' + author + ' book');
+  return `<div class="buy-links">
+    <a class="buy-link amz" href="https://www.amazon.in/s?k=${q}&i=stripbooks" target="_blank" rel="noopener">🛒 Amazon.in</a>
+  </div>`;
+}
+
+
+var _bookReadSet = new Set(JSON.parse(localStorage.getItem('books_read') || '[]'));
+
+window._getProgressData = function() {
+  return { booksRead: [..._bookReadSet] };
+};
+// shared.js calls _applyProgressData(d) after loading from Supabase
+
+window._applyProgressData = function(d) {
+  if (d && Array.isArray(d.booksRead)) {
+    _bookReadSet = new Set(d.booksRead);
+    localStorage.setItem('books_read', JSON.stringify(d.booksRead));
+    renderBooks();
+    renderBookFilters();
+    reRevealActivePage(); // new book cards have .reveal but not .visible
+  }
+};
+
+
+function toggleBookRead(idx) {
+  if (_bookReadSet.has(idx)) { _bookReadSet.delete(idx); }
+  else                       { _bookReadSet.add(idx); }
+  localStorage.setItem('books_read', JSON.stringify([..._bookReadSet]));
+  window.sbSaveProgress && window.sbSaveProgress();
+  renderBooks();
+  reRevealActivePage(); // re-show cards after re-render
+}
+
+
+function latexToHTML(text) {
+  if (!text) return '';
+
+  // Step 1: Convert $$...$$ → \[...\] (display math) and $...$ → \(...\) (inline math)
+  // This makes admin-typed dollar-sign LaTeX compatible with KaTeX auto-render
+  text = text.replace(/\$\$([^$]+)\$\$/g, '\\[$1\\]');
+  text = text.replace(/\$([^$\n]+)\$/g, '\\($1\\)');
+
+  // Step 2: If text has KaTeX delimiters, let KaTeX handle it entirely
+  if (text.indexOf('\\(') !== -1 || text.indexOf('\\[') !== -1) {
+    if (window.katex && window.renderMathInElement) {
+      try {
+        var div = document.createElement('div');
+        div.innerHTML = text;
+        window.renderMathInElement(div, {
+          delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],
+          throwOnError: false
+        });
+        return div.innerHTML;
+      } catch(e) {}
+    }
+    // KaTeX not yet loaded — return as-is; KaTeX onload will process it from the DOM
+    return text;
+  }
+
+  // Step 3: No KaTeX delimiters — apply simple Unicode/HTML substitutions as fallback
+  // Subscripts: a_{cd} → a<sub>cd</sub>
+  text = text.replace(/([a-zA-Z0-9\)])\_{([^}]+)}/g, '$1<sub>$2</sub>');
+  text = text.replace(/([a-zA-Z0-9\)])_([a-zA-Z0-9])/g, '$1<sub>$2</sub>');
+  // Superscripts: a^{e} → a<sup>e</sup>
+  text = text.replace(/([a-zA-Z0-9\)])\^{([^}]+)}/g, '$1<sup>$2</sup>');
+  text = text.replace(/([a-zA-Z0-9\)])\^([a-zA-Z0-9])/g, '$1<sup>$2</sup>');
+  // \frac{a}{b} → a/b
+  text = text.replace(/\\frac{([^}]+)}{([^}]+)}/g, '($1)/($2)');
+  // Common symbols
+  text = text.replace(/\\infty/g, '∞');
+  const bbMap = {R:'ℝ', Q:'ℚ', Z:'ℤ', N:'ℕ', C:'ℂ'};
+  text = text.replace(/\\mathbb{([A-Z])}/g, (m,c) => bbMap[c]||c);
+  text = text.replace(/\\to/g, '→');
+  text = text.replace(/\\leq/g, '≤');
+  text = text.replace(/\\geq/g, '≥');
+  text = text.replace(/\\neq/g, '≠');
+  text = text.replace(/\\alpha/g, 'α');
+  text = text.replace(/\\beta/g, 'β');
+  text = text.replace(/\\gamma/g, 'γ');
+  text = text.replace(/\\delta/g, 'δ');
+  text = text.replace(/\\epsilon/g, 'ε');
+  text = text.replace(/\\pi/g, 'π');
+  text = text.replace(/\\sum/g, 'Σ');
+  text = text.replace(/\\prod/g, 'Π');
+  text = text.replace(/\\int/g, '∫');
+  text = text.replace(/\\sqrt{([^}]+)}/g, '√($1)');
+  text = text.replace(/\\times/g, '×');
+  text = text.replace(/\\cdot/g, '·');
+  return text;
+}
+
+
+function previewLatex(inputId, previewId) {
+  const input = document.getElementById(inputId);
+  const preview = document.getElementById(previewId);
+  if (input && preview) {
+    preview.innerHTML = latexToHTML(input.value);
+  }
+}
+
+
+function adminEditBook(idx) {
+  if (!isAdmin()) return;
+  var b = booksData[idx];
+  if (!b) return;
+  openAdminModal('✏️ Edit Book', `
+    <div class="admin-field"><label>Title</label>
+      <input id="ebTitle" value="${escHtml(b._title||b.t)}"></div>
+    <div class="admin-field"><label>Author</label>
+      <input id="ebAuthor" value="${escHtml(b._author||b.a)}"></div>
+    <div class="admin-field"><label>Description (LaTeX supported)</label>
+      <textarea id="ebDesc" rows="4" oninput="previewLatex('ebDesc','ebPreview')">${escHtml(b._desc||b.d)}</textarea></div>
+    <div class="admin-field"><label>Preview</label>
+      <div class="admin-latex-preview" id="ebPreview">${latexToHTML(b._desc||b.d)}</div></div>
+    <div class="admin-field"><label>Category</label>
+      <input id="ebCat" value="${escHtml(b.cat||'General')}"></div>
+  `, async () => {
+    b._title = document.getElementById('ebTitle').value.trim() || b.t;
+    b._author = document.getElementById('ebAuthor').value.trim() || b.a;
+    b._desc = document.getElementById('ebDesc').value.trim() || b.d;
+    b.cat = document.getElementById('ebCat').value.trim() || b.cat;
+    var client = window.sb;
+    if (client) {
+      await client.from('math_desc_overrides').upsert([{
+        key: 'book_'+idx, content: JSON.stringify({title:b._title, author:b._author, desc:b._desc, cat:b.cat}),
+        section:'books', item_index:idx
+      }], {onConflict:'key'});
+    }
+    renderBooks();
+  });
+}
+
+
+
+function buildSearchIndex(){
+  PAGE_SEARCH_INDEX = [];
+  booksData.forEach(function(b,i){
+    PAGE_SEARCH_INDEX.push({icon:'📚',title:b._title||b.t,meta:(b._author||b.a||'')+' · '+(b.y||''),section:'Books',elId:'bookcard'+i,q:(b.t+' '+(b.a||'')+' '+(b.cat||'')+' '+(b.d||'')).toLowerCase()});
+  });
+}
+
+renderBooks();
+renderBookFilters();
+
+
+document.querySelectorAll('.reveal').forEach(function(el, i) {
+  setTimeout(function() { el.classList.add('visible'); }, Math.min(i * 35, 900));
+});
+</script>
+
+<!-- ═══ SUPABASE + SHARED AUTH/COMMENTS BRIDGE ═══════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+</body>
+</html>

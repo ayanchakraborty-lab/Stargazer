@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#FFFEF5!important}html.pre-light{background:#FFFEF5}</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<title>German Grammar Tests: 20 Themed Exams | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="20 themed advanced German grammar exams — 200 questions set in worlds like a courtroom or cockpit. Score, review solutions, share on WhatsApp.">
+<meta name="keywords" content="German grammar test, German exam practice, advanced German grammar, themed German quiz, German grammar challenge">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The German Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/german/pruefungen.html">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="German Grammar Tests: 20 Themed Exams | Stargazer">
+<meta property="og:description" content="20 professions, 200 advanced questions — a lumberjack's forest, a judge's courtroom, a pilot's cockpit. Take a themed test →">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/german/pruefungen.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/german-og.jpg">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/german-og.jpg">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="German Grammar Tests: 20 Themed Exams | Stargazer">
+<meta name="twitter:description" content="20 professions, 200 advanced grammar questions, full solutions, and a WhatsApp-shareable score. Take a test →">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "German Grammar Tests: 20 Themed Exams",
+  "description": "20 themed advanced German grammar exams — 200 questions set in worlds like a courtroom or cockpit. Score, review solutions, share on WhatsApp.",
+  "url": "https://stargazer-9m9.pages.dev/german/pruefungen.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "German grammar", "sameAs": "https://en.wikipedia.org/wiki/German_grammar" }
+}
+</script>
+<link rel="stylesheet" href="german.css">
+</head>
+<body>
+
+<script>if(localStorage.getItem('stargazer_theme')==='light')document.body.classList.add('light');</script>
+
+<!-- Home button -->
+<a href="../index.html" id="homeLink" title="universe"><span class="hl-arrow">←</span> <span class="hl-label">universe</span></a>
+
+<!-- Auth header -->
+<div id="authHeader">
+  <button id="darkToggle" onclick="toggleLight()">☀ Day</button>
+  <a href="../login.html" id="loginBtn">sign in</a>
+  <div id="userInfo" style="display:none;">
+    <span id="userEmailDisplay"></span>
+    <button onclick="doSignOut()" id="signOutBtn">sign out</button>
+  </div>
+</div>
+
+<!-- Hamburger Button -->
+<button id="hamburger-btn" onclick="openSidebar()" aria-label="Open navigation">
+  <span style="font-size:18px;">☰</span>
+  <span class="hb-label">MENÜ</span>
+</button>
+
+<!-- Sidebar Overlay -->
+<div id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!-- Sidebar Navigation -->
+<nav id="sidebar" aria-label="Site navigation">
+  <div class="sidebar-header">
+    <span class="sidebar-logo">Deutsch</span>
+    <button class="sidebar-close" onclick="closeSidebar()">✕</button>
+  </div>
+  <div class="sidebar-flag"><div class="f1"></div><div class="f2"></div><div class="f3"></div></div>
+
+  <div class="sidebar-theme-row">
+    <button id="sidebarDarkToggle" class="sidebar-theme-btn" onclick="toggleLight()">☀ Day Mode</button>
+  </div>
+
+  <ul class="sidebar-nav" style="list-style:none;">
+    <li class="sidebar-divider">Hauptseiten · Main Pages</li>
+    <li><button class="sidebar-item" id="sb-home" onclick="location.href='home.html'">
+      <span class="sidebar-icon">🏠</span>
+      <span class="sidebar-text"><span class="sidebar-de">Startseite</span><span class="sidebar-en">Home · Introduction</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Wortschatz · Vocabulary</li>
+    <li><button class="sidebar-item" id="sb-woerterbuch" onclick="location.href='woerterbuch.html'">
+      <span class="sidebar-icon">📖</span>
+      <span class="sidebar-text"><span class="sidebar-de">Wörterbuch</span><span class="sidebar-en">Dictionary · Word Explorer</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Grammatik · Grammar</li>
+    <li><button class="sidebar-item" id="sb-grammatik" onclick="location.href='grammatik.html'">
+      <span class="sidebar-icon">✏️</span>
+      <span class="sidebar-text"><span class="sidebar-de">Grammatik</span><span class="sidebar-en">Grammar · Practice Questions</span></span>
+    </button></li>
+    <li><button class="sidebar-item active" id="sb-pruefungen" onclick="location.href='pruefungen.html'">
+      <span class="sidebar-icon">🧪</span>
+      <span class="sidebar-text"><span class="sidebar-de">Prüfungen</span><span class="sidebar-en">Tests · 20 Themed Exams</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-nachschlagen" onclick="location.href='nachschlagen.html'">
+      <span class="sidebar-icon">📋</span>
+      <span class="sidebar-text"><span class="sidebar-de">Nachschlagen</span><span class="sidebar-en">Reference Tables</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Lesen · Reading</li>
+    <li><button class="sidebar-item" id="sb-geschichten" onclick="location.href='geschichten.html'">
+      <span class="sidebar-icon">📚</span>
+      <span class="sidebar-text"><span class="sidebar-de">Geschichten</span><span class="sidebar-en">Stories · A1 to C2 Levels</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-buecher" onclick="location.href='buecher.html'">
+      <span class="sidebar-icon">📕</span>
+      <span class="sidebar-text"><span class="sidebar-de">Bücher</span><span class="sidebar-en">Books · Curated Reading List</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Sprechen · Speaking</li>
+    <li><button class="sidebar-item" id="sb-satzbauer" onclick="location.href='satzbauer.html'">
+      <span class="sidebar-icon">🤖</span>
+      <span class="sidebar-text"><span class="sidebar-de">Satzbauer</span><span class="sidebar-en">Sentence Builder · AI Checker</span></span>
+    </button></li>
+    <li><button class="sidebar-item" id="sb-zungenbrecher" onclick="location.href='zungenbrecher.html'">
+      <span class="sidebar-icon">👅</span>
+      <span class="sidebar-text"><span class="sidebar-de">Zungenbrecher</span><span class="sidebar-en">Tongue Twisters</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Ausdruck · Expression</li>
+    <li><button class="sidebar-item" id="sb-redewendungen" onclick="location.href='redewendungen.html'">
+      <span class="sidebar-icon">💬</span>
+      <span class="sidebar-text"><span class="sidebar-de">Redewendungen</span><span class="sidebar-en">Idioms & Expressions</span></span>
+    </button></li>
+
+    <li class="sidebar-divider">Gemeinschaft · Community</li>
+    <li><button class="sidebar-item" id="sb-community" onclick="location.href='community.html'">
+      <span class="sidebar-icon">👥</span>
+      <span class="sidebar-text"><span class="sidebar-de">Gemeinschaft</span><span class="sidebar-en">Community Discussion</span></span>
+    </button></li>
+  </ul>
+
+  <div class="sidebar-footer">
+    Sprache ist das Haus des Seins<br>
+    <span style="color: var(--text-faint); font-size:9px;">— Martin Heidegger</span>
+  </div>
+</nav>
+
+<!-- Particles -->
+<div id="particles"></div>
+
+<!-- NAV (shared.js) -->
+<div id="nav-container"></div>
+
+<main>
+<section class="section active" id="pruefungen">
+  <div class="section-head sh-purple">
+    <h2>Prüfungen</h2>
+    <p>Tests · 20 themed advanced grammar exams · 10 questions each · scored out of 10</p>
+  </div>
+  <div class="tests-intro">
+    <p><strong>How it works:</strong> Each test is set in a professional world — a lumberjack's forest, a judge's courtroom, a pilot's cockpit. Every sentence uses that world's vocabulary while testing one advanced grammar structure. Answer all 10 questions, then see your score and full detailed solutions. Share your result on WhatsApp!</p>
+  </div>
+  <div class="test-grid" id="test-grid"></div>
+</section>
+</main>
+
+<!-- ═══ TEST MODAL ═══ -->
+<div class="test-modal-overlay" id="test-modal">
+  <div class="test-modal" id="test-modal-inner">
+    <div class="test-modal-head">
+      <span class="test-modal-emoji" id="tm-emoji">🪓</span>
+      <div class="test-modal-info">
+        <h3 id="tm-title">Der Holzfäller</h3>
+        <div class="sub" id="tm-sub">Advanced Grammar Test · 10 Questions</div>
+      </div>
+      <button class="test-modal-close" onclick="closeTestModal()">✕ Close</button>
+    </div>
+    <div class="test-modal-body">
+      <!-- Questions panel -->
+      <div id="tm-questions-panel">
+        <div class="test-modal-progress">
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-3)">
+            <span id="tm-progress-txt">Question 1 of 10</span>
+            <span id="tm-score-running" style="color:var(--purple-2)"></span>
+          </div>
+          <div class="test-modal-progress-bar"><div class="test-modal-progress-fill" id="tm-prog-fill" style="width:10%"></div></div>
+        </div>
+        <div id="tm-q-area"></div>
+        <div class="test-nav-footer">
+          <button class="btn" id="tm-prev" onclick="tmPrev()" disabled>← Prev</button>
+          <button class="btn btn-purple" id="tm-next" onclick="tmNext()">Next →</button>
+          <button class="btn btn-purple" id="tm-submit" style="display:none" onclick="submitTest()">Submit & See Results</button>
+        </div>
+      </div>
+      <!-- Results panel -->
+      <div class="test-results" id="tm-results">
+        <div class="test-score-banner">
+          <div class="test-score-num" id="tm-final-score">0</div>
+          <div style="font-family:'Playfair Display',serif;font-size:14px;color:var(--text-3);margin-top:4px;">out of <span id="tm-total-q">10</span></div>
+          <div class="test-score-grade" id="tm-grade"></div>
+          <div class="test-score-label" id="tm-grade-label"></div>
+          <button class="test-share-btn" onclick="shareResult()">
+            <span>📱</span> Share on WhatsApp
+          </button>
+        </div>
+        <div class="test-solutions">
+          <div class="test-sol-head">✦ Detailed Solutions</div>
+          <div id="tm-solutions"></div>
+        </div>
+        <div style="text-align:center;margin-top:24px;">
+          <button class="btn btn-purple" onclick="closeTestModal()">Close Test</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer id="site-footer" onclick="handleFooterClick(event)">
+  <p>Stargazer · Deutsch · <a href="../index.html">← Zurück zur Hauptseite</a></p>
+  <p style="margin-top:6px;color:var(--text-faint)">Sprache ist das Haus des Seins. — Martin Heidegger</p>
+</footer>
+<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint);font-style:italic;font-family:'Space Mono',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--amber-2);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div style="text-align:center;padding-bottom:2rem;">
+  <a href="../ABOUT.html" style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--amber);opacity:0.45;text-decoration:none;border:1px solid var(--amber);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+</div>
+
+<script>
+/* Must be defined before shared.js loads */
+window._pageKey = 'german';
+
+window._applyDarkMode = function(isDark) {
+  document.body.classList.toggle('light', !isDark);
+  document.documentElement.classList.remove('pre-light');
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+  const btn = document.getElementById('darkToggle');
+  if (btn) btn.textContent = isDark ? '☀ Day' : '🌙 Dark';
+  const sideBtn = document.getElementById('sidebarDarkToggle');
+  if (sideBtn) sideBtn.textContent = isDark ? '☀ Day Mode' : '🌙 Dark Mode';
+};
+</script>
+<script src="../shared.js"></script>
+<script>
+const THEMED_TESTS = [
+{id:1,emoji:"🪓",title:"Der Holzfäller",titleEn:"The Lumberjack",theme:"Partizipialkonstruktionen",color:"#5C9E31",
+desc:"Grammar set in the forest — extended participial constructions, passive, and verbal mood.",
+qs:[
+{q:"<em>Der ___ Holzfäller trug die Axt über die Schulter.</em> — Which extended participial fits?",o:["Bäume fällend","vom Wald ermüdete","im Morgengrauen aufbrechende","Holz schlagend"],c:2,exp:"<strong>Erweiterte Partizipialattribute</strong>: the participial phrase brackets between the article and noun. <em>der im Morgengrauen aufbrechende Holzfäller</em> = the lumberjack setting off at dawn. The Präsenspartizip comes immediately before the noun."},
+{q:"<em>Hunderte Bäume ___ im letzten Jahrhundert ___.</em> — Passiv Perfekt?",o:["wurden … gefällt worden","sind … gefällt worden","sind … gefällt geworden","haben … gefällt worden"],c:1,exp:"<strong>Vorgangspassiv Perfekt</strong> = <em>sein + Partizip II + worden</em>. NOT <em>geworden</em> but <em>worden</em>. <em>geworden</em> only appears when <em>werden</em> is a full verb meaning 'to become'."},
+{q:"<em>Er ließ sich die Kettensäge reparieren.</em> — What is grammatically significant?",o:["Causative lassen with reflexive Dativ — correct","'ließ' should be 'hat gelassen'","'sich' should be omitted","'reparieren' needs 'zu'"],c:0,exp:"<strong>Kausatives lassen + reflexiver Dativ</strong>: <em>Er ließ sich … reparieren</em> = He had it repaired (for himself). The <em>sich</em> is dative (beneficiary), not replacing the direct object. A nuanced but important distinction."},
+{q:"<em>Der Holzfäller fürchtete, ___ der schweren Axt nicht mehr Herr zu werden.</em>",o:["an","über","von","mit"],c:1,exp:"<strong>Herr werden + über + Akkusativ</strong>: fixed Funktionsverbgefüge. <em>Über die Axt Herr werden</em> = to get control of the axe. <em>von</em>, <em>an</em>, and <em>mit</em> are all wrong with this idiom."},
+{q:"Indirect speech: Chef sagte „Die Bäume müssen gefällt werden.\" — Best K1 form?",o:["die Bäume müssen (identical to indicative)","die Bäume müssten (K2 — correct here)","die Bäume werden müssen","die Bäume sollten"],c:1,exp:"<strong>K1 vs K2</strong>: <em>müssen</em> K1 3rd plural = <em>müssen</em> — identical to indicative! Therefore K2 (<em>müssten</em>) is used. Rule: use K2 when K1 = indicative form."},
+{q:"<em>Kaum ___ der erste Baum gefallen, setzte ein heftiger Sturm ein.</em>",o:["war","hatte","ist","wäre"],c:0,exp:"<strong>Kaum + Plusquamperfekt</strong>: 'no sooner than'. Pluperfect required: <em>Kaum war X geschehen, Y geschah.</em> Present perfect is incorrect in this written construction."},
+{q:"<em>Das Holz, ___ Qualität nicht zu bezweifeln ist, stammt aus nachhaltigem Anbau.</em>",o:["das","dessen","dem","die"],c:1,exp:"<strong>Genitivrelativsatz</strong>: <em>das Holz</em> is neuter → genitive relative pronoun = <em>dessen</em>. <em>deren</em> is plural/feminine genitive — wrong here."},
+{q:"<em>Täglich ___ er im Wald.</em> — Choose correct V2 topicalisation:",o:["Täglich er arbeitete.","Täglich arbeitete er.","Täglich er im Wald arbeitete.","Er täglich arbeitete."],c:1,exp:"<strong>V2 rule</strong>: After fronted adverb, the finite verb is in position 2 and the subject follows: <em>Täglich arbeitete er.</em> This is obligatory in German declarative main clauses."},
+{q:"<em>Je schwerer die Arbeit, ___ mehr schätzte er die Stille.</em>",o:["desto","umso","so","als"],c:0,exp:"<strong>Je … desto</strong>: comparative correlative. After <em>desto</em>: adjective → verb → subject. Both <em>desto</em> and <em>umso</em> work but <em>desto</em> is more traditional in formal writing."},
+{q:"<em>Die vom Sturm entwurzelten Bäume ___ am nächsten Morgen weggeschafft.</em>",o:["wurden","sind geworden","haben … werden","sind … worden"],c:0,exp:"<strong>Vorgangspassiv Präteritum</strong>: <em>wurden + Partizip II</em>. Past event → Präteritum passive. <em>Sind worden</em> would be Passiv Perfekt (also possible but different aspect)."}
+]},
+{id:2,emoji:"💊",title:"Die Apothekerin",titleEn:"The Pharmacist",theme:"Modalverben & Epistomologie",color:"#0891B2",
+desc:"Modal verbs — epistemic vs. deontic modality, register, and indirect speech in the pharmacy.",
+qs:[
+{q:"<em>Das Medikament ___ Nebenwirkungen verursachen.</em> — Most precise epistemic modal?",o:["kann","darf","muss","soll"],c:0,exp:"<strong>Epistemic kann</strong> = 'may/might' (a possibility). <em>darf</em> = permission; <em>muss</em> = logical necessity; <em>soll</em> = hearsay. Epistemic <em>kann</em> expresses 'possible but not guaranteed'."},
+{q:"Formal package insert: most appropriate form?",o:["Nehmen Sie das Mittel ein.","Das Mittel wird eingenommen.","Das Mittel ist einzunehmen.","Nimm das Mittel ein."],c:2,exp:"<strong>Sein + zu-Infinitiv</strong>: <em>ist einzunehmen</em> = is to be taken / must be taken. Standard in formal instructions and medical texts. More impersonal than imperative."},
+{q:"„Das Präparat dürfte keine Wechselwirkungen haben.\" — What does <em>dürfte</em> express?",o:["Permission","Probability: most likely has no interactions","Obligation","Hearsay"],c:1,exp:"<strong>Dürfen K2 (dürfte)</strong> = epistemic probability. <em>Es dürfte … haben</em> = It most likely has… Medical professionals use <em>dürfte</em> for cautious probability, softer than <em>muss</em>."},
+{q:"<em>Sie ___ dem Patienten geraten haben, das Mittel abzusetzen.</em>",o:["soll","muss","dürfte","wird"],c:0,exp:"<strong>Sollen + Perfektinfinitiv</strong>: reporting an alleged past act. <em>Sie soll geraten haben</em> = She is said to have advised. Compare: <em>muss + Perf.</em> = logical deduction; <em>dürfte + Perf.</em> = probability about past."},
+{q:"Negation: 'Not every patient can tolerate it' — correct German?",o:["Kein Patient kann das Mittel vertragen.","Nicht jeder Patient kann das Mittel vertragen.","Jeder Patient kann das Mittel nicht vertragen.","Alle Patienten können nicht das Mittel vertragen."],c:1,exp:"<em>Nicht jeder</em> = partial negation (not every). <em>Kein Patient</em> = total negation (no patient — too strong). <em>Jeder … nicht</em> is ambiguous. <em>Nicht jeder</em> means some can, some cannot."},
+{q:"<em>Das Medikament war ___ teuer, als dass sich viele es leisten konnten.</em>",o:["zu","so","dermaßen","viel"],c:0,exp:"<strong>Zu … als dass</strong>: 'too X for consequence'. The als-dass clause requires <strong>K2</strong>. <em>So … dass</em> takes indicative. Only <em>zu … als dass</em> triggers subjunctive."},
+{q:"<em>Das Rezept, ___ der Arzt ausgestellt hatte, war unleserlich.</em>",o:["das","den","dem","welches"],c:0,exp:"<strong>Relativpronomen Akkusativ</strong>: <em>das Rezept</em> is the object of <em>ausgestellt</em> (accusative). Neuter accusative relative pronoun → <em>das</em>."},
+{q:"<em>Die Patientin klagte, ___ die Tabletten ihr immer noch nicht geholfen hätten.</em>",o:["dass","ob","wenn","damit"],c:0,exp:"<strong>K2 in dass-Satz</strong>: Indirect speech. <em>helfen</em> K2 Perfekt: <em>hätten … geholfen</em>. <em>ob</em> = whether (question); <em>wenn</em> = if; <em>damit</em> = so that."},
+{q:"<em>Um sicherzugehen, bat sie ihn, ___ Arzt zu konsultieren.</em>",o:["einem","den","seinen","einen"],c:3,exp:"<em>bitten + Akk. + zu-Infinitiv</em>. Object of consulting: <em>einen Arzt</em> (indefinite, masculine, accusative). Not <em>den</em> (specific); <em>einem</em> would be dative (wrong case for <em>konsultieren</em>)."},
+{q:"<em>Der Wirkstoff, ___ in allen Generika enthalten ist, wurde 1983 patentiert.</em>",o:["der","welcher","dem","dessen"],c:0,exp:"<strong>Relativpronomen Nominativ</strong>: The relative clause predicate is <em>ist</em>. Subject of the relative clause: masculine nominative = <em>der</em>. <em>welcher</em> is also correct but feels old-fashioned."}
+]},
+{id:3,emoji:"🏛️",title:"Der Architekt",titleEn:"The Architect",theme:"Relativsätze & Nominalphrasen",color:"#6366F1",
+desc:"Complex relative clauses and extended noun phrases in the architect's world.",
+qs:[
+{q:"<em>Das Gebäude, ___ Fassade aus rotem Backstein besteht, wurde 1920 gebaut.</em>",o:["das","dessen","deren","dem"],c:1,exp:"<strong>Genitivrelativsatz</strong>: <em>das Gebäude</em> is neuter → genitive relative = <em>dessen</em>. <em>deren</em> = plural or feminine genitive."},
+{q:"<em>Das Projekt, an ___ er jahrelang gearbeitet hatte, wurde abgelehnt.</em>",o:["dem","das","den","welchem"],c:0,exp:"<strong>Präpositionalrelativsatz</strong>: <em>arbeiten an + Dativ</em>. Neuter dative relative → <em>dem</em>. <em>welchem</em> also works but is more literary."},
+{q:"Which is a correct Partizipialattribut?",o:["Das schnell gebaute Haus","Das Haus schnell gebaut","Das schnell Haus gebaute","Das gebaute schnell Haus"],c:0,exp:"<strong>Partizipialattribut</strong>: the phrase occupies the space between article and noun, with participle immediately before noun: <em>das [schnell gebaute] Haus.</em>"},
+{q:"Best nominalization of <em>Die Planung, die der Architekt vorschlug</em>:",o:["Der Vorschlag des Architekten zur Planung","Die vom Architekten vorgeschlagene Planung","Die Planung, vorgeschlagen vom Architekten","Des Architekten vorgeschlagene Planung"],c:1,exp:"<strong>Partizipialattribut</strong>: <em>die vom Architekten vorgeschlagene Planung</em>. Most compact natural nominalization. The agent becomes <em>vom</em>-phrase; Partizip II carries adjective ending."},
+{q:"<em>Es handelt sich ___ ein modernes Bürogebäude.</em>",o:["um","an","über","von"],c:0,exp:"<strong>Es handelt sich um</strong>: fixed collocation meaning 'it is a matter of / it concerns'. Always <em>um + Akkusativ</em>. Non-negotiable."},
+{q:"<em>Statt ___ Betons verwendete der Architekt Holz.</em>",o:["des","dem","den","der"],c:0,exp:"<strong>Statt + Genitiv</strong>. <em>Beton</em> (masculine) genitive → <em>des Betons</em>. Colloquial German uses dative (<em>statt dem Beton</em>) but formal writing requires genitive."},
+{q:"<em>Das zu errichtende Gebäude</em> — what does this express?",o:["Building that was erected","Building that must/will be erected","Building that had been erected","Building that could be erected"],c:1,exp:"<strong>Zu-Partizip (Gerundivum)</strong>: <em>zu + Partizip I</em> as attributive modifier expresses obligation/necessity: <em>das zu errichtende Gebäude</em> = the building to be erected. Replaces passive relative clause."},
+{q:"<em>Trotz ___ mehrerer Baufehler wurde das Projekt als Erfolg gewertet.</em>",o:["der","des","die","den"],c:1,exp:"<strong>Trotz + Genitiv</strong>. <em>Baufehler</em> plural in genitive after <em>trotz</em> → strong declension pronoun: <em>mehrerer</em> (genitive plural of <em>mehrere</em>)."},
+{q:"<em>Die Zeichnung wurde ___ einem erfahrenen Ingenieur korrigiert.</em>",o:["von","durch","mit","bei"],c:0,exp:"<strong>Von + Dativ = direct agent</strong>: the engineer is a direct human agent. <em>Durch</em> = indirect means/cause."},
+{q:"<em>Der Architekt, ___ Entwürfe alle Preise gewonnen hatten, bekam den Auftrag.</em>",o:["dessen","der","dem","welchen"],c:0,exp:"<strong>Genitivrelativsatz</strong>: refers to <em>der Architekt</em> (masculine) modifying his designs. Masculine genitive → <em>dessen</em>. The plural of the noun modified doesn't change the pronoun form."}
+]},
+{id:4,emoji:"⚖️",title:"Die Richterin",titleEn:"The Judge",theme:"Konzessive & Adversative Strukturen",color:"#DC2626",
+desc:"Concessive and adversative connectors in the judge's courtroom.",
+qs:[
+{q:"<em>___ er geständig war, verhängte die Richterin eine strenge Strafe.</em>",o:["Obwohl","Weil","Da","Wenn"],c:0,exp:"<strong>Obwohl</strong> = although. Sets up the concessive contrast: he confessed → but harsh sentence. <em>Weil/Da</em> = because; <em>wenn</em> = if."},
+{q:"<em>Auch ___ er alle Beweise vernichtet hatte, überführte ihn die Zeugin.</em>",o:["wenn","ob","falls","wie"],c:0,exp:"<strong>Auch wenn</strong> = even if/though. Fixed concessive connector. Can refer to hypothetical AND real concessions — unlike <em>obwohl</em> (typically real facts only)."},
+{q:"<em>Die Angeklagte schwieg; ___ konnte ihr das Gericht keine Schuld nachweisen.</em>",o:["dennoch","daher","also","somit"],c:0,exp:"<strong>Dennoch</strong> = nevertheless (adversative). Contrast: she stayed silent, yet court couldn't prove guilt. <em>daher/also/somit</em> = therefore (consecutive)."},
+{q:"<em>Er beteuerte seine Unschuld, ___ alle Indizien gegen ihn sprachen.</em>",o:["obgleich","sodass","damit","seitdem"],c:0,exp:"<strong>Obgleich</strong> = although (literary/formal, used in legal texts). <em>sodass</em> = so that; <em>damit</em> = so that/in order to; <em>seitdem</em> = since (temporal)."},
+{q:"<em>___ die Beweise schwach waren, ___ die Richterin das Urteil.</em>",o:["Wenngleich … sprach","Wenngleich … sprach trotzdem","Obwohl … sprach trotzdem","Obwohl … sprach"],c:0,exp:"<strong>Wenngleich + V2 main clause</strong>: <em>wenngleich</em> = although. Verb-final in its clause; main clause resumes with standard V2: <em>sprach die Richterin.</em> Adding <em>trotzdem</em> is redundant."},
+{q:"<em>Er wurde verurteilt, ___ sein Anwalt protestierte.</em>",o:["wohingegen","wogegen","während","obwohl"],c:2,exp:"<strong>Während (adversative)</strong>: 'while/whereas'. <em>Er wurde verurteilt, während sein Anwalt protestierte</em> = convicted while his lawyer protested. Temporal + contrastive meaning."},
+{q:"<em>Ungeachtet ___ Proteste der Verteidigung wurde das Urteil bestätigt.</em>",o:["der","den","die","dem"],c:0,exp:"<strong>Ungeachtet + Genitiv</strong>: formal preposition 'regardless of'. <em>die Proteste</em> (plural) genitive → <em>der Proteste</em>. Very common in legal and journalistic German."},
+{q:"<em>Er gestand, ___ er fürchtete, die Wahrheit werde ans Licht kommen.</em>",o:["weil","obwohl","sodass","weshalb"],c:0,exp:"<strong>Weil</strong>: causal conjunction. Note the <em>werde</em> (K1 of <em>werden</em>) inside the causal clause — indirect speech embedded in the cause. <em>obwohl</em> would give concessive meaning."},
+{q:"<em>Das Urteil fiel hart aus, ___ manche es für übertrieben hielten.</em>",o:["wenn auch","obgleich","obwohl","wennschon"],c:1,exp:"<strong>Obgleich</strong> = although (formal). Naturally introduces a complete verb-final subordinate clause. <em>wenn auch</em> typically modifies a single element; <em>wennschon</em> is colloquial."},
+{q:"<em>Er war ___ schuldiger ___ zunächst angenommen.</em>",o:["eher … als","mehr … denn","weniger … als","viel … wie"],c:0,exp:"<strong>Eher … als</strong>: 'rather/more X than'. Used for qualitative comparisons. <em>Er war eher schuldig als zunächst angenommen</em> = he was guiltier than initially assumed."}
+]},
+{id:5,emoji:"🔬",title:"Die Forscherin",titleEn:"The Researcher",theme:"Passiv-Transformationen",color:"#7C3AED",
+desc:"All passive constructions — Vorgangs-, Zustands-, Modal-, bekommen-Passiv.",
+qs:[
+{q:"<em>Das Experiment ___ dreimal wiederholt.</em> — Vorgangspassiv Präteritum",o:["wurde","ist … worden","wird","war … worden"],c:0,exp:"<strong>Vorgangspassiv Präteritum</strong>: <em>wurde + Partizip II</em>. Simple past passive for completed lab events."},
+{q:"<em>Die Daten sind bereits ausgewertet ___.</em> — Zustandspassiv?",o:["worden","—(nothing)","werden","geworden"],c:1,exp:"<strong>Zustandspassiv</strong> = <em>sein + Partizip II</em> (nothing else). <em>Die Daten sind ausgewertet.</em> Adding 'worden' creates Vorgangspassiv Perfekt (different meaning)."},
+{q:"<em>Die Ergebnisse ___ von allen Kollegen überprüft werden.</em> — Modalpassiv",o:["müssen","sind … zu überprüfen","müssen … werden","sollen zu überprüfen"],c:2,exp:"<strong>Modalpassiv</strong>: modal + Partizip II + werden (infinitive). <em>müssen überprüft werden</em> = must be reviewed."},
+{q:"<em>Ihm wurde der Nobelpreis verliehen.</em> — What case is <em>ihm</em>?",o:["Nominativ","Akkusativ","Dativ","Genitiv"],c:2,exp:"<strong>Dative in passive</strong>: When active sentence has a dative object, in passive it remains dative. The direct object becomes the grammatical subject. <em>ihm</em> stays dative."},
+{q:"<em>Das Experiment lässt sich leicht wiederholen.</em> — What does <em>lässt sich</em> replace?",o:["Active voice","Passive: kann wiederholt werden","Reflexive: repeats itself","Modal: muss wiederholt werden"],c:1,exp:"<strong>Lassen + sich + Infinitiv</strong> = Passivumschreibung: <em>lässt sich wiederholen</em> = kann wiederholt werden. Focuses on the inherent property of being repeatable."},
+{q:"<em>Von wem ___ die Theorie ursprünglich ___?</em>",o:["wurde … entwickelt","ist … entwickelt","hat … entwickelt","wurde … entwickelt worden"],c:0,exp:"<strong>Passiv Frage</strong>: <em>Von wem wurde X entwickelt?</em> Präteritum passive for historical fact questions."},
+{q:"<em>Das ___ eine wichtige Entdeckung.</em> — Zustandspassiv or Kopula?",o:["Zustandspassiv","Simple Kopula: sein + Prädikativ (no passive)","Vorgangspassiv","Modalpassiv"],c:1,exp:"<strong>Kopula vs. Zustandspassiv</strong>: <em>Das ist eine wichtige Entdeckung</em> = copula with predicate noun. Zustandspassiv requires a past participle: <em>Die Entdeckung ist gemacht.</em>"},
+{q:"<em>Die Theorie ___ als bahnbrechend ___ werden.</em> — Passiv Futur I",o:["wird … bewertet","ist … bewertet","wird … bewertet sein","soll … bewertet sein"],c:0,exp:"<strong>Passiv Futur I</strong>: <em>wird + Partizip II + werden</em>. <em>Die Theorie wird als bahnbrechend bewertet werden.</em>"},
+{q:"<em>Das Labor ist leicht zu ___.</em> — Passivumschreibung",o:["erreichen","erreichend","erreichbar machen","sich erreichen"],c:0,exp:"<strong>Sein + zu-Infinitiv</strong>: <em>Das Labor ist leicht zu erreichen</em> = can be reached easily. Replaces modal passive <em>kann leicht erreicht werden</em>."},
+{q:"<em>Die Studie ___ von der Universität in Auftrag gegeben worden.</em>",o:["ist","wurde","wird","war"],c:0,exp:"<strong>Passiv Perfekt</strong>: <em>ist + Partizip II + worden</em>. <em>Die Studie ist in Auftrag gegeben worden.</em> Note: <em>worden</em> NOT <em>geworden</em> in passive perfekt."}
+]},
+{id:6,emoji:"⚓",title:"Der Kapitän",titleEn:"The Sea Captain",theme:"Konnektoren & Satzverknüpfung",color:"#0E7490",
+desc:"Subordinating, coordinating, and adverbial connectors on the high seas.",
+qs:[
+{q:"<em>Er navigierte das Schiff, ___ der Sturm immer heftiger wurde.</em>",o:["obwohl","während","seitdem","nachdem"],c:1,exp:"<strong>Während</strong>: simultaneously temporal and adversative. He navigated calmly WHILE the storm grew. Verb-final in the <em>während</em>-clause."},
+{q:"<em>___ die Mannschaft erschöpft war, arbeitete sie diszipliniert weiter.</em>",o:["Obwohl","Weil","Da","Wenn"],c:0,exp:"<strong>Obwohl</strong> = although. The concessive contrast: exhausted yet disciplined. V2 main clause follows."},
+{q:"<em>Der Kurs wurde geändert, ___ Eisberge gemeldet worden waren.</em>",o:["nachdem","seitdem","bevor","bis"],c:0,exp:"<strong>Nachdem + Plusquamperfekt</strong>: 'after X happened, Y'. Reports first, then course change. Passiv Plusquamperfekt in <em>nachdem</em>-clause."},
+{q:"<em>Er brach das Funk-Schweigen, ___ er Hilfe rufen konnte.</em>",o:["damit","sodass","obwohl","weil"],c:0,exp:"<strong>Damit</strong>: final conjunction 'so that/in order that'. Used when subjects of main and subordinate clause differ. <em>Um zu</em> requires same subject."},
+{q:"<em>___ er den Hafen erreicht hatte, fiel der Anker.</em>",o:["Sobald","Seitdem","Während","Bis"],c:0,exp:"<strong>Sobald + Plusquamperfekt</strong>: 'as soon as'. Marks instantaneous trigger. Compare <em>nachdem</em>: emphasizes sequence more than immediacy."},
+{q:"<em>Er war ___ erschöpft ___ er kaum stehen konnte.</em>",o:["so … dass","zu … als dass","weder … noch","je … desto"],c:0,exp:"<strong>So … dass (Konsekutivsatz)</strong>: degree leading to real consequence. Uses indicative. <em>Zu … als dass</em> uses K2 (hypothetical prevention)."},
+{q:"<em>___ das Schiff noch in Sicht war, funkte er Positionsdaten.</em>",o:["Solange","Seitdem","Nachdem","Sobald"],c:0,exp:"<strong>Solange</strong> = as long as / while (continuous duration). Not a one-time event like <em>sobald</em> or sequence like <em>nachdem</em>."},
+{q:"<em>Er hielt das Steuer fest, ___ die Wellen immer höher stiegen.</em>",o:["während","obwohl","als","wenn"],c:1,exp:"<strong>Obwohl</strong>: concessive contrast. He held firm DESPITE the rising waves. <em>als</em> could be temporal but loses concessive emphasis."},
+{q:"<em>___ er die Grube betrat, zog er seinen Schutzhelm an.</em>",o:["Bevor","Nachdem","Als","Während"],c:0,exp:"<strong>Bevor</strong>: 'before'. Helmet first, then entered. The <em>bevor</em>-clause states the later event from the perspective of the earlier one."},
+{q:"<em>Er hatte die Küste kaum verlassen, ___ die Explosion einsetzte.</em>",o:["als","wenn","bevor","nachdem"],c:0,exp:"<strong>Kaum … als</strong>: 'no sooner … than'. The Plusquamperfekt + <em>als</em> = barely when. Classic pattern for immediate sequence."}
+]},
+{id:7,emoji:"🥐",title:"Die Bäckerin",titleEn:"The Baker",theme:"Infinitivkonstruktionen",color:"#B45309",
+desc:"All infinitive constructions — um zu, ohne zu, anstatt zu — in the bakery at dawn.",
+qs:[
+{q:"<em>Sie stand um 4 Uhr auf, ___ den Teig vorzubereiten.</em>",o:["um … zu","ohne … zu","anstatt … zu","statt … zu"],c:0,exp:"<strong>Um … zu + Infinitiv</strong>: purpose/goal. 'In order to'. Most common purposive infinitive. Same subject required."},
+{q:"<em>Sie backte das Brot, ___ das Rezept zu überprüfen.</em>",o:["um","ohne","anstatt","damit"],c:1,exp:"<strong>Ohne … zu</strong>: 'without doing'. <em>Ohne das Rezept zu überprüfen</em> = without checking the recipe. Same subject — if subjects differ, use <em>ohne dass + clause</em>."},
+{q:"<em>___ zu schlafen, arbeitete sie bis Mitternacht.</em>",o:["Um","Ohne","Anstatt","Statt"],c:2,exp:"<strong>Anstatt … zu</strong>: 'instead of'. She worked INSTEAD OF sleeping. Both <em>anstatt</em> and <em>statt</em> are correct."},
+{q:"<em>Die Brötchen sind bis 7 Uhr ___.</em>",o:["zu backen (sein + zu)","zum Backen","gebacken","gebacken zu sein"],c:0,exp:"<strong>Sein + zu-Infinitiv</strong>: obligation/necessity. <em>sind zu backen</em> = must be baked. Replaces <em>müssen gebacken werden</em>."},
+{q:"<em>Es gelang ihr, das Rezept ___ zu verbessern.</em>",o:["merklich","merkliche","merklichen","merklichem"],c:0,exp:"<strong>Adverb in Infinitivphrase</strong>: adverbs modifying infinitives take NO ending. <em>merklich verbessern</em> = noticeably improve. Errors arise from confusing adverbial with attributive adjective function."},
+{q:"<em>Sie ließ die Brötchen abkühlen, ___ sie zu glasieren.</em>",o:["bevor","statt","ohne","um"],c:1,exp:"<strong>Statt … zu</strong>: 'instead of'. She let them cool INSTEAD OF glazing. <em>Um zu</em> would mean 'in order to glaze' — wrong meaning here."},
+{q:"<em>Das Brot scheint gut aufzugehen.</em> — What structure is this?",o:["Scheinen + Partizip I","Scheinen + zu-Infinitiv (correct)","Modal + Infinitiv","Kopula + Adjektiv"],c:1,exp:"<strong>Scheinen + zu-Infinitiv</strong>: 'to seem to'. After <em>scheinen</em>, infinitive with <em>zu</em> follows. Separable verbs: <em>auf+zu+gehen = aufzugehen</em>. Note the insertion of <em>zu</em> between separable prefix and stem."},
+{q:"<em>Es ist wichtig, ___ Qualitätszutaten zu verwenden.</em>",o:["nur","nur noch","ausschließlich","allein"],c:0,exp:"<strong>Fokuspartikel in Infinitivphrase</strong>: <em>nur</em> (only) modifies the object within the infinitive phrase. <em>Es ist wichtig, nur X zu tun</em> = it is important to do only X."},
+{q:"<em>Anstatt ___ Mehl zu sparen, kaufte sie die beste Qualität.</em>",o:["zu","—(nothing)","beim","auf"],c:1,exp:"<strong>Anstatt zu + Infinitiv</strong>: No preposition between <em>anstatt</em> and <em>zu</em>. The <em>zu</em> directly precedes the infinitive (with <em>zu</em> inserted for separables). <em>Anstatt Mehl zu sparen</em> — the object <em>Mehl</em> comes before <em>zu</em>."},
+{q:"<em>Die Bäckerin ist es gewohnt, früh aufzustehen.</em> — What structure after <em>gewohnt</em>?",o:["ohne … zu","anstatt … zu","zu-Infinitiv directly","um … zu"],c:2,exp:"<strong>Gewohnt sein + zu-Infinitiv</strong>: 'to be used to doing'. The infinitive phrase takes <em>zu</em> directly: <em>früh aufzustehen</em>. No preposition before the infinitive here."}
+]},
+{id:8,emoji:"🕵️",title:"Der Detektiv",titleEn:"The Detective",theme:"Modalverben (Deontisch & Epistemisch)",color:"#1E3A5F",
+desc:"Deontic vs. epistemic modality — the double life of German modal verbs in the detective's world.",
+qs:[
+{q:"<em>Er muss der Täter sein.</em> — What kind of modal use?",o:["Deontic: must be the perpetrator","Epistemic: I deduce he is the perpetrator","Permission","Volitive"],c:1,exp:"<strong>Epistemic muss</strong>: without external obligation source, <em>muss</em> expresses logical deduction: 'the evidence points to him → he must be'. Deontic <em>muss</em> requires an authority — absent here."},
+{q:"<em>Er dürfte die Waffe versteckt haben.</em> — Meaning?",o:["Permission: allowed to hide it","Probability: probably hid it","Obligation: had to hide it","Concession: even if he hid it"],c:1,exp:"<strong>Dürfen K2 (dürfte)</strong> = epistemic probability. <em>dürfte … haben</em> = probably has/in all likelihood. Detectives and lawyers use <em>dürfte</em> for careful conclusions without overcommitting."},
+{q:"<em>Er soll ein Geständnis abgelegt haben.</em> — Meaning?",o:["Obligation from a superior","Hearsay: reportedly confessed","Future probability","Volition"],c:1,exp:"<strong>Sollen 3rd person</strong> = hearsay: 'it is said that / reportedly'. The source is external and unverified. Compare: <em>muss</em> = deduction; <em>dürfte</em> = probability; <em>soll</em> = claim from others."},
+{q:"<em>Die Zeugin will ihn gesehen haben.</em> — Meaning?",o:["Future: will see him","Claim: claims to have seen him (skeptical)","Wants to have seen him","Obligation"],c:1,exp:"<strong>Wollen 3rd person</strong> = unverified personal claim: 'maintains she has'. The detective reports her claim without endorsing it. Key epistemic use of <em>wollen</em>."},
+{q:"Difference: <em>Er kann</em> vs. <em>Er könnte der Komplize sein</em>?",o:["No difference","kann = open possibility; könnte = more tentative","kann = probability; könnte = certainty","kann = past; könnte = present"],c:1,exp:"<strong>Kann vs. Könnte epistemic</strong>: <em>kann</em> = live possibility; <em>könnte</em> (K2) = more tentative, distanced, hypothetical. In detective reasoning this gradient matters: live possibility vs. speculation."},
+{q:"<em>Er hätte das Alibi früher ___ sollen.</em> — Correct form?",o:["vorbringen","vorgebracht","vorzubringen","vorbringen lassen"],c:1,exp:"<strong>Modalverb K2 Perfekt</strong>: <em>hätte … vorgebracht sollen</em> = should have presented (but didn't). Partizip II + modal infinitive (Ersatzinfinitiv when another infinitive is present)."},
+{q:"Which sentence uses <em>müssen</em> deontically (obligation)?",o:["Er muss der Mörder sein (logic)","Alle Zeugen müssen morgen erscheinen (rule)","Das muss ein Fehler sein (deduction)","Er muss sehr müde sein (inference)"],c:1,exp:"<strong>Deontic muss</strong>: obligation from external authority (court order). <em>Alle Zeugen müssen erscheinen</em>. Options A, C, D express logical deduction → epistemic."},
+{q:"<em>Der Verdächtige mag unschuldig sein, ___ stellt er eine Gefahr dar.</em>",o:["aber","weil","obwohl","daher"],c:0,exp:"<strong>Mag … aber</strong>: concessive use of <em>mögen</em>. <em>Er mag unschuldig sein</em> = He may (concede) be innocent (but…). Formal concessive pattern."},
+{q:"<em>Das Motiv muss schon lange bekannt ___ sein.</em>",o:["gewesen","worden","zu","haben"],c:0,exp:"<strong>Muss + Perfektinfinitiv</strong>: <em>bekannt sein</em> uses <em>sein</em>-Perfekt → <em>bekannt gewesen sein</em>. Full: <em>Das Motiv muss schon lange bekannt gewesen sein</em> = must have been known."},
+{q:"<em>Sie könnte die Dokumente gestohlen ___ haben.</em>",o:["können","zu","—","lassen"],c:2,exp:"<strong>Könnten + Perfektinfinitiv</strong>: <em>könnte … gestohlen haben</em>. No extra word needed between <em>gestohlen</em> and <em>haben</em>. Structure: modal-K2 + Partizip II + haben/sein."}
+]},
+{id:9,emoji:"🎨",title:"Die Malerin",titleEn:"The Painter",theme:"Valenz & Präpositionalobjekte",color:"#BE185D",
+desc:"Verb valency and prepositional objects — which verbs take which prepositions — in the artist's studio.",
+qs:[
+{q:"<em>Sie konzentriert sich ___ die Details.</em>",o:["an","auf","über","bei"],c:1,exp:"<strong>Sich konzentrieren + auf + Akkusativ</strong>: fixed prepositional government. Always <em>auf</em>. Non-negotiable — mixing with other prepositions is a classic error."},
+{q:"<em>Sie verzichtet ___ Farben aus der Tube.</em>",o:["auf","an","mit","von"],c:0,exp:"<strong>Verzichten + auf + Akkusativ</strong>: to forgo. <em>auf etwas verzichten</em> — always <em>auf</em> with accusative."},
+{q:"<em>Die Malerin erinnert sich ___ ihren ersten Ausstellungstag.</em>",o:["von","auf","an","über"],c:2,exp:"<strong>Sich erinnern + an + Akkusativ</strong>. <em>an</em> is obligatory. Common error: using <em>von</em> (English-influenced)."},
+{q:"<em>Das Bild besteht ___ vielen einzelnen Schichten Farbe.</em>",o:["aus","von","mit","bei"],c:0,exp:"<strong>Bestehen + aus + Dativ</strong>: to consist of. Compare: <em>bestehen auf</em> (insist upon) — same verb, different preposition, different meaning."},
+{q:"<em>Es kommt ___ die genaue Farbmischung an.</em>",o:["auf","an","zu","bei"],c:0,exp:"<strong>Ankommen auf + Akkusativ</strong> (es kommt auf … an): 'it depends on'. Separable verb with fixed prepositional object."},
+{q:"<em>Sie ist ___ ihrer neuesten Technik begeistert.</em>",o:["über","von","auf","an"],c:1,exp:"<strong>Begeistert sein + von + Dativ</strong>. Compare: <em>sich begeistern für + Akk.</em> (verb form takes <em>für</em>). Participial adjective takes <em>von</em>."},
+{q:"<em>Die Kritiker stritten ___ den Wert des Gemäldes.</em>",o:["um","über","an","mit"],c:1,exp:"<strong>Streiten + über + Akkusativ</strong>: argue about. <em>über</em> = topic of dispute. Contrast: <em>streiten um</em> = compete for (object of competition)."},
+{q:"<em>Sie hat sich ___ den Galeristen gewendet.</em>",o:["an","zu","bei","nach"],c:0,exp:"<strong>Sich wenden + an + Akkusativ</strong>: to turn to/approach. <em>an</em> always. Common error: <em>zu</em> (English-influenced)."},
+{q:"<em>Sie zweifelt ___ der Echtheit des Gemäldes.</em>",o:["an","über","von","auf"],c:0,exp:"<strong>Zweifeln + an + Dativ</strong>. <em>an</em> + dative. Compare: <em>bezweifeln</em> (transitive, no preposition) = direct accusative object."},
+{q:"<em>Das Gemälde erinnert mich ___ eine Szene aus meiner Kindheit.</em>",o:["von","auf","an","über"],c:2,exp:"<strong>Erinnern (jemanden) an + Akkusativ</strong>: to remind of. Same preposition as reflexive use. <em>Das erinnert mich an X</em> = this reminds me of X."}
+]},
+{id:10,emoji:"⛏️",title:"Der Bergmann",titleEn:"The Miner",theme:"Temporale Satzgefüge",color:"#374151",
+desc:"Temporal conjunctions — als, wenn, nachdem, bevor, bis, seitdem, sobald — underground.",
+qs:[
+{q:"<em>___ er jung war, arbeitete er in der Grube.</em>",o:["Als","Wenn","Nachdem","Bevor"],c:0,exp:"<strong>Als vs. wenn</strong>: <em>als</em> = when (single event in past). <em>wenn</em> = whenever (repeated) or when (present/future). His youth = single period → <em>als</em>."},
+{q:"<em>___ die Sirene ertönte, verließen alle Bergleute die Grube.</em>",o:["Als","Wenn","Bevor","Nachdem"],c:1,exp:"<strong>Wenn (repeated past)</strong>: 'whenever the siren sounded'. Repeated/habitual → <em>wenn</em>. <em>Als</em> = one time only."},
+{q:"<em>___ er die Grube verlassen hatte, wusch er sich gründlich.</em>",o:["Nachdem","Bevor","Bis","Seitdem"],c:0,exp:"<strong>Nachdem + Plusquamperfekt → Präteritum</strong>: after leaving (earlier past) → washed (later past). Sequence is obligatory."},
+{q:"<em>Er arbeitete, ___ die Kohle erschöpft war.</em>",o:["bis","seitdem","obwohl","sobald"],c:0,exp:"<strong>Bis</strong>: 'until'. Marks the end point of continuous action. <em>seitdem</em> = since (starting point, not endpoint)."},
+{q:"<em>___ er in der Grube arbeitet, hat er Rückenprobleme.</em>",o:["Seitdem","Nachdem","Bis","Als"],c:0,exp:"<strong>Seitdem</strong>: 'since' (marking beginning of ongoing state). Present tense in main clause (ongoing result from starting point)."},
+{q:"<em>___ er die Grube betrat, zog er seinen Schutzhelm an.</em>",o:["Bevor","Nachdem","Als","Während"],c:0,exp:"<strong>Bevor</strong>: 'before'. Helmet first (earlier), then entered (later). <em>Bevor</em> introduces the later event seen from earlier perspective."},
+{q:"<em>___ er die Lampe einschaltete, war es völlig dunkel.</em>",o:["Bevor","Bis","Seitdem","Sobald"],c:0,exp:"<strong>Bevor</strong>: the darkness describes the state that existed BEFORE lamp was switched on. Compare: <em>Sobald er einschaltete, wurde es hell</em> = instantaneous trigger."},
+{q:"<em>___ er oben ankam, trank er einen Becher Wasser.</em>",o:["Sobald","Bis","Seitdem","Bevor"],c:0,exp:"<strong>Sobald</strong>: 'as soon as'. Water-drinking began immediately at the moment of arrival. Instantaneous trigger."},
+{q:"<em>Er arbeitete in der Grube, ___ der Schacht einstürzte.</em>",o:["als","wenn","bevor","nachdem"],c:0,exp:"<strong>Als (single past event)</strong>: collapse was one-time. <em>arbeitete</em> = ongoing background; <em>einstürzte</em> = foregrounded event."},
+{q:"<em>Er hatte die Grube kaum verlassen, ___ die Explosion einsetzte.</em>",o:["als","wenn","bevor","nachdem"],c:0,exp:"<strong>Kaum … als</strong>: 'no sooner … than'. Plusquamperfekt + <em>als</em> = barely when. Classic pattern for immediate sequence."}
+]},
+{id:11,emoji:"⏱️",title:"Der Uhrmacher",titleEn:"The Watchmaker",theme:"Nominalisierung & Nominalstil",color:"#0D9488",
+desc:"Nominalisations, Funktionsverbgefüge, and Nominalstil vs Verbalstil.",
+qs:[
+{q:"Nominalise: <em>Der Meister überprüft das Werk sorgfältig.</em>",o:["Die sorgfältige Überprüfung des Werks durch den Meister","Der Meister überprüft sorgfältig","Das sorgfältige Werk des Meisters","Die Überprüfung des Meisters ist sorgfältig"],c:0,exp:"<strong>Nominalisierung</strong>: <em>überprüfen</em> → <em>Überprüfung</em>. Subject → <em>durch</em>-agent. Object → genitive. Adverb → attributive adjective. Classic Nominalstil."},
+{q:"Which represents formal Nominalstil?",o:["Er hat das Modell angepasst und getestet.","Die Anpassung und anschließende Testung des Modells erfolgte.","Danach hat er es getestet.","Er passte an und testete."],c:1,exp:"<strong>Nominalstil</strong>: favours abstract nouns (<em>Anpassung, Testung</em>), avoids pronouns, prefers impersonal constructions (<em>erfolgte</em>). Typical in bureaucratic and technical texts."},
+{q:"<em>Die Überprüfung der Qualität ___ alle zwei Stunden statt.</em>",o:["findet","erfolgt","nimmt","passiert"],c:0,exp:"<strong>Stattfinden</strong>: to take place. FVG: <em>die Überprüfung findet statt</em>. <em>Erfolgt</em> is also common (bureaucratic). <em>Stattfinden</em> most direct."},
+{q:"Which is the Funktionsverbgefüge for 'the master investigated the problem'?",o:["Der Meister untersuchte.","Der Meister nahm eine Untersuchung des Problems vor.","Der Meister hat untersucht.","Der Meister ist Untersucher."],c:1,exp:"<strong>FVG: eine Untersuchung vornehmen</strong>. The full verb meaning splits into light verb (<em>vornehmen</em>) + verbal noun (<em>Untersuchung</em>)."},
+{q:"<em>Das Ziel bestand ___ der Perfektionierung des Mechanismus.</em>",o:["in","an","mit","auf"],c:0,exp:"<strong>Bestehen in + Dativ</strong>: 'to lie/consist in'. Nominalstil expression for goals. Compare: <em>bestehen aus</em> (consist of materials); <em>bestehen auf</em> (insist)."},
+{q:"<em>Er brachte seine Unzufriedenheit ___ Ausdruck.</em>",o:["zum","an","auf","in"],c:0,exp:"<strong>Zum Ausdruck bringen</strong>: FVG for <em>ausdrücken</em>. More formal and emphatic. Compare: <em>zum Ausdruck kommen</em> (to be expressed, intransitive)."},
+{q:"<em>Die Verhandlungen kamen ___ einem Stillstand.</em>",o:["zu","an","in","auf"],c:0,exp:"<strong>Zu einem Stillstand kommen</strong>: to come to a standstill. FVG expressing arrival at a state. Pattern: <em>zu … kommen</em> with abstract process nouns."},
+{q:"<em>Die Firma brachte das Produkt ___ den Markt.</em>",o:["auf","an","in","zu"],c:0,exp:"<strong>Auf den Markt bringen</strong>: to launch/bring to market. Fixed FVG. Compare: <em>zur Sprache bringen</em> (different <em>zu</em>-preposition), <em>in Frage stellen</em> (<em>in</em>)."},
+{q:"<em>Er stand ___ Verfügung.</em>",o:["zur","an der","in der","bei"],c:0,exp:"<strong>Zur Verfügung stehen</strong>: to be available. <em>zur</em> (= zu + der). Fixed. Compare: <em>zur Verfügung stellen</em> (to make available)."},
+{q:"<em>Trotz ___ Schwierigkeiten vollendete der Uhrmacher das Meisterstück.</em>",o:["alle","allen","aller","alles"],c:2,exp:"<strong>Trotz + Genitiv</strong>. <em>Schwierigkeiten</em> plural. After <em>trotz</em> without article, pronoun shows genitive: <em>aller Schwierigkeiten</em> (strong genitive plural of <em>alle</em>)."}
+]},
+{id:12,emoji:"🎼",title:"Die Dirigentin",titleEn:"The Conductor",theme:"Steigerung & Komparativ",color:"#7E22CE",
+desc:"Comparative, superlative, and degree expressions in the concert hall.",
+qs:[
+{q:"<em>Je mehr sie probte, ___ besser wurde das Orchester.</em>",o:["desto","umso","so","als"],c:0,exp:"<strong>Je … desto</strong>: comparative correlative. After <em>desto</em>: adjective → verb → subject. Both <em>desto</em> and <em>umso</em> correct; <em>desto</em> more traditional formally."},
+{q:"<em>Dieses Konzert war ___ schön als jedes andere.</em>",o:["schöner","so","mehr","am schönsten"],c:0,exp:"<strong>Komparativ + als</strong>: <em>schöner als</em>. Never <em>mehr schön</em> in German. Analytical comparative only for long adjectives ending -lich/-ig."},
+{q:"Superlative in predicate: <em>Diese Sinfonie ist ___.</em>",o:["am schönsten","die schönste","schönsten","am schönen"],c:0,exp:"<strong>Prädikativer Superlativ</strong>: <em>am … sten</em>. NOT inflected article form. <em>Sie ist am schönsten.</em> Inflected form (<em>die schönste</em>) = attributive, before noun."},
+{q:"<em>Das Publikum applaudierte ___ länger als erwartet.</em>",o:["noch","schon","mehr","viel"],c:0,exp:"<strong>Noch + Komparativ</strong>: 'even longer'. Common intensifiers with comparatives: <em>noch, weit, viel, bedeutend, erheblich.</em>"},
+{q:"<em>Das Finale war ___ schön, wie sie es sich vorgestellt hatte.</em>",o:["so","genauso","doppelt so","eben so"],c:0,exp:"<strong>So … wie (Äquativ)</strong>: expressing equality. <em>so schön, wie</em>. <em>Genauso</em> also correct (= just as) but heavier stylistically."},
+{q:"<em>Die Dirigentin bat das Orchester, ___ leise zu spielen.</em>",o:["etwas","bisschen","ein","manche"],c:0,exp:"<strong>Etwas + Komparativ</strong>: 'a little (more quietly)'. <em>etwas leiser</em>. <em>Ein bisschen leiser</em> also correct but needs <em>ein</em>. <em>Etwas</em> alone is more elegant."},
+{q:"<em>Die Aufführung war noch ___ gelungen als die Generalprobe.</em>",o:["mehr","besser","am besten","viel"],c:1,exp:"<strong>Noch besser</strong>: intensified comparative of <em>gut</em>. <em>gut → besser → am besten</em>. With <em>noch</em>: use the comparative form."},
+{q:"<em>Das Stück wurde ___ erwartet gespielt.</em>",o:["anders als","so wie","genauso wie","nicht als"],c:0,exp:"<strong>Anders als erwartet</strong>: 'differently from expected'. Fixed comparative construction with <em>als</em>. <em>So wie erwartet</em> = as expected — opposite meaning."},
+{q:"<em>Das Publikum war ___ begeistert als skeptisch.</em>",o:["mehr … als","eher … als","weniger … als","mehr … denn"],c:1,exp:"<strong>Eher … als</strong>: 'rather than'. Preferred for qualitative comparisons of attitudes. <em>Mehr … als</em> works for quantities."},
+{q:"<em>___ kein anderer Dirigent konnte sie die Musikerinnen motivieren.</em>",o:["Wie","Als","So","Da"],c:0,exp:"<strong>Wie kein anderer</strong>: superlative-like comparison 'like no other'. Fixed expression expressing uniqueness. Fronted → V2: <em>konnte sie.</em>"}
+]},
+{id:13,emoji:"🏚️",title:"Der Schornsteinfeger",titleEn:"The Chimney Sweep",theme:"Funktionsverbgefüge",color:"#1F2937",
+desc:"Light verb constructions (FVG) — the German multi-word expressions that replace simple verbs.",
+qs:[
+{q:"<em>Der Chef traf eine ___.</em> — Replace 'entschied'",o:["Entscheidung","Entschluss","Richtung","Auswahl"],c:0,exp:"<strong>Eine Entscheidung treffen</strong>: FVG for <em>entscheiden</em>. Light verb (<em>treffen</em>) carries tense; verbal noun (<em>Entscheidung</em>) carries meaning."},
+{q:"<em>Der Schornsteinfeger nahm ___ auf.</em> — FVG for 'began contact'?",o:["Arbeit","Kontakt","Schluss","Bedacht"],c:1,exp:"<strong>Kontakt aufnehmen</strong>: to make contact. Fixed FVG. <em>Arbeit aufnehmen</em> also an FVG (commence work). Non-compositional — meaning can't always be predicted."},
+{q:"<em>Die Firma brachte das neue Produkt ___ den Markt.</em>",o:["auf","an","in","zu"],c:0,exp:"<strong>Auf den Markt bringen</strong>: to launch. Fixed FVG for market introduction. Each FVG has its own frozen preposition."},
+{q:"<em>Er zog ___ Betracht, seinen Beruf zu wechseln.</em>",o:["in","an","auf","unter"],c:0,exp:"<strong>In Betracht ziehen</strong>: to take into consideration. Always <em>in Betracht ziehen</em>. Related: <em>in Frage stellen, in Angriff nehmen.</em>"},
+{q:"<em>Die Reinigung kam ___ Anwendung.</em>",o:["zur","an der","in","auf"],c:0,exp:"<strong>Zur Anwendung kommen</strong>: to be applied. FVG with <em>zu(r) + verbal noun</em>. Pattern: <em>zur Ausführung, zur Sprache, zur Geltung kommen.</em>"},
+{q:"<em>Er stand ___ Verfügung.</em>",o:["zur","an der","in der","bei"],c:0,exp:"<strong>Zur Verfügung stehen</strong>: to be available. FVG with <em>stehen</em>. Compare: <em>zur Verfügung stellen</em> (make available)."},
+{q:"<em>Er brachte seine Unzufriedenheit ___ Ausdruck.</em>",o:["zum","an","auf","in"],c:0,exp:"<strong>Zum Ausdruck bringen</strong>: to express. FVG. More formal than <em>ausdrücken</em>. Compare: <em>zum Ausdruck kommen</em> (to be expressed, passive equivalent)."},
+{q:"Which is a correct Funktionsverbgefüge?",o:["eine Entscheidung machen","eine Frage stellen","Hilfe nehmen","einen Entschluss treffen (= machen)"],c:1,exp:"<strong>Eine Frage stellen</strong> ✓. <em>Eine Entscheidung machen</em> ✗ (correct: <em>treffen</em>). Watch the Funktionsverb — cannot be swapped arbitrarily."},
+{q:"<em>Die Aktion hat Früchte ___.</em>",o:["getragen","gebracht","gezeigt","erwiesen"],c:0,exp:"<strong>Früchte tragen</strong>: to bear fruit / produce results. Figurative fixed collocation. Compare: <em>Wirkung zeigen</em> (show effect)."},
+{q:"<em>Er nahm ___ dem Vorschlag Stellung.</em>",o:["zu","an","gegen","über"],c:0,exp:"<strong>Stellung nehmen zu + Dativ</strong>: to comment on/take a position on. Fixed FVG. <em>Er nahm zu dem Vorschlag Stellung.</em> Common in formal and journalistic German."}
+]},
+{id:14,emoji:"✈️",title:"Die Pilotin",titleEn:"The Pilot",theme:"Topologie & Verbklammer",color:"#0369A1",
+desc:"German clause topology — Vorfeld, Mittelfeld, Nachfeld, and Verbklammer in the cockpit.",
+qs:[
+{q:"In <em>Sicher hat die Pilotin das Flugzeug gelandet</em> — what is in the Vorfeld?",o:["'hat'","'die Pilotin'","'sicher'","'gelandet'"],c:2,exp:"<strong>Vorfeld</strong>: the first position before the finite verb. <em>Sicher</em> (safely) is topicalised in the Vorfeld. The finite verb <em>hat</em> is in V2. Subject <em>die Pilotin</em> is in the Mittelfeld."},
+{q:"Where does <em>sicher</em> go in <em>Die Pilotin hat das Flugzeug sicher gelandet</em>?",o:["Before 'hat'","In Nachfeld after 'gelandet'","In Mittelfeld between 'hat' and 'gelandet' — correct","Before 'das Flugzeug'"],c:2,exp:"<strong>Mittelfeld</strong>: the space between finite verb (<em>hat</em>) and non-finite verb (<em>gelandet</em>). Adverbs and objects occupy the Mittelfeld."},
+{q:"Identify the Verbklammer in <em>Die Pilotin hat die Passagiere beruhigt.</em>",o:["hat … beruhigt","beruhigt alone","hat alone","die Passagiere … beruhigt"],c:0,exp:"<strong>Verbklammer</strong>: <em>hat</em> (finite auxiliary) + <em>beruhigt</em> (participle) form the bracket, with all elements (<em>die Passagiere</em>) in between. Fundamental principle of German clause structure."},
+{q:"Which demonstrates correct Ausklammerung?",o:["Ich habe gehört gestern, dass der Flug gestrichen wurde.","Ich habe gestern gehört, dass der Flug gestrichen wurde.","Ich habe gestern, dass der Flug gestrichen wurde, gehört.","Gestern ich habe gehört dass."],c:1,exp:"<strong>Ausklammerung</strong>: dass-clause extraposed to Nachfeld. <em>Ich habe gestern gehört, dass…</em>. The adverb <em>gestern</em> stays in Mittelfeld; the heavy dass-clause follows the bracket."},
+{q:"Which violates V2?",o:["Gestern ist sie gelandet.","Sie ist gestern gelandet.","Sie gestern ist gelandet.","Gelandet ist sie gestern."],c:2,exp:"<strong>V2 violation</strong>: Option C has subject in V1, finite verb in V3 — ungrammatical. V2 is obligatory: the finite verb MUST be the second position element."},
+{q:"<em>Dass der Sturm vorbei ist,</em> ___ — what follows?",o:["erleichtert sie sehr","sie erleichtert sehr","sehr sie erleichtert","sehr erleichtert sie"],c:0,exp:"<strong>Verb-first after dass-clause Vorfeld</strong>: When dass-clause occupies the whole Vorfeld, main clause starts with finite verb (V2 maintained): <em>Dass … ist, erleichtert sie.</em>"},
+{q:"In <em>Die Pilotin landet das Flugzeug auf dem Flughafen</em>: what is the Vorfeld?",o:["'die Pilotin'","'landet'","'das Flugzeug'","'auf dem Flughafen'"],c:0,exp:"<strong>Vorfeld</strong>: <em>die Pilotin</em> (subject fronted). V2 = <em>landet</em>. Mittelfeld = <em>das Flugzeug auf dem Flughafen</em>."},
+{q:"What is the topological function of <em>obwohl</em>-clauses?",o:["They can appear in Vorfeld, Mittelfeld, or Nachfeld","They are always in Nachfeld (Ausklammerung)","They can only appear in Mittelfeld","They are Vorfeld elements only"],c:0,exp:"<strong>Subordinate clause positions</strong>: Subordinate clauses can appear in Vorfeld (fronted), Nachfeld (extraposed), or even in Mittelfeld (embedded). The most common are Vorfeld and Nachfeld positions."},
+{q:"<em>Manchmal hilft es, wenn man das Problem erst einmal ruhen lässt.</em> — Position of wenn-clause?",o:["Vorfeld","Mittelfeld","Nachfeld (Ausklammerung)","Verbklammer"],c:2,exp:"<strong>Nachfeld / Ausklammerung</strong>: The <em>wenn</em>-clause is extraposed to the Nachfeld after <em>es hilft</em> (which is a proleptic <em>es</em> referencing the clause). Heavy clauses naturally move to the Nachfeld."},
+{q:"Typical Mittelfeld order: pronoun objects vs. full NPs?",o:["Full NPs always come first","Pronouns always precede full NPs","No fixed order","Pronouns follow full NPs"],c:1,exp:"<strong>Mittelfeld ordering</strong>: Pronouns rise to the left edge of the Mittelfeld (near the finite verb). Full NPs stay to the right. <em>Ich habe ihm das Buch gegeben</em> (Dat-pron) before <em>das Buch</em> (Acc-NP)."}
+]},
+{id:15,emoji:"💌",title:"Der Briefträger",titleEn:"The Postman",theme:"Konditionalgefüge",color:"#065F46",
+desc:"Conditional sentences — real, unreal present, unreal past, and mixed conditionals.",
+qs:[
+{q:"<em>Wenn es morgen regnet, ___ ich den Regenschirm mit.</em>",o:["nehme","nähme","hätte genommen","nehmen würde"],c:0,exp:"<strong>Realkonditionalis</strong>: real/open condition. Both clauses: indicative. <em>Wenn es regnet, nehme ich mit.</em> <em>Würde</em> is possible but less natural when simple present works."},
+{q:"<em>Wenn er einen Wagen hätte, ___ er schneller sein.</em>",o:["würde","wäre","ist","sein würde"],c:1,exp:"<strong>Irrealkonditionalis Gegenwart</strong>: unreal present. Both clauses: K2. <em>hätte … wäre</em>. For <em>sein</em>, direct K2 form <em>wäre</em> — don't use <em>würde sein</em> (stilted for common verbs with distinct K2)."},
+{q:"<em>Wenn er früher aufgebrochen ___, hätte er den Brief rechtzeitig zugestellt.</em>",o:["wäre","wäre gewesen","war","hatte"],c:0,exp:"<strong>Irrealkonditionalis Vergangenheit</strong>: unreal past. K2 Perfekt in both clauses. <em>wäre aufgebrochen</em> = K2 Perfekt of <em>aufbrechen</em> (sein-verb)."},
+{q:"<em>Wenn er gestern früher gestartet ___, wäre er jetzt schon fertig.</em>",o:["wäre","würde","war","wäre geworden"],c:0,exp:"<strong>Mixed Conditional</strong>: past condition → present result. Wenn-clause: K2 Perfekt (<em>wäre gestartet</em>); main clause: K2 Präsens (<em>wäre jetzt fertig</em>). Past counterfactual with present consequence."},
+{q:"<em>Hätte er das gewusst, ___ er einen anderen Weg genommen.</em>",o:["hätte er","würde er","hatte er","hat er"],c:0,exp:"<strong>Konditional ohne 'wenn'</strong>: verb moves to V1 when <em>wenn</em> is omitted: <em>Hätte er gewusst, hätte er genommen.</em> More formal/literary style."},
+{q:"<em>Falls er krank ___, wird er nicht ausliefern.</em>",o:["ist","wäre","sei","sein sollte"],c:0,exp:"<strong>Falls + Indikativ</strong>: real/open condition. <em>falls</em> = if (specific). Using K2 <em>wäre</em> would make it more hypothetical. <em>sein sollte</em> also possible (should he happen to be ill — more tentative)."},
+{q:"<em>Wenn ich du wäre, würde ich den kürzeren Weg nehmen.</em> — What type?",o:["Typ I (real)","Typ II (unreal present)","Typ III (unreal past)","Concessive"],c:1,exp:"<strong>Typ II Irrealis</strong>: 'if I were you' — I am not you → counterfactual. K2 in both clauses: <em>wäre … würde … nehmen.</em>"},
+{q:"<em>Sofern die Adresse ___ ist, wird das Paket zugestellt.</em>",o:["korrekt","korrekte","korrektem","korrekteste"],c:0,exp:"<strong>Sofern + Indikativ</strong>: provided that. Predicate adjective (after <em>ist</em>) takes no ending: <em>korrekt</em>."},
+{q:"<em>Gesetzt den Fall, ___ die Post streiken, wäre er arbeitslos.</em>",o:["dass","sollte","wenn","ob"],c:1,exp:"<strong>Gesetzt den Fall, sollte…</strong>: formal hypothetical opener. Followed by verb-initial with <em>sollte</em> (= should/were to). Used in legal and formal registers."},
+{q:"Which sentence uses K2 correctly for a polite request?",o:["Können Sie mir helfen?","Könnten Sie mir helfen?","Konnten Sie mir helfen?","Könnten Sie mir geholfen haben?"],c:1,exp:"<strong>K2 für höfliche Bitte</strong>: <em>Könnten Sie mir helfen?</em> = Could you help me? K2 makes the request more tentative and polite. <em>Können</em> = can (direct, slightly more blunt). <em>Konnten</em> = Präteritum indicative (past ability, not polite)."}
+]},
+{id:16,emoji:"🌱",title:"Der Gärtner",titleEn:"The Gardener",theme:"Reflexivverben & Reziprozität",color:"#166534",
+desc:"Reflexive verbs, obligatory reflexives, and reciprocal constructions in the garden.",
+qs:[
+{q:"<em>Der Gärtner freut ___.</em>",o:["ihm","sich","ihn","es"],c:1,exp:"<strong>Obligatorisch reflexives Verb</strong>: <em>sich freuen</em> — the <em>sich</em> has no independent meaning. Accusative reflexive. Others: <em>sich befinden, sich ereignen, sich weigern, sich beeilen.</em>"},
+{q:"<em>Er hat ___ die Hände gewaschen.</em>",o:["sich","ihm","ihn","es"],c:0,exp:"<strong>Reflexivpronomen Dativ</strong>: with explicit direct object (<em>die Hände</em>), reflexive pronoun shifts to dative. <em>sich die Hände waschen</em> = wash one's own hands."},
+{q:"<em>Die Rosen wachsen ___ sehr gut.</em>",o:["sich","—","für sich","an sich"],c:1,exp:"<strong>Intransitive verb</strong>: <em>wachsen</em> is intransitive here — no reflexive needed. <em>Die Rosen wachsen gut.</em>"},
+{q:"<em>Die Mitarbeiter haben ___ über den Vorwurf beschwert.</em>",o:["sich","einander","sich gegenseitig","sie"],c:0,exp:"<strong>Reflexivum tantum</strong>: <em>sich beschweren</em> always reflexive. <em>Über etwas beschweren</em> = to complain about something."},
+{q:"<em>Die Schwestern helfen ___.</em> — unambiguously reciprocal?",o:["sich (ambiguous)","einander (correct — each other)","sich gegenseitig","—"],c:1,exp:"<strong>Einander</strong> = each other (unambiguously reciprocal). <em>Sich</em> is ambiguous (themselves or each other). <em>Einander</em> preferred in formal German."},
+{q:"<em>Das Projekt entwickelt ___ positiv.</em>",o:["sich","einander","es","—"],c:0,exp:"<strong>Middle-voice reflexive</strong>: <em>sich entwickeln</em> = to develop (spontaneously). Marks that the process happens of its own accord. Common: <em>sich verändern, sich erholen, sich ausbreiten.</em>"},
+{q:"<em>Er erinnert ___ gut an seinen ersten Garten.</em>",o:["sich","ihn","ihm","es"],c:0,exp:"<strong>Sich erinnern an + Akkusativ</strong>: <em>sich</em> is accusative reflexive. <em>an seinen ersten Garten</em> = prepositional object."},
+{q:"<em>Die Blumen ___ abends.</em> (close themselves)",o:["schließen sich","schließen einander","sind geschlossen","sich schließen"],c:0,exp:"<strong>Process reflexive</strong>: <em>sich schließen</em> = to close (by itself/spontaneously). <em>Die Blumen schließen sich abends.</em>"},
+{q:"<em>Er hat ___ beim Schneiden verletzt.</em>",o:["sich","ihm","ihn","es"],c:0,exp:"<strong>Akkusativ-Reflexivum</strong>: <em>sich verletzen</em> = to injure oneself. Accusative reflexive. Compare: <em>Er hat sich die Hand verletzt</em> — <em>sich</em> shifts to dative when body part added."},
+{q:"<em>Sie haben ___ jahrelang nicht gesehen.</em>",o:["sich","einander","sich gegenseitig","—"],c:0,exp:"<strong>Sich (reciprocal)</strong>: In plural context with mutual action, <em>sich</em> is unambiguously reciprocal. <em>Einander</em> also correct (more formal). Both acceptable."}
+]},
+{id:17,emoji:"🧵",title:"Die Schneiderin",titleEn:"The Seamstress",theme:"Konjunktiv II Perfekt",color:"#BE185D",
+desc:"Unreal past — regrets, reproaches, and missed opportunities in the atelier.",
+qs:[
+{q:"<em>Wenn sie das Muster geprüft ___, wäre der Fehler nicht passiert.</em>",o:["hätte","wäre","hat","haben würde"],c:0,exp:"<strong>K2 Perfekt Konditionalgefüge</strong>: Unreal past. <em>prüfen</em> (hat-verb) K2 Perfekt: <em>hätte geprüft</em>. She didn't check → mistake happened."},
+{q:"<em>Sie hätte das Kleid gestern fertigstellen ___.</em>",o:["sollen","gesollt","zu sollen","sollend"],c:0,exp:"<strong>Ersatzinfinitiv K2 Perfekt</strong>: <em>hätte … fertigstellen sollen</em> = should have finished. When another infinitive is present, modal stays as infinitive (Ersatzinfinitiv), not Partizip II."},
+{q:"<em>Das ___ sie besser machen können.</em>",o:["hätte","wäre","würde","hat"],c:0,exp:"<strong>Hätte … machen können</strong> = could have done better. Structure: K2-Aux (hätte) + Infinitive + Infinitive (triple structure with modal)."},
+{q:"<em>Wäre sie früher aufgestanden, ___.</em>",o:["hätte sie alles fertig","wäre sie fertig gewesen","ist sie fertig geworden","wird sie fertig sein"],c:0,exp:"<strong>K2 Perfekt both clauses</strong>: Verb-first without <em>wenn</em>. <em>wäre aufgestanden</em> = K2 Perfekt of <em>aufstehen</em> (sein-verb). Main: <em>hätte sie alles fertig [gehabt]</em>."},
+{q:"<em>Das hätte ich nicht gedacht!</em> — What does this express?",o:["Past obligation","Surprise/disbelief about past situation","Permission","Future certainty"],c:1,exp:"<strong>Erstaunen via K2 Perfekt</strong>: <em>Das hätte ich nicht gedacht</em> = I wouldn't have thought so! Expresses surprise that something happened that the speaker didn't expect. Common pragmatic use of K2 Perfekt."},
+{q:"<em>Sie ___ nur mehr Aufmerksamkeit auf die Nähte verwenden sollen.</em>",o:["hätte","wäre","würde","hat"],c:0,exp:"<strong>Hätte … sollen</strong>: reproach/unmet obligation. <em>Hätte mehr Aufmerksamkeit verwenden sollen</em> = should have paid more attention. <em>Sollte</em> would express present/future obligation."},
+{q:"<em>Wenn sie doch nur ___ um Hilfe gebeten hätte!</em>",o:["—","ihn","es","sich"],c:0,exp:"<strong>Wunsch K2 Perfekt</strong>: <em>Wenn sie doch nur um Hilfe gebeten hätte!</em> = If only she had asked for help! <em>bitten um + Akkusativ</em> is the prepositional object. No extra pronoun needed here."},
+{q:"Which expresses 'She need not have bought that fabric'?",o:["Sie hätte den Stoff nicht kaufen müssen.","Sie hätte den Stoff nicht kaufen sollen.","Sie durfte den Stoff nicht kaufen.","Sie brauchte den Stoff nicht kaufen."],c:0,exp:"<strong>Nicht müssen K2 Perfekt</strong>: <em>hätte nicht … müssen</em> = need not have (but did). <em>Nicht sollen</em> = should not have (reproach). <em>Nicht dürfen</em> = was not allowed to."},
+{q:"<em>An deiner Stelle ___ ich einen anderen Faden genommen.</em>",o:["hätte","wäre","wollte","sollte"],c:0,exp:"<strong>An deiner Stelle + K2 Perfekt</strong>: 'In your place, I would have taken…'. Retrospective advice. Very natural colloquial use of K2 Perfekt."},
+{q:"<em>Es wäre besser gewesen, wenn sie die Wolle vorher gewaschen ___.</em>",o:["hätte","wäre","hätte haben","würde haben"],c:0,exp:"<strong>K2 Perfekt im Konditionalgefüge</strong>: Main already uses K2 Perfekt. Wenn-clause: <em>wenn sie gewaschen hätte</em>. <em>waschen</em> = hat-verb → <em>hätte gewaschen.</em>"}
+]},
+{id:18,emoji:"🏥",title:"Die Hebamme",titleEn:"The Midwife",theme:"Erweiterte Partizipialattribute",color:"#047857",
+desc:"Extended participial attributes — the most complex noun phrase in German.",
+qs:[
+{q:"Which is a correct Erweitertes Partizipialattribut?",o:["Das Kind gestern geborene","Das gestern geborene Kind","Das Kind das gestern geboren wurde","Gestern Kind geborenes"],c:1,exp:"<strong>EPA</strong>: bracket between article and noun. Structure: [Art.] [adverb] [Partizip II/I] [Noun]. <em>Das gestern geborene Kind.</em>"},
+{q:"Convert: <em>Die Hebamme, die sehr erfahren ist.</em>",o:["Die sehr erfahrene Hebamme","Die Hebamme erfahrene sehr","Die erfahren sehr Hebamme","Erfahrene sehr Hebamme"],c:0,exp:"<strong>Relativsatz → Partizipialattribut</strong>: <em>die sehr erfahren ist</em> → <em>die sehr erfahrene Hebamme</em>. Feminine nominative weak ending: <em>-e</em>."},
+{q:"<em>Das vom Arzt sorgfältig ___ Kind wurde entlassen.</em>",o:["untersuchte","untersuchende","untersuchenden","untersuchend"],c:0,exp:"<strong>Partizip II im EPA</strong>: Passivisches Partizip II: <em>untersucht + adjektiv-ending</em>. Das Kind (neuter nominative, after definite article → weak: <em>-e</em>) = <em>untersuchte</em>."},
+{q:"<em>Die ___ Geburt wurde komplikationslos abgeschlossen.</em> — Insert EPA for 'expected for two months'",o:["seit zwei Monaten erwartete","zwei Monate erwarten","erwartete zwei Monate","seit zwei Monaten erwartende"],c:0,exp:"<strong>Zeit + Partizip II in EPA</strong>: <em>seit zwei Monaten erwartete</em>. Partizip II of <em>erwarten</em> with passive meaning. Feminine noun (<em>die Geburt</em>) → weak nominative: <em>-e</em>."},
+{q:"Which uses Partizip I correctly as attributive?",o:["Das schlafende Baby wurde vorsichtig gehoben.","Das geschlafene Baby.","Das Baby, das schläft.","Das geschlafende Baby."],c:0,exp:"<strong>Partizip I als Attribut</strong>: <em>schlafend + e</em> = ongoing action. <em>Das schlafende Baby</em>. Option D (<em>geschlafende</em>) is wrong — no Partizip I from past stem."},
+{q:"<em>Die von der Hebamme mit großer Sorgfalt ___ Neugeborene lag im Bett.</em>",o:["gepflegte","pflegende","gepflegt","pflegend"],c:0,exp:"<strong>Passivisches Partizip II + EPA</strong>: <em>pflegen</em> with <em>von + agent</em> = passive meaning in attribute. <em>die Neugeborene</em> (fem. nom.) → weak: <em>gepflegte.</em>"},
+{q:"Convert: <em>Das Mädchen, das in der Klinik nach einer schweren Geburt versorgt wurde.</em>",o:["Das in der Klinik nach einer schweren Geburt versorgte Mädchen","Das versorgte in der Klinik Mädchen","Das Mädchen in der Klinik nach schwerer Geburt versorgte","Versorgte Mädchen in der Klinik"],c:0,exp:"<strong>Complex EPA</strong>: <em>das [in der Klinik nach einer schweren Geburt versorgte] Mädchen.</em> All adverbials precede the participle. Neuter nominative → weak: <em>-e</em>."},
+{q:"<em>Das ___ Neugeborene weinte laut.</em> — EPA from 'Es wurde vor einer Stunde geboren.'",o:["vor einer Stunde geborene","vor einer Stunde gebärende","eine Stunde lang geborene","kürzlich geborene"],c:0,exp:"<strong>Zeit-EPA</strong>: <em>Das vor einer Stunde geborene Neugeborene.</em> Time adverbial before Partizip II. Neuter nominative → weak: <em>-e</em>."},
+{q:"What is the structural formula for an EPA?",o:["[Noun] [participle] [adverbs]","[Article] [adverbs/complements] [participle + adj.ending] [Noun]","[Article] [participle] [Noun] [adverbs]","[Participle] [Article] [Noun]"],c:1,exp:"<strong>EPA Formula</strong>: [Article] [adverbs/complements/objects] [Partizip + adjective ending] [Noun]. The participle comes immediately before the noun; everything modifying the participle precedes it within the bracket."},
+{q:"<em>Der von vielen Kollegen ___ Operationssaal war gut ausgestattet.</em> — EPA for 'praised'",o:["gelobte","lobende","lobend","gelobt"],c:0,exp:"<strong>Partizip II with agent phrase</strong>: <em>loben</em> (hat-verb) → Partizip II: <em>gelobt</em>. With <em>von vielen Kollegen</em> as agent phrase → passive meaning. Masculine nominative → weak: <em>gelobte.</em>"}
+]},
+{id:19,emoji:"🌿",title:"Der Kräutersammler",titleEn:"The Herb Gatherer",theme:"Genus & Komposita",color:"#4D7C0F",
+desc:"Noun gender patterns, plural formation, and compound nouns — in the apothecary.",
+qs:[
+{q:"What is the gender of <em>die Schlüsselblume</em>?",o:["der (masculine)","die (feminine)","das (neuter)","variable"],c:1,exp:"<strong>-e Suffix</strong>: Nouns ending in <em>-e</em> are overwhelmingly feminine. <em>die Schlüsselblume, die Blume, die Pflanze.</em> Exceptions: <em>der Käse, der Glaube.</em>"},
+{q:"Plural of <em>das Kraut</em>?",o:["die Kraute","die Kräuter","die Krauts","die Krauten"],c:1,exp:"<strong>Umlaut + -er</strong>: <em>das Kraut → die Kräuter.</em> Common neuter plural: <em>das Blatt → Blätter, das Haus → Häuser, das Dach → Dächer.</em>"},
+{q:"Gender rule for compound nouns?",o:["First element determines gender","Last element (head noun) determines gender","Compounds are always neuter","Random"],c:1,exp:"<strong>Kopfregel</strong>: German compound nouns take the gender of their <strong>final/head element</strong>. <em>die Heilpflanze</em> = <em>die Pflanze</em> (feminine). <em>der Teebaum</em> = <em>der Baum</em> (masculine)."},
+{q:"Plural of <em>die Heilpflanze</em>?",o:["die Heilpflanzen","die Heilpflanzes","die Heilpflanzen (only -n)","die Heilpflanzn"],c:0,exp:"<strong>-e Feminine plurals</strong>: end in <em>-n</em>: <em>die Pflanze → die Pflanzen.</em> Plural attaches to end of whole compound, not to each part."},
+{q:"Plural of <em>das Teeblatt</em>?",o:["die Teeblätter","die Teeblatts","die Teeblatt","die Teeblätten"],c:0,exp:"<strong>Compound plural = head noun plural</strong>: <em>das Blatt → die Blätter.</em> Therefore: <em>das Teeblatt → die Teeblätter.</em> Non-head element (<em>Tee-</em>) doesn't change."},
+{q:"What is the <em>Fugenelement</em> in <em>die Kamillenblüte</em>?",o:["-en- (plural marker)","-(e)n- (Fugenelement — linking morpheme)","Genitive marker","-en- (separable prefix)"],c:1,exp:"<strong>Fugenelement</strong>: <em>-(e)n-</em> between compound elements is a Fugenelement. NOT plural or genitive — historical linking morpheme. Others: <em>-s- (Geburtsort), -er- (Kinderlachen), -e- (Hundehütte).</em>"},
+{q:"Gender of <em>das Unkraut</em>?",o:["Masculine like <em>der Kram</em>","Neuter like <em>das Kraut</em>","Feminine","Variable"],c:1,exp:"<strong>Un- prefix keeps base gender</strong>: <em>das Un-kraut</em>. Head noun <em>das Kraut</em> is neuter → compound is neuter. Pattern: <em>Un- + Noun</em> keeps gender of base: <em>die Untat (die Tat), der Unfug (der Fug), das Unglück (das Glück).</em>"},
+{q:"<em>Der Holunder</em> (elder tree) — which gender?",o:["der (masculine)","die (feminine)","das (neuter)","variable"],c:0,exp:"<strong>Der Holunder</strong> = masculine. Tree names vary: <em>der Ahorn, der Holunder</em> (masc.); <em>die Eiche, die Birke, die Fichte</em> (fem.); <em>das Holz</em> (neuter = wood, not a tree name). Must be memorised."},
+{q:"<em>die Kamillen-_-blüte</em> — which Fugenelement is used?",o:["-(e)n- (Kamillenblüte)","-(s)- (Kamillsblüte)","-(er)- (Kamillernblüte)","none (Kamillblüte)"],c:0,exp:"<strong>-(e)n- Fugenelement</strong>: <em>Kamille → Kamillen</em> before the next element. This is the <em>-(e)n</em> Fugenelement. Not all feminines in <em>-e</em> use it — depends on the specific compound."},
+{q:"What does the <em>Un-</em> prefix do to noun meaning?",o:["Makes it plural","Makes it diminutive","Creates negation/pejorative sense","Makes it genitive"],c:2,exp:"<strong>Un- prefix</strong>: creates negation or pejorative meaning: <em>das Kraut</em> (herb/plant) → <em>das Unkraut</em> (weed = bad plant). <em>die Tat</em> (deed) → <em>die Untat</em> (misdeed). The prefix adds semantic negativity."}
+]},
+{id:20,emoji:"🖋️",title:"Der Schriftsteller",titleEn:"The Writer",theme:"Konjunktiv I (Indirekte Rede)",color:"#1E1B4B",
+desc:"Mastering Konjunktiv I for reported speech — the full system in the writer's study.",
+qs:[
+{q:"Original: „Ich schreibe jeden Tag.\" — K1 indirect speech?",o:["Er sagte, er schreibt.","Er sagte, er schreibe.","Er sagte, er schriebe.","Er sagte, er würde schreiben."],c:1,exp:"<strong>K1 3rd person singular</strong>: <em>schreiben</em> K1 3rd sg = <em>schreibe</em>. Distinct from indicative (<em>schreibt</em>). Always: infinitive stem + <em>-e</em>."},
+{q:"Original: „Wir haben das Manuskript abgegeben.\" — K1 Perfekt?",o:["Sie hätten abgegeben.","Sie haben abgegeben.","Sie gaben ab.","Sie seien abgegeben worden."],c:0,exp:"<strong>K1 Perfekt substitution</strong>: <em>haben</em> K1 3rd plural = <em>haben</em> (= indicative!). Therefore K2 (<em>hätten</em>) substitutes. <em>Sie hätten abgegeben.</em>"},
+{q:"<em>Wissen</em> K1 3rd plural = ?",o:["wissen (= indicative → use K2 wüssten)","wissen (acceptable)","wüssten (always use K2)","wisset"],c:0,exp:"<strong>K1 = Indicative → use K2</strong>: <em>wissen</em> K1 3rd plural = <em>wissen</em> — identical to indicative. Therefore K2 must be used: <em>wüssten.</em>"},
+{q:"<em>Sie behauptete, sie ___ das Buch selbst geschrieben.</em> — K1 or K2?",o:["habe (K1 — distinct from indicative)","hätte (K2)","hat (indicative — wrong)","hatte (Präteritum — wrong)"],c:0,exp:"<strong>K1 Perfekt 3rd sg</strong>: <em>haben</em> K1 3rd sg = <em>habe</em>. Distinct from indicative (<em>hat</em>). K1 can be used directly here."},
+{q:"Which is grammatically correct formal reported speech?",o:["Er sagte, er ist müde und könne nicht mehr schreiben.","Er sagte, er sei müde und könne nicht mehr schreiben.","Er sagte, er wäre müde und würde nicht mehr schreiben.","Er sagte, er sei müde und wird nicht mehr schreiben."],c:1,exp:"<strong>K1 Consistency</strong>: Both verbs should be in K1. <em>sei</em> (K1 of sein) + <em>könne</em> (K1 of können) = both correct. Option A mixes indicative + K1; C uses K2 throughout; D mixes K1 and indicative."},
+{q:"In newspapers, K1 is most commonly used in which person?",o:["3rd person singular","All persons equally","3rd plural only","Only in wenn-clauses"],c:0,exp:"<strong>K1 in journalism</strong>: Most common in 3rd person singular where forms are distinctively non-indicative: <em>er sei, er habe, er könne, er wolle, er werde.</em> Other persons rely more on K2."},
+{q:"<em>Der Minister sagte, er ___ diese Maßnahme für notwendig.</em>",o:["halte (K1)","würde halten (K2)","hält (indicative)","hielte (K2)"],c:0,exp:"<strong>Halten K1 3rd sg</strong>: <em>halten → halte</em>. Distinct from indicative (<em>hält</em>). K1 can be used directly. K2 (<em>hielte</em>) correct but unnecessary when K1 is available."},
+{q:"What does K1 in indirect speech signal that indicative does NOT?",o:["Higher register","Temporal distance","Epistemic distance: this is someone's claim, not narrator's statement","Event already happened"],c:2,exp:"<strong>Epistemische Distanzierung</strong>: K1 signals 'this is what someone said, not what I assert as fact'. Why courts, news, and scholarship use K1/K2 systematically."},
+{q:"<em>Er berichtete, dass die Rezension morgen erscheinen ___.</em>",o:["werde (K1 Futur I)","wird (indicative)","würde (K2)","worden ist"],c:0,exp:"<strong>K1 Futur I</strong>: <em>werden</em> K1 3rd sg = <em>werde</em>. In dass-clause of formal reported speech: <em>erscheinen werde</em>. K2 (<em>würde erscheinen</em>) also correct but K1 is the formal standard."},
+{q:"When is K2 used INSTEAD OF K1 in indirect speech?",o:["Always","Never — K1 is always used","When K1 form = indicative form","When the statement is false"],c:2,exp:"<strong>K2 substitution rule</strong>: K2 replaces K1 when K1 would be identical to the indicative. This avoids ambiguity. If K1 is clearly distinct from indicative, K1 is preferred in formal written German."}
+]},
+{id:21,emoji:"🕵️",title:"Der Geheimagent",titleEn:"The Secret Agent",theme:"Indirekte Fragesätze & Verhöre",color:"#D4AF37",
+desc:"Grammar in the shadows — indirect questions, reported doubt, and interrogation. (One item here isn't a question at all.)",
+qs:[
+{q:"Der Agent fragte flüsternd, <em>___</em> die Übergabe wie geplant stattfinden werde.",o:["dass","ob","wenn","weil"],c:1,exp:"<strong>Indirekte Ja/Nein-Frage: ob</strong>: Reporting a yes/no question uses <em>ob</em> ('whether'). <em>dass</em> introduces statements, <em>wenn</em> is conditional/temporal 'if/when', and <em>weil</em> means 'because' — none fit a reported question."},
+{q:"Der Vorgesetzte fragte, wer die Geheimakte <em>___</em>.",o:["hat gestohlen","gestohlen habe","stiehlt","stehlen würde"],c:1,exp:"<strong>Indirekte W-Frage: Verbendstellung + K1</strong>: the embedded question needs verb-final order plus Konjunktiv I: <em>wer die Geheimakte gestohlen habe</em>. <em>hat gestohlen</em> breaks verb-final order; <em>stiehlt</em> is present tense; K2 <em>stehlen würde</em> isn't needed since K1 (<em>habe</em>) already differs from the indicative (<em>hat</em>)."},
+{q:"Der Ermittler vermutete, der Kontaktmann <em>___</em> bereits gewarnt worden sein.",o:["muss","dürfte","soll","will"],c:1,exp:"<strong>Dürfte = vorsichtige Vermutung</strong>: K2 <em>dürfte</em> expresses cautious probability, matching <em>vermutete</em> ('suspected'). <em>muss</em> implies certainty; <em>soll</em> reports hearsay ('is said to'); <em>will</em> reports a claim the subject makes about itself."},
+{q:"Er wollte wissen, wann der Austausch stattfinden <em>___</em>.",o:["werde","wird","würde","wäre"],c:0,exp:"<strong>K1 Futur I</strong>: <em>werden</em> K1 3rd sg = <em>werde</em>, distinct from the indicative <em>wird</em> — so K1 is used directly in careful indirect speech. K2 <em>würde</em> is only needed when K1 collapses into the indicative; <em>wäre</em> is the wrong verb (<em>sein</em>, not <em>werden</em>)."},
+{q:"Der Agent war sich nicht sicher, <em>___</em> der Brief echt oder gefälscht war.",o:["dass","dessen","ob","wobei"],c:2,exp:"<strong>sich sicher sein, ob…</strong>: 'to be sure whether'. <em>ob</em> introduces the indirect alternative question ('whether…or'). <em>dass</em> introduces a statement, <em>dessen</em> is a genitive relative pronoun, and <em>wobei</em> ('whereby') doesn't fit here."},
+{q:"Der Agent berichtete, der Kontakt <em>___</em> zur Bushaltestelle kommen.",o:["soll","solle","sollte","würde sollen"],c:1,exp:"<strong>K1 von sollen: reported instruction</strong>: a direct command ('Komm zur Bushaltestelle!') becomes indirect with K1 <em>solle</em>. <em>soll</em> is indicative (states it as fact, not as reported); <em>sollte</em> is K2 (only needed if K1=indicative, which it isn't here); <em>würde sollen</em> isn't idiomatic — <em>sollen</em> already has its own K1/K2 forms."},
+{q:"Der Spion, <em>___</em> wahre Identität nie aufgedeckt wurde, verschwand spurlos.",o:["der","dessen","deren","dem"],c:1,exp:"<strong>Genitiv-Relativpronomen</strong>: <em>der Spion</em> is masculine, and the relative clause needs a possessive ('whose identity') = genitive <em>dessen</em>. <em>der</em>/<em>dem</em> are nominative/dative, <em>deren</em> is feminine/plural genitive."},
+{q:"Sie verhielt sich, als <em>___</em>",o:["ob sie nichts wüsste.","ob wüsste sie nichts.","wüsste sie nichts ob.","sie nichts wüsste ob."],c:0,exp:"<strong>als ob + Konjunktiv II</strong>: an irreal comparison ('as if'). With <em>als ob</em>, the clause keeps normal verb-final order: <em>als ob sie nichts wüsste</em>. (Drop <em>ob</em> and you'd invert instead: <em>als wüsste sie nichts</em>.)"},
+{q:"Man fragte sich, ob der Maulwurf im Ministerium wirklich <em>___</em>.",o:["existiert","existiere","existierte","existieren"],c:1,exp:"<strong>K1 Präsens, 3. Person Singular</strong>: <em>existieren</em> K1 3rd sg = <em>existiere</em>, distinct from the indicative <em>existiert</em> — so careful indirect speech uses K1 here, unlike verbs such as <em>haben</em>/<em>wissen</em> elsewhere, where K1 collapses into the indicative and K2 has to substitute instead. <em>existierte</em> is K2, <em>existieren</em> is the infinitive."},
+{q:"Er notierte sich, wie der Verdächtige die Nachricht <em>___</em> hatte.",o:["weiter gegeben","weitergegeben","weiter habe gegeben","hat weitergegeben"],c:1,exp:"<strong>Trennbares Verb: ein Partizip</strong>: separable-prefix verbs form ONE past participle — <em>weitergegeben</em>, never split into two words. It sits directly before the finite verb at the end of the subordinate clause: <em>die Nachricht weitergegeben hatte</em>."},
+{statement:true,icon:"🕵️",label:"Eine Nachricht von deinem Kontakt",text:"Kein Rätsel, nur ein Hinweis: Klicke dreimal schnell auf den Text in der Fußzeile dieser Seite, um einen geheimen Modus zu aktivieren.",textEn:"No riddle, just a tip: click the text in this page's footer three times quickly to activate a secret mode."}
+]}
+];
+
+let currentTest = null;
+let tmIdx = 0;
+let tmAnswers = [];
+
+function initParticles(){
+  const wrap = document.getElementById('particles');
+  if(!wrap) return;
+  const colors = ['#E8A800','#CC0000','#FFE033','#7C3AED','#10B981'];
+  for(let i=0;i<28;i++){
+    const el = document.createElement('div');
+    el.className = 'needle';
+    const size = 2 + Math.random()*4;
+    el.style.width = size+'px';
+    el.style.height = size+'px';
+    el.style.background = colors[Math.floor(Math.random()*colors.length)];
+    el.style.left = Math.random()*100+'%';
+    el.style.setProperty('--d', (Math.random()*120-60)+'px');
+    el.style.animationDuration = (8+Math.random()*14)+'s';
+    el.style.animationDelay = (Math.random()*14)+'s';
+    el.style.opacity = (0.25+Math.random()*0.45).toFixed(2);
+    wrap.appendChild(el);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   SIDEBAR / NAV
+═══════════════════════════════════════════ */
+
+function openSidebar(){
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sidebar-overlay').classList.add('open');
+}
+
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+}
+
+function toggleLight(){
+  const goingLight = !document.body.classList.contains('light');
+  document.body.classList.toggle('light', goingLight);
+  document.documentElement.classList.remove('pre-light');
+  localStorage.setItem('stargazer_theme', goingLight ? 'light' : 'dark');
+  const label = goingLight ? '🌙 Dark' : '☀ Day';
+  const btn = document.getElementById('darkToggle');
+  if(btn) btn.textContent = label;
+  const sideBtn = document.getElementById('sidebarDarkToggle');
+  if(sideBtn) sideBtn.textContent = goingLight ? '🌙 Dark Mode' : '☀ Day Mode';
+  if (typeof sbSaveDarkMode === 'function') sbSaveDarkMode(!goingLight);
+}
+
+/* ═══════════════════════════════════════════
+   GEHEIMER MODUS · SECRET MODE
+   Triple-clicking the footer text (not the "Zurück zur Hauptseite" link
+   itself) flips a hidden theme. e.detail is the browser's own rapid-click
+   counter, so no manual timers are needed. State persists in localStorage.
+   The Prüfungen section has a themed test ("Der Geheimagent") whose last
+   item plainly tells the player about this — see THEMED_TESTS id 21.
+═══════════════════════════════════════════ */
+
+function handleFooterClick(e){
+  if(e.target.closest('a')) return; // let the real navigation link work normally
+  if(e.detail===3) toggleSecretMode();
+}
+
+function toggleSecretMode(){
+  const on = !document.body.classList.contains('geheim-mode');
+  document.body.classList.toggle('geheim-mode', on);
+  try{ localStorage.setItem('german-geheim-mode', on ? '1' : '0'); }catch(e){}
+  showSecretToast(on);
+}
+
+function showSecretToast(on){
+  const existing = document.querySelector('.geheim-toast');
+  if(existing) existing.remove();
+  const t = document.createElement('div');
+  t.className = 'geheim-toast';
+  t.innerHTML = on
+    ? `🔮 <strong>Geheimer Modus aktiviert</strong><span>Secret mode activated — welcome behind the curtain.</span>`
+    : `Geheimer Modus deaktiviert <span>Secret mode off</span>`;
+  document.body.appendChild(t);
+  requestAnimationFrame(()=>t.classList.add('show'));
+  setTimeout(()=>{ t.classList.remove('show'); setTimeout(()=>t.remove(), 500); }, 3200);
+}
+
+function restoreSecretMode(){
+  try{ if(localStorage.getItem('german-geheim-mode')==='1') document.body.classList.add('geheim-mode'); }catch(e){}
+}
+
+/* ═══════════════════════════════════════════
+   READING LOGIN STATE FROM shared.js's OWN UI
+   shared.js renders into #loginBtn / #userInfo / #userEmailDisplay — this
+   page reads those same elements rather than keeping its own auth state,
+   so it can never drift out of sync with the real session.
+═══════════════════════════════════════════ */
+
+function renderTestGrid(){
+  document.getElementById('test-grid').innerHTML = THEMED_TESTS.map(t=>{
+    const done = getTestResult(t.id);
+    const rgb = t.color.match(/\w\w/g).map(x=>parseInt(x,16)).join(',');
+    const gradedCount = t.qs.filter(q=>!q.statement).length;
+    return `<div class="test-card${t.id===21?' secret-card':''}" style="--tc-color:${t.color};--tc-rgb:${rgb};--tc-border:${t.color}55" onclick="openTest(${t.id})">
+      <span class="test-emoji">${t.emoji}</span>
+      <div class="test-card-title">${t.title}</div>
+      <div class="test-card-en">${t.titleEn}</div>
+      <div class="test-card-theme">${t.theme}</div>
+      <div class="test-card-desc">${t.desc}</div>
+      <div class="test-card-meta">
+        <span class="test-card-qs">${gradedCount} Fragen · ${gradedCount} Punkte</span>
+        ${done ? `<span class="test-status completed">✓ ${done}/${gradedCount}</span>` : `<span class="test-status not-taken">Nicht versucht</span>`}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function getTestResult(testId){
+  try{ return localStorage.getItem('german-test-'+testId); }catch(e){ return null; }
+}
+
+function setTestResult(testId, score){
+  try{ localStorage.setItem('german-test-'+testId, score); }catch(e){}
+}
+
+function openTest(testId){
+  currentTest = THEMED_TESTS.find(t=>t.id===testId);
+  tmIdx = 0;
+  tmAnswers = new Array(currentTest.qs.length).fill(null);
+  document.getElementById('tm-emoji').textContent = currentTest.emoji;
+  document.getElementById('tm-title').textContent = currentTest.title;
+  document.getElementById('tm-sub').textContent = `${currentTest.titleEn} · ${currentTest.theme}`;
+  document.getElementById('tm-total-q').textContent = currentTest.qs.filter(q=>!q.statement).length;
+  document.getElementById('tm-questions-panel').style.display='block';
+  document.getElementById('tm-results').classList.remove('show');
+  renderTmQuestion();
+  document.getElementById('test-modal').classList.add('open');
+}
+
+function closeTestModal(){
+  document.getElementById('test-modal').classList.remove('open');
+  currentTest = null;
+}
+
+function renderTmQuestion(){
+  const q = currentTest.qs[tmIdx];
+  document.getElementById('tm-progress-txt').textContent = `Frage ${tmIdx+1} von ${currentTest.qs.length}`;
+  document.getElementById('tm-prog-fill').style.width = ((tmIdx+1)/currentTest.qs.length*100)+'%';
+  if(q.statement){
+    // A plain note, not a graded question — mark it seen immediately so it
+    // counts as "answered" and never blocks moving on or submitting.
+    tmAnswers[tmIdx] = 'ack';
+  }
+  const answeredCount = tmAnswers.filter(a=>a!==null).length;
+  document.getElementById('tm-score-running').textContent = `${answeredCount}/${currentTest.qs.length} beantwortet`;
+  if(q.statement){
+    document.getElementById('tm-q-area').innerHTML = `
+      <div class="tq-card tq-statement">
+        <span class="tq-statement-badge">${q.icon||'✦'} ${q.label||'Hinweis'} · not a question</span>
+        <div class="tq-statement-text">${q.text}</div>
+        ${q.textEn?`<div class="tq-statement-en">🇬🇧 ${q.textEn}</div>`:''}
+      </div>`;
+  } else {
+    const sel = tmAnswers[tmIdx];
+    document.getElementById('tm-q-area').innerHTML = `
+      <div class="tq-card">
+        <div class="tq-label">Frage ${tmIdx+1}</div>
+        <div class="tq-text">${q.q}</div>
+        <div class="tq-opts">
+          ${q.o.map((opt,i)=>`<button class="tq-opt ${sel===i?'selected':''}" onclick="selectTmAnswer(${i})">
+            <span class="opt-l">${String.fromCharCode(65+i)}</span><span>${opt}</span>
+          </button>`).join('')}
+        </div>
+      </div>`;
+  }
+  document.getElementById('tm-prev').disabled = tmIdx===0;
+  const isLast = tmIdx===currentTest.qs.length-1;
+  document.getElementById('tm-next').style.display = isLast ? 'none' : 'inline-block';
+  document.getElementById('tm-submit').style.display = isLast ? 'inline-block' : 'none';
+}
+
+function selectTmAnswer(i){
+  tmAnswers[tmIdx]=i;
+  renderTmQuestion();
+}
+
+function tmNext(){ if(tmIdx<currentTest.qs.length-1){ tmIdx++; renderTmQuestion(); } }
+
+function tmPrev(){ if(tmIdx>0){ tmIdx--; renderTmQuestion(); } }
+
+function submitTest(){
+  const unanswered = tmAnswers.findIndex(a=>a===null);
+  if(unanswered!==-1){
+    if(!confirm(`Du hast Frage ${unanswered+1} nicht beantwortet. Trotzdem abschicken?`)) {
+      tmIdx = unanswered; renderTmQuestion(); return;
+    }
+  }
+  let score=0;
+  currentTest.qs.forEach((q,i)=>{ if(!q.statement && tmAnswers[i]===q.c) score++; });
+  const gradedTotal = currentTest.qs.filter(q=>!q.statement).length;
+  setTestResult(currentTest.id, score);
+  document.getElementById('tm-questions-panel').style.display='none';
+  document.getElementById('tm-results').classList.add('show');
+  document.getElementById('tm-final-score').textContent = score;
+  let grade='', gradeLabel='';
+  if(score===gradedTotal){grade='🏆';gradeLabel='Perfekt! Meisterhaft!';}
+  else if(score>=8){grade='⭐';gradeLabel='Ausgezeichnet!';}
+  else if(score>=6){grade='👍';gradeLabel='Gut gemacht!';}
+  else if(score>=4){grade='📚';gradeLabel='Weiter üben!';}
+  else {grade='💪';gradeLabel='Nicht aufgeben!';}
+  document.getElementById('tm-grade').textContent = grade;
+  document.getElementById('tm-grade-label').textContent = gradeLabel;
+  document.getElementById('tm-solutions').innerHTML = currentTest.qs.map((q,i)=>{
+    if(q.statement){
+      return `<div class="sol-item sol-statement">
+        <div class="sol-q-num">${q.icon||'✦'} ${q.label||'Hinweis'} <span style="opacity:.6;font-style:italic;">— nicht bewertet · not graded</span></div>
+        <div class="sol-exp" style="font-family:'Crimson Text',serif;font-size:14px;font-style:italic;">${q.text}${q.textEn?`<br><br>🇬🇧 ${q.textEn}`:''}</div>
+      </div>`;
+    }
+    const correct = tmAnswers[i]===q.c;
+    return `<div class="sol-item ${correct?'correct-ans':'wrong-ans'}">
+      <div class="sol-q-num">Frage ${i+1}</div>
+      <div class="sol-q-text">${q.q}</div>
+      <div class="sol-your-ans ${correct?'right':'wrong'}">Deine Antwort: ${(tmAnswers[i]!==null && tmAnswers[i]!=='ack')?String.fromCharCode(65+tmAnswers[i])+') '+q.o[tmAnswers[i]]:'— keine —'} ${correct?'✓':'✗'}</div>
+      ${!correct?`<div class="sol-correct-ans">Richtige Antwort: ${String.fromCharCode(65+q.c)}) ${q.o[q.c]}</div>`:''}
+      <div class="sol-exp">${q.exp}</div>
+    </div>`;
+  }).join('');
+  renderTestGrid();
+}
+
+function shareResult(){
+  const score = document.getElementById('tm-final-score').textContent;
+  const text = `🇩🇪 Ich habe "${currentTest.title}" (${currentTest.titleEn}) im German-Lernportal abgeschlossen!\n\nErgebnis: ${score}/10 ${score==='10'?'🏆':score>=7?'⭐':'📚'}\n\nThema: ${currentTest.theme}\n\nTeste dein Deutsch auch! 🚀`;
+  const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+}
+
+/* ═══════════════════════════════════════════
+   STORIES (Geschichten) — 6 levels × 10 stories
+═══════════════════════════════════════════ */
+
+function initApp(){
+  restoreSecretMode()
+  initParticles()
+  renderTestGrid()
+  if (typeof renderNavAuth === 'function') renderNavAuth('nav-container');
+}
+document.addEventListener('DOMContentLoaded', initApp);
+</script>
+</body>
+</html>

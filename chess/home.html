@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Chess: The Complete Chronicle | Stargazer</title>
+
+<!-- SEO META -->
+<meta name="description" content="1,500 years of chess history, 50 GM puzzles, famous games & more — the full chronicle, mapped. Start exploring.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Stargazer: Lost in the Cosmos">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/chess/home.html">
+
+<!-- OPEN GRAPH -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chess: The Complete Chronicle | Stargazer">
+<meta property="og:description" content="1,500 years of chess history, 50 GM puzzles, famous games & more — the full chronicle, mapped. Start exploring.">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/chess/home.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/chess.png">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/chess.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="https://stargazer-9m9.pages.dev/about.html">
+
+<!-- TWITTER / X CARD -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chess: The Complete Chronicle | Stargazer">
+<meta name="twitter:description" content="1,500 years of chess history, 50 GM puzzles, famous games & more — the full chronicle, mapped. Start exploring.">
+
+<!-- STRUCTURED DATA -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "Chess: The Complete Chronicle",
+  "headline": "The Complete Chess Chronicle — Overview",
+  "description": "1,500 years of chess history, 50 GM puzzles, famous games & more — the full chronicle, mapped. Start exploring.",
+  "url": "https://stargazer-9m9.pages.dev/chess/home.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Chess" },
+  "publisher": { "@type": "Organization", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev" }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="chess.css">
+</head>
+<body>
+<div id="read-progress"></div>
+<button id="backToTop" title="Back to top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button id="pageDown" title="Page down" aria-label="Page down" onclick="window.scrollBy({top:window.innerHeight*0.85,behavior:'smooth'})">↓</button>
+
+
+<!-- HOME LINK (top-left, fixed) -->
+<a href="../index.html" id="homeLink" title="Back to Stargazer Universe">← home</a>
+
+<!-- AUTH HEADER (top-right, fixed) -->
+<div id="authHeader">
+  <button id="contentsBtn" aria-label="Toggle navigation" aria-expanded="false">
+    <div class="hb-icon" aria-hidden="true"><span></span><span></span><span></span></div>
+    ♟ contents
+  </button>
+  <a href="../login.html" id="loginBtn">⌖ sign in</a>
+  <div id="userInfo" style="display:none;">
+    <span id="userEmailDisplay"></span>
+    <button onclick="doSignOut()" id="signOutBtn">sign out</button>
+  </div>
+</div>
+
+<!-- DROPDOWN PANEL -->
+<div id="navDropdown" role="dialog" aria-label="Chess section navigation">
+  <div style="padding:0.45rem 0.75rem; border-bottom:1px solid rgba(212,175,55,0.1);">
+    <input id="navSearch" type="text" placeholder="Search this section…" oninput="filterNav(this.value)" autocomplete="off" style="width:100%; background:rgba(255,255,255,0.04); border:1px solid rgba(212,175,55,0.2); border-radius:4px; padding:0.3rem 0.55rem; color:var(--text-main); font-family:'Crimson Pro',serif; font-size:0.82rem; outline:none; transition:border-color 0.15s;" onfocus="this.style.borderColor='rgba(212,175,55,0.5)'" onblur="this.style.borderColor='rgba(212,175,55,0.2)'">
+  </div>
+  <div id="navMain" style="padding:0.4rem 0 0.6rem;">
+    <div class="nav-drop-section">
+      <div class="nav-drop-section-label">The Chess Chronicle</div>
+      <a href="home.html" class="nav-current"><span class="nav-num">✦</span> Overview</a>
+      <a href="history.html"><span class="nav-num">♔</span> History — Parts I–XXIII</a>
+      <a href="puzzles.html"><span class="nav-num">⚔</span> 50 GM Puzzles</a>
+      <a href="deepdive.html"><span class="nav-num">📜</span> Deep Dive — Games &amp; Theory</a>
+      <a href="more.html"><span class="nav-num">♛</span> Women, Prodigies &amp; Variants</a>
+      <a href="afterword.html"><span class="nav-num">♟</span> Afterword &amp; Glossary</a>
+    </div>
+  </div>
+  <div class="nav-meta-row">
+    <a href="../ABOUT.html" class="nav-meta-link"><span class="nav-meta-icon">✦</span> About Stargazer</a>
+    <a href="mailto:ayan.chakraborty6174@gmail.com" class="nav-meta-link"><span class="nav-meta-icon">✉</span> Contact</a>
+    <a href="comments.html" class="nav-meta-link"><span class="nav-meta-icon">♟</span> Leave a Thought</a>
+  </div>
+</div>
+<div id="navOverlay"></div>
+
+<canvas id="hero-canvas"></canvas>
+
+<section id="hero">
+  <div class="hero-board" id="hero-board"></div>
+
+  <span class="hero-eyebrow">The Royal Chronicle · 1,500 Years</span>
+
+  <h1 class="hero-title">The Complete<br>History of Chess</h1>
+
+  <div class="hero-piece-row">♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜</div>
+
+  <p class="hero-subtitle">From Chaturanga in Ancient India &nbsp;·&nbsp; Through Islamic Golden Age &nbsp;·&nbsp; To Artificial Intelligence</p>
+
+  <blockquote style="border:none; background:none; padding: 0.5rem 2rem; margin:0;">
+    <p style="font-size:clamp(1rem,2vw,1.25rem); color:var(--chess-light); opacity:0.8;">"Chess is not about who wins. It is about the beauty of what happens between two minds on sixty-four squares."</p>
+  </blockquote>
+  <span class="hero-quote-attr" style="display:block; text-align:center; margin-top:0.4rem;">— Garry Kasparov</span>
+
+  <div class="hero-scroll-hint">SCROLL TO BEGIN</div>
+</section>
+
+<div id="reader-note" class="fade-in">
+  <h3>A Note to the Reader</h3>
+  <p>This is the most comprehensive history of chess ever compiled on Stargazer — covering over 1,500 years of recorded history across every world champion, every paradigm shift, every theoretical revolution, every great match, every computer battle, and the full arc of chess from ancient Indian military simulation to global cultural phenomenon.</p>
+  <p>It concludes with <strong style="color:var(--gold)">50 Grandmaster-Level Chess Puzzles of extreme difficulty</strong>, each with full solutions and explanations. Read cover to cover, or jump straight to what interests you below.</p>
+  <div class="stat-strip" style="margin-top:1.8rem;">
+    <div class="stat-box"><span class="num">1,500</span><span class="label">Years of History</span></div>
+    <div class="stat-box"><span class="num">18</span><span class="label">World Champions</span></div>
+    <div class="stat-box"><span class="num">23</span><span class="label">Eras Covered</span></div>
+    <div class="stat-box"><span class="num">50</span><span class="label">GM Puzzles</span></div>
+    <div class="stat-box"><span class="num">22K</span><span class="label">Words</span></div>
+  </div>
+</div>
+
+<section id="hub" style="padding: 2.5rem 2rem 5.5rem; position:relative;">
+  <div class="section-inner">
+    <div class="hub-intro fade-in">
+      <span style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.5em;color:var(--gold);opacity:0.7;text-transform:uppercase;display:block;margin-bottom:0.8rem;">Choose Your Path</span>
+      <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.3rem,3vw,2rem);color:var(--chess-light);border:none;padding:0;margin:0;">Six Ways Into the Chronicle</h2>
+    </div>
+    <div class="hub-grid fade-in">
+
+      <a class="hub-card" href="history.html" style="--era-accent:#d4af37;">
+        <span class="hub-card-glyph">♔</span>
+        <span class="hub-card-eyebrow">Parts I – XXIII</span>
+        <h3>History</h3>
+        <p>1,500 years, from Chaturanga in ancient India to the AI revolution — every era, every champion.</p>
+        <span class="hub-card-cta">Begin reading →</span>
+      </a>
+
+      <a class="hub-card" href="puzzles.html" style="--era-accent:#9b5fd0;">
+        <span class="hub-card-glyph">⚔</span>
+        <span class="hub-card-eyebrow">50 Positions</span>
+        <h3>Grandmaster Puzzles</h3>
+        <p>From the Opera House Sacrifice to Gukesh's Candidates brilliancy — full solutions included.</p>
+        <span class="hub-card-cta">Test yourself →</span>
+      </a>
+
+      <a class="hub-card" href="deepdive.html" style="--era-accent:#9b5fd0;">
+        <span class="hub-card-glyph">📜</span>
+        <span class="hub-card-eyebrow">Games · Theory · Records</span>
+        <h3>Deep Dive</h3>
+        <p>Three annotated immortal games, essential opening theory, the Elo system, and chess's greatest records.</p>
+        <span class="hub-card-cta">Go deeper →</span>
+      </a>
+
+      <a class="hub-card" href="more.html" style="--era-accent:#9b59b6;">
+        <span class="hub-card-glyph">♛</span>
+        <span class="hub-card-eyebrow">People &amp; Culture</span>
+        <h3>Women, Prodigies &amp; Variants</h3>
+        <p>A parallel history of women in chess, the greatest child prodigies, chess variants, psychology, and how to learn.</p>
+        <span class="hub-card-cta">Explore →</span>
+      </a>
+
+      <a class="hub-card" href="afterword.html" style="--era-accent:#f0d080;">
+        <span class="hub-card-glyph">♟</span>
+        <span class="hub-card-eyebrow">Closing Thoughts</span>
+        <h3>Afterword &amp; Glossary</h3>
+        <p>A reflection on the game that outlasted everything, plus an essential glossary and a curated reading list.</p>
+        <span class="hub-card-cta">Read the close →</span>
+      </a>
+
+      <a class="hub-card" href="comments.html" style="--era-accent:#2a9a5a;">
+        <span class="hub-card-glyph">✎</span>
+        <span class="hub-card-eyebrow">Community</span>
+        <h3>Thoughts &amp; Reflections</h3>
+        <p>Sign in and leave your own thoughts on chess history, puzzles, or the game itself.</p>
+        <span class="hub-card-cta">Join the conversation →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="footer-piece-row">♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜</div>
+  <div class="footer-title">The Complete History of Chess</div>
+  <div class="footer-text">
+    Spanning 1,500 Years · From Chaturanga to AlphaZero<br>
+    From the Courts of the Gupta Empire to the Servers of DeepMind<br><br>
+    ♟ &nbsp; The game continues. It always does. &nbsp; ♟
+  </div>
+  <div style="margin-top:2rem; font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.2em; color:var(--text-dim); opacity:0.4;">
+    PARTS I–XXIII &nbsp;·&nbsp; 18 WORLD CHAMPIONS &nbsp;·&nbsp; 50 GRANDMASTER PUZZLES &nbsp;·&nbsp; ©&nbsp;2026
+  </div>
+</footer>
+
+<section id="aboutContactSection">
+  <span class="contact-label">Stargazer Universe</span>
+  <div class="about-contact-row">
+    <a href="../ABOUT.html" class="about-link">About</a>
+    <span class="contact-sep">·</span>
+    <a href="mailto:ayan.chakraborty6174@gmail.com" class="contact-email">ayan.chakraborty6174@gmail.com</a>
+  </div>
+</section>
+
+<div id="siteFooterBottom">
+  <div class="sfb-inner">
+    <div class="sfb-glyph">♛</div>
+    <div class="sfb-brand">Stargazer</div>
+    <div class="sfb-tagline">Lost in the Cosmos</div>
+    <div class="sfb-divider"></div>
+    <div class="sfb-links">
+      <a href="../ABOUT.html" class="sfb-link">About</a>
+      <span class="sfb-dot">·</span>
+      <a href="mailto:ayan.chakraborty6174@gmail.com" class="sfb-email">ayan.chakraborty6174@gmail.com</a>
+      <span class="sfb-dot">·</span>
+      <a href="../index.html" class="sfb-link">← Home</a>
+    </div>
+    <div class="sfb-copy">© 2026 Stargazer: Lost in the Cosmos</div>
+  </div>
+</div>
+
+
+<script src="chess.js"></script>
+<script>
+window._pageKey = 'chess-home';
+
+/* Hero canvas — floating chess pieces particle system */
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  const ctx    = canvas.getContext('2d');
+  const pieces = ['♔','♕','♖','♗','♘','♙','♚','♛','♜','♝','♞','♟'];
+  let W, H, particles = [];
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function randomPiece() { return pieces[Math.floor(Math.random() * pieces.length)]; }
+
+  function createParticle() {
+    return {
+      x:    Math.random() * W,
+      y:    Math.random() * H,
+      vx:   (Math.random() - 0.5) * 0.5,
+      vy:   -Math.random() * 0.6 - 0.1,
+      size: Math.random() * 22 + 14,
+      alpha: Math.random() * 0.5 + 0.1,
+      piece: randomPiece(),
+      color: Math.random() > 0.5 ? '#d4af37' : '#f0d9b5',
+      rotation: (Math.random() - 0.5) * 0.4,
+      rotSpeed: (Math.random() - 0.5) * 0.006,
+      life:  Math.random() * 200 + 150,
+      maxLife: 0
+    };
+  }
+
+  function init() {
+    resize();
+    for (let i = 0; i < 55; i++) {
+      const p = createParticle();
+      p.y     = Math.random() * H;
+      p.life  = Math.random() * p.life;
+      p.maxLife = p.life;
+      particles.push(p);
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach((p, i) => {
+      p.x        += p.vx;
+      p.y        += p.vy;
+      p.rotation += p.rotSpeed;
+      p.life--;
+      const lifeRatio = p.life / p.maxLife;
+      const alpha = p.alpha * Math.sin(lifeRatio * Math.PI);
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation);
+      ctx.globalAlpha = alpha;
+      ctx.font        = `${p.size}px serif`;
+      ctx.fillStyle   = p.color;
+      ctx.fillText(p.piece, 0, 0);
+      ctx.restore();
+      if (p.life <= 0 || p.y < -60 || p.x < -60 || p.x > W + 60) {
+        particles[i] = createParticle();
+        particles[i].maxLife = particles[i].life;
+      }
+    });
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  init();
+  draw();
+})();
+
+/* Hero board — build the checkered background */
+(function() {
+  const board = document.getElementById('hero-board');
+  if (!board) return;
+  for (let r = 0; r < 8; r++) {
+    for (let c = 0; c < 8; c++) {
+      const cell = document.createElement('div');
+      cell.className = 'hero-board-cell ' + ((r + c) % 2 === 0 ? 'light' : 'dark');
+      board.appendChild(cell);
+    }
+  }
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/shared.js"></script>
+</body>
+</html>

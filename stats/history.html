@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A History of Statistics | Stargazer</title>
+<meta name="description" content="How statistics became a science: Laplace, Gauss, and Galton to Fisher, Shannon, and the deep-learning era, told as a single connected story.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Statistics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/stats/history.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="A History of Statistics | Stargazer">
+<meta property="og:description" content="How statistics became a science, from Laplace and Gauss to Fisher, Shannon, and the deep-learning era.">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/stats/history.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A History of Statistics | Stargazer">
+<meta name="twitter:description" content="How statistics became a science, from Laplace and Gauss to Fisher, Shannon, and the deep-learning era.">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "A History of Statistics | Stargazer",
+  "description": "How statistics became a science, from Laplace and Gauss to Fisher, Shannon, and the deep-learning era.",
+  "url": "https://stargazer-9m9.pages.dev/stats/history.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Statistics", "sameAs": "https://en.wikipedia.org/wiki/Statistics" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stats.css">
+</head>
+<body>
+
+<!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
+    <span id="mode-icon">☾</span>
+  </button>
+  <a href="../login.html" id="loginBtn">☽ Sign In</a>
+  <div id="userInfo">
+    <span id="userEmailDisplay">✦ Explorer</span>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══ NAV ═════════════════════════════════════════════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Statistics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">History</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)" aria-label="Search">🔍</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══ HAMBURGER MENU ══════════════════════════════════════════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home"          onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item"        data-page="books"         onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item"        data-page="puzzles"       onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <button class="hm-item"        data-page="school"        onclick="location.href='school.html'">🏫 School</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="inference"     onclick="location.href='inference.html'">🔬 Inference</button>
+  <button class="hm-item"        data-page="distributions" onclick="location.href='distributions.html'">📊 Distributions</button>
+  <button class="hm-item"        data-page="bayesian"      onclick="location.href='bayesian.html'">∫ Bayesian</button>
+  <button class="hm-item"        data-page="openproblems"  onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item"        data-page="research"      onclick="location.href='research.html'">🔭 Research</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="careers"       onclick="location.href='careers.html'">💼 Careers</button>
+  <button class="hm-item"        data-page="studyguide"    onclick="location.href='studyguide.html'">🗺️ Study Guide</button>
+  <button class="hm-item"        data-page="facts"         onclick="location.href='facts.html'">✨ Fun Facts</button>
+  <button class="hm-item"        data-page="tools"         onclick="location.href='tools.html'">🛠️ Tools</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item"        data-page="calc"          onclick="location.href='calc.html'">🔢 Calculator</button>
+  <button class="hm-item"        data-page="formulas"      onclick="location.href='formulas.html'">📋 Formulas</button>
+  <button class="hm-item active"        data-page="history"       onclick="location.href='history.html'">⏳ History</button>
+  <button class="hm-item"        data-page="comments"      onclick="location.href='comments.html'">💬 Discuss</button>
+</div>
+
+<!-- ═══ SEARCH MODAL ═══════════════════════════════════════════════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search books, puzzles, distributions, tools…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<!-- ═══ TOAST ══════════════════════════════════════════════════════ -->
+<div id="toast">
+  <button id="toast-close" onclick="hideToast()" aria-label="Dismiss notification">✕</button>
+  <div class="toast-cat" id="toast-cat">Fun Fact</div>
+  <div id="toast-body"></div>
+</div>
+
+<!-- ═══ KEYBOARD HINT ══════════════════════════════════════════════ -->
+<div id="shortcut-hint">/ search · ← → pages</div>
+
+<!-- ═══ PAGE: CALCULATOR ═══════════════════════════════════════════ -->
+<div class="page active" id="page-history">
+  <section class="section" id="hist-sec" style="background:var(--bg-inf)">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:var(--gr-l);color:var(--gr);border:1px solid rgba(77,122,88,.25)">Timeline</span>
+        <h2 class="s-title">History of Statistical Inference</h2>
+        <p class="s-desc">From Pascal's gambling wagers to Bayesian neural networks — four centuries of ideas about learning from data under uncertainty.</p>
+      </div>
+      <div id="history-timeline" style="max-width:820px;margin:0 auto;position:relative"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ PAGE: BOOKS ══════════════════════════════════════════════ -->
+<!-- ── CONTACT ── -->
+<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);font-style:italic;font-family:'Source Code Pro',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div style="text-align:center;padding-bottom:2rem;">
+  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+</div>
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
+<script>
+window._nextPage = 'comments.html';
+window._prevPage = 'formulas.html';
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+
+function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+
+/* ── BOOKS ─────────────────────────────────────────────────── */
+
+function toggleHamburger(){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu)return;
+  const open=menu.classList.toggle('open');
+  btn.classList.toggle('open',open);
+}
+// Close when clicking outside
+document.addEventListener('click',function(e){
+  const menu=document.getElementById('hamburger-menu');
+  const btn=document.getElementById('hamburger-btn');
+  if(!menu||!menu.classList.contains('open'))return;
+  if(!menu.contains(e.target)&&e.target!==btn&&!btn.contains(e.target)){
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+
+
+/* ═══════════════════════════════════════════════════════════════
+   OVERRIDE: renderPuzzles — index + cat badge + solved button + filters
+   ═══════════════════════════════════════════════════════════════ */
+
+function toggleMode(){
+  const night=document.body.classList.toggle('night');
+  document.getElementById('mode-icon').textContent=night?'☀':'☾';
+  localStorage.setItem('stats-mode',night?'night':'day');
+  // redraw all visible canvases
+  document.querySelectorAll('.dist-canvas').forEach(c=>{
+    const cid=c.id;
+    const params={};
+    document.querySelectorAll(`[id^="sl-${cid}-"]`).forEach(sl=>{
+      params[sl.id.replace('sl-'+cid+'-','')]=parseFloat(sl.value);
+    });
+    // find the slug from DISTRIBUTIONS
+    const slug=getSlugFromCanvas(cid);
+    if(slug){
+      const isDisc=['bernoulli','binomial','geometric','negbin','poisson','hypergeometric'].includes(slug);
+      drawDistCanvas(cid,slug,params,isDisc);
+    }
+  });
+}
+
+
+function getSlugFromCanvas(cid){
+  // cid format: dc-type-idx
+  const parts=cid.split('-');
+  if(parts.length<3)return null;
+  const type=parts[1],idx=parseInt(parts[2]);
+  if(DISTRIBUTIONS[type]&&DISTRIBUTIONS[type][idx])return DISTRIBUTIONS[type][idx].slug;
+  return null;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL EFFECTS
+   ═══════════════════════════════════════════════════════════ */
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  if(btt)btt.classList.toggle('show',window.scrollY>300);
+  document.querySelectorAll('.reveal').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-60)
+      el.classList.add('visible');
+  });
+},{passive:true});
+
+/* ═══════════════════════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════════════════════ */
+
+let SEARCH_INDEX=[];
+function openSearch(){
+  buildSearchIndex();
+  const m=document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(()=>document.getElementById('search-input').focus(),80);
+}
+function closeSearch(){
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value='';
+  document.getElementById('search-results').innerHTML='<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q){
+  const res=document.getElementById('search-results');
+  if(!q.trim()){res.innerHTML='<div class="sr-empty">Start typing…</div>';return;}
+  const lq=q.toLowerCase();
+  const hits=SEARCH_INDEX.filter(x=>x.q.toLowerCase().includes(lq)).slice(0,18);
+  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q+'"</div>';return;}
+  res.innerHTML=hits.map((h,i)=>`<div class="sr-item" tabindex="0" data-idx="${i}" onclick="goSearchResult(${SEARCH_INDEX.indexOf(h)})" onkeydown="if(event.key==='Enter')goSearchResult(${SEARCH_INDEX.indexOf(h)})"><span class="sr-icon">${h.icon}</span><div><div class="sr-title">${highlight(h.title,lq)}</div><div class="sr-meta">${h.meta}</div></div><span class="sr-section">${h.section}</span></div>`).join('');
+}
+function highlight(text,q){
+  if(!q)return text;
+  const idx=text.toLowerCase().indexOf(q);
+  if(idx<0)return text;
+  return text.slice(0,idx)+'<mark style="background:var(--gd-l);color:var(--gd);border-radius:2px">'+text.slice(idx,idx+q.length)+'</mark>'+text.slice(idx+q.length);
+}
+function goSearchResult(idx){ closeSearch(); }
+function searchKeyNav(e){
+  if(e.key==='Escape'){closeSearch();return;}
+  const items=document.querySelectorAll('.sr-item');
+  const cur=document.activeElement;
+  const curIdx=[...items].indexOf(cur);
+  if(e.key==='ArrowDown'){e.preventDefault();(items[curIdx+1]||items[0])?.focus();}
+  if(e.key==='ArrowUp'){e.preventDefault();(items[curIdx-1]||items[items.length-1])?.focus();}
+  if(e.key==='Enter'&&curIdx>=0){items[curIdx].click();}
+}
+
+
+function buildSearchIndex(){
+  if(SEARCH_INDEX.length)return;
+  // no index for this page
+}
+
+
+(function initKeyboard(){
+  const PAGES=['home','precollege_placeholder'];
+  document.addEventListener('keydown',e=>{
+    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
+    if(document.getElementById('search-modal')&&document.getElementById('search-modal').classList.contains('open')){
+      if(e.key==='Escape')closeSearch();
+      return;
+    }
+    if(e.key==='/'){e.preventDefault();openSearch();return;}
+    if(e.key==='ArrowRight'){e.preventDefault();location.href=window._nextPage;}
+    if(e.key==='ArrowLeft'){e.preventDefault();location.href=window._prevPage;}
+    if(e.key==='f'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){if(typeof showRandomFact==='function')showRandomFact();}
+    if(e.key==='Escape'){
+      const hmenu=document.getElementById('hamburger-menu');
+      if(hmenu&&hmenu.classList.contains('open')){
+        hmenu.classList.remove('open');
+        document.getElementById('hamburger-btn')?.classList.remove('open');
+      }
+    }
+  });
+})();
+
+function showToast(msg,bg){
+  const t=document.createElement('div');
+  t.textContent=msg;
+  t.style.cssText=`position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);background:${bg};color:#fff;font-family:'Source Code Pro',monospace;font-size:.72rem;padding:.45rem 1.1rem;border-radius:99px;z-index:9998;animation:fadeUpIn .35s ease;white-space:nowrap;pointer-events:none`;
+  document.body.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .35s';setTimeout(()=>t.remove(),380);},2200);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATISTICIAN QUOTES — daily + 5-hour rotation
+   ═══════════════════════════════════════════════════════════════ */
+
+const HIST_TIMELINE=[
+  {year:'1654',person:'Pascal & Fermat',era:'17th Century',desc:'Exchange of letters founding probability theory. The Problem of Points: calculating expected value for an unfinished gambling game. First mathematical language for quantifying uncertainty.'},
+  {year:'1662',person:'John Graunt',era:'17th Century',desc:'Natural and Political Observations on the Bills of Mortality. First statistical analysis of population data — estimated London population, sex ratios, mortality patterns. Founded modern demography.'},
+  {year:'1713',person:'Jacob Bernoulli',era:'18th Century',desc:'Ars Conjectandi (posthumous). First rigorous proof of the Law of Large Numbers: relative frequency converges to probability as trials increase. The foundation of frequentist inference.'},
+  {year:'1763',person:'Thomas Bayes',era:'18th Century',desc:'Essay Towards Solving a Problem in the Doctrine of Chances (posthumous, published by Richard Price). First formula for inverting conditional probability — the probability of causes given effects. Birth of Bayesian reasoning.'},
+  {year:'1774',person:'Pierre-Simon Laplace',era:'18th Century',desc:'Extended Bayes with the Principle of Insufficient Reason (uniform prior when ignorant). Independently derived the Normal distribution for measurement errors. Laid foundations of parametric statistics across a career spanning 50 years.'},
+  {year:'1809',person:'Carl Friedrich Gauss',era:'19th Century',desc:'Theoria Motus: derived the Method of Least Squares as the optimal estimator assuming normally distributed errors. Established the Gaussian distribution and error theory. Applied to predict the orbit of asteroid Ceres from sparse telescope data.'},
+  {year:'1869',person:'Francis Galton',era:'19th Century',desc:'Hereditary Genius: applied the Normal distribution to social phenomena. Introduced regression to the mean, the concept of correlation, and the percentile. Galton was the first to treat correlation as a quantitative scientific concept.'},
+  {year:'1900',person:'Karl Pearson',era:'20th Century — Foundations',desc:'Invented the chi-squared goodness-of-fit test — the first formal hypothesis test in statistics. Also developed the Pearson correlation coefficient, method of moments, and principal components analysis. Co-founded Biometrika (1901).'},
+  {year:'1908',person:'William Gosset (\'Student\')',era:'20th Century — Foundations',desc:'The Probable Error of a Mean: derived the t-distribution for small samples while working at Guinness Brewery. Published under pseudonym "Student" due to corporate secrecy. Enabled rigorous inference when data is scarce.'},
+  {year:'1922',person:'R.A. Fisher',era:'20th Century — Classical',desc:'On the Mathematical Foundations of Theoretical Statistics: introduced maximum likelihood, sufficiency, consistency, efficiency, and the Fisher information. Established modern parametric statistics. Also introduced ANOVA, randomised experiments, and the F-distribution in subsequent years.'},
+  {year:'1933',person:'Neyman & E. Pearson',era:'20th Century — Classical',desc:'On the Problem of the Most Efficient Tests. Introduced Type I/II errors, power, the Neyman-Pearson Lemma (most powerful tests), and the fundamental distinction between significance and decision. Fisher opposed this framework his entire career — the debate continues.'},
+  {year:'1948',person:'Claude Shannon',era:'20th Century — Information Age',desc:'A Mathematical Theory of Communication. Defined information entropy H = -Σp log p. Established the theoretical limit on data compression (entropy) and transmission (channel capacity). Profoundly influenced Bayesian inference via minimum description length.'},
+  {year:'1951',person:'Charles Stein',era:'20th Century — Decision Theory',desc:"Stein's Paradox: the MLE for three or more Normal means simultaneously is inadmissible — there exists an estimator (James-Stein) that uniformly dominates it in MSE. Opened the field of shrinkage estimation, penalised regression, and ultimately the LASSO."},
+  {year:'1953',person:'Metropolis et al.',era:'20th Century — Computation',desc:'Equation of State Calculations by Fast Computing Machines. Introduced Markov Chain Monte Carlo (MCMC). Originally used for nuclear physics at Los Alamos. Later extended to Metropolis-Hastings (1970), the Gibbs sampler (1984), and became the engine of all modern Bayesian computation.'},
+  {year:'1977',person:'Dempster, Laird & Rubin',era:'20th Century — Algorithms',desc:'Maximum Likelihood from Incomplete Data via the EM Algorithm. Provided a unifying framework for parameter estimation with latent variables and missing data. Foundational for mixture models, HMMs, factor analysis, and countless ML algorithms.'},
+  {year:'1995',person:'Tibshirani',era:'20th Century — High Dimensions',desc:'Regression Shrinkage and Selection via the LASSO. L₁ regularisation simultaneously shrinks and selects variables. Transformed high-dimensional statistics and opened sparse modelling — connecting Bayesian (Laplace prior) and frequentist (constraint) perspectives.'},
+  {year:'2003',person:'Blei, Ng & Jordan',era:'21st Century — Latent Variables',desc:'Latent Dirichlet Allocation. Hierarchical Bayesian model for topic discovery in text corpora. Popularised variational inference for Bayesian computation and brought probabilistic graphical models into mainstream NLP.'},
+  {year:'2012+',person:'Deep Learning Era',era:'21st Century — Modern',desc:'AlexNet and subsequent deep networks raised fundamental statistical questions: what is the implicit regularisation of SGD? Why do overparameterised models generalise? Connections to Gaussian processes, Bayesian neural networks, and double descent drive current research.'},
+  {year:'2024',person:'Frontier Statistics',era:'21st Century — Frontier',desc:'Active research: conformal prediction for distribution-free uncertainty; diffusion models as score-based MCMC; causal representation learning; statistics of LLMs; and Bayesian optimisation for scientific discovery. Four centuries after Pascal, the core question remains: how do we learn reliably from data under uncertainty?'}
+];
+
+
+function renderHistory(){
+  const g=document.getElementById('history-timeline');if(!g)return;
+  g.innerHTML=HIST_TIMELINE.map(h=>`
+    <div class="hist-item">
+      <div class="hist-year">${h.year}</div>
+      <div style="position:relative;padding-left:.4rem">
+        <div class="hist-dot"></div>
+        <span class="hist-era">${h.era}</span>
+        <div class="hist-person">${h.person}</div>
+        <div class="hist-desc">${h.desc}</div>
+      </div>
+    </div>`).join('');
+}
+
+</script>
+
+(function(){
+  if(localStorage.getItem('stats-mode')==='night'){
+    document.body.classList.add('night');
+    const mi=document.getElementById('mode-icon'); if(mi)mi.textContent='☀';
+  }
+  
+  setTimeout(function(){
+    if(window.currentUser)return;
+    if(!window.sb)return;
+    window.sb.auth.getSession().then(function(r){
+      if(window.currentUser)return;
+      var u=r&&r.data&&r.data.session&&r.data.session.user;
+      if(!u)return;
+      if(window.renderAuthUI)window.renderAuthUI();
+    }).catch(function(){});
+  },400);
+  if('renderHistory();' && document.readyState!=='loading') { renderHistory(); }
+  else if('renderHistory();') { document.addEventListener('DOMContentLoaded', function(){ renderHistory(); }); }
+})();
+</script>
+<script>window._pageKey = 'stats';</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+
+</body>
+</html>

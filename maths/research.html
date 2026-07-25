@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#faf7f2!important}html.pre-light{background:#faf7f2}</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]}));}else{renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});}"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Lato:ital,wght@0,400;0,700;1,400&family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<title>Current Mathematics Research & Breakthroughs | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="13 active research programs and recent breakthroughs (2024–25) — from the Geometric Langlands proof to the mathematicians reshaping the field today.">
+<meta name="keywords" content="mathematics research, recent math breakthroughs, current mathematical research, Geometric Langlands, active research areas mathematics, mathematics 2024 2025, cutting edge mathematics">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Mathematics Universe">
+<link rel="canonical" href="https://stargazer-9m9.pages.dev/maths/research.html">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Current Mathematics Research & Breakthroughs | Stargazer">
+<meta property="og:description" content="Mathematics is still being discovered — 13 active research areas and breakthroughs, including 2024's Geometric Langlands proof. See what's new →">
+<meta property="og:url" content="https://stargazer-9m9.pages.dev/maths/research.html">
+<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Current Mathematics Research & Breakthroughs | Stargazer">
+<meta name="twitter:description" content="The mathematicians and breakthroughs reshaping the field right now, including the 2024 Geometric Langlands proof. Stay current →">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Mathematics Research: Where the Field Is Moving Now",
+  "description": "13 active research programs and recent breakthroughs in mathematics, including the 2024 proof of the Geometric Langlands conjecture.",
+  "url": "https://stargazer-9m9.pages.dev/maths/research.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "about": { "@type": "Thing", "name": "Mathematics", "sameAs": "https://en.wikipedia.org/wiki/Mathematics" }
+}
+</script>
+<link rel="stylesheet" href="maths.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ AUTH TOP BAR ════ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <div style="flex:1"></div>
+  <a href="../login.html" id="loginBtn" class="atb-btn atb-signin">☽ Sign In</a>
+  <div id="userInfo" style="display:none;align-items:center;gap:0.4rem">
+    <span class="atb-username" id="userEmailDisplay">✦ Explorer</span>
+    <button class="atb-signout" onclick="doSignOut()">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ ADMIN MODAL ══════ -->
+<div id="adminModal">
+  <div class="admin-modal-box">
+    <div class="admin-modal-title" id="adminModalTitle">Admin Panel</div>
+    <div id="adminModalBody"></div>
+    <div class="admin-modal-actions">
+      <button class="admin-cancel-btn" onclick="closeAdminModal()">Cancel</button>
+      <button class="admin-save-btn" id="adminModalSaveBtn" onclick="adminModalSave()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ NAV ═══════════════ -->
+<nav id="nav">
+  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Mathematics</span>
+  <span class="nav-cur-section" id="nav-cur-lbl">Research</span>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)">🔍 Search</button>
+  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ═══════════════════════════════════════ HAMBURGER MENU ════ -->
+<div id="hamburger-menu" onclick="event.stopPropagation()">
+  <button class="hm-item" data-page="home" onclick="location.href='home.html'">🏠 Home</button>
+  <button class="hm-item" data-page="books" onclick="location.href='books.html'">📚 Books</button>
+  <button class="hm-item" data-page="puzzles" onclick="location.href='puzzles.html'">🧩 Puzzles</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="precollege" onclick="location.href='precollege.html'">📐 Pre-College</button>
+  <button class="hm-item" data-page="olympiad" onclick="location.href='olympiad.html'">🏆 Olympiad</button>
+  <button class="hm-item" data-page="undergrad" onclick="location.href='undergrad.html'">🎓 Undergrad</button>
+  <button class="hm-item" data-page="graduate" onclick="location.href='graduate.html'">🔬 Graduate</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item active" data-page="research" onclick="location.href='research.html'">⚡ Research</button>
+  <button class="hm-item" data-page="openproblems" onclick="location.href='openproblems.html'">❓ Open Problems</button>
+  <button class="hm-item" data-page="careers" onclick="location.href='careers.html'">💼 Careers</button>
+  <div class="hm-divider"></div>
+  <button class="hm-item" data-page="studyguide" onclick="location.href='studyguide.html'">📖 Study Guide</button>
+  <button class="hm-item" data-page="facts" onclick="location.href='facts.html'">✨ Math Facts</button>
+  <button class="hm-item" data-page="universities" onclick="location.href='universities.html'">🎓 India</button>
+  <button class="hm-item" data-page="comments" onclick="location.href='comments.html'">💬 Comments</button>
+</div>
+
+<!-- ═══════════════════════════════════════ SEARCH MODAL ════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search this page…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search across the entire site…</div></div>
+  </div>
+</div>
+
+<div id="shortcut-hint">/ search</div>
+
+<div class="page active" id="page-research" style="background:#000c17">
+  <section class="section" id="research">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-eyebrow" style="background:rgba(14,165,233,0.08);color:#7dd3fc;border:1px solid rgba(14,165,233,0.22)">Current Research</span>
+        <h1 class="s-title font-serif" style="color:#e0f2fe">Where Mathematics Is Being Made Right Now</h1>
+        <p class="s-desc" style="color:#0ea5e9">Active research programs, recent breakthroughs (including 2024–25), and the researchers reshaping the mathematical landscape today.</p>
+      </div>
+      <!-- FREE ACCESS NOTE — shown once for the whole section -->
+      <div class="res-access" style="margin-bottom:1.5rem;max-width:780px;margin-left:auto;margin-right:auto">
+        <strong>📖 How to Access Research Papers for Free:</strong>
+        <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv.org</a> has virtually all modern math preprints free. Try
+        <a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a> → look for a "[PDF]" link or the author's university page.
+        <a href="https://sci-hub.se" target="_blank" rel="noopener">Sci-Hub</a> provides most paywalled papers via DOI. For textbooks,
+        <a href="https://library.lol" target="_blank" rel="noopener">Library Genesis</a> has most mathematical books freely. Authors also often post PDFs on their personal pages.
+      </div>
+      <div class="g3" id="research-grid"></div>
+    </div>
+  </section>
+</div>
+
+
+<footer id="footer">
+  <div class="foot-eq">e<sup>iπ</sup> + 1 = 0</div>
+  <p class="foot-txt"><strong style="color:#6d28d9">"Mathematics is not about numbers, equations, computations, or algorithms. It is about understanding."</strong><br>— William Paul Thurston, Fields Medalist</p>
+  <div class="foot-links">
+    <button class="foot-link" onclick="location.href='../ABOUT.html'">📖 About Stargazer</button>
+    <a class="foot-link" onclick="location.href='comments.html'; return false;" href="#">💬 Community Comments</a>
+    <a class="foot-link" href="mailto:ayan.chakraborty6174@gmail.com">✉️ Contact Creator</a>
+    <a class="foot-link" href="https://stargazer-9m9.pages.dev" target="_blank" rel="noopener">🌐 Stargazer Home</a>
+  </div>
+</footer>
+
+<button id="theme-toggle" title="Toggle light / dark theme" aria-label="Toggle light / dark theme" onclick="toggleTheme()">☀️</button>
+<button id="btt" title="Back to top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+window._pageKey = 'maths';
+
+function isAdmin() {
+  return !!(window.currentUser && window.currentUser.email === ADMIN_EMAIL);
+}
+
+window._applyDarkMode = function(isDark) {
+  // isDark=true → dark mode (no light-mode class)
+  // isDark=false → light mode
+  applyTheme(!isDark);   // applyTheme(true) adds light-mode class
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+};
+
+
+window._afterRenderAuthUI = function(user) {
+  // Show/hide admin bars
+  document.querySelectorAll('.admin-bar').forEach(function(el) {
+    if (user && user.email === ADMIN_EMAIL) { el.classList.add('visible'); }
+    else                                    { el.classList.remove('visible'); }
+  });
+  // Mirror display name into comment form header
+  var ud2 = document.getElementById('userEmailDisplay2');
+  if (ud2 && user) {
+    ud2.textContent = user.user_metadata?.display_name
+                    || user.user_metadata?.full_name
+                    || user.email || 'you';
+  }
+  // Trigger admin data load on sign-in
+  if (user) { if (typeof loadAdminData === 'function') loadAdminData(); }
+};
+
+
+function applyTheme(light) {
+  if (light) { document.body.classList.add('light-mode'); }
+  else        { document.body.classList.remove('light-mode'); }
+  var btn = document.getElementById('theme-toggle');
+  if (btn) btn.textContent = light ? '🌙' : '☀️';
+  document.documentElement.classList.remove('pre-light');
+}
+
+
+function toggleTheme() {
+  var nowLight = !document.body.classList.contains('light-mode');
+  applyTheme(nowLight);
+  localStorage.setItem('stargazer_theme', nowLight ? 'light' : 'dark');
+  // Persist via shared.js (writes to Supabase profiles.dark_mode)
+  // isDark param: true = dark mode, false = light mode
+  if (window.sbSaveDarkMode) window.sbSaveDarkMode(!nowLight);
+}
+
+
+// Apply theme immediately on load from localStorage
+(function() {
+  var tm = localStorage.getItem('stargazer_theme');
+  applyTheme(tm === 'light');
+})();
+
+// shared.js calls this after loading dark_mode from profiles
+// (already declared in the auth block above as window._applyDarkMode)
+
+
+function reRevealActivePage() {
+  var p = document.querySelector('.page.active');
+  if (!p) return;
+  p.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
+    el.classList.add('visible');
+  });
+}
+
+
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Close modal on backdrop click
+
+function toggleHamburger() {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu) return;
+  var open = menu.classList.toggle('open');
+  btn.classList.toggle('open', open);
+}
+// Close on outside click
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu || !menu.classList.contains('open')) return;
+  if (!menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var menu = document.getElementById('hamburger-menu');
+    if (menu && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      document.getElementById('hamburger-btn').classList.remove('open');
+    }
+  }
+});
+
+window.addEventListener('scroll', function() {
+  var btt = document.getElementById('btt');
+  if (btt) btt.classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
+
+window._getProgressData = function() { return {}; };
+window._applyProgressData = function(d) {};
+
+let _adminModalSaveFn = null;
+
+function openAdminModal(title, bodyHTML, saveFn) {
+  document.getElementById('adminModalTitle').textContent = title;
+  document.getElementById('adminModalBody').innerHTML = bodyHTML;
+  _adminModalSaveFn = saveFn;
+  document.getElementById('adminModal').classList.add('open');
+}
+
+function closeAdminModal() {
+  document.getElementById('adminModal').classList.remove('open');
+  _adminModalSaveFn = null;
+}
+
+async function adminModalSave() {
+  if (_adminModalSaveFn) {
+    const btn = document.getElementById('adminModalSaveBtn');
+    btn.textContent = 'Saving…';
+    btn.disabled = true;
+    try {
+      await _adminModalSaveFn();
+      closeAdminModal();
+    } catch(e) {
+      alert('Save failed: ' + (e.message || e));
+    }
+    btn.textContent = 'Save';
+    btn.disabled = false;
+  }
+}
+
+document.getElementById('adminModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAdminModal();
+});
+
+var PAGE_SEARCH_INDEX = [];
+function openSearch() {
+  buildSearchIndex();
+  var m = document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(function() { document.getElementById('search-input').focus(); }, 80);
+}
+function closeSearch() {
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-results').innerHTML = '<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q) {
+  var res = document.getElementById('search-results');
+  if (!q.trim()) { res.innerHTML = '<div class="sr-empty">Start typing…</div>'; return; }
+  var lq = q.toLowerCase();
+  var hits = PAGE_SEARCH_INDEX.filter(function(x) { return x.q.indexOf(lq) !== -1; }).slice(0, 20);
+  if (!hits.length) { res.innerHTML = '<div class="sr-empty">No results for "' + q + '"</div>'; return; }
+  res.innerHTML = hits.map(function(h) {
+    var idx = PAGE_SEARCH_INDEX.indexOf(h);
+    var ti = mathHighlight(h.title, lq);
+    return '<div class="sr-item" tabindex="0" data-idx="' + idx + '" onclick="goPageResult(' + idx + ')" onkeydown="if(event.key===\'Enter\')goPageResult(' + idx + ')">' +
+      '<span class="sr-icon">' + h.icon + '</span>' +
+      '<div><div class="sr-title">' + ti + '</div><div class="sr-meta">' + h.meta + '</div></div>' +
+      '<span class="sr-section">' + h.section + '</span></div>';
+  }).join('');
+}
+function mathHighlight(text, q) {
+  if (!q) return text;
+  var idx = text.toLowerCase().indexOf(q);
+  if (idx < 0) return text;
+  return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
+}
+function goPageResult(idx) {
+  var h = PAGE_SEARCH_INDEX[idx]; if (!h) return;
+  closeSearch();
+  if (h.pre) h.pre();
+  setTimeout(function(){
+    var el = document.getElementById(h.elId);
+    if (el) {
+      el.scrollIntoView({behavior:'smooth', block:'center'});
+      el.style.outline = '3px solid #a855f7'; el.style.outlineOffset = '4px';
+      setTimeout(function(){ el.style.outline=''; el.style.outlineOffset=''; }, 1600);
+    }
+  }, 60);
+}
+function searchKeyNav(e) {
+  if (e.key === 'Escape') { closeSearch(); return; }
+  var items = document.querySelectorAll('.sr-item');
+  var cur = document.activeElement;
+  var curIdx = Array.prototype.indexOf.call(items, cur);
+  if (e.key === 'ArrowDown') { e.preventDefault(); (items[curIdx + 1] || items[0]).focus(); }
+  if (e.key === 'ArrowUp')   { e.preventDefault(); (items[curIdx - 1] || items[items.length - 1]).focus(); }
+  if (e.key === 'Enter' && curIdx >= 0) { items[curIdx].click(); }
+}
+document.addEventListener('keydown', function(e) {
+  if (['INPUT','TEXTAREA','SELECT'].indexOf(e.target.tagName) !== -1) return;
+  var modal = document.getElementById('search-modal');
+  if (modal && modal.classList.contains('open')) {
+    if (e.key === 'Escape') closeSearch();
+    return;
+  }
+  if (e.key === '/') { e.preventDefault(); openSearch(); }
+});
+
+const researchData=[
+{badge:"breakthrough",t:"Geometric Langlands Program — Proved (2024)",res:"Dennis Gaitsgory, Sam Raskin, Nick Rozenblyum & 5 collaborators",inst:"IAS Princeton / Harvard, UT Austin, U Chicago",
+desc:"The geometric Langlands conjecture (Beilinson-Drinfeld, 1990s) is the geometric avatar of the classical Langlands program over number fields.",
+detail:"<p>The classical Langlands program (1967) conjectures a correspondence: <em>n-dimensional Galois representations of a number field F</em> ↔ <em>automorphic representations of GL(n,𝔸_F)</em>. The geometric version replaces the number field by the function field k(X) of a smooth projective curve X, and Galois representations by <em>local systems</em> (flat vector bundles on X). The conjecture states: for each irreducible rank-n local system E on X, there exists a D-module on Bunn(X) — the moduli stack of rank-n vector bundles — that is a Hecke eigensheaf with eigenvalue E.</p><p>In 2024, Gaitsgory, Raskin et al. published a ~1,000-page proof (5 preprints) completing the conjecture for GL(n) over ℂ. Key tools: <em>∞-categorical methods</em> (Jacob Lurie's higher topos theory), ind-coherent sheaves on moduli stacks, a new theory of 'D-modules on singular spaces,' and the notion of the 'spectral Langlands category' — a DG category built from local systems. The central theorem: Dmod(BunG) ≅ IndCoh_Nilp(LocSysǦ), an equivalence of (∞,2)-categories. This is the most technically demanding proof in recent mathematical history.</p><p>Why it matters: This is not just one theorem but a complete categorical framework. It unifies representation theory, algebraic geometry, and mathematical physics (topological field theories). Its techniques are expected to transform algebraic geometry over the next decade in the same way that Grothendieck's schemes transformed it in the 1960s.</p>",startGuide:["📖 Prerequisites: Humphreys' <em>Introduction to Lie Algebras and Representation Theory</em>, then Fulton &amp; Harris's <em>Representation Theory</em>.","📖 Frenkel's <em>Langlands Correspondence for Loop Groups</em> (Cambridge, free at math.berkeley.edu/~frenkel) is the accessible modern entry.","🎥 Online: <a href='https://www.youtube.com/results?search_query=geometric+langlands+program'>Peter Scholze's lectures on the Langlands program</a>; IHES lectures by Laurent Fargues (YouTube, IHES channel).","📄 Frenkel's expository article 'Lectures on the Langlands Program and Conformal Field Theory' (arXiv:hep-th/0512172) gives physical intuition.","🔬 This is a PhD+ level area — enter via a PhD in algebraic geometry, representation theory, or number theory and then specialise."]},
+
+{badge:"active",t:"Additive Combinatorics & Higher-Order Fourier Analysis",res:"Terence Tao, Ben Green, Tamar Ziegler",inst:"UCLA, University of Oxford, Hebrew University Jerusalem",
+desc:"Primes in arithmetic progressions, polynomial progressions, and the structure of sumsets.",
+detail:"<p>The Green-Tao theorem (2004) proved that the primes contain arbitrarily long arithmetic progressions: ∀k, ∃ infinitely many prime k-APs p, p+d, p+2d, ..., p+(k-1)d. The proof used Szemerédi's theorem (any set of integers with positive upper density contains k-APs) combined with a transference principle showing primes are 'pseudorandom' enough for Szemerédi to apply.</p><p>The higher-order Fourier analysis machinery: to count k-APs, classical Fourier analysis (k=3, Roth's theorem) suffices — the count is controlled by ‖f‖<sub>U²</sub>² (Gowers uniformity norm of order 2). For k=4, one needs the U³ norm. For general k, the U<sup>k-1</sup> norm. The key insight: <em>Gowers norms are controlled by 'nilsequences'</em> — functions arising from nilpotent Lie groups. This is the Inverse Theorem for Gowers Norms, proved by Green-Tao-Ziegler (2012).</p><p>Ongoing: Polynomial progressions (x, x+P₁(y), ..., x+Pₖ(y) for polynomials Pᵢ); the Polynomial Szemerédi Theorem was proved by Bergelson-Leibman using ergodic theory. The quantitative polynomial version — how large must a set be to contain polynomial progressions? — is the current frontier. Also active: the 'cap set problem' (Croot-Lev-Pach 2016, Ellenberg-Gijswijt 2016 solved it over 𝔽₃ⁿ using the polynomial method) and its connections to Gowers norms.</p>",startGuide:["📖 Tao &amp; Vu's <em>Additive Combinatorics</em> (Cambridge) — THE book, written by the field's leaders. Very comprehensive.","📖 More accessible entry: Tao's <em>An Epsilon of Room I</em> (AMS blog posts compiled), freely available notes on the real analysis prerequisites.","🎥 Online: <a href='https://terrytao.wordpress.com'>Terence Tao's blog (terrytao.wordpress.com)</a> — contains expository posts on Gowers norms, Green-Tao theorem, and Szemerédi's theorem at various levels.","📄 Gowers' 1998 paper 'A new proof of Szemerédi's theorem' (GAFA) is landmark; start with his shorter 2001 survey instead.","🔬 Research entry: Study the inverse theorem for the Gowers U³ norm — connect it to quadratic Fourier analysis. Many open quantitative questions remain."]},
+
+{badge:"active",t:"Bounded Prime Gaps & Maynard-Tao Sieve",res:"James Maynard, Will Sawin",inst:"University of Oxford, Columbia University",
+desc:"Maynard's 2013 sieve proved infinitely many prime pairs within a bounded gap, revolutionizing prime distribution theory.",
+detail:"<p>Zhang's 2013 breakthrough showed: ∃ infinitely many pairs of primes with gap ≤ 70,000,000. The proof used a modification of the Goldston-Pintz-Yildirim (GPY) sieve: define the sieve weight W(n) = (Σ<sub>d | P(n)</sub> λ_d)² where P(n) = (n)(n+2)...(n+2(k-1)) — a 'k-tuple' divisor sum. GPY showed that if one could choose λ_d for an 'admissible' k-tuple with k > 50, then bounded gaps follow. Zhang chose k = 3,500,000 and used a deep estimate on primes in arithmetic progressions (the Bombieri-Vinogradov theorem in a 'smoothed' form).</p><p>Maynard's improvement (independently Tao): replaced the linear sieve with a <em>multi-dimensional sieve</em>. Define F: [0,1]^k → ℝ and optimize ∫F² / max_i(∫∫F² over the i-th diagonal). The optimization becomes: find F maximizing M_k = sup_F (Σ_i ∫₀¹ (∫₀¹...∫₀¹ F(t₁,...,tₖ) dtⱼ)² dt<sub>̂j</sub>) / ∫₀¹...∫₀¹ F² dt₁...dtₖ. For k≥5: M_k > 2 implies bounded gaps. Maynard's k=5 gives gap ≤ 600; with k=105 gives gap ≤ 246 (current record). Under Elliott-Halberstam: gap ≤ 6. The twin prime barrier: to achieve gap = 2, one needs M_k to exceed a threshold no current sieve can reach.</p>",startGuide:["📖 Start with Davenport's <em>Multiplicative Number Theory</em> (Springer) for the analytic groundwork and Siegel-Walfisz theorem.","📖 Cojocaru &amp; Murty's <em>An Introduction to Sieve Methods and Their Applications</em> (Cambridge) — the best accessible sieve theory text.","🎥 Online: <a href='https://www.youtube.com/results?search_query=maynard+primes+lecture'>James Maynard's public lecture 'Small Gaps Between Primes'</a> (YouTube, ICM 2022); also Soundararajan's expository notes.","📄 Read Maynard's breakthrough 2015 Annals paper 'Small gaps between primes' — it's genuinely accessible after Davenport.","🔬 Computational entry: use Python/PARI to investigate prime gap distributions and visualise the evidence for Hardy-Littlewood conjectures."]},
+
+{badge:"breakthrough",t:"Sphere Packing in Dimensions 8 & 24",res:"Maryna Viazovska & collaborators (Cohn, Kumar, Miller, Radchenko)",inst:"EPFL Lausanne",
+desc:"Viazovska proved the E₈ lattice gives the densest sphere packing in ℝ⁸, and the Leech lattice in ℝ²⁴.",
+detail:"<p>The sphere packing problem: arrange unit spheres in ℝⁿ to maximize the fraction of space covered. In ℝ², honeycomb gives π/√12 ≈ 90.7% (proved by Thue 1890, Fejes Tóth 1940). In ℝ³, Kepler's conjecture (proved by Hales 1998, computer-assisted, 250 pages). In ℝ⁸ and ℝ²⁴, there are magical lattices: E₈ (in ℝ⁸) and the Leech lattice Λ₂₄ (in ℝ²⁴) achieve packing densities of π⁴/384 and π¹²/12! respectively.</p><p>Viazovska's 2016 proof: constructs an explicit 'magic function' f: ℝ⁸ → ℝ satisfying: (1) f(0) = f̂(0) = 1; (2) f(x) ≤ 0 for |x| ≥ √2; (3) f̂(ξ) ≤ 0 for |ξ| ≥ √2. Such a function gives an upper bound on packing density via the Cohn-Elkies linear programming bound: density ≤ f(0)/f̂(0) × (sphere volume). For E₈: this upper bound equals the E₈ packing density, proving it optimal. Viazovska constructs f using <em>quasimodular forms</em> — specifically, Eisenstein series E₂, E₄, E₆ and combinations thereof. The 24-dimensional case (with Cohn, Kumar, Miller, Radchenko 2022) uses modular forms for Λ₂₄. Fields Medal 2022 was awarded for this work.</p>",startGuide:["📖 Conway &amp; Sloane's <em>Sphere Packings, Lattices and Groups</em> (Springer, 3rd ed) — encyclopaedic reference for the field.","📖 More accessible: Cohn's 2017 Notices of the AMS article 'A conceptual breakthrough in sphere packing' — excellent overview of the E₈ and Leech lattice proofs.","🎥 Online: <a href='https://www.youtube.com/watch?v=8qlZjarkS_c'>Maryna Viazovska's ICM 2022 plenary lecture</a> (YouTube, free) — watch the actual laureate explain her proof.","📄 Viazovska's 2017 Annals paper 'The sphere packing problem in dimension 8' is 22 pages and, after reading the Notices article, is approachable.","🔬 Entry: study the E₈ root lattice and its modular form properties — the proof uses a beautiful magic function constructed via modular forms."]},
+
+{badge:"active",t:"Perfectoid Spaces & p-adic Hodge Theory",res:"Peter Scholze, Bhargav Bhatt",inst:"University of Bonn, Princeton/IAS",
+desc:"Scholze's perfectoid spaces revolutionised p-adic geometry and enabled proofs of long-standing conjectures.",
+detail:"<p>p-adic numbers ℚ_p are completions of ℚ with respect to the p-adic absolute value |p^n m/n|_p = p<sup>-n</sup> (p prime, gcd(m,n)=1). Classical p-adic Hodge theory (Tate, Fontaine) studies p-adic Galois representations and their relationship to differential forms on p-adic varieties. Key tools: period rings B_dR, B_crys, B_st built from Witt vectors of perfectoid fields.</p><p>Scholze's perfectoid spaces (2012, Fields Medal 2018): A perfectoid field K is a complete non-archimedean field with |p| &lt; 1 where the Frobenius map x↦x^p is surjective on O_K/pO_K. The perfectoid space associated to an affinoid K-algebra A is defined via 'tilting' A to characteristic p: A♭ = lim<sub>x↦x^p</sub> A/pA. Key theorem (Tilting Equivalence): the étale site of Spa(A,A⁺) is equivalent to the étale site of Spa(A♭,A♭⁺). This allows transfer of results from characteristic p (where Frobenius is available) to characteristic 0.</p><p>Consequences: proved the weight-monodromy conjecture for complete intersections (Deligne's conjecture), established the Langlands correspondence for GL(n) over p-adic fields geometrically via the 'Fargues-Fontaine curve' — a mythical curve whose existence unifies all of p-adic Hodge theory. Current active work: condensed mathematics (jointly with Clausen), prismatic cohomology (with Bhatt), absolute p-adic Hodge theory.</p>",startGuide:["📖 Prerequisites: Neukirch's <em>Algebraic Number Theory</em>, then Gouvêa's <em>p-adic Numbers: An Introduction</em> (Springer).","📖 Scholze's original perfectoid paper 'Perfectoid Spaces' (Publications Mathématiques de l'IHÉS, 2012) — freely available and remarkably readable given the depth.","🎥 Online: Scholze's lecture notes from his AWS (Arizona Winter School) lectures are free at <a href='https://swc-math.github.io/aws/'>swc-math.github.io/aws</a>.","📄 Bhatt's expository article 'What is a perfectoid space?' (Notices AMS 2017) is an excellent 5-page introduction.","🔬 This is advanced PhD territory — enter via algebraic number theory and algebraic geometry PhD training, then attend the annual p-adic Hodge theory workshops."]},
+
+{badge:"active",t:"Arithmetic Statistics & Composition Laws",res:"Manjul Bhargava, Arul Shankar, Wei Ho",inst:"Princeton University, University of Michigan",
+desc:"Bhargava's higher composition laws and their applications to counting number fields and bounding elliptic curve ranks.",
+detail:"<p>Gauss composition (1801): The ideal class group of a quadratic field K=ℚ(√D) can be described via binary quadratic forms ax²+bxy+cy² of discriminant b²−4ac=D. Bhargava's doctoral thesis (2004) interpreted Gauss composition as a group law on 2×2×2 integer cubes, then extended this to 14 other spaces of forms, each yielding a composition law — higher composition laws. These parametrize ideal classes in rings of rank 3, 4, 5 number fields.</p><p>Statistical applications: Let N_k(X) = #{degree-k number fields with |disc| ≤ X}. Bhargava proved: N₃(X) ~ CX (C explicit), N₄(X) ~ C₄ X (with Shankar), N₅(X) ~ C₅ X. The key: parametrize rings by coregular representations of algebraic groups, then count integer points in fundamental domains using geometry-of-numbers. For elliptic curves: Bhargava-Shankar (2013) proved that the average rank of elliptic curves over ℚ (ordered by height) is at most 7/6, and the average 2-Selmer group has size ≤ 3. Fields Medal 2014.</p>",startGuide:["📖 Serre's <em>A Course in Arithmetic</em> (Springer GTM 7) — Chapters IV–V on quadratic forms and L-functions are essential prerequisites.","📖 Cassels' <em>Lectures on Elliptic Curves</em> (Cambridge) for the elliptic curve side.","🎥 Online: <a href='https://www.youtube.com/results?search_query=bhargava+arithmetic+statistics'>Manjul Bhargava's Princeton public lectures on composition laws</a> (YouTube); his AWS lecture notes are free at swc-math.github.io.","📄 Bhargava's 2004 Annals paper 'Higher Composition Laws I' is the starting point — requires only basic algebraic number theory.","🔬 Computational entry: enumerate cubic and quartic fields with PARI/GP and verify density predictions — directly connects to Bhargava's theorems."]},
+
+{badge:"breakthrough",t:"Combinatorics Meets Algebraic Geometry — Log-Concavity",res:"June Huh, Petter Brändén, Matt Larson",inst:"Princeton University, KTH Stockholm",
+desc:"June Huh proved the Rota-Welsh conjecture by importing Hodge theory into combinatorics.",
+detail:"<p>The characteristic polynomial of a matroid M (a combinatorial abstraction of linear independence) is χ_M(t) = Σ<sub>k=0</sub>^r (-1)^k w_k t<sup>r-k</sup>, where w_k are the Whitney numbers of the first kind. The Rota-Welsh conjecture (1970): the sequence |w_0|, |w_1|, ..., |w_r| is log-concave: w_k² ≥ w<sub>k-1</sub> w<sub>k+1</sub>. This is equivalent to saying the 'characteristic polynomial has only real roots' — or more subtly, that certain combinatorial invariants satisfy inequalities mirroring those of Hodge theory.</p><p>Huh's approach (2012, building on Huh-Katz 2012): Embed the matroid M in a toric variety X_M. Define the Chow ring A*(X_M). The Poincaré duality and Hard Lefschetz theorem for A*(X_M) (proved by Huh-Adiprasito-Katz 2018 for all matroids, not just realizable ones!) imply the Hodge-Riemann relations: the bilinear form (-1)^k (α ∪ · ∪ Lr-2k) on A^k is positive definite (here L is the Lefschetz element). This implies the log-concavity of coefficients of χ_M. The remarkable aspect: the Hard Lefschetz theorem, a theorem of analytic geometry, is proved here by purely combinatorial algebraic methods — without any geometry. Fields Medal 2022.</p>",startGuide:["📖 Stanley's <em>Enumerative Combinatorics</em> Vol I &amp; II (Cambridge) — the combinatorics bible; free PDF of Vol I at math.mit.edu/~rstan/ec.","📖 Huh's expository article 'Combinatorics and Hodge Theory' (ICM 2022 proceedings) — beautiful overview of the log-concavity proofs.","🎥 Online: <a href='https://www.youtube.com/watch?v=Y4U6oSxM3cg'>June Huh's ICM 2022 lecture</a> (YouTube) — the Fields Medal lecture explaining the breakthrough.","📄 Adiprasito, Huh, Katz 'Hodge Theory for Combinatorial Geometries' (2018 Annals) — after reading the ICM survey, this is approachable.","🔬 Entry: study matroids and the characteristic polynomial — Huh's proof starts from understanding how the Hodge-Riemann relations apply to matroids."]},
+
+{badge:"active",t:"Statistical Physics & Phase Transitions",res:"Hugo Duminil-Copin, Vincent Tassion",inst:"IHES / University of Geneva, ETH Zurich",
+desc:"Rigorous proofs of phase transitions in the Ising model and FK percolation — settling 80-year-old conjectures.",
+detail:"<p>The 2D Ising model on ℤ² places spins σ_i ∈ {±1} at each lattice site with Hamiltonian H = -Σ<sub>⟨i,j⟩</sub> σ_i σ_j. The partition function Z_β = Σ_σ e<sup>-βH</sup>. Onsager (1944) computed Z_β exactly, showing a phase transition at β_c = log(1+√2)/2. The FK random cluster model is a joint spin-edge model: P(σ, η) ∝ q<sup>κ(η)</sup> p<sup>|η|</sup>(1-p)<sup>|E\η|</sup>, where κ(η) = number of connected components.</p><p>Duminil-Copin (Fields Medal 2022) proved: (1) Sharpness of phase transition for Bernoulli percolation on ℤ^d and more general models — showing the phase transition is sharp (no 'coexistence region'). Key tool: OSSS inequality relating influence and revealment. (2) For the 2D random cluster model with q ≥ 1: the critical point p_c = √q/(1+√q). (3) Proved that the phase transition is continuous for q ∈ [1,4] and discontinuous for q > 4 — a spectacular confirmation of predictions from conformal field theory. Method: new 'parafermionic observables' — quantities satisfying discrete holomorphicity — that detect the conformal invariance of the critical point.</p>",startGuide:["📖 Baxter's <em>Exactly Solved Models in Statistical Mechanics</em> (Academic Press, free PDF on Baxter's website) — the classic for exact solutions.","📖 Grimmett's <em>Percolation</em> (Springer, 2nd ed) — the mathematical treatment of phase transitions via percolation.","🎥 Online: <a href='https://www.youtube.com/results?search_query=conformal+field+theory+lecture'>Conformal Field Theory lectures at the Perimeter Institute</a> (pirsa.org, free); Hugo Duminil-Copin's ICM 2022 lecture (YouTube).","📄 Duminil-Copin's survey 'Sixty years of percolation' (ICM 2018 proceedings) is a superb entry point to modern rigorous statistical physics.","🔬 Entry: implement the Ising model simulation in Python and observe the phase transition at the critical temperature — great way to build intuition before rigorous study."]},
+
+{badge:"active",t:"∞-Categories & Derived Algebraic Geometry",res:"Jacob Lurie, Lukas Brantner, Dennis Gaitsgory",inst:"IAS Princeton, Oxford",
+desc:"Lurie's foundational work on (∞,1)-categories provides the language for derived algebraic geometry and topological field theories.",
+detail:"<p>Classical category theory works with objects and morphisms (1-morphisms). Higher category theory adds 2-morphisms between morphisms, 3-morphisms between 2-morphisms, etc. An (∞,1)-category has k-morphisms for all k ≥ 1, with k-morphisms for k ≥ 2 being invertible (up to higher morphisms). Lurie's 'Higher Topos Theory' (2009, 900+ pages) provides rigorous foundations using quasicategories (certain simplicial sets) as models for (∞,1)-categories.</p><p>Derived algebraic geometry (DAG) replaces commutative rings with E∞-ring spectra (commutative rings in stable ∞-categories) and replaces schemes with derived schemes — where the structure sheaf can have non-trivial higher homotopy groups. Key theorem: For a derived scheme X over Spec(ℤ), the ∞-category QCoh(X) of quasi-coherent sheaves encodes all the derived geometry. Application: the moduli stack of G-bundles on a curve, Bun_G(X), is naturally a derived stack. The geometric Langlands proof crucially uses Lurie's machinery: the proof works with D-modules on derived stacks and requires ∞-categorical limits/colimits that cannot be expressed in classical terms.</p><p>Current active frontier: Lurie's work on elliptic cohomology and topological modular forms (tmf); Brantner-Mathew on deformation theory in characteristic p using 'divided power' ∞-categories.</p>",startGuide:["📖 Prerequisites: Weibel's <em>An Introduction to Homological Algebra</em> (Cambridge) and Lurie's <em>Higher Topos Theory</em> (Princeton, free at math.harvard.edu/~lurie).","📖 Groth's 'A Short Course on ∞-Categories' (arXiv:1007.2925) — a concise 60-page accessible introduction.","🎥 Online: <a href='https://www.youtube.com/results?search_query=infinity+categories+lurie+lecture'>Jacob Lurie's Harvard lectures</a> and the 'Kan Seminar' online resources; Land's <em>Introduction to Infinity-Categories</em> lecture videos.","📄 Lurie's 'What is... an ∞-Category?' (Notices AMS 2008) — two pages, completely accessible.","🔬 This requires serious algebraic topology and category theory prerequisites (a full PhD in algebraic topology) before research is possible."]},
+
+{badge:"active",t:"Floer Homology & Low-Dimensional Topology",res:"Peter Kronheimer, Tom Mrowka, Mohammed Abouzaid",inst:"Harvard University, MIT, Columbia University",
+desc:"Applications of gauge theory to 3- and 4-manifold topology — spectacular results on knot concordance and Dehn surgery.",
+detail:"<p><em>🎯 What is this?</em> Imagine you want to study the shape of a 3-dimensional space (like the universe). You can ask: how many holes does it have? What types of loops can you draw in it? These questions are answered by topology. Floer homology is a powerful tool for answering these questions by associating GROUPS (algebraic objects) to 3D spaces. The groups are built by counting certain special surfaces that stretch through the 4D space-time region between two 3D 'slices.' It sounds abstract, but it has led to spectacular concrete results: proving that certain knots cannot be unknotted, that certain 3D spaces are impossible, etc.</p><p>Floer homology (1988, Andreas Floer) is an infinite-dimensional Morse theory. For a 3-manifold Y with a representation ρ: π₁(Y) → G, define the Chern-Simons functional CS(A) = (1/8π²) ∫_Y Tr(A∧dA + (2/3)A∧A∧A) on the space 𝒜(Y)/𝒢(Y) of connections modulo gauge transformations. Critical points of CS are flat connections. Floer homology HF_*(Y) counts gradient flow lines of CS — solutions to the ASD (anti-self-dual) equation F_A⁺ = 0 on Y×ℝ.</p><p>Kronheimer-Mrowka developed instanton Floer homology (using SO(3) gauge theory) and Seiberg-Witten Floer homology (using U(1) gauge theory with a spinor). Key results: (1) Proof of the Property P conjecture (2004): surgery on a nontrivial knot K⊂S³ cannot yield a simply connected 3-manifold. (2) Detection of the unknot by Khovanov homology (2010): if Kh(K) ≅ Kh(unknot), then K is the unknot — proved via a spectral sequence from Kh to a variant of instanton homology. (3) The 'concordance unknotting number' of torus knots — major results on 4-manifold topology. Abouzaid works on symplectic topology: Lagrangian Floer homology, Fukaya categories, and the nearby Lagrangian conjecture.</p>",startGuide:["📖 Hatcher's <em>Algebraic Topology</em> (free at pi.math.cornell.edu/~hatcher) — master Chapters 0-3 first.","📖 Ozsváth &amp; Szabó's survey 'An introduction to Heegaard Floer homology' (Clay Mathematics Proceedings, free on arXiv:math/0304418).","🎥 Online: <a href='https://www.youtube.com/results?search_query=floer+homology+lectures'>MSRI lectures on low-dimensional topology</a> (msri.org/videos); Peter Kronheimer's Harvard lecture notes.","📄 Milnor's <em>Morse Theory</em> (Princeton) and Milnor's <em>Lectures on the h-Cobordism Theorem</em> — classical geometric topology prerequisites.","🔬 Entry: compute Heegaard Floer homology of small knots using the KnotInfo database and the Python knot theory library SnapPy (snappy.computop.org)."]},
+
+{badge:"active",t:"Random Matrices & Free Probability",res:"Terence Tao, Van Vu, Alice Guionnet",inst:"UCLA, Yale University, MIT",
+desc:"Universality of local eigenvalue statistics and deep connections to the Riemann zeros.",
+detail:"<p>The GUE (Gaussian Unitary Ensemble): N×N Hermitian matrices H with entries H<sub>ij</sub> ~ N_ℂ(0,1/N) for i≠j, H<sub>ii</sub> ~ N_ℝ(0,2/N). The joint eigenvalue density is P(λ₁,...,λ_N) ∝ ∏<sub>i&lt;j</sub>|λ_i−λ_j|² × exp(−N/2 × Σλᵢ²). The famous Wigner semicircle law: the empirical spectral distribution converges weakly to the semicircle ρ(x) = (2π)⁻¹√(4−x²) on [-2,2]. Local statistics: the gap distribution between consecutive eigenvalues (normalized to unit mean) converges to the Wigner surmise p(s) ∝ s² exp(−πs²/4) for GUE — this is dramatically different from the Poisson distribution s exp(−s) that would appear for independent random variables.</p><p>Universality (Tao-Vu 2010, Erdős-Schlein-Yau 2010): The local eigenvalue statistics of any Wigner matrix (same first and second moments as GUE) agree with GUE in the limit N→∞. Proof methods: comparison techniques (four-moment theorem), heat flow methods (Dyson Brownian motion). The mystery: the same gap distribution (Wigner surmise) appears in the zeros of the Riemann zeta function! Montgomery-Odlyzko law: the pair correlation function of ζ zeros at height T equals 1 − (sin πr/πr)² — the same as GUE pair correlation. This is one of the most striking connections in all of mathematics: number theory ↔ quantum chaos.</p>",startGuide:["📖 Anderson, Guionnet &amp; Zeitouni's <em>An Introduction to Random Matrices</em> (Cambridge, free PDF at math.umn.edu/~zeitouni) — the definitive text.","📖 More accessible entry: Tao's blog posts on random matrices compiled into <em>Topics in Random Matrix Theory</em> (AMS); Tao's blog is free at terrytao.wordpress.com.","🎥 Online: <a href='https://www.youtube.com/results?search_query=random+matrices+free+probability'>Alice Guionnet's ICM lectures</a> and the Park City Mathematics Institute random matrix lectures (free PDF at pcmi.ias.edu).","📄 Wigner's original 1955 paper 'Characteristic Vectors of Bordered Matrices with Infinite Dimensions' — short and seminal; read alongside Tao's blog.","🔬 Computational entry: numerically verify the Wigner semicircle law by generating random symmetric matrices in Python/NumPy and plotting eigenvalue histograms."]},
+
+{badge:"breakthrough",t:"Kakeya Conjecture in ℝ³ — Proved (2024)",res:"Hong Wang, Joshua Zahl",inst:"New York University, University of British Columbia",
+desc:"Wang and Zahl proved in 2024 that Kakeya sets in ℝ³ have Hausdorff dimension exactly 3 — a landmark result in harmonic analysis.",
+detail:"<p>A Kakeya set (Besicovitch set) in ℝⁿ contains a unit line segment in every direction. In ℝ² such sets can have Lebesgue measure zero (Besicovitch 1919) but must have Hausdorff dimension 2 (Drury 1983). The Kakeya conjecture: Kakeya sets in ℝⁿ have Hausdorff dimension n. Implications: if true, it implies the Restriction Conjecture (Fourier restriction for hypersurfaces), the Bochner-Riesz conjecture, and local smoothing estimates for the wave equation — all major open problems in harmonic analysis.</p><p>Wang-Zahl 2024 proved: every Kakeya set in ℝ³ has Hausdorff dimension 3. The proof uses a multi-scale analysis built on: (1) Polynomial Wolff axioms — for any polynomial P of degree ≤ D, the tubes in a Kakeya set cannot all concentrate near the zero set Z(P). (2) A new 'broad/narrow' decomposition at each scale. (3) Incidence geometry: Szemerédi-Trotter type estimates for tubes in ℝ³. (4) A crucial new inequality: if T is a collection of δ-tubes with directions forming a δ-net, and if E = ∪T, then |E| ≥ c(log 1/δ)<sup>-C</sup> — essentially the full n=3 estimate. The n≥4 case remains open and will require further new ideas.</p>",startGuide:["📖 Wolff's survey 'Recent work connected with the Kakeya problem' (Prospects in Mathematics, 1999) — the classic survey, freely available.","📖 Tao's blog post on the 2024 breakthrough (terrytao.wordpress.com) gives an excellent accessible summary.","🎥 Online: <a href='https://www.youtube.com/results?search_query=kakeya+conjecture+lecture'>Zahl and Wang's IAS lectures on the Kakeya problem</a> (videos.ias.edu); also a Quanta Magazine article with a highly accessible explanation.","📄 The 2024 preprint by Wang &amp; Zahl 'Three-dimensional Kakeya sets via aggregation' (arXiv) — read the introduction and section 1 for the key ideas.","🔬 Entry: Study the finite field model of the Kakeya problem (Dvir's 2008 proof) — it's accessible with just linear algebra and gives the core geometric intuition."]},
+
+{badge:"active",t:"AI-Assisted Mathematics",res:"Terence Tao, Google DeepMind (AlphaProof team)",inst:"UCLA, Google DeepMind",
+desc:"AlphaProof scored IMO 2024 silver medal; Lean 4 and LLMs are beginning to transform how mathematics is discovered and verified.",
+detail:"<p>Formal proof verification has existed since de Bruijn's AUTOMATH (1967). Modern proof assistants: Lean 4 (Moura et al., Microsoft Research), Coq (INRIA), Isabelle/HOL. The Mathlib library (Lean 4): over 150,000 formal theorems including the fundamental theorem of algebra, prime number theorem, Fermat's last theorem (partially), and the Liquid Tensor Experiment (Scholze's theorem, verified 2022). AI developments: AlphaCode (DeepMind) generates competitive programming solutions; AlphaProof (2024) combined language models with formal proof search and solved 4 of 6 IMO 2024 problems — achieving a silver medal level performance.</p><p>Current active work: Terence Tao's Lean 4 formalization of his 2019 Collatz result. The Polymath project is exploring AI assistance for 'mathlib-style' incremental formalization. Key bottleneck: the 'informal-to-formal gap' — translating a human mathematician's intuitive argument into a machine-verifiable proof is still largely manual. Research direction: autoformalization (converting LaTeX to Lean). Broader mathematical impact: computers can now verify complex proofs (like the classification of finite simple groups) in ways that would take humans centuries to check manually. Whether AI can make genuinely new mathematical discoveries — not just verify or search — remains the open question.</p>",startGuide:["📖 <em>Mathematics and AI</em>: start with Buzzard's notes on Lean and formal proof verification (available at Imperial College London's website).","📖 For the ML side: Goodfellow et al. <em>Deep Learning</em> (free at deeplearningbook.org), focusing on transformers and language models.","🎥 Online: <a href='https://leanprover.github.io/lean4/'>Lean 4 interactive theorem prover tutorial</a> (free, in-browser); Kevin Buzzard's 'Formalising Mathematics' course at <a href='https://www.ma.imperial.ac.uk/~buzzard/'>Imperial College</a>.","💻 Software: <a href='https://leanprover-community.github.io/'>Lean 4 + Mathlib</a> (the formalisation library), Coq, or Isabelle/HOL for formal proofs. Google DeepMind AlphaProof and Lean are at the cutting edge.","📄 The 2023 Nature paper 'FunSearch: mathematical discovery from large language models' (Google DeepMind) is a great entry point to AI-assisted discovery.","🔬 Project: formalise a theorem you know well in Lean 4 — even something simple like proving √2 is irrational. The process teaches you both formal logic and the theorem itself at a new depth."]}
+];
+
+let researchPDFs = {}; let openProblemPDFs = {}; let careerPDFs = {};
+
+function tog(bodyId, arrId) {
+  var b = document.getElementById(bodyId);
+  if (!b) return;
+  // Check inline style first; fall back to computed style
+  var hidden = b.style.display ? b.style.display === 'none' : window.getComputedStyle(b).display === 'none';
+  b.style.display = hidden ? 'block' : 'none';
+  var a = document.getElementById(arrId);
+  if (a) { a.style.transform = hidden ? 'rotate(180deg)' : 'rotate(0deg)'; a.style.transition = 'transform 0.25s'; }
+}
+
+function renderResearch(){
+  const isAdm = isAdmin();
+  const badgeCls={"breakthrough":"rb-breakthrough","active":"rb-active","open":"rb-open"};
+  const badgeTxt={"breakthrough":"🔥 Breakthrough","active":"⚡ Active","open":"🔓 Open"};
+  document.getElementById("research-grid").innerHTML=researchData.map((r,i)=>`
+  <div class="res-card reveal" id="rescard${i}">
+    <span class="res-badge ${badgeCls[r.badge]}">${badgeTxt[r.badge]}</span>
+    <div class="res-title">${r.t}</div>
+    <div class="res-who">👤 ${r.res}</div>
+    <div class="res-inst">🏛 ${r.inst}</div>
+    <div class="res-desc">${r.desc}</div>
+    ${(researchPDFs[i]||[]).map(pdf=>`
+      <a class="pdf-resource-link" href="${pdf.url}" target="_blank" rel="noopener">📄 ${pdf.name}</a>`).join('')}
+    ${r.detail?`<div class="res-detail" id="resd${i}" style="display:none">${r.detail}</div>
+    <div onclick="tog('resd${i}','resa${i}')" style="cursor:pointer;margin-top:0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:#38bdf8;display:inline-flex;align-items:center;gap:0.3rem">
+      <span id="resa${i}" style="display:inline-block;transition:transform 0.2s">▼</span> Detailed Mathematics
+    </div>`:""}
+    ${r.startGuide?`<div class="res-start-guide">
+      <div class="res-start-lbl">🚀 How to Start Your Own Research</div>
+      ${r.startGuide.map(s=>'<div class="res-start-item">'+s+'</div>').join('')}
+    </div>`:""}
+    <div class="admin-bar${isAdm?' visible':''}">
+      <button class="admin-btn add-btn" onclick="adminUploadPDF('research',${i})">📎 Add PDF Resource</button>
+    </div>
+  </div>`).join("");}
+
+
+function adminUploadPDF(section, itemIdx) {
+  if (!isAdmin()) return;
+  const existing = (
+    section === 'research' ? researchPDFs[itemIdx] :
+    section === 'openprob' ? openProblemPDFs[itemIdx] :
+    careerPDFs[itemIdx]
+  ) || [];
+
+  const existingHTML = existing.map((pdf, pi) =>
+    `<div class="admin-pdf-item">📄 <a href="${pdf.url}" target="_blank" rel="noopener">${escHtml(pdf.name)}</a>
+     <button class="remove-pdf" onclick="adminRemovePDF('${section}',${itemIdx},${pi})">✕ Remove</button></div>`
+  ).join('');
+
+  openAdminModal('📎 Add PDF Resource', `
+    ${existing.length ? `<div class="admin-field"><label>Existing PDFs</label><div class="admin-pdf-list">${existingHTML}</div></div>` : ''}
+    <div class="admin-field">
+      <label>PDF Display Name</label>
+      <input id="pdfName" placeholder="e.g. Wiles 1995 - Modular Elliptic Curves and Fermat's Last Theorem"></div>
+    <div class="admin-field">
+      <label>Upload PDF File</label>
+      <input type="file" id="pdfFile" accept=".pdf" style="color:#e2e8f0;padding:0.4rem 0"></div>
+    <div class="admin-field">
+      <label>OR Paste External URL</label>
+      <input id="pdfUrl" placeholder="https://arxiv.org/pdf/..."></div>
+    <p style="font-size:0.72rem;color:#7dd3fc;margin-top:0.3rem">PDFs are stored in Supabase Storage and visible to all users.</p>
+  `, async () => {
+    const sb = window.sb;
+    if (!sb) return;
+    const name = document.getElementById('pdfName').value.trim();
+    const file = document.getElementById('pdfFile').files[0];
+    const extUrl = document.getElementById('pdfUrl').value.trim();
+    if (!name) throw new Error('Display name is required.');
+    if (!file && !extUrl) throw new Error('Upload a file or provide a URL.');
+
+    let fileUrl = extUrl;
+    if (file && sb) {
+      const filePath = `${section}/${itemIdx}/${Date.now()}_${file.name.replace(/\s/g,'_')}`;
+      const { error: upErr } = await sb.storage.from('vault-files').upload(filePath, file, { upsert: true });
+      if (upErr) throw upErr;
+      const { data: urlData } = sb.storage.from('vault-files').getPublicUrl(filePath);
+      fileUrl = urlData.publicUrl;
+    } else if (file) {
+      // Fallback: use object URL (temporary)
+      fileUrl = URL.createObjectURL(file);
+    }
+
+    const record = { section, item_index: itemIdx, file_name: name, file_url: fileUrl, uploaded_by: window.currentUser.email };
+    if (sb) {
+      const { error } = await sb.from('math_pdf_resources').insert([record]);
+      if (error) throw error;
+    }
+    await loadAdminData();
+  });
+}
+
+
+async function adminRemovePDF(section, itemIdx, pdfIdx) {
+  if (!isAdmin()) return;
+  const sb = window.sb;
+  const arr = section === 'research' ? researchPDFs[itemIdx] :
+              section === 'openprob' ? openProblemPDFs[itemIdx] :
+              careerPDFs[itemIdx];
+  if (!arr || !arr[pdfIdx]) return;
+  const pdf = arr[pdfIdx];
+  if (!confirm('Remove PDF "' + pdf.name + '"?')) return;
+  if (sb && pdf.id) {
+    const { error } = await sb.from('math_pdf_resources').delete().eq('id', pdf.id);
+    if (error) { alert('Remove failed: ' + error.message); return; }
+  }
+  await loadAdminData();
+  // Re-open modal to reflect changes
+  adminUploadPDF(section, itemIdx);
+}
+
+
+async function loadAdminData() {
+  const sb = window.sb;
+  if (!sb || !isAdmin()) return;
+  try {
+    const { data: pdfs } = await sb.from('math_pdf_resources').select('*').order('created_at', { ascending: true });
+    researchPDFs = {};
+    (pdfs || []).forEach(r => {
+      if (r.section === 'research') {
+        const idx = r.item_index;
+        if (!researchPDFs[idx]) researchPDFs[idx] = [];
+        researchPDFs[idx].push({ id: r.id, name: r.file_name, url: r.file_url });
+      }
+    });
+  } catch(e) { console.warn('loadAdminData error:', e); }
+  renderResearch();
+  reRevealActivePage();
+}
+
+function buildSearchIndex(){
+  PAGE_SEARCH_INDEX = [];
+  researchData.forEach(function(r,i){
+    PAGE_SEARCH_INDEX.push({icon:'⚡',title:r.t,meta:(r.res||'')+' · '+(r.inst||''),section:'Research',elId:'rescard'+i,q:(r.t+' '+(r.res||'')+' '+(r.desc||'')).toLowerCase()});
+  });
+}
+
+renderResearch();
+
+
+document.querySelectorAll('.reveal').forEach(function(el, i) {
+  setTimeout(function() { el.classList.add('visible'); }, Math.min(i * 35, 900));
+});
+</script>
+
+<!-- ═══ SUPABASE + SHARED AUTH/COMMENTS BRIDGE ═══════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+</body>
+</html>
