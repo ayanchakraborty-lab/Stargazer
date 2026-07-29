@@ -443,6 +443,8 @@ const BOOKS = [
 
 /* ── PUZZLES ────────────────────────────────────────────────── */
 
+let _booksRead = new Set(JSON.parse(localStorage.getItem('stats-books-read')||'[]'));
+
 function renderBooks(){
   const g=document.getElementById('books-grid');if(!g)return;
   const adm=isAdmin();
