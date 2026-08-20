@@ -1,0 +1,2858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>First Moment to Final Proof — A Statistics Problem Set | Stargazer</title>
+<meta name="description" content="127 problems across 20 topics of undergraduate statistics, plus real ISI M.Stat PSB entrance-exam questions (2016–2026) — each with hints and full solutions.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Statistics Universe">
+<link rel="canonical" href="https://stargazers.co.in/stats/undergrad-problems.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="First Moment to Final Proof — A Statistics Problem Set | Stargazer">
+<meta property="og:description" content="A hundred and twenty-seven statistics problems — from foundational proofs to real ISI M.Stat entrance-exam questions.">
+<meta property="og:url" content="https://stargazers.co.in/stats/undergrad-problems.html">
+<meta property="og:image" content="https://stargazers.co.in/pics/stats.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="First Moment to Final Proof — A Statistics Problem Set | Stargazer">
+<meta name="twitter:description" content="A hundred and twenty-seven statistics problems — from foundational proofs to real ISI M.Stat entrance-exam questions.">
+<meta name="twitter:image" content="https://stargazers.co.in/pics/stats.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "First Moment to Final Proof — A Statistics Problem Set | Stargazer",
+  "description": "A hundred and twenty-seven statistics problems — from foundational proofs to real ISI M.Stat entrance-exam questions.",
+  "url": "https://stargazers.co.in/stats/undergrad-problems.html",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazers.co.in/" },
+  "about": { "@type": "Thing", "name": "Statistics", "sameAs": "https://en.wikipedia.org/wiki/Statistics" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+
+  :root{
+    --bg:#f4f0e4;
+    --bg-2:#ece5d3;
+    --panel:#faf7ef;
+    --panel-hover:#f1ead9;
+    --border:#ddd2ba;
+    --border-soft:#e7dfca;
+    --ink:#25211a;
+    --ink-dim:#5a6b5e;
+    --ink-faint:#8c8676;
+    --ochre:#a97a1c;
+    --ochre-dim:#c9a860;
+    --brick2:#a8493a;
+    --brick-dim:#c08277;
+    --sage:#3f6b4a;
+    --sage-dim:#7c9a83;
+    --font-display:'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-body:'Fraunces', Georgia, serif;
+    --font-mono:'IBM Plex Mono', 'Courier New', monospace;
+    --max-w:700px;
+    --radius:4px;
+  }
+
+  body.night{
+    --bg:#182420;
+    --bg-2:#131c19;
+    --panel:#1f2c27;
+    --panel-hover:#25342d;
+    --border:#37493f;
+    --border-soft:#28382f;
+    --ink:#ece6d7;
+    --ink-dim:#93a89b;
+    --ink-faint:#5f7468;
+    --ochre:#d3a852;
+    --ochre-dim:#8a7038;
+    --brick2:#c1685c;
+    --brick-dim:#7c4a41;
+    --sage:#8fb096;
+    --sage-dim:#4f6a55;
+  }
+
+  body{ transition:background-color .25s ease, color .25s ease; }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(211,168,82,0.05), transparent 60%),
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 64px),
+      var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-optical-sizing:auto;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+  ::selection{background:var(--ochre-dim); color:var(--ink);}
+
+  :focus-visible{
+    outline:2px solid var(--ochre);
+    outline-offset:2px;
+    border-radius:2px;
+  }
+
+  /* ---------- Masthead ---------- */
+
+  .masthead{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:3.2rem 1.4rem 1.6rem;
+  }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ochre);
+    margin:0 0 0.9rem;
+  }
+
+  h1{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-style:normal;
+    font-variation-settings:'opsz' 90;
+    font-size:clamp(2.1rem, 5.4vw, 3rem);
+    line-height:1.06;
+    letter-spacing:-0.01em;
+    margin:0 0 1rem;
+    color:var(--ink);
+  }
+
+  .dek{
+    font-size:1.02rem;
+    line-height:1.62;
+    color:var(--ink-dim);
+    max-width:56ch;
+    margin:0 0 1.8rem;
+  }
+
+  .progress-row{
+    display:flex;
+    align-items:center;
+    gap:0.9rem;
+    margin-bottom:1rem;
+  }
+
+  .bar{
+    flex:1;
+    height:6px;
+    background:var(--bg-2);
+    border-radius:99px;
+    overflow:hidden;
+    border:1px solid var(--border-soft);
+  }
+
+  .bar-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg, var(--sage-dim), var(--ochre));
+    transition:width 0.4s ease;
+    border-radius:99px;
+  }
+
+  .progress-label{
+    font-family:var(--font-mono);
+    font-size:0.8rem;
+    color:var(--ink-dim);
+    white-space:nowrap;
+  }
+
+  .controls{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.6rem;
+  }
+
+  .ctrl{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    letter-spacing:0.03em;
+    color:var(--ink-dim);
+    background:transparent;
+    border:1px solid var(--border);
+    border-radius:99px;
+    padding:0.4rem 0.85rem;
+    cursor:pointer;
+    transition:border-color .15s, color .15s, background .15s;
+  }
+  .ctrl:hover{ color:var(--ink); border-color:var(--ink-faint); background:var(--panel);}
+  .ctrl-danger:hover{ color:var(--brick2); border-color:var(--brick-dim); }
+
+  /* ---------- TOC ---------- */
+
+  .toc{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:0 1.4rem 1.6rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.4rem;
+    border-bottom:1px solid var(--border-soft);
+  }
+  .toc a{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    text-decoration:none;
+    color:var(--ink-dim);
+    background:var(--bg-2);
+    border:1px solid var(--border-soft);
+    width:1.9rem;
+    height:1.9rem;
+    display:grid;
+    place-items:center;
+    border-radius:3px;
+    transition:border-color .15s, color .15s;
+  }
+  .toc a:hover{ color:var(--ochre); border-color:var(--ochre-dim); }
+
+  /* ---------- Topics ---------- */
+
+  main{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:0.4rem 1.4rem 3rem;
+  }
+
+  details.topic{
+    border-bottom:1px solid var(--border-soft);
+  }
+  details.topic:first-of-type{ border-top:1px solid var(--border-soft); margin-top:1.4rem; }
+
+  summary.topic-head{
+    list-style:none;
+    cursor:pointer;
+    display:flex;
+    align-items:baseline;
+    gap:0.9rem;
+    padding:1.15rem 0;
+    user-select:none;
+  }
+  summary.topic-head::-webkit-details-marker{ display:none; }
+
+  .topic-no{
+    font-family:var(--font-mono);
+    font-size:0.85rem;
+    color:var(--ink-faint);
+    min-width:1.6rem;
+  }
+  .topic-name{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-variation-settings:'opsz' 30;
+    font-size:1.22rem;
+    color:var(--ink);
+    flex:1;
+  }
+  .topic-count{
+    font-family:var(--font-mono);
+    font-size:0.75rem;
+    color:var(--ink-faint);
+  }
+  details.topic-complete .topic-count{ color:var(--sage); }
+  details.topic-complete .topic-name{ color:var(--ink-dim); }
+
+  .chev{
+    font-family:var(--font-mono);
+    color:var(--ink-faint);
+    transition:transform .2s ease;
+    font-size:0.8rem;
+  }
+  details[open] > summary .chev{ transform:rotate(90deg); }
+
+  .topic-body{
+    padding:0 0 1.6rem;
+    display:flex;
+    flex-direction:column;
+    gap:1.1rem;
+  }
+
+  /* ---------- Question cards ---------- */
+
+  article.q{
+    background:var(--panel);
+    border:1px solid var(--border-soft);
+    border-radius:var(--radius);
+    padding:1.1rem 1.2rem 1.2rem;
+  }
+  article.q.is-solved{
+    border-color:var(--sage-dim);
+    background:linear-gradient(180deg, rgba(143,176,150,0.05), var(--panel) 40%);
+  }
+
+  .q-row{
+    display:flex;
+    align-items:center;
+    gap:0.7rem;
+    margin-bottom:0.7rem;
+  }
+
+  input.q-check{
+    appearance:none;
+    -webkit-appearance:none;
+    width:1.5rem;
+    height:1.5rem;
+    min-width:1.5rem;
+    border:1.5px solid var(--border);
+    border-radius:3px;
+    background:var(--bg-2);
+    cursor:pointer;
+    display:grid;
+    place-items:center;
+    margin:0;
+    transition:border-color .15s, background .15s;
+  }
+  input.q-check::before{
+    content:"∎";
+    font-family:var(--font-mono);
+    font-size:0.82rem;
+    color:transparent;
+    transition:color .15s;
+  }
+  input.q-check:checked{ border-color:var(--ochre-dim); }
+  input.q-check:checked::before{ color:var(--ochre); }
+  input.q-check:hover{ border-color:var(--ink-faint); }
+
+  .q-tag{
+    font-family:var(--font-mono);
+    font-size:0.68rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:0.22rem 0.55rem;
+    border-radius:99px;
+    border:1px solid transparent;
+  }
+  .tag-proof{ color:var(--sage); border-color:var(--sage-dim); background:rgba(143,176,150,0.08); }
+  .tag-construction{ color:var(--ochre); border-color:var(--ochre-dim); background:rgba(211,168,82,0.08); }
+  .tag-paradox{ color:var(--brick2); border-color:var(--brick-dim); background:rgba(193,104,92,0.1); }
+  .tag-conceptual{ color:var(--brick2); border-color:var(--brick-dim); background:rgba(193,104,92,0.1); }
+  .tag-bound{ color:var(--ochre); border-color:var(--ochre-dim); background:rgba(211,168,82,0.08); }
+  .tag-application{ color:var(--sage); border-color:var(--sage-dim); background:rgba(143,176,150,0.08); }
+
+  .q-id{
+    margin-left:auto;
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    color:var(--ink-faint);
+  }
+
+  .q-text{
+    font-size:1.03rem;
+    line-height:1.6;
+    color:var(--ink);
+    margin:0 0 0.85rem;
+  }
+
+  .q-source{
+    font-size:0.82rem;
+    line-height:1.5;
+    color:var(--ink-faint);
+    font-style:italic;
+    margin:0;
+    padding-top:0.75rem;
+    border-top:1px dashed var(--border-soft);
+  }
+
+  details.q-hint{ margin-top:0.6rem; }
+  details.q-hint summary{
+    list-style:none;
+    cursor:pointer;
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    display:inline-flex;
+    align-items:center;
+    gap:0.35rem;
+  }
+  details.q-hint summary::-webkit-details-marker{ display:none; }
+  details.q-hint summary::before{
+    content:"›";
+    display:inline-block;
+    transition:transform .18s ease;
+  }
+  details.q-hint[open] summary::before{ transform:rotate(90deg); }
+  details.q-hint summary:hover{ color:var(--ochre); }
+  details.q-hint p{
+    font-size:0.9rem;
+    color:var(--ink-dim);
+    margin:0.55rem 0 0;
+    padding:0.6rem 0.8rem;
+    background:var(--bg-2);
+    border-left:2px solid var(--ochre-dim);
+    border-radius:0 3px 3px 0;
+  }
+
+  .q-text .katex, .q-hint .katex{ font-size:1.02em; }
+
+  /* ---------- Footer ---------- */
+
+  footer.colophon{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:2rem 1.4rem 4rem;
+    color:var(--ink-faint);
+    font-size:0.85rem;
+    line-height:1.6;
+    border-top:1px solid var(--border-soft);
+  }
+
+  @media (max-width: 480px){
+    .masthead{ padding-top:2.2rem; }
+    h1{ font-size:1.85rem; }
+    article.q{ padding:0.95rem 1rem 1rem; }
+  }
+
+  /* ---------- Auth top bar ---------- */
+
+  #auth-topbar{
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+    padding:0.55rem 1.4rem;
+    background:var(--bg-2);
+    border-bottom:1px solid var(--border-soft);
+    font-family:var(--font-mono);
+    font-size:0.74rem;
+  }
+  .atb-btn{
+    text-decoration:none;
+    color:var(--ink-dim);
+    background:transparent;
+    border:1px solid var(--border);
+    border-radius:99px;
+    padding:0.35rem 0.8rem;
+    cursor:pointer;
+    transition:border-color .15s, color .15s;
+  }
+  .atb-btn:hover{ color:var(--ink); border-color:var(--ink-faint); }
+  .atb-username{ color:var(--ink-dim); }
+  .atb-signout{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    color:var(--ink-faint);
+    background:transparent;
+    border:1px solid var(--border);
+    border-radius:99px;
+    padding:0.3rem 0.7rem;
+    cursor:pointer;
+  }
+  .atb-signout:hover{ color:var(--brick2); border-color:var(--brick-dim); }
+
+  /* ---------- Admin: add / edit / delete ---------- */
+
+  .admin-bar{ display:none; }
+  .admin-bar.visible{ display:flex; gap:0.5rem; flex-wrap:wrap; }
+
+  .add-problem-row.admin-bar.visible{
+    display:flex;
+    justify-content:center;
+  }
+
+  .admin-btn{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    letter-spacing:0.02em;
+    border-radius:99px;
+    padding:0.4rem 0.9rem;
+    cursor:pointer;
+    border:1px solid var(--border);
+    background:transparent;
+    color:var(--ink-dim);
+    transition:border-color .15s, color .15s, background .15s;
+  }
+  .add-btn{
+    width:100%;
+    border-style:dashed;
+    border-color:var(--sage-dim);
+    color:var(--sage);
+    padding:0.85rem;
+  }
+  .add-btn:hover{ background:rgba(143,176,150,0.08); border-color:var(--sage); }
+  .del-btn:hover{ color:var(--brick2); border-color:var(--brick-dim); }
+  .edit-btn:hover{ color:var(--ochre); border-color:var(--ochre-dim); }
+
+  article.q.is-custom{ border-color:var(--ochre-dim); }
+
+  /* ---------- Admin modal ---------- */
+
+  #adminModal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(10,14,12,0.72);
+    z-index:200;
+    align-items:center;
+    justify-content:center;
+    padding:1.2rem;
+  }
+  #adminModal.open{ display:flex; }
+  .admin-modal-box{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    max-width:480px;
+    width:100%;
+    max-height:88vh;
+    overflow-y:auto;
+    padding:1.4rem 1.4rem 1.2rem;
+  }
+  .admin-modal-title{
+    font-family:var(--font-display);
+    font-size:1.15rem;
+    color:var(--ink);
+    margin-bottom:1rem;
+  }
+  .admin-field{ margin-bottom:0.9rem; }
+  .admin-field label{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:0.7rem;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:0.35rem;
+  }
+  .admin-field input,
+  .admin-field textarea,
+  .admin-field select{
+    width:100%;
+    background:var(--bg-2);
+    border:1px solid var(--border);
+    border-radius:3px;
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:0.92rem;
+    padding:0.55rem 0.7rem;
+    resize:vertical;
+  }
+  .admin-field input:focus,
+  .admin-field textarea:focus,
+  .admin-field select:focus{ outline:none; border-color:var(--ochre-dim); }
+  .admin-modal-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:0.6rem;
+    margin-top:0.4rem;
+  }
+  .admin-cancel-btn, .admin-save-btn{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    border-radius:99px;
+    padding:0.5rem 1.1rem;
+    cursor:pointer;
+    border:1px solid var(--border);
+  }
+  .admin-cancel-btn{ background:transparent; color:var(--ink-dim); }
+  .admin-save-btn{ background:var(--ochre); color:var(--bg); border-color:var(--ochre); font-weight:600; }
+  .admin-save-btn:hover{ opacity:0.9; }
+  .admin-save-btn:disabled{ opacity:0.5; cursor:not-allowed; }
+
+  /* ---------- Site nav (home / title / search / sections) ---------- */
+
+  #nav{
+    position:sticky;
+    top:0;
+    z-index:900;
+    display:flex;
+    align-items:center;
+    gap:.5rem;
+    height:46px;
+    padding:0 1.4rem;
+    background:var(--bg-2);
+    border-bottom:1px solid var(--border-soft);
+    backdrop-filter:blur(10px);
+  }
+  .nav-brand{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-style:italic;
+    font-size:1.05rem;
+    color:var(--ochre);
+    text-decoration:none;
+    white-space:nowrap;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .nav-brand:hover{ color:var(--ochre-dim); }
+  .nav-cur-section{
+    font-family:var(--font-mono);
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    flex:1;
+    padding-left:.65rem;
+  }
+  .nav-search-btn, #hamburger-btn{
+    font-size:0.95rem;
+    color:var(--ink-dim);
+    background:none;
+    border:1px solid var(--border);
+    border-radius:7px;
+    padding:.28rem .58rem;
+    cursor:pointer;
+    line-height:1;
+    flex-shrink:0;
+    transition:border-color .15s, color .15s, background .15s;
+  }
+  .nav-search-btn{ margin-left:auto; }
+  .nav-search-btn:hover, #hamburger-btn:hover, #hamburger-btn.open{
+    color:var(--ochre); border-color:var(--ochre-dim); background:var(--panel);
+  }
+
+  /* ---------- Hamburger menu ---------- */
+
+  #hamburger-menu{
+    position:fixed;
+    top:46px;
+    right:0;
+    width:225px;
+    max-height:calc(100vh - 46px);
+    overflow-y:auto;
+    background:var(--panel);
+    border-left:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    border-radius:0 0 0 10px;
+    z-index:950;
+    padding:.4rem 0;
+    display:none;
+    flex-direction:column;
+    box-shadow:-6px 6px 26px rgba(0,0,0,.18);
+  }
+  #hamburger-menu.open{ display:flex; }
+  #hamburger-menu .hm-item{
+    font-family:var(--font-mono);
+    font-size:0.76rem;
+    color:var(--ink-dim);
+    background:none;
+    border:none;
+    text-align:left;
+    padding:.5rem 1.1rem;
+    cursor:pointer;
+    transition:color .15s, background .15s;
+    white-space:nowrap;
+    display:flex;
+    align-items:center;
+    gap:.5rem;
+  }
+  #hamburger-menu .hm-item:hover{ color:var(--ink); background:var(--panel-hover); }
+  #hamburger-menu .hm-item.active{ color:var(--ochre); background:rgba(211,168,82,0.12); font-weight:600; }
+  #hamburger-menu .hm-divider{ height:1px; background:var(--border-soft); margin:.3rem .75rem; }
+
+  /* ---------- Search modal ---------- */
+
+  #search-modal{
+    position:fixed; inset:0; z-index:2000; display:none;
+    align-items:flex-start; justify-content:center; padding-top:90px;
+    background:rgba(10,9,6,0.55); backdrop-filter:blur(5px);
+  }
+  #search-modal.open{ display:flex; }
+  #search-box{
+    background:var(--panel); border:1px solid var(--border); border-radius:10px;
+    width:min(560px,92vw); max-height:70vh; overflow:hidden;
+    display:flex; flex-direction:column; box-shadow:0 22px 55px rgba(0,0,0,.35);
+  }
+  #search-input-wrap{
+    display:flex; align-items:center; gap:.6rem;
+    padding:.8rem 1.05rem; border-bottom:1px solid var(--border-soft);
+  }
+  #search-icon-lbl{ color:var(--ink-faint); }
+  #search-input{
+    flex:1; background:none; border:none; outline:none;
+    font-family:var(--font-body); font-size:0.95rem; color:var(--ink);
+  }
+  #search-kbd{
+    font-family:var(--font-mono); font-size:0.6rem; color:var(--ink-faint);
+    border:1px solid var(--border); border-radius:3px; padding:.1rem .4rem;
+  }
+  #search-results{ overflow-y:auto; max-height:52vh; padding:.45rem; }
+  .sr-item{
+    display:flex; align-items:center; gap:.75rem; padding:.55rem .7rem;
+    border-radius:6px; cursor:pointer; transition:background .15s;
+  }
+  .sr-item:hover, .sr-item:focus{ background:var(--bg-2); outline:none; }
+  .sr-icon{ font-size:0.95rem; flex-shrink:0; width:1.4rem; text-align:center; }
+  .sr-title{ font-family:var(--font-body); font-size:0.84rem; font-weight:600; color:var(--ink); }
+  .sr-meta{ font-size:0.68rem; color:var(--ink-faint); margin-top:.1rem; }
+  .sr-section{
+    font-family:var(--font-mono); font-size:0.58rem; color:var(--sage);
+    background:rgba(143,176,150,0.14); padding:.1rem .36rem; border-radius:3px;
+    margin-left:auto; flex-shrink:0; white-space:nowrap;
+  }
+  .sr-empty{
+    padding:2rem; text-align:center; font-size:0.85rem; color:var(--ink-faint);
+    font-family:var(--font-display); font-style:italic;
+  }
+
+  #shortcut-hint{
+    position:fixed; bottom:1.4rem; left:1.4rem; z-index:800;
+    font-family:var(--font-mono); font-size:0.6rem; color:var(--ink-faint);
+    opacity:.5; pointer-events:none; letter-spacing:.04em;
+  }
+
+  /* ---------- Back to top ---------- */
+
+  #btt{
+    position:fixed; bottom:1.4rem; right:1.4rem; z-index:800;
+    width:36px; height:36px; border-radius:50%;
+    border:1px solid var(--border); background:var(--panel);
+    color:var(--ochre); font-size:.9rem; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; transition:opacity .3s, background .15s; outline:none;
+  }
+  #btt.show{ opacity:1; }
+  #btt:hover{ background:var(--panel-hover); }
+
+  /* ---------- Contact / about footer ---------- */
+
+  .site-contact{
+    text-align:center; padding:1.8rem 1rem 0.6rem;
+    display:flex; flex-direction:column; gap:.3rem;
+  }
+  .site-contact-label{
+    font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--ink-faint); font-style:italic; font-family:var(--font-mono);
+  }
+  .site-contact-email{
+    font-size:0.82rem; color:var(--sage); text-decoration:none;
+  }
+  .site-contact-email:hover{ text-decoration:underline; }
+  .site-about-wrap{ text-align:center; padding-bottom:2rem; }
+  .site-about-link{
+    font-family:var(--font-mono); font-size:0.58rem; letter-spacing:0.12em;
+    color:var(--sage); opacity:0.6; text-decoration:none;
+    border:1px solid var(--sage-dim); border-radius:3px;
+    padding:0.26rem 0.85rem; transition:opacity 0.2s;
+    display:inline-flex; align-items:center; gap:0.4rem;
+  }
+  .site-about-link:hover{ opacity:1; }
+
+  /* flash highlight for a search result jumped to */
+  .sr-flash{ animation:srFlash 1.6s ease; }
+  @keyframes srFlash{
+    0%{ background:rgba(211,168,82,0.22); }
+    100%{ background:transparent; }
+  }
+
+  @media (max-width:480px){
+    #hamburger-menu{ width:195px; }
+    .nav-cur-section{ display:none; }
+  }
+</style>
+</head>
+<body>
+<script>if(localStorage.getItem('stats-mode')==='night'){document.body.classList.add('night');}</script>
+
+<!-- ═══ AUTH TOP BAR ═══ -->
+<div id="auth-topbar">
+  <a href="../index.html" class="atb-btn">🌌 Stargazer Home</a>
+  <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night"><span id="mode-icon">☾</span></button>
+  <div style="flex:1"></div>
+  <a href="../login.html" id="loginBtn" class="atb-btn">☽ Sign In</a>
+  <div id="userInfo" style="display:none;align-items:center;gap:0.5rem">
+    <span class="atb-username" id="userEmailDisplay">✦ Explorer</span>
+    <button class="atb-signout" onclick="doSignOut()">Sign Out</button>
+  </div>
+</div>
+
+<script src="nav.js"></script>
+<script>renderNav('undergrad-problems');</script>
+
+<!-- ═══ SEARCH MODAL ═══ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search all 127 problems…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search this problem set…</div></div>
+  </div>
+</div>
+
+<!-- ═══ KEYBOARD HINT ═══ -->
+<div id="shortcut-hint">/ search</div>
+
+<!-- ═══ ADMIN MODAL ═══ -->
+<div id="adminModal">
+  <div class="admin-modal-box">
+    <div class="admin-modal-title" id="adminModalTitle">Admin Panel</div>
+    <div id="adminModalBody"></div>
+    <div class="admin-modal-actions">
+      <button class="admin-cancel-btn" onclick="closeAdminModal()">Cancel</button>
+      <button class="admin-save-btn" id="adminModalSaveBtn" onclick="adminModalSave()">Save</button>
+    </div>
+  </div>
+</div>
+
+<header class="masthead">
+  <p class="eyebrow">A statistics problem set</p>
+  <h1>First Moment to Final Proof</h1>
+  <p class="dek">A hundred and twenty-seven problems across twenty topics, moving through the undergraduate statistics curriculum roughly in teaching order — descriptive statistics first, stochastic processes last — plus two topics of pure mathematics and survey sampling picked up along the way. The original thirty-six are curated, conceptual problems: a proof, a construction, a paradox, a bound. Alongside them now sits a full run of real ISI M.Stat PSB entrance-exam problems (2016–2026), sourced and cited by year. Work through them at whatever pace suits you — progress is saved automatically as you go.</p>
+  <div class="progress-row">
+    <div class="bar"><div class="bar-fill" id="barFill"></div></div>
+    <span class="progress-label" id="progressLabel">0 / 127 solved</span>
+  </div>
+  <div class="controls">
+    <button type="button" class="ctrl" id="expandAll">Expand all</button>
+    <button type="button" class="ctrl" id="collapseAll">Collapse all</button>
+    <button type="button" class="ctrl ctrl-danger" id="resetBtn">Reset progress</button>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Jump to topic">
+  <a href="#t1">1</a><a href="#t2">2</a><a href="#t3">3</a><a href="#t4">4</a>
+  <a href="#t5">5</a><a href="#t6">6</a><a href="#t7">7</a><a href="#t8">8</a>
+  <a href="#t9">9</a><a href="#t10">10</a><a href="#t11">11</a><a href="#t12">12</a>
+  <a href="#t13">13</a><a href="#t14">14</a><a href="#t15">15</a><a href="#t16">16</a>
+  <a href="#t17">17</a><a href="#t18">18</a><a href="#t19">19</a><a href="#t20">20</a>
+</nav>
+
+<main>
+
+  <details class="topic" id="t1" data-topic="1" open>
+    <summary class="topic-head">
+      <span class="topic-no">01</span>
+      <span class="topic-name">Descriptive Statistics</span>
+      <span class="topic-count">0 / 2</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="1-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 1.1 solved">
+          <span class="q-tag tag-proof">Proof</span>
+          <span class="q-id">1.1</span>
+        </div>
+        <p class="q-text">Take any finite list of numbers. Choose any two entries and replace both with their average, leaving their sum — and therefore the overall mean — unchanged. Prove that the variance of the list can never increase as a result. Exactly when does it stay the same?</p>
+        <p class="q-source">Original. The underlying idea is the majorization / Schur-convexity principle behind the Pigou–Dalton transfer used in inequality economics.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Fix the two values' sum $s$. Ask what value of $a^2+b^2$, subject to $a+b=s$, is smallest.</p></details>
+      </article>
+
+      <article class="q" data-id="1-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 1.2 solved">
+          <span class="q-tag tag-construction">Construction</span>
+          <span class="q-id">1.2</span>
+        </div>
+        <p class="q-text">It's often assumed that if a dataset's mean, median, and mode all coincide, the data must be symmetric. Prove this is false by constructing an explicit dataset (seven numbers will do) where mean = median = mode, but the data is visibly lopsided — pulled long in one direction.</p>
+        <p class="q-source">Original — a classic misconception worth breaking by hand rather than by citation.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Put three copies of a central value to lock in the median and mode, then let the remaining four points sit at very different distances on each side.</p></details>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t2" data-topic="2">
+    <summary class="topic-head">
+      <span class="topic-no">02</span>
+      <span class="topic-name">Foundations of Probability &amp; Combinatorics</span>
+      <span class="topic-count">0 / 9</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="2-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 2.1 solved">
+          <span class="q-tag tag-proof">Recursion</span>
+          <span class="q-id">2.1</span>
+        </div>
+        <p class="q-text">A and B alternate flipping a fair coin, A going first; whoever flips heads first wins. Find $P(\text{A wins})$ — but not by summing an infinite series. Set up a single self-referential equation using the fact that if both players get tails, the game restarts exactly as it began, except two tosses have now passed — and solve it.</p>
+        <p class="q-source">Classic first-step analysis; this style of argument appears throughout Feller's <em>An Introduction to Probability Theory</em> in various guises.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Let $p=P(\text{A wins})$ from the start. Express $p$ in terms of $p$ itself.</p></details>
+      </article>
+
+      <article class="q" data-id="2-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 2.2 solved">
+          <span class="q-tag tag-bound">Bound</span>
+          <span class="q-id">2.2</span>
+        </div>
+        <p class="q-text">$n$ people check in coats and are handed back a uniformly random permutation of them. Without deriving or quoting the full derangement formula, use the Bonferroni (truncated inclusion–exclusion) inequalities — stopping after just two or three terms — to prove that the probability nobody gets their own coat back always lies strictly between $1/4$ and $1/2$ for every $n \ge 3$. What does this probability converge to as $n \to \infty$?</p>
+        <p class="q-source">Classic — the derangement problem, traceable to Pierre Rémond de Montmort's early-18th-century work on the "problème des rencontres."</p>
+        <details class="q-hint"><summary>Hint</summary><p>The alternating partial sums of inclusion–exclusion bracket the true value from above and below at every stage.</p></details>
+      </article>
+
+
+      <article class="q" data-id="2-3">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 2.3 solved">
+          <span class="q-tag tag-construction">Counting</span>
+          <span class="q-id">2.3</span>
+        </div>
+        <p class="q-text">Find the number of functions $f:\{1,2,\dots,2n\}\to\{1,2,\dots,2n\}$ satisfying $f(i)\ne i$ and $f(f(i))=i$ for all $i=1,2,\dots,2n$.</p>
+        <p class="q-source">ISI M.Stat PSB 2026, Question 2.</p>
+      </article>
+
+      <article class="q" data-id="2-4">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 2.4 solved">
+          <span class="q-tag tag-application">Expected value</span>
+          <span class="q-id">2.4</span>
+        </div>
+        <p class="q-text">Suppose $\pi$ is a permutation of $\{1,\dots,n\}$, $n \ge 2$. A pair $(i,j)$ with $i\lt j$ is called an <em>inversion</em> with respect to $\pi$ if $\pi_i \gt  \pi_j$. Let $X$ denote the number of inversions with respect to a permutation chosen uniformly at random from all permutations of $\{1,\dots,n\}$. Find $E(X)$.</p>
+        <p class="q-source">ISI M.Stat PSB 2026, Question 6.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Write $X$ as a sum of $\binom{n}{2}$ indicator variables, one per pair $(i,j)$, and use linearity of expectation.</p></details>
+      </article>
+
+      <article class="q" data-id="2-5">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 2.5 solved">
+          <span class="q-tag tag-application">Exact probability</span>
+          <span class="q-id">2.5</span>
+        </div>
+        <p class="q-text">Consider a random permutation of the eight numbers $1,2,\dots,8$. Compute the probability that no two adjacent numbers in this permutation have a product which is odd. Give justification for your computation.</p>
+        <p class="q-source">ISI M.Stat PSB 2023, Question 2.</p>
+      </article>
+
+      <article class="q" data-id="2-6">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 2.6 solved">
+          <span class="q-tag tag-construction">Counting</span>
+          <span class="q-id">2.6</span>
+        </div>
+        <p class="q-text">Let $P$ be a regular polygon with 24 sides. Consider all the triangles whose vertices are also vertices of $P$. Find the number of such triangles that are neither isosceles nor equilateral.</p>
+        <p class="q-source">ISI M.Stat PSB 2022, Question 3.</p>
+      </article>
+
+      <article class="q" data-id="2-7">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 2.7 solved">
+          <span class="q-tag tag-construction">Counting</span>
+          <span class="q-id">2.7</span>
+        </div>
+        <p class="q-text">Elections are to be scheduled on any seven days in April and May. In how many ways can the seven days be chosen such that elections are not scheduled on two consecutive days?</p>
+        <p class="q-source">ISI M.Stat PSB 2019, Question 3.</p>
+      </article>
+
+      <article class="q" data-id="2-8">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 2.8 solved">
+          <span class="q-tag tag-construction">Counting</span>
+          <span class="q-id">2.8</span>
+        </div>
+        <p class="q-text">Consider all permutations of the integers $1,2,\dots,100$. In how many of these permutations will the 25th number be the minimum of the first 25 numbers <em>and</em> the 50th number be the minimum of the first 50 numbers?</p>
+        <p class="q-source">ISI M.Stat PSB 2018, Question 3.</p>
+      </article>
+
+      <article class="q" data-id="2-9">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 2.9 solved">
+          <span class="q-tag tag-application">Exact probability</span>
+          <span class="q-id">2.9</span>
+        </div>
+        <p class="q-text">Consider an urn containing 5 red, 5 black, and 10 white balls. If balls are drawn without replacement from the urn, calculate the probability that in the first 7 draws, at least one ball of each colour is drawn.</p>
+        <p class="q-source">ISI M.Stat PSB 2017, Question 3.</p>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t3" data-topic="3">
+    <summary class="topic-head">
+      <span class="topic-no">03</span>
+      <span class="topic-name">Conditional Probability &amp; Bayes' Theorem</span>
+      <span class="topic-count">0 / 2</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="3-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 3.1 solved">
+          <span class="q-tag tag-paradox">Paradox</span>
+          <span class="q-id">3.1</span>
+        </div>
+        <p class="q-text">Three identical boxes: one holds two gold coins, one holds two silver coins, one holds one of each. You pick a box uniformly at random, then pull one coin from it at random — it's gold. Most people's gut answer for "probability the other coin in that box is also gold" is $1/2$. Find the correct answer, and diagnose precisely where that intuition goes wrong.</p>
+        <p class="q-source">Classic — Bertrand's Box Paradox, from Joseph Bertrand's <em>Calcul des probabilités</em> (1889).</p>
+        <details class="q-hint"><summary>Hint</summary><p>Condition on the event "a gold coin was drawn," not on "the gold–gold box was chosen." These are not the same event.</p></details>
+      </article>
+
+      <article class="q" data-id="3-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 3.2 solved">
+          <span class="q-tag tag-construction">Construction</span>
+          <span class="q-id">3.2</span>
+        </div>
+        <p class="q-text">Design two hospitals and two categories of patient (say, "critical" and "stable") such that Hospital A has a strictly higher survival rate than Hospital B within <em>every</em> category — yet Hospital B has the higher survival rate overall. Then state, purely in terms of the Law of Total Probability, the exact condition on the patient-mix weights that makes this reversal possible.</p>
+        <p class="q-source">Classic — Simpson's Paradox, formally described by Edward Simpson (1951), with earlier related observations by Udny Yule.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Make Hospital A specialize heavily in the easy category, and Hospital B specialize heavily in the hard one.</p></details>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t4" data-topic="4">
+    <summary class="topic-head">
+      <span class="topic-no">04</span>
+      <span class="topic-name">Discrete Distributions</span>
+      <span class="topic-count">0 / 7</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="4-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 4.1 solved">
+          <span class="q-tag tag-proof">Structural proof</span>
+          <span class="q-id">4.1</span>
+        </div>
+        <p class="q-text">For $X \sim \text{Binomial}(n,p)$, consider the ratio $P(X=k+1)/P(X=k)$ as a function of $k$. Show algebraically that this ratio is strictly decreasing in $k$. Using only that fact — no probabilities actually computed — prove the Binomial distribution has at most two modes, and pin down exactly when it has two rather than one.</p>
+        <p class="q-source">Original — the "ratio test" technique for locating a distribution's mode.</p>
+        <details class="q-hint"><summary>Hint</summary><p>The ratio crosses $1$ at most once. That crossing point is where the mode (or modes) live.</p></details>
+      </article>
+
+      <article class="q" data-id="4-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 4.2 solved">
+          <span class="q-tag tag-proof">Conceptual derivation</span>
+          <span class="q-id">4.2</span>
+        </div>
+        <p class="q-text">Let $X \sim \text{Poisson}(\lambda)$ and $Y \sim \text{Poisson}(\mu)$ be independent. Show — with a combinatorial "each of the $X+Y$ events independently chooses to be an $X$-type or $Y$-type event" argument, not generating functions — that conditional on $X+Y=n$, $X$ is distributed exactly as $\text{Binomial}\left(n, \frac{\lambda}{\lambda+\mu}\right)$. Before deriving it, explain in one sentence why this had to be true.</p>
+        <p class="q-source">Classic — the Poisson thinning / splitting property.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Think of $\lambda$ and $\mu$ as competing rates. Each of the $n$ total events is independently "colored" $X$ or $Y$.</p></details>
+      </article>
+
+
+      <article class="q" data-id="4-3">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 4.3 solved">
+          <span class="q-tag tag-application">Coupon collector</span>
+          <span class="q-id">4.3</span>
+        </div>
+        <p class="q-text">A box contains 7 indistinguishable green balls, 5 indistinguishable white balls and 6 indistinguishable black balls. Suppose balls are drawn using simple random sampling with replacement until balls of all colours are obtained. Let $N$ denote the minimum number of draws needed to achieve this. (a) For each nonnegative integer $n$, calculate $P(N\gt n)$. (b) Using (a) or otherwise, compute $E(N)$.</p>
+        <p class="q-source">ISI M.Stat PSB 2024, Question 3.</p>
+      </article>
+
+      <article class="q" data-id="4-4">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 4.4 solved">
+          <span class="q-tag tag-proof">Functional equation</span>
+          <span class="q-id">4.4</span>
+        </div>
+        <p class="q-text">Identify, with justification, all cumulative distribution functions $F$ that satisfy $F(x) = F(x^{2023})$ for every $x \in \mathbb{R}$.</p>
+        <p class="q-source">ISI M.Stat PSB 2023, Question 3.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Track what the map $x \mapsto x^{2023}$ does to points in $(-1,1)$, at $\pm1$, and outside $[-1,1]$ under repeated iteration.</p></details>
+      </article>
+
+      <article class="q" data-id="4-5">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 4.5 solved">
+          <span class="q-tag tag-proof">Characterization</span>
+          <span class="q-id">4.5</span>
+        </div>
+        <p class="q-text">Let $X$ and $Y$ be independent and identically distributed random variables with mean $\mu\gt 0$, taking values in $\{0,1,2,\dots\}$. Suppose, for all $m \ge 0$, $P(X=k \mid X+Y=m) = \dfrac{1}{m+1}$ for $k=0,1,\dots,m$. Find the distribution of $X$ in terms of $\mu$.</p>
+        <p class="q-source">ISI M.Stat PSB 2019, Question 4.</p>
+        <details class="q-hint"><summary>Hint</summary><p>A uniform conditional distribution given the sum is the defining thinning property of one very specific discrete family.</p></details>
+      </article>
+
+      <article class="q" data-id="4-6">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 4.6 solved">
+          <span class="q-tag tag-proof">Order statistic of a geometric family</span>
+          <span class="q-id">4.6</span>
+        </div>
+        <p class="q-text">Let $X_1,X_2,\dots,X_n$ be independent random variables, with $X_i$ having probability mass function $P(X_i=k) = \left(\dfrac{i}{i+1}\right)^{k} \dfrac{1}{i+1}$ for $k=0,1,2,\dots$, for each $i=1,\dots,n$. Let $M=\min\{X_i : 1\le i \le n\}$. Derive the probability mass function of $M$.</p>
+        <p class="q-source">ISI M.Stat PSB 2017, Question 4.</p>
+      </article>
+
+      <article class="q" data-id="4-7">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 4.7 solved">
+          <span class="q-tag tag-application">Coupon collector</span>
+          <span class="q-id">4.7</span>
+        </div>
+        <p class="q-text">A box contains 50 red balls, 30 green balls and 20 blue balls. Suppose balls are drawn successively at random with replacement from the box. Let $N$ denote the minimum number of draws required to obtain balls of all three colours. Compute $P(N\gt n)$ for all positive integers $n$.</p>
+        <p class="q-source">ISI M.Stat PSB 2016, Question 5.</p>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t5" data-topic="5">
+    <summary class="topic-head">
+      <span class="topic-no">05</span>
+      <span class="topic-name">Continuous Distributions</span>
+      <span class="topic-count">0 / 2</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="5-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 5.1 solved">
+          <span class="q-tag tag-proof">Proof + construction</span>
+          <span class="q-id">5.1</span>
+        </div>
+        <p class="q-text">Let $X, Y$ be i.i.d. continuous random variables with finite variance. (a) Show $X+Y$ and $X-Y$ are always uncorrelated. (b) Find a simple example — a discrete one is fine here — where $X+Y$ and $X-Y$ are uncorrelated but <em>not</em> independent. (c) There is exactly one distributional shape, up to location and scale, for which $X+Y$ and $X-Y$ are always independent. Name it.</p>
+        <p class="q-source">Part (c) is known as the Kac–Bernstein theorem (Mark Kac, 1939, and Sergei Bernstein, 1941, independently).</p>
+        <details class="q-hint"><summary>Hint</summary><p>For (b), a symmetric three-point distribution is enough.</p></details>
+      </article>
+
+      <article class="q" data-id="5-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 5.2 solved">
+          <span class="q-tag tag-proof">Uniqueness proof</span>
+          <span class="q-id">5.2</span>
+        </div>
+        <p class="q-text">Prove that the Exponential distribution is the only continuous distribution on $[0,\infty)$ satisfying the memoryless property $P(X \gt s+t \mid X \gt s) = P(X \gt t)$ for all $s,t \ge 0$. Reduce the condition to a functional equation $g(s+t)=g(s)g(t)$ and reason about what kind of function $g$ must be.</p>
+        <p class="q-source">Classic — Cauchy's functional equation, applied here to characterize memorylessness.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Take logs to turn the multiplicative equation into an additive one, then think about monotonicity.</p></details>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t6" data-topic="6">
+    <summary class="topic-head">
+      <span class="topic-no">06</span>
+      <span class="topic-name">Expectation, Moments &amp; Generating Functions</span>
+      <span class="topic-count">0 / 9</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="6-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 6.1 solved">
+          <span class="q-tag tag-paradox">Paradox</span>
+          <span class="q-id">6.1</span>
+        </div>
+        <p class="q-text">A fair coin is tossed until the first head, on toss $n$; the payout is $2^n$. Compute $E[\text{payout}]$. Then — this is the real question — construct an actual argument, not just "the math says so," for why virtually no one would sensibly pay even a hundred dollars to play this game, despite its infinite expectation.</p>
+        <p class="q-source">Classic — the St. Petersburg Paradox. Nicolas Bernoulli posed it in 1713; Daniel Bernoulli resolved it via expected utility in 1738.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Ask what a "fair price" should mean when the median outcome and the mean outcome are wildly different.</p></details>
+      </article>
+
+      <article class="q" data-id="6-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 6.2 solved">
+          <span class="q-tag tag-construction">Construction</span>
+          <span class="q-id">6.2</span>
+        </div>
+        <p class="q-text">Two ordinary fair dice, summed, produce a well-known distribution over $2$–$12$. Using probability generating functions — factor the polynomial $x+x^2+\dots+x^6$ over the integers — determine whether a <em>different</em> pair of dice exists (still six faces each, still positive integers, just not $1$–$6$) that produces the exact same sum distribution. If so, find the labeling.</p>
+        <p class="q-source">Classic — Sicherman dice, George Sicherman; popularized by Martin Gardner.</p>
+        <details class="q-hint"><summary>Hint</summary><p>$x+x^2+x^3+x^4+x^5+x^6 = x(1+x)(1+x+x^2)(1-x+x^2)$. Regroup these four factors into two different-looking dice.</p></details>
+      </article>
+
+
+      <article class="q" data-id="6-3">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 6.3 solved">
+          <span class="q-tag tag-proof">Indicator moments</span>
+          <span class="q-id">6.3</span>
+        </div>
+        <p class="q-text">Let $X_1,X_2,X_3$ be i.i.d. $N(0,1)$ random variables. Define, for $1\le i \ne j \le 3$, $W_{ij}=1$ if $X_i\gt X_j$, and $0$ otherwise. (a) Calculate $E(W_{ij})$ and $V(W_{ij})$ for all $1\le i\ne j\le3$. (b) Calculate $\text{Cov}(W_{12},W_{ij})$ for all $1\le i\ne j\le3$.</p>
+        <p class="q-source">ISI M.Stat PSB 2024, Question 5.</p>
+      </article>
+
+      <article class="q" data-id="6-4">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 6.4 solved">
+          <span class="q-tag tag-application">Conditional expectation</span>
+          <span class="q-id">6.4</span>
+        </div>
+        <p class="q-text">A six-faced fair die is rolled repeatedly till 1 appears. Let $X$ be the total number of rolls and $Y$ be the number of times 6 appeared in these $X$ rolls. (a) Find $E[Y \mid X=x]$. (b) Find $E[Y]$.</p>
+        <p class="q-source">ISI M.Stat PSB 2023, Question 4.</p>
+      </article>
+
+      <article class="q" data-id="6-5">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 6.5 solved">
+          <span class="q-tag tag-application">Roots of a random quadratic</span>
+          <span class="q-id">6.5</span>
+        </div>
+        <p class="q-text">Suppose $U$ and $V$ are independent and identically distributed random variables following a binomial distribution with parameters $n$ and $\tfrac12$. Let the random variable $T$ denote the number of distinct real roots of the quadratic equation $x^2+2Ux+V^2=0$. Find $E(T)$ and $\text{Var}(T)$.</p>
+        <p class="q-source">ISI M.Stat PSB 2022, Question 4.</p>
+        <details class="q-hint"><summary>Hint</summary><p>The equation has two distinct real roots exactly when its discriminant $4U^2-4V^2$ is strictly positive, i.e. $U \ne V$ and $U^2\gt V^2$.</p></details>
+      </article>
+
+      <article class="q" data-id="6-6">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 6.6 solved">
+          <span class="q-tag tag-conceptual">True or false</span>
+          <span class="q-id">6.6</span>
+        </div>
+        <p class="q-text">Let $X_1,X_2,\dots,X_n$ be independent and identically distributed random variables. Let $S_n=X_1+\cdots+X_n$. For each of the following statements, determine whether they are true or false. Give reasons in each case. (a) If $S_n \sim \text{Exp}$ with mean $n$, then each $X_i \sim \text{Exp}$ with mean 1. (b) If $S_n \sim \text{Bin}(nk,p)$, then each $X_i \sim \text{Bin}(k,p)$.</p>
+        <p class="q-source">ISI M.Stat PSB 2020, Question 4.</p>
+        <details class="q-hint"><summary>Hint</summary><p>A distributional statement about the sum alone rarely pins down the distribution of the summands — look for a counterexample family before trying to prove either claim.</p></details>
+      </article>
+
+      <article class="q" data-id="6-7">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 6.7 solved">
+          <span class="q-tag tag-application">Conditional expectation</span>
+          <span class="q-id">6.7</span>
+        </div>
+        <p class="q-text">A fair 6-sided die is rolled repeatedly until a 6 is obtained. Find the expected number of rolls conditioned on the event that none of the rolls yielded an odd number.</p>
+        <p class="q-source">ISI M.Stat PSB 2018, Question 6.</p>
+      </article>
+
+      <article class="q" data-id="6-8">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 6.8 solved">
+          <span class="q-tag tag-application">Search strategies</span>
+          <span class="q-id">6.8</span>
+        </div>
+        <p class="q-text">Suppose you have a 4-digit combination lock, but you have forgotten the correct combination. Consider the following three strategies to find the correct one: (i) try the combinations consecutively from 0000 to 9999; (ii) try combinations using simple random sampling with replacement from the set of all possible combinations; (iii) try combinations using simple random sampling without replacement from the set of all possible combinations. Assume that the true combination was chosen uniformly at random from all possible combinations. Determine the expected number of attempts needed to find the correct combination in all three cases.</p>
+        <p class="q-source">ISI M.Stat PSB 2017, Question 6.</p>
+      </article>
+
+      <article class="q" data-id="6-9">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 6.9 solved">
+          <span class="q-tag tag-proof">Covariance of a sum and a count</span>
+          <span class="q-id">6.9</span>
+        </div>
+        <p class="q-text">Let $X_1,\dots,X_n$ be i.i.d. random variables from a continuous distribution whose density is symmetric around 0. Suppose $E(|X_1|)=2$. Define $Y=\sum_{i=1}^n X_i$ and $Z=\sum_{i=1}^n \mathbb{1}(X_i\gt 0)$. Calculate the covariance between $Y$ and $Z$.</p>
+        <p class="q-source">ISI M.Stat PSB 2016, Question 6.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Expand $\text{Cov}(Y,Z)=\sum_{i,j}\text{Cov}(X_i,\mathbb{1}(X_j\gt 0))$ and use symmetry to see which cross-terms survive.</p></details>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t7" data-topic="7">
+    <summary class="topic-head">
+      <span class="topic-no">07</span>
+      <span class="topic-name">Bivariate &amp; Multivariate Distributions</span>
+      <span class="topic-count">0 / 6</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="7-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 7.1 solved">
+          <span class="q-tag tag-construction">Counterexample</span>
+          <span class="q-id">7.1</span>
+        </div>
+        <p class="q-text">Construct random variables $X$ and $Y$ such that $X$ alone is Normal, $Y$ alone is Normal, yet the pair $(X,Y)$ is <em>not</em> bivariate Normal. Use your construction to show that $\text{Cov}(X,Y)=0$ does not imply independence — even when both marginals are Normal.</p>
+        <p class="q-source">Classic textbook counterexample, appearing in many mathematical statistics texts (e.g. Casella &amp; Berger).</p>
+        <details class="q-hint"><summary>Hint</summary><p>Let $Y=X$ when $|X|$ is small, and $Y=-X$ when $|X|$ is large.</p></details>
+      </article>
+
+      <article class="q" data-id="7-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 7.2 solved">
+          <span class="q-tag tag-proof">Proof + diagnosis</span>
+          <span class="q-id">7.2</span>
+        </div>
+        <p class="q-text">Prove that if $X$ and $Y$ each take only the values $0$ and $1$ (i.e. both Bernoulli), then $\text{Cov}(X,Y)=0$ implies $X$ and $Y$ are fully independent — a claim that is false for general random variables. Pinpoint exactly which step of your proof relies on $X$ and $Y$ being binary, i.e. where the general-case argument would break down.</p>
+        <p class="q-source">Original.</p>
+        <details class="q-hint"><summary>Hint</summary><p>A Bernoulli's entire distribution is pinned down by one number — its mean. Write all four joint probabilities in terms of $p$, $q$, and $\text{Cov}(X,Y)$.</p></details>
+      </article>
+
+
+      <article class="q" data-id="7-3">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 7.3 solved">
+          <span class="q-tag tag-application">Covariance of book counts</span>
+          <span class="q-id">7.3</span>
+        </div>
+        <p class="q-text">Suppose $r \ge 1$ distinct books are distributed at random among $n \ge 3$ children. (a) For each $j\in\{0,1,2,\dots,r\}$, compute the probability that the first child gets exactly $j$ books. (b) Let $X$ be the number of children who do not get any book, and $Y$ be the number of children who get exactly one book. Show that $$\text{Cov}(X,Y) = \frac{r(n-1)(n-2)^{r-1}}{n^{r-1}} - \frac{r(n-1)^{2r-1}}{n^{2r-2}}.$$</p>
+        <p class="q-source">ISI M.Stat PSB 2022, Question 5.</p>
+      </article>
+
+      <article class="q" data-id="7-4">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 7.4 solved">
+          <span class="q-tag tag-proof">Joint construction</span>
+          <span class="q-id">7.4</span>
+        </div>
+        <p class="q-text">Consider the set of all five digit integers formed by permuting the digits 1, 2, 4, 6 and 7. Let $X$ denote a randomly chosen integer from this set and let $Y$ denote the position, from the right, of the digit 4 in the randomly chosen integer. For example, if the integer chosen is 12647, then $Y$ is 2, and for 41276, $Y$ is 5. (a) Find $E(X)$ and $E(Y)$. (b) Find $E[X \mid Y=y]$ for all possible values of $y$. (c) Show that $X$ and $Y$ are uncorrelated but not independent.</p>
+        <p class="q-source">ISI M.Stat PSB 2021, Question 3.</p>
+      </article>
+
+      <article class="q" data-id="7-5">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 7.5 solved">
+          <span class="q-tag tag-proof">Correlation bound</span>
+          <span class="q-id">7.5</span>
+        </div>
+        <p class="q-text">Consider $n$ independent and identically distributed positive random variables $X_1,X_2,\dots,X_n$. Suppose $S$ is a fixed subset of $\{1,2,\dots,n\}$ consisting of $k$ distinct elements, $1 \le k \lt  n$. (a) Compute $E\!\left[\dfrac{\sum_{i\in S}X_i}{\sum_{i=1}^n X_i}\right]$. (b) Assume the $X_i$'s have mean $\mu$ and variance $\sigma^2$, $0\lt \sigma^2\lt \infty$. If $j \notin S$, show that the correlation between $\left(\sum_{i\in S}X_i\right)X_j$ and $\sum_{i\in S}X_i$ lies between $-\dfrac{1}{\sqrt{k+1}}$ and $\dfrac{1}{\sqrt{k+1}}$.</p>
+        <p class="q-source">ISI M.Stat PSB 2020, Question 3.</p>
+      </article>
+
+      <article class="q" data-id="7-6">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 7.6 solved">
+          <span class="q-tag tag-application">Joint distribution from moments</span>
+          <span class="q-id">7.6</span>
+        </div>
+        <p class="q-text">Suppose $X_1$ and $X_2$ are identically distributed random variables, not necessarily independent, taking values in $\{1,2\}$. If $E(X_1X_2)=7/3$ and $E(X_1)=3/2$, obtain the joint distribution of $(X_1,X_2)$.</p>
+        <p class="q-source">ISI M.Stat PSB 2018, Question 5.</p>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t8" data-topic="8">
+    <summary class="topic-head">
+      <span class="topic-no">08</span>
+      <span class="topic-name">Transformations of Random Variables</span>
+      <span class="topic-count">0 / 5</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="8-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 8.1 solved">
+          <span class="q-tag tag-proof">Conceptual proof</span>
+          <span class="q-id">8.1</span>
+        </div>
+        <p class="q-text">Let $U \sim \text{Uniform}(0,1)$ and let $F$ be any continuous, strictly increasing CDF. Show $X=F^{-1}(U)$ has CDF $F$. Then, without touching an integral, explain why this single fact means every continuous random variable — Normal, Exponential, Gamma, anything — can in principle be simulated from nothing but a Uniform(0,1) generator.</p>
+        <p class="q-source">Classic — the Probability Integral Transform / inverse-transform sampling.</p>
+        <details class="q-hint"><summary>Hint</summary><p>$P(F^{-1}(U) \le x) = P(U \le F(x))$ — and you already know $P(U \le \text{anything in } [0,1])$.</p></details>
+      </article>
+
+      <article class="q" data-id="8-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 8.2 solved">
+          <span class="q-tag tag-proof">Derivation + recognition</span>
+          <span class="q-id">8.2</span>
+        </div>
+        <p class="q-text">Let $X \sim \text{Uniform}(0,1)$. Find the distribution of $Y=-2\ln X$ using a change-of-variables argument. You'll land on a distribution you already know from a different chapter — name it, and explain why this connection is exactly what you'd expect given the Probability Integral Transform.</p>
+        <p class="q-source">Original; the underlying identity — Exponential and $\chi^2_2$ coincide — is classical, and is the engine behind the Box–Muller transform.</p>
+        <details class="q-hint"><summary>Hint</summary><p>You should recognize both an Exponential rate and a familiar degrees-of-freedom count.</p></details>
+      </article>
+
+
+      <article class="q" data-id="8-3">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 8.3 solved">
+          <span class="q-tag tag-application">Density of a sum</span>
+          <span class="q-id">8.3</span>
+        </div>
+        <p class="q-text">Suppose $(X,Y)$ is uniformly distributed over the region $\{(x,y)\in\mathbb{R}^2 : 0\lt y\lt 1,\ |x|\lt 1-y\}$. Calculate the p.d.f. of $|X|+Y$.</p>
+        <p class="q-source">ISI M.Stat PSB 2024, Question 4.</p>
+      </article>
+
+      <article class="q" data-id="8-4">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 8.4 solved">
+          <span class="q-tag tag-application">Min and max of uniforms</span>
+          <span class="q-id">8.4</span>
+        </div>
+        <p class="q-text">Let $U_1,U_2,U_3$ be i.i.d. random variables uniformly distributed on $(0,1)$. Let $X=\min(U_1,U_2)$ and $Y=\max(U_2,U_3)$. (a) Find $P(X\le x, Y\le y)$ for all $x,y \in \mathbb{R}$. (b) Find $P(X=Y)$. (c) Find $E[X\,\mathbb{1}_{\{X=Y\}}]$, where $\mathbb{1}_A$ is the indicator function of $A$.</p>
+        <p class="q-source">ISI M.Stat PSB 2021, Question 4.</p>
+      </article>
+
+      <article class="q" data-id="8-5">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 8.5 solved">
+          <span class="q-tag tag-proof">Conditional expectation of extremes</span>
+          <span class="q-id">8.5</span>
+        </div>
+        <p class="q-text">Let $U_1,U_2,\dots,U_n$ be independent and identically distributed random variables each having a uniform distribution on $(0,1)$. Let $X=\min\{U_1,\dots,U_n\}$ and $Y=\max\{U_1,\dots,U_n\}$. Evaluate $E[X\mid Y=y]$ and $E[Y \mid X=x]$.</p>
+        <p class="q-source">ISI M.Stat PSB 2020, Question 5.</p>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t9" data-topic="9">
+    <summary class="topic-head">
+      <span class="topic-no">09</span>
+      <span class="topic-name">Sampling Distributions &amp; the CLT</span>
+      <span class="topic-count">0 / 4</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="9-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 9.1 solved">
+          <span class="q-tag tag-proof">Structural proof</span>
+          <span class="q-id">9.1</span>
+        </div>
+        <p class="q-text">Let $X_1,\dots,X_n$ be i.i.d. Standard Cauchy. Using the fact that the Cauchy characteristic function is $e^{-|t|}$, show that the sample mean $\bar X$ has <em>exactly</em> the same distribution as a single $X_i$ — no matter how large $n$ is. Averaging buys you nothing. Explain why this doesn't contradict the Law of Large Numbers.</p>
+        <p class="q-source">Classic — a stability property of the Cauchy distribution.</p>
+        <details class="q-hint"><summary>Hint</summary><p>The characteristic function of $\bar X$ is $[\varphi(t/n)]^n$. Substitute and simplify.</p></details>
+      </article>
+
+      <article class="q" data-id="9-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 9.2 solved">
+          <span class="q-tag tag-proof">Intuition + counterexample</span>
+          <span class="q-id">9.2</span>
+        </div>
+        <p class="q-text">For i.i.d. Normal data it's a striking fact that $\bar X$ and $S^2$ are independent — a property almost no other distribution shares. Using $n=2$ (where $S^2$ is just a function of $X_1-X_2$), show that $\text{Cov}(\bar X, X_1-X_2)=0$ holds for <em>any</em> i.i.d. sample regardless of distribution — then explain why zero covariance upgrades to full independence only when the pair is jointly Normal. Construct a non-Normal two-point example ($n=2$) where $\bar X$ and $S^2$ are dependent.</p>
+        <p class="q-source">Classic — a special case of Cochran's theorem / Basu's theorem (D. Basu, <em>Sankhyā</em>, 1955). This independence property in fact characterizes the Normal distribution: no other distribution has it.</p>
+        <details class="q-hint"><summary>Hint</summary><p>$\text{Cov}(\bar X, X_1-X_2) = \tfrac{1}{2}[\text{Var}(X_1)-\text{Var}(X_2)]$ — this vanishes regardless of the underlying distribution. Independence is the part that needs Normality.</p></details>
+      </article>
+
+
+      <article class="q" data-id="9-3">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 9.3 solved">
+          <span class="q-tag tag-proof">Order statistics via indicators</span>
+          <span class="q-id">9.3</span>
+        </div>
+        <p class="q-text">Suppose $X_1,X_2,\dots,X_{2n}$ are independent Exponential random variables with mean $1/\lambda$, $\lambda\gt 0$. Let $X_{(1)}\le\cdots\le X_{(2n)}$ denote the order statistics. (a) Show that for all $x\gt 0$, $$P\big(X_{(n)}\le x\big) = P\!\left(\sum_{i=1}^{2n}\mathbb{1}\{X_i\le x\} \ge n\right).$$ (b) Hence or otherwise, prove that for all $\varepsilon\gt 0$, $$\lim_{n\to\infty} P\!\left(X_{(n)} \le \frac{1}{\lambda}\log_e 2 - \varepsilon\right) = 0.$$</p>
+        <p class="q-source">ISI M.Stat PSB 2026, Question 5.</p>
+        <details class="q-hint"><summary>Hint</summary><p>The indicator sum in (a) is a Binomial count; a Law-of-Large-Numbers argument on that count drives (b).</p></details>
+      </article>
+
+      <article class="q" data-id="9-4">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 9.4 solved">
+          <span class="q-tag tag-proof">Limiting distribution of the minimum</span>
+          <span class="q-id">9.4</span>
+        </div>
+        <p class="q-text">Suppose $X_1,X_2,\dots,X_n$ is a random sample from $\text{Uniform}(0,\theta)$ for some unknown $\theta\gt 0$. Let $Y_n$ be the minimum of $X_1,\dots,X_n$. (a) Suppose $F_n$ is the c.d.f. of $nY_n$. Show that for any real $x$, $F_n(x)$ converges to $F(x)$, where $F$ is the c.d.f. of an Exponential distribution with mean $\theta$. (b) Find $\lim_{n\to\infty}P(n\lfloor Y_n\rfloor=k)$ for $k=0,1,2,\dots$, where $\lfloor x\rfloor$ denotes the largest integer not larger than $x$.</p>
+        <p class="q-source">ISI M.Stat PSB 2019, Question 6.</p>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t10" data-topic="10">
+    <summary class="topic-head">
+      <span class="topic-no">10</span>
+      <span class="topic-name">Point Estimation</span>
+      <span class="topic-count">0 / 13</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="10-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 10.1 solved">
+          <span class="q-tag tag-proof">Calculus-free proof</span>
+          <span class="q-id">10.1</span>
+        </div>
+        <p class="q-text">Let $X_1,\dots,X_n$ be i.i.d. $\text{Uniform}(0,\theta)$. Show the MLE of $\theta$ is $\hat\theta = X_{(n)} = \max(X_i)$, and that it systematically underestimates $\theta$. Find the constant $c$ such that $c \cdot X_{(n)}$ is exactly unbiased — using a symmetry / spacings argument about how $n$ uniform points divide $[0,1]$, not the density of an order statistic.</p>
+        <p class="q-source">Classic exercise in mathematical statistics; the spacings technique is a standard elegant alternative to direct integration.</p>
+        <details class="q-hint"><summary>Hint</summary><p>$n$ points scattered uniformly on $[0,1]$ create $n+1$ gaps. By symmetry, what's the expected length of each gap?</p></details>
+      </article>
+
+      <article class="q" data-id="10-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 10.2 solved">
+          <span class="q-tag tag-construction">Construction</span>
+          <span class="q-id">10.2</span>
+        </div>
+        <p class="q-text">Let $X_1,\dots,X_n$ be i.i.d. with density $f(x;\theta)=e^{-(x-\theta)}$ for $x \ge \theta$ — a "shifted" Exponential, where $\theta$ is a minimum possible value. (a) Find the method-of-moments estimator of $\theta$, and construct a specific dataset ($n=3$ suffices) for which it exceeds the smallest observed value — a logical impossibility, since $\theta$ can be at most $\min(X_i)$. (b) Find the MLE instead, and argue — from the shape of the likelihood function, not calculus — why it can never make this mistake.</p>
+        <p class="q-source">Classic textbook example, discussed in texts such as Casella &amp; Berger's <em>Statistical Inference</em>.</p>
+        <details class="q-hint"><summary>Hint</summary><p>For $\theta \le \min(X_i)$, the likelihood is proportional to $e^{n\theta}$. Which direction does that push you?</p></details>
+      </article>
+
+
+      <article class="q" data-id="10-3">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 10.3 solved">
+          <span class="q-tag tag-application">Constrained MLE</span>
+          <span class="q-id">10.3</span>
+        </div>
+        <p class="q-text">Let $\theta_1,\theta_2,\theta_3$ denote the three angles of a triangle, measured in degrees (i.e. $\theta_i\gt 0$ for $i=1,2,3$, and $\theta_1+\theta_2+\theta_3=180$). Suppose that each angle is measured by an instrument subject to independent additive $N(0,\sigma^2)$ error, and the measured values of $\theta_1,\theta_2,\theta_3$ are found to be $y_1=83$, $y_2=47$, and $y_3=56$, respectively. Find the maximum likelihood estimates of $\theta_1,\theta_2,\theta_3$.</p>
+        <p class="q-source">ISI M.Stat PSB 2026, Question 10.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Maximize the joint normal likelihood subject to the linear constraint $\theta_1+\theta_2+\theta_3=180$ — Lagrange multipliers turn this into a small linear system.</p></details>
+      </article>
+
+      <article class="q" data-id="10-4">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 10.4 solved">
+          <span class="q-tag tag-application">MLE with rounded data</span>
+          <span class="q-id">10.4</span>
+        </div>
+        <p class="q-text">Assume that the length, in minutes, of a phone-call of an individual follows an Exponential distribution with unknown parameter $\lambda\gt 0$, density $f(x)=\lambda e^{-\lambda x}$, $x\gt 0$. However, when the phone company calculates the length of a phone-call, it always considers the nearest integer greater than or equal to the actual length. For example, a 22.09-minute call is recorded as 23 minutes. Suppose you have the data on the lengths of $n$ independent phone-calls $T_1,\dots,T_n$ of that individual as reported by the phone company. Based on this data, compute the maximum likelihood estimator of $\lambda$.</p>
+        <p class="q-source">ISI M.Stat PSB 2024, Question 6.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Each recorded $T_i$ corresponds to the event $\{T_i-1 \lt  X_i \le T_i\}$ for the true call length $X_i$; write the likelihood in terms of that probability.</p></details>
+      </article>
+
+      <article class="q" data-id="10-5">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 10.5 solved">
+          <span class="q-tag tag-application">Likelihood construction</span>
+          <span class="q-id">10.5</span>
+        </div>
+        <p class="q-text">Suppose we have paired observations $(X_1,Y_1),\dots,(X_n,Y_n)$. A statistician thinks that the following parametric model may be appropriate for this data: for unknown odd integers $\alpha,\beta$ and unknown $\rho\in(-1,1)$, the pairs $(X_i^\alpha, Y_i^\beta)$ are i.i.d. bivariate normal with parameters $(0,0,1,1,\rho)$. Write down the likelihood function for this model.</p>
+        <p class="q-source">ISI M.Stat PSB 2024, Question 8.</p>
+      </article>
+
+      <article class="q" data-id="10-6">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 10.6 solved">
+          <span class="q-tag tag-application">Comparing consistent estimators</span>
+          <span class="q-id">10.6</span>
+        </div>
+        <p class="q-text">Let $Y_1,\dots,Y_{2n}$ be i.i.d. $\text{Bernoulli}(p)$ random variables, where $p\in(0,1)$ is unknown. Consider the estimators $$T_{1,n}=\frac{1}{2n-1}\sum_{i=1}^{2n-1} Y_iY_{i+1} \qquad\text{and}\qquad T_{2,n}=\frac{1}{n}\sum_{i=1}^{n} Y_{2i-1}Y_{2i}.$$ (a) Show that both estimators are consistent for $p^2$. (b) Find $\lim_{n\to\infty}\big(V(T_{1,n})/V(T_{2,n})\big)$. (c) For large $n$, which estimator would you prefer and why?</p>
+        <p class="q-source">ISI M.Stat PSB 2024, Question 9.</p>
+      </article>
+
+      <article class="q" data-id="10-7">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 10.7 solved">
+          <span class="q-tag tag-proof">Bias of a plug-in estimator</span>
+          <span class="q-id">10.7</span>
+        </div>
+        <p class="q-text">Suppose $X_1,\dots,X_n$ ($n\ge2$) are independent and identically distributed observations from a distribution with density $f_\theta(x)=e^{-(x-\theta)}$ for $x\ge\theta$, and $0$ otherwise, where $\theta\in\mathbb{R}$. Let $\psi(\theta)=\int_1^\infty f_\theta(x)\,dx$. Define $\hat\theta_n=\min\{X_1,\dots,X_n\}$, and consider $\psi(\hat\theta_n)$ as an estimator of $\psi(\theta)$, with associated bias $B_n(\theta)$. (a) Show that $B_n(\theta)\gt 0$ for every $\theta\lt 1$, and $B_n(\theta)=0$ for every $\theta\ge1$. (b) Show that $\lim_{n\to\infty}B_n(\theta)=0$ for every $\theta\lt 1$.</p>
+        <p class="q-source">ISI M.Stat PSB 2023, Question 5.</p>
+      </article>
+
+      <article class="q" data-id="10-8">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 10.8 solved">
+          <span class="q-tag tag-application">MLE from a piecewise density</span>
+          <span class="q-id">10.8</span>
+        </div>
+        <p class="q-text">Suppose that two observations $X_1$ and $X_2$ are drawn at random from a distribution with density $f_\theta(x)=\dfrac{1}{2\theta}$ if $0\le x\le\theta$ or $2\theta\le x\le3\theta$, and $0$ otherwise, where $\theta\gt 0$. Determine the maximum likelihood estimator of $\theta$ for each of the following observed values of $X_1,X_2$: (a) $X_1=7,\ X_2=9$. (b) $X_1=4,\ X_2=9$. (c) $X_1=5,\ X_2=9$.</p>
+        <p class="q-source">ISI M.Stat PSB 2023, Question 6.</p>
+      </article>
+
+      <article class="q" data-id="10-9">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 10.9 solved">
+          <span class="q-tag tag-proof">Resampled estimator</span>
+          <span class="q-id">10.9</span>
+        </div>
+        <p class="q-text">Let $X_1,\dots,X_n$ be independent and identically distributed $\text{Bernoulli}(\theta)$ random variables where $\theta\in(0,1)$. The MLE of $\theta$ is the sample mean $\bar X_n$. A statistician, feeling $n$ is too small, records the observed values $\{x_1,\dots,x_n\}$, then selects a random sample of size $m=kn$ with replacement from $\{x_1,\dots,x_n\}$, for a positive integer $k$, recording the values as $\{Y_1,\dots,Y_m\}$. The proposed new estimator is $T=\tfrac12(\bar Y_m + \bar X_n)$, where $\bar Y_m$ is the sample mean of $Y_1,\dots,Y_m$. (a) Show that $T$ is unbiased for $\theta$. (b) Is $T$ a better estimator of $\theta$ than $\bar X_n$? Justify your answer.</p>
+        <p class="q-source">ISI M.Stat PSB 2023, Question 8.</p>
+      </article>
+
+      <article class="q" data-id="10-10">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 10.10 solved">
+          <span class="q-tag tag-proof">MLE and unbiasedness</span>
+          <span class="q-id">10.10</span>
+        </div>
+        <p class="q-text">Let $X_1,\dots,X_n$ be i.i.d. random variables uniformly distributed on $(\theta,2\theta)$, $\theta\gt 0$. (a) Show that $X_{(n)}/2$ is the MLE of $\theta$, where $X_{(n)}=\max(X_1,\dots,X_n)$. (b) Find an unbiased estimator for $\theta$ based on the MLE. (c) Given any $\varepsilon\gt 0$, show that $\lim_{n\to\infty}P\!\left(\left|\dfrac{X_{(n)}}{2}-\theta\right|\gt \varepsilon\right)=0$.</p>
+        <p class="q-source">ISI M.Stat PSB 2021, Question 6.</p>
+      </article>
+
+      <article class="q" data-id="10-11">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 10.11 solved">
+          <span class="q-tag tag-application">Comparing estimators by MSE</span>
+          <span class="q-id">10.11</span>
+        </div>
+        <p class="q-text">Suppose $X_1,X_2,\dots,X_n$ are independent random variables such that $P(X_i=1)=p_i=1-P(X_i=0)$, where $p_1,\dots,p_n\in(0,1)$ are all distinct and unknown. Consider $X=\sum_{i=1}^n X_i$ and another random variable $Y$ distributed as $\text{Binomial}(n,\bar p)$, where $\bar p = \frac1n\sum_{i=1}^n p_i$. Between $X$ and $Y$, which is a better estimator of $\sum_{i=1}^n p_i$ in terms of their respective mean squared errors?</p>
+        <p class="q-source">ISI M.Stat PSB 2019, Question 5.</p>
+      </article>
+
+      <article class="q" data-id="10-12">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 10.12 solved">
+          <span class="q-tag tag-application">MLE and its MSE</span>
+          <span class="q-id">10.12</span>
+        </div>
+        <p class="q-text">Let $\theta\gt 0$ be an unknown parameter, and $X_1,X_2,\dots,X_n$ be a random sample from the distribution with density $f(x)=2x/\theta^2$ for $0\le x\le\theta$, and $0$ otherwise. Find the maximum likelihood estimator of $\theta$ and its mean squared error.</p>
+        <p class="q-source">ISI M.Stat PSB 2017, Question 8.</p>
+      </article>
+
+      <article class="q" data-id="10-13">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 10.13 solved">
+          <span class="q-tag tag-proof">MLE, sufficiency and consistency</span>
+          <span class="q-id">10.13</span>
+        </div>
+        <p class="q-text">Suppose that $(X_1,Y_1),(X_2,Y_2),\dots,(X_n,Y_n)$ are the coordinates of $n$ points chosen independently and uniformly at random within a circle centred at $(0,0)$ with unknown radius $r$. (a) Obtain the MLE $\hat r_n$ of $r$. (b) Examine whether $\hat r_n$ is sufficient for $r$. (c) For any $\varepsilon\gt 0$, show that $\lim_{n\to\infty}P(|\hat r_n-r|\gt \varepsilon)=0$.</p>
+        <p class="q-source">ISI M.Stat PSB 2016, Question 8.</p>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t11" data-topic="11">
+    <summary class="topic-head">
+      <span class="topic-no">11</span>
+      <span class="topic-name">Sufficiency, Completeness &amp; Rao–Blackwell</span>
+      <span class="topic-count">0 / 5</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="11-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 11.1 solved">
+          <span class="q-tag tag-proof">Symmetry argument</span>
+          <span class="q-id">11.1</span>
+        </div>
+        <p class="q-text">Let $X_1,\dots,X_n$ be i.i.d. $\text{Bernoulli}(p)$. The estimator $T=X_1$ — just the first observation — is unbiased for $p$ but obviously wasteful. Apply the Rao–Blackwell theorem using the sufficient statistic $S=\sum X_i$. Show, by an exchangeability argument alone — no direct computation of $E[X_1 \mid S=s]$ via its actual conditional distribution — that the Rao-Blackwellized estimator must equal $\bar X$.</p>
+        <p class="q-source">Classic — a standard illustration of the Rao–Blackwell theorem (C.R. Rao, 1945; David Blackwell, 1947, independently).</p>
+        <details class="q-hint"><summary>Hint</summary><p>Given $S=s$, every $X_i$ is, by symmetry, equally likely to be one of the "successes." Each contributes equally to the total.</p></details>
+      </article>
+
+      <article class="q" data-id="11-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 11.2 solved">
+          <span class="q-tag tag-application">Application</span>
+          <span class="q-id">11.2</span>
+        </div>
+        <p class="q-text">For $X_1,\dots,X_n$ i.i.d. $N(\mu,\sigma^2)$ with $\sigma^2$ known, $\bar X$ is a complete sufficient statistic for $\mu$. Using Basu's theorem (stated, not derived from scratch) — and the one-line observation that the distribution of the residual vector $(X_1-\bar X,\dots,X_n-\bar X)$ doesn't depend on $\mu$ at all — conclude that $\bar X$ is independent of the residuals, without touching a joint density or a Jacobian.</p>
+        <p class="q-source">Classic — Basu's theorem (D. Basu, "On statistics independent of a complete sufficient statistic," <em>Sankhyā</em>, 1955).</p>
+        <details class="q-hint"><summary>Hint</summary><p>"Ancillary" is the technical word for a statistic whose distribution doesn't depend on the parameter. Check the residuals qualify.</p></details>
+      </article>
+
+
+      <article class="q" data-id="11-3">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 11.3 solved">
+          <span class="q-tag tag-application">Group testing</span>
+          <span class="q-id">11.3</span>
+        </div>
+        <p class="q-text">Suppose $N$ students arriving at a college are all equally likely to have a particular disease with an unknown probability $p$. The disease status of all students is independent across students. Blood samples are collected from all $N$ students, and to estimate $p$, two strategies are proposed. <strong>Strategy 1</strong>: test all $N$ samples separately. <strong>Strategy 2</strong>: randomly partition the students into $m$ disjoint groups of $K=N/m$ students each ($K\ge2$ an integer); pool the blood samples within each group and test the pooled sample — a positive pooled test means at least one student in that group is affected, a negative test means none are. (a) Based on the data from Strategy 2, find a real-valued sufficient statistic for $p$ and the maximum likelihood estimator of $p$. (b) If a group tests positive, all students in it are further tested individually, with every individual or pooled test having equal cost. Which strategy would you prefer to identify all affected students, when $p=0.5$, $N=200$, and $m=20$?</p>
+        <p class="q-source">ISI M.Stat PSB 2022, Question 7.</p>
+      </article>
+
+      <article class="q" data-id="11-4">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 11.4 solved">
+          <span class="q-tag tag-proof">Conditional moments given a sufficient statistic</span>
+          <span class="q-id">11.4</span>
+        </div>
+        <p class="q-text">Let $X_1,X_2,X_3$ be i.i.d. random variables from $N(\mu,\sigma^2)$. Let $\bar X=\tfrac13\sum_{i=1}^3 X_i$, $T_1=\sum_{i=1}^3 X_i^2$, and $T_2=\tfrac13\sum_{i=1}^3(X_i-\bar X)^2$. (a) Compute $E[T_1\mid\bar X]$ and $E[T_1\mid T_2]$. (b) Obtain the exact critical region of a level-$\alpha$ ($0\lt \alpha\lt 1$) test for $H_0:\mu=0$ vs $H_1:\mu\ne0$ that rejects $H_0$ if and only if $\dfrac{\bar X^2}{T_1}$ is sufficiently large.</p>
+        <p class="q-source">ISI M.Stat PSB 2021, Question 8.</p>
+      </article>
+
+      <article class="q" data-id="11-5">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 11.5 solved">
+          <span class="q-tag tag-application">Sufficiency and MSE</span>
+          <span class="q-id">11.5</span>
+        </div>
+        <p class="q-text">Suppose individuals are classified into three categories $C_1,C_2,C_3$, with respective population proportions $p^2$, $(1-p)^2$, and $2p(1-p)$, $p\in(0,1)$. A random sample of $N$ individuals is selected and the category of each recorded. For $i=1,2,3$, let $X_i$ denote the number of individuals in category $C_i$, and define $U=X_1+\tfrac{X_3}{2}$. (a) Is $U$ sufficient for $p$? Justify your answer. (b) Show that the mean squared error of $U/N$ is $\dfrac{p(1-p)}{2N}$.</p>
+        <p class="q-source">ISI M.Stat PSB 2020, Question 6.</p>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t12" data-topic="12">
+    <summary class="topic-head">
+      <span class="topic-no">12</span>
+      <span class="topic-name">Interval Estimation</span>
+      <span class="topic-count">0 / 3</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="12-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 12.1 solved">
+          <span class="q-tag tag-conceptual">Conceptual</span>
+          <span class="q-id">12.1</span>
+        </div>
+        <p class="q-text">A 95% confidence interval for $\mu$, computed from one dataset, comes out as $(3.2, 5.8)$. A student says: "there's a 95% probability $\mu$ is in there." Explain precisely why this is philosophically wrong under the frequentist framework it came from — even though it feels right — and design a repeated-sampling thought experiment that pins down exactly what 95% confidence does mean.</p>
+        <p class="q-source">Classic conceptual pitfall, central to every course in frequentist inference.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Once the data is observed, is there anything left in the statement that's actually random?</p></details>
+      </article>
+
+      <article class="q" data-id="12-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 12.2 solved">
+          <span class="q-tag tag-construction">Construction</span>
+          <span class="q-id">12.2</span>
+        </div>
+        <p class="q-text">Let $X$ be a single observation from $\text{Uniform}(0,\theta)$ — no repeated sampling, no averaging. Using the fact that $X/\theta \sim \text{Uniform}(0,1)$, construct an exact 95% confidence interval for $\theta$ from this one observation alone. Then explain, in words, why this trick works beautifully here but could never produce a comparably tight interval from a single observation of $N(\theta,1)$.</p>
+        <p class="q-source">Original; the technique — a "pivotal quantity" — is classical and foundational to interval estimation.</p>
+        <details class="q-hint"><summary>Hint</summary><p>You need $P(X/\theta \gt c) = 0.95$. Solve for $c$, then rearrange the inequality inside the probability statement to isolate $\theta$.</p></details>
+      </article>
+
+
+      <article class="q" data-id="12-3">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 12.3 solved">
+          <span class="q-tag tag-application">Approximate confidence interval</span>
+          <span class="q-id">12.3</span>
+        </div>
+        <p class="q-text">Suppose $\{(X_1,Y_1),\dots,(X_n,Y_n)\}$ is a random sample from a bivariate normal distribution with $E(X_i)=E(Y_i)=0$, $\text{Var}(X_i)=\text{Var}(Y_i)=1$, and unknown $\text{Corr}(X_i,Y_i)=\rho\in(-1,1)$, for all $i=1,\dots,n$. Define $W_n=\tfrac1n\sum_{i=1}^n X_iY_i$. (a) Is $W_n$ an unbiased estimator of $\rho$? Justify your answer. (b) For large $n$, obtain an approximate level-$(1-\alpha)$ two-sided confidence interval for $\rho$, $0\lt \alpha\lt 1$.</p>
+        <p class="q-source">ISI M.Stat PSB 2018, Question 7.</p>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t13" data-topic="13">
+    <summary class="topic-head">
+      <span class="topic-no">13</span>
+      <span class="topic-name">Testing of Hypotheses</span>
+      <span class="topic-count">0 / 11</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="13-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 13.1 solved">
+          <span class="q-tag tag-conceptual">Big-picture</span>
+          <span class="q-id">13.1</span>
+        </div>
+        <p class="q-text">Stating the Neyman–Pearson Lemma (not deriving it), explain — with no integration — why the most powerful test of $H_0: \theta=\theta_0$ vs $H_1: \theta=\theta_1$ for an exponential-family distribution always has the form "reject if $T(X) \gt c$." Then explain the more surprising fact: this exact test also turns out to be Uniformly Most Powerful against the composite alternative $H_1: \theta \gt \theta_0$ — a claim that should, at first glance, be much harder to secure than power against one single $\theta_1$. What single property of the likelihood ratio is doing all the work here?</p>
+        <p class="q-source">Classic — the Monotone Likelihood Ratio (MLR) property, connecting the Neyman–Pearson Lemma to UMP tests.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Ask whether the rejection region "reject if $T(X) \gt c$" ever actually needed to know the specific value of $\theta_1$.</p></details>
+      </article>
+
+      <article class="q" data-id="13-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 13.2 solved">
+          <span class="q-tag tag-paradox">Paradox</span>
+          <span class="q-id">13.2</span>
+        </div>
+        <p class="q-text">A researcher, using a very large sample, gets a p-value of exactly $0.05$ for $H_0: \theta=0$ vs $H_1: \theta \ne 0$ — "significant" by classical standards, so $H_0$ is rejected. A Bayesian analysis of the same data, with a reasonable diffuse prior, gives the posterior probability that $H_0$ is true as high as 95%. Explain how both conclusions can be simultaneously correct within their own logical frameworks, and pin down exactly how sample size enters the two calculations in fundamentally different ways.</p>
+        <p class="q-source">Lindley's Paradox (D.V. Lindley, "A Statistical Paradox," <em>Biometrika</em>, 1957; the underlying tension was already visible in Harold Jeffreys's 1939 textbook). Advanced / enrichment — beyond most standard bachelor's syllabi, but a superb capstone for testing theory.</p>
+        <details class="q-hint"><summary>Hint</summary><p>A diffuse prior means the Bayesian is implicitly paying a penalty for a large, vague parameter space — a penalty the p-value never charges.</p></details>
+      </article>
+
+
+      <article class="q" data-id="13-3">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 13.3 solved">
+          <span class="q-tag tag-application">Most powerful test</span>
+          <span class="q-id">13.3</span>
+        </div>
+        <p class="q-text">Let $X_1,X_2,\dots,X_n$ be independent random variables having common density $f_\theta$, $\theta\in\{0,1\}$, where $f_0(x)=1$ for $0\lt x\lt 1$ (and $0$ otherwise), and $f_1(x)=\dfrac{1}{2\sqrt{x}}$ for $0\lt x\lt 1$ (and $0$ otherwise). Suppose we wish to test $H_0:\theta=0$ vs. $H_1:\theta=1$ at significance level $\alpha$, $0\lt \alpha\lt 1$. Find the rejection region of the most powerful test based on $X_1,\dots,X_n$ in terms of quantiles of standard distributions.</p>
+        <p class="q-source">ISI M.Stat PSB 2026, Question 9. (This same pair of densities also appears as ISI M.Stat PSB 2018, Question 8.)</p>
+      </article>
+
+      <article class="q" data-id="13-4">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 13.4 solved">
+          <span class="q-tag tag-application">Comparing two test statistics</span>
+          <span class="q-id">13.4</span>
+        </div>
+        <p class="q-text">Suppose that $X_1,X_2$ are i.i.d. $U(0,\theta)$ random variables. We want to test $H_0:\theta=1$ against $H_1:\theta=\theta_1$ where $\theta_1\gt 1$ is fixed. For this, we adopt two testing strategies: <strong>Test 1</strong>: reject $H_0$ if $X_1\gt 0.95$. <strong>Test 2</strong>: reject $H_0$ if $\max\{X_1,X_2\}\gt \kappa$. (a) Find $\kappa$ such that both tests have the same size. (b) Find the powers of the two tests (using the $\kappa$ from part (a) for Test 2). (c) Which of the two tests would you prefer and why?</p>
+        <p class="q-source">ISI M.Stat PSB 2024, Question 7.</p>
+      </article>
+
+      <article class="q" data-id="13-5">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 13.5 solved">
+          <span class="q-tag tag-application">Most powerful test via order statistics</span>
+          <span class="q-id">13.5</span>
+        </div>
+        <p class="q-text">To test whether the heights of siblings are correlated, a researcher identified a random sample of $n$ families with at least two adult male children. For the $i$-th family, let $X_i,Y_i$ be the heights of the first and second male child. Assume $(X_1,Y_1),\dots,(X_n,Y_n)$ are independent bivariate normal vectors with parameters $(\mu,\mu,\sigma^2,\sigma^2,\rho)$, where $\mu,\sigma^2$ are known. She wants to test $H_0:\rho=0$ against $H_1:\rho=0.5$. Due to a questionnaire error, she only observes $(U_i,V_i)$, where $U_i=\max(X_i,Y_i)$ and $V_i=\min(X_i,Y_i)$. (a) Based on the observed sample, obtain the test statistic corresponding to the most powerful test of $H_0$ against $H_1$. (b) Find a critical value so that the size of the test converges to 0.05 as $n\to\infty$.</p>
+        <p class="q-source">ISI M.Stat PSB 2023, Question 9.</p>
+      </article>
+
+      <article class="q" data-id="13-6">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 13.6 solved">
+          <span class="q-tag tag-application">MP test between two models</span>
+          <span class="q-id">13.6</span>
+        </div>
+        <p class="q-text">Based on historical data, a positive random variable $X$ from an unknown distribution is believed to have the chi-square distribution with 1 degree of freedom. A new theory suggests it may be better to model $\sqrt X$ as exponentially distributed with mean $\lambda$, where $\lambda$ is chosen so that $E(X)$ agrees between the two models. (a) Compute $\lambda$. (b) Suppose $X_1,\dots,X_n$ are independent observations from this unknown distribution. For $\alpha\in(0,1)$, consider the most powerful level-$\alpha$ test of the null hypothesis that the earlier model is correct against the alternative that the new model is correct. Show that the rejection region of this test is $$\left\{(x_1,\dots,x_n) : \sum_i x_i - 2\sqrt2\sum_i \sqrt{x_i} \gt  c\right\}$$ where $c$ is a constant depending on $\alpha$.</p>
+        <p class="q-source">ISI M.Stat PSB 2022, Question 8.</p>
+      </article>
+
+      <article class="q" data-id="13-7">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 13.7 solved">
+          <span class="q-tag tag-application">Sliding-window test statistic</span>
+          <span class="q-id">13.7</span>
+        </div>
+        <p class="q-text">Assume $X_1,\dots,X_n$ is a random sample from $N(\mu,1)$, $\mu\in\mathbb{R}$. We want to test $H_0:\mu=0$ against $H_1:\mu=1$. For a fixed integer $m\in\{1,\dots,n\}$, define $T_1=(X_1+\cdots+X_m)/m$, $T_2=(X_2+\cdots+X_{m+1})/m$, ..., $T_{n-m+1}=(X_{n-m+1}+\cdots+X_n)/m$. Fix $\alpha\in(0,1)$, and consider the test that rejects $H_0$ if $\max\{T_i : 1\le i\le n-m+1\}\gt c_{m,\alpha}$. Find a choice of $c_{m,\alpha}\in\mathbb{R}$, in terms of the standard normal c.d.f. $\Phi$, that ensures the size of the test is at most $\alpha$.</p>
+        <p class="q-source">ISI M.Stat PSB 2020, Question 8.</p>
+      </article>
+
+      <article class="q" data-id="13-8">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 13.8 solved">
+          <span class="q-tag tag-application">Size and power from a Laplace observation</span>
+          <span class="q-id">13.8</span>
+        </div>
+        <p class="q-text">Let $Z$ be a random variable with density $f(z)=\tfrac12 e^{-|z-\mu|}$, $z\in\mathbb{R}$, with parameter $\mu\in\mathbb{R}$. Suppose we observe $X=\max(0,Z)$. (a) Find the constant $c$ such that the test "reject when $X\gt c$" has size 0.05 for $H_0:\mu=0$. (b) Find the power of this test against $H_1:\mu=2$.</p>
+        <p class="q-source">ISI M.Stat PSB 2019, Question 9.</p>
+      </article>
+
+      <article class="q" data-id="13-9">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 13.9 solved">
+          <span class="q-tag tag-application">MP test for scale parameter</span>
+          <span class="q-id">13.9</span>
+        </div>
+        <p class="q-text">The lifetime in hours of each bulb manufactured by a particular company follows an independent exponential distribution with mean $\lambda$. To test $H_0:\lambda=1000$ against $H_1:\lambda=500$, a statistician sets up an experiment with 50 bulbs — 5 bulbs in each of 10 different locations — and, to get quick preliminary results, stops as soon as one bulb fails at each location. Let $Y_i$ denote the lifetime of the first bulb to fail at location $i$. Obtain the most powerful test of $H_0$ against $H_1$ based on $Y_1,\dots,Y_{10}$, and compute its power.</p>
+        <p class="q-source">ISI M.Stat PSB 2017, Question 5.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Each $Y_i$ is the minimum of 5 i.i.d. exponentials, so $Y_i$ is itself exponential with a rescaled rate.</p></details>
+      </article>
+
+      <article class="q" data-id="13-10">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 13.10 solved">
+          <span class="q-tag tag-application">Test with censored/rounded data</span>
+          <span class="q-id">13.10</span>
+        </div>
+        <p class="q-text">Suppose $X_1,X_2,\dots,X_n$ is a random sample from an Exponential distribution with mean $\lambda$. Assume that the observed data is available only on $[X_1],\dots,[X_n]$, instead of $X_1,\dots,X_n$, where $[x]$ denotes the largest integer less than or equal to $x$. Consider a test for $H_0:\lambda=1$ vs $H_1:\lambda\gt 1$ which rejects $H_0$ when $\sum_{i=1}^n [X_i] \gt  c_n$. Given $\alpha\in(0,1)$, obtain values of $c_n$ such that the size of the test converges to $\alpha$ as $n\to\infty$.</p>
+        <p class="q-source">ISI M.Stat PSB 2016, Question 9.</p>
+      </article>
+
+      <article class="q" data-id="13-11">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 13.11 solved">
+          <span class="q-tag tag-application">Devising a test from measurement error</span>
+          <span class="q-id">13.11</span>
+        </div>
+        <p class="q-text">A cake weighing one kilogram is cut into two pieces, and each piece is weighed separately. Denote the measured weights of the two pieces by $X$ and $Y$. Assume that the errors in obtaining $X$ and $Y$ are independent and normally distributed with mean zero and the same (unknown) variance. Devise a test for the hypothesis that the true weights of the two pieces are equal.</p>
+        <p class="q-source">ISI M.Stat PSB 2016, Question 10.</p>
+        <details class="q-hint"><summary>Hint</summary><p>The true weights sum to 1kg exactly, so a single linear combination of $X$ and $Y$ isolates the discrepancy you want to test.</p></details>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t14" data-topic="14">
+    <summary class="topic-head">
+      <span class="topic-no">14</span>
+      <span class="topic-name">Non-Parametric Methods</span>
+      <span class="topic-count">0 / 2</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="14-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 14.1 solved">
+          <span class="q-tag tag-construction">Construction</span>
+          <span class="q-id">14.1</span>
+        </div>
+        <p class="q-text">Construct a small dataset (5 or 6 points is enough) testing $H_0: \text{median}=m_0$, for which the Sign Test and the Wilcoxon Signed-Rank Test would reach qualitatively different conclusions. Use your example to state precisely what kind of information the Sign Test is structurally blind to.</p>
+        <p class="q-source">Original.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Give the Sign Test a bare majority of points on one side of $m_0$ — but make that majority sit very close to $m_0$, while the minority sits very far away.</p></details>
+      </article>
+
+      <article class="q" data-id="14-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 14.2 solved">
+          <span class="q-tag tag-conceptual">Conceptual</span>
+          <span class="q-id">14.2</span>
+        </div>
+        <p class="q-text">It's a celebrated fact that the Wilcoxon rank-sum test loses shockingly little relative to the t-test even in the t-test's own best case: under exact Normality, its asymptotic relative efficiency is exactly $3/\pi \approx 0.955$. Hodges and Lehmann then proved something far stronger — across every distribution satisfying mild regularity conditions, this efficiency never falls below $108/125 = 0.864$, while it can grow arbitrarily large for heavy-tailed data. Without computing any efficiency integral, give an intuitive account of why keeping only ranks — discarding exact magnitudes — could plausibly lose so little in the best case for the t-test, yet gain so enormously in the worst case.</p>
+        <p class="q-source">Classic — Hodges &amp; Lehmann, "The Efficiency of Some Nonparametric Competitors of the t-Test," <em>Annals of Mathematical Statistics</em>, 1956.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Ranks discard exactly the information that outliers use to wreak havoc.</p></details>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t15" data-topic="15">
+    <summary class="topic-head">
+      <span class="topic-no">15</span>
+      <span class="topic-name">Correlation &amp; Regression</span>
+      <span class="topic-count">0 / 10</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="15-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 15.1 solved">
+          <span class="q-tag tag-proof">Conceptual proof</span>
+          <span class="q-id">15.1</span>
+        </div>
+        <p class="q-text">Using only the formula for the standardized regression slope in terms of the correlation $\rho$, explain why "regression to the mean" — sons of very tall fathers tending to be somewhat less extreme than their fathers — is a mathematical necessity whenever $|\rho| \lt 1$, with no biological pull required. Then describe the classic reasoning error people make when they mistake this purely statistical phenomenon for a real causal "shrinking" effect across generations.</p>
+        <p class="q-source">Classic — Francis Galton's original 1886 study on heights, which coined the term "regression."</p>
+        <details class="q-hint"><summary>Hint</summary><p>The regression slope is $\rho \cdot (\sigma_y/\sigma_x)$. If $\rho \lt 1$, what happens to a large standardized $x$-value when multiplied by something smaller than 1?</p></details>
+      </article>
+
+      <article class="q" data-id="15-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 15.2 solved">
+          <span class="q-tag tag-construction">Construction</span>
+          <span class="q-id">15.2</span>
+        </div>
+        <p class="q-text">Without looking up the actual numbers, construct two small datasets (4–5 points each) with identical mean, variance, and correlation coefficient — where one is visibly a clean straight-line relationship and the other is clearly not (a curve, or a single point doing all the work). What does this teach you about trusting a single summary number like $r$?</p>
+        <p class="q-source">The phenomenon is classic — Anscombe's Quartet (F.J. Anscombe, 1973) — though this is your own construction, not the original numbers.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Start from a perfect line, then move one point far away while nudging the others just enough to restore the original mean, variance, and correlation.</p></details>
+      </article>
+
+
+      <article class="q" data-id="15-3">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 15.3 solved">
+          <span class="q-tag tag-application">Least absolute deviations fit</span>
+          <span class="q-id">15.3</span>
+        </div>
+        <p class="q-text">Consider the following bivariate data: for $i=1,\dots,12$, $x_i$ takes the value 21 for $i=1,\dots,5$ and 35 for $i=6,\dots,12$, while the corresponding $y_i$ values are $33, 93, 34, 48, 19, 58, 14, 32, 12, 44, 45, 62$. Determine, with justification, the values of $a$ and $b$ that minimise the sum of absolute errors $\sum_{i=1}^{12} |y_i - a - bx_i|$.</p>
+        <p class="q-source">ISI M.Stat PSB 2026, Question 8.</p>
+        <details class="q-hint"><summary>Hint</summary><p>A least-absolute-deviations fit is minimized by a line passing through medians of the $y$-values within each distinct $x$-group, not through means.</p></details>
+      </article>
+
+      <article class="q" data-id="15-4">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 15.4 solved">
+          <span class="q-tag tag-application">MLE from fitted regression lines</span>
+          <span class="q-id">15.4</span>
+        </div>
+        <p class="q-text">Consider two random variables $(X,Y)$ distributed as bivariate normal with parameters $(\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho)$. Based on a random sample, the fitted least squares regression line of $Y$ on $X$ and that of $X$ on $Y$ were $Y=22-3X$ and $X=5.84-0.12Y$. (a) Compute the maximum likelihood estimates of (i) $\min\{\mu_1,\mu_2\}$, (ii) $\sigma_1/\sigma_2$, (iii) $\rho$ — without deriving the general MLEs of $\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho$. (b) If a new observation $(5,5)$ is included in the data, determine whether each of the estimates in (a) will increase, decrease, or remain unchanged.</p>
+        <p class="q-source">ISI M.Stat PSB 2022, Question 6.</p>
+      </article>
+
+      <article class="q" data-id="15-5">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 15.5 solved">
+          <span class="q-tag tag-application">Comparing two slope estimators</span>
+          <span class="q-id">15.5</span>
+        </div>
+        <p class="q-text">Consider a linear regression model $y_i=\alpha+\beta x_i+e_i$, $i=1,\dots,n$, where the $x_i$'s are fixed and the $e_i$'s are i.i.d. with mean 0 and variance $\sigma^2$. Define two estimators of $\beta$: $\hat\beta_1 = \dfrac{\sum_{i=1}^n y_i}{\sum_{i=1}^n x_i}$ and $\hat\beta_2 = \dfrac{\sum_{i=1}^n x_iy_i}{\sum_{i=1}^n x_i^2}$. (a) Obtain an unbiased estimator of $\beta$ as a linear combination of $\hat\beta_1$ and $\hat\beta_2$. (b) Find the mean squared errors of $\hat\beta_1$ and $\hat\beta_2$. Which has the lower MSE?</p>
+        <p class="q-source">ISI M.Stat PSB 2021, Question 9.</p>
+      </article>
+
+      <article class="q" data-id="15-6">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 15.6 solved">
+          <span class="q-tag tag-application">LSE and MLE under Laplace errors</span>
+          <span class="q-id">15.6</span>
+        </div>
+        <p class="q-text">Consider the model $y_i=\beta x_i+\varepsilon_i x_i$, $i=1,\dots,n$, where the $y_i$ are observed, the $x_i$ are known positive constants, and $\beta$ is unknown. The errors $\varepsilon_1,\dots,\varepsilon_n$ are i.i.d. with density $f(u)=\dfrac{1}{2\lambda}\exp(-|u|/\lambda)$, $-\infty\lt u\lt \infty$, $\lambda$ unknown. (a) Find the least squares estimator of $\beta$. (b) Find the maximum likelihood estimator of $\beta$.</p>
+        <p class="q-source">ISI M.Stat PSB 2020, Question 7.</p>
+      </article>
+
+      <article class="q" data-id="15-7">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 15.7 solved">
+          <span class="q-tag tag-proof">Invariance under an added dummy variable</span>
+          <span class="q-id">15.7</span>
+        </div>
+        <p class="q-text">Suppose $\{(x_i,y_i,z_i) : i=1,\dots,n\}$ is a set of trivariate observations, where $z_i=0$ for $i=1,\dots,n-1$ and $z_n=1$. Suppose the least squares regression of $Y$ on $X$ based on the first $n-1$ observations is $y=\hat\alpha_0+\hat\alpha_1 x$, and the least squares regression of $Y$ on $X$ and $Z$ based on all $n$ observations is $y=\hat\beta_0+\hat\beta_1 x+\hat\beta_2 z$. Show that $\hat\alpha_1=\hat\beta_1$.</p>
+        <p class="q-source">ISI M.Stat PSB 2019, Question 8.</p>
+        <details class="q-hint"><summary>Hint</summary><p>The dummy variable $z$ absorbs the $n$-th observation entirely, so the fit on the other $n-1$ points is unaffected by including it.</p></details>
+      </article>
+
+      <article class="q" data-id="15-8">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 15.8 solved">
+          <span class="q-tag tag-application">MSE of a partially-specified estimator</span>
+          <span class="q-id">15.8</span>
+        </div>
+        <p class="q-text">Suppose $(y_i,x_i)$ satisfies the regression model $y_i=\alpha+\beta x_i+\epsilon_i$, $i=1,\dots,n$, where the $x_i$ are fixed constants and the $\epsilon_i$ are i.i.d. $N(0,\sigma^2)$ errors, with $\alpha,\beta,\sigma^2\gt 0$ unknown. (a) Let $\tilde\alpha$ denote the least squares estimate of $\alpha$ obtained assuming $\beta=5$. Find the mean squared error of $\tilde\alpha$ in terms of the model parameters. (b) Obtain the maximum likelihood estimator of this MSE.</p>
+        <p class="q-source">ISI M.Stat PSB 2018, Question 9.</p>
+      </article>
+
+      <article class="q" data-id="15-9">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 15.9 solved">
+          <span class="q-tag tag-proof">Bias and MSE of a misspecified regression</span>
+          <span class="q-id">15.9</span>
+        </div>
+        <p class="q-text">Consider independent observations $\{(y_i,x_{1i},x_{2i}) : 1\le i\le n\}$ from the model $y_i=\beta_1x_{1i}+\beta_2x_{2i}+\epsilon_i$, where $x_{1i},x_{2i}$ are scalar covariates, $\beta_1,\beta_2$ unknown, and the $\epsilon_i$ are uncorrelated errors with mean 0 and variance $\sigma^2\gt 0$. Instead of the correct model, we estimate $\beta_1$ by $\hat\beta_1$, minimizing $\sum_{i=1}^n (y_i-\beta_1 x_{1i})^2$. Find the bias and mean squared error of $\hat\beta_1$.</p>
+        <p class="q-source">ISI M.Stat PSB 2017, Question 7.</p>
+      </article>
+
+      <article class="q" data-id="15-10">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 15.10 solved">
+          <span class="q-tag tag-proof">Regression invariant across sub-samples</span>
+          <span class="q-id">15.10</span>
+        </div>
+        <p class="q-text">Suppose $\{(y_i,x_{1i},\dots,x_{ki}) : i=1,\dots,n_1+n_2\}$ is a set of multivariate observations. It is found that the least squares fit of $y$ on $(x_1,\dots,x_k)$ based on the first $n_1$ observations is the same as that based on the remaining $n_2$ observations, and equals $y=\hat\beta_0+\sum_{j=1}^k \hat\beta_j x_j$. If the regression is now performed using all $(n_1+n_2)$ observations, will the regression equation remain the same? Justify your answer.</p>
+        <p class="q-source">ISI M.Stat PSB 2016, Question 7.</p>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t16" data-topic="16">
+    <summary class="topic-head">
+      <span class="topic-no">16</span>
+      <span class="topic-name">ANOVA &amp; Design of Experiments</span>
+      <span class="topic-count">0 / 4</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="16-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 16.1 solved">
+          <span class="q-tag tag-conceptual">Conceptual</span>
+          <span class="q-id">16.1</span>
+        </div>
+        <p class="q-text">Using the decomposition of total sum of squares into between-group and within-group components, explain why comparing two variance estimates via an F-ratio is a valid way to test the equality of several group means. If the true group means were all equal, argue why the between-group and within-group estimates would both be estimating the same quantity $\sigma^2$ — but if the means differ, explain precisely why the between-group estimate becomes inflated.</p>
+        <p class="q-source">Classic — the logical foundation of one-way ANOVA (R.A. Fisher).</p>
+        <details class="q-hint"><summary>Hint</summary><p>If all group means are equal, "between-group variability" is just sampling noise around one shared mean — exactly what within-group variability already measures.</p></details>
+      </article>
+
+      <article class="q" data-id="16-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 16.2 solved">
+          <span class="q-tag tag-application">Exact combinatorics</span>
+          <span class="q-id">16.2</span>
+        </div>
+        <p class="q-text">In Fisher's famous experiment, a woman claims she can tell by taste whether milk or tea was poured first. She's given 8 cups (4 milk-first, 4 tea-first) in random order and must identify all 4 milk-first cups. (a) Using hypergeometric reasoning — not simulation, not a Normal approximation — find the exact probability she gets all 8 correct by pure guessing, and explain why this exact calculation is what makes the test valid even at this tiny sample size. (b) In one sentence, explain why randomizing the cup order — rather than, say, always serving milk-first cups first — is essential to the logic of the test.</p>
+        <p class="q-source">Classic — R.A. Fisher, <em>The Design of Experiments</em> (1935); the founding example for randomized experiments and exact tests.</p>
+        <details class="q-hint"><summary>Hint</summary><p>She's really just choosing 4 out of 8 cups to call "milk-first." How many ways can she choose 4 of 8, and how many of those are exactly right?</p></details>
+      </article>
+
+
+      <article class="q" data-id="16-3">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 16.3 solved">
+          <span class="q-tag tag-application">Design and analysis</span>
+          <span class="q-id">16.3</span>
+        </div>
+        <p class="q-text">Mr. X wants to compare five different varieties of wheat. He has access to a piece of land divided into 25 smaller plots, arranged as a 5$\times$5 grid bounded by mountains to the north, a river to the west, a forest to the east, and a lake to the south — so fertility may plausibly vary along both the north–south and east–west directions of the grid. (a) Give an allocation of the wheat varieties to the plots so that you are able to compare them, justify your allocation rule, and clearly state all assumptions you make. (b) Once the crop is harvested, how would you analyze the data and compare the different varieties of wheat?</p>
+        <p class="q-source">ISI M.Stat PSB 2023, Question 7.</p>
+        <details class="q-hint"><summary>Hint</summary><p>A grid with two directions of suspected fertility gradient calls for a design that blocks in both directions at once.</p></details>
+      </article>
+
+      <article class="q" data-id="16-4">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 16.4 solved">
+          <span class="q-tag tag-application">Reconstructing an ANOVA table</span>
+          <span class="q-id">16.4</span>
+        </div>
+        <p class="q-text">The following ANOVA table for three factors A, B, and C was obtained (under a suitable model) from some data, but several values were illegible and marked '$*$'. It is known that A had two levels and there were 24 observations in all. $$\begin{array}{lcccc}\text{Source} & df & \text{SS} & \text{MS} & F\text{-ratio}\\ A & * & * & * & *\\ B & * & * & * & 0.62\\ C & * & * & 25.4 & *\\ AB & 2 & * & 5.4 & 0.54\\ BC & 2 & * & 4.2 & *\\ \text{Error} & * & * & *\\ \text{Total} & * & 257.4\end{array}$$ (a) Fill in the missing values, providing suitable justification. (b) Suppose a student has access only to tables for $t$ distributions. Can she test the hypothesis of equality of effects of levels of A, and that of levels of B, both at the 5% level? Justify your answer.</p>
+        <p class="q-source">ISI M.Stat PSB 2022, Question 9.</p>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t17" data-topic="17">
+    <summary class="topic-head">
+      <span class="topic-no">17</span>
+      <span class="topic-name">Multivariate Analysis</span>
+      <span class="topic-count">0 / 2</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="17-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 17.1 solved">
+          <span class="q-tag tag-proof">One-line proof</span>
+          <span class="q-id">17.1</span>
+        </div>
+        <p class="q-text">Consider a random point uniformly distributed inside a $d$-dimensional ball of radius 1. Show that as $d \to \infty$, the probability the point lies within distance 0.01 of the center goes to 0, while the probability it lies within 0.01 of the surface goes to 1. A one-line argument using how volume scales with radius is all you need — no integration.</p>
+        <p class="q-source">Classic — concentration of measure / the "curse of dimensionality" in high-dimensional geometry.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Volume of a $d$-ball scales as $r^d$. What happens to $(0.99)^d$ as $d$ grows?</p></details>
+      </article>
+
+      <article class="q" data-id="17-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 17.2 solved">
+          <span class="q-tag tag-proof">Geometric argument</span>
+          <span class="q-id">17.2</span>
+        </div>
+        <p class="q-text">For a bivariate distribution, $\text{Var}(aX+bY)$ along a unit direction $(a,b)$ is the quadratic form $a^2\text{Var}(X) + 2ab\,\text{Cov}(X,Y) + b^2\text{Var}(Y)$ — a quadratic form built from the covariance matrix $\Sigma$. Without setting up Lagrange multipliers, use the spectral theorem to argue directly why the direction that maximizes this variance must be an eigenvector of $\Sigma$ — specifically the one for the largest eigenvalue.</p>
+        <p class="q-source">Classic — the variational (Rayleigh-quotient) characterization underlying Principal Component Analysis.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Write any unit vector in the eigenbasis of $\Sigma$. What does the quadratic form look like in those coordinates?</p></details>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t18" data-topic="18">
+    <summary class="topic-head">
+      <span class="topic-no">18</span>
+      <span class="topic-name">Stochastic Processes &amp; Time Series</span>
+      <span class="topic-count">0 / 5</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="18-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 18.1 solved">
+          <span class="q-tag tag-proof">Scaling argument</span>
+          <span class="q-id">18.1</span>
+        </div>
+        <p class="q-text">In the symmetric Gambler's Ruin (simple random walk, absorbing barriers at 0 and $N$, starting at $k$), the walk is absorbed in finite time with probability 1 — yet the expected time to absorption grows like $k(N-k)$, quadratically in $N$, not linearly. Give an intuitive argument, no difference-equation solving needed, for why the expected time should scale like $N^2$ — think about how far a random walk typically wanders after $n$ steps.</p>
+        <p class="q-source">Classic — a special case of the diffusive ($\sqrt n$) scaling of random walks.</p>
+        <details class="q-hint"><summary>Hint</summary><p>If distance traveled scales like $\sqrt n$, how many steps $n$ does it take to travel a distance of order $N$?</p></details>
+      </article>
+
+      <article class="q" data-id="18-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 18.2 solved">
+          <span class="q-tag tag-conceptual">Conceptual</span>
+          <span class="q-id">18.2</span>
+        </div>
+        <p class="q-text">It's a famous, initially alarming fact that regressing one completely unrelated random-walk time series on another independent random-walk series will very often produce a "highly significant" regression coefficient and a large $R^2$ — even though the two series have nothing to do with each other. Explain, in terms of what happens to $\text{Var}(X_t)=t\sigma^2$ over time — i.e. non-stationarity — why the standard regression machinery's assumptions are badly violated here, and state the practical lesson for anyone naively correlating two time series without checking a basic property of each one first.</p>
+        <p class="q-source">Classic — Yule's "nonsense correlations" (G.U. Yule, 1926); formalized as "spurious regression" by Granger &amp; Newbold (1974).</p>
+        <details class="q-hint"><summary>Hint</summary><p>Ordinary regression assumes errors settle down around a fixed relationship. What happens to that assumption when both series' own variances are exploding over time?</p></details>
+      </article>
+
+
+      <article class="q" data-id="18-3">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 18.3 solved">
+          <span class="q-tag tag-application">Autocovariance of an AR(1) process</span>
+          <span class="q-id">18.3</span>
+        </div>
+        <p class="q-text">Let $\rho\in(-1,1)$, and $X_0,X_1,X_2,\dots$ be a sequence of random variables satisfying $X_i=\rho X_{i-1}+\varepsilon_i$ for all $i\ge1$. Suppose $\varepsilon_1,\varepsilon_2,\dots$ have common mean 0 and common variance $\tau^2$, and $X_0$ has mean 0 and variance $\sigma^2 = \dfrac{\tau^2}{1-\rho^2}$. Assume further that $X_0,\varepsilon_1,\varepsilon_2,\dots$ are independent. (a) Find $\text{Var}(X_i)$ for $i\ge1$. (b) Find $\text{Cov}(X_i,X_j)$ for $j\gt i\ge0$, and show that it is a function of $j-i$.</p>
+        <p class="q-source">ISI M.Stat PSB 2026, Question 4.</p>
+      </article>
+
+      <article class="q" data-id="18-4">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 18.4 solved">
+          <span class="q-tag tag-application">Absorption in a finite Markov chain</span>
+          <span class="q-id">18.4</span>
+        </div>
+        <p class="q-text">Consider a game with six states $1,2,3,4,5,6$. Initially a player starts in state 1 or state 6. At each step, a fair die is tossed. (i) From state 1 or 6: the player moves to state $k$, for the roll $k=1,\dots,6$. (ii) From state 2 or 3: on a roll of 1, 2 or 3 the player moves to state 4, otherwise to state 5. (iii) From state 4 or 5: on a roll of 4, 5 or 6 the player moves to state 2, otherwise to state 3. The player wins upon visiting 2 more states besides the starting one. (a) Calculate the probability that the player eventually moves out of states 1 and 6. (b) Calculate the expected time the player remains within states 1 and 6. (c) Calculate the expected time for a player to win.</p>
+        <p class="q-source">ISI M.Stat PSB 2021, Question 5.</p>
+      </article>
+
+      <article class="q" data-id="18-5">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 18.5 solved">
+          <span class="q-tag tag-proof">Pólya urn</span>
+          <span class="q-id">18.5</span>
+        </div>
+        <p class="q-text">An urn contains $r\gt 0$ red balls and $b\gt 0$ black balls. A ball is drawn at random, its colour noted, and returned to the urn, along with $c\gt 0$ additional balls of the same colour. This process of drawing and replenishing is continued. Define $X_i=1$ if the $i$-th draw is red, and 0 otherwise. Compute $E\!\left(\sum_{i=1}^n X_i\right)$.</p>
+        <p class="q-source">ISI M.Stat PSB 2018, Question 4.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Show by symmetry (exchangeability of the Pólya sequence) that every $X_i$ has the same marginal distribution as $X_1$.</p></details>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t19" data-topic="19">
+    <summary class="topic-head">
+      <span class="topic-no">19</span>
+      <span class="topic-name">Real Analysis &amp; Linear Algebra</span>
+      <span class="topic-count">0 / 21</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="19-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.1 solved">
+          <span class="q-tag tag-proof">Differential inequality</span>
+          <span class="q-id">19.1</span>
+        </div>
+        <p class="q-text">Let $f:\mathbb{R}\to\mathbb{R}$ be a differentiable function with derivative $f'$. Suppose $f(0)=0$ and $f'(x)\gt f(x)$ for all $x\in\mathbb{R}$. (a) Prove that $e^{-x}f(x)$ is an increasing function of $x$ on $(0,\infty)$. (b) Show that $\lim_{x\to\infty}f(x)=\infty$.</p>
+        <p class="q-source">ISI M.Stat PSB 2026, Question 1.</p>
+      </article>
+
+      <article class="q" data-id="19-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.2 solved">
+          <span class="q-tag tag-proof">Diagonalization and matrix square roots</span>
+          <span class="q-id">19.2</span>
+        </div>
+        <p class="q-text">Suppose $A$ is an $n\times n$ real matrix which has $n$ linearly independent eigenvectors $v_1,\dots,v_n$ corresponding to real positive eigenvalues $\lambda_1,\dots,\lambda_n$. (a) Let $V$ be the matrix whose $i$-th column is $v_i$, and $D$ the diagonal matrix with $i$-th diagonal entry $\lambda_i$. Show that $V^{-1}AV=D$. (b) Show that there exist $2^n$ distinct matrices $B_1,\dots,B_{2^n}$ such that $B_j^2=A$ for all $j=1,\dots,2^n$.</p>
+        <p class="q-source">ISI M.Stat PSB 2026, Question 3.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Once $A$ is diagonalized, a square root of $A$ is built from independent choices of $\pm\sqrt{\lambda_i}$ for each eigenvalue.</p></details>
+      </article>
+
+      <article class="q" data-id="19-3">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.3 solved">
+          <span class="q-tag tag-proof">Uniqueness for an overdetermined system</span>
+          <span class="q-id">19.3</span>
+        </div>
+        <p class="q-text">Let $m\ne n$ and let $A=((a_{ij}))$ be an $m\times n$ real matrix such that $A^TA=I$. Let $b_1,\dots,b_m\in\mathbb{R}$. Prove that the system of linear equations $Ax=b$ in the unknowns $x_1,\dots,x_n$ has at most one solution.</p>
+        <p class="q-source">ISI M.Stat PSB 2024, Question 1.</p>
+      </article>
+
+      <article class="q" data-id="19-4">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.4 solved">
+          <span class="q-tag tag-construction">Rational points on the circle</span>
+          <span class="q-id">19.4</span>
+        </div>
+        <p class="q-text">Use the identity $n^2+(2n+1)=(n+1)^2$ to prove that the set $S=\{(x,y)\in\mathbb{Q}\times\mathbb{Q} : x^2+y^2=1\}$ has infinitely many elements.</p>
+        <p class="q-source">ISI M.Stat PSB 2024, Question 2.</p>
+      </article>
+
+      <article class="q" data-id="19-5">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.5 solved">
+          <span class="q-tag tag-proof">Tridiagonal determinant</span>
+          <span class="q-id">19.5</span>
+        </div>
+        <p class="q-text">Let $A_n=((a_{ij}))$ be the $n\times n$ matrix defined by $a_{ij}=0$ if $|i-j|\gt 1$, $a_{ij}=1$ if $|i-j|=1$, and $a_{ij}=2$ if $i=j$. Find the determinant of $A_n$ for $n\ge1$.</p>
+        <p class="q-source">ISI M.Stat PSB 2023, Question 1.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Expand along the first row to get a linear recursion relating $\det(A_n)$ to $\det(A_{n-1})$ and $\det(A_{n-2})$.</p></details>
+      </article>
+
+      <article class="q" data-id="19-6">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.6 solved">
+          <span class="q-tag tag-proof">Denominators of a rational sequence</span>
+          <span class="q-id">19.6</span>
+        </div>
+        <p class="q-text">Consider a sequence $\{r_k\}_{k\ge1}$ of rational numbers lying in the interval $(0,1)$. Assume that $r_k$ converges to an irrational number as $k\to\infty$. Suppose $r_k=m_k/n_k$ for all $k\ge1$, where $m_k,n_k$ are positive integers with no common divisors. Show that the set of integers $\{n_k : k\ge1\}$ is not bounded.</p>
+        <p class="q-source">ISI M.Stat PSB 2022, Question 1.</p>
+      </article>
+
+      <article class="q" data-id="19-7">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.7 solved">
+          <span class="q-tag tag-proof">Trace, determinant and eigenvalues</span>
+          <span class="q-id">19.7</span>
+        </div>
+        <p class="q-text">Consider a $4\times4$ real matrix $A$ which has positive trace and negative determinant. (a) Show that $A$ must have at least two real eigenvalues. (b) Show that $A$ can have non-real eigenvalues.</p>
+        <p class="q-source">ISI M.Stat PSB 2022, Question 2.</p>
+      </article>
+
+      <article class="q" data-id="19-8">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.8 solved">
+          <span class="q-tag tag-proof">Continuity and differentiability on a rational/irrational split</span>
+          <span class="q-id">19.8</span>
+        </div>
+        <p class="q-text">Define $f:\mathbb{R}\to\mathbb{R}$ as $f(x)=\cos(2x)$ if $x$ is rational, and $f(x)=\sin^2(x)$ if $x$ is irrational. Find all the real numbers where (a) $f$ is continuous, (b) $f$ is differentiable.</p>
+        <p class="q-source">ISI M.Stat PSB 2021, Question 1.</p>
+      </article>
+
+      <article class="q" data-id="19-9">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.9 solved">
+          <span class="q-tag tag-construction">A generalized inverse</span>
+          <span class="q-id">19.9</span>
+        </div>
+        <p class="q-text">Consider the matrix $P=\begin{pmatrix}5&3\\3&2\\8&5\end{pmatrix}$. Find a matrix $G$ such that $AGA=A$, where $A=PP^T$.</p>
+        <p class="q-source">ISI M.Stat PSB 2021, Question 2.</p>
+      </article>
+
+      <article class="q" data-id="19-10">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.10 solved">
+          <span class="q-tag tag-application">Area between a curve and its tangents</span>
+          <span class="q-id">19.10</span>
+        </div>
+        <p class="q-text">Let $f(x)=x^2-2x+2$. Let $L_1$ and $L_2$ be the tangents to its graph at $x=0$ and $x=2$ respectively. Find the area of the region enclosed by the graph of $f$ and the two lines $L_1,L_2$.</p>
+        <p class="q-source">ISI M.Stat PSB 2020, Question 1.</p>
+      </article>
+
+      <article class="q" data-id="19-11">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.11 solved">
+          <span class="q-tag tag-construction">Integer matrices with fixed trace of $A^TA$</span>
+          <span class="q-id">19.11</span>
+        </div>
+        <p class="q-text">Find the number of $3\times3$ matrices $A$ such that the entries of $A$ belong to the set $\mathbb{Z}$ of all integers, and the trace of $A^TA$ is 6.</p>
+        <p class="q-source">ISI M.Stat PSB 2020, Question 2.</p>
+      </article>
+
+      <article class="q" data-id="19-12">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.12 solved">
+          <span class="q-tag tag-application">Cubic with three real roots</span>
+          <span class="q-id">19.12</span>
+        </div>
+        <p class="q-text">Let $f(x)=x^3-3x+k$, where $k$ is a real number. For what values of $k$ will $f(x)$ have three distinct real roots?</p>
+        <p class="q-source">ISI M.Stat PSB 2019, Question 1.</p>
+      </article>
+
+      <article class="q" data-id="19-13">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.13 solved">
+          <span class="q-tag tag-proof">Eigenvalue inequalities under inversion</span>
+          <span class="q-id">19.13</span>
+        </div>
+        <p class="q-text">Let $A$ and $B$ be $4\times4$ matrices. Suppose $A$ has eigenvalues $x_1,x_2,x_3,x_4$ and $B$ has eigenvalues $1/x_1,1/x_2,1/x_3,1/x_4$, where each $x_i\gt 1$. (a) Prove that $A+B$ has at least one eigenvalue greater than 2. (b) Prove that $A-B$ has at least one eigenvalue greater than 0. (c) Give an example of $A$ and $B$ so that 1 is not an eigenvalue of $AB$.</p>
+        <p class="q-source">ISI M.Stat PSB 2019, Question 2.</p>
+      </article>
+
+      <article class="q" data-id="19-14">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.14 solved">
+          <span class="q-tag tag-application">System with a free parameter</span>
+          <span class="q-id">19.14</span>
+        </div>
+        <p class="q-text">Find all real solutions $(x_1,x_2,x_3,\lambda)$ for the system of equations $x_2-3x_3-x_1\lambda=0$, $x_1-3x_3-x_2\lambda=0$, $x_1+x_2+x_3\lambda=0$.</p>
+        <p class="q-source">ISI M.Stat PSB 2018, Question 1.</p>
+      </article>
+
+      <article class="q" data-id="19-15">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.15 solved">
+          <span class="q-tag tag-proof">Convergence of a recursively defined sequence</span>
+          <span class="q-id">19.15</span>
+        </div>
+        <p class="q-text">Let $\{x_n\}_{n\ge1}$ be defined by $x_1=1$ and $x_{n+1}=\left(x_n^3+\dfrac{1}{n(n+1)(n+2)}\right)^{1/3}$, $n\ge1$. Show that $\{x_n\}_{n\ge1}$ converges and find its limit.</p>
+        <p class="q-source">ISI M.Stat PSB 2018, Question 2.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Telescope $x_n^3$ by summing the increments $x_{k+1}^3-x_k^3$, using a partial-fractions decomposition of $\frac{1}{k(k+1)(k+2)}$.</p></details>
+      </article>
+
+      <article class="q" data-id="19-16">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.16 solved">
+          <span class="q-tag tag-proof">Trace, determinant and a symmetric matrix's eigenvalues</span>
+          <span class="q-id">19.16</span>
+        </div>
+        <p class="q-text">Let $a,b$ be real numbers. Show that there exists a unique $2\times2$ real symmetric matrix $A$ with $\text{trace}(A)=a$ and $\det(A)=b$ if and only if $a^2=4b$.</p>
+        <p class="q-source">ISI M.Stat PSB 2017, Question 1.</p>
+      </article>
+
+      <article class="q" data-id="19-17">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.17 solved">
+          <span class="q-tag tag-proof">Generalized Rolle's theorem</span>
+          <span class="q-id">19.17</span>
+        </div>
+        <p class="q-text">Let $f:\mathbb{R}\to\mathbb{R}$ be infinitely differentiable and suppose that, for some $n\ge1$, $f(1)=f(0)=f^{(1)}(0)=f^{(2)}(0)=\cdots=f^{(n)}(0)=0$, where $f^{(k)}$ denotes the $k$-th derivative for $k\ge1$. Prove that there exists $x\in(0,1)$ such that $f^{(n+1)}(x)=0$.</p>
+        <p class="q-source">ISI M.Stat PSB 2017, Question 2.</p>
+      </article>
+
+      <article class="q" data-id="19-18">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.18 solved">
+          <span class="q-tag tag-application">Recovering a parabola from a chord and an area</span>
+          <span class="q-id">19.18</span>
+        </div>
+        <p class="q-text">In a certain diagram, $L(x)$ is a straight line that intersects the graph of a degree-2 polynomial $P(x)$ at the points $A=(-1,0)$ and $B=(5,12)$. The area of the region enclosed between the chord $L(x)$ and the parabola $P(x)$ over $[-1,5]$ is 36 square units. Obtain the expression for $P(x)$.</p>
+        <p class="q-source">ISI M.Stat PSB 2016, Question 1.</p>
+      </article>
+
+      <article class="q" data-id="19-19">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.19 solved">
+          <span class="q-tag tag-proof">A bound on the derivative forces linearity</span>
+          <span class="q-id">19.19</span>
+        </div>
+        <p class="q-text">Let $f:[-1,1]\to\mathbb{R}$ be a continuous function. Suppose that $f'(x)$ exists and $f'(x)\le1$ for all $x\in(-1,1)$. If $f(1)=1$ and $f(-1)=-1$, prove that $f(x)=x$ for all $x\in[-1,1]$.</p>
+        <p class="q-source">ISI M.Stat PSB 2016, Question 2.</p>
+      </article>
+
+      <article class="q" data-id="19-20">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.20 solved">
+          <span class="q-tag tag-proof">Trace, squared trace and eigenvalues</span>
+          <span class="q-id">19.20</span>
+        </div>
+        <p class="q-text">Suppose $A$ is an $n\times n$ real symmetric matrix such that $\text{Tr}(A^2)=\text{Tr}(A)=n$. Show that all the eigenvalues of $A$ are equal to 1.</p>
+        <p class="q-source">ISI M.Stat PSB 2016, Question 3.</p>
+        <details class="q-hint"><summary>Hint</summary><p>Write $\text{Tr}(A)=\sum\lambda_i$ and $\text{Tr}(A^2)=\sum\lambda_i^2$; the two conditions together force $\sum(\lambda_i-1)^2=0$.</p></details>
+      </article>
+
+      <article class="q" data-id="19-21">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 19.21 solved">
+          <span class="q-tag tag-application">Null space of a family of linear maps</span>
+          <span class="q-id">19.21</span>
+        </div>
+        <p class="q-text">For each $c\in\mathbb{R}$, define $T_c:\mathbb{R}^4\to\mathbb{R}^4$ by $T_c(x_1,x_2,x_3,x_4) := \big((1+c)x_1,\ x_2+cx_3,\ x_3+cx_2,\ (1+c)x_4\big)$. For every $c\in\mathbb{R}$, find the dimension of the null space of $T_c$.</p>
+        <p class="q-source">ISI M.Stat PSB 2016, Question 4.</p>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="topic" id="t20" data-topic="20">
+    <summary class="topic-head">
+      <span class="topic-no">20</span>
+      <span class="topic-name">Survey Sampling &amp; Finite Population Methods</span>
+      <span class="topic-count">0 / 5</span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="topic-body">
+
+      <article class="q" data-id="20-1">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 20.1 solved">
+          <span class="q-tag tag-proof">Verifying an SRS updating scheme</span>
+          <span class="q-id">20.1</span>
+        </div>
+        <p class="q-text">A population consists of units $\{1,2,\dots,n+1\}$ for some $n\ge1$. Consider the following sampling procedure: start with $S_0=\{1,\dots,n\}$; generate $U$ from $\text{Uniform}(0,1)$; if $U\gt \dfrac{n}{n+1}$, define $S_1=S_0$; otherwise, remove one of the units uniformly at random from $S_0$ (independently of $U$) and add unit $(n+1)$ to create $S_1$. Determine, with justification, whether $S_1$ is a simple random sample of size $n$ from the population.</p>
+        <p class="q-source">ISI M.Stat PSB 2026, Question 7.</p>
+      </article>
+
+      <article class="q" data-id="20-2">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 20.2 solved">
+          <span class="q-tag tag-proof">Horvitz–Thompson estimator from two sub-samples</span>
+          <span class="q-id">20.2</span>
+        </div>
+        <p class="q-text">A city has $N$ households numbered $\{1,\dots,N\}$. Let $y_i$ denote the size of the $i$-th household. A simple random sample $s_1$ of size $m$ is drawn without replacement from households $\{1,\dots,M\}$. Another independent simple random sample $s_2$, also of size $m$, is drawn without replacement from households $\{N-M+1,\dots,N\}$. Assume $m\lt M$ and $M\gt N/2$. (a) Compute $\pi_i=P(i\in s_1\cup s_2)$ for $i=1,\dots,N$. (b) Show that $T=\dfrac1N\sum_{i\in s_1\cup s_2}\dfrac{y_i}{\pi_i}$ is an unbiased estimator of the average household size in the city.</p>
+        <p class="q-source">ISI M.Stat PSB 2024, Question 10.</p>
+      </article>
+
+      <article class="q" data-id="20-3">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 20.3 solved">
+          <span class="q-tag tag-application">Overlap of two independent samples</span>
+          <span class="q-id">20.3</span>
+        </div>
+        <p class="q-text">There are two urns, each containing $N$ balls numbered 1 to $N$. From each urn a sample of size $n$ is selected without replacement. Denote the sets of numbers in the first and second samples by $s_1=\{i_1,\dots,i_n\}$ and $s_2=\{j_1,\dots,j_n\}$, and let $X=|s_1\cap s_2|$, the number of common elements. (a) Find the probability distribution of $X$. (b) Suppose $n=6$ and the observed value of $X$ is 4. Obtain a method-of-moments estimate of $N$.</p>
+        <p class="q-source">ISI M.Stat PSB 2021, Question 7.</p>
+      </article>
+
+      <article class="q" data-id="20-4">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 20.4 solved">
+          <span class="q-tag tag-proof">Variance comparison for a two-stage sample</span>
+          <span class="q-id">20.4</span>
+        </div>
+        <p class="q-text">A finite population has $N$ units, with $x_i$ the value for the $i$-th unit, $i=1,\dots,N$, and population mean $\bar x_N$. A statistician: <strong>Step 1</strong> draws a SRSWOR of size $n\,(\lt N)$, called $S_1$, with sample mean $\bar X_n$; <strong>Step 2</strong> draws a SRSWR of size $m$ from $S_1$, with values $\{Y_1,\dots,Y_m\}$. An estimator of the population mean is $\hat T_m=\tfrac1m\sum_{i=1}^m Y_i$. (a) Show that $\hat T_m$ is an unbiased estimator of the population mean. (b) Which has lower variance: $\hat T_m$ or $\bar X_n$?</p>
+        <p class="q-source">ISI M.Stat PSB 2020, Question 9.</p>
+      </article>
+
+      <article class="q" data-id="20-5">
+        <div class="q-row">
+          <input type="checkbox" class="q-check" aria-label="Mark question 20.5 solved">
+          <span class="q-tag tag-proof">MLE of an unknown population size</span>
+          <span class="q-id">20.5</span>
+        </div>
+        <p class="q-text">Suppose an SRSWOR of size $n$ has been drawn from a population labelled $1,2,\dots,N$, where the population size $N$ is unknown. (a) Find the maximum likelihood estimator $\hat N$ of $N$. (b) Find the probability mass function of $\hat N$. (c) Show that $\dfrac{n+1}{n}\hat N - 1$ is an unbiased estimator of $N$.</p>
+        <p class="q-source">ISI M.Stat PSB 2019, Question 7.</p>
+      </article>
+
+    </div>
+  </details>
+
+
+</main>
+
+<footer class="colophon">
+  <p>Twenty topics — from the first moment you compute to the last theorem you prove. The original two-per-topic set carries sources where a result has a name; unmarked ones are original compositions built around a standard idea. Everything else is a real problem from an ISI M.Stat PSB entrance examination (2016–2026), cited by year and question number — nothing here was invented to sound impressive, and every attribution was checked against the source paper before it went on the page.</p>
+</footer>
+
+<!-- ═══ CONTACT / ABOUT ═══ -->
+<div class="site-contact">
+  <span class="site-contact-label">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" class="site-contact-email">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div class="site-about-wrap">
+  <a href="../ABOUT.html" class="site-about-link">✦ about stargazer</a>
+</div>
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
+
+<script src="mathfmt.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+(function(){
+  'use strict';
+  var STORAGE_KEY = 'stats-quest-progress-v1';
+  var progress = {};
+
+  var questions = Array.prototype.slice.call(document.querySelectorAll('article.q'));
+  var total = questions.length;
+  var barFill = document.getElementById('barFill');
+  var progressLabel = document.getElementById('progressLabel');
+
+  function updateUI(){
+    var solvedCount = 0;
+    document.querySelectorAll('details.topic').forEach(function(topic){
+      var qs = topic.querySelectorAll('article.q');
+      var topicSolved = 0;
+      qs.forEach(function(q){ if(progress[q.dataset.id]) topicSolved++; });
+      solvedCount += topicSolved;
+      var countEl = topic.querySelector('.topic-count');
+      if(countEl) countEl.textContent = topicSolved + ' / ' + qs.length;
+      topic.classList.toggle('topic-complete', topicSolved === qs.length);
+    });
+    if(progressLabel) progressLabel.textContent = solvedCount + ' / ' + total + ' solved';
+    if(barFill) barFill.style.width = (total ? (solvedCount/total*100) : 0) + '%';
+  }
+
+  function save(){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+    }catch(e){ console.error('save failed', e); }
+  }
+
+  function wireQuestion(q){
+    var id = q.dataset.id;
+    var checkbox = q.querySelector('.q-check');
+    if(!checkbox || checkbox.dataset.wired) return;
+    checkbox.dataset.wired = '1';
+    checkbox.checked = !!progress[id];
+    q.classList.toggle('is-solved', !!progress[id]);
+    checkbox.addEventListener('change', function(){
+      progress[id] = checkbox.checked;
+      q.classList.toggle('is-solved', checkbox.checked);
+      updateUI();
+      save();
+    });
+  }
+
+  function init(){
+    questions.forEach(wireQuestion);
+    updateUI();
+    window.renderMath(document.body);
+  }
+
+  function load(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if(raw){ progress = JSON.parse(raw); }
+    }catch(e){ progress = {}; }
+    init();
+  }
+
+  document.getElementById('expandAll').addEventListener('click', function(){
+    document.querySelectorAll('details.topic').forEach(function(t){ t.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function(){
+    document.querySelectorAll('details.topic').forEach(function(t){ t.open = false; });
+  });
+  document.getElementById('resetBtn').addEventListener('click', function(){
+    if(confirm('Reset all progress on this problem set? This cannot be undone.')){
+      progress = {};
+      questions.forEach(function(q){
+        var cb = q.querySelector('.q-check');
+        if(cb) cb.checked = false;
+        q.classList.remove('is-solved');
+      });
+      updateUI();
+      save();
+    }
+  });
+  document.querySelectorAll('.toc a').forEach(function(link){
+    link.addEventListener('click', function(){
+      var id = link.getAttribute('href').slice(1);
+      var el = document.getElementById(id);
+      if(el) el.open = true;
+    });
+  });
+
+  // Exposed so admin-added problems (fetched after this runs) can be
+  // wired into the same progress/count/KaTeX system without a full reload.
+  window.__progressHooks = {
+    addQuestions: function(newEls){
+      newEls.forEach(function(q){
+        questions.push(q);
+        total++;
+      });
+      newEls.forEach(wireQuestion);
+      updateUI();
+      window.renderMath(document.body);
+    }
+  };
+
+  load();
+})();
+</script>
+
+<!-- ═══ ADMIN: add-your-own-problem, gated to the site owner ═══ -->
+<script>
+const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+
+function toggleMode(){
+  const night = document.body.classList.toggle('night');
+  const icon = document.getElementById('mode-icon');
+  if (icon) icon.textContent = night ? '☀' : '☾';
+  localStorage.setItem('stats-mode', night ? 'night' : 'day');
+}
+(function initModeIcon(){
+  const icon = document.getElementById('mode-icon');
+  if (icon) icon.textContent = document.body.classList.contains('night') ? '☀' : '☾';
+})();
+
+window._pageKey = 'stats';
+
+
+/* ═══ NAV: search ═══ */
+let SEARCH_INDEX = [];
+function buildSearchIndex(){
+  if(SEARCH_INDEX.length) return;
+  document.querySelectorAll('article.q').forEach(function(q){
+    const topic = q.closest('details.topic');
+    const topicName = topic ? (topic.querySelector('.topic-name')||{}).textContent||'' : '';
+    const tag = (q.querySelector('.q-tag')||{}).textContent || '';
+    const qid = (q.querySelector('.q-id')||{}).textContent || '';
+    const text = (q.querySelector('.q-text')||{}).textContent || '';
+    SEARCH_INDEX.push({
+      icon:'∑',
+      title: qid.trim() + ' — ' + text.trim().slice(0,72) + (text.trim().length>72?'…':''),
+      meta: topicName.trim(),
+      section: tag.trim(),
+      dataId: q.getAttribute('data-id'),
+      q: (topicName+' '+tag+' '+qid+' '+text).toLowerCase()
+    });
+  });
+}
+function openSearch(){
+  buildSearchIndex();
+  const m = document.getElementById('search-modal');
+  m.classList.add('open');
+  setTimeout(function(){ document.getElementById('search-input').focus(); }, 80);
+}
+function closeSearch(){
+  document.getElementById('search-modal').classList.remove('open');
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-results').innerHTML = '<div class="sr-empty">Start typing to search this problem set…</div>';
+}
+function runSearch(q){
+  const res = document.getElementById('search-results');
+  if(!q.trim()){ res.innerHTML = '<div class="sr-empty">Start typing…</div>'; return; }
+  const lq = q.toLowerCase();
+  const hits = SEARCH_INDEX.filter(function(x){ return x.q.includes(lq); }).slice(0,18);
+  if(!hits.length){ res.innerHTML = '<div class="sr-empty">No results for "'+escHtml(q)+'"</div>'; return; }
+  res.innerHTML = hits.map(function(h){
+    const idx = SEARCH_INDEX.indexOf(h);
+    return '<div class="sr-item" tabindex="0" data-idx="'+idx+'" onclick="goSearchResult('+idx+')" onkeydown="if(event.key===\'Enter\')goSearchResult('+idx+')">'
+      + '<span class="sr-icon">'+h.icon+'</span>'
+      + '<div><div class="sr-title">'+highlightHit(h.title,lq)+'</div><div class="sr-meta">'+escHtml(h.meta)+'</div></div>'
+      + '<span class="sr-section">'+escHtml(h.section)+'</span></div>';
+  }).join('');
+}
+function highlightHit(text,q){
+  if(!q) return escHtml(text);
+  const idx = text.toLowerCase().indexOf(q);
+  if(idx<0) return escHtml(text);
+  return escHtml(text.slice(0,idx)) + '<mark style="background:var(--ochre-dim);color:var(--bg);border-radius:2px">' + escHtml(text.slice(idx,idx+q.length)) + '</mark>' + escHtml(text.slice(idx+q.length));
+}
+function goSearchResult(idx){
+  const hit = SEARCH_INDEX[idx];
+  closeSearch();
+  if(!hit) return;
+  const article = document.querySelector('article.q[data-id="'+hit.dataId+'"]');
+  if(!article) return;
+  const topic = article.closest('details.topic');
+  if(topic) topic.open = true;
+  setTimeout(function(){
+    article.scrollIntoView({behavior:'smooth', block:'center'});
+    article.classList.add('sr-flash');
+    setTimeout(function(){ article.classList.remove('sr-flash'); }, 1600);
+  }, 60);
+}
+function searchKeyNav(e){
+  if(e.key==='Escape'){ closeSearch(); return; }
+  const items = document.querySelectorAll('.sr-item');
+  const cur = document.activeElement;
+  const curIdx = [...items].indexOf(cur);
+  if(e.key==='ArrowDown'){ e.preventDefault(); (items[curIdx+1]||items[0])?.focus(); }
+  if(e.key==='ArrowUp'){ e.preventDefault(); (items[curIdx-1]||items[items.length-1])?.focus(); }
+  if(e.key==='Enter' && curIdx>=0){ items[curIdx].click(); }
+}
+
+/* ═══ NAV: keyboard shortcuts + back-to-top ═══ */
+(function initNavKeyboard(){
+  document.addEventListener('keydown', function(e){
+    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)) return;
+    const sm = document.getElementById('search-modal');
+    if(sm && sm.classList.contains('open')){
+      if(e.key==='Escape') closeSearch();
+      return;
+    }
+    if(e.key==='/'){ e.preventDefault(); openSearch(); return; }
+    if(e.key==='Escape'){
+      const hm = document.getElementById('hamburger-menu');
+      if(hm && hm.classList.contains('open')){
+        hm.classList.remove('open');
+        document.getElementById('hamburger-btn')?.classList.remove('open');
+      }
+    }
+  });
+})();
+const btt = document.getElementById('btt');
+window.addEventListener('scroll', function(){
+  if(btt) btt.classList.toggle('show', window.scrollY>300);
+}, {passive:true});
+
+const TAG_CATEGORIES = ['proof','construction','paradox','conceptual','bound','application'];
+const TAG_LABELS = {
+  proof:'Proof', construction:'Construction', paradox:'Paradox',
+  conceptual:'Conceptual', bound:'Bound', application:'Application'
+};
+
+function isAdmin(){
+  return !!(window.currentUser && window.currentUser.email === ADMIN_EMAIL);
+}
+
+function escHtml(str){
+  if(!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Called by shared.js once window.sb exists and the auth state (signed
+// in or not) is known. Runs for every visitor: admin-bar visibility is
+// gated to the admin email, but loading the community problems is not —
+// everyone should see what the curator has added.
+var _communityLoaded = false;
+window._afterRenderAuthUI = function(user){
+  document.querySelectorAll('.admin-bar').forEach(function(el){
+    el.classList.toggle('visible', !!(user && user.email === ADMIN_EMAIL));
+  });
+  if (!_communityLoaded){
+    _communityLoaded = true;
+    loadCommunityProblems();
+  } else {
+    // Auth state changed after initial load (e.g. admin just signed in) —
+    // re-render so delete buttons and the add-row become visible.
+    document.querySelectorAll('article.q.is-custom .admin-bar').forEach(function(el){
+      el.classList.toggle('visible', !!(user && user.email === ADMIN_EMAIL));
+    });
+  }
+};
+
+// One "+ Add Problem" row per topic, hidden until admin signs in.
+function injectAddButtons(){
+  document.querySelectorAll('details.topic').forEach(function(topic){
+    if (topic.querySelector('.add-problem-row')) return;
+    var topicId = topic.dataset.topic;
+    var row = document.createElement('div');
+    row.className = 'admin-bar add-problem-row';
+    row.innerHTML = '<button class="admin-btn add-btn" onclick="openAddProblemModal(' + topicId + ')">➕ Add Problem</button>';
+    topic.querySelector('.topic-body').appendChild(row);
+  });
+}
+injectAddButtons();
+
+/* ---------- generic admin modal plumbing ---------- */
+let _adminModalSaveFn = null;
+
+function openAdminModal(title, bodyHTML, saveFn){
+  document.getElementById('adminModalTitle').textContent = title;
+  document.getElementById('adminModalBody').innerHTML = bodyHTML;
+  _adminModalSaveFn = saveFn;
+  document.getElementById('adminModal').classList.add('open');
+}
+function closeAdminModal(){
+  document.getElementById('adminModal').classList.remove('open');
+  _adminModalSaveFn = null;
+}
+async function adminModalSave(){
+  if (!_adminModalSaveFn) return;
+  const btn = document.getElementById('adminModalSaveBtn');
+  btn.disabled = true;
+  try{
+    await _adminModalSaveFn();
+    closeAdminModal();
+  }catch(e){
+    alert(e.message || 'Save failed.');
+  }finally{
+    btn.disabled = false;
+  }
+}
+document.getElementById('adminModal').addEventListener('click', function(e){
+  if (e.target === this) closeAdminModal();
+});
+
+/* ---------- add / render / delete custom problems ---------- */
+
+function openAddProblemModal(topicId){
+  if (!isAdmin()) return;
+  const topicName = document.querySelector('details.topic[data-topic="' + topicId + '"] .topic-name').textContent;
+  openAdminModal('➕ Add Problem — ' + topicName, `
+    <div class="admin-field"><label>Category</label>
+      <select id="apCategory">
+        ${TAG_CATEGORIES.map(c => `<option value="${c}">${TAG_LABELS[c]}</option>`).join('')}
+      </select></div>
+    <div class="admin-field"><label>Tag label (optional — defaults to category)</label>
+      <input id="apTagLabel" placeholder="e.g. Scaling argument"></div>
+    <div class="admin-field"><label>Problem text (LaTeX supported: $...$ or $$...$$)</label>
+      <textarea id="apText" rows="5" placeholder="State the problem clearly..."></textarea></div>
+    <div class="admin-field"><label>Source (optional)</label>
+      <input id="apSource" placeholder="e.g. Original, or Casella & Berger"></div>
+    <div class="admin-field"><label>Hint (optional)</label>
+      <textarea id="apHint" rows="2" placeholder="A nudge, not the answer..."></textarea></div>
+  `, async () => {
+    const sb = window.sb;
+    const category = document.getElementById('apCategory').value;
+    const problem = {
+      topic: parseInt(topicId, 10),
+      tag_category: category,
+      tag_label: document.getElementById('apTagLabel').value.trim() || TAG_LABELS[category],
+      qtext: document.getElementById('apText').value.trim(),
+      source: document.getElementById('apSource').value.trim(),
+      hint: document.getElementById('apHint').value.trim(),
+      created_by: window.currentUser.email
+    };
+    if (!problem.qtext) throw new Error('Problem text is required.');
+    if (sb) {
+      const { error } = await sb.from('stats_problems').insert([problem]);
+      if (error) throw error;
+    } else {
+      const stored = JSON.parse(localStorage.getItem('stats_problems_local') || '[]');
+      stored.push({...problem, id: Date.now(), created_at: new Date().toISOString()});
+      localStorage.setItem('stats_problems_local', JSON.stringify(stored));
+    }
+    await loadCommunityProblems();
+  });
+}
+
+async function deleteCustomProblem(id){
+  if (!isAdmin()) return;
+  if (!confirm('Delete this problem? This cannot be undone.')) return;
+  const sb = window.sb;
+  if (sb) {
+    const { error } = await sb.from('stats_problems').delete().eq('id', id);
+    if (error) { alert('Delete failed: ' + error.message); return; }
+  } else {
+    const stored = JSON.parse(localStorage.getItem('stats_problems_local') || '[]');
+    localStorage.setItem('stats_problems_local', JSON.stringify(stored.filter(r => r.id != id)));
+  }
+  await loadCommunityProblems();
+}
+
+function renderCustomProblem(row){
+  const article = document.createElement('article');
+  article.className = 'q is-custom';
+  article.dataset.id = 'custom-' + row.id;
+  article.innerHTML = `
+    <div class="q-row">
+      <input type="checkbox" class="q-check" aria-label="Mark problem solved">
+      <span class="q-tag tag-${row.tag_category || 'proof'}">${escHtml(row.tag_label || 'Proof')}</span>
+      <span class="q-id">Curator</span>
+    </div>
+    <p class="q-text">${escHtml(row.qtext)}</p>
+    ${row.source ? `<p class="q-source">${escHtml(row.source)}</p>` : ''}
+    ${row.hint ? `<details class="q-hint"><summary>Hint</summary><p>${escHtml(row.hint)}</p></details>` : ''}
+    <div class="admin-bar${isAdmin() ? ' visible' : ''}">
+      <button class="admin-btn del-btn" onclick="deleteCustomProblem(${row.id})">🗑 Delete</button>
+    </div>`;
+  return article;
+}
+
+// Public: runs for every visitor, admin or not, so admin-added problems
+// are part of the page for everyone — only add/delete stay admin-gated.
+async function loadCommunityProblems(){
+  const sb = window.sb;
+  let rows = [];
+  if (sb) {
+    try{
+      const { data, error } = await sb.from('stats_problems').select('*').order('created_at', { ascending: true });
+      if (error) throw error;
+      rows = data || [];
+    }catch(e){ console.warn('loadCommunityProblems error:', e); }
+  } else {
+    try{ rows = JSON.parse(localStorage.getItem('stats_problems_local') || '[]'); }catch(e){}
+  }
+
+  // Clear previously-rendered custom problems, then re-render per topic.
+  document.querySelectorAll('article.q.is-custom').forEach(el => el.remove());
+  const newEls = [];
+  const byTopic = {};
+  rows.forEach(r => { (byTopic[r.topic] = byTopic[r.topic] || []).push(r); });
+  Object.keys(byTopic).forEach(topicId => {
+    const body = document.querySelector('details.topic[data-topic="' + topicId + '"] .topic-body');
+    const addRow = body ? body.querySelector('.add-problem-row') : null;
+    byTopic[topicId].forEach(row => {
+      const el = renderCustomProblem(row);
+      if (addRow) body.insertBefore(el, addRow); else if (body) body.appendChild(el);
+      newEls.push(el);
+    });
+  });
+  if (newEls.length && window.__progressHooks) window.__progressHooks.addQuestions(newEls);
+}
+
+// Safety net: if shared.js is blocked or slow (ad-blocker, offline, etc.)
+// and _afterRenderAuthUI never fires, still show community problems using
+// whatever sb/localStorage is available after a short wait.
+setTimeout(function(){
+  if (!_communityLoaded){ _communityLoaded = true; loadCommunityProblems(); }
+}, 3000);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+</body>
+</html>

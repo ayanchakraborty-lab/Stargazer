@@ -6,4 +6,4 @@ Disallow: /login.html
 Disallow: /PERSONAL
 Disallow: /PERSONAL.html
 
-Sitemap: https://stargazer-9m9.pages.dev/sitemap.xml
+Sitemap: https://stargazers.co.in/sitemap.xml

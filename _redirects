@@ -1,0 +1,24 @@
+/CHESS              /chess/home   301
+/CHESS.html         /chess/home   301
+/CHESS/*            /chess/home   301
+
+/GERMAN             /german/home   301
+/GERMAN.html        /german/home   301
+/GERMAN/*           /german/home   301
+
+/JAPANESE           /japanese/home   301
+/JAPANESE.html      /japanese/home   301
+/JAPANESE/*          /japanese/home   301
+
+/MATHS              /maths/home   301
+/MATHS.html         /maths/home   301
+/MATHS/*            /maths/home   301
+
+/STATS              /stats/home   301
+/STATS.html         /stats/home   301
+/STATS/*            /stats/home   301
+
+# Catch-all: strip .html from every remaining URL (top-level pages
+# like BOOKS/ANIME/MOVIES/TANTRA/ABOUT, and every subpage inside
+# chess/german/japanese/maths/stats that the blocks above don't cover)
+/*.html              /:splat   301

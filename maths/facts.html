@@ -14,9 +14,10 @@
 </script>
 <style>html.pre-light body{background:#faf7f2!important}html.pre-light{background:#faf7f2}</style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="../mathfmt.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]}));}else{renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});}"></script>
+  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMath(document.body));}else{renderMath(document.body);}"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Lato:ital,wght@0,400;0,700;1,400&family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -27,15 +28,15 @@
 <meta name="keywords" content="math facts, interesting mathematics facts, mathematical curiosities, fun math facts, cool math facts, number theory facts, math trivia">
 <meta name="robots" content="index, follow">
 <meta name="author" content="The Mathematics Universe">
-<link rel="canonical" href="https://stargazer-9m9.pages.dev/maths/facts.html">
+<link rel="canonical" href="https://stargazers.co.in/maths/facts.html">
 
 <!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="30 Fascinating Mathematics Facts | Stargazer">
 <meta property="og:description" content="30 facts that make mathematics feel like magic — from an 8-year-old Gauss outsmarting his teacher to results that still surprise researchers. Get curious →">
-<meta property="og:url" content="https://stargazer-9m9.pages.dev/maths/facts.html">
-<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
-<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta property="og:url" content="https://stargazers.co.in/maths/facts.html">
+<meta property="og:image" content="https://stargazers.co.in/pics/maths.png">
+<meta name="twitter:image" content="https://stargazers.co.in/pics/maths.png">
 <meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
 <meta name="application-name" content="Stargazer: Lost in the Cosmos">
 <meta property="og:locale" content="en_US">
@@ -52,9 +53,9 @@
   "@type": "WebPage",
   "name": "Mathematical Facts That Will Astonish You",
   "description": "30 mathematical curiosities spanning arithmetic, number theory, and beyond — from classroom-level surprises to results that still astonish researchers.",
-  "url": "https://stargazer-9m9.pages.dev/maths/facts.html",
+  "url": "https://stargazers.co.in/maths/facts.html",
   "inLanguage": "en",
-  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazers.co.in/" },
   "about": { "@type": "Thing", "name": "Mathematics", "sameAs": "https://en.wikipedia.org/wiki/Mathematics" }
 }
 </script>
@@ -85,34 +86,8 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════ NAV ═══════════════ -->
-<nav id="nav">
-  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Mathematics</span>
-  <span class="nav-cur-section" id="nav-cur-lbl">Math Facts</span>
-  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)">🔍 Search</button>
-  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
-</nav>
-
-<!-- ═══════════════════════════════════════ HAMBURGER MENU ════ -->
-<div id="hamburger-menu" onclick="event.stopPropagation()">
-  <button class="hm-item" data-page="home" onclick="location.href='home.html'">🏠 Home</button>
-  <button class="hm-item" data-page="books" onclick="location.href='books.html'">📚 Books</button>
-  <button class="hm-item" data-page="puzzles" onclick="location.href='puzzles.html'">🧩 Puzzles</button>
-  <div class="hm-divider"></div>
-  <button class="hm-item" data-page="precollege" onclick="location.href='precollege.html'">📐 Pre-College</button>
-  <button class="hm-item" data-page="olympiad" onclick="location.href='olympiad.html'">🏆 Olympiad</button>
-  <button class="hm-item" data-page="undergrad" onclick="location.href='undergrad.html'">🎓 Undergrad</button>
-  <button class="hm-item" data-page="graduate" onclick="location.href='graduate.html'">🔬 Graduate</button>
-  <div class="hm-divider"></div>
-  <button class="hm-item" data-page="research" onclick="location.href='research.html'">⚡ Research</button>
-  <button class="hm-item" data-page="openproblems" onclick="location.href='openproblems.html'">❓ Open Problems</button>
-  <button class="hm-item" data-page="careers" onclick="location.href='careers.html'">💼 Careers</button>
-  <div class="hm-divider"></div>
-  <button class="hm-item" data-page="studyguide" onclick="location.href='studyguide.html'">📖 Study Guide</button>
-  <button class="hm-item active" data-page="facts" onclick="location.href='facts.html'">✨ Math Facts</button>
-  <button class="hm-item" data-page="universities" onclick="location.href='universities.html'">🎓 India</button>
-  <button class="hm-item" data-page="comments" onclick="location.href='comments.html'">💬 Comments</button>
-</div>
+<script src="nav.js"></script>
+<script>renderNav('facts');</script>
 
 <!-- ═══════════════════════════════════════ SEARCH MODAL ════ -->
 <div id="search-modal" onclick="if(event.target===this)closeSearch()">
@@ -150,7 +125,7 @@
     <button class="foot-link" onclick="location.href='../ABOUT.html'">📖 About Stargazer</button>
     <a class="foot-link" onclick="location.href='comments.html'; return false;" href="#">💬 Community Comments</a>
     <a class="foot-link" href="mailto:ayan.chakraborty6174@gmail.com">✉️ Contact Creator</a>
-    <a class="foot-link" href="https://stargazer-9m9.pages.dev" target="_blank" rel="noopener">🌐 Stargazer Home</a>
+    <a class="foot-link" href="https://stargazers.co.in" target="_blank" rel="noopener">🌐 Stargazer Home</a>
   </div>
 </footer>
 
@@ -186,8 +161,8 @@ window._afterRenderAuthUI = function(user) {
                     || user.user_metadata?.full_name
                     || user.email || 'you';
   }
-  // Trigger admin data load on sign-in
-  if (user) { if (typeof loadAdminData === 'function') loadAdminData(); }
+  // Load community-added content for every visitor, not just admin
+  if (typeof loadAdminData === 'function') loadAdminData();
 };
 
 
@@ -408,62 +383,6 @@ const FACT_COLS=[{a:"#f59e0b",b:"rgba(245,158,11,0.1)"},{a:"#10b981",b:"rgba(16,
 
 let factsOverride = {};
 
-function latexToHTML(text) {
-  if (!text) return '';
-
-  // Step 1: Convert $$...$$ → \[...\] (display math) and $...$ → \(...\) (inline math)
-  // This makes admin-typed dollar-sign LaTeX compatible with KaTeX auto-render
-  text = text.replace(/\$\$([^$]+)\$\$/g, '\\[$1\\]');
-  text = text.replace(/\$([^$\n]+)\$/g, '\\($1\\)');
-
-  // Step 2: If text has KaTeX delimiters, let KaTeX handle it entirely
-  if (text.indexOf('\\(') !== -1 || text.indexOf('\\[') !== -1) {
-    if (window.katex && window.renderMathInElement) {
-      try {
-        var div = document.createElement('div');
-        div.innerHTML = text;
-        window.renderMathInElement(div, {
-          delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],
-          throwOnError: false
-        });
-        return div.innerHTML;
-      } catch(e) {}
-    }
-    // KaTeX not yet loaded — return as-is; KaTeX onload will process it from the DOM
-    return text;
-  }
-
-  // Step 3: No KaTeX delimiters — apply simple Unicode/HTML substitutions as fallback
-  // Subscripts: a_{cd} → a<sub>cd</sub>
-  text = text.replace(/([a-zA-Z0-9\)])\_{([^}]+)}/g, '$1<sub>$2</sub>');
-  text = text.replace(/([a-zA-Z0-9\)])_([a-zA-Z0-9])/g, '$1<sub>$2</sub>');
-  // Superscripts: a^{e} → a<sup>e</sup>
-  text = text.replace(/([a-zA-Z0-9\)])\^{([^}]+)}/g, '$1<sup>$2</sup>');
-  text = text.replace(/([a-zA-Z0-9\)])\^([a-zA-Z0-9])/g, '$1<sup>$2</sup>');
-  // \frac{a}{b} → a/b
-  text = text.replace(/\\frac{([^}]+)}{([^}]+)}/g, '($1)/($2)');
-  // Common symbols
-  text = text.replace(/\\infty/g, '∞');
-  const bbMap = {R:'ℝ', Q:'ℚ', Z:'ℤ', N:'ℕ', C:'ℂ'};
-  text = text.replace(/\\mathbb{([A-Z])}/g, (m,c) => bbMap[c]||c);
-  text = text.replace(/\\to/g, '→');
-  text = text.replace(/\\leq/g, '≤');
-  text = text.replace(/\\geq/g, '≥');
-  text = text.replace(/\\neq/g, '≠');
-  text = text.replace(/\\alpha/g, 'α');
-  text = text.replace(/\\beta/g, 'β');
-  text = text.replace(/\\gamma/g, 'γ');
-  text = text.replace(/\\delta/g, 'δ');
-  text = text.replace(/\\epsilon/g, 'ε');
-  text = text.replace(/\\pi/g, 'π');
-  text = text.replace(/\\sum/g, 'Σ');
-  text = text.replace(/\\prod/g, 'Π');
-  text = text.replace(/\\int/g, '∫');
-  text = text.replace(/\\sqrt{([^}]+)}/g, '√($1)');
-  text = text.replace(/\\times/g, '×');
-  text = text.replace(/\\cdot/g, '·');
-  return text;
-}
 
 
 function previewLatex(inputId, previewId) {
@@ -555,7 +474,7 @@ function adminEditFact(idx) {
 
 async function loadAdminData() {
   const sb = window.sb;
-  if (!sb || !isAdmin()) return;
+  if (!sb) return;
   try {
     const { data: facts } = await sb.from('math_facts_overrides').select('*');
     factsOverride = {};
@@ -564,11 +483,8 @@ async function loadAdminData() {
   renderFacts();
   reRevealActivePage();
   setTimeout(function(){
-    if (window.renderMathInElement){
-      window.renderMathInElement(document.body,{
-        delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],
-        throwOnError:false
-      });
+    if (window.renderMath){
+      window.renderMath(document.body);
     }
   }, 80);
 }

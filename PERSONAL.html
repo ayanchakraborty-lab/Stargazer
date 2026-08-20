@@ -1660,6 +1660,16 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
         <div class="ai-item"><div class="ai-key">Archive Weight</div><div class="ai-val" id="aiSize">—</div></div>
       </div>
 
+      <div class="fgrp" style="margin:0.6rem 0">
+        <label class="flbl">Store In</label>
+        <div style="display:flex;gap:1rem;margin-top:0.3rem">
+          <label style="font-weight:400;display:inline-flex;align-items:center;gap:0.35rem;cursor:pointer">
+            <input type="radio" name="fileBackend" value="supabase" checked> Supabase</label>
+          <label style="font-weight:400;display:inline-flex;align-items:center;gap:0.35rem;cursor:pointer">
+            <input type="radio" name="fileBackend" value="r2"> Cloudflare R2</label>
+        </div>
+      </div>
+
       <div id="metaSection" style="display:none">
         <form id="uploadForm" onsubmit="return false">
 
@@ -2354,7 +2364,14 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
 
 <div id="toast"></div>
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script src="shared.js"></script>
+<div id="personalTurnstile" class="cf-turnstile" data-sitekey="0x4AAAAAAEAncYmSKlHIPYUo" data-callback="onPersonalTurnstileToken" data-error-callback="onPersonalTurnstileError" style="position:fixed;bottom:1rem;left:50%;transform:translateX(-50%);z-index:9999;visibility:hidden"></div>
+<script>
+  let _personalTurnstileToken = null;
+  function onPersonalTurnstileToken(token) { _personalTurnstileToken = token; }
+  function onPersonalTurnstileError() { _personalTurnstileToken = null; }
+</script>
 <script>
 'use strict';
 
@@ -2363,6 +2380,10 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
 // ══════════════════════════════════════════════
 const VALID_EMAIL = 'ayanchakrabortyall@gmail.com';
 const ADMIN_EMAIL = VALID_EMAIL; // the one account that can use the Google bypass
+// Deployed Worker URL from the R2 setup (vault-storage-worker.js). Used only
+// when a document is charted with "Store In: Cloudflare R2" — Supabase-backed
+// items never touch this.
+const R2_WORKER_URL = 'https://vault-storage.ayanchakrabortyall.workers.dev';
 // The cipher key itself is never stored — only a salted hash, used to verify
 // an attempt before the same key is used to derive the encryption used below.
 const PW_SALT = 'cv_vault_v2_9f24a7';
@@ -2372,6 +2393,21 @@ const PW_HASH = '081939cd6c0e4cf8941e61e9d5ab4a7df3f5f468a708596fd5304aebe34c73c
 // This is a SHA-256 of (SECTION_SALT + sectionPassword) — password not stored in plain text.
 const SECTION_SALT = 'cv_section_lock_v1';
 const SECTION_HASH = '3a755b826630d13bd7c2e9f08bd099f703ea062e2f5b50eb3bd30db347a50a73';
+
+// ══════════════════════════════════════════════
+// READ-ONLY SHARED VIEW (?view=friend)
+// Friends who know the main vault password can open the page this
+// way to browse Books/Movies/Anime only — no write action can run,
+// enforced both by hiding controls and by early-returning inside
+// every write entry point below (defense in depth). Diary and Files
+// stay hidden entirely in this mode; Diary uses its own separate
+// key and passphrase (see the therapist view further down).
+// ══════════════════════════════════════════════
+const VIEW_ONLY = new URLSearchParams(location.search).get('view') === 'friend';
+// TODO: paste your real auth.uid() here (Supabase → Authentication →
+// Users → ayanchakrabortyall@gmail.com → UID column) — same value
+// used in the migration_step3_backfill.sql script.
+const OWNER_USER_ID = 'PASTE-YOUR-UUID-HERE';
 
 // Supabase client (sb) is provided by shared.js loaded above.
 // PERSONAL uses the vault_sync table for cross-device sync.
@@ -2454,6 +2490,27 @@ async function deriveKey(password) {
   );
 }
 
+// Diary entries use a completely separate key, derived from the section
+// passphrase (same one that already gates the Diary tab), with its own
+// distinct salt so it's cryptographically independent from the main key
+// even though the two passphrases happen to be different values already.
+// This is what makes the therapist's read-only view genuinely unable to
+// touch books/movies/anime, and vice versa for anyone with only the main
+// password — not just a UI restriction.
+let diaryKey = null;
+async function deriveDiaryKey(password) {
+  const baseKey = await crypto.subtle.importKey(
+    'raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']
+  );
+  return crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt: new TextEncoder().encode('cv_diary_key_salt_v1'), iterations: 100000, hash: 'SHA-256' },
+    baseKey,
+    { name: 'AES-GCM', length: 256 },
+    false,
+    ['encrypt', 'decrypt']
+  );
+}
+
 function bufToB64(buf) {
   let bin = '';
   const bytes = new Uint8Array(buf);
@@ -2467,16 +2524,16 @@ function b64ToBuf(b64) {
   return bytes.buffer;
 }
 
-async function encryptRecord(obj) {
+async function encryptRecord(obj, key = cryptoKey) {
   const iv = crypto.getRandomValues(new Uint8Array(12));
   const plaintext = new TextEncoder().encode(JSON.stringify(obj));
-  const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, cryptoKey, plaintext);
+  const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, plaintext);
   return { iv: bufToB64(iv), ct: bufToB64(ct) };
 }
 
-async function decryptRecord(ivB64, ctB64) {
+async function decryptRecord(ivB64, ctB64, key = cryptoKey) {
   const iv = new Uint8Array(b64ToBuf(ivB64));
-  const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, cryptoKey, b64ToBuf(ctB64));
+  const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, b64ToBuf(ctB64));
   return JSON.parse(new TextDecoder().decode(pt));
 }
 
@@ -2723,7 +2780,7 @@ async function sbUploadChunked(id, iv, ct) {
     // carry an old token and will never be looked up again). Clear them so
     // they don't just sit there forever.
     const { error: delErr } = await withTimeout(sb.from('vault_sync')
-      .delete().eq('user_hash', sbUserId).like('item_id', `${id}::chunk::%`), 30000);
+      .delete().eq('user_id', sbUserId).like('item_id', `${id}::chunk::%`), 30000);
     if (delErr) throw delErr;
   }
 
@@ -2731,7 +2788,7 @@ async function sbUploadChunked(id, iv, ct) {
   // server, so a resumed attempt only uploads what's missing.
   const prefix = `${id}::chunk::${token}::`;
   const { data: existingRows, error: existErr } = await withTimeout(
-    sb.from('vault_sync').select('item_id').eq('user_hash', sbUserId).like('item_id', `${prefix}%`), 20000);
+    sb.from('vault_sync').select('item_id').eq('user_id', sbUserId).like('item_id', `${prefix}%`), 20000);
   if (existErr) throw existErr;
   const already = new Set((existingRows || []).map(r => Number(r.item_id.slice(prefix.length))));
 
@@ -2743,14 +2800,14 @@ async function sbUploadChunked(id, iv, ct) {
     await Promise.all(batch.map(async idx => {
       const slice = ct.slice(idx * CT_CHUNK_SIZE, (idx + 1) * CT_CHUNK_SIZE);
       const { error } = await withTimeout(sb.from('vault_sync').upsert({
-        item_id: `${prefix}${idx}`, user_hash: sbUserId, iv, ct: slice, updated_at: now,
+        item_id: `${prefix}${idx}`, user_id: sbUserId, user_hash: PW_HASH, iv, ct: slice, updated_at: now,
       }), 60000);
       if (error) throw error;
     }));
   }
 
   const { error: hdrErr } = await withTimeout(sb.from('vault_sync').upsert({
-    item_id: id, user_hash: sbUserId, iv, ct: `${CHUNK_MARKER}${token}:${n}`, updated_at: now,
+    item_id: id, user_id: sbUserId, user_hash: PW_HASH, iv, ct: `${CHUNK_MARKER}${token}:${n}`, updated_at: now,
   }), 60000);
   if (hdrErr) throw hdrErr;
 
@@ -2773,7 +2830,7 @@ async function sbFetchChunked(id, token, n) {
     for (let j = i; j < Math.min(i + CHUNK_UPLOAD_CONCURRENCY, n); j++) batch.push(j);
     await Promise.all(batch.map(async idx => {
       const { data, error } = await withTimeout(
-        sb.from('vault_sync').select('ct').eq('item_id', `${id}::chunk::${token}::${idx}`).eq('user_hash', sbUserId).maybeSingle(),
+        sb.from('vault_sync').select('ct').eq('item_id', `${id}::chunk::${token}::${idx}`).eq('user_id', sbUserId).maybeSingle(),
         60000);
       if (error) throw error;
       if (!data) throw new Error(`Missing chunk ${idx}/${n} for ${id}`);
@@ -2794,7 +2851,7 @@ async function sbUploadItem(id, iv, ct) {
       // is tuned for small rows and was aborting large uploads before they
       // ever finished, silently, leaving them stuck "pending" forever.
       const { error } = await withTimeout(sb.from('vault_sync')
-        .upsert({ item_id: id, user_hash: sbUserId, iv, ct, updated_at: new Date().toISOString() }), 60000);
+        .upsert({ item_id: id, user_id: sbUserId, user_hash: PW_HASH, iv, ct, updated_at: new Date().toISOString() }), 60000);
       if (error) throw error;
     }
     clearPending(id); // confirmed on the cloud — no longer needs a retry push
@@ -2806,12 +2863,12 @@ async function sbDeleteItem(id) {
   markPendingDelete(id); // in case this call never gets a chance to finish (tab closed, etc.)
   try {
     const { error } = await withTimeout(sb.from('vault_sync')
-      .delete().eq('item_id', id).eq('user_hash', sbUserId));
+      .delete().eq('item_id', id).eq('user_id', sbUserId));
     if (error) throw error;
     // A large item may have left chunk rows behind too — a plain delete on
     // the header id above wouldn't touch those, leaving orphans.
     const { error: chunkErr } = await withTimeout(sb.from('vault_sync')
-      .delete().eq('user_hash', sbUserId).like('item_id', `${id}::chunk::%`));
+      .delete().eq('user_id', sbUserId).like('item_id', `${id}::chunk::%`));
     if (chunkErr) throw chunkErr;
     clearPendingDelete(id); // confirmed gone from the cloud — nothing left to retry
   } catch (e) {
@@ -2871,7 +2928,7 @@ async function sbPullAllItems() {
   let manifest;
   try {
     const { data, error } = await withTimeout(
-      sb.from('vault_sync').select('item_id, updated_at').eq('user_hash', sbUserId), 20000);
+      sb.from('vault_sync').select('item_id, updated_at').eq('user_id', sbUserId), 20000);
     if (error) throw error;
     manifest = data || [];
   } catch (e) {
@@ -2926,7 +2983,7 @@ async function sbPullAllItems() {
       // can still be a large file, but it's now isolated: a timeout here
       // only retries this one item next time, nothing else.
       const { data, error } = await withTimeout(
-        sb.from('vault_sync').select('iv, ct').eq('item_id', row.item_id).eq('user_hash', sbUserId).maybeSingle(),
+        sb.from('vault_sync').select('iv, ct').eq('item_id', row.item_id).eq('user_id', sbUserId).maybeSingle(),
         60000);
       if (error) throw error;
       if (!data) continue; // deleted remotely between the manifest fetch and now
@@ -3001,7 +3058,7 @@ async function sbPushAllItems() {
       const idsChunk = normalIds.slice(i, i + CHUNK);
       const rows = idsChunk.map(id => {
         const r = byId.get(id);
-        return { item_id: r.id, user_hash: sbUserId, iv: r.iv, ct: r.ct, updated_at: new Date().toISOString() };
+        return { item_id: r.id, user_id: sbUserId, user_hash: PW_HASH, iv: r.iv, ct: r.ct, updated_at: new Date().toISOString() };
       });
       if (rows.length) {
         const { error } = await withTimeout(sb.from('vault_sync').upsert(rows), 60000);
@@ -3028,14 +3085,68 @@ async function sbPushAllItems() {
 // away when the vault actually changes (add/update/delete here, or a
 // cloud-sync pull bringing in changes from another device).
 // ══════════════════════════════════════════════
+// ══════════════════════════════════════════════
+// R2 FILE STORAGE (optional, per-item — chosen at upload time)
+// ══════════════════════════════════════════════
+// This is deliberately narrow in scope: it only ever holds the encrypted
+// FILE BYTES for items where "Store In: Cloudflare R2" was picked. All
+// metadata (title, tags, folder placement, everything Vault.add/update
+// already handles) keeps flowing through the exact same vault_sync path as
+// every other item — offline queueing, cross-device pull, chunk-retry logic,
+// none of that is touched. Only the heavy bytes move.
+//
+// The file bytes get their own IV and are encrypted with the same vault key
+// used everywhere else (cryptoKey) before they ever leave the browser — R2
+// only ever stores ciphertext, exactly like Supabase does today. The Worker
+// enforces that only this vault's signed-in session can read/write/delete
+// them, scoped under this account's own user id.
+async function r2Fetch(itemId, options = {}) {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) throw new Error('Not signed in — R2 storage needs an active session.');
+  return fetch(`${R2_WORKER_URL}/vault/${sbUserId}/${itemId}`, {
+    ...options,
+    headers: { ...(options.headers || {}), 'Authorization': `Bearer ${session.access_token}` },
+  });
+}
+
+async function r2PutFile(itemId, fileBuf) {
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ctBuf = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, cryptoKey, fileBuf);
+  const res = await r2Fetch(itemId, { method: 'PUT', body: ctBuf });
+  if (!res.ok) throw new Error('R2 upload failed: ' + (await res.text()));
+  return bufToB64(iv);
+}
+
+async function r2GetFile(itemId, ivB64) {
+  const res = await r2Fetch(itemId, { method: 'GET' });
+  if (!res.ok) throw new Error('R2 fetch failed: ' + (await res.text()));
+  const ctBuf = await res.arrayBuffer();
+  const iv = new Uint8Array(b64ToBuf(ivB64));
+  return crypto.subtle.decrypt({ name: 'AES-GCM', iv }, cryptoKey, ctBuf);
+}
+
+async function r2DeleteFile(itemId) {
+  try { await r2Fetch(itemId, { method: 'DELETE' }); }
+  catch (e) { console.warn('R2 object delete failed (metadata removed anyway):', e); }
+}
+
+// Single read path for a file item regardless of where its bytes live —
+// everything downstream (viewItem, downloadItem) just calls this.
+async function getFileBytes(item) {
+  if (item.storageBackend === 'r2') return await r2GetFile(item.id, item.fileIv);
+  if (item.fileData) return b64ToBuf(item.fileData);
+  return null;
+}
+
 const Vault = {
   _cache: null,
 
   invalidate() { this._cache = null; },
 
-  async add(payload) {
-    const id = crypto.randomUUID();
-    const { iv, ct } = await encryptRecord(payload);
+  async add(payload, explicitId) {
+    const isDiary = payload.type === 'diary';
+    const id = explicitId || (isDiary ? 'diary::' : '') + crypto.randomUUID();
+    const { iv, ct } = await encryptRecord(payload, isDiary ? diaryKey : cryptoKey);
     await DB.put({ id, iv, ct });
     markPending(id);
     sbUploadItem(id, iv, ct); // fire-and-forget; clears pending flag on success
@@ -3043,7 +3154,8 @@ const Vault = {
     return id;
   },
   async update(id, payload) {
-    const { iv, ct } = await encryptRecord(payload);
+    const isDiary = id.startsWith('diary::');
+    const { iv, ct } = await encryptRecord(payload, isDiary ? diaryKey : cryptoKey);
     await DB.put({ id, iv, ct });
     markPending(id);
     sbUploadItem(id, iv, ct);
@@ -3053,7 +3165,8 @@ const Vault = {
   async get(id) {
     const raw = await DB.get(id);
     if (!raw) return null;
-    const payload = await decryptRecord(raw.iv, raw.ct);
+    const key = id.startsWith('diary::') ? diaryKey : cryptoKey;
+    const payload = await decryptRecord(raw.iv, raw.ct, key);
     return Object.assign({ id }, payload);
   },
   async getAll() {
@@ -3062,7 +3175,10 @@ const Vault = {
     const out = [];
     for (const raw of rawAll) {
       try {
-        const payload = await decryptRecord(raw.iv, raw.ct);
+        const isDiary = raw.id.startsWith('diary::');
+        const key = isDiary ? diaryKey : cryptoKey;
+        if (isDiary && !key) continue; // diary locked this session — skip quietly, not an error
+        const payload = await decryptRecord(raw.iv, raw.ct, key);
         out.push(Object.assign({ id: raw.id }, payload));
       } catch (e) {
         console.warn('Skipped an unreadable record', raw.id);
@@ -3072,6 +3188,8 @@ const Vault = {
     return out;
   },
   async delete(id) {
+    const item = await this.get(id).catch(() => null);
+    if (item && item.storageBackend === 'r2') r2DeleteFile(id); // fire-and-forget cleanup
     markPendingDelete(id);
     await DB.delete(id);
     sbDeleteItem(id);
@@ -3214,6 +3332,54 @@ async function attemptUnlock(password) {
   const hash = await sha256Hex(PW_SALT + password);
   if (hash !== PW_HASH) { failedAttempts++; return false; }
   failedAttempts = 0;
+  if (!VIEW_ONLY) {
+    // CRITICAL: this must NEVER run when VIEW_ONLY is true. Friend viewers
+    // legitimately know this same password, so this exact call would sign
+    // them in AS the real admin account and hand them full write access
+    // via owner_full_access — completely defeating the read-only design.
+    //
+    // Silently sign in to the same Supabase account vault_sync is locked to,
+    // using this same password — replaces the need for a separate site login.
+    // Supabase's project-wide captcha protection (enabled for login.html's
+    // signup form) applies to EVERY signInWithPassword call, including this
+    // one — so we feed it a token from the invisible widget, which runs
+    // with no visible UI and needs no user interaction in the normal case.
+    try {
+      const widgetEl = document.getElementById('personalTurnstile');
+      if (widgetEl) widgetEl.style.visibility = 'visible'; // shown only while actively verifying
+      let token = _personalTurnstileToken;
+      if (!token) {
+        // token not ready yet (page just loaded) — give it a moment
+        for (let i = 0; i < 20 && !token; i++) {
+          await new Promise(r => setTimeout(r, 150));
+          token = _personalTurnstileToken;
+        }
+      }
+      const { error } = await sb.auth.signInWithPassword({
+        email: ADMIN_EMAIL, password,
+        options: token ? { captchaToken: token } : undefined
+      });
+      if (error) {
+        console.error('Vault cloud sign-in failed:', error.message, error);
+        _lastSbSignInError = error.message + (token ? '' : ' [no captcha token was ready]');
+      } else {
+        _lastSbSignInError = null;
+      }
+      _personalTurnstileToken = null;
+      if (window.turnstile) window.turnstile.reset('#personalTurnstile'); // token is single-use
+      if (widgetEl) widgetEl.style.visibility = 'hidden'; // done — stop cluttering the screen
+    } catch (e) {
+      console.error('Vault cloud sign-in threw:', e);
+      _lastSbSignInError = (e && e.message) ? e.message : String(e);
+      const widgetEl = document.getElementById('personalTurnstile');
+      if (widgetEl) widgetEl.style.visibility = 'hidden';
+    }
+  }
+  // The page-load check (initThemeForSession) ran before this sign-in
+  // existed, so sbUserId is stale until refreshed here — otherwise
+  // syncVaultWithCloud (called by unlockVault right below) always thinks
+  // you're signed out, even right after a successful sign-in.
+  sbUserId = await ensureSbUser();
   await unlockVault(password);
   return true;
 }
@@ -3250,6 +3416,24 @@ async function unlockVault(password) {
 }
 
 async function syncVaultWithCloud() {
+  if (VIEW_ONLY) {
+    // Friend viewer: read-only, no push/retry-delete ever runs here.
+    try {
+      await sbPullAllItems();
+      await renderBooks();
+      await renderMovies();
+      await renderAnime();
+    } catch (e) { console.warn('Read-only sync did not complete this session.', e); }
+    return;
+  }
+  if (sb && !sbUserId) {
+    // Cloud sync now requires being signed in as the admin account —
+    // this replaces the old scheme where any visitor's anon key could
+    // sync. Local vault access is unaffected; this only means changes
+    // won't leave this device until sign-in succeeds.
+    toast('◈ Not synced — ' + (_lastSbSignInError || 'not signed in as the vault owner') + '. Working locally.');
+    return;
+  }
   try {
     await sbRetryPendingDeletes();      // retry any deletes that didn't confirm last time
     await sbPushAllItems();             // push any pending local edits first (migrates old data once)
@@ -3303,6 +3487,9 @@ function backToUniverse() {
 // key to read or write.
 // ══════════════════════════════════════════════
 let sbUserId = null;
+let _lastSbSignInError = null; // set whenever attemptUnlock's cloud sign-in fails, so the
+                                 // "not synced" toast can show the real reason instead of
+                                 // just "not signed in" with no explanation.
 
 function applyTheme(isDark) {
   document.body.classList.toggle('day-mode', !isDark);
@@ -3316,18 +3503,36 @@ function applyTheme(isDark) {
 function currentThemeIsDark() { return !document.body.classList.contains('day-mode'); }
 
 async function ensureSbUser() {
-  // Use PW_HASH as a stable, deterministic cloud folder name.
-  // Same cipher key → same PW_HASH → same folder on every device.
-  // No Supabase Auth session required — the anon API key is enough for Storage.
   if (!sb) return null;
-  return PW_HASH;
+  if (VIEW_ONLY) {
+    // Friend viewer: reads are public (RLS grants anon SELECT-only on
+    // vault_sync), so no sign-in is needed here at all — just point
+    // reads at the owner's rows. Write functions remain hard-guarded
+    // separately regardless of this value.
+    return OWNER_USER_ID;
+  }
+  // Owner: cloud sync requires a real, signed-in Supabase Auth session,
+  // matched to the admin account — replacing the old PW_HASH-based
+  // scheme, which used a constant baked into this file's own source
+  // as a public row key. This does NOT change how your vault content
+  // is encrypted (that's still your cipher key, entered separately) —
+  // it only changes who is allowed to read/write the synced rows.
+  try {
+    const { data: { user } } = await sb.auth.getUser();
+    if (!user || (user.email || '').toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
+      return null; // not signed in, or signed in as someone else — sync stays off, vault still works locally
+    }
+    return user.id; // a real auth.uid(), checked server-side by RLS
+  } catch (e) {
+    return null;
+  }
 }
 
 async function sbLoadDarkMode(userId) {
   if (!sb || !userId) return null;
   try {
     const { data, error } = await withTimeout(sb.from('vault_sync')
-      .select('ct').eq('item_id', '__theme__').eq('user_hash', userId).maybeSingle());
+      .select('ct').eq('item_id', '__theme__').eq('user_id', userId).maybeSingle());
     if (error) throw error;
     return data ? data.ct === '1' : null;
   } catch (e) { return null; }
@@ -3337,7 +3542,7 @@ async function sbSaveDarkMode(userId, isDark) {
   if (!sb || !userId) return;
   try {
     const { error } = await withTimeout(sb.from('vault_sync')
-      .upsert({ item_id: '__theme__', user_hash: userId, iv: 'pref', ct: isDark ? '1' : '0', updated_at: new Date().toISOString() }));
+      .upsert({ item_id: '__theme__', user_id: userId, user_hash: PW_HASH, iv: 'pref', ct: isDark ? '1' : '0', updated_at: new Date().toISOString() }));
     if (error) throw error;
   } catch (e) { console.warn('Could not sync theme to Supabase', e); }
 }
@@ -3349,14 +3554,14 @@ async function initThemeForSession() {
   if (sbUserId) {
     const remote = await sbLoadDarkMode(sbUserId);
     if (remote === true || remote === false) applyTheme(remote);
-    else await sbSaveDarkMode(sbUserId, currentThemeIsDark());
+    else if (!VIEW_ONLY) await sbSaveDarkMode(sbUserId, currentThemeIsDark());
   }
 }
 
 function toggleTheme() {
   const next = !currentThemeIsDark();
   applyTheme(next);
-  if (sbUserId) sbSaveDarkMode(sbUserId, next);
+  if (sbUserId && !VIEW_ONLY) sbSaveDarkMode(sbUserId, next);
 }
 
 // ══════════════════════════════════════════════
@@ -3554,15 +3759,16 @@ function _doSwitchMainTab(tab) {
   document.getElementById('panelAnime').classList.toggle('active', tab === 'anime');
   document.getElementById('panelFiles').classList.toggle('active', tab === 'files');
   document.getElementById('panelDiary').classList.toggle('active', tab === 'diary');
-  document.getElementById('addBookBtn').style.display  = tab === 'books' ? '' : 'none';
-  document.getElementById('addMovieBtn').style.display = tab === 'movies' ? '' : 'none';
-  document.getElementById('addAnimeBtn').style.display = tab === 'anime' ? '' : 'none';
-  document.getElementById('addDocBtn').style.display   = tab === 'files' ? '' : 'none';
-  document.getElementById('addTerrBtn').style.display  = tab === 'files' ? '' : 'none';
-  document.getElementById('addDiaryBtn').style.display = tab === 'diary' ? '' : 'none';
+  document.getElementById('addBookBtn').style.display  = (!VIEW_ONLY && tab === 'books')  ? '' : 'none';
+  document.getElementById('addMovieBtn').style.display = (!VIEW_ONLY && tab === 'movies') ? '' : 'none';
+  document.getElementById('addAnimeBtn').style.display = (!VIEW_ONLY && tab === 'anime')  ? '' : 'none';
+  document.getElementById('addDocBtn').style.display   = (!VIEW_ONLY && tab === 'files')  ? '' : 'none';
+  document.getElementById('addTerrBtn').style.display  = (!VIEW_ONLY && tab === 'files')  ? '' : 'none';
+  document.getElementById('addDiaryBtn').style.display = (!VIEW_ONLY && tab === 'diary')  ? '' : 'none';
 }
 
 function switchMainTab(tab) {
+  if (VIEW_ONLY && (tab === 'files' || tab === 'diary')) return; // not part of the shared view
   if (tab === 'diary' && !diaryUnlocked) {
     // Show section lock prompt; stay on current tab
     document.getElementById('sectionPwInput').value = '';
@@ -3580,6 +3786,9 @@ async function unlockSection() {
   const hash = await sha256Hex(SECTION_SALT + pw);
   if (hash === SECTION_HASH) {
     diaryUnlocked = true;
+    diaryKey = await deriveDiaryKey(pw); // now a real encryption key, not just a UI gate
+    Vault.invalidate(); // force re-decrypt so diary entries appear using the new key
+    await renderDiary();
     closeModal('sectionLockModal');
     document.getElementById('sectionPwInput').value = '';
     document.getElementById('sectionPwError').classList.remove('show');
@@ -4056,6 +4265,7 @@ function handleCrumbClick(e) {
 // UPLOAD
 // ══════════════════════════════════════════════
 function openUploadModal() {
+  if (VIEW_ONLY) { toast('◈ This is a read-only shared view.'); return; }
   selFile = null;
   document.getElementById('dropzone').style.display = '';
   document.getElementById('fileChosen').classList.remove('show');
@@ -4064,6 +4274,8 @@ function openUploadModal() {
   document.getElementById('uploadForm').reset();
   document.getElementById('fCategoryOther').style.display = 'none';
   document.getElementById('fEditFileId').value = '';
+  const supabaseRadio = document.querySelector('input[name="fileBackend"][value="supabase"]');
+  if (supabaseRadio) supabaseRadio.checked = true;
   const titleEl = document.querySelector('#uploadModal .modal-title');
   if (titleEl) titleEl.textContent = 'Chart a New Document';
   const submitBtn = document.getElementById('uploadSubmitBtn');
@@ -4072,12 +4284,15 @@ function openUploadModal() {
 }
 
 async function openEditFileModal(id) {
+  if (VIEW_ONLY) { toast('◈ This is a read-only shared view.'); return; }
   const item = await Vault.get(id);
   if (!item) { toast('◈ Could not load entry'); return; }
   const m = item.meta;
   // Reset then pre-fill
   openUploadModal();
   document.getElementById('fEditFileId').value = id;
+  const backendRadio = document.querySelector(`input[name="fileBackend"][value="${item.storageBackend === 'r2' ? 'r2' : 'supabase'}"]`);
+  if (backendRadio) backendRadio.checked = true;
   const titleEl = document.querySelector('#uploadModal .modal-title');
   if (titleEl) titleEl.textContent = 'Edit Document Info';
   const submitBtn = document.getElementById('uploadSubmitBtn');
@@ -4199,26 +4414,39 @@ async function submitUpload() {
       fileSize:    selFile ? selFile.size  : base.fileSize,
       charted:     base.charted || today(),
     };
-    let fileDataB64;
+    let fileDataB64 = null, storageBackend = null, fileIv = null;
+    const backend = (document.querySelector('input[name="fileBackend"]:checked') || {}).value || 'supabase';
+    const oldBackend = existingItem ? existingItem.storageBackend : null;
+    let itemId = editId || null;
     if (selFile) {
-      const buf = await selFile.arrayBuffer();
-      fileDataB64 = bufToB64(buf);
+      if (backend === 'r2') {
+        if (!itemId) itemId = crypto.randomUUID();
+        fileIv = await r2PutFile(itemId, await selFile.arrayBuffer());
+        storageBackend = 'r2';
+      } else {
+        fileDataB64 = bufToB64(await selFile.arrayBuffer());
+        if (oldBackend === 'r2' && editId) r2DeleteFile(editId); // replacing an R2 file with a Supabase one — clean up the orphan
+      }
     } else {
+      // No new file chosen — keep whatever this item already had.
       fileDataB64 = existingItem ? existingItem.fileData : null;
+      storageBackend = oldBackend;
+      fileIv = existingItem ? existingItem.fileIv : null;
     }
     if (editId) {
       const parent = existingItem ? existingItem.parentId : currentParent;
-      await Vault.update(editId, { type:'file', parentId:parent, name:meta.fileName||'file', meta, fileData:fileDataB64 });
+      await Vault.update(editId, { type:'file', parentId:parent, name:meta.fileName||'file', meta, fileData:fileDataB64, storageBackend, fileIv });
       closeModal('uploadModal');
       toast('◈ Document info updated');
     } else {
-      await Vault.add({ type:'file', parentId:currentParent, name:meta.fileName||'file', meta, fileData: fileDataB64 });
+      await Vault.add({ type:'file', parentId:currentParent, name:meta.fileName||'file', meta, fileData: fileDataB64, storageBackend, fileIv }, itemId);
       closeModal('uploadModal');
       toast('◈ Document charted to the vault');
     }
     await render();
   } catch (e) {
-    toast('◈ Failed to save document — please try again');
+    const msg = (e && e.message) ? e.message : String(e);
+    toast('◈ Failed to save document — ' + msg);
     console.error('Upload error:', e);
   } finally {
     btn.disabled = false;
@@ -4229,6 +4457,7 @@ async function submitUpload() {
 // FOLDER
 // ══════════════════════════════════════════════
 function openFolderModal() {
+  if (VIEW_ONLY) { toast('◈ This is a read-only shared view.'); return; }
   selColor = '';
   selIcon  = '🗺️';
   document.getElementById('folderForm').reset();
@@ -4286,8 +4515,8 @@ async function submitFolder() {
 async function viewItem(id) {
   try {
     const item = await Vault.get(id);
-    if (!item || !item.fileData) { toast('◈ Could not retrieve document'); return; }
-    const buf  = b64ToBuf(item.fileData);
+    const buf = item ? await getFileBytes(item) : null;
+    if (!buf) { toast('◈ Could not retrieve document'); return; }
     const blob = new Blob([buf], { type: item.meta.mimeType || 'application/octet-stream' });
     const url  = URL.createObjectURL(blob);
     window.open(url, '_blank');
@@ -4301,8 +4530,8 @@ async function viewItem(id) {
 async function downloadItem(id) {
   try {
     const item = await Vault.get(id);
-    if (!item || !item.fileData) { toast('◈ Could not retrieve document'); return; }
-    const buf  = b64ToBuf(item.fileData);
+    const buf = item ? await getFileBytes(item) : null;
+    if (!buf) { toast('◈ Could not retrieve document'); return; }
     const blob = new Blob([buf], { type: item.meta.mimeType || 'application/octet-stream' });
     const url  = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -4322,6 +4551,7 @@ async function downloadItem(id) {
 // DELETE  (files, folders — recursively — books, and diary pages)
 // ══════════════════════════════════════════════
 function confirmDelete(id, type, label) {
+  if (VIEW_ONLY) { toast('◈ This is a read-only shared view.'); return; }
   pendingDelId = id;
   pendingDelType = type;
   document.getElementById('confirmMsg').textContent =
@@ -4476,6 +4706,7 @@ async function fetchFallbackCover(title, author) {
 }
 
 function openBookModal(editId) {
+  if (VIEW_ONLY) { toast('◈ This is a read-only shared view.'); return; }
   document.getElementById('bookForm').reset();
   selCoverFile = null;
   selCoverDataUrl = null;
@@ -4749,6 +4980,7 @@ function updateMovieRatingReadout() {
 }
 
 function openMovieModal(editId) {
+  if (VIEW_ONLY) { toast('◈ This is a read-only shared view.'); return; }
   document.getElementById('movieForm').reset();
   selMoviePosterFile = null;
   selMoviePosterDataUrl = null;
@@ -5017,6 +5249,7 @@ function updateAnimeRatingReadout() {
 }
 
 function openAnimeModal(editId) {
+  if (VIEW_ONLY) { toast('◈ This is a read-only shared view.'); return; }
   document.getElementById('animeForm').reset();
   selAnimePosterFile = null;
   selAnimePosterDataUrl = null;
@@ -5296,6 +5529,7 @@ function selectDiaryType(t, el) {
 }
 
 function openDiaryModal(editId) {
+  if (VIEW_ONLY) { toast('◈ This is a read-only shared view.'); return; }
   document.getElementById('diaryForm').reset();
   selDiaryType = 'reflection';
   document.querySelectorAll('.diary-type-opt').forEach(b => b.classList.toggle('selected', b.dataset.type === 'reflection'));
@@ -5351,6 +5585,78 @@ async function submitDiary() {
   } finally {
     btn.disabled = false;
   }
+}
+
+// ══════════════════════════════════════════════
+// ONE-TIME DIARY MIGRATION
+// Moves existing diary entries from the main key to the separate
+// diaryKey, under new 'diary::'-prefixed ids. Run manually from the
+// browser console (F12) after unlocking the vault AND entering the
+// diary section password once — both cryptoKey and diaryKey must be
+// set for this to work. Call: migrateDiaryToOwnKey()
+//
+// Safety order, per item:
+//   1. decrypt with the OLD key (still works — nothing changed yet)
+//   2. download a full backup of everything found (before ANY writes)
+//   3. re-encrypt with the NEW diaryKey under a fresh diary::-prefixed id
+//   4. write the new row locally, then upload it, and confirm success
+//   5. ONLY THEN delete the old row (local + cloud)
+// If any step fails for a given item, that item's OLD row is left
+// completely untouched and the migration stops — nothing is ever
+// deleted before its replacement is confirmed safely stored.
+// ══════════════════════════════════════════════
+async function migrateDiaryToOwnKey() {
+  if (!cryptoKey) { alert('Unlock the vault with your main password first.'); return; }
+  if (!diaryKey)  { alert('Enter the diary section password first (tap the Diary tab).'); return; }
+
+  const rawAll = await DB.getAll();
+  const oldDiaryItems = [];
+  for (const raw of rawAll) {
+    if (raw.id.startsWith('diary::') || raw.id.startsWith('__')) continue; // already migrated, or a preference row
+    try {
+      const payload = await decryptRecord(raw.iv, raw.ct, cryptoKey);
+      if (payload.type === 'diary') oldDiaryItems.push({ raw, payload });
+    } catch (e) { /* not decryptable with the main key — not a diary item from before migration */ }
+  }
+
+  if (!oldDiaryItems.length) { alert('No old-format diary entries found — nothing to migrate.'); return; }
+
+  // Step 2: backup download, unconditionally, before any writes at all.
+  const backup = oldDiaryItems.map(x => ({ old_id: x.raw.id, ...x.payload }));
+  const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `diary-backup-${new Date().toISOString().slice(0,10)}.json`;
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+
+  if (!confirm(`Backup downloaded (${oldDiaryItems.length} entries). Continue with the migration now?`)) return;
+
+  let migrated = 0, failed = 0;
+  for (const { raw, payload } of oldDiaryItems) {
+    const newId = 'diary::' + crypto.randomUUID();
+    try {
+      const { iv, ct } = await encryptRecord(payload, diaryKey);
+      await DB.put({ id: newId, iv, ct }); // 1. write new row locally
+
+      const { error } = await sb.from('vault_sync')
+        .upsert({ item_id: newId, user_id: sbUserId, user_hash: PW_HASH, iv, ct, updated_at: new Date().toISOString() });
+      if (error) throw error; // 2. confirm it uploaded successfully
+
+      // 3. only now remove the old row — new copy is confirmed safe
+      await DB.delete(raw.id);
+      await sb.from('vault_sync').delete().eq('item_id', raw.id).eq('user_id', sbUserId);
+      migrated++;
+    } catch (e) {
+      console.error(`Migration failed for old item ${raw.id} — left untouched, nothing lost:`, e);
+      failed++;
+    }
+  }
+
+  Vault.invalidate();
+  await renderDiary();
+  alert(`Diary migration: ${migrated} moved successfully${failed ? `, ${failed} failed and were left untouched (check console)` : ''}.`);
 }
 
 async function renderDiary() {
@@ -5542,6 +5848,7 @@ async function init() {
   wireDiaryControls();
   await DB.init();
   await initThemeForSession();   // runs before any unlock — theme isn't sensitive content
+  setupViewOnlyMode();
   initGoogleSignIn();
   checkSetup();                  // console warnings about unconfigured credentials
   // wireDropzone handles all file-selection events via pickFile()
@@ -5566,6 +5873,19 @@ async function init() {
 //   Signing in with the same Google email does NOT drive sync — Google
 //   sign-in is only used to skip re-typing the cipher key on a linked device.
 // ══════════════════════════════════════════════
+function setupViewOnlyMode() {
+  if (!VIEW_ONLY) return;
+  document.getElementById('tabBtnFiles').style.display = 'none';
+  document.getElementById('tabBtnDiary').style.display = 'none';
+  document.getElementById('detailEditBtn').style.display = 'none';
+  document.getElementById('detailDeleteBtn').style.display = 'none';
+  const banner = document.createElement('div');
+  banner.textContent = '◈ Read-only shared view — browsing only, nothing here can be edited or deleted.';
+  banner.style.cssText = 'position:sticky;top:0;z-index:999;background:#c4882f;color:#1a1610;' +
+    'font-weight:600;text-align:center;padding:0.5rem;font-size:0.85rem;';
+  document.body.prepend(banner);
+}
+
 function checkSetup() {
   const issues = [];
   if (!GOOGLE_CLIENT_ID || GOOGLE_CLIENT_ID.indexOf('YOUR_') === 0) {

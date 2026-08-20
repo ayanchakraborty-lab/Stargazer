@@ -12,6 +12,7 @@
 <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <style>
 
 /* ── RESET ── */
@@ -435,6 +436,8 @@ body::after {
 
     <div id="authMsg"></div>
 
+    <div class="cf-turnstile" id="loginTurnstile" data-sitekey="0x4AAAAAAEAncYmSKlHIPYUo" style="margin:0.6rem 0"></div>
+
     <div class="btn-row">
       <button class="btn-primary" id="mainBtn" onclick="doAction()">Sign in</button>
       <button class="btn-secondary" id="altBtn" onclick="switchMode()">Register</button>
@@ -624,7 +627,7 @@ async function doGoogle() {
   const { error } = await sb.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: 'https://stargazer-9m9.pages.dev/login.html',
+      redirectTo: window.location.origin + '/login.html',
       queryParams: { prompt: 'select_account' }
     }
   });
@@ -641,18 +644,21 @@ async function doAction() {
   if (!email || !pw) { setMsg('Please fill in email and password.',''); return; }
   if (mode === 'signup' && pw.length < 6) { setMsg('Password must be at least 6 characters.',''); return; }
 
+  const captchaToken = window.turnstile?.getResponse();
+  if (!captchaToken) { setMsg('Please complete the verification check.',''); return; }
+
   btn.disabled = true; btn.textContent = mode === 'signup' ? 'Creating…' : 'Signing in…';
   setMsg('','');
 
   if (mode === 'signup') {
     const { error } = await sb.auth.signUp({
       email, password: pw,
-      options: { data: { display_name: name || email.split('@')[0] } }
+      options: { data: { display_name: name || email.split('@')[0] }, captchaToken }
     });
     if (error) { setMsg(error.message,''); }
     else { setMsg('Account created — check your email to confirm.','success'); }
   } else {
-    const { error } = await sb.auth.signInWithPassword({ email, password: pw });
+    const { error } = await sb.auth.signInWithPassword({ email, password: pw, options: { captchaToken } });
     if (error) {
       if (error.message.toLowerCase().includes('confirm')) {
         setMsg('Please confirm your email first — check your inbox.', '');
@@ -662,6 +668,7 @@ async function doAction() {
     }
     // onAuthStateChange handles success
   }
+  window.turnstile?.reset();
   btn.disabled = false;
   btn.textContent = mode === 'signup' ? 'Create account' : 'Sign in';
 }

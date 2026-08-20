@@ -347,7 +347,15 @@ async function submitComment(pageKey) {
     const { error } = await sb.from('comments').insert([{
       user_id: currentUser.id, user_name: name, page: pageKey, text
     }]);
-    if (error) { showCommentError('Failed. Try again.'); return; }
+    if (error) {
+      /* P0001 = raised by the server-side rate-limit trigger */
+      if (error.code === 'P0001' || /rate limit/i.test(error.message || '')) {
+        showCommentError('Too many comments. Wait a few minutes.');
+      } else {
+        showCommentError('Failed. Try again.');
+      }
+      return;
+    }
     if (textEl) textEl.value = '';
     const cc = document.getElementById('commentCharCount');
     if (cc) cc.textContent = '0 / 500';

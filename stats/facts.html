@@ -9,19 +9,19 @@
 <meta name="description" content="Facts that should astonish any statistician: counterintuitive results, famous paradoxes, and the moments statistics has quietly changed the world.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="The Statistics Universe">
-<link rel="canonical" href="https://stargazer-9m9.pages.dev/stats/facts.html">
+<link rel="canonical" href="https://stargazers.co.in/stats/facts.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Surprising Facts About Statistics | Stargazer">
 <meta property="og:description" content="Facts that should astonish any statistician — counterintuitive results and famous paradoxes explained.">
-<meta property="og:url" content="https://stargazer-9m9.pages.dev/stats/facts.html">
-<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<meta property="og:url" content="https://stargazers.co.in/stats/facts.html">
+<meta property="og:image" content="https://stargazers.co.in/pics/stats.png">
 <meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
 <meta name="application-name" content="Stargazer: Lost in the Cosmos">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Surprising Facts About Statistics | Stargazer">
 <meta name="twitter:description" content="Facts that should astonish any statistician — counterintuitive results and famous paradoxes explained.">
-<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<meta name="twitter:image" content="https://stargazers.co.in/pics/stats.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- ── STRUCTURED DATA ── -->
@@ -31,14 +31,19 @@
   "@type": "WebPage",
   "name": "Surprising Facts About Statistics | Stargazer",
   "description": "Facts that should astonish any statistician — counterintuitive results and famous paradoxes explained.",
-  "url": "https://stargazer-9m9.pages.dev/stats/facts.html",
+  "url": "https://stargazers.co.in/stats/facts.html",
   "inLanguage": "en",
-  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazers.co.in/" },
   "about": { "@type": "Thing", "name": "Statistics", "sameAs": "https://en.wikipedia.org/wiki/Statistics" }
 }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="stats.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="mathfmt.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMath(document.body));}else{renderMath(document.body);}"></script>
 </head>
 <body>
 
@@ -56,37 +61,8 @@
   </div>
 </div>
 
-<!-- ═══ NAV ═════════════════════════════════════════════════════ -->
-<nav id="nav">
-  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Statistics</span>
-  <span class="nav-cur-section" id="nav-cur-lbl">Fun Facts</span>
-  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)" aria-label="Search">🔍</button>
-  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
-</nav>
-
-<!-- ═══ HAMBURGER MENU ══════════════════════════════════════════ -->
-<div id="hamburger-menu" onclick="event.stopPropagation()">
-  <button class="hm-item" data-page="home"          onclick="location.href='home.html'">🏠 Home</button>
-  <button class="hm-item"        data-page="books"         onclick="location.href='books.html'">📚 Books</button>
-  <button class="hm-item"        data-page="puzzles"       onclick="location.href='puzzles.html'">🧩 Puzzles</button>
-  <button class="hm-item"        data-page="school"        onclick="location.href='school.html'">🏫 School</button>
-  <div class="hm-divider"></div>
-  <button class="hm-item"        data-page="inference"     onclick="location.href='inference.html'">🔬 Inference</button>
-  <button class="hm-item"        data-page="distributions" onclick="location.href='distributions.html'">📊 Distributions</button>
-  <button class="hm-item"        data-page="bayesian"      onclick="location.href='bayesian.html'">∫ Bayesian</button>
-  <button class="hm-item"        data-page="openproblems"  onclick="location.href='openproblems.html'">❓ Open Problems</button>
-  <button class="hm-item"        data-page="research"      onclick="location.href='research.html'">🔭 Research</button>
-  <div class="hm-divider"></div>
-  <button class="hm-item"        data-page="careers"       onclick="location.href='careers.html'">💼 Careers</button>
-  <button class="hm-item"        data-page="studyguide"    onclick="location.href='studyguide.html'">🗺️ Study Guide</button>
-  <button class="hm-item active"        data-page="facts"         onclick="location.href='facts.html'">✨ Fun Facts</button>
-  <button class="hm-item"        data-page="tools"         onclick="location.href='tools.html'">🛠️ Tools</button>
-  <div class="hm-divider"></div>
-  <button class="hm-item"        data-page="calc"          onclick="location.href='calc.html'">🔢 Calculator</button>
-  <button class="hm-item"        data-page="formulas"      onclick="location.href='formulas.html'">📋 Formulas</button>
-  <button class="hm-item"        data-page="history"       onclick="location.href='history.html'">⏳ History</button>
-  <button class="hm-item"        data-page="comments"      onclick="location.href='comments.html'">💬 Discuss</button>
-</div>
+<script src="nav.js"></script>
+<script>renderNav('facts');</script>
 
 <!-- ═══ SEARCH MODAL ═══════════════════════════════════════════════ -->
 <div id="search-modal" onclick="if(event.target===this)closeSearch()">
@@ -126,7 +102,6 @@
   </section>
 </div>
 
-<!-- ═══ PAGE: TOOLS ══════════════════════════════════════════════ -->
 <!-- ── CONTACT ── -->
 <div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
   <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);font-style:italic;font-family:'Source Code Pro',monospace;">contact the creator</span>
@@ -143,26 +118,6 @@ window._prevPage = 'studyguide.html';
 const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
 
 function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
-
-/* ── BOOKS ─────────────────────────────────────────────────── */
-
-function toggleHamburger(){
-  const menu=document.getElementById('hamburger-menu');
-  const btn=document.getElementById('hamburger-btn');
-  if(!menu)return;
-  const open=menu.classList.toggle('open');
-  btn.classList.toggle('open',open);
-}
-// Close when clicking outside
-document.addEventListener('click',function(e){
-  const menu=document.getElementById('hamburger-menu');
-  const btn=document.getElementById('hamburger-btn');
-  if(!menu||!menu.classList.contains('open'))return;
-  if(!menu.contains(e.target)&&e.target!==btn&&!btn.contains(e.target)){
-    menu.classList.remove('open');
-    btn.classList.remove('open');
-  }
-});
 
 
 /* ═══════════════════════════════════════════════════════════════

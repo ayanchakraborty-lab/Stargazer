@@ -14,9 +14,10 @@
 </script>
 <style>html.pre-light body{background:#faf7f2!important}html.pre-light{background:#faf7f2}</style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="../mathfmt.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]}));}else{renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});}"></script>
+  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMath(document.body));}else{renderMath(document.body);}"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Lato:ital,wght@0,400;0,700;1,400&family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -27,15 +28,15 @@
 <meta name="keywords" content="unsolved problems in mathematics, open problems mathematics, Riemann Hypothesis, Millennium Prize Problems, hardest math problems, mathematical conjectures, open questions mathematics">
 <meta name="robots" content="index, follow">
 <meta name="author" content="The Mathematics Universe">
-<link rel="canonical" href="https://stargazer-9m9.pages.dev/maths/openproblems.html">
+<link rel="canonical" href="https://stargazers.co.in/maths/openproblems.html">
 
 <!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="35 Unsolved Problems in Mathematics | Stargazer">
 <meta property="og:description" content="35 problems no one on Earth can solve — yet. From the $1M Riemann Hypothesis to the frontiers of topology, with a guide to get started →">
-<meta property="og:url" content="https://stargazer-9m9.pages.dev/maths/openproblems.html">
-<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
-<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/maths.png">
+<meta property="og:url" content="https://stargazers.co.in/maths/openproblems.html">
+<meta property="og:image" content="https://stargazers.co.in/pics/maths.png">
+<meta name="twitter:image" content="https://stargazers.co.in/pics/maths.png">
 <meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
 <meta name="application-name" content="Stargazer: Lost in the Cosmos">
 <meta property="og:locale" content="en_US">
@@ -52,9 +53,9 @@
   "@type": "WebPage",
   "name": "The Greatest Unsolved Problems in Mathematics",
   "description": "35 of the greatest unsolved problems in mathematics, spanning number theory, topology, geometry, and computational complexity, each with a guide to how to begin.",
-  "url": "https://stargazer-9m9.pages.dev/maths/openproblems.html",
+  "url": "https://stargazers.co.in/maths/openproblems.html",
   "inLanguage": "en",
-  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazers.co.in/" },
   "about": [
     { "@type": "Thing", "name": "Mathematics", "sameAs": "https://en.wikipedia.org/wiki/Mathematics" },
     { "@type": "Thing", "name": "List of unsolved problems in mathematics", "sameAs": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics" }
@@ -88,34 +89,8 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════ NAV ═══════════════ -->
-<nav id="nav">
-  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Mathematics</span>
-  <span class="nav-cur-section" id="nav-cur-lbl">Open Problems</span>
-  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)">🔍 Search</button>
-  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
-</nav>
-
-<!-- ═══════════════════════════════════════ HAMBURGER MENU ════ -->
-<div id="hamburger-menu" onclick="event.stopPropagation()">
-  <button class="hm-item" data-page="home" onclick="location.href='home.html'">🏠 Home</button>
-  <button class="hm-item" data-page="books" onclick="location.href='books.html'">📚 Books</button>
-  <button class="hm-item" data-page="puzzles" onclick="location.href='puzzles.html'">🧩 Puzzles</button>
-  <div class="hm-divider"></div>
-  <button class="hm-item" data-page="precollege" onclick="location.href='precollege.html'">📐 Pre-College</button>
-  <button class="hm-item" data-page="olympiad" onclick="location.href='olympiad.html'">🏆 Olympiad</button>
-  <button class="hm-item" data-page="undergrad" onclick="location.href='undergrad.html'">🎓 Undergrad</button>
-  <button class="hm-item" data-page="graduate" onclick="location.href='graduate.html'">🔬 Graduate</button>
-  <div class="hm-divider"></div>
-  <button class="hm-item" data-page="research" onclick="location.href='research.html'">⚡ Research</button>
-  <button class="hm-item active" data-page="openproblems" onclick="location.href='openproblems.html'">❓ Open Problems</button>
-  <button class="hm-item" data-page="careers" onclick="location.href='careers.html'">💼 Careers</button>
-  <div class="hm-divider"></div>
-  <button class="hm-item" data-page="studyguide" onclick="location.href='studyguide.html'">📖 Study Guide</button>
-  <button class="hm-item" data-page="facts" onclick="location.href='facts.html'">✨ Math Facts</button>
-  <button class="hm-item" data-page="universities" onclick="location.href='universities.html'">🎓 India</button>
-  <button class="hm-item" data-page="comments" onclick="location.href='comments.html'">💬 Comments</button>
-</div>
+<script src="nav.js"></script>
+<script>renderNav('openproblems');</script>
 
 <!-- ═══════════════════════════════════════ SEARCH MODAL ════ -->
 <div id="search-modal" onclick="if(event.target===this)closeSearch()">
@@ -153,7 +128,7 @@
     <button class="foot-link" onclick="location.href='../ABOUT.html'">📖 About Stargazer</button>
     <a class="foot-link" onclick="location.href='comments.html'; return false;" href="#">💬 Community Comments</a>
     <a class="foot-link" href="mailto:ayan.chakraborty6174@gmail.com">✉️ Contact Creator</a>
-    <a class="foot-link" href="https://stargazer-9m9.pages.dev" target="_blank" rel="noopener">🌐 Stargazer Home</a>
+    <a class="foot-link" href="https://stargazers.co.in" target="_blank" rel="noopener">🌐 Stargazer Home</a>
   </div>
 </footer>
 
@@ -162,6 +137,10 @@
 
 <script>
 const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+// Deployed Worker URL from the R2 setup — fill in after deploying (see
+// vault-storage-worker.js). Public reads for "public/..." keys go straight
+// to this URL; PUT/DELETE require an admin-signed Supabase session.
+const R2_WORKER_URL = 'https://vault-storage.ayanchakrabortyall.workers.dev';
 window._pageKey = 'maths';
 
 function isAdmin() {
@@ -189,8 +168,8 @@ window._afterRenderAuthUI = function(user) {
                     || user.user_metadata?.full_name
                     || user.email || 'you';
   }
-  // Trigger admin data load on sign-in
-  if (user) { if (typeof loadAdminData === 'function') loadAdminData(); }
+  // Load community-added content for every visitor, not just admin
+  if (typeof loadAdminData === 'function') loadAdminData();
 };
 
 
@@ -786,18 +765,38 @@ function adminUploadPDF(section, itemIdx) {
     <div class="admin-field">
       <label>OR Paste External URL</label>
       <input id="pdfUrl" placeholder="https://arxiv.org/pdf/..."></div>
-    <p style="font-size:0.72rem;color:#7dd3fc;margin-top:0.3rem">PDFs are stored in Supabase Storage and visible to all users.</p>
+    <div class="admin-field">
+      <label>Store In</label>
+      <label style="font-weight:400;display:inline-flex;align-items:center;gap:0.3rem;margin-right:1rem">
+        <input type="radio" name="pdfBackend" value="supabase" checked> Supabase</label>
+      <label style="font-weight:400;display:inline-flex;align-items:center;gap:0.3rem">
+        <input type="radio" name="pdfBackend" value="r2"> Cloudflare R2</label>
+    </div>
+    <p style="font-size:0.72rem;color:#7dd3fc;margin-top:0.3rem">PDFs are stored publicly and visible to all users, regardless of destination.</p>
   `, async () => {
     const sb = window.sb;
     if (!sb) return;
     const name = document.getElementById('pdfName').value.trim();
     const file = document.getElementById('pdfFile').files[0];
     const extUrl = document.getElementById('pdfUrl').value.trim();
+    const backend = document.querySelector('input[name="pdfBackend"]:checked').value;
     if (!name) throw new Error('Display name is required.');
     if (!file && !extUrl) throw new Error('Upload a file or provide a URL.');
 
     let fileUrl = extUrl;
-    if (file && sb) {
+    let r2Key = null;
+    if (file && backend === 'r2') {
+      const { data: { session } } = await sb.auth.getSession();
+      if (!session) throw new Error('Admin session required for R2 upload.');
+      r2Key = `public/${section}/${itemIdx}/${Date.now()}_${file.name.replace(/\s/g,'_')}`;
+      const res = await fetch(`${R2_WORKER_URL}/${r2Key}`, {
+        method: 'PUT',
+        headers: { 'Authorization': `Bearer ${session.access_token}` },
+        body: file,
+      });
+      if (!res.ok) throw new Error('R2 upload failed: ' + (await res.text()));
+      fileUrl = `${R2_WORKER_URL}/${r2Key}`;
+    } else if (file && sb) {
       const filePath = `${section}/${itemIdx}/${Date.now()}_${file.name.replace(/\s/g,'_')}`;
       const { error: upErr } = await sb.storage.from('vault-files').upload(filePath, file, { upsert: true });
       if (upErr) throw upErr;
@@ -808,7 +807,11 @@ function adminUploadPDF(section, itemIdx) {
       fileUrl = URL.createObjectURL(file);
     }
 
-    const record = { section, item_index: itemIdx, file_name: name, file_url: fileUrl, uploaded_by: window.currentUser.email };
+    const record = {
+      section, item_index: itemIdx, file_name: name, file_url: fileUrl,
+      uploaded_by: window.currentUser.email,
+      storage_backend: file ? backend : null, r2_key: r2Key,
+    };
     if (sb) {
       const { error } = await sb.from('math_pdf_resources').insert([record]);
       if (error) throw error;
@@ -827,6 +830,15 @@ async function adminRemovePDF(section, itemIdx, pdfIdx) {
   if (!arr || !arr[pdfIdx]) return;
   const pdf = arr[pdfIdx];
   if (!confirm('Remove PDF "' + pdf.name + '"?')) return;
+  if (pdf.storage_backend === 'r2' && pdf.r2_key) {
+    try {
+      const { data: { session } } = await sb.auth.getSession();
+      await fetch(`${R2_WORKER_URL}/${pdf.r2_key}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${session.access_token}` },
+      });
+    } catch (e) { console.warn('R2 object delete failed (DB record removed anyway):', e); }
+  }
   if (sb && pdf.id) {
     const { error } = await sb.from('math_pdf_resources').delete().eq('id', pdf.id);
     if (error) { alert('Remove failed: ' + error.message); return; }
@@ -839,7 +851,7 @@ async function adminRemovePDF(section, itemIdx, pdfIdx) {
 
 async function loadAdminData() {
   const sb = window.sb;
-  if (!sb || !isAdmin()) return;
+  if (!sb) return;
   try {
     const { data: pdfs } = await sb.from('math_pdf_resources').select('*').order('created_at', { ascending: true });
     openProblemPDFs = {};

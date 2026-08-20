@@ -9,19 +9,19 @@
 <meta name="description" content="Classic and advanced probability puzzles, from the Monty Hall problem to the birthday paradox — statistics at its most playful, with hints and solutions.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="The Statistics Universe">
-<link rel="canonical" href="https://stargazer-9m9.pages.dev/stats/puzzles.html">
+<link rel="canonical" href="https://stargazers.co.in/stats/puzzles.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Statistics Puzzles & Probability Paradoxes | Stargazer">
 <meta property="og:description" content="Classic and advanced probability puzzles, from Monty Hall to the birthday paradox — with hints and solutions.">
-<meta property="og:url" content="https://stargazer-9m9.pages.dev/stats/puzzles.html">
-<meta property="og:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<meta property="og:url" content="https://stargazers.co.in/stats/puzzles.html">
+<meta property="og:image" content="https://stargazers.co.in/pics/stats.png">
 <meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
 <meta name="application-name" content="Stargazer: Lost in the Cosmos">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Statistics Puzzles & Probability Paradoxes | Stargazer">
 <meta name="twitter:description" content="Classic and advanced probability puzzles, from Monty Hall to the birthday paradox — with hints and solutions.">
-<meta name="twitter:image" content="https://stargazer-9m9.pages.dev/pics/stats.png">
+<meta name="twitter:image" content="https://stargazers.co.in/pics/stats.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- ── STRUCTURED DATA ── -->
@@ -31,14 +31,19 @@
   "@type": "WebPage",
   "name": "Statistics Puzzles & Probability Paradoxes | Stargazer",
   "description": "Classic and advanced probability puzzles, from Monty Hall to the birthday paradox — with hints and solutions.",
-  "url": "https://stargazer-9m9.pages.dev/stats/puzzles.html",
+  "url": "https://stargazers.co.in/stats/puzzles.html",
   "inLanguage": "en",
-  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazer-9m9.pages.dev/" },
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazers.co.in/" },
   "about": { "@type": "Thing", "name": "Statistics", "sameAs": "https://en.wikipedia.org/wiki/Statistics" }
 }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="stats.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="mathfmt.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMath(document.body));}else{renderMath(document.body);}"></script>
 </head>
 <body>
 
@@ -56,37 +61,8 @@
   </div>
 </div>
 
-<!-- ═══ NAV ═════════════════════════════════════════════════════ -->
-<nav id="nav">
-  <span class="nav-brand" onclick="location.href='home.html'" style="cursor:pointer;user-select:none">∑ Statistics</span>
-  <span class="nav-cur-section" id="nav-cur-lbl">Puzzles</span>
-  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)" aria-label="Search">🔍</button>
-  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>
-</nav>
-
-<!-- ═══ HAMBURGER MENU ══════════════════════════════════════════ -->
-<div id="hamburger-menu" onclick="event.stopPropagation()">
-  <button class="hm-item" data-page="home"          onclick="location.href='home.html'">🏠 Home</button>
-  <button class="hm-item"        data-page="books"         onclick="location.href='books.html'">📚 Books</button>
-  <button class="hm-item active"        data-page="puzzles"       onclick="location.href='puzzles.html'">🧩 Puzzles</button>
-  <button class="hm-item"        data-page="school"        onclick="location.href='school.html'">🏫 School</button>
-  <div class="hm-divider"></div>
-  <button class="hm-item"        data-page="inference"     onclick="location.href='inference.html'">🔬 Inference</button>
-  <button class="hm-item"        data-page="distributions" onclick="location.href='distributions.html'">📊 Distributions</button>
-  <button class="hm-item"        data-page="bayesian"      onclick="location.href='bayesian.html'">∫ Bayesian</button>
-  <button class="hm-item"        data-page="openproblems"  onclick="location.href='openproblems.html'">❓ Open Problems</button>
-  <button class="hm-item"        data-page="research"      onclick="location.href='research.html'">🔭 Research</button>
-  <div class="hm-divider"></div>
-  <button class="hm-item"        data-page="careers"       onclick="location.href='careers.html'">💼 Careers</button>
-  <button class="hm-item"        data-page="studyguide"    onclick="location.href='studyguide.html'">🗺️ Study Guide</button>
-  <button class="hm-item"        data-page="facts"         onclick="location.href='facts.html'">✨ Fun Facts</button>
-  <button class="hm-item"        data-page="tools"         onclick="location.href='tools.html'">🛠️ Tools</button>
-  <div class="hm-divider"></div>
-  <button class="hm-item"        data-page="calc"          onclick="location.href='calc.html'">🔢 Calculator</button>
-  <button class="hm-item"        data-page="formulas"      onclick="location.href='formulas.html'">📋 Formulas</button>
-  <button class="hm-item"        data-page="history"       onclick="location.href='history.html'">⏳ History</button>
-  <button class="hm-item"        data-page="comments"      onclick="location.href='comments.html'">💬 Discuss</button>
-</div>
+<script src="nav.js"></script>
+<script>renderNav('puzzles');</script>
 
 <!-- ═══ SEARCH MODAL ═══════════════════════════════════════════════ -->
 <div id="search-modal" onclick="if(event.target===this)closeSearch()">
@@ -132,7 +108,6 @@
   </section>
 </div>
 
-<!-- ═══ PAGE: SCHOOL ═════════════════════════════════════════════ -->
 <!-- ── CONTACT ── -->
 <div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
   <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);font-style:italic;font-family:'Source Code Pro',monospace;">contact the creator</span>
@@ -149,26 +124,6 @@ window._prevPage = 'books.html';
 const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
 
 function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
-
-/* ── BOOKS ─────────────────────────────────────────────────── */
-
-function toggleHamburger(){
-  const menu=document.getElementById('hamburger-menu');
-  const btn=document.getElementById('hamburger-btn');
-  if(!menu)return;
-  const open=menu.classList.toggle('open');
-  btn.classList.toggle('open',open);
-}
-// Close when clicking outside
-document.addEventListener('click',function(e){
-  const menu=document.getElementById('hamburger-menu');
-  const btn=document.getElementById('hamburger-btn');
-  if(!menu||!menu.classList.contains('open'))return;
-  if(!menu.contains(e.target)&&e.target!==btn&&!btn.contains(e.target)){
-    menu.classList.remove('open');
-    btn.classList.remove('open');
-  }
-});
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -558,7 +513,7 @@ const PUZZLES = [
    hint:"(a) The pooled t-test assumes σ₁ = σ₂. If this is violated, the pooled estimate is biased for both, and the test statistic doesn't follow t(n+m−2) exactly. (b) Welch's statistic: T = (X̄−Ȳ)/√(S₁²/n + S₂²/m) with Satterthwaite-Welch degrees of freedom.",
    ans:"<strong>(a) Pooled t-test failure:</strong><br>The pooled variance S²_p = [(n−1)S₁² + (m−1)S₂²]/(n+m−2) is unbiased only when σ₁ = σ₂. When σ₁ ≠ σ₂, the pooled SE is a biased estimate of SD(X̄−Ȳ) = √(σ₁²/n + σ₂²/m), and the test statistic does not follow t(n+m−2). The Type I error rate can be severely inflated or deflated depending on the variance ratio and sample size ratio.<br><br><strong>(b) Welch's t-test:</strong><br>T_W = (X̄ − Ȳ) / √(S₁²/n + S₂²/m)<br><br>Degrees of freedom (Satterthwaite-Welch approximation):<br>ν = (S₁²/n + S₂²/m)² / [(S₁²/n)²/(n−1) + (S₂²/m)²/(m−1)]<br><br>T_W is approximately t(ν) under H₀, with ν ≤ n+m−2.<br><br><strong>(c) Why it's hard:</strong><br>Behrens (1929) and Fisher (1935) showed that no classical uniformly most powerful test exists for this problem. There is NO EXACT test based on sample means and variances alone. Welch's approximation works well in practice but is not exact. The exact Behrens-Fisher solution requires the Behrens-Fisher distribution (a mixture of t-distributions) and Bayesian arguments. This motivated the study of 'fiducial inference' by Fisher — a framework between frequentist and Bayesian that has never gained full acceptance but anticipated modern credible intervals."},
 
-  {title:"Entropy and the Normal Distribution",cat:"Distributions",src:"Information Theory · Distributions",diff:"★★★☆☆",
+  {title:"Entropy and the Normal Distribution",cat:"Information Theory",src:"Information Theory · Distributions",diff:"★★★☆☆",
    q:"(a) Define the differential entropy h(X) = −∫f(x)log f(x)dx for a continuous random variable. (b) What is the differential entropy of N(μ, σ²)? (c) Prove that among all distributions with fixed mean μ and variance σ², the Normal has the MAXIMUM differential entropy.",
    hint:"(a) Differential entropy is the continuous analogue of Shannon entropy, but can be negative. (b) Compute h(N(μ,σ²)) directly by substituting the Gaussian PDF. (c) Lagrangian optimisation: maximise h(f) subject to ∫f=1, ∫xf=μ, ∫x²f=μ²+σ². The maximiser is a Gaussian by the method of Lagrange multipliers.",
    ans:"<strong>(a)</strong> Differential entropy h(X) = −E[log f(X)] = −∫f(x)log f(x)dx. Unlike discrete entropy, it can be negative and is not invariant under change of variables.<br><br><strong>(b) Normal entropy:</strong><br>For X ∼ N(μ,σ²): log f(x) = −(1/2)log(2πσ²) − (x−μ)²/(2σ²)<br>h(X) = −E[log f(X)] = (1/2)log(2πσ²) + (1/(2σ²))E[(X−μ)²]<br>= (1/2)log(2πσ²) + (1/(2σ²))·σ² = <strong>(1/2)log(2πeσ²)</strong><br><br><strong>(c) Maximality of Normal entropy:</strong><br>Lagrangian: L(f,λ₀,λ₁,λ₂) = −∫f log f + λ₀∫f + λ₁∫xf + λ₂∫x²f<br><br>Functional derivative = 0: −(1 + log f(x)) + λ₀ + λ₁x + λ₂x² = 0<br>⟹ log f(x) = λ₀ − 1 + λ₁x + λ₂x²<br>⟹ f(x) = exp(λ₀−1)·exp(λ₁x + λ₂x²)<br><br>For λ₂ &lt; 0, this is a Gaussian (exponential of a quadratic = Gaussian). The constraints ∫f=1, E[X]=μ, Var(X)=σ² uniquely determine (λ₀,λ₁,λ₂) to give N(μ,σ²). ✓<br><br><strong>Implication:</strong> The Normal is the 'least informative' distribution with given mean and variance — the maximum entropy prior when only the first two moments are known. This justifies the Normal as a default distribution for measurement errors."},
@@ -668,7 +623,7 @@ const PUZZLES = [
    hint:"(a) Geometric argument: the ℓ₁ ball has corners at the axes; the ℓ₂ ball is round. The optimum typically touches a corner of the ℓ₁ ball. (b) KKT: if β̂ⱼ = 0, then |Xⱼᵀ(y − Xβ̂)|/n ≤ λ. (c) Oracle: LASSO is consistent for model selection when the irrepresentability condition holds.",
    ans:"<strong>(a) Geometric explanation:</strong><br>LASSO constrains Σ|βⱼ| ≤ t (equivalent form). The ℓ₁ constraint set is a diamond (polygon) in 2D, with corners on the coordinate axes. The loss contours (ellipses for OLS) typically touch the ℓ₁ ball first at a corner, where one or more βⱼ = 0. The ℓ₂ ball is a circle (smooth) — the loss ellipse touches it generically at a point NOT on an axis, giving no exact zeros.<br><br><strong>(b) KKT stationarity conditions for LASSO:</strong><br>The subgradient of |βⱼ| at βⱼ = 0 is the interval [−1,1]. Optimality requires:<br>0 = −2Xⱼᵀ(y − Xβ̂)/n + λ·sⱼ where sⱼ ∈ ∂|β̂ⱼ|.<br><br>If β̂ⱼ = 0: sⱼ ∈ [−1,1], so stationarity holds iff |2Xⱼᵀ(y − Xβ̂)/n| ≤ λ.<br><br>This says: variable Xⱼ is excluded if its correlation with the current residuals is below the threshold λ. Larger λ → more variables set to zero.<br><br><strong>(c) Oracle property:</strong><br>Under the irrepresentability condition (no predictor in the true null set is too correlated with the true active set): as n → ∞ with appropriate λ ~ √(log p/n), the LASSO:<br>1. Correctly identifies the true active set (sparsity consistency).<br>2. Estimates the non-zero coefficients as well as if we knew the true model a priori (oracle estimation efficiency).<br><br>This makes LASSO useful for both prediction AND variable selection in high dimensions, provided the signal is strong enough relative to noise."},
 
-  {title:"The Rényi Divergence and Information Theory",cat:"Distributions",src:"Information Theory · Divergences",diff:"★★★★☆",
+  {title:"The Rényi Divergence and Information Theory",cat:"Information Theory",src:"Information Theory · Divergences",diff:"★★★★☆",
    q:"The Rényi divergence of order α is Dα(P‖Q) = log(Σₓ P(x)^α Q(x)^{1-α}) / (α−1). (a) What is D₁(P‖Q) (limit as α→1)? (b) What is D₀, D∞, and their interpretations? (c) How does total variation distance relate to KL divergence?",
    hint:"(a) L'Hôpital's rule on Dα as α→1 gives KL divergence. (b) D₀ = −log Q(support(P)) = 0 if Q(support(P))=1; D∞ = log sup_x P(x)/Q(x) = log max ratio. (c) Pinsker's inequality: TV(P,Q)² ≤ (1/2)KL(P‖Q).",
    ans:"<strong>(a) D₁ = KL divergence:</strong><br>lim_{α→1} Dα(P‖Q) = Σₓ P(x)·log(P(x)/Q(x)) = D_{KL}(P‖Q)<br><br>KL divergence is the unique case where Dα is linear in P(x) in the log. All other Rényi divergences are nonlinear.<br><br><strong>(b) Boundary cases:</strong><br>D₀(P‖Q) = −log Q({x: P(x) > 0}) — minus log probability that Q assigns to the support of P. Zero if Q(x) > 0 wherever P(x) > 0 (absolute continuity).<br><br>D∞(P‖Q) = log sup_x [P(x)/Q(x)] = log(maximum likelihood ratio). The minimax connection: D∞ controls the best possible hypothesis test between P and Q.<br><br>D_{1/2}(P‖Q) = −2 log Σ_x √(P(x)Q(x)) = −2 log BC(P,Q) where BC is the Bhattacharyya coefficient. This controls the probability of error in hypothesis testing: P_e ≥ (1/2)e^{-D_{1/2}} (Chernoff bound).<br><br><strong>(c) Pinsker's inequality:</strong><br>TV(P,Q) = (1/2)Σ|P(x)−Q(x)| ≤ √(KL(P‖Q)/2)<br>Equivalently: TV² ≤ (1/2)KL.<br><br>Tight version (Toussaint): a sharper bound uses the hockey-stick divergence Eα(P‖Q) = Σ(P−αQ)₊. The Pinsker inequality shows that small KL divergence implies small total variation — distributions close in information are close in every testing problem."},
@@ -812,7 +767,12 @@ function updateSolvedCount(){
 }
 
 function openRandomPuzzle(){
-  if(!rendered.has('puzzles')){renderPuzzles();rendered.add('puzzles');}
+  const g=document.getElementById('puzzles-grid');
+  if(g&&!g.children.length){renderPuzzles();}
+  /* Random puzzle overrides any active category filter so the pick is always visible */
+  _puzCatFilter=new Set(['all']);
+  document.querySelectorAll('.puz-filter').forEach(b=>{b.classList.toggle('active',b.dataset.pcat==='all')});
+  document.querySelectorAll('.puz-card').forEach(c=>{c.style.display='';});
   const i=Math.floor(Math.random()*PUZZLES.length);
   setTimeout(()=>{
     const card=document.getElementById('puzcard-'+i);
