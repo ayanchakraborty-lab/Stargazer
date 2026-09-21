@@ -9,11 +9,11 @@
 <meta name="description" content="A quick statistics calculator for the tests and distributions students use most often, built for checking homework and building intuition fast.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="The Statistics Universe">
-<link rel="canonical" href="https://stargazers.co.in/stats/calc.html">
+<link rel="canonical" href="https://stargazers.co.in/stats/calc">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Free Statistics Calculator | Stargazer">
 <meta property="og:description" content="A quick statistics calculator for the tests and distributions students use most often.">
-<meta property="og:url" content="https://stargazers.co.in/stats/calc.html">
+<meta property="og:url" content="https://stargazers.co.in/stats/calc">
 <meta property="og:image" content="https://stargazers.co.in/pics/stats.png">
 <meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
 <meta name="application-name" content="Stargazer: Lost in the Cosmos">
@@ -31,7 +31,7 @@
   "@type": "WebPage",
   "name": "Free Statistics Calculator | Stargazer",
   "description": "A quick statistics calculator for the tests and distributions students use most often.",
-  "url": "https://stargazers.co.in/stats/calc.html",
+  "url": "https://stargazers.co.in/stats/calc",
   "inLanguage": "en",
   "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazers.co.in/" },
   "about": { "@type": "Thing", "name": "Statistics", "sameAs": "https://en.wikipedia.org/wiki/Statistics" }
@@ -278,60 +278,47 @@ function runCalc(ci){
 }
 
 /* ═══════════════════════════════════════════════════════════
-   FORMULA SHEET
+   CALCULATORS
    ═══════════════════════════════════════════════════════════ */
-const FORMULAS=[
-  {section:'Probability Fundamentals',items:[
-    {name:"Bayes' Theorem",eq:"P(A|B) = P(B|A)·P(A) / P(B)",desc:"The fundamental updating rule — posterior ∝ likelihood × prior"},
-    {name:'Law of Total Probability',eq:"P(B) = Σᵢ P(B|Aᵢ)·P(Aᵢ)",desc:"Marginalise over a partition {Aᵢ} of the sample space"},
-    {name:'Conditional Probability',eq:"P(A|B) = P(A∩B) / P(B)",desc:"Probability of A given B has occurred"},
-    {name:'Independence',eq:"P(A∩B) = P(A)·P(B)",desc:"A and B are independent iff their joint = product of marginals"},
-    {name:"De Morgan's Laws",eq:"(A∪B)ᶜ = Aᶜ∩Bᶜ  ;  (A∩B)ᶜ = Aᶜ∪Bᶜ",desc:"Complement of union/intersection"},
-    {name:"Inclusion–Exclusion",eq:"P(A∪B) = P(A)+P(B)−P(A∩B)",desc:"Corrects for double-counting the intersection"},
-  ]},
-  {section:'Expectation & Variance',items:[
-    {name:'Expectation (discrete)',eq:"E[X] = Σₓ x·P(X=x)",desc:"Probability-weighted average of all values"},
-    {name:'Expectation (continuous)',eq:"E[X] = ∫ x·f(x) dx",desc:"Integral of x weighted by PDF"},
-    {name:'Law of Total Expectation',eq:"E[X] = E[E[X|Y]]",desc:"E[X] = Σᵧ E[X|Y=y]·P(Y=y) — tower property"},
-    {name:'Variance',eq:"Var(X) = E[X²] − (E[X])²",desc:"Second central moment; measures spread around mean"},
-    {name:'Law of Total Variance',eq:"Var(X) = E[Var(X|Y)] + Var(E[X|Y])",desc:"ANOVA decomposition — within-group + between-group variance"},
-    {name:'Covariance',eq:"Cov(X,Y) = E[XY] − E[X]E[Y]",desc:"Measures linear co-movement; Cov(X,X) = Var(X)"},
-    {name:'Correlation',eq:"ρ(X,Y) = Cov(X,Y) / (σₓ·σᵧ)   ∈ [−1,1]",desc:"Scale-free version of covariance"},
-    {name:'Chebyshev Inequality',eq:"P(|X−μ| ≥ kσ) ≤ 1/k²",desc:"Distribution-free bound on tail probability for any distribution with finite variance"},
-  ]},
-  {section:'Estimation & Inference',items:[
-    {name:'MLE (Score Equation)',eq:"∂/∂θ Σᵢ log f(xᵢ|θ) = 0",desc:"Setting derivative of log-likelihood to zero gives MLE"},
-    {name:'Fisher Information',eq:"I(θ) = −E[∂²log f/∂θ²] = E[(∂log f/∂θ)²]",desc:"Measures curvature of the log-likelihood; inversely proportional to variance"},
-    {name:'Cramér–Rao Lower Bound',eq:"Var(T) ≥ [∂τ/∂θ]² / I(θ)",desc:"No unbiased estimator of τ(θ) can have lower variance"},
-    {name:'95% Confidence Interval (z)',eq:"x̄ ± 1.96·σ/√n",desc:"For Normal data with known σ; use 1.645 for 90%, 2.576 for 99%"},
-    {name:'t Confidence Interval',eq:"x̄ ± t_{α/2,n-1}·s/√n",desc:"For Normal data with unknown σ; uses Student's t distribution"},
-    {name:'p-value (two-sided)',eq:"p = 2·P(|Z| ≥ |z_obs|)  under H₀",desc:"Probability of test statistic as extreme as observed, under the null"},
-    {name:'Likelihood Ratio Test',eq:"−2(ℓ₀ − ℓ₁) →ᵈ χ²(p₁−p₀)  under H₀",desc:"Wilks theorem: LRT statistic is asymptotically chi-squared"},
-  ]},
-  {section:'Regression',items:[
-    {name:'OLS Estimator',eq:"β̂ = (XᵀX)⁻¹XᵀY",desc:"Minimises Σ(yᵢ − xᵢᵀβ)²; BLUE by Gauss-Markov theorem"},
-    {name:'Residual',eq:"eᵢ = yᵢ − ŷᵢ = yᵢ − xᵢᵀβ̂",desc:"Difference between observed and fitted value"},
-    {name:'R² (Coefficient of Determination)',eq:"R² = 1 − RSS/TSS  =  SSR/TSS",desc:"Fraction of total variance explained by the model"},
-    {name:'F-test for Regression',eq:"F = (R²/p) / ((1−R²)/(n−p−1)) ~ F(p, n−p−1)",desc:"Tests whether all regression coefficients are simultaneously zero"},
-    {name:'Variance Inflation Factor',eq:"VIF(j) = 1 / (1 − R²ⱼ)",desc:"Measures multicollinearity; VIF > 10 indicates severe collinearity"},
-  ]},
-  {section:'Bayesian',items:[
-    {name:'Posterior',eq:"π(θ|x) ∝ L(θ;x) · π(θ)",desc:"Unnormalised posterior; normalise by ∫L·π dθ"},
-    {name:'Beta-Binomial Update',eq:"Beta(α,β) → Beta(α+x, β+n−x)",desc:"Conjugate update: prior pseudo-successes + observed successes"},
-    {name:'Normal-Normal Update',eq:"μ|x ~ N( (μ₀/τ₀² + nx̄/σ²)/(1/τ₀²+n/σ²), (1/τ₀²+n/σ²)⁻¹ )",desc:"Conjugate update for Normal mean with Normal prior; precision-weighted average"},
-    {name:'Bayes Factor',eq:"BF₁₂ = P(x|M₁) / P(x|M₂)",desc:"Ratio of marginal likelihoods; BF > 10 is strong evidence for M₁"},
-    {name:'Bernstein-von Mises',eq:"π(θ|Xⁿ) →ᵈ N(θ₀, I(θ₀)⁻¹/n)  as n→∞",desc:"Posterior concentrates around true θ₀ and matches frequentist sampling dist"},
-    {name:"ELBO (Variational Bayes)",eq:"ℒ(q) = E_q[log p(x,θ)] − E_q[log q(θ)]  ≤ log p(x)",desc:"Objective maximised in variational inference; equals log p(x) iff q=posterior"},
-  ]},
-  {section:'Key Distributions — PDF/PMF',items:[
-    {name:'Normal N(μ,σ²)',eq:"f(x) = (1/σ√2π) exp(−(x−μ)²/2σ²)",desc:"The central distribution in statistics; CLT convergence target"},
-    {name:'Poisson(λ)',eq:"P(X=k) = e⁻λ λᵏ/k!",desc:"Count of rare events; mean = variance = λ"},
-    {name:'Exponential(λ)',eq:"f(x) = λ e⁻λˣ  ,  x≥0",desc:"Waiting time until Poisson event; memoryless"},
-    {name:'Binomial(n,p)',eq:"P(X=k) = C(n,k) pᵏ(1−p)ⁿ⁻ᵏ",desc:"Successes in n independent Bernoulli trials"},
-    {name:'Beta(α,β)',eq:"f(x) = xᵃ⁻¹(1−x)ᵝ⁻¹/B(α,β)  ,  x∈(0,1)",desc:"Conjugate prior for Binomial proportion"},
-    {name:'Gamma(α,β)',eq:"f(x) = βᵃ xᵃ⁻¹ e⁻ᵝˣ / Γ(α)  ,  x>0",desc:"Conjugate prior for Poisson rate; sum of α Exponential(β)"},
-  ]},
+const CALCS=[
+  {name:'Normal CDF',desc:'P(X ≤ x) for a Normal(μ,σ²) distribution',
+   fields:[{id:'x',label:'x',def:'1.96'},{id:'mean',label:'μ (mean)',def:'0'},{id:'sd',label:'σ (sd)',def:'1'}],
+   fn:(p)=>{const x=parseFloat(p.x),mean=parseFloat(p.mean),sd=parseFloat(p.sd);if(!(sd>0))throw new Error('σ must be positive');const z=(x-mean)/sd;return `P(X ≤ ${x}) = ${normalCDF(z).toFixed(4)}  (z = ${z.toFixed(3)})`;}},
+  {name:'Normal Quantile',desc:'Inverse CDF — find x such that P(X ≤ x) = p',
+   fields:[{id:'p',label:'p (probability)',def:'0.975'},{id:'mean',label:'μ (mean)',def:'0'},{id:'sd',label:'σ (sd)',def:'1'}],
+   fn:(p)=>{const prob=parseFloat(p.p),mean=parseFloat(p.mean),sd=parseFloat(p.sd);if(!(prob>0&&prob<1))throw new Error('p must be between 0 and 1');const z=normalQuantile(prob);return `x = ${(mean+z*sd).toFixed(4)}  (z = ${z.toFixed(3)})`;}},
+  {name:'Z-Score Standardizer',desc:'Convert a raw score to a standard score',
+   fields:[{id:'x',label:'x',def:'85'},{id:'mean',label:'μ (mean)',def:'75'},{id:'sd',label:'σ (sd)',def:'8'}],
+   fn:(p)=>{const x=parseFloat(p.x),mean=parseFloat(p.mean),sd=parseFloat(p.sd);if(!(sd>0))throw new Error('σ must be positive');return `z = ${((x-mean)/sd).toFixed(4)}`;}},
+  {name:'Confidence Interval for a Mean',desc:'z-based CI when population σ is known (or n is large)',
+   fields:[{id:'xbar',label:'x̄ (sample mean)',def:'50'},{id:'sd',label:'σ (sd)',def:'10'},{id:'n',label:'n',def:'30'},{id:'conf',label:'confidence %',def:'95'}],
+   fn:(p)=>{const xbar=parseFloat(p.xbar),sd=parseFloat(p.sd),n=parseFloat(p.n),conf=parseFloat(p.conf);if(!(n>0))throw new Error('n must be positive');const z=normalQuantile(1-(1-conf/100)/2);const m=z*sd/Math.sqrt(n);return `${conf}% CI: [${(xbar-m).toFixed(3)}, ${(xbar+m).toFixed(3)}]  (± ${m.toFixed(3)})`;}},
+  {name:'Statistical Power (one-sample z-test)',desc:'Power to detect a standardized effect size d',
+   fields:[{id:'effect',label:'effect size d',def:'0.5'},{id:'n',label:'n',def:'30'},{id:'alpha',label:'α (two-sided)',def:'0.05'}],
+   fn:(p)=>{const d=parseFloat(p.effect),n=parseFloat(p.n),alpha=parseFloat(p.alpha);const za=normalQuantile(1-alpha/2);const ncp=d*Math.sqrt(n);const power=1-normalCDF(za-ncp)+normalCDF(-za-ncp);return `Power = ${(power*100).toFixed(2)}%  (critical z = ±${za.toFixed(3)})`;}},
+  {name:'Binomial Probability',desc:'P(X=k) and P(X≤k) for Binomial(n,p)',
+   fields:[{id:'n',label:'n (trials)',def:'20'},{id:'prob',label:'p (success)',def:'0.3'},{id:'k',label:'k',def:'5'}],
+   fn:(p)=>{const n=parseInt(p.n),prob=parseFloat(p.prob),k=parseInt(p.k);if(k<0||k>n)throw new Error('k must be between 0 and n');return `P(X=${k}) = ${binomialPMF(n,prob,k).toFixed(5)}   P(X≤${k}) = ${binomialCDF(n,prob,k).toFixed(5)}`;}},
+  {name:'Poisson Probability',desc:'P(X=k) and P(X≤k) for Poisson(λ)',
+   fields:[{id:'lambda',label:'λ (rate)',def:'4'},{id:'k',label:'k',def:'2'}],
+   fn:(p)=>{const lambda=parseFloat(p.lambda),k=parseInt(p.k);if(k<0)throw new Error('k must be ≥ 0');return `P(X=${k}) = ${poissonPMF(lambda,k).toFixed(5)}   P(X≤${k}) = ${poissonCDF(lambda,k).toFixed(5)}`;}},
+  {name:'Chi-Square CDF / p-value',desc:'Cumulative probability and upper-tail p-value for χ²(k)',
+   fields:[{id:'chi2',label:'χ² statistic',def:'10.5'},{id:'df',label:'df (k)',def:'5'}],
+   fn:(p)=>{const x=parseFloat(p.chi2),k=parseFloat(p.df);const c=chiSqCDF(x,k);return `CDF = ${c.toFixed(4)}   p-value = ${(1-c).toFixed(4)}`;}},
+  {name:"Student's t CDF / p-value",desc:'Cumulative probability and two-sided p-value for t(ν)',
+   fields:[{id:'t',label:'t statistic',def:'2.1'},{id:'df',label:'df (ν)',def:'15'}],
+   fn:(p)=>{const t=parseFloat(p.t),nu=parseFloat(p.df);const c=tCDF(t,nu);const p2=2*(1-tCDF(Math.abs(t),nu));return `P(T≤${t}) = ${c.toFixed(4)}   two-sided p = ${p2.toFixed(4)}`;}},
+  {name:'Correlation Significance Test',desc:'t-test for a sample Pearson correlation r',
+   fields:[{id:'r',label:'r',def:'0.4'},{id:'n',label:'n',def:'25'}],
+   fn:(p)=>{const r=parseFloat(p.r),n=parseFloat(p.n);if(Math.abs(r)>=1)throw new Error('r must be between -1 and 1');const t=r*Math.sqrt(n-2)/Math.sqrt(1-r*r);const pv=2*(1-tCDF(Math.abs(t),n-2));return `t = ${t.toFixed(3)}  (df=${n-2})   two-sided p = ${pv.toFixed(4)}`;}},
+  {name:"Bayes' Theorem",desc:'Posterior probability P(A|B) from prior and likelihoods',
+   fields:[{id:'pa',label:'P(A) prior',def:'0.01'},{id:'pba',label:'P(B|A)',def:'0.9'},{id:'pbna',label:'P(B|¬A)',def:'0.05'}],
+   fn:(p)=>{const pA=parseFloat(p.pa),pBA=parseFloat(p.pba),pBnA=parseFloat(p.pbna);const pB=pA*pBA+(1-pA)*pBnA;if(pB===0)throw new Error('P(B) evaluates to 0');return `P(A|B) = ${(pA*pBA/pB).toFixed(4)}   (P(B) = ${pB.toFixed(4)})`;}},
+  {name:'Shannon Entropy',desc:'Information entropy of a discrete probability distribution',
+   fields:[{id:'probs',label:'probabilities (comma-sep)',def:'0.5,0.5'}],
+   fn:(p)=>{const parts=String(p.probs).split(',').map(s=>parseFloat(s.trim())).filter(v=>!isNaN(v)&&v>0);if(!parts.length)throw new Error('enter at least one probability');const sum=parts.reduce((a,b)=>a+b,0);const norm=parts.map(v=>v/sum);const H=-norm.reduce((a,v)=>a+v*Math.log2(v),0);return `H = ${H.toFixed(4)} bits`+(Math.abs(sum-1)>0.01?`  (normalized from sum ${sum.toFixed(3)})`:'');}},
 ];
+
 
 
 function calcSearch(q){

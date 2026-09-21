@@ -188,6 +188,76 @@ body.day-mode .cartouche-corner path,body.day-mode .cartouche-corner circle{opac
 }
 .login-tab:hover:not(.active){color:var(--gold-d);}
 
+/* ══════════════════════════════════════════
+   WAX SEALS — the shared-access signature piece
+   Each seal is a real SVG: a turbulence-displaced circle for the organic
+   wax-blob edge, a radial gradient for depth, a blurred highlight ellipse
+   for gloss, a dashed inner ring, and an embossed emblem — no flat CSS
+   circles pretending to be wax.
+   ══════════════════════════════════════════ */
+.seal-row{display:flex;justify-content:center;gap:1rem;margin:1.1rem 0 .4rem;flex-wrap:wrap;}
+.wax-seal{
+  position:relative;width:78px;height:78px;border:none;background:none;cursor:pointer;padding:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:.35rem;
+  transition:transform .18s ease,filter .3s ease;
+}
+.wax-seal .seal-svg{
+  width:78px;height:78px;
+  filter:drop-shadow(0 4px 5px rgba(0,0,0,.5)) drop-shadow(0 1px 0 rgba(0,0,0,.3));
+  transition:filter .25s ease;
+}
+.wax-seal:hover{transform:translateY(-2px) scale(1.045);}
+.wax-seal:active{transform:translateY(1px) scale(.98);}
+.wax-seal.selected .seal-svg{filter:drop-shadow(0 4px 5px rgba(0,0,0,.5)) drop-shadow(0 0 0 3px var(--bg)) drop-shadow(0 0 0 5px currentColor) brightness(1.08);}
+.wax-seal.admin{color:var(--gold);}
+.wax-seal.viewer{color:#5f9b86;}
+.wax-seal.contributor{color:var(--gold);}
+.wax-seal.diary{color:#7a1f2b;}
+.seal-label{
+  font-family:var(--fm);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);pointer-events:none;
+}
+/* Crack overlay — a fracture pattern that reveals on a successful entry */
+.seal-crack{
+  position:absolute;top:0;left:0;width:78px;height:78px;border-radius:50%;pointer-events:none;opacity:0;
+  background:
+    linear-gradient(115deg,transparent 47%,var(--bg) 48.5%,transparent 50%),
+    linear-gradient(25deg,transparent 60%,var(--bg) 61.5%,transparent 64%),
+    linear-gradient(200deg,transparent 70%,var(--bg) 71.5%,transparent 74%);
+  clip-path:circle(0% at 50% 50%);
+}
+.wax-seal.cracking .seal-svg{animation:seal-shatter .55s ease forwards;}
+.wax-seal.cracking .seal-crack{opacity:1;clip-path:circle(72% at 50% 50%);transition:clip-path .5s cubic-bezier(.2,.8,.3,1);}
+@keyframes seal-shatter{
+  0%{transform:scale(1);}
+  30%{transform:scale(1.12) rotate(-2deg);}
+  55%{transform:scale(.96) rotate(1.5deg);}
+  100%{transform:scale(1.02) rotate(0);filter:brightness(1.2);}
+}
+.wax-seal:disabled{cursor:default;}
+.wax-seal:disabled .seal-svg{opacity:.5;filter:grayscale(.5) drop-shadow(0 3px 3px rgba(0,0,0,.35));}
+.role-banner{
+  position:sticky;top:0;z-index:40;text-align:center;padding:.55rem 1rem;
+  font-family:var(--fm);font-size:.66rem;letter-spacing:.08em;
+  background:var(--surface);color:var(--gold-l);border-bottom:1px solid var(--gold-d);
+}
+#syncStatusBtn.sync-ok{color:#5f9b86;border-color:#5f9b86;}
+#syncStatusBtn.sync-warn{color:var(--gold-l);border-color:var(--gold);}
+#syncStatusBtn.sync-error{color:#c26565;border-color:#7a1f2b;}
+#syncStatusBtn.sync-busy{opacity:.6;}
+.sharing-modal-box{max-width:520px;}
+.seal-field-row{display:flex;align-items:center;gap:1rem;margin-bottom:1.1rem;}
+.mini-seal{
+  flex-shrink:0;width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 32% 28%, var(--seal-hl,#fff3) 0%, transparent 45%), var(--seal-color,var(--gold));
+  box-shadow:0 2px 0 rgba(0,0,0,.4), inset 0 1px 2px rgba(255,255,255,.25), inset 0 -2px 3px rgba(0,0,0,.35);
+}
+.mini-seal .seal-emblem{width:18px;height:18px;stroke:rgba(0,0,0,.55);fill:none;}
+.mini-seal.viewer{--seal-color:#5f9b86;--seal-hl:rgba(255,255,255,.35);}
+.mini-seal.contributor{--seal-color:var(--gold);--seal-hl:rgba(255,240,210,.4);}
+.mini-seal.diary{--seal-color:#7a1f2b;--seal-hl:rgba(255,180,180,.3);}
+
 .login-form-wrap{padding:1.9rem;}
 .form-section{display:none;}
 .form-section.active{display:block;}
@@ -1273,23 +1343,11 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
     <svg class="cartouche-corner br" viewBox="0 0 60 60" fill="none"><path d="M58 30 Q58 58 30 58" stroke="rgba(196,136,47,.4)" stroke-width="1"/><path d="M58 42 Q58 42 46 42" stroke="rgba(196,136,47,.3)" stroke-width=".7"/><path d="M42 58 Q42 58 42 46" stroke="rgba(196,136,47,.3)" stroke-width=".7"/><circle cx="58" cy="30" r="1.6" fill="rgba(196,136,47,.5)"/><circle cx="30" cy="58" r="1.6" fill="rgba(196,136,47,.5)"/></svg>
 
     <div class="login-tabs">
-      <button class="login-tab active" data-target="pwSection">◈ By Cipher</button>
+      <button class="login-tab active" data-target="sealSection">◈ Wax Seal</button>
       <button class="login-tab" data-target="googleSection">◈ By Google</button>
     </div>
 
     <div class="login-form-wrap">
-      <!-- Password-only form -->
-      <div class="form-section active" id="pwSection">
-        <div class="login-group">
-          <label class="login-label">Cipher Key</label>
-          <input class="login-input" id="pwInput" type="password" placeholder="Enter your cipher key" autocomplete="current-password">
-          <div class="hint-row" id="hintToggle"><span>◎</span> Reveal cipher hint</div>
-          <div class="hint-reveal" id="hintReveal">birthday - ddmmyyyy</div>
-        </div>
-        <div class="login-error" id="pwError"></div>
-        <button class="enter-btn" id="pwSubmit">Unseal the Vault</button>
-      </div>
-
       <!-- Google admin-bypass form -->
       <div class="form-section" id="googleSection">
         <div class="google-intro">Recognised admins skip the cipher key entirely once this device has been linked.</div>
@@ -1297,6 +1355,123 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
         <div class="google-unconfigured" id="googleUnconfigured" style="display:none">◈ Google sign-in hasn't been configured for this vault yet.</div>
         <div class="google-status" id="googleStatus" style="display:none"></div>
         <button class="enter-btn" id="googleEnterBtn" style="display:none">Enter — Verified Admin</button>
+      </div>
+
+      <!-- Wax Seal form — covers all four ways in, admin included -->
+      <div class="form-section active" id="sealSection">
+        <div class="google-intro">Four seals, four trusts. Choose one, then press it with your password.</div>
+        <div class="seal-row">
+
+          <button type="button" class="wax-seal admin" data-role="admin" aria-label="Admin seal">
+            <svg viewBox="0 0 120 120" class="seal-svg">
+              <defs>
+                <filter id="waxEdge-admin" x="-30%" y="-30%" width="160%" height="160%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="7" result="n"/>
+                  <feDisplacementMap in="SourceGraphic" in2="n" scale="8"/>
+                </filter>
+                <filter id="blur-admin"><feGaussianBlur stdDeviation="3.2"/></filter>
+                <radialGradient id="waxGrad-admin" cx="35%" cy="28%" r="78%">
+                  <stop offset="0%" stop-color="#e8c67a"/><stop offset="50%" stop-color="#c4882f"/><stop offset="100%" stop-color="#7a5316"/>
+                </radialGradient>
+              </defs>
+              <circle cx="60" cy="60" r="46" fill="url(#waxGrad-admin)" filter="url(#waxEdge-admin)"/>
+              <circle cx="60" cy="60" r="37" fill="none" stroke="rgba(0,0,0,.28)" stroke-width="1" stroke-dasharray="1.5,3.2" filter="url(#waxEdge-admin)"/>
+              <ellipse cx="44" cy="38" rx="17" ry="9" fill="#fff" opacity=".32" filter="url(#blur-admin)" transform="rotate(-25 44 38)"/>
+              <g stroke="rgba(0,0,0,.6)" stroke-width="2.5" fill="none" transform="translate(60,60)">
+                <path d="M0,-16 L4,-4 L16,0 L4,4 L0,16 L-4,4 L-16,0 L-4,-4 Z"/>
+              </g>
+            </svg>
+            <div class="seal-crack"></div>
+            <span class="seal-label">Admin</span>
+          </button>
+
+          <button type="button" class="wax-seal viewer" data-role="viewer" aria-label="Viewer seal">
+            <svg viewBox="0 0 120 120" class="seal-svg">
+              <defs>
+                <filter id="waxEdge-viewer" x="-30%" y="-30%" width="160%" height="160%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="3" result="n"/>
+                  <feDisplacementMap in="SourceGraphic" in2="n" scale="8"/>
+                </filter>
+                <filter id="blur-viewer"><feGaussianBlur stdDeviation="3.2"/></filter>
+                <radialGradient id="waxGrad-viewer" cx="35%" cy="28%" r="78%">
+                  <stop offset="0%" stop-color="#a8d9c4"/><stop offset="50%" stop-color="#5f9b86"/><stop offset="100%" stop-color="#2c4d41"/>
+                </radialGradient>
+              </defs>
+              <circle cx="60" cy="60" r="46" fill="url(#waxGrad-viewer)" filter="url(#waxEdge-viewer)"/>
+              <circle cx="60" cy="60" r="37" fill="none" stroke="rgba(0,0,0,.28)" stroke-width="1" stroke-dasharray="1.5,3.2" filter="url(#waxEdge-viewer)"/>
+              <ellipse cx="44" cy="38" rx="17" ry="9" fill="#fff" opacity=".32" filter="url(#blur-viewer)" transform="rotate(-25 44 38)"/>
+              <g stroke="rgba(0,0,0,.6)" stroke-width="2.5" fill="none" transform="translate(60,60)">
+                <circle r="3" fill="rgba(0,0,0,.6)"/><path d="M0,-16 L0,16 M-16,0 L16,0"/>
+              </g>
+            </svg>
+            <div class="seal-crack"></div>
+            <span class="seal-label">View</span>
+          </button>
+
+          <button type="button" class="wax-seal contributor" data-role="contributor" aria-label="Contributor seal">
+            <svg viewBox="0 0 120 120" class="seal-svg">
+              <defs>
+                <filter id="waxEdge-contributor" x="-30%" y="-30%" width="160%" height="160%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="11" result="n"/>
+                  <feDisplacementMap in="SourceGraphic" in2="n" scale="8"/>
+                </filter>
+                <filter id="blur-contributor"><feGaussianBlur stdDeviation="3.2"/></filter>
+                <radialGradient id="waxGrad-contributor" cx="35%" cy="28%" r="78%">
+                  <stop offset="0%" stop-color="#e8c67a"/><stop offset="50%" stop-color="#c4882f"/><stop offset="100%" stop-color="#7a5316"/>
+                </radialGradient>
+              </defs>
+              <circle cx="60" cy="60" r="46" fill="url(#waxGrad-contributor)" filter="url(#waxEdge-contributor)"/>
+              <circle cx="60" cy="60" r="37" fill="none" stroke="rgba(0,0,0,.28)" stroke-width="1" stroke-dasharray="1.5,3.2" filter="url(#waxEdge-contributor)"/>
+              <ellipse cx="44" cy="38" rx="17" ry="9" fill="#fff" opacity=".32" filter="url(#blur-contributor)" transform="rotate(-25 44 38)"/>
+              <g stroke="rgba(0,0,0,.6)" stroke-width="2.5" fill="none" transform="translate(60,60)">
+                <path d="M-13,13 L10,-10 L15,-5 L-8,18 L-15,15 Z"/>
+              </g>
+            </svg>
+            <div class="seal-crack"></div>
+            <span class="seal-label">Contribute</span>
+          </button>
+
+          <button type="button" class="wax-seal diary" data-role="diary_reader" aria-label="Diary seal">
+            <svg viewBox="0 0 120 120" class="seal-svg">
+              <defs>
+                <filter id="waxEdge-diary" x="-30%" y="-30%" width="160%" height="160%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="19" result="n"/>
+                  <feDisplacementMap in="SourceGraphic" in2="n" scale="8"/>
+                </filter>
+                <filter id="blur-diary"><feGaussianBlur stdDeviation="3.2"/></filter>
+                <radialGradient id="waxGrad-diary" cx="35%" cy="28%" r="78%">
+                  <stop offset="0%" stop-color="#c26575"/><stop offset="50%" stop-color="#7a1f2b"/><stop offset="100%" stop-color="#3d0f15"/>
+                </radialGradient>
+              </defs>
+              <circle cx="60" cy="60" r="46" fill="url(#waxGrad-diary)" filter="url(#waxEdge-diary)"/>
+              <circle cx="60" cy="60" r="37" fill="none" stroke="rgba(0,0,0,.28)" stroke-width="1" stroke-dasharray="1.5,3.2" filter="url(#waxEdge-diary)"/>
+              <ellipse cx="44" cy="38" rx="17" ry="9" fill="#fff" opacity=".32" filter="url(#blur-diary)" transform="rotate(-25 44 38)"/>
+              <g stroke="rgba(0,0,0,.6)" stroke-width="2.5" fill="none" transform="translate(60,60)">
+                <path d="M-13,-14 h26 v26 l-13,7 l-13,-7 Z"/>
+              </g>
+            </svg>
+            <div class="seal-crack"></div>
+            <span class="seal-label">Diary</span>
+          </button>
+
+        </div>
+        <div class="hint-row" id="hintToggle" style="display:none"><span>◎</span> Reveal cipher hint</div>
+        <div class="hint-reveal" id="hintReveal">birthday - ddmmyyyy</div>
+
+        <!-- Shown only for the 3 non-admin seals, before a real session exists.
+             Signing in here just establishes who you are — the seal's
+             password (below, right after) is still what actually decides
+             what you can see or do. -->
+        <div id="sealGoogleGate" style="display:none">
+          <div class="google-intro">One more step first — sign in so this device is recognized consistently (this is what lets "edit only your own entries" work for contributors).</div>
+          <div id="sealGoogleSignInBtn" class="google-btn-wrap"></div>
+        </div>
+
+        <div class="login-group" id="sealPwGroup">
+          <input class="login-input" id="sealPwInput" type="password" placeholder="Press a seal, then enter its password" autocomplete="off" disabled>
+        </div>
+        <div class="login-error" id="sealError"></div>
+        <button class="enter-btn" id="sealSubmit" disabled>Break the Seal</button>
       </div>
 
       <div class="login-note">◈ The cipher key both unlocks and decrypts this archive.<br>Nothing inside it can be read without it — not even from this device.</div>
@@ -1331,6 +1506,8 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
     <div class="hdr-right">
       <button class="hbtn primary" id="addDocBtn" onclick="openUploadModal()">+ Document</button>
       <button class="hbtn primary" id="addTerrBtn" onclick="openFolderModal()">+ Territory</button>
+      <button class="hbtn" id="setupSharingBtn" style="display:none" onclick="openModal('sharingModal')" title="Issue or change the 3 shared wax-seal passwords">◈ Setup Sharing</button>
+      <button class="hbtn" id="syncStatusBtn" style="display:none" onclick="openSyncStatusModal()" title="Sync status — tap for details or to sync now">◈ Sync</button>
       <button class="hbtn primary" id="addBookBtn" style="display:none" onclick="openBookModal()">+ Add a Book</button>
       <button class="hbtn primary" id="addMovieBtn" style="display:none" onclick="openMovieModal()">+ Add a Movie</button>
       <button class="hbtn primary" id="addAnimeBtn" style="display:none" onclick="openAnimeModal()">+ Add an Anime</button>
@@ -1899,6 +2076,79 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
 </div>
 
 <!-- ══════════════════════════════════════════
+     SETUP SHARING MODAL (admin-only — issues/changes the 3 wax seals)
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="sharingModal">
+  <div class="modal-box sharing-modal-box">
+    <div class="modal-hdr">
+      <div>
+        <div class="modal-title">Issue the Wax Seals</div>
+        <div class="modal-sub">Three passwords, three trusts — set or change any of them here</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('sharingModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="sharingForm" onsubmit="return false">
+
+        <div class="seal-field-row">
+          <div class="mini-seal viewer"><svg viewBox="0 0 100 100" class="seal-emblem"><circle cx="50" cy="50" r="3"/><path d="M50 20 L50 80 M20 50 L80 50" stroke-width="2" fill="none"/></svg></div>
+          <div class="fgrp" style="flex:1">
+            <label class="flbl">Viewer Seal — read-only, everything except diary</label>
+            <input class="fin" id="sharePwViewer" type="text" placeholder="Choose a password" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="seal-field-row">
+          <div class="mini-seal contributor"><svg viewBox="0 0 100 100" class="seal-emblem"><path d="M30 70 L65 35 L72 42 L37 77 L28 79 Z" stroke-width="2" fill="none"/></svg></div>
+          <div class="fgrp" style="flex:1">
+            <label class="flbl">Contributor Seal — can add entries, edit only their own</label>
+            <input class="fin" id="sharePwContributor" type="text" placeholder="Choose a password" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="seal-field-row">
+          <div class="mini-seal diary"><svg viewBox="0 0 100 100" class="seal-emblem"><path d="M30 25 h40 v50 l-20 10 l-20 -10 Z" stroke-width="2" fill="none"/></svg></div>
+          <div class="fgrp" style="flex:1">
+            <label class="flbl">Diary Seal — read-only, diary only</label>
+            <input class="fin" id="sharePwDiary" type="text" placeholder="Choose a password" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="f-hint" style="margin-top:.8rem">Leave a field blank to keep that seal's current password unchanged. Anyone already holding a seal's old password loses access the moment you reissue it here.</div>
+        <div class="login-error" id="sharingError"></div>
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-g" onclick="closeModal('sharingModal')">Cancel</button>
+      <button class="btn btn-p" id="sharingSubmitBtn" onclick="submitSetupSharing()">Press the Seals</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SYNC STATUS MODAL — plain-language, tappable, works identically on
+     phone or desktop. No console, no dev tools, no technical steps.
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="syncStatusModal">
+  <div class="modal-box">
+    <div class="modal-hdr">
+      <div>
+        <div class="modal-title">Sync Status</div>
+        <div class="modal-sub" id="syncStatusSub">—</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('syncStatusModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="syncStatusBody" style="font-family:var(--fm);font-size:.85rem;line-height:1.7;"></div>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-g" onclick="closeModal('syncStatusModal')">Close</button>
+      <button class="btn btn-p" id="syncNowBtn" onclick="manualResync()">Sync Now</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
      ADD / EDIT BOOK MODAL
 ══════════════════════════════════════════ -->
 <div class="modal-overlay" id="bookModal">
@@ -2387,7 +2637,20 @@ const R2_WORKER_URL = 'https://vault-storage.ayanchakrabortyall.workers.dev';
 // The cipher key itself is never stored — only a salted hash, used to verify
 // an attempt before the same key is used to derive the encryption used below.
 const PW_SALT = 'cv_vault_v2_9f24a7';
-const PW_HASH = '081939cd6c0e4cf8941e61e9d5ab4a7df3f5f468a708596fd5304aebe34c73c3';
+const PW_HASH = '081939cd6c0e4cf8941e61e9d5ab4a7df3f5f468a708596fd5304aebe34c73c3'; // NOT the live login credential anymore — this stays frozen forever as the required user_hash tag on database rows (part of an old compound key), separate from LOGIN_HASH below.
+// The actual credential checked at login — fetched from Supabase so
+// rotateAdminCipherKey() can update it live, with zero need to ever touch
+// this file again. Falls back to the frozen PW_HASH above if the fetch
+// fails (e.g. mid-outage), so a shaky connection can never fully lock you
+// out — worst case it just falls back to whatever your MOST RECENTLY
+// uploaded file's original password was.
+let LOGIN_HASH = PW_HASH;
+async function loadLoginHash() {
+  try {
+    const { data, error } = await vaultClient.from('vault_config').select('value').eq('key', 'login_hash').maybeSingle();
+    if (!error && data?.value) LOGIN_HASH = data.value;
+  } catch (e) { console.warn('Could not fetch live login hash — using the fallback baked into this file.', e); }
+}
 
 // Secondary section lock — protects Diary & Ideas tab.
 // This is a SHA-256 of (SECTION_SALT + sectionPassword) — password not stored in plain text.
@@ -2404,12 +2667,56 @@ const SECTION_HASH = '3a755b826630d13bd7c2e9f08bd099f703ea062e2f5b50eb3bd30db347
 // key and passphrase (see the therapist view further down).
 // ══════════════════════════════════════════════
 const VIEW_ONLY = new URLSearchParams(location.search).get('view') === 'friend';
+
+// ══════════════════════════════════════════════
+// SHARED-ACCESS ROLES
+// ROLE is null for the admin's own cipher-key/Google entry (unchanged,
+// full access, exactly as before). It's set to one of the three shared
+// roles only after a successful Wax Seal entry via claimSharedRole().
+let ROLE = null; // 'viewer' | 'contributor' | 'diary_reader' | null (=admin)
+const canWriteVault  = () => ROLE === null || ROLE === 'contributor';
+const canWriteDiary  = () => ROLE === null; // admin only, always — no exceptions
+const canSeeVault    = () => ROLE === null || ROLE === 'viewer' || ROLE === 'contributor';
+const canSeeDiary    = () => ROLE === null || ROLE === 'diary_reader';
+// True only for a row this exact browser/visitor created themselves.
+// Admin (ROLE === null) is handled separately by RLS's "admin full modify"
+// policy server-side, so this check is only ever consulted for contributors.
+function ownsEntry(entryId) {
+  return ROLE === 'contributor' && sbUserId && itemOwners[entryId] === sbUserId;
+}
+// Same admin-or-own-it rule as gateDetailButtons, usable inline in any
+// template string — covers Files/Territories too, not just the shared
+// book/movie/anime detail modal.
+function canModifyItem(id) {
+  return ROLE === null || ownsEntry(id);
+}
+const itemOwners = Object.create(null); // in-memory id -> creator's user_id, filled in by sbPullAllItems
+// Shared by every detail view (books/movies/anime) — admin always gets
+// Edit/Delete; a contributor only on entries THEY created; viewer/diary
+// roles never do.
+function gateDetailButtons(id) {
+  const allowed = ROLE === null || ownsEntry(id);
+  document.getElementById('detailEditBtn').style.display = allowed ? '' : 'none';
+  document.getElementById('detailDeleteBtn').style.display = allowed ? '' : 'none';
+}
 // TODO: paste your real auth.uid() here (Supabase → Authentication →
 // Users → ayanchakrabortyall@gmail.com → UID column) — same value
 // used in the migration_step3_backfill.sql script.
 const OWNER_USER_ID = 'PASTE-YOUR-UUID-HERE';
 
-// Supabase client (sb) is provided by shared.js loaded above.
+// Supabase client (vaultClient) is provided by shared.js loaded above — used
+// site-wide (comments, etc). PERSONAL needs its own SEPARATE session for
+// vault admin auth: signing in here previously reused that same shared
+// client, meaning the Admin seal's Google sign-in was silently signing you
+// into the whole site too. This isolated client (vaultClient, used for
+// every vault-related call below instead of the shared vaultClient) keeps its
+// session under a different local storage key, so vault admin auth stays
+// fully independent of whatever's signed in elsewhere on the site — and
+// vice versa. Built from vaultClient's own config, so it always points at the same
+// project/key without needing them hardcoded a second time here.
+const vaultClient = supabase.createClient(sb.supabaseUrl, sb.supabaseKey, {
+  auth: { storageKey: 'cv_vault_auth', persistSession: true, autoRefreshToken: true }
+});
 // PERSONAL uses the vault_sync table for cross-device sync.
 
 // Google OAuth Client ID — enables the admin bypass tab.
@@ -2471,6 +2778,12 @@ if (new URLSearchParams(location.search).has('debug')) {
 // Reading raw storage or the page source reveals ciphertext only.
 // ══════════════════════════════════════════════
 let cryptoKey = null; // CryptoKey, set after a successful unlock
+// Captured alongside cryptoKey but never overwritten by
+// loadOrDeriveWorkingKey's swap — this is what makes migration resumable.
+// Not-yet-migrated content is still under THIS key even after cryptoKey
+// itself has moved on to the shared VK; migrateToShareableKeys() needs
+// both at once to correctly finish a partial/interrupted run.
+let adminBaseKey = null;
 
 async function sha256Hex(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
@@ -2498,6 +2811,7 @@ async function deriveKey(password) {
 // touch books/movies/anime, and vice versa for anyone with only the main
 // password — not just a UI restriction.
 let diaryKey = null;
+let adminDiaryBaseKey = null; // same idea as adminBaseKey, for the diary section's own password
 async function deriveDiaryKey(password) {
   const baseKey = await crypto.subtle.importKey(
     'raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']
@@ -2522,6 +2836,86 @@ function b64ToBuf(b64) {
   const bytes = new Uint8Array(bin.length);
   for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
   return bytes.buffer;
+}
+
+// ══════════════════════════════════════════════
+// SHARED-ACCESS KEY WRAPPING (the "Wax Seal" system)
+// Lets a second, third, fourth password unlock the SAME underlying
+// vault content — without ever weakening the original key. A single
+// random 256-bit key is generated once (VK / DK for diary), then
+// sealed multiple times: once per password, each seal independently
+// crackable only by its own password. Breaking one seal never
+// reveals, weakens, or helps break any other seal.
+//   wrap:   raw key bytes -> AES-GCM-encrypted "sealed wax" blob
+//   unwrap: sealed blob + correct password -> raw key bytes back
+// PBKDF2 at 300,000 iterations (SHA-256) per seal — deliberately
+// expensive per guess, on top of the server-side rate limiting on
+// claim_vault_role, so brute-forcing a seal is not remotely
+// practical even with the ciphertext in hand.
+async function wrapKeyWithPassword(rawKeyBytes, password, saltStr) {
+  const enc = new TextEncoder();
+  const baseKey = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
+  const wrapKey = await crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt: enc.encode(saltStr), iterations: 300000, hash: 'SHA-256' },
+    baseKey, { name: 'AES-GCM', length: 256 }, false, ['encrypt']
+  );
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const wrapped = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, wrapKey, rawKeyBytes);
+  return { iv: bufToB64(iv), wrapped: bufToB64(wrapped) };
+}
+async function unwrapKeyWithPassword(ivB64, wrappedB64, password, saltStr) {
+  const enc = new TextEncoder();
+  const baseKey = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
+  const wrapKey = await crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt: enc.encode(saltStr), iterations: 300000, hash: 'SHA-256' },
+    baseKey, { name: 'AES-GCM', length: 256 }, false, ['decrypt']
+  );
+  return await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64ToBuf(ivB64) }, wrapKey, b64ToBuf(wrappedB64));
+  // throws (caught by caller) if the password is wrong — AES-GCM auth tag fails
+}
+// Generates a brand-new random 256-bit AES-GCM key, extractable (needed
+// so it CAN be wrapped under multiple passwords) — unlike deriveKey()
+// above, which is deliberately non-extractable for the admin's own key.
+async function generateSharedKey() {
+  return crypto.subtle.generateKey({ name: 'AES-GCM', length: 256 }, true, ['encrypt', 'decrypt']);
+}
+
+// After migration, real content is encrypted with VK/DK, not the raw
+// output of deriveKey()/deriveDiaryKey() directly anymore — admin's
+// password now unlocks those via their own wrap, same mechanism as the
+// 3 shared roles. This resolves that wrap into a usable key, in order:
+//   1. a local cache (instant, fully offline, once it's been fetched once)
+//   2. Supabase (needs an active session — e.g. signed in via Google)
+//   3. falls back to the raw base key itself (pre-migration, or first-ever
+//      unlock on a brand new device with neither cache nor a session yet)
+async function loadOrDeriveWorkingKey(baseKey, cacheName, wrapRole) {
+  const cached = localStorage.getItem(cacheName);
+  if (cached) {
+    try {
+      const { iv, wrapped } = JSON.parse(cached);
+      const rawBytes = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64ToBuf(iv) }, baseKey, b64ToBuf(wrapped));
+      return await crypto.subtle.importKey('raw', rawBytes, 'AES-GCM', true, ['encrypt', 'decrypt']); // extractable — Setup Sharing can re-wrap this later, in any session
+    } catch (e) { /* stale/corrupt cache — fall through and try the network */ }
+  }
+  if (vaultClient) {
+    try {
+      // No session needed to read this — the wrap is a meaningless
+      // encrypted blob without the correct password to unwrap it, so the
+      // real protection is the encryption itself, not gatekeeping who can
+      // fetch the ciphertext. This also means a plain cipher-key unlock
+      // (no Google) works reliably without needing "Allow anonymous
+      // sign-ins" enabled project-wide, which would affect far more than
+      // just this page.
+      const { data, error } = await vaultClient.from('vault_key_wraps').select('wrapped_key').eq('role', wrapRole).maybeSingle();
+      if (!error && data) {
+        const { iv, wrapped } = JSON.parse(data.wrapped_key);
+        const rawBytes = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64ToBuf(iv) }, baseKey, b64ToBuf(wrapped));
+        localStorage.setItem(cacheName, data.wrapped_key); // cache for next time — offline-capable from now on
+        return await crypto.subtle.importKey('raw', rawBytes, 'AES-GCM', true, ['encrypt', 'decrypt']);
+      }
+    } catch (e) { console.warn('Could not fetch shareable-key wrap this session — using the base key directly.', e); }
+  }
+  return baseKey; // not migrated yet, or unreachable with nothing cached — pre-migration behavior, unchanged
 }
 
 async function encryptRecord(obj, key = cryptoKey) {
@@ -2705,7 +3099,7 @@ function clearPendingDelete(id) {
 // Bounds a single Supabase call so a slow, sleeping, or unreachable project
 // fails fast instead of hanging — the underlying fetch has no timeout of
 // its own, so without this an unlucky network condition can leave an
-// "await sb.from(...)" pending for a very long time with nothing to show
+// "await vaultClient.from(...)" pending for a very long time with nothing to show
 // for it. 8s comfortably covers normal latency, including a cold-started
 // free-tier project.
 async function withTimeout(builder, ms = 8000) {
@@ -2779,16 +3173,31 @@ async function sbUploadChunked(id, iv, ct) {
     // over from a previous, abandoned attempt are now meaningless (they
     // carry an old token and will never be looked up again). Clear them so
     // they don't just sit there forever.
-    const { error: delErr } = await withTimeout(sb.from('vault_sync')
+    const { error: delErr } = await withTimeout(vaultClient.from('vault_sync')
       .delete().eq('user_id', sbUserId).like('item_id', `${id}::chunk::%`), 30000);
     if (delErr) throw delErr;
+
+    // A stuck upload from before this resumable rewrite (or any interrupted
+    // attempt) can leave the PLAIN item_id row holding the entire ciphertext
+    // directly — sometimes tens of MB in one column — instead of the small
+    // chunk-header marker it's supposed to have. Left in place, the header
+    // write at the end of this function would have to overwrite that huge
+    // value via upsert (UPDATE), and in practice that's blown straight
+    // through the server's statement_timeout and failed outright — verified
+    // via auditChunkedFiles(), which hit the same wall just trying to SELECT
+    // it back. A delete-by-primary-key doesn't need to read or transfer that
+    // value, only locate the row, so it stays fast regardless of size. This
+    // clears the way for the header write to land as a clean INSERT instead.
+    const { error: plainDelErr } = await withTimeout(vaultClient.from('vault_sync')
+      .delete().eq('user_id', sbUserId).eq('item_id', id), 30000);
+    if (plainDelErr) throw plainDelErr;
   }
 
   // Find out which chunks under THIS token are already confirmed on the
   // server, so a resumed attempt only uploads what's missing.
   const prefix = `${id}::chunk::${token}::`;
   const { data: existingRows, error: existErr } = await withTimeout(
-    sb.from('vault_sync').select('item_id').eq('user_id', sbUserId).like('item_id', `${prefix}%`), 20000);
+    vaultClient.from('vault_sync').select('item_id').eq('user_id', sbUserId).like('item_id', `${prefix}%`), 20000);
   if (existErr) throw existErr;
   const already = new Set((existingRows || []).map(r => Number(r.item_id.slice(prefix.length))));
 
@@ -2799,14 +3208,14 @@ async function sbUploadChunked(id, iv, ct) {
     const batch = missing.slice(i, i + CHUNK_UPLOAD_CONCURRENCY);
     await Promise.all(batch.map(async idx => {
       const slice = ct.slice(idx * CT_CHUNK_SIZE, (idx + 1) * CT_CHUNK_SIZE);
-      const { error } = await withTimeout(sb.from('vault_sync').upsert({
+      const { error } = await withTimeout(vaultClient.from('vault_sync').upsert({
         item_id: `${prefix}${idx}`, user_id: sbUserId, user_hash: PW_HASH, iv, ct: slice, updated_at: now,
       }), 60000);
       if (error) throw error;
     }));
   }
 
-  const { error: hdrErr } = await withTimeout(sb.from('vault_sync').upsert({
+  const { error: hdrErr } = await withTimeout(vaultClient.from('vault_sync').upsert({
     item_id: id, user_id: sbUserId, user_hash: PW_HASH, iv, ct: `${CHUNK_MARKER}${token}:${n}`, updated_at: now,
   }), 60000);
   if (hdrErr) throw hdrErr;
@@ -2830,7 +3239,7 @@ async function sbFetchChunked(id, token, n) {
     for (let j = i; j < Math.min(i + CHUNK_UPLOAD_CONCURRENCY, n); j++) batch.push(j);
     await Promise.all(batch.map(async idx => {
       const { data, error } = await withTimeout(
-        sb.from('vault_sync').select('ct').eq('item_id', `${id}::chunk::${token}::${idx}`).eq('user_id', sbUserId).maybeSingle(),
+        vaultClient.from('vault_sync').select('ct').eq('item_id', `${id}::chunk::${token}::${idx}`).maybeSingle(), // reading, not uploading — let RLS decide, same as the manifest fetch
         60000);
       if (error) throw error;
       if (!data) throw new Error(`Missing chunk ${idx}/${n} for ${id}`);
@@ -2840,8 +3249,125 @@ async function sbFetchChunked(id, token, n) {
   return parts.join('');
 }
 
+// ══════════════════════════════════════════════
+// STUCK-CHUNK AUDIT & REPAIR
+// Console-callable, same convention as verifyMigration(): auditChunkedFiles()
+//
+// The chunking rewrite above (token-based, resumable, header written last)
+// fixes uploads going forward, but it can't retroactively fix items that
+// got stuck under the OLD code — a large file whose upload was interrupted
+// (screen lock, backgrounding, dropped signal) partway through the old
+// "delete everything and restart from i=0" loop. If the header row from an
+// earlier, more-complete attempt was already sitting on the server, or a
+// half-finished set of chunk rows was left behind, the item can end up
+// looking fully synced from its origin device (it's just reading its own
+// local copy — that was never in doubt) while every OTHER device that
+// tries to pull it hits "Missing chunk N/M", fails silently, and retries
+// forever without ever surfacing to you as anything more than a console
+// warning per sync pass.
+//
+// This walks every item that's chunked LOCALLY (ct.length > CT_CHUNK_SIZE
+// in IndexedDB — the same test sbUploadItem/sbPushAllItems use to decide
+// the chunked path) and asks the server directly: does the header's chunk
+// count actually match how many chunk rows exist? Run it from whichever
+// device has the good, complete local copies (almost always the one the
+// files were originally uploaded from).
+//
+// Read-only by default — auditChunkedFiles() only reports. Pass `true` to
+// also queue every broken item for re-push and push immediately:
+// auditChunkedFiles(true)
+// sbUploadChunked always starts a broken/stale id with a fresh token and
+// clears any old chunk rows for it first (see above), so this fully
+// replaces whatever incomplete state is on the server — nothing partial
+// is left mixed in. Other devices will pick up the repaired copy on their
+// next unlock/sync.
+async function auditChunkedFiles(repair = false) {
+  if (!cryptoKey) { alert('Unlock the vault first.'); return; }
+  if (!vaultClient || !sbUserId) { alert('Cloud sync isn\'t set up in this session.'); return; }
+  const rawAll = await DB.getAll();
+  const localChunked = rawAll.filter(r =>
+    !r.id.startsWith('__') && !r.id.includes('::chunk::') &&
+    typeof r.ct === 'string' && r.ct.length > CT_CHUNK_SIZE);
+  if (!localChunked.length) { console.log('No locally-chunked items found on this device.'); return; }
+
+  const broken = [];
+  for (const raw of localChunked) {
+    try {
+      const { data, error } = await withTimeout(
+        vaultClient.from('vault_sync').select('ct').eq('user_id', sbUserId).eq('item_id', raw.id).maybeSingle(), 20000);
+      if (error) throw error;
+      if (!data) { broken.push({ id: raw.id, reason: 'no row on server at all' }); continue; }
+      const ct = data.ct;
+      if (typeof ct !== 'string' || !ct.startsWith(CHUNK_MARKER)) {
+        broken.push({ id: raw.id, reason: 'server row is not a chunk header (unexpected)' });
+        continue;
+      }
+      const rest = ct.slice(CHUNK_MARKER.length);
+      const sep = rest.lastIndexOf(':');
+      const token = rest.slice(0, sep);
+      const n = parseInt(rest.slice(sep + 1), 10);
+      const prefix = `${raw.id}::chunk::${token}::`;
+      const { data: rows, error: rowsErr } = await withTimeout(
+        vaultClient.from('vault_sync').select('item_id').eq('user_id', sbUserId).like('item_id', `${prefix}%`), 20000);
+      if (rowsErr) throw rowsErr;
+      const found = (rows || []).length;
+      if (found !== n) broken.push({ id: raw.id, reason: `header says ${n} chunks, server has ${found}` });
+    } catch (e) {
+      broken.push({ id: raw.id, reason: `check failed: ${e?.message || e}` });
+    }
+  }
+
+  if (!broken.length) {
+    console.log(`All ${localChunked.length} locally-chunked item(s) are fully and correctly present on the server.`);
+    return;
+  }
+  console.log(`${broken.length} of ${localChunked.length} locally-chunked item(s) are broken/incomplete on the server:`);
+  console.table(broken);
+
+  if (repair) {
+    broken.forEach(b => markPending(b.id));
+    console.log('Queued for re-upload — pushing now...');
+    await sbPushAllItems();
+    console.log('Re-push done. Other devices will pick up the fixed copies next time they sync.');
+    alert(`Repaired and re-pushed ${broken.length} item(s) — see console table above for which ones.`);
+  } else {
+    alert(`${broken.length} broken item(s) found — see console table (just above this alert). Run auditChunkedFiles(true) to re-push them.`);
+  }
+}
+
+// One-time deep repair, for after a race like the one described above (see
+// the single-flight guard on sbPushAllItems) may already have corrupted a
+// chunk set in a way auditChunkedFiles' row-count check can't detect — the
+// right number of chunk rows can exist while one of them holds the wrong
+// bytes, and a decrypt failure only ever shows up on a device that pulls
+// it, never on the device that still has the good local copy. This skips
+// the normal "resume if the token still matches" shortcut for every
+// locally-chunked item and forces a completely fresh upload instead —
+// clearing the old chunk rows and the old plain row first (see
+// sbUploadChunked), so nothing partial or mismatched can survive. Now that
+// pushes can't overlap each other, this is the reliable way to get every
+// chunked file back to a known-good state in one pass. Console-callable:
+// forceReuploadAllChunked()
+async function forceReuploadAllChunked() {
+  if (!cryptoKey) { alert('Unlock the vault first.'); return; }
+  const rawAll = await DB.getAll();
+  const localChunked = rawAll.filter(r =>
+    !r.id.startsWith('__') && !r.id.includes('::chunk::') &&
+    typeof r.ct === 'string' && r.ct.length > CT_CHUNK_SIZE);
+  if (!localChunked.length) { console.log('No locally-chunked items found on this device.'); return; }
+
+  const tokens = getChunkTokens();
+  localChunked.forEach(r => { delete tokens[r.id]; markPending(r.id); });
+  setChunkTokens(tokens);
+
+  console.log(`Forcing a fresh upload of ${localChunked.length} chunked item(s)...`);
+  await sbPushAllItems();
+  console.log('Done. Other devices will get the clean copies next time they sync.');
+  alert(`Force re-uploaded ${localChunked.length} chunked item(s).`);
+}
+
 async function sbUploadItem(id, iv, ct) {
-  if (!sb || !sbUserId) return;
+  if (!vaultClient || !sbUserId) return;
   try {
     if (ct.length > CT_CHUNK_SIZE) {
       await sbUploadChunked(id, iv, ct);
@@ -2850,7 +3376,7 @@ async function sbUploadItem(id, iv, ct) {
       // upload speeds are often nowhere near desktop WiFi — the default 8s
       // is tuned for small rows and was aborting large uploads before they
       // ever finished, silently, leaving them stuck "pending" forever.
-      const { error } = await withTimeout(sb.from('vault_sync')
+      const { error } = await withTimeout(vaultClient.from('vault_sync')
         .upsert({ item_id: id, user_id: sbUserId, user_hash: PW_HASH, iv, ct, updated_at: new Date().toISOString() }), 60000);
       if (error) throw error;
     }
@@ -2859,15 +3385,15 @@ async function sbUploadItem(id, iv, ct) {
 }
 
 async function sbDeleteItem(id) {
-  if (!sb || !sbUserId) return;
+  if (!vaultClient || !sbUserId) return;
   markPendingDelete(id); // in case this call never gets a chance to finish (tab closed, etc.)
   try {
-    const { error } = await withTimeout(sb.from('vault_sync')
+    const { error } = await withTimeout(vaultClient.from('vault_sync')
       .delete().eq('item_id', id).eq('user_id', sbUserId));
     if (error) throw error;
     // A large item may have left chunk rows behind too — a plain delete on
     // the header id above wouldn't touch those, leaving orphans.
-    const { error: chunkErr } = await withTimeout(sb.from('vault_sync')
+    const { error: chunkErr } = await withTimeout(vaultClient.from('vault_sync')
       .delete().eq('user_id', sbUserId).like('item_id', `${id}::chunk::%`));
     if (chunkErr) throw chunkErr;
     clearPendingDelete(id); // confirmed gone from the cloud — nothing left to retry
@@ -2885,7 +3411,7 @@ async function sbDeleteItem(id) {
 // ever got — this is what actually makes deletes propagate reliably across
 // devices instead of depending on a single network round-trip succeeding.
 async function sbRetryPendingDeletes() {
-  if (!sb || !sbUserId) return;
+  if (!vaultClient || !sbUserId) return;
   const ids = getPendingDeleteIds();
   for (const id of ids) {
     await sbDeleteItem(id);
@@ -2923,16 +3449,100 @@ async function sbRetryPendingDeletes() {
 // another device — remove it here as well. Items still in the pending-push
 // list are left alone, since they simply haven't reached the cloud yet and
 // their absence from the manifest is expected, not a remote delete.
+// Visible, tappable sync status — replaces needing to open a browser
+// console (which doesn't exist at all on most phones, and was never
+// something to ask a viewer/contributor to do anyway) to know whether
+// everything actually loaded, or to retry if it didn't.
+let _syncStatus = {
+  lastRunAt: null, remoteCount: 0, localCount: 0,
+  pulledThisRun: 0, looksDeletedIds: [], pullFailedIds: [], unreadableIds: [],
+  fatalError: null, inProgress: false,
+};
+function updateSyncStatusUI() {
+  const btn = document.getElementById('syncStatusBtn');
+  if (!btn) return;
+  const s = _syncStatus;
+  const issues = s.looksDeletedIds.length + s.pullFailedIds.length + s.unreadableIds.length;
+  btn.classList.remove('sync-ok', 'sync-warn', 'sync-error', 'sync-busy');
+  if (s.inProgress) { btn.textContent = '◈ Syncing…'; btn.classList.add('sync-busy'); }
+  else if (s.fatalError) { btn.textContent = '◈ Sync failed'; btn.classList.add('sync-error'); }
+  else if (issues > 0) { btn.textContent = `◈ ${issues} issue${issues > 1 ? 's' : ''}`; btn.classList.add('sync-warn'); }
+  else if (s.lastRunAt) { btn.textContent = '◈ Synced'; btn.classList.add('sync-ok'); }
+  else { btn.textContent = '◈ Sync'; }
+}
+
+// Plain-language details — everything here is meant to be understood by
+// someone who has never opened developer tools, on a phone that doesn't
+// even have them. No IDs, no jargon, no "check the console".
+function openSyncStatusModal() {
+  const s = _syncStatus;
+  const sub = document.getElementById('syncStatusSub');
+  const body = document.getElementById('syncStatusBody');
+  const lines = [];
+
+  if (!sbUserId) {
+    sub.textContent = 'Not connected to the cloud yet';
+    lines.push('This device is only showing what\'s already saved locally — it isn\'t checking for anything new right now.');
+    lines.push('Sign in with Google (Admin seal or one of the shared seals) to connect and sync.');
+  } else if (s.fatalError) {
+    sub.textContent = 'Sync failed';
+    lines.push('The last attempt to check for new content did not go through.');
+    lines.push('This is almost always temporary — a slow connection or a brief hiccup on the server. Nothing on this device was changed or lost.');
+    lines.push('Tap "Sync Now" below to try again.');
+  } else if (!s.lastRunAt) {
+    sub.textContent = 'Not synced yet this session';
+    lines.push('Tap "Sync Now" to check for new or updated content.');
+  } else {
+    sub.textContent = `Last checked ${s.lastRunAt.toLocaleTimeString()}`;
+    lines.push(`${s.remoteCount} item(s) visible to you in the cloud, ${s.localCount} on this device.`);
+    if (s.pulledThisRun) lines.push(`Just brought in ${s.pulledThisRun} new or updated item(s).`);
+    if (!s.looksDeletedIds.length && !s.pullFailedIds.length && !s.unreadableIds.length) {
+      lines.push('Everything checked out fine.');
+    }
+    if (s.pullFailedIds.length) lines.push(`${s.pullFailedIds.length} item(s) could not be downloaded just now — safe to retry, nothing lost.`);
+    if (s.unreadableIds.length) lines.push(`${s.unreadableIds.length} item(s) on this device could not be opened with the current key — try syncing again, or ask the vault owner to check.`);
+    if (s.looksDeletedIds.length) lines.push(`${s.looksDeletedIds.length} item(s) on this device don't currently appear in the cloud — they have NOT been deleted automatically, just flagged for the owner to double-check.`);
+  }
+
+  body.innerHTML = lines.map(l => `<div style="margin-bottom:.6rem">◈ ${esc(l)}</div>`).join('');
+  openModal('syncStatusModal');
+}
+
+async function manualResync() {
+  const btn = document.getElementById('syncNowBtn');
+  btn.disabled = true;
+  try {
+    await syncVaultWithCloud();
+    toast('◈ Sync complete');
+  } catch (e) {
+    toast('◈ Sync failed — try again in a moment');
+  }
+  btn.disabled = false;
+  openSyncStatusModal(); // refresh the panel with the new result
+}
+
 async function sbPullAllItems() {
-  if (!sb || !sbUserId) return;
+  if (!vaultClient || !sbUserId) return;
+  _syncStatus.inProgress = true; _syncStatus.fatalError = null; updateSyncStatusUI();
   let manifest;
   try {
+    // No .eq('user_id', sbUserId) here on purpose: that made sense back when
+    // "my rows" and "the whole vault" were the same thing (only one identity
+    // ever existed). Now that viewers/contributors/diary-readers are real,
+    // distinct identities too, this must return everything THEY'RE allowed
+    // to see — which RLS ("select non-diary" / "select diary" policies)
+    // already enforces correctly. Letting the database decide, instead of
+    // filtering client-side to "only rows I personally own", is what makes
+    // a viewer able to see the admin's content at all.
     const { data, error } = await withTimeout(
-      sb.from('vault_sync').select('item_id, updated_at').eq('user_id', sbUserId), 20000);
+      vaultClient.from('vault_sync').select('item_id, updated_at, user_id'), 20000);
     if (error) throw error;
     manifest = data || [];
+    manifest.forEach(row => { if (row.user_id) itemOwners[row.item_id] = row.user_id; });
   } catch (e) {
     console.warn('Cloud sync (pull manifest) failed — showing what is cached on this device.', e);
+    _syncStatus.fatalError = e?.message || String(e);
+    _syncStatus.inProgress = false; updateSyncStatusUI();
     return;
   }
 
@@ -2949,24 +3559,33 @@ async function sbPullAllItems() {
   try {
     const pending = new Set(getPendingIds());
     const localRaw = await DB.getAll();
-    let removedCount = 0;
+    const localContentCount = localRaw.filter(r => !r.id.startsWith('__')).length;
+    // SAFETY GUARD: this project's manifest fetch has proven unreliable —
+    // RLS permission gaps, Supabase API outages, and partial migrations
+    // have all caused it to come back incomplete at various points. Auto-
+    // deleting local content just because it's "missing" from one fetch
+    // is fundamentally unsafe here, so this no longer deletes anything —
+    // it only ever reports what LOOKS deleted, for you to review yourself.
+    // A genuinely inconsistent/incomplete pull can never silently destroy
+    // something irreplaceable this way again.
+    const looksDeleted = [];
     for (const raw of localRaw) {
       if (raw.id.startsWith('__')) continue;    // reserved preference row
       if (pending.has(raw.id)) continue;        // not pushed yet — expected to be absent remotely
       if (remoteIds.has(raw.id)) continue;      // still present in the cloud
-      await DB.delete(raw.id);                  // gone from the cloud and already confirmed once — a remote delete
-      delete pulled[raw.id];
-      removedCount++;
+      looksDeleted.push(raw.id);
     }
-    if (removedCount) {
-      localStorage.setItem(PULLED_MAP_KEY, JSON.stringify(pulled));
-      console.log(`Cloud sync: removed ${removedCount} item(s) deleted from another device.`);
-      Vault.invalidate(); // local records changed underneath the cache
+    if (looksDeleted.length) {
+      console.warn(`Cloud sync: ${looksDeleted.length} local item(s) are not in this pull's manifest (${remoteIds.size} remote items seen, ${localContentCount} local). NOT auto-deleting — verify with verifyMigration() / check Supabase directly before assuming these are actually gone. IDs:`, looksDeleted);
+      _syncStatus.looksDeletedIds = looksDeleted;
+    } else {
+      _syncStatus.looksDeletedIds = [];
     }
+    _syncStatus.remoteCount = remoteIds.size;
+    _syncStatus.localCount = localContentCount;
   } catch (e) {
-    console.warn('Cloud sync (propagate remote deletes) failed — will retry next unlock.', e);
+    console.warn('Cloud sync (checking for remote deletes) failed — no local changes made either way.', e);
   }
-
   const pendingDeletes = new Set(getPendingDeleteIds());
   const outdated = manifest.filter(row =>
     !row.item_id.startsWith('__') &&        // skip reserved preference rows (theme has its own sync path)
@@ -2974,7 +3593,14 @@ async function sbPullAllItems() {
     !pendingDeletes.has(row.item_id) &&     // deleted locally — don't resurrect it while the cloud delete retries
     pulled[row.item_id] !== row.updated_at  // new item, or edited since this device last confirmed it
   );
-  if (!outdated.length) return;
+  _syncStatus.pullFailedIds = [];
+  if (!outdated.length) {
+    _syncStatus.lastRunAt = new Date();
+    _syncStatus.pulledThisRun = 0;
+    _syncStatus.inProgress = false;
+    updateSyncStatusUI();
+    return;
+  }
 
   let confirmedCount = 0;
   for (const row of outdated) {
@@ -2983,7 +3609,7 @@ async function sbPullAllItems() {
       // can still be a large file, but it's now isolated: a timeout here
       // only retries this one item next time, nothing else.
       const { data, error } = await withTimeout(
-        sb.from('vault_sync').select('iv, ct').eq('item_id', row.item_id).eq('user_id', sbUserId).maybeSingle(),
+        vaultClient.from('vault_sync').select('iv, ct').eq('item_id', row.item_id).maybeSingle(), // RLS decides visibility, same reasoning as the manifest fetch above
         60000);
       if (error) throw error;
       if (!data) continue; // deleted remotely between the manifest fetch and now
@@ -3000,12 +3626,35 @@ async function sbPullAllItems() {
       confirmedCount++;
     } catch (e) {
       console.warn(`Cloud sync (pull) failed for one item (${row.item_id}) — will retry next unlock; other items are unaffected.`, e);
+      _syncStatus.pullFailedIds.push(row.item_id);
     }
   }
   if (confirmedCount) {
     console.log(`Cloud sync: pulled ${confirmedCount} item(s) from other devices.`);
     Vault.invalidate(); // local records changed underneath the cache
   }
+  _syncStatus.lastRunAt = new Date();
+  _syncStatus.pulledThisRun = confirmedCount;
+  _syncStatus.inProgress = false;
+  updateSyncStatusUI();
+}
+
+// Single-flight guard: two overlapping calls to this function (e.g. the
+// automatic push that fires on unlock racing a manually-triggered one)
+// previously had no way of knowing about each other. Both could pick up
+// the same pending id and run sbUploadChunked for it concurrently — one
+// call's "delete old chunk rows for a fresh token" step could wipe out
+// chunk rows the OTHER call had just written under a different token,
+// leaving a header pointing at a token whose row count still matched
+// (so auditChunkedFiles' count check passed) but whose actual bytes were
+// a corrupted mix — exactly what showed up as "could not be opened with
+// the current key" on a device pulling it afterward. A concurrent call
+// now just awaits the in-flight run instead of starting a second one.
+let _pushInFlightPromise = null;
+async function sbPushAllItems() {
+  if (_pushInFlightPromise) return _pushInFlightPromise;
+  _pushInFlightPromise = _sbPushAllItemsInner().finally(() => { _pushInFlightPromise = null; });
+  return _pushInFlightPromise;
 }
 
 // Pushes only items pending sync (new/edited locally and not yet confirmed
@@ -3013,8 +3662,8 @@ async function sbPullAllItems() {
 // than one network round-trip per item. Called after the vault is already
 // open (see syncVaultWithCloud) so this never blocks the unlock screen;
 // on a normal run with nothing new, it's a no-op and returns immediately.
-async function sbPushAllItems() {
-  if (!sb || !sbUserId) return;
+async function _sbPushAllItemsInner() {
+  if (!vaultClient || !sbUserId) return;
   try {
     // One-time migration: treat everything already in IndexedDB as pending
     // so pre-existing local data (from before this tracking existed) still
@@ -3061,7 +3710,7 @@ async function sbPushAllItems() {
         return { item_id: r.id, user_id: sbUserId, user_hash: PW_HASH, iv: r.iv, ct: r.ct, updated_at: new Date().toISOString() };
       });
       if (rows.length) {
-        const { error } = await withTimeout(sb.from('vault_sync').upsert(rows), 60000);
+        const { error } = await withTimeout(vaultClient.from('vault_sync').upsert(rows), 60000);
         if (error) throw error;
         pushedCount += rows.length;
       }
@@ -3101,7 +3750,7 @@ async function sbPushAllItems() {
 // enforces that only this vault's signed-in session can read/write/delete
 // them, scoped under this account's own user id.
 async function r2Fetch(itemId, options = {}) {
-  const { data: { session } } = await sb.auth.getSession();
+  const { data: { session } } = await vaultClient.auth.getSession();
   if (!session) throw new Error('Not signed in — R2 storage needs an active session.');
   return fetch(`${R2_WORKER_URL}/vault/${sbUserId}/${itemId}`, {
     ...options,
@@ -3148,6 +3797,7 @@ const Vault = {
     const id = explicitId || (isDiary ? 'diary::' : '') + crypto.randomUUID();
     const { iv, ct } = await encryptRecord(payload, isDiary ? diaryKey : cryptoKey);
     await DB.put({ id, iv, ct });
+    if (sbUserId) itemOwners[id] = sbUserId; // so a contributor sees Edit/Delete on it immediately, not just after the next sync
     markPending(id);
     sbUploadItem(id, iv, ct); // fire-and-forget; clears pending flag on success
     this._cache = null;
@@ -3173,6 +3823,7 @@ const Vault = {
     if (this._cache) return this._cache;
     const rawAll = await DB.getAll();
     const out = [];
+    _syncStatus.unreadableIds = []; // fresh rebuild — re-evaluate all records rather than accumulate stale entries forever
     for (const raw of rawAll) {
       try {
         const isDiary = raw.id.startsWith('diary::');
@@ -3182,9 +3833,11 @@ const Vault = {
         out.push(Object.assign({ id: raw.id }, payload));
       } catch (e) {
         console.warn('Skipped an unreadable record', raw.id);
+        if (!_syncStatus.unreadableIds.includes(raw.id)) _syncStatus.unreadableIds.push(raw.id);
       }
     }
     this._cache = out;
+    updateSyncStatusUI();
     return out;
   },
   async delete(id) {
@@ -3319,67 +3972,95 @@ function searchScore(fieldWeights, query) {
 // key via a separate cryptographic wrapping, not a UI-level shortcut.
 // ══════════════════════════════════════════════
 let failedAttempts = 0;
-let _pwSubmitting = false; // prevents concurrent password submission attempts
+let _sealSubmitting = false; // same, for the Wax Seal shared-access form
 
 function authThrottleMs() {
   if (failedAttempts < 3) return 0;
   return Math.min(8000, (failedAttempts - 2) * 1500);
 }
 
+// ══════════════════════════════════════════════
+// SHARED ACCESS — entry via Wax Seal (viewer / contributor / diary_reader)
+// ══════════════════════════════════════════════
+
+// Every non-admin visitor now signs in with a real Google account first —
+// see wireSealPicker()/handleSealGoogleCredential below — so this just
+// confirms a real (non-anonymous) session already exists rather than
+// creating a throwaway one. "Edit only your own entries" now ties to a
+// real, persistent Google identity instead of a device-local anonymous one.
+async function ensureRealIdentity() {
+  const { data: { session } } = await vaultClient.auth.getSession();
+  if (session?.user && !session.user.is_anonymous) return session.user.id;
+  throw new Error('Please sign in with Google first.');
+}
+
+async function claimSharedRole(password, role) {
+  const identityId = await ensureRealIdentity();
+  sbUserId = identityId;
+  const { error } = await vaultClient.rpc('claim_vault_role', { pw: password, wanted_role: role });
+  if (error) throw error; // wrong password, or currently rate-limited
+
+  const wrapSalt = 'cv_wax_seal_' + role + '_v1';
+  const { data: wrapRow, error: wrapErr } = await vaultClient.from('vault_key_wraps')
+    .select('wrapped_key').eq('role', role).maybeSingle();
+  if (wrapErr || !wrapRow) throw new Error('Sharing has not been set up for this role yet.');
+
+  const { iv, wrapped } = JSON.parse(wrapRow.wrapped_key);
+  const rawKeyBytes = await unwrapKeyWithPassword(iv, wrapped, password, wrapSalt);
+  const importedKey = await crypto.subtle.importKey('raw', rawKeyBytes, 'AES-GCM', false, ['encrypt', 'decrypt']);
+
+  ROLE = role;
+  if (role === 'diary_reader') diaryKey = importedKey;
+  else cryptoKey = importedKey;
+}
+
+// Replaces the old URL-only setupViewOnlyMode() with a real role-aware
+// version. Called once, right after a successful entry (any tier).
+function applyRoleRestrictions() {
+  const isShared = ROLE !== null;
+  document.body.classList.toggle('shared-access', isShared);
+
+  const diaryTabEl = document.querySelector('[data-tab="diary"]');
+  const vaultTabEls = document.querySelectorAll('[data-tab="books"],[data-tab="movies"],[data-tab="anime"],[data-tab="files"]');
+
+  if (ROLE === 'diary_reader') {
+    vaultTabEls.forEach(el => el.style.display = 'none');
+    if (diaryTabEl) diaryTabEl.style.display = '';
+  } else if (ROLE === 'viewer' || ROLE === 'contributor') {
+    if (diaryTabEl) diaryTabEl.style.display = 'none';
+    vaultTabEls.forEach(el => el.style.display = '');
+  }
+  // ROLE === null (admin): everything visible, nothing to hide.
+
+  let banner = document.getElementById('roleBanner');
+  const sharingBtn = document.getElementById('setupSharingBtn');
+  if (sharingBtn) sharingBtn.style.display = (ROLE === null) ? '' : 'none';
+  const syncBtn = document.getElementById('syncStatusBtn');
+  if (syncBtn) syncBtn.style.display = ''; // visible to every role — this is exactly what a phone-only viewer needs, no console required
+  updateSyncStatusUI();
+  if (isShared) {
+    if (!banner) {
+      banner = document.createElement('div');
+      banner.id = 'roleBanner';
+      banner.className = 'role-banner';
+      document.body.prepend(banner);
+    }
+    const labels = {
+      viewer: '◈ Viewing only — a wax seal, not a key. Nothing here can be changed.',
+      contributor: '◈ Contributor access — you may add new entries and edit only your own.',
+      diary_reader: '◈ Diary — read-only. Only the archivist may write here.'
+    };
+    banner.textContent = labels[ROLE];
+  } else if (banner) banner.remove();
+}
+
 async function attemptUnlock(password) {
   const wait = authThrottleMs();
   if (wait > 0) await new Promise(r => setTimeout(r, wait));
   const hash = await sha256Hex(PW_SALT + password);
-  if (hash !== PW_HASH) { failedAttempts++; return false; }
+  if (hash !== LOGIN_HASH) { failedAttempts++; return false; }
   failedAttempts = 0;
-  if (!VIEW_ONLY) {
-    // CRITICAL: this must NEVER run when VIEW_ONLY is true. Friend viewers
-    // legitimately know this same password, so this exact call would sign
-    // them in AS the real admin account and hand them full write access
-    // via owner_full_access — completely defeating the read-only design.
-    //
-    // Silently sign in to the same Supabase account vault_sync is locked to,
-    // using this same password — replaces the need for a separate site login.
-    // Supabase's project-wide captcha protection (enabled for login.html's
-    // signup form) applies to EVERY signInWithPassword call, including this
-    // one — so we feed it a token from the invisible widget, which runs
-    // with no visible UI and needs no user interaction in the normal case.
-    try {
-      const widgetEl = document.getElementById('personalTurnstile');
-      if (widgetEl) widgetEl.style.visibility = 'visible'; // shown only while actively verifying
-      let token = _personalTurnstileToken;
-      if (!token) {
-        // token not ready yet (page just loaded) — give it a moment
-        for (let i = 0; i < 20 && !token; i++) {
-          await new Promise(r => setTimeout(r, 150));
-          token = _personalTurnstileToken;
-        }
-      }
-      const { error } = await sb.auth.signInWithPassword({
-        email: ADMIN_EMAIL, password,
-        options: token ? { captchaToken: token } : undefined
-      });
-      if (error) {
-        console.error('Vault cloud sign-in failed:', error.message, error);
-        _lastSbSignInError = error.message + (token ? '' : ' [no captcha token was ready]');
-      } else {
-        _lastSbSignInError = null;
-      }
-      _personalTurnstileToken = null;
-      if (window.turnstile) window.turnstile.reset('#personalTurnstile'); // token is single-use
-      if (widgetEl) widgetEl.style.visibility = 'hidden'; // done — stop cluttering the screen
-    } catch (e) {
-      console.error('Vault cloud sign-in threw:', e);
-      _lastSbSignInError = (e && e.message) ? e.message : String(e);
-      const widgetEl = document.getElementById('personalTurnstile');
-      if (widgetEl) widgetEl.style.visibility = 'hidden';
-    }
-  }
-  // The page-load check (initThemeForSession) ran before this sign-in
-  // existed, so sbUserId is stale until refreshed here — otherwise
-  // syncVaultWithCloud (called by unlockVault right below) always thinks
-  // you're signed out, even right after a successful sign-in.
-  sbUserId = await ensureSbUser();
+  ROLE = null; // this is always the admin's own cipher key — full access
   await unlockVault(password);
   return true;
 }
@@ -3395,7 +4076,19 @@ async function attemptUnlock(password) {
 async function unlockVault(password) {
   document.getElementById('unlockOverlay').classList.add('show');
   try {
+    // Cloud sync for admin comes ONLY from a real Google sign-in (see
+    // handleGoogleCredential's signInWithIdToken call) — never from this
+    // password alone. A cipher key can be shared or guessed; a specific
+    // Google account can't. Checked here (not just on the direct-cipher-key
+    // path) so it's picked up whether you typed the key yourself or got here
+    // via the Google tab's device-recovery flow — either way, if a real
+    // session already exists this session, use it; if not, the vault still
+    // opens fully from what's on this device, it just won't push/pull yet.
+    const { data: { session: existing } } = await vaultClient.auth.getSession();
+    sbUserId = (existing?.user && !existing.user.is_anonymous) ? existing.user.id : null;
     cryptoKey = await deriveKey(password);
+    adminBaseKey = cryptoKey; // capture before the next line potentially swaps cryptoKey to the shared VK
+    cryptoKey = await loadOrDeriveWorkingKey(cryptoKey, 'cv_vk_cache_v1', 'admin');
     document.body.classList.add('authed');
     await DB.init();
     const justLinked = await maybeLinkGoogleAccount(password); // local crypto only, not a network call
@@ -3403,6 +4096,7 @@ async function unlockVault(password) {
       // Small delay so the toast appears after the unlock overlay fades
       setTimeout(() => toast('◈ Google sign-in linked — next time use the Google tab to enter without a cipher key.'), 600);
     }
+    applyRoleRestrictions();
     switchMainTab('books');
     await renderBooks();
     await renderMovies();
@@ -3415,18 +4109,49 @@ async function unlockVault(password) {
   syncVaultWithCloud(); // fire-and-forget — never blocks the unlock screen
 }
 
-async function syncVaultWithCloud() {
-  if (VIEW_ONLY) {
-    // Friend viewer: read-only, no push/retry-delete ever runs here.
-    try {
-      await sbPullAllItems();
+// Sibling to unlockVault(), for the three shared (non-admin) roles.
+// cryptoKey/diaryKey/ROLE are already set by claimSharedRole() by the
+// time this runs — this just renders + syncs, same as the admin path,
+// minus anything admin-only (Google linking, diary write, etc).
+async function unlockVaultAsSharedRole() {
+  document.getElementById('unlockOverlay').classList.add('show');
+  try {
+    document.body.classList.add('authed');
+    await DB.init();
+    applyRoleRestrictions();
+    if (ROLE === 'diary_reader') {
+      switchMainTab('diary');
+      await renderDiary();
+    } else {
+      switchMainTab('books');
       await renderBooks();
       await renderMovies();
       await renderAnime();
+      await render();
+    }
+  } finally {
+    document.getElementById('unlockOverlay').classList.remove('show');
+  }
+  syncVaultWithCloud();
+}
+
+async function syncVaultWithCloud() {
+  if (VIEW_ONLY || ROLE === 'viewer' || ROLE === 'diary_reader') {
+    // Read-only visitor (legacy ?view=friend link, or the new viewer /
+    // diary-reader wax seals): pull only, no push/retry-delete ever runs.
+    try {
+      await sbPullAllItems();
+      if (ROLE === 'diary_reader') {
+        await renderDiary();
+      } else {
+        await renderBooks();
+        await renderMovies();
+        await renderAnime();
+      }
     } catch (e) { console.warn('Read-only sync did not complete this session.', e); }
     return;
   }
-  if (sb && !sbUserId) {
+  if (vaultClient && !sbUserId) {
     // Cloud sync now requires being signed in as the admin account —
     // this replaces the old scheme where any visitor's anon key could
     // sync. Local vault access is unaffected; this only means changes
@@ -3460,8 +4185,8 @@ function signOut() {
   googleVerifiedEmail = null;
   googleVerifiedSub   = null;
   document.body.classList.remove('authed');
-  document.getElementById('pwInput').value = '';
-  document.getElementById('pwError').classList.remove('show');
+  document.getElementById('sealPwInput').value = '';
+  document.getElementById('sealError').classList.remove('show');
   document.getElementById('vaultGrid').innerHTML = '';
   document.getElementById('booksGrid').innerHTML = '';
   document.getElementById('moviesGrid').innerHTML = '';
@@ -3503,7 +4228,7 @@ function applyTheme(isDark) {
 function currentThemeIsDark() { return !document.body.classList.contains('day-mode'); }
 
 async function ensureSbUser() {
-  if (!sb) return null;
+  if (!vaultClient) return null;
   if (VIEW_ONLY) {
     // Friend viewer: reads are public (RLS grants anon SELECT-only on
     // vault_sync), so no sign-in is needed here at all — just point
@@ -3518,7 +4243,7 @@ async function ensureSbUser() {
   // is encrypted (that's still your cipher key, entered separately) —
   // it only changes who is allowed to read/write the synced rows.
   try {
-    const { data: { user } } = await sb.auth.getUser();
+    const { data: { user } } = await vaultClient.auth.getUser();
     if (!user || (user.email || '').toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
       return null; // not signed in, or signed in as someone else — sync stays off, vault still works locally
     }
@@ -3529,9 +4254,9 @@ async function ensureSbUser() {
 }
 
 async function sbLoadDarkMode(userId) {
-  if (!sb || !userId) return null;
+  if (!vaultClient || !userId) return null;
   try {
-    const { data, error } = await withTimeout(sb.from('vault_sync')
+    const { data, error } = await withTimeout(vaultClient.from('vault_sync')
       .select('ct').eq('item_id', '__theme__').eq('user_id', userId).maybeSingle());
     if (error) throw error;
     return data ? data.ct === '1' : null;
@@ -3539,9 +4264,9 @@ async function sbLoadDarkMode(userId) {
 }
 
 async function sbSaveDarkMode(userId, isDark) {
-  if (!sb || !userId) return;
+  if (!vaultClient || !userId) return;
   try {
-    const { error } = await withTimeout(sb.from('vault_sync')
+    const { error } = await withTimeout(vaultClient.from('vault_sync')
       .upsert({ item_id: '__theme__', user_id: userId, user_hash: PW_HASH, iv: 'pref', ct: isDark ? '1' : '0', updated_at: new Date().toISOString() }));
     if (error) throw error;
   } catch (e) { console.warn('Could not sync theme to Supabase', e); }
@@ -3576,6 +4301,50 @@ function toggleTheme() {
 let googleVerifiedEmail = null;
 let googleVerifiedSub   = null;
 let _googleInitRetries  = 0; // caps the Google script-load polling loop
+
+// Google sign-in for the 3 shared (non-admin) seals — deliberately separate
+// from handleGoogleCredential above: ANY real Google account is accepted
+// here (no ADMIN_EMAIL check), since this only establishes "some real,
+// consistent identity", not admin verification. What that identity can
+// then actually see or do is still entirely decided by the seal's own
+// password via claim_vault_role, same as before.
+async function handleSealGoogleCredential(response) {
+  document.getElementById('sealGoogleSignInBtn').style.display = 'none';
+  try {
+    const { error } = await vaultClient.auth.signInWithIdToken({ provider: 'google', token: response.credential });
+    if (error) throw error;
+    document.getElementById('sealGoogleGate').style.display = 'none';
+    document.getElementById('sealPwInput').disabled = false;
+    document.getElementById('sealSubmit').disabled = false;
+    document.getElementById('sealPwInput').focus();
+  } catch (e) {
+    console.error('Seal Google sign-in failed:', e);
+    const err = document.getElementById('sealError');
+    err.textContent = '◈ Google sign-in failed — try again.';
+    err.classList.add('show');
+    document.getElementById('sealGoogleSignInBtn').style.display = '';
+  }
+}
+
+let _sealGoogleInitDone = false;
+function initSealGoogleSignIn() {
+  if (!window.google || !window.google.accounts) { setTimeout(initSealGoogleSignIn, 300); return; }
+  // Re-run every time this panel is shown — GSI keeps only one callback
+  // configured at a time, so this makes sure it's pointed at the seal
+  // flow's handler specifically whenever this button might be clicked,
+  // regardless of whatever the admin Google tab last configured it to.
+  google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    callback: handleSealGoogleCredential,
+    auto_select: false,
+    ux_mode: 'popup',
+  });
+  const el = document.getElementById('sealGoogleSignInBtn');
+  el.innerHTML = '';
+  el.style.display = '';
+  google.accounts.id.renderButton(el, { theme: 'outline', size: 'large', shape: 'pill', text: 'signin_with', width: 280 });
+  _sealGoogleInitDone = true;
+}
 
 function initGoogleSignIn() {
   if (!GOOGLE_CLIENT_ID || GOOGLE_CLIENT_ID.indexOf('YOUR_') === 0) {
@@ -3639,6 +4408,20 @@ async function handleGoogleCredential(response) {
     return;
   }
 
+  // Establishes a REAL Supabase session tied to this same verified Google
+  // identity — this is what actually grants cloud read/write access. It's
+  // completely independent of any password (nothing shared or guessable),
+  // and replaces what the old, removed signInWithPassword call used to
+  // provide. Requires Google to be configured as an Auth provider in the
+  // Supabase dashboard (Authentication → Providers → Google) using this
+  // same Client ID, plus a Client Secret from Google Cloud Console.
+  try {
+    const { error } = await vaultClient.auth.signInWithIdToken({ provider: 'google', token: response.credential });
+    if (error) console.warn('Supabase Google sign-in failed — cloud sync will not work until this is fixed:', error.message);
+  } catch (e) {
+    console.warn('Supabase Google sign-in threw:', e);
+  }
+
   const wrapped = await getWrappedSecret(googleVerifiedSub);
   if (wrapped) {
     statusEl.className = 'google-status matched';
@@ -3647,16 +4430,17 @@ async function handleGoogleCredential(response) {
     enterBtn.style.display = 'block';
   } else {
     statusEl.className = 'google-status needs-link';
-    statusEl.innerHTML = `Verified as <strong>${esc(googleVerifiedEmail)}</strong> — this device isn\'t linked yet.<br><br>Step 1: Stay on this tab (Google is already verified).<br>Step 2: Click the button below to switch to the Cipher tab.<br>Step 3: Enter your cipher key once — the vault will open and this device will be permanently linked.`;
+    statusEl.innerHTML = `Verified as <strong>${esc(googleVerifiedEmail)}</strong> — this device isn\'t linked yet.<br><br>Step 1: Stay on this tab (Google is already verified).<br>Step 2: Click the button below to switch to the Wax Seal tab.<br>Step 3: Press the Admin seal and enter your cipher key once — the vault will open and this device will be permanently linked.`;
     statusEl.style.display = 'block';
     // Show a proper button (not a tiny inline link) so the next step is obvious
-    enterBtn.textContent = '→ Go to Cipher Tab to Link This Device';
+    enterBtn.textContent = '→ Go to Wax Seal Tab to Link This Device';
     enterBtn.style.display = 'block';
     enterBtn.onclick = () => {
       enterBtn.textContent = 'Enter — Verified Admin';
       enterBtn.onclick = null;
       enterBtn.style.display = 'none';
-      document.querySelector('[data-target="pwSection"]').click();
+      document.querySelector('[data-target="sealSection"]').click();
+      document.querySelector('.wax-seal.admin').click();
     };
   }
 }
@@ -3701,11 +4485,14 @@ async function getWrappedSecret(sub) {
 async function maybeLinkGoogleAccount(password) {
   if (!googleVerifiedSub || googleVerifiedEmail.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) return false;
   const existing = await getWrappedSecret(googleVerifiedSub);
-  if (!existing) {
-    await storeWrappedSecret(googleVerifiedSub, password);
-    return true; // just linked for the first time
-  }
-  return false; // was already linked
+  const justLinked = !existing;
+  // Always (re)store, not just on first link — otherwise rotating the
+  // cipher key later leaves this pointing at the old, now-wrong password
+  // forever, and every future Google sign-in silently fails using it.
+  // This is exactly what happened here: the Google tab kept trying an old
+  // rotated-out password without any way to notice or recover on its own.
+  await storeWrappedSecret(googleVerifiedSub, password);
+  return justLinked; // only used to decide whether to show the "just linked" toast
 }
 
 async function googleEnter() {
@@ -3759,11 +4546,12 @@ function _doSwitchMainTab(tab) {
   document.getElementById('panelAnime').classList.toggle('active', tab === 'anime');
   document.getElementById('panelFiles').classList.toggle('active', tab === 'files');
   document.getElementById('panelDiary').classList.toggle('active', tab === 'diary');
-  document.getElementById('addBookBtn').style.display  = (!VIEW_ONLY && tab === 'books')  ? '' : 'none';
-  document.getElementById('addMovieBtn').style.display = (!VIEW_ONLY && tab === 'movies') ? '' : 'none';
-  document.getElementById('addAnimeBtn').style.display = (!VIEW_ONLY && tab === 'anime')  ? '' : 'none';
-  document.getElementById('addDocBtn').style.display   = (!VIEW_ONLY && tab === 'files')  ? '' : 'none';
-  document.getElementById('addTerrBtn').style.display  = (!VIEW_ONLY && tab === 'files')  ? '' : 'none';
+  const canAdd = !VIEW_ONLY && (ROLE === null || ROLE === 'contributor');
+  document.getElementById('addBookBtn').style.display  = (canAdd && tab === 'books')  ? '' : 'none';
+  document.getElementById('addMovieBtn').style.display = (canAdd && tab === 'movies') ? '' : 'none';
+  document.getElementById('addAnimeBtn').style.display = (canAdd && tab === 'anime')  ? '' : 'none';
+  document.getElementById('addDocBtn').style.display   = (canAdd && tab === 'files')  ? '' : 'none';
+  document.getElementById('addTerrBtn').style.display  = (canAdd && tab === 'files')  ? '' : 'none';
   document.getElementById('addDiaryBtn').style.display = (!VIEW_ONLY && tab === 'diary')  ? '' : 'none';
 }
 
@@ -3787,6 +4575,8 @@ async function unlockSection() {
   if (hash === SECTION_HASH) {
     diaryUnlocked = true;
     diaryKey = await deriveDiaryKey(pw); // now a real encryption key, not just a UI gate
+    adminDiaryBaseKey = diaryKey; // capture before the next line potentially swaps diaryKey to the shared DK
+    diaryKey = await loadOrDeriveWorkingKey(diaryKey, 'cv_dk_cache_v1', 'admin_diary');
     Vault.invalidate(); // force re-decrypt so diary entries appear using the new key
     await renderDiary();
     closeModal('sectionLockModal');
@@ -3898,7 +4688,7 @@ function folderRowHtml(fd) {
         </div>
         <div class="entry-actions">
           <button class="btn btn-ink sm" data-action="open-folder" data-id="${fd.id}" data-name="${title}">Open Territory</button>
-          <button class="btn btn-d sm" data-action="delete-folder" data-id="${fd.id}" data-label="${title}">Unmap</button>
+          ${canModifyItem(fd.id) ? `<button class="btn btn-d sm" data-action="delete-folder" data-id="${fd.id}" data-label="${title}">Unmap</button>` : ''}
         </div>
       </div></div></div>
     </div>`;
@@ -3956,8 +4746,8 @@ function fileRowHtml(fl) {
         <div class="entry-actions">
           <button class="btn btn-ink sm" data-action="view-file" data-id="${fl.id}">⊙ View Document</button>
           <button class="btn btn-ink sm" data-action="download-file" data-id="${fl.id}">↓ Retrieve Document</button>
-          <button class="btn btn-g sm" data-action="edit-file" data-id="${fl.id}">Edit Info</button>
-          <button class="btn btn-d sm" data-action="delete-file" data-id="${fl.id}" data-label="${title}">Unmap</button>
+          ${canModifyItem(fl.id) ? `<button class="btn btn-g sm" data-action="edit-file" data-id="${fl.id}">Edit Info</button>
+          <button class="btn btn-d sm" data-action="delete-file" data-id="${fl.id}" data-label="${title}">Unmap</button>` : ''}
         </div>
       </div></div></div>
     </div>`;
@@ -4208,6 +4998,11 @@ function handleGridClick(e) {
     return;
   }
   const id = el.dataset.id;
+  const guardedActions = new Set(['delete-folder', 'delete-file', 'edit-file']);
+  if (guardedActions.has(el.dataset.action) && !canModifyItem(id)) {
+    toast('◈ You don\'t have permission to change this entry.');
+    return;
+  }
   switch (el.dataset.action) {
     case 'toggle-expand': el.closest('.entry-row').classList.toggle('expanded'); break;
     case 'open-folder':   enterFolder(id, el.dataset.name).catch(err => { toast('◈ Failed to open territory'); console.error(err); }); break;
@@ -4915,7 +5710,7 @@ async function showBookDetail(id) {
       { label: 'What It Left You Thinking', value: m.thoughts },
     ],
   });
-  document.getElementById('detailEditBtn').style.display = '';
+  gateDetailButtons(id);
   document.getElementById('detailEditBtn').onclick = () => { closeModal('detailModal'); openBookModal(id); };
   document.getElementById('detailDeleteBtn').onclick = () => confirmDelete(id, 'book', m.title || 'this book');
   openModal('detailModal');
@@ -5184,7 +5979,7 @@ async function showMovieDetail(id) {
       { label: 'What It Left You Thinking', value: m.thoughts },
     ],
   });
-  document.getElementById('detailEditBtn').style.display = '';
+  gateDetailButtons(id);
   document.getElementById('detailEditBtn').onclick = () => { closeModal('detailModal'); openMovieModal(id); };
   document.getElementById('detailDeleteBtn').onclick = () => confirmDelete(id, 'movie', m.title || 'this movie');
   openModal('detailModal');
@@ -5453,7 +6248,7 @@ async function showAnimeDetail(id) {
       { label: 'What It Left You Thinking', value: m.thoughts },
     ],
   });
-  document.getElementById('detailEditBtn').style.display = '';
+  gateDetailButtons(id);
   document.getElementById('detailEditBtn').onclick = () => { closeModal('detailModal'); openAnimeModal(id); };
   document.getElementById('detailDeleteBtn').onclick = () => confirmDelete(id, 'anime', m.title || 'this anime');
   openModal('detailModal');
@@ -5640,13 +6435,13 @@ async function migrateDiaryToOwnKey() {
       const { iv, ct } = await encryptRecord(payload, diaryKey);
       await DB.put({ id: newId, iv, ct }); // 1. write new row locally
 
-      const { error } = await sb.from('vault_sync')
+      const { error } = await vaultClient.from('vault_sync')
         .upsert({ item_id: newId, user_id: sbUserId, user_hash: PW_HASH, iv, ct, updated_at: new Date().toISOString() });
       if (error) throw error; // 2. confirm it uploaded successfully
 
       // 3. only now remove the old row — new copy is confirmed safe
       await DB.delete(raw.id);
-      await sb.from('vault_sync').delete().eq('item_id', raw.id).eq('user_id', sbUserId);
+      await vaultClient.from('vault_sync').delete().eq('item_id', raw.id).eq('user_id', sbUserId);
       migrated++;
     } catch (e) {
       console.error(`Migration failed for old item ${raw.id} — left untouched, nothing lost:`, e);
@@ -5657,6 +6452,280 @@ async function migrateDiaryToOwnKey() {
   Vault.invalidate();
   await renderDiary();
   alert(`Diary migration: ${migrated} moved successfully${failed ? `, ${failed} failed and were left untouched (check console)` : ''}.`);
+}
+
+// ══════════════════════════════════════════════
+// ONE-TIME MIGRATION TO SHAREABLE KEYS
+// Same safety order as migrateDiaryToOwnKey above (backup → re-encrypt →
+// confirm upload → only then delete old row). Run manually from the
+// Console-callable: verifyMigration()
+// Confirms every local item actually decrypts under whatever key is
+// CURRENTLY active — the only reliable way to know nothing got left behind
+// under an abandoned key from an interrupted migration attempt (e.g. if a
+// run was cut short by a network/Supabase outage partway through). Purely
+// read-only — changes nothing, safe to run as many times as you like.
+async function verifyMigration() {
+  if (!cryptoKey) { alert('Unlock the vault first.'); return; }
+  const rawAll = await DB.getAll();
+  let ok = 0, stuck = [];
+  for (const raw of rawAll) {
+    if (raw.id.startsWith('__')) continue; // preference rows, not content
+    const isDiary = raw.id.startsWith('diary::');
+    if (isDiary && !diaryKey) { stuck.push({ id: raw.id, reason: 'diary key not loaded — open Diary tab first, then re-run this' }); continue; }
+    try {
+      await decryptRecord(raw.iv, raw.ct, isDiary ? diaryKey : cryptoKey);
+      ok++;
+    } catch (e) {
+      stuck.push({ id: raw.id, reason: 'cannot decrypt with current key' });
+    }
+  }
+  console.log(`${ok} items decrypt fine under your current key.`);
+  if (stuck.length) {
+    console.log(`${stuck.length} item(s) did NOT decrypt — details below:`);
+    console.table(stuck);
+    alert(`${ok} OK, ${stuck.length} stuck — see the console table (just above this alert) for exact IDs. Nothing was changed; anything listed is recoverable from your backup JSON if needed.`);
+  } else {
+    alert(`All ${ok} local items decrypt correctly under your current key. Migration looks complete and consistent.`);
+  }
+}
+
+// console after unlocking the vault AND diary once: migrateToShareableKeys()
+//
+// What this actually does: your current cryptoKey/diaryKey are, by
+// design, impossible to export (see deriveKey()'s extractable:false) —
+// that's exactly right for a single admin-only vault, but it also means
+// nothing else can ever be given the power to decrypt the same content.
+// This generates two brand-new, genuinely random, EXPORTABLE keys — VK
+// for everything except diary, DK for diary — re-encrypts everything
+// under them, then locks (wraps) each new key under YOUR existing
+// password too, so nothing about how you unlock the vault changes day
+// to day. Those same wraps are what let the Setup Sharing panel hand
+// out working viewer/contributor/diary-reader access afterward.
+async function migrateToShareableKeys() {
+  if (!cryptoKey || !adminBaseKey) { alert('Unlock the vault with your main password first (reload the page if you unlocked a while ago, so the base key is freshly available).'); return; }
+  if (!diaryKey || !adminDiaryBaseKey)  { alert('Enter the diary section password first (tap the Diary tab).'); return; }
+
+  // Safety check: if a shared key wrap already exists on the server but
+  // this session never actually resolved it (cryptoKey still equals the
+  // raw base key), that means loadOrDeriveWorkingKey failed silently this
+  // session — e.g. a stale locally-remembered password, a network hiccup,
+  // anything. In that state, generating a brand-new random key below would
+  // be flat-out wrong: it would orphan everything already on the real
+  // shared key instead of resuming onto it. Refuse and say so clearly,
+  // rather than silently doing something destructive.
+  const existingWrap = await vaultClient.from('vault_key_wraps').select('role').eq('role', 'admin').maybeSingle();
+  if (existingWrap.data && cryptoKey === adminBaseKey) {
+    alert('A shared key already exists on the server, but this session could not unlock it (see the console for the exact error just above). Refusing to continue — running the migration in this state would risk creating a SECOND, conflicting key instead of resuming onto the real one.\n\nFix the underlying issue first (reload fully, make sure you\'re using your CURRENT cipher key, check your connection), confirm the Sync Status looks right, then try this again.');
+    return;
+  }
+  const existingDiaryWrap = await vaultClient.from('vault_key_wraps').select('role').eq('role', 'admin_diary').maybeSingle();
+  if (existingDiaryWrap.data && diaryKey === adminDiaryBaseKey) {
+    alert('A shared diary key already exists on the server, but this session could not unlock it. Refusing to continue for the same reason as above — fix the underlying issue first, then try again.');
+    return;
+  }
+
+  // Resumable: if an earlier run already got partway through (e.g. cut off
+  // by a network timeout), cryptoKey/diaryKey already ARE the shared VK/DK
+  // from that attempt — reuse the SAME one rather than generating a new
+  // key, so already-migrated items and stragglers end up on the same key
+  // instead of split across two.
+  let VK = cryptoKey !== adminBaseKey ? cryptoKey : null;
+  let DK = diaryKey !== adminDiaryBaseKey ? diaryKey : null;
+  if (!VK) VK = await generateSharedKey();
+  if (!DK) DK = await generateSharedKey();
+
+  const rawAll = await DB.getAll();
+  const toReencrypt = [];   // still on the old key — needs decrypting and re-encrypting
+  const toConfirmCloud = []; // already on the shared key on THIS device, but that alone doesn't
+                              // guarantee the cloud has this same copy — a previous run could have
+                              // written the new key locally and then failed only on the upload step,
+                              // leaving the cloud silently stuck on the old ciphertext. Re-pushing the
+                              // exact existing bytes (no re-encryption needed) closes that gap for good.
+  const stuck = [];
+  for (const raw of rawAll) {
+    if (raw.id.startsWith('__')) continue; // preference rows, not content
+    const isDiary = raw.id.startsWith('diary::');
+    const targetKey = isDiary ? DK : VK;
+    const baseKey   = isDiary ? adminDiaryBaseKey : adminBaseKey;
+    try { await decryptRecord(raw.iv, raw.ct, targetKey); toConfirmCloud.push({ raw, isDiary }); continue; } catch (e) {}
+    try { const payload = await decryptRecord(raw.iv, raw.ct, baseKey); toReencrypt.push({ raw, payload, isDiary }); continue; } catch (e) {}
+    stuck.push(raw.id); // decrypts under neither key — genuinely unexpected, flagged rather than silently dropped
+  }
+
+  if (!toReencrypt.length && !toConfirmCloud.length) {
+    alert('Nothing found to migrate.');
+    if (stuck.length) console.log('Items unreadable under either key:', stuck);
+    return;
+  }
+
+  if (toReencrypt.length) {
+    const backup = toReencrypt.map(x => ({ old_id: x.raw.id, ...x.payload }));
+    const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `vault-migration-backup-${new Date().toISOString().slice(0,10)}.json`;
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  if (!confirm(`${toReencrypt.length} item(s) need re-encrypting${toReencrypt.length ? ' (backup downloaded for these)' : ''}, ${toConfirmCloud.length} item(s) just need their cloud copy confirmed. Continue?`)) return;
+
+  let migrated = 0, confirmed = 0, failed = 0;
+  for (const { raw, payload, isDiary } of toReencrypt) {
+    try {
+      const { iv, ct } = await encryptRecord(payload, isDiary ? DK : VK);
+      await DB.put({ id: raw.id, iv, ct }); // same id — only the key changes, so ids/refs elsewhere stay valid
+      const { error } = await vaultClient.from('vault_sync')
+        .upsert({ item_id: raw.id, user_id: sbUserId, user_hash: PW_HASH, iv, ct, updated_at: new Date().toISOString() });
+      if (error) throw error;
+      migrated++;
+    } catch (e) {
+      console.error(`Migration failed for ${raw.id} — left untouched, safe to retry later:`, e);
+      failed++;
+    }
+  }
+  for (const { raw, isDiary } of toConfirmCloud) {
+    try {
+      // Re-upload the EXACT bytes already sitting locally — no re-encryption,
+      // just guaranteeing the cloud has this same ciphertext too.
+      const { error } = await vaultClient.from('vault_sync')
+        .upsert({ item_id: raw.id, user_id: sbUserId, user_hash: PW_HASH, iv: raw.iv, ct: raw.ct, updated_at: new Date().toISOString() });
+      if (error) throw error;
+      confirmed++;
+    } catch (e) {
+      console.error(`Cloud confirmation failed for ${raw.id} — safe to retry later:`, e);
+      failed++;
+    }
+  }
+
+  // Lock VK/DK under your existing password too — using adminBaseKey/
+  // adminDiaryBaseKey directly as the wrapping key (no separate PBKDF2
+  // needed; they're already exactly the right derived keys, just being
+  // used to encrypt something else this once). Always re-upserted, even
+  // on a resumed run, so the stored wrap always matches whichever VK/DK
+  // is actually in use.
+  const wrapForAdmin = async (rawBytes, wrapWithKey) => {
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const wrapped = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, wrapWithKey, rawBytes);
+    return { iv: bufToB64(iv), wrapped: bufToB64(wrapped) };
+  };
+  const vkRaw = await crypto.subtle.exportKey('raw', VK);
+  const dkRaw = await crypto.subtle.exportKey('raw', DK);
+  const adminVaultWrap = await wrapForAdmin(vkRaw, adminBaseKey);
+  const adminDiaryWrap = await wrapForAdmin(dkRaw, adminDiaryBaseKey);
+
+  await vaultClient.from('vault_key_wraps').upsert({ role: 'admin', wrapped_key: JSON.stringify(adminVaultWrap) });
+  await vaultClient.from('vault_key_wraps').upsert({ role: 'admin_diary', wrapped_key: JSON.stringify(adminDiaryWrap) });
+
+  // From this point in the current session, use the shared keys — next
+  // unlock, unlockVault() will fetch+unwrap these same admin wraps
+  // automatically instead of re-running this migration.
+  cryptoKey = VK;
+  diaryKey = DK;
+
+  Vault.invalidate();
+  await renderBooks(); await renderMovies(); await renderAnime(); await render(); await renderDiary();
+  alert(`Migration: ${migrated} re-encrypted, ${confirmed} cloud cop${confirmed === 1 ? 'y' : 'ies'} confirmed${failed ? `, ${failed} failed — safe to run migrateToShareableKeys() again` : ''}. You can now use Setup Sharing to hand out viewer/contributor/diary passwords.`);
+}
+
+// Admin-only. (Re)issues the 3 shared passwords' wax seals against whatever
+// VK/DK are currently loaded. Any argument left blank/null keeps that
+// role's existing seal untouched — lets you change just one password
+// without having to know or retype the other two.
+// Admin-only, console-callable: rotateAdminCipherKey()
+// Retires your current cipher key and replaces it with a new one — safe
+// to run any time after migration, since your content is encrypted under
+// VK/DK (independent of the password), not under the password directly
+// anymore. This only re-locks that same VK under a new password; nothing
+// about your actual content is touched.
+// Deliberately prompts for the new password itself (never typed into
+// chat, never leaves this browser) and only ever shows you the resulting
+// HASH to paste into the file — the password itself is never displayed
+// back or logged anywhere.
+async function rotateAdminCipherKey() {
+  if (!cryptoKey || !cryptoKey.extractable) {
+    alert('Unlock the vault first, and make sure migrateToShareableKeys() has already been run once.');
+    return;
+  }
+  const newPw = prompt('New cipher key (never shown again — write it down before continuing):');
+  if (!newPw) return;
+  const confirm1 = prompt('Type it again to confirm:');
+  if (newPw !== confirm1) { alert('Did not match — nothing was changed.'); return; }
+
+  const newHash = await sha256Hex(PW_SALT + newPw);
+  const vkRaw = await crypto.subtle.exportKey('raw', cryptoKey);
+  const newBaseKey = await deriveKey(newPw);
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const wrapped = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, newBaseKey, vkRaw);
+  const { error } = await vaultClient.from('vault_key_wraps')
+    .upsert({ role: 'admin', wrapped_key: JSON.stringify({ iv: bufToB64(iv), wrapped: bufToB64(wrapped) }) });
+  if (error) { alert('Failed to save — old cipher key is still active, nothing was lost. Check console.'); console.error(error); return; }
+
+  localStorage.removeItem('cv_vk_cache_v1'); // old cache was wrapped under the old password — clear it so this device re-fetches under the new one
+
+  // This step was missing before, and is exactly what caused the Google
+  // tab to keep silently using an old, rotated-out password afterward —
+  // refresh the local Google-recovery shortcut (if this device has one)
+  // to the new password right now, not just the server-side wrap.
+  if (googleVerifiedSub && googleVerifiedEmail?.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
+    await storeWrappedSecret(googleVerifiedSub, newPw);
+  }
+
+  const { error: hashErr } = await vaultClient.from('vault_config')
+    .upsert({ key: 'login_hash', value: newHash });
+  if (hashErr) {
+    alert('Key rotated, but saving the new login hash failed — check console. Your OLD cipher key still works for now; try rotateAdminCipherKey() again once this is sorted.');
+    console.error(hashErr);
+    return;
+  }
+  LOGIN_HASH = newHash; // takes effect immediately, this session, no reload needed
+  alert('Done — your new cipher key is live immediately, everywhere, including the Google tab on this device. Nothing to paste, nothing to re-upload.');
+}
+
+async function setupSharing(viewerPw, contributorPw, diaryPw) {
+  if (!cryptoKey || !diaryKey) { alert('Unlock the vault and enter the diary password first.'); return; }
+  if (!cryptoKey.extractable || !diaryKey.extractable) {
+    alert('Run the one-time migration first — open the console and call migrateToShareableKeys().');
+    return;
+  }
+  const vkRaw = await crypto.subtle.exportKey('raw', cryptoKey);
+  const dkRaw = await crypto.subtle.exportKey('raw', diaryKey);
+  const jobs = [
+    viewerPw      && { role: 'viewer',       raw: vkRaw, pw: viewerPw,      salt: 'cv_wax_seal_viewer_v1' },
+    contributorPw && { role: 'contributor',  raw: vkRaw, pw: contributorPw, salt: 'cv_wax_seal_contributor_v1' },
+    diaryPw       && { role: 'diary_reader', raw: dkRaw, pw: diaryPw,       salt: 'cv_wax_seal_diary_reader_v1' },
+  ].filter(Boolean);
+  if (!jobs.length) throw new Error('Nothing to update — every field was left blank.');
+  for (const job of jobs) {
+    const wrap = await wrapKeyWithPassword(job.raw, job.pw, job.salt);
+    const { error } = await vaultClient.from('vault_key_wraps').upsert({ role: job.role, wrapped_key: JSON.stringify(wrap) });
+    if (error) throw error;
+  }
+  return jobs.map(j => j.role);
+}
+
+async function submitSetupSharing() {
+  const btn = document.getElementById('sharingSubmitBtn');
+  const err = document.getElementById('sharingError');
+  err.classList.remove('show');
+  btn.disabled = true;
+  try {
+    const changed = await setupSharing(
+      document.getElementById('sharePwViewer').value.trim() || null,
+      document.getElementById('sharePwContributor').value.trim() || null,
+      document.getElementById('sharePwDiary').value.trim() || null,
+    );
+    document.getElementById('sharingForm').reset();
+    closeModal('sharingModal');
+    toast(`◈ Seal${changed.length > 1 ? 's' : ''} pressed: ${changed.join(', ')}.`);
+  } catch (e) {
+    console.error('Setup Sharing failed:', e);
+    err.textContent = '◈ ' + (e?.message || 'Something went wrong — check the console.');
+    err.classList.add('show');
+  } finally {
+    btn.disabled = false;
+  }
 }
 
 async function renderDiary() {
@@ -5737,6 +6806,11 @@ function wireLoginTabs() {
       document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
       tab.classList.add('active');
       document.getElementById(tab.dataset.target).classList.add('active');
+      // GSI only keeps one callback configured at a time — restore the
+      // admin-only one whenever this tab becomes active again, in case
+      // the seal flow's Google button (a different callback) ran more
+      // recently and left it pointed the wrong way.
+      if (tab.dataset.target === 'googleSection') initGoogleSignIn();
     });
   });
 }
@@ -5747,29 +6821,78 @@ function wireHint() {
   toggle.addEventListener('click', () => reveal.classList.toggle('show'));
 }
 
-async function handlePwSubmit() {
-  if (_pwSubmitting) return; // block concurrent attempts
-  _pwSubmitting = true;
-  const btn = document.getElementById('pwSubmit');
-  const err = document.getElementById('pwError');
+let _selectedSealRole = null;
+function wireSealPicker() {
+  document.querySelectorAll('.wax-seal').forEach(seal => {
+    seal.addEventListener('click', async () => {
+      document.querySelectorAll('.wax-seal').forEach(s => s.classList.remove('selected'));
+      seal.classList.add('selected');
+      _selectedSealRole = seal.dataset.role;
+      document.getElementById('sealPwInput').placeholder = _selectedSealRole === 'admin' ? 'Enter your cipher key' : "Press the seal with its password";
+      document.getElementById('hintToggle').style.display = (_selectedSealRole === 'admin') ? '' : 'none';
+      if (_selectedSealRole !== 'admin') document.getElementById('hintReveal').classList.remove('show');
+
+      if (_selectedSealRole === 'admin') {
+        document.getElementById('sealGoogleGate').style.display = 'none';
+        document.getElementById('sealPwInput').disabled = false;
+        document.getElementById('sealSubmit').disabled = false;
+        document.getElementById('sealPwInput').focus();
+        return;
+      }
+
+      // The 3 shared seals need a real Google sign-in first (see
+      // handleSealGoogleCredential) — skip straight to the password if
+      // that's already done this session, otherwise show that step first.
+      const { data: { session } } = await vaultClient.auth.getSession();
+      if (session?.user && !session.user.is_anonymous) {
+        document.getElementById('sealGoogleGate').style.display = 'none';
+        document.getElementById('sealPwInput').disabled = false;
+        document.getElementById('sealSubmit').disabled = false;
+        document.getElementById('sealPwInput').focus();
+      } else {
+        document.getElementById('sealGoogleGate').style.display = '';
+        document.getElementById('sealPwInput').disabled = true;
+        document.getElementById('sealSubmit').disabled = true;
+        initSealGoogleSignIn();
+      }
+    });
+  });
+}
+
+async function handleSealSubmit() {
+  if (_sealSubmitting || !_selectedSealRole) return;
+  _sealSubmitting = true;
+  const btn = document.getElementById('sealSubmit');
+  const err = document.getElementById('sealError');
+  const pw = document.getElementById('sealPwInput').value;
+  const sealEl = document.querySelector(`.wax-seal[data-role="${_selectedSealRole}"]`);
   err.classList.remove('show');
   btn.disabled = true;
   try {
-    const ok = await attemptUnlock(document.getElementById('pwInput').value);
-    if (!ok) {
-      err.textContent = '◈ Incorrect cipher key.';
-      err.classList.add('show');
+    if (_selectedSealRole === 'admin') {
+      const ok = await attemptUnlock(pw); // existing cipher-key logic — local hash check, full decrypt, optional Google-session write access
+      if (!ok) throw new Error('wrong');
+      sealEl.classList.add('cracking');
+    } else {
+      await claimSharedRole(pw, _selectedSealRole);
+      sealEl.classList.add('cracking');
+      await new Promise(r => setTimeout(r, 500)); // let the crack animation actually play before the page switches
+      await unlockVaultAsSharedRole();
     }
-  } finally {
+  } catch (e) {
+    err.textContent = '◈ ' + (e?.message?.includes('too many attempts') ? e.message : 'The seal did not break — wrong password.');
+    err.classList.add('show');
     btn.disabled = false;
-    _pwSubmitting = false;
+  } finally {
+    _sealSubmitting = false;
   }
 }
 
 function wireLoginSubmit() {
-  document.getElementById('pwSubmit').addEventListener('click', handlePwSubmit);
-  document.getElementById('pwInput').addEventListener('keydown', e => { if (e.key === 'Enter') handlePwSubmit(); });
   document.getElementById('googleEnterBtn').addEventListener('click', googleEnter);
+  wireSealPicker();
+  document.getElementById('sealSubmit').addEventListener('click', handleSealSubmit);
+  document.getElementById('sealPwInput').addEventListener('keydown', e => { if (e.key === 'Enter') handleSealSubmit(); });
 }
 
 function wireDropzone() {
@@ -5847,6 +6970,7 @@ async function init() {
   wireAnimeControls();
   wireDiaryControls();
   await DB.init();
+  await loadLoginHash();         // must finish before anyone can submit the cipher key form
   await initThemeForSession();   // runs before any unlock — theme isn't sensitive content
   setupViewOnlyMode();
   initGoogleSignIn();

@@ -9,11 +9,11 @@
 <meta name="description" content="The software statisticians actually use day to day: R, Python, and the specialised tools worth learning at each stage of a statistics education.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="The Statistics Universe">
-<link rel="canonical" href="https://stargazers.co.in/stats/tools.html">
+<link rel="canonical" href="https://stargazers.co.in/stats/tools">
 <meta property="og:type" content="website">
 <meta property="og:title" content="The Statistician's Software Toolkit | Stargazer">
 <meta property="og:description" content="The software statisticians actually use day to day, and which tools are worth learning first.">
-<meta property="og:url" content="https://stargazers.co.in/stats/tools.html">
+<meta property="og:url" content="https://stargazers.co.in/stats/tools">
 <meta property="og:image" content="https://stargazers.co.in/pics/stats.png">
 <meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
 <meta name="application-name" content="Stargazer: Lost in the Cosmos">
@@ -31,7 +31,7 @@
   "@type": "WebPage",
   "name": "The Statistician's Software Toolkit | Stargazer",
   "description": "The software statisticians actually use day to day, and which tools are worth learning first.",
-  "url": "https://stargazers.co.in/stats/tools.html",
+  "url": "https://stargazers.co.in/stats/tools",
   "inLanguage": "en",
   "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazers.co.in/" },
   "about": { "@type": "Thing", "name": "Statistics", "sameAs": "https://en.wikipedia.org/wiki/Statistics" }
@@ -408,23 +408,6 @@ function toggleToolRes(id,lbl){
   el.classList.toggle('show');
   lbl.textContent=el.classList.contains('show')?'▾ Hide resources':'▸ Resources & Links';
 }
-
-/* ═══════════════════════════════════════════════════════════
-   PAGE / NAVIGATION
-   ═══════════════════════════════════════════════════════════ */
-const PAGE_RENDER={
-  books:renderBooks, puzzles:renderPuzzles, school:renderSchool,
-  inference:renderInference, distributions:renderDistributions,
-  bayesian:renderBayesian, openproblems:renderOpenProblems,
-  research:renderStatResearch,
-  careers:renderCareers, studyguide:renderStudyGuide,
-  facts:renderFacts, tools:renderTools,
-  calc:renderCalc, formulas:renderFormulas,
-  history:renderHistory,
-  comments:function(){statsLoadComments();}
-};
-const rendered=new Set();
-
 
 (function(){
   if(localStorage.getItem('stats-mode')==='night'){

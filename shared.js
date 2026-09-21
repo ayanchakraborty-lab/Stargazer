@@ -15,6 +15,8 @@
 ═══════════════════════════════════════════════════════════════════ */
 
 /* ── CONFIG ─────────────────────────────────────────────────────── */
+// folder that holds shared.js (the site root), so login redirects work from /stats/, /books/, ...
+const _SB_ROOT      = (function(){ try { var u = document.currentScript && document.currentScript.src; return u ? u.replace(/[^\/]*$/, '') : ''; } catch(e) { return ''; } })();
 const _SB_URL       = 'https://daqxabswnrhqpjyfdbwx.supabase.co';
 const _SB_ANON      = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhcXhhYnN3bnJocXBqeWZkYnd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1ODczMDMsImV4cCI6MjA5NTE2MzMwM30.NqHPJZkDsawSJRSjDMNS4-c5KZDxTNxWBoMF_a6bSuc';
 const _ADMIN_EMAIL  = 'ayanchakrabortyall@gmail.com';
@@ -113,7 +115,7 @@ window.doSignOut = async function() {
   try { localStorage.removeItem('sb-daqxabswnrhqpjyfdbwx-auth-token'); } catch(e) {}
   currentUser = window.currentUser = null;
   renderAuthUI();
-  window.location.href = 'login.html';
+  window.location.href = _SB_ROOT + 'login.html';
 };
 
 /* ── PROGRESS SYNC ──────────────────────────────────────────────── */
@@ -332,7 +334,7 @@ async function deleteComment(id) {
 }
 
 async function submitComment(pageKey) {
-  if (!currentUser) { window.location.href = 'login.html'; return; }
+  if (!currentUser) { window.location.href = _SB_ROOT + 'login.html'; return; }
   const textEl = document.getElementById('commentText');
   const text   = (textEl?.value || '').trim();
   if (!text) return;

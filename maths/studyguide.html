@@ -5,71 +5,86 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="../pics/logo.png">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>How to Learn Statistics — A Study Guide | Stargazer</title>
-<meta name="description" content="A practitioner's guide to learning statistics in a sensible order, with the habits and resources that actually make the subject click.">
+<script>
+// Apply theme immediately to prevent flash
+(function(){
+  var tm = localStorage.getItem('stargazer_theme');
+  if(tm==='light') document.documentElement.classList.add('pre-light');
+})();
+</script>
+<style>html.pre-light body{background:#faf7f2!important}html.pre-light{background:#faf7f2}</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]}));}else{renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});}"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Lato:ital,wght@0,400;0,700;1,400&family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<title>How to Learn Mathematics Deeply | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="15 strategies and mental models for building real, lasting mathematical understanding — habits and study techniques drawn from the finest mathematical minds.">
+<meta name="keywords" content="how to learn mathematics, study mathematics effectively, mathematical study techniques, learn math deeply, mathematics study tips, math learning strategies">
 <meta name="robots" content="index, follow">
-<meta name="author" content="The Statistics Universe">
-<link rel="canonical" href="https://stargazers.co.in/stats/studyguide.html">
+<meta name="author" content="The Mathematics Universe">
+<link rel="canonical" href="https://stargazers.co.in/maths/studyguide">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord) ── -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="How to Learn Statistics — A Study Guide | Stargazer">
-<meta property="og:description" content="A practitioner's guide to learning statistics in a sensible order, with habits that make it click.">
-<meta property="og:url" content="https://stargazers.co.in/stats/studyguide.html">
-<meta property="og:image" content="https://stargazers.co.in/pics/stats.png">
+<meta property="og:title" content="How to Learn Mathematics Deeply | Stargazer">
+<meta property="og:description" content="How the best mathematical minds actually study — 15 strategies for understanding that lasts, not just grades that pass. Learn how →">
+<meta property="og:url" content="https://stargazers.co.in/maths/studyguide">
+<meta property="og:image" content="https://stargazers.co.in/pics/maths.png">
+<meta name="twitter:image" content="https://stargazers.co.in/pics/maths.png">
 <meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
 <meta name="application-name" content="Stargazer: Lost in the Cosmos">
 <meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="How to Learn Statistics — A Study Guide | Stargazer">
-<meta name="twitter:description" content="A practitioner's guide to learning statistics in a sensible order, with habits that make it click.">
-<meta name="twitter:image" content="https://stargazers.co.in/pics/stats.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="twitter:title" content="How to Learn Mathematics Deeply | Stargazer">
+<meta name="twitter:description" content="Master foundations, prove everything yourself, and 13 more habits for learning mathematics that actually sticks. Study smarter →">
+
 <!-- ── STRUCTURED DATA ── -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "How to Learn Statistics — A Study Guide | Stargazer",
-  "description": "A practitioner's guide to learning statistics in a sensible order, with habits that make it click.",
-  "url": "https://stargazers.co.in/stats/studyguide.html",
+  "name": "How to Learn Mathematics Deeply: A Practitioner's Guide",
+  "description": "15 strategies, habits, and mental models for building real, transferable mathematical understanding — drawn from how the finest mathematical minds actually study.",
+  "url": "https://stargazers.co.in/maths/studyguide",
   "inLanguage": "en",
   "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazers.co.in/" },
-  "about": { "@type": "Thing", "name": "Statistics", "sameAs": "https://en.wikipedia.org/wiki/Statistics" }
+  "about": [
+    { "@type": "Thing", "name": "Mathematics", "sameAs": "https://en.wikipedia.org/wiki/Mathematics" },
+    { "@type": "Thing", "name": "Mathematics education", "sameAs": "https://en.wikipedia.org/wiki/Mathematics_education" }
+  ]
 }
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="stats.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
-<script src="mathfmt.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
-  onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMath(document.body));}else{renderMath(document.body);}"></script>
+<link rel="stylesheet" href="maths.css">
 </head>
 <body>
 
-<!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════ AUTH TOP BAR ════ -->
 <div id="auth-topbar">
   <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
   <div style="flex:1"></div>
-  <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
-    <span id="mode-icon">☾</span>
-  </button>
-  <a href="../login.html" id="loginBtn">☽ Sign In</a>
-  <div id="userInfo">
-    <span id="userEmailDisplay">✦ Explorer</span>
-    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+  <a href="../login.html" id="loginBtn" class="atb-btn atb-signin">☽ Sign In</a>
+  <div id="userInfo" style="display:none;align-items:center;gap:0.4rem">
+    <span class="atb-username" id="userEmailDisplay">✦ Explorer</span>
+    <button class="atb-signout" onclick="doSignOut()">Sign Out</button>
   </div>
 </div>
 
 <script src="nav.js"></script>
 <script>renderNav('studyguide');</script>
 
-<!-- ═══ SEARCH MODAL ═══════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════ SEARCH MODAL ════ -->
 <div id="search-modal" onclick="if(event.target===this)closeSearch()">
   <div id="search-box">
     <div id="search-input-wrap">
       <span id="search-icon-lbl">🔍</span>
-      <input id="search-input" placeholder="Search books, puzzles, distributions, tools…" autocomplete="off"
+      <input id="search-input" placeholder="Search this page…" autocomplete="off"
         oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
       <span id="search-kbd">ESC</span>
     </div>
@@ -77,284 +92,347 @@
   </div>
 </div>
 
-<!-- ═══ TOAST ══════════════════════════════════════════════════════ -->
-<div id="toast">
-  <button id="toast-close" onclick="hideToast()" aria-label="Dismiss notification">✕</button>
-  <div class="toast-cat" id="toast-cat">Fun Fact</div>
-  <div id="toast-body"></div>
-</div>
+<div id="shortcut-hint">/ search</div>
 
-<!-- ═══ KEYBOARD HINT ══════════════════════════════════════════════ -->
-<div id="shortcut-hint">/ search · ← → pages</div>
-
-<!-- ═══ PAGE: CALCULATOR ═══════════════════════════════════════════ -->
-<div class="page active" id="page-studyguide">
+<div class="page active" id="page-studyguide" style="background:#001008">
   <section class="section" id="studyguide">
     <div class="s-inner">
       <div class="s-head">
-        <span class="s-eyebrow" style="background:var(--gr-l);color:var(--gr);border:1px solid rgba(77,122,88,.25)">Study Guide</span>
-        <h2 class="s-title font-serif">How to Learn Statistics — A Practitioner's Guide</h2>
-        <p class="s-desc">Ten principles for learning statistics well, drawn from the common errors and hard-won insights of those who have done it before you.</p>
+        <span class="s-eyebrow" style="background:rgba(16,185,129,0.08);color:#6ee7b7;border:1px solid rgba(16,185,129,0.22)">The Practitioner's Guide</span>
+        <h1 class="s-title font-serif" style="color:#d1fae5">How to Learn Mathematics Deeply</h1>
+        <p class="s-desc" style="color:#10b981">Strategies, habits, and mental models from the finest mathematical minds — how to build lasting, transferable mathematical understanding.</p>
       </div>
-      <div id="sg-rotating-quote"></div><div id="tips-list"></div>
+      <div id="daily-quote-box" class="quote-of-day"></div>
+      <div class="tip-list" id="tips-list"></div>
     </div>
   </section>
 </div>
 
-<!-- ── CONTACT ── -->
-<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
-  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);font-style:italic;font-family:'Source Code Pro',monospace;">contact the creator</span>
-  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
-</div>
-<div style="text-align:center;padding-bottom:2rem;">
-  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
-</div>
 
-<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
+<footer id="footer">
+  <div class="foot-eq">e<sup>iπ</sup> + 1 = 0</div>
+  <p class="foot-txt"><strong style="color:#6d28d9">"Mathematics is not about numbers, equations, computations, or algorithms. It is about understanding."</strong><br>— William Paul Thurston, Fields Medalist</p>
+  <div class="foot-links">
+    <button class="foot-link" onclick="location.href='../ABOUT.html'">📖 About Stargazer</button>
+    <a class="foot-link" onclick="location.href='comments.html'; return false;" href="#">💬 Community Comments</a>
+    <a class="foot-link" href="mailto:ayan.chakraborty6174@gmail.com">✉️ Contact Creator</a>
+    <a class="foot-link" href="https://stargazers.co.in" target="_blank" rel="noopener">🌐 Stargazer Home</a>
+  </div>
+</footer>
+
+<button id="theme-toggle" title="Toggle light / dark theme" aria-label="Toggle light / dark theme" onclick="toggleTheme()">☀️</button>
+<button id="btt" title="Back to top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
 <script>
-window._nextPage = 'facts.html';
-window._prevPage = 'careers.html';
 const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+window._pageKey = 'maths';
 
-function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+function isAdmin() {
+  return !!(window.currentUser && window.currentUser.email === ADMIN_EMAIL);
+}
+
+window._applyDarkMode = function(isDark) {
+  // isDark=true → dark mode (no light-mode class)
+  // isDark=false → light mode
+  applyTheme(!isDark);   // applyTheme(true) adds light-mode class
+  localStorage.setItem('stargazer_theme', isDark ? 'dark' : 'light');
+};
 
 
-/* ═══════════════════════════════════════════════════════════════
-   OVERRIDE: renderPuzzles — index + cat badge + solved button + filters
-   ═══════════════════════════════════════════════════════════════ */
+window._afterRenderAuthUI = function(user) {
+  // Show/hide admin bars
+  document.querySelectorAll('.admin-bar').forEach(function(el) {
+    if (user && user.email === ADMIN_EMAIL) { el.classList.add('visible'); }
+    else                                    { el.classList.remove('visible'); }
+  });
+  // Mirror display name into comment form header
+  var ud2 = document.getElementById('userEmailDisplay2');
+  if (ud2 && user) {
+    ud2.textContent = user.user_metadata?.display_name
+                    || user.user_metadata?.full_name
+                    || user.email || 'you';
+  }
+  // Trigger admin data load on sign-in
+  if (user) { if (typeof loadAdminData === 'function') loadAdminData(); }
+};
 
-function toggleMode(){
-  const night=document.body.classList.toggle('night');
-  document.getElementById('mode-icon').textContent=night?'☀':'☾';
-  localStorage.setItem('stats-mode',night?'night':'day');
-  // redraw all visible canvases
-  document.querySelectorAll('.dist-canvas').forEach(c=>{
-    const cid=c.id;
-    const params={};
-    document.querySelectorAll(`[id^="sl-${cid}-"]`).forEach(sl=>{
-      params[sl.id.replace('sl-'+cid+'-','')]=parseFloat(sl.value);
-    });
-    // find the slug from DISTRIBUTIONS
-    const slug=getSlugFromCanvas(cid);
-    if(slug){
-      const isDisc=['bernoulli','binomial','geometric','negbin','poisson','hypergeometric'].includes(slug);
-      drawDistCanvas(cid,slug,params,isDisc);
+
+function applyTheme(light) {
+  if (light) { document.body.classList.add('light-mode'); }
+  else        { document.body.classList.remove('light-mode'); }
+  var btn = document.getElementById('theme-toggle');
+  if (btn) btn.textContent = light ? '🌙' : '☀️';
+  document.documentElement.classList.remove('pre-light');
+}
+
+
+function toggleTheme() {
+  var nowLight = !document.body.classList.contains('light-mode');
+  applyTheme(nowLight);
+  localStorage.setItem('stargazer_theme', nowLight ? 'light' : 'dark');
+  // Persist via shared.js (writes to Supabase profiles.dark_mode)
+  // isDark param: true = dark mode, false = light mode
+  if (window.sbSaveDarkMode) window.sbSaveDarkMode(!nowLight);
+}
+
+
+// Apply theme immediately on load from localStorage
+(function() {
+  var tm = localStorage.getItem('stargazer_theme');
+  applyTheme(tm === 'light');
+})();
+
+// shared.js calls this after loading dark_mode from profiles
+// (already declared in the auth block above as window._applyDarkMode)
+
+
+function reRevealActivePage() {
+  var p = document.querySelector('.page.active');
+  if (!p) return;
+  p.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
+    el.classList.add('visible');
+  });
+}
+
+
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Close modal on backdrop click
+
+function toggleHamburger() {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu) return;
+  var open = menu.classList.toggle('open');
+  btn.classList.toggle('open', open);
+}
+// Close on outside click
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('hamburger-menu');
+  var btn  = document.getElementById('hamburger-btn');
+  if (!menu || !menu.classList.contains('open')) return;
+  if (!menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var menu = document.getElementById('hamburger-menu');
+    if (menu && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      document.getElementById('hamburger-btn').classList.remove('open');
     }
-  });
-}
+  }
+});
 
+window.addEventListener('scroll', function() {
+  var btt = document.getElementById('btt');
+  if (btt) btt.classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
 
-function getSlugFromCanvas(cid){
-  // cid format: dc-type-idx
-  const parts=cid.split('-');
-  if(parts.length<3)return null;
-  const type=parts[1],idx=parseInt(parts[2]);
-  if(DISTRIBUTIONS[type]&&DISTRIBUTIONS[type][idx])return DISTRIBUTIONS[type][idx].slug;
-  return null;
-}
+window._getProgressData = function() { return {}; };
+window._applyProgressData = function(d) {};
 
-/* ═══════════════════════════════════════════════════════════
-   SCROLL EFFECTS
-   ═══════════════════════════════════════════════════════════ */
-const btt=document.getElementById('btt');
-window.addEventListener('scroll',()=>{
-  if(btt)btt.classList.toggle('show',window.scrollY>300);
-  document.querySelectorAll('.reveal').forEach(el=>{
-    if(el.getBoundingClientRect().top<window.innerHeight-60)
-      el.classList.add('visible');
-  });
-},{passive:true});
-
-/* ═══════════════════════════════════════════════════════════
-   INIT
-   ═══════════════════════════════════════════════════════════ */
-
-let SEARCH_INDEX=[];
-function openSearch(){
+var PAGE_SEARCH_INDEX = [];
+function openSearch() {
   buildSearchIndex();
-  const m=document.getElementById('search-modal');
+  var m = document.getElementById('search-modal');
   m.classList.add('open');
-  setTimeout(()=>document.getElementById('search-input').focus(),80);
+  setTimeout(function() { document.getElementById('search-input').focus(); }, 80);
 }
-function closeSearch(){
+function closeSearch() {
   document.getElementById('search-modal').classList.remove('open');
-  document.getElementById('search-input').value='';
-  document.getElementById('search-results').innerHTML='<div class="sr-empty">Start typing to search this page…</div>';
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-results').innerHTML = '<div class="sr-empty">Start typing to search this page…</div>';
 }
-function runSearch(q){
-  const res=document.getElementById('search-results');
-  if(!q.trim()){res.innerHTML='<div class="sr-empty">Start typing…</div>';return;}
-  const lq=q.toLowerCase();
-  const hits=SEARCH_INDEX.filter(x=>x.q.toLowerCase().includes(lq)).slice(0,18);
-  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q+'"</div>';return;}
-  res.innerHTML=hits.map((h,i)=>`<div class="sr-item" tabindex="0" data-idx="${i}" onclick="goSearchResult(${SEARCH_INDEX.indexOf(h)})" onkeydown="if(event.key==='Enter')goSearchResult(${SEARCH_INDEX.indexOf(h)})"><span class="sr-icon">${h.icon}</span><div><div class="sr-title">${highlight(h.title,lq)}</div><div class="sr-meta">${h.meta}</div></div><span class="sr-section">${h.section}</span></div>`).join('');
+function runSearch(q) {
+  var res = document.getElementById('search-results');
+  if (!q.trim()) { res.innerHTML = '<div class="sr-empty">Start typing…</div>'; return; }
+  var lq = q.toLowerCase();
+  var hits = PAGE_SEARCH_INDEX.filter(function(x) { return x.q.indexOf(lq) !== -1; }).slice(0, 20);
+  if (!hits.length) { res.innerHTML = '<div class="sr-empty">No results for "' + q + '"</div>'; return; }
+  res.innerHTML = hits.map(function(h) {
+    var idx = PAGE_SEARCH_INDEX.indexOf(h);
+    var ti = mathHighlight(h.title, lq);
+    return '<div class="sr-item" tabindex="0" data-idx="' + idx + '" onclick="goPageResult(' + idx + ')" onkeydown="if(event.key===\'Enter\')goPageResult(' + idx + ')">' +
+      '<span class="sr-icon">' + h.icon + '</span>' +
+      '<div><div class="sr-title">' + ti + '</div><div class="sr-meta">' + h.meta + '</div></div>' +
+      '<span class="sr-section">' + h.section + '</span></div>';
+  }).join('');
 }
-function highlight(text,q){
-  if(!q)return text;
-  const idx=text.toLowerCase().indexOf(q);
-  if(idx<0)return text;
-  return text.slice(0,idx)+'<mark style="background:var(--gd-l);color:var(--gd);border-radius:2px">'+text.slice(idx,idx+q.length)+'</mark>'+text.slice(idx+q.length);
+function mathHighlight(text, q) {
+  if (!q) return text;
+  var idx = text.toLowerCase().indexOf(q);
+  if (idx < 0) return text;
+  return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
 }
-function goSearchResult(idx){ closeSearch(); }
-function searchKeyNav(e){
-  if(e.key==='Escape'){closeSearch();return;}
-  const items=document.querySelectorAll('.sr-item');
-  const cur=document.activeElement;
-  const curIdx=[...items].indexOf(cur);
-  if(e.key==='ArrowDown'){e.preventDefault();(items[curIdx+1]||items[0])?.focus();}
-  if(e.key==='ArrowUp'){e.preventDefault();(items[curIdx-1]||items[items.length-1])?.focus();}
-  if(e.key==='Enter'&&curIdx>=0){items[curIdx].click();}
+function goPageResult(idx) {
+  var h = PAGE_SEARCH_INDEX[idx]; if (!h) return;
+  closeSearch();
+  if (h.pre) h.pre();
+  setTimeout(function(){
+    var el = document.getElementById(h.elId);
+    if (el) {
+      el.scrollIntoView({behavior:'smooth', block:'center'});
+      el.style.outline = '3px solid #a855f7'; el.style.outlineOffset = '4px';
+      setTimeout(function(){ el.style.outline=''; el.style.outlineOffset=''; }, 1600);
+    }
+  }, 60);
 }
+function searchKeyNav(e) {
+  if (e.key === 'Escape') { closeSearch(); return; }
+  var items = document.querySelectorAll('.sr-item');
+  var cur = document.activeElement;
+  var curIdx = Array.prototype.indexOf.call(items, cur);
+  if (e.key === 'ArrowDown') { e.preventDefault(); (items[curIdx + 1] || items[0]).focus(); }
+  if (e.key === 'ArrowUp')   { e.preventDefault(); (items[curIdx - 1] || items[items.length - 1]).focus(); }
+  if (e.key === 'Enter' && curIdx >= 0) { items[curIdx].click(); }
+}
+document.addEventListener('keydown', function(e) {
+  if (['INPUT','TEXTAREA','SELECT'].indexOf(e.target.tagName) !== -1) return;
+  var modal = document.getElementById('search-modal');
+  if (modal && modal.classList.contains('open')) {
+    if (e.key === 'Escape') closeSearch();
+    return;
+  }
+  if (e.key === '/') { e.preventDefault(); openSearch(); }
+});
+
+const studyTips=[
+{n:1,t:"Master Foundations Before Advancing",desc:"Do not rush. If there is a gap in your understanding of algebra, everything built on it will be structurally unstable. Every hour ensuring a foundation is solid saves ten hours of confusion later. The temptation to skip ahead is always wrong — and always regretted."},
+{n:2,t:"Prove Everything Yourself",desc:"Do not accept a theorem as understood until you can close the book and re-derive it from scratch. Re-proving known results is not wasted time — it is the deepest form of learning. If you can prove it, you own it. If you only followed the proof once, you merely rented it."},
+{n:3,t:"The Struggle-First Rule: 30 Minutes Minimum",desc:"Before looking at a hint or solution, give every problem at least 30 minutes of genuine effort. The struggle is where learning happens. A solved problem you never struggled with teaches almost nothing. The discomfort IS the learning."},
+{n:4,t:"Write Mathematics by Hand",desc:"Writing proofs and derivations physically on paper activates cognitive processes that typing does not. Your brain encodes mathematical ideas differently when your hand writes them. Keep a dedicated notebook. Never just highlight — always re-derive."},
+{n:5,t:"Ask 'Why Is This True?' Not 'How Does This Work?'",desc:"'How' leads to mechanical understanding — you can follow the steps but you don't see why they work. 'Why' leads to genuine insight that transfers to new problems. For every formula and theorem: why should this be true? What breaks if it's false?"},
+{n:6,t:"Seek Multiple Proofs of the Same Theorem",desc:"A theorem with five proofs is more deeply understood than five theorems with one proof each. Different proofs illuminate different aspects of the same truth. The Pythagorean theorem has 370+ known proofs — each shows a different facet of what is really happening."},
+{n:7,t:"Teach What You Learn",desc:"Explain mathematics to others — study partners, friends, or even to yourself aloud. The act of explaining forces your understanding to become explicit and reveals gaps you didn't know existed. The Feynman technique: if you can't explain it simply, you don't understand it yet."},
+{n:8,t:"Connect Topics Across Different Areas",desc:"The greatest mathematical insights come from unexpected connections: complex analysis and number theory (Riemann), combinatorics and geometry (June Huh), probability and arithmetic (Green-Tao). Always ask: does this remind me of anything else? Where have I seen this structure before?"},
+{n:9,t:"Spaced Repetition for Theorems",desc:"Return to important theorems regularly — not to re-read, but to re-prove from memory. After a week. After a month. After three months. Mathematical understanding is not like language; precise structural knowledge fades if not actively maintained."},
+{n:10,t:"Read Mathematics Slowly and Very Carefully",desc:"One page of Rudin may require two hours. This is normal and correct. Mathematical writing is maximally dense; each sentence can contain an idea that took the author years to discover. Reading mathematics at the speed of novels is not reading mathematics — it is reading words that happen to be arranged mathematically."},
+{n:11,t:"Always Keep a Problem at the Edge of Your Ability",desc:"Maintain 1–2 problems you currently cannot solve. These edge-of-ability problems are where real mathematical growth happens. Easy problems build fluency; only hard problems build genuinely new capability. Comfort is the enemy of growth."},
+{n:12,t:"Read Mathematical History and Biography",desc:"Understanding who struggled with what, what mistakes were made, what was unexpected — transforms abstract theorems into human drama. Men of Mathematics, Birth of a Theorem, and Proofs from the Book change how you experience the subject. History reveals what is truly hard and what only seems hard in retrospect."},
+{n:13,t:"Embrace Confusion as a Signal of Learning",desc:"Confusion is not failure. It is the necessary precondition for genuine understanding. If everything you read makes immediate sense, you are not learning — you are reading things you already know. Seek confusion actively; it means you are standing at the frontier of your understanding."},
+{n:14,t:"Use Multiple Textbooks for Every Topic",desc:"For any topic, use 2–3 books and supplement with online resources (MIT OpenCourseWare, Paul's Notes, 3Blue1Brown). Different authors explain the same thing differently. One explanation will click when another doesn't. Never depend on a single voice."},
+{n:15,t:"Maintain a Mathematical Journal",desc:"Keep a notebook of insights, beautiful proofs, elegant arguments, open questions you've wondered about, and mistakes you've made and understood. Over time this becomes a personalised map of your mathematical development — and the seed of future research."}
+];
+
+const mathQuotes = [
+  {q:"Mathematics is the queen of sciences and number theory is the queen of mathematics.", a:"Carl Friedrich Gauss"},
+  {q:"God made the integers, all else is the work of man.", a:"Leopold Kronecker"},
+  {q:"In mathematics you don't understand things. You just get used to them.", a:"John von Neumann"},
+  {q:"Mathematics is not about numbers, equations, computations, or algorithms — it is about understanding.", a:"William Paul Thurston"},
+  {q:"The essence of mathematics lies in its freedom.", a:"Georg Cantor"},
+  {q:"A mathematician, like a painter or poet, is a maker of patterns. If his patterns are more permanent than theirs, it is because they are made with ideas.", a:"G.H. Hardy"},
+  {q:"There is no branch of mathematics, however abstract, which may not some day be applied to phenomena of the real world.", a:"Nikolai Lobachevsky"},
+  {q:"Pure mathematics is, in its way, the poetry of logical ideas.", a:"Albert Einstein"},
+  {q:"The mathematician does not study pure mathematics because it is useful; he studies it because he delights in it, and he delights in it because it is beautiful.", a:"Henri Poincaré"},
+  {q:"It is not knowledge, but the act of learning; not possession, but the act of getting there, which grants the greatest enjoyment.", a:"Carl Friedrich Gauss"},
+  {q:"What we know is a drop, what we don't know is an ocean.", a:"Isaac Newton"},
+  {q:"Mathematics is the language in which God has written the universe.", a:"Galileo Galilei"},
+  {q:"Do not worry about your difficulties in mathematics. I can assure you that mine are still greater.", a:"Albert Einstein"},
+  {q:"The art of doing mathematics consists in finding that special case which contains all the germs of generality.", a:"David Hilbert"},
+  {q:"No human investigation can claim to be science if it cannot be demonstrated mathematically.", a:"Leonardo da Vinci"},
+  {q:"Life is good for only two things: discovering mathematics and teaching mathematics.", a:"Siméon Denis Poisson"},
+  {q:"A man is like a fraction whose numerator is what he is and whose denominator is what he thinks of himself.", a:"Leo Tolstoy"},
+  {q:"The only way to learn mathematics is to do mathematics.", a:"Paul Halmos"},
+  {q:"In mathematics, the art of asking questions is more valuable than solving problems.", a:"Georg Cantor"},
+  {q:"Prime numbers are what is left when you have taken all the patterns away. I think prime numbers are like life.", a:"Mark Haddon"},
+  {q:"Obvious is the most dangerous word in mathematics.", a:"Eric Temple Bell"},
+  {q:"Mathematics is the music of reason.", a:"James Joseph Sylvester"},
+  {q:"We often hear that mathematics consists mainly of proving theorems. Is that what mathematicians do? Mostly, no.", a:"Saunders Mac Lane"},
+  {q:"The shortest path between two truths in the real domain passes through the complex domain.", a:"Jacques Hadamard"},
+  {q:"Beauty is the first test: there is no permanent place in the world for ugly mathematics.", a:"G.H. Hardy"},
+  {q:"Problems worthy of attack prove their worth by hitting back.", a:"Piet Hein"},
+  {q:"The mathematician's patterns, like the painter's or the poet's must be beautiful.", a:"G.H. Hardy"},
+  {q:"Mathematicians are like Frenchmen: whatever you say to them they translate into their own language and forthwith it is something entirely different.", a:"Johann Wolfgang von Goethe"},
+  {q:"Numbers are the highest degree of knowledge. It is knowledge itself.", a:"Plato"},
+  {q:"Mathematics is the most beautiful and most powerful creation of the human spirit.", a:"Stefan Banach"},
+  {q:"The infinite! No other question has ever moved so profoundly the spirit of man.", a:"David Hilbert"},
+  {q:"An expert is a man who has made all the mistakes which can be made, in a very narrow field.", a:"Niels Bohr"},
+  {q:"It is a mathematical fact that fifty percent of all doctors graduate in the bottom half of their class.", a:"Anonymous"},
+  {q:"I have had my results for a long time, but I do not yet know how I am to arrive at them.", a:"Carl Friedrich Gauss"},
+  {q:"Imagination is more important than knowledge.", a:"Albert Einstein"},
+  {q:"Mathematics is the gate and key to the sciences.", a:"Roger Bacon"},
+  {q:"The more I study the universe, the more I am convinced that it is set up to encourage the exploration of mathematical structure.", a:"Max Tegmark"},
+  {q:"Angling may be said to be so like the mathematics, that it can never be fully learned.", a:"Izaak Walton"},
+  {q:"Statistics is the grammar of science.", a:"Karl Pearson"},
+  {q:"Equipped with his five senses, man explores the universe around him and calls the adventure Science.", a:"Edwin Powell Hubble"},
+  {q:"It is impossible to be a mathematician without being a poet in soul.", a:"Sofia Kovalevskaya"},
+  {q:"The universe cannot be read until we have learned the language and become familiar with the characters in which it is written.", a:"Galileo Galilei"},
+  {q:"All the effects of Nature are only the mathematical consequences of a small number of immutable laws.", a:"Pierre-Simon Laplace"},
+  {q:"Without mathematics, there's nothing you can do. Everything around you is mathematics. Everything around you is numbers.", a:"Shakuntala Devi"},
+  {q:"To those who do not know mathematics it is difficult to get across a real feeling as to the beauty, the deepest beauty, of nature.", a:"Richard Feynman"},
+  {q:"One of the great purposes of mathematics is to help people think clearly about the quantitative aspects of the world.", a:"Keith Devlin"},
+  {q:"Pure mathematics is on the whole distinctly more useful than applied. For what is useful above all is technique, and mathematical technique is taught mainly through pure mathematics.", a:"G.H. Hardy"},
+  {q:"Mathematics reveals its secrets only to those who approach it with pure love, for its own beauty.", a:"Archimedes"},
+  {q:"There is no royal road to geometry.", a:"Euclid"},
+  {q:"In mathematics the art of proposing a question must be held of higher value than solving it.", a:"Georg Cantor"},
+  {q:"The greatest shortcoming of the human race is our inability to understand the exponential function.", a:"Albert Bartlett"},
+  {q:"What is algebra, exactly? Is it those three-cornered things?", a:"James M. Barrie"},
+  {q:"Physics is mathematical not because we know so much about the physical world, but because we know so little.", a:"Bertrand Russell"},
+  {q:"As far as the laws of mathematics refer to reality, they are not certain; and as far as they are certain, they do not refer to reality.", a:"Albert Einstein"},
+  {q:"The simplest things are the most profound, and the most profound things are often the simplest.", a:"Stephen Wolfram"},
+  {q:"We know what we are but know not what we may be.", a:"William Shakespeare"},
+  {q:"Every mathematician knows that to make good wine, you must crush the grapes.", a:"André Weil"},
+  {q:"Nothing in life is to be feared, only to be understood.", a:"Marie Curie"},
+  {q:"Not everything that can be counted counts, and not everything that counts can be counted.", a:"William Bruce Cameron"},
+  {q:"The purpose of computing is insight, not numbers.", a:"Richard Hamming"},
+  {q:"Mighty is geometry; joined with art, resistless.", a:"Euripides"},
+  {q:"The important thing is not to stop questioning. Curiosity has its own reason for existing.", a:"Albert Einstein"},
+  {q:"Any fool can know. The point is to understand.", a:"Albert Einstein"},
+  {q:"Logic is the beginning of wisdom, not the end.", a:"Leonard Nimoy"},
+  {q:"Time is the wisest counselor of all.", a:"Pericles"},
+  {q:"The best way to predict the future is to invent it.", a:"Alan Kay"}
+];
+
+
+function getDailyQuote() {
+  var d = new Date();
+  var dayOfYear = Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 86400000);
+  return mathQuotes[dayOfYear % mathQuotes.length];
+}
+
+
+function renderDailyQuote() {
+  var q = getDailyQuote();
+  var el = document.getElementById('daily-quote-box');
+  if (el) {
+    el.innerHTML = '<div class="quote-text">\u201c' + q.q + '\u201d</div><div class="quote-attr">— ' + q.a + '</div>';
+  }
+}
+
+
+function renderStudyTips(){
+  document.getElementById("tips-list").innerHTML=studyTips.map((tip,i)=>`
+  <div class="tip-card reveal" id="tipcard${i}">
+    <div class="tip-num">${tip.n}</div>
+    <div><div class="tip-title">${tip.t}</div><div class="tip-desc">${tip.desc}</div></div>
+  </div>`).join("");}
 
 
 function buildSearchIndex(){
-  if(SEARCH_INDEX.length)return;
-  // no index for this page
-}
-
-
-(function initKeyboard(){
-  const PAGES=['home','precollege_placeholder'];
-  document.addEventListener('keydown',e=>{
-    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
-    if(document.getElementById('search-modal')&&document.getElementById('search-modal').classList.contains('open')){
-      if(e.key==='Escape')closeSearch();
-      return;
-    }
-    if(e.key==='/'){e.preventDefault();openSearch();return;}
-    if(e.key==='ArrowRight'){e.preventDefault();location.href=window._nextPage;}
-    if(e.key==='ArrowLeft'){e.preventDefault();location.href=window._prevPage;}
-    if(e.key==='f'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){if(typeof showRandomFact==='function')showRandomFact();}
-    if(e.key==='Escape'){
-      const hmenu=document.getElementById('hamburger-menu');
-      if(hmenu&&hmenu.classList.contains('open')){
-        hmenu.classList.remove('open');
-        document.getElementById('hamburger-btn')?.classList.remove('open');
-      }
-    }
+  PAGE_SEARCH_INDEX = [];
+  studyTips.forEach(function(t,i){
+    PAGE_SEARCH_INDEX.push({icon:'📖',title:t.t,meta:'Study Tip #'+t.n,section:'Study Guide',elId:'tipcard'+i,q:(t.t+' '+(t.desc||'')).toLowerCase()});
   });
-})();
-
-function showToast(msg,bg){
-  const t=document.createElement('div');
-  t.textContent=msg;
-  t.style.cssText=`position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);background:${bg};color:#fff;font-family:'Source Code Pro',monospace;font-size:.72rem;padding:.45rem 1.1rem;border-radius:99px;z-index:9998;animation:fadeUpIn .35s ease;white-space:nowrap;pointer-events:none`;
-  document.body.appendChild(t);
-  setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .35s';setTimeout(()=>t.remove(),380);},2200);
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   STATISTICIAN QUOTES — daily + 5-hour rotation
-   ═══════════════════════════════════════════════════════════════ */
+renderDailyQuote();
+renderStudyTips();
 
-const STUDY_TIPS = [
-  {num:'01',title:'Derive Before Computing',desc:'Before using any formula, derive it. The central limit theorem, the t-interval, the OLS estimator — understanding their derivation reveals what assumptions they require and when they break. Computational fluency built without derivation is brittle.'},
-  {num:'02',title:'Simulate to Understand',desc:'When a result is counterintuitive, simulate it. Write 20 lines of R or Python to generate data from the model, apply the procedure, and check whether p-values are uniform under H₀ and whether confidence intervals have the stated coverage. This cements understanding nothing else achieves.'},
-  {num:'03',title:'Learn the History',desc:'Read "The Lady Tasting Tea" before any textbook. The concepts in statistics are inextricable from the personalities and debates that produced them. Understanding that the t-test came from a Guinness brewer and that ANOVA from agricultural field trials makes the formulas memorable and the assumptions sensible.'},
-  {num:'04',title:'Frequentist and Bayesian Both',desc:'Do not be a sectarian. Learn frequentist inference (Casella & Berger) and Bayesian inference (BDA3) with equal seriousness. Each framework has problems the other solves poorly. The best statisticians move fluently between frameworks depending on the problem.'},
-  {num:'05',title:'Code in Multiple Environments',desc:'Learn R for statistics (unmatched ecosystem: ggplot2, tidyverse, lme4, brms), Python for machine learning (scikit-learn, PyTorch, JAX), and at least one compiled language (Julia, C++) for simulation. Knowing only one environment is a ceiling.'},
-  {num:'06',title:'Read Original Papers',desc:"Fisher's 1925 paper introducing ANOVA, Neyman-Pearson (1933) on hypothesis testing, Savage (1954) on foundations — reading originals teaches clarity of thought and reveals that today's textbooks sometimes garble what their authors originally meant. JSTOR and arXiv have most papers free."},
-  {num:'07',title:'Work on Real Data',desc:'Statistics learned only from textbook datasets is incomplete. Find messy, missing-value-laden, skewed, overdispersed real data. Kaggle, UCI Repository, and government open data portals provide endless practice. The encounter with real data is when theory becomes skill.'},
-  {num:'08',title:'Teach What You Learn',desc:"After studying any topic, write a 500-word explanation for a non-specialist. If you cannot explain conditional probability to a curious 16-year-old, you don't understand it. Teaching exposes the gaps that self-study conceals."},
-  {num:'09',title:'Master Probability First',desc:'Statistics is applied probability. Weak probability foundations produce statisticians who use procedures they do not understand. Blitzstein & Hwang (free lectures online) provides the ideal undergraduate probability curriculum. Do the exercises.'},
-  {num:'10',title:"Know What You Don't Know",desc:"The most dangerous statistician is the one who doesn't know the limits of their methods. Every statistical method has assumptions that, when violated, cause the method to fail silently. Always ask: what would have to be true for this method to work? Can I check whether it's true here?"}
-];
 
-/* ── FACTS ──────────────────────────────────────────────────── */
-
-function renderStudyGuide(){
-  renderRotatingQuote('sg-rotating-quote');
-  const g=document.getElementById('tips-list');if(!g)return;
-  g.className='tip-list';
-  g.innerHTML=STUDY_TIPS.map(t=>`
-    <div class="tip-card">
-      <div class="tip-num">${t.num}</div>
-      <div><div class="tip-title">${t.title}</div><div class="tip-desc">${t.desc}</div></div>
-    </div>`).join('');
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   OVERRIDE: renderCareers — MATHS.html format with expandable detail
-   ═══════════════════════════════════════════════════════════════ */
-
-const STAT_QUOTES = [
-  {q:"Statistics is the grammar of science.",a:"Karl Pearson"},
-  {q:"Far better an approximate answer to the right question than an exact answer to the wrong one.",a:"John W. Tukey"},
-  {q:"To call in the statistician after the experiment is done may be no more than asking him to perform a post-mortem examination.",a:"Ronald A. Fisher"},
-  {q:"The best thing about being a statistician is that you get to play in everyone's backyard.",a:"John W. Tukey"},
-  {q:"All models are wrong, but some are useful.",a:"George E. P. Box"},
-  {q:"In God we trust. All others must bring data.",a:"W. Edwards Deming"},
-  {q:"An approximate answer to the right problem is worth a good deal more than an exact answer to an approximate problem.",a:"John W. Tukey"},
-  {q:"Without data, you're just another person with an opinion.",a:"W. Edwards Deming"},
-  {q:"It is a capital mistake to theorize before one has data.",a:"Arthur Conan Doyle (Sherlock Holmes)"},
-  {q:"Statistical thinking will one day be as necessary for efficient citizenship as the ability to read and write.",a:"H.G. Wells"},
-  {q:"The goal is to turn data into information, and information into insight.",a:"Carly Fiorina"},
-  {q:"Torture the data, and it will confess to anything.",a:"Ronald H. Coase"},
-  {q:"The numbers have no way of speaking for themselves. We speak for them. We imbue them with meaning.",a:"Nate Silver"},
-  {q:"Statistics: the only science that enables different experts using the same figures to draw different conclusions.",a:"Evan Esar"},
-  {q:"Probability is the very guide of life.",a:"Cicero"},
-  {q:"You can have data without information, but you cannot have information without data.",a:"Daniel Keys Moran"},
-  {q:"The plural of anecdote is not data.",a:"Roger Brinner"},
-  {q:"It is remarkable that a science which began with the consideration of games of chance should have become the most important object of human knowledge.",a:"Pierre-Simon Laplace"},
-  {q:"We are drowning in information but starved for knowledge.",a:"John Naisbitt"},
-  {q:"Statistics are like bikinis — what they reveal is suggestive, but what they conceal is vital.",a:"Aaron Levenstein"},
-  {q:"The most dangerous phrase in the language is: We've always done it this way.",a:"Grace Hopper"},
-  {q:"Statistics is the science of learning from experience, especially experience that arrives a little bit at a time.",a:"Bradley Efron"},
-  {q:"When you can measure what you are speaking about and express it in numbers, you know something about it.",a:"Lord Kelvin"},
-  {q:"Regression to the mean is perhaps the most powerful law in statistics and the most consistently ignored.",a:"Daniel Kahneman"},
-  {q:"The p-value was never meant to be the sole criterion for scientific truth.",a:"American Statistical Association, 2016 Statement"},
-  {q:"A statistical analysis, properly conducted, is a delicate dissection of uncertainties, a surgery of suppositions.",a:"M.J. Moroney"},
-  {q:"There are lies, damned lies, and statistics.",a:"Mark Twain (attributed to Disraeli)"},
-  {q:"The combination of some data and an aching desire for an answer does not ensure that a reasonable answer can be extracted from a given body of data.",a:"John W. Tukey"},
-  {q:"If your experiment needs statistics, you ought to have done a better experiment.",a:"Ernest Rutherford"},
-  {q:"Bayesian statistics: you start with a prior, you get data, and you update your beliefs — forever.",a:"Andrew Gelman"},
-  {q:"The whole problem with the world is that fools and fanatics are always so certain of themselves, and wiser people so full of doubts.",a:"Bertrand Russell"},
-  {q:"I would rather have a good estimator than an optimal one.",a:"Herman Chernoff"},
-  {q:"Uncertainty is uncomfortable, but certainty is absurd.",a:"Voltaire"},
-  {q:"Correlation is not causation — but it sure is a hint.",a:"Edward Tufte"},
-  {q:"The purpose of computing is insight, not numbers.",a:"Richard Hamming"},
-  {q:"You can fool all the people some of the time with statistics.",a:"Abraham Lincoln (adapted)"}
-];
-
-/* ── TOOLS ──────────────────────────────────────────────────── */
-
-function getRotatingQuote(){
-  return STAT_QUOTES[Math.floor(Date.now()/(5*3600000))%STAT_QUOTES.length];
-}
-
-function renderRotatingQuote(id){
-  const el=document.getElementById(id);if(!el)return;
-  const q=getRotatingQuote();
-  el.innerHTML=`<div class="sg-quote-wrap"><div class="sg-quote-text">"${q.q}"</div><div class="sg-quote-attrib">— ${q.a}</div></div>`;
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   OVERRIDE: renderStudyGuide — add rotating quote
-   ═══════════════════════════════════════════════════════════════ */
-
-(function(){
-  if(localStorage.getItem('stats-mode')==='night'){
-    document.body.classList.add('night');
-    const mi=document.getElementById('mode-icon'); if(mi)mi.textContent='☀';
-  }
-  
-  setTimeout(function(){
-    if(window.currentUser)return;
-    if(!window.sb)return;
-    window.sb.auth.getSession().then(function(r){
-      if(window.currentUser)return;
-      var u=r&&r.data&&r.data.session&&r.data.session.user;
-      if(!u)return;
-      if(window.renderAuthUI)window.renderAuthUI();
-    }).catch(function(){});
-  },400);
-  if('renderStudyGuide();' && document.readyState!=='loading') { renderStudyGuide(); }
-  else if('renderStudyGuide();') { document.addEventListener('DOMContentLoaded', function(){ renderStudyGuide(); }); }
-})();
+document.querySelectorAll('.reveal').forEach(function(el, i) {
+  setTimeout(function() { el.classList.add('visible'); }, Math.min(i * 35, 900));
+});
 </script>
-<script>window._pageKey = 'stats';</script>
+
+<!-- ═══ SUPABASE + SHARED AUTH/COMMENTS BRIDGE ═══════════════ -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../shared.js"></script>
-
 </body>
 </html>

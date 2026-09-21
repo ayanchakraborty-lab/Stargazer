@@ -15,7 +15,13 @@
     }),
     { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
   );
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  document.querySelectorAll('.fade-in').forEach(el => {
+    observer.observe(el);
+    // Fallback: force-reveal after 2s even if the observer never
+    // fires (blocked by a browser extension, unsupported API, or
+    // any other silent failure) so content can't stay hidden forever.
+    setTimeout(() => el.classList.add('visible'), 2000);
+  });
 })();
 
 /* ======================================================

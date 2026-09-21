@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Lists: Mind-Bending Reads, Probability &amp; Science Fiction | Stargazer</title>
+
+<!-- ── SEO META ── -->
+<meta name="description" content="Three curated reading lists: 121 mind-bending books ranked by difficulty, 36 novels and nonfiction books on probability and uncertainty, and 31 novels matched to 24 unsolved scientific mysteries. Choose your path.">
+<meta name="keywords" content="book lists, curated reading list, best books to read, mind-bending books, difficulty-rated books, science fiction reading order, philosophy books, mathematical fiction, probability books, Bayesian reasoning books, statistics reading list">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://stargazers.co.in/books/home">
+
+<!-- ── OPEN GRAPH ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Books — Three Curated Reading Lists | Stargazer">
+<meta property="og:description" content="Pick your path: 121 mind-bending books ranked by difficulty, or 36 novels and nonfiction books on probability and uncertainty. See what each page holds before you open it.">
+<meta property="og:url" content="https://stargazers.co.in/books/home">
+<meta property="og:image" content="https://stargazers.co.in/pics/books.png">
+<meta property="og:image:alt" content="Stargazer Books — three curated reading lists">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Books — Three Curated Reading Lists | Stargazer">
+<meta name="twitter:description" content="121 mind-bending books ranked by difficulty, or 36 books on probability and uncertainty. Choose your path.">
+<meta name="twitter:image" content="https://stargazers.co.in/pics/books.png">
+<meta name="twitter:image:alt" content="Stargazer Books — three curated reading lists">
+
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Books — Three Curated Reading Lists",
+  "url": "https://stargazers.co.in/books/home",
+  "inLanguage": "en",
+  "description": "Three curated reading lists: 121 mind-bending books ranked by difficulty, 36 novels and nonfiction books on probability and uncertainty, and 31 novels matched to 24 unsolved scientific mysteries. Choose your path.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Stargazer: Lost in the Cosmos",
+    "url": "https://stargazers.co.in/"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Ultimate Reading Universe",
+        "url": "https://stargazers.co.in/books/BOOKS",
+        "description": "121 mind-bending books in a deliberate order — 86 sequence reads and 35 companions, each with a difficulty rating and a reason for its place."
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Two Paths Through Uncertainty",
+        "url": "https://stargazers.co.in/books/intellectual_books",
+        "description": "36 books for a statistical mind — 18 novels where mathematics drives the plot and 18 nonfiction books on probability, Bayesian reasoning and decisions."
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "The What-If Lab",
+        "url": "https://stargazers.co.in/books/what-if-lab",
+        "description": "31 novels matched to 24 unsolved scientific mysteries, each graded for how directly the book uses the science, with year, awards and a reader log."
+      }
+    ]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Stargazer",
+      "item": "https://stargazers.co.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Books",
+      "item": "https://stargazers.co.in/books/home"
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --void:   #050508;
+  --ink:    #f4efe4;
+  --ink2:   rgba(244,239,228,0.76);
+  --ink3:   rgba(244,239,228,0.5);
+  --books:  #d4952a;
+  --books-rgb: 212,149,42;
+  --gold:   #c9a84c;
+  --gold2:  #f0d090;
+  --rose:   #e8829b;
+  --teal:   #46c9bb;
+}
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  min-height: 100vh;
+  background: var(--void);
+  color: var(--ink);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── BACKDROP (same starfield as the home page) ── */
+#starfield { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.neb { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(80px); }
+.neb-1 { width: 620px; height: 460px; top: -160px; left: -160px;
+         background: radial-gradient(ellipse, rgba(212,149,42,0.15), transparent 70%); }
+.neb-2 { width: 560px; height: 560px; bottom: -200px; right: -140px;
+         background: radial-gradient(ellipse, rgba(80,30,180,0.22), transparent 70%); }
+
+/* ── BACK LINK ── */
+.back {
+  position: fixed; top: 14px; left: 16px; z-index: 20;
+  font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em;
+  color: rgba(201,168,76,0.85); text-decoration: none;
+  background: rgba(5,5,8,0.7); border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 30px; padding: 0.3rem 0.85rem;
+  backdrop-filter: blur(6px); transition: color .2s, border-color .2s;
+}
+.back:hover, .back:focus-visible { color: var(--gold2); border-color: rgba(240,208,144,0.75); }
+.back:focus-visible { outline: 2px solid var(--gold2); outline-offset: 2px; }
+
+/* ── SIGN IN / OUT (ids are driven by shared.js) ── */
+#authHeader { position: fixed; top: 14px; right: 16px; z-index: 20; display: flex; align-items: center; gap: 0.5rem; }
+#loginBtn, #signOutBtn {
+  font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em;
+  color: rgba(201,168,76,0.85); text-decoration: none; cursor: pointer;
+  background: rgba(5,5,8,0.7); border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 30px; padding: 0.3rem 0.95rem;
+  backdrop-filter: blur(6px); transition: color .2s, border-color .2s;
+}
+#loginBtn:hover, #loginBtn:focus-visible, #signOutBtn:hover, #signOutBtn:focus-visible { color: var(--gold2); border-color: rgba(240,208,144,0.75); }
+#loginBtn:focus-visible, #signOutBtn:focus-visible { outline: 2px solid var(--gold2); outline-offset: 2px; }
+#userInfo { align-items: center; gap: 0.5rem; }
+#userEmailDisplay {
+  font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.06em; color: rgba(201,168,76,0.7);
+  background: rgba(5,5,8,0.7); border: 1px solid rgba(201,168,76,0.2); border-radius: 30px;
+  padding: 0.3rem 0.8rem; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* ── PAGE ── */
+.wrap { position: relative; z-index: 2; max-width: 1120px; margin: 0 auto; padding: 76px 18px 48px; }
+
+.hero { text-align: center; }
+h1 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: clamp(3.2rem, 10vw, 5.4rem); letter-spacing: 0.14em; line-height: 1;
+  padding-left: 0.14em;
+  background: linear-gradient(135deg, #fff8e7 0%, var(--gold2) 30%, #ffffff 55%, var(--gold) 80%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.lede {
+  font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400;
+  font-size: clamp(1.08rem, 2.6vw, 1.28rem); line-height: 1.7; color: var(--ink2);
+  max-width: 34rem; margin: 14px auto 34px;
+}
+
+.jump { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: -12px 0 26px; }
+.jump a { font-size: 0.8rem; color: var(--ink2); text-decoration: none; border: 1px solid rgba(244,239,228,0.22); border-radius: 999px; padding: 4px 13px; }
+.jump a:hover, .jump a:focus-visible { color: var(--gold2); border-color: rgba(240,208,144,0.7); }
+@media (min-width: 900px) { .jump { display: none; } }
+
+/* ── THE TWO SHEETS ── */
+.sheets { display: grid; grid-template-columns: 1fr; gap: 22px; }
+@media (min-width: 900px) { .sheets { grid-template-columns: 1fr 1fr; gap: 28px; } }
+
+.sheet {
+  display: flex; flex-direction: column;
+  color: inherit; text-decoration: none;
+  background: rgba(14,12,22,0.74);
+  border: 1px solid rgba(var(--books-rgb), 0.28);
+  border-radius: 16px; overflow: hidden;
+  backdrop-filter: blur(6px);
+  transition: border-color .25s, box-shadow .25s, transform .25s;
+}
+.sheet:hover { border-color: rgba(var(--books-rgb), 0.75); box-shadow: 0 14px 46px rgba(var(--books-rgb), 0.14); transform: translateY(-3px); }
+.sheet:focus-visible { outline: 2px solid var(--gold2); outline-offset: 4px; }
+.sheet { scroll-margin-top: 14px; }
+
+/* the sketch: a blueprint-style drawing of the real page */
+.sketch {
+  margin: 0; padding: 14px 12px 10px;
+  background-color: rgba(255,255,255,0.025);
+  background-image: radial-gradient(rgba(255,255,255,0.09) 1px, transparent 1px);
+  background-size: 14px 14px;
+  border-bottom: 1px solid rgba(var(--books-rgb), 0.22);
+}
+.svg { display: block; width: 100%; height: auto; max-width: 540px; margin: 0 auto; overflow: visible; }
+.svg .ln  { fill: none; stroke: rgba(244,239,228,0.5); stroke-width: 1; stroke-dasharray: 3 2.4; stroke-linecap: round; }
+.svg .sl  { fill: none; stroke: rgba(244,239,228,0.34); stroke-width: 1; stroke-linecap: round; }
+.svg .sl.dim { stroke: rgba(244,239,228,0.22); }
+.svg .amb { fill: rgba(var(--books-rgb), 0.3); stroke: var(--books); stroke-width: 1; stroke-dasharray: none; }
+.svg .df  { fill: var(--books); }
+.svg .de  { fill: none; stroke: rgba(244,239,228,0.4); stroke-width: 0.8; }
+.svg .disp { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 15px; fill: var(--ink); }
+.svg .disp.md { font-size: 14px; }
+.svg .disp.sm { font-size: 10.5px; fill: var(--books); }
+.svg .t   { font-family: 'DM Sans', sans-serif; fill: var(--ink); }
+.svg .t.m { fill: var(--ink3); }
+.svg .t2  { font-family: 'DM Sans', sans-serif; fill: var(--ink); font-weight: 500; }
+.svg .ann { font-family: 'Space Mono', monospace; font-size: 10.5px; fill: var(--books); }
+.svg .lead { fill: none; stroke: var(--books); stroke-width: 0.9; stroke-dasharray: 1.5 2.6; stroke-linecap: round; opacity: 0.7; transition: opacity .25s; }
+.sheet:hover .svg .lead { opacity: 1; }
+
+.body { display: flex; flex-direction: column; flex: 1; padding: 22px 20px 20px; }
+h2 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.85rem; line-height: 1.15; color: var(--gold2); }
+.tagline { margin-top: 8px; color: var(--ink2); font-size: 0.98rem; }
+
+.facts { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 16px 0 2px; }
+.facts li { font-size: 0.78rem; color: var(--gold2); border: 1px solid rgba(var(--books-rgb), 0.38); border-radius: 999px; padding: 2px 12px; }
+
+h3 { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 1.28rem; color: var(--ink); margin: 22px 0 9px; }
+
+.feat { list-style: none; display: grid; gap: 10px; }
+.feat li { position: relative; padding-left: 18px; font-size: 0.92rem; color: var(--ink2); }
+.feat li::before { content: ""; position: absolute; left: 1px; top: 0.62em; width: 6px; height: 6px; background: var(--books); transform: rotate(45deg); }
+.feat strong, .inside strong { color: var(--ink); font-weight: 500; }
+
+.inside p { font-size: 0.92rem; color: var(--ink2); margin-bottom: 10px; }
+.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.chips li { font-size: 0.74rem; color: var(--ink2); background: rgba(255,255,255,0.07); border-radius: 4px; padding: 2px 9px; }
+
+.cta-wrap { margin-top: auto; padding-top: 24px; }
+.cta {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.25rem; color: var(--gold2);
+  background: rgba(var(--books-rgb), 0.12); border: 1px solid rgba(var(--books-rgb), 0.5);
+  border-radius: 10px; padding: 11px 16px; transition: background .25s, border-color .25s;
+}
+.cta i { font-style: normal; transition: transform .25s; }
+.sheet:hover .cta { background: rgba(var(--books-rgb), 0.22); border-color: var(--books); }
+.sheet:hover .cta i { transform: translateX(4px); }
+
+.foot { text-align: center; margin-top: 42px; font-size: 0.8rem; color: var(--ink3); }
+.foot a { overflow-wrap: anywhere; color: var(--ink2); text-decoration: none; border-bottom: 1px solid rgba(244,239,228,0.25); }
+.foot a:hover { color: var(--gold2); border-color: var(--gold2); }
+.foot p + p { margin-top: 8px; }
+
+@media (max-width: 420px) {
+.svg .ann { font-size: 11.5px; }
+  #authHeader { right: 10px; }
+  .back { left: 10px; }
+  #userEmailDisplay { max-width: 84px; }
+  .wrap { padding: 70px 12px 40px; }
+  .body { padding: 20px 16px 16px; }
+  h2 { font-size: 1.65rem; }
+}
+/* ── per-card colour identity: each list gets its own hue ── */
+#reading-universe { --books: #f0bf3c; --books-rgb: 240,191,60; }
+#two-paths { --books: #46c9bb; --books-rgb: 70,201,187; --gold2: #a9ece3; }
+.sheet {
+background: linear-gradient(165deg, rgba(var(--books-rgb),0.40) 0%, rgba(var(--books-rgb),0.20) 45%, rgba(var(--books-rgb),0.28) 100%), rgba(14,12,22,0.72);
+border-color: rgba(var(--books-rgb),0.5);
+}
+.sheet::before { content: ""; flex: 0 0 4px; background: linear-gradient(90deg, var(--books), rgba(var(--books-rgb),0)); }
+.sketch { background-color: rgba(var(--books-rgb),0.13); }
+.chips li { background: rgba(var(--books-rgb),0.24); }
+/* ── day mode (shares the stats-mode setting with the other pages) ── */
+:root { color-scheme: dark; }
+[data-mode="day"] { color-scheme: light; --void: #f2ede3; --ink: #1e1b15; --ink2: rgba(30,27,21,0.8); --ink3: rgba(30,27,21,0.72); --gold: #7a5a0e; --gold2: #7a5a0e; }
+[data-mode="day"] #starfield { display: none; }
+[data-mode="day"] .neb { opacity: 0.3; }
+[data-mode="day"] h1 { background: linear-gradient(135deg, #7a5a0e 0%, #a37a1a 35%, #5a3e08 70%, #7a5a0e 100%); -webkit-background-clip: text; background-clip: text; }
+[data-mode="day"] .back, [data-mode="day"] #loginBtn, [data-mode="day"] #signOutBtn, [data-mode="day"] #userEmailDisplay { background: rgba(250,247,240,0.9); color: #6b4f0c; border-color: rgba(122,90,14,0.4); }
+[data-mode="day"] .back:hover, [data-mode="day"] .back:focus-visible, [data-mode="day"] #loginBtn:hover, [data-mode="day"] #signOutBtn:hover { color: #3d2c05; border-color: rgba(122,90,14,0.85); }
+[data-mode="day"] .jump a { border-color: rgba(30,27,21,0.28); }
+[data-mode="day"] .jump a:hover, [data-mode="day"] .jump a:focus-visible { color: #6b4f0c; border-color: #7a5a0e; }
+[data-mode="day"] #reading-universe { --books: #b8860b; --books-rgb: 214,160,30; --gold2: #5f4407; }
+[data-mode="day"] #two-paths { --books: #1f8078; --books-rgb: 40,160,148; --gold2: #12524b; }
+[data-mode="day"] .sheet { background: linear-gradient(165deg, rgba(var(--books-rgb),0.36) 0%, rgba(var(--books-rgb),0.16) 45%, rgba(var(--books-rgb),0.26) 100%), rgba(252,249,242,0.92); }
+[data-mode="day"] .sketch { background-image: radial-gradient(rgba(30,27,21,0.1) 1px, transparent 1px); }
+[data-mode="day"] .svg .ln { stroke: rgba(30,27,21,0.5); }
+[data-mode="day"] .svg .sl { stroke: rgba(30,27,21,0.38); }
+[data-mode="day"] .svg .sl.dim { stroke: rgba(30,27,21,0.24); }
+[data-mode="day"] .svg .de { stroke: rgba(30,27,21,0.4); }
+[data-mode="day"] .foot a { border-bottom-color: rgba(30,27,21,0.3); }
+[data-mode="day"] { --rose: #b0405c; --teal: #14766c; }
+[data-mode="day"] #reading-universe .svg .ann, [data-mode="day"] #reading-universe .svg .disp.sm { fill: var(--gold2); }
+#modeBtn { position: fixed; right: 14px; bottom: 16px; z-index: 30; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; font-size: 1.05rem; line-height: 1; color: var(--gold2); background: rgba(5,5,8,0.72); border: 1px solid rgba(201,168,76,0.4); backdrop-filter: blur(6px); transition: color .2s, border-color .2s; }
+#modeBtn:hover, #modeBtn:focus-visible { border-color: rgba(240,208,144,0.85); }
+#modeBtn:focus-visible { outline: 2px solid var(--gold2); outline-offset: 2px; }
+[data-mode="day"] #modeBtn { background: rgba(250,247,240,0.92); color: #6b4f0c; border-color: rgba(122,90,14,0.45); }
+#what-if-lab { --books: #ee7aa6; --books-rgb: 238,122,166; --gold2: #ffc9dc; }
+[data-mode="day"] #what-if-lab { --books: #b5305f; --books-rgb: 214,70,120; --gold2: #7d1c43; }
+@media (min-width: 1080px) { .wrap { max-width: 1340px; } .sheets { grid-template-columns: repeat(3, 1fr); gap: 22px; } }
+@media (prefers-reduced-motion: reduce) {
+  .sheet, .cta, .cta i, .svg .lead { transition: none; }
+  .sheet:hover { transform: none; }
+}
+</style>
+<meta name="theme-color" content="#050508" id="tcm">
+<script>(function(){var m=null;try{m=localStorage.getItem('stats-mode');}catch(e){}document.documentElement.setAttribute('data-mode',m==='day'?'day':'night');})();</script>
+</head>
+<body>
+
+<a href="../index.html" class="back">← universe</a>
+
+<div id="authHeader">
+  <a href="../login.html" id="loginBtn">sign in</a>
+  <div id="userInfo" style="display:none;">
+    <span id="userEmailDisplay"></span>
+    <button onclick="doSignOut()" id="signOutBtn">sign out</button>
+  </div>
+</div>
+
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="neb neb-1" aria-hidden="true"></div>
+<div class="neb neb-2" aria-hidden="true"></div>
+
+<main class="wrap">
+
+  <header class="hero">
+    <h1>Books</h1>
+    <p class="lede">Three reading lists, made for different moods. Each card sketches the page, lists what you can do there and shows what's inside. Tap a card to open it.</p>
+    <p class="jump" aria-label="Jump to a list on this page"><a href="#reading-universe">Ultimate Reading Universe ↓</a><a href="#two-paths">Two Paths Through Uncertainty ↓</a><a href="#what-if-lab">The What-If Lab ↓</a></p>
+  </header>
+
+  <nav class="sheets" aria-label="Book lists">
+
+    <!-- ── PAGE 1: ULTIMATE READING UNIVERSE ── -->
+    <a class="sheet" id="reading-universe" href="BOOKS.html" aria-labelledby="a-title" aria-describedby="a-desc" title="Open the Ultimate Reading Universe — 121 mind-bending books ranked by difficulty">
+      <figure class="sketch">
+        <svg class="svg" viewBox="0 0 400 262" role="img" aria-label="Sketch of the Reading Universe page: a title, stat boxes and progress bar, genre filters, a search bar, then a list of books, each with a difficulty rating, a status button and a Why here? note.">
+  <rect class="ln" x="8" y="8" width="272" height="246" rx="9"/>
+  <text class="disp" x="20" y="30">Ultimate Reading Universe</text>
+  <path class="sl dim" d="M20 38 H176"/>
+  <g class="ln">
+    <rect x="20" y="48" width="58" height="26" rx="3"/><rect x="84" y="48" width="58" height="26" rx="3"/>
+    <rect x="148" y="48" width="58" height="26" rx="3"/><rect x="212" y="48" width="58" height="26" rx="3"/>
+  </g>
+  <g class="t2" font-size="10.5">
+    <text x="26" y="68">121</text><text x="90" y="68">0</text><text x="154" y="68">0</text><text x="218" y="68">0</text>
+  </g>
+  <g class="sl dim"><path d="M26 55 H46"/><path d="M90 55 H110"/><path d="M154 55 H172"/><path d="M218 55 H238"/></g>
+  <rect class="sl" x="20" y="83" width="250" height="5" rx="2.5"/>
+  <rect class="amb" x="20" y="83" width="62" height="5" rx="2.5"/>
+  <g class="ln">
+    <rect x="20" y="96" width="34" height="13" rx="6.5" class="amb"/><rect x="58" y="96" width="36" height="13" rx="6.5"/>
+    <rect x="98" y="96" width="52" height="13" rx="6.5"/><rect x="154" y="96" width="48" height="13" rx="6.5"/>
+    <rect x="206" y="96" width="60" height="13" rx="6.5"/>
+  </g>
+  <g class="t" font-size="7" text-anchor="middle">
+    <text x="37" y="105">Sci-Fi</text><text x="76" y="105">Horror</text><text x="124" y="105">Metafiction</text>
+    <text x="178" y="105">Philosophy</text><text x="236" y="105">Level 1–10</text>
+  </g>
+  <rect class="ln" x="20" y="114" width="250" height="14" rx="7"/>
+  <circle class="sl" cx="31" cy="120.5" r="3"/><path class="sl" d="M33.2 122.8 L36 125.6"/>
+  <text class="t m" x="41" y="124" font-size="7">Search title or author…</text>
+  <text class="t m" x="20" y="139" font-size="7">Sort:  Sequence · A → Z · Difficulty</text>
+  <!-- row 1 -->
+  <rect class="ln" x="20" y="145" width="20" height="27" rx="2"/>
+  <text class="t" x="47" y="155" font-size="8.5">#1  Flowers for Algernon</text>
+  <path class="sl dim" d="M47 160 H92"/>
+  <circle class="df" cx="110" cy="166" r="1.9"/><circle class="df" cx="116" cy="166" r="1.9"/><circle class="de" cx="122" cy="166" r="1.9"/><circle class="de" cx="128" cy="166" r="1.9"/><circle class="de" cx="134" cy="166" r="1.9"/><circle class="de" cx="140" cy="166" r="1.9"/><circle class="de" cx="146" cy="166" r="1.9"/><circle class="de" cx="152" cy="166" r="1.9"/><circle class="de" cx="158" cy="166" r="1.9"/><circle class="de" cx="164" cy="166" r="1.9"/>
+  <rect class="ln" x="198" y="146" width="64" height="12" rx="6"/>
+  <text class="t" x="230" y="154.5" font-size="6.5" text-anchor="middle">Mark Reading</text>
+  <!-- row 2 -->
+  <rect class="ln" x="20" y="177" width="20" height="27" rx="2"/>
+  <text class="t" x="47" y="187" font-size="8.5">#3  Piranesi</text>
+  <path class="sl dim" d="M47 192 H96"/>
+  <circle class="df" cx="110" cy="198" r="1.9"/><circle class="df" cx="116" cy="198" r="1.9"/><circle class="df" cx="122" cy="198" r="1.9"/><circle class="de" cx="128" cy="198" r="1.9"/><circle class="de" cx="134" cy="198" r="1.9"/><circle class="de" cx="140" cy="198" r="1.9"/><circle class="de" cx="146" cy="198" r="1.9"/><circle class="de" cx="152" cy="198" r="1.9"/><circle class="de" cx="158" cy="198" r="1.9"/><circle class="de" cx="164" cy="198" r="1.9"/>
+  <rect class="amb" x="198" y="178" width="64" height="12" rx="6"/>
+  <text class="t" x="230" y="186.5" font-size="6.5" text-anchor="middle">Reading</text>
+  <!-- why here -->
+  <rect class="ln" x="20" y="210" width="250" height="36" rx="4"/>
+  <text class="disp sm" x="28" y="223">Why here?</text>
+  <path class="sl dim" d="M28 230 H260"/><path class="sl dim" d="M28 237 H212"/>
+  <!-- callouts -->
+  <path class="lead" d="M270 61 H291"/><text class="ann" x="296" y="64.5">121 books</text>
+  <path class="lead" d="M272 85.5 H291"/><text class="ann" x="296" y="89">progress bar</text>
+  <path class="lead" d="M268 102.5 H291"/><text class="ann" x="296" y="106">genre filters</text>
+  <path class="lead" d="M272 121 H291"/><text class="ann" x="296" y="124.5">search  ( / )</text>
+  <path class="lead" d="M168 166 H291"/><text class="ann" x="296" y="169.5">difficulty 1–10</text>
+  <path class="lead" d="M264 184 H291"/><text class="ann" x="296" y="187.5">track status</text>
+  <path class="lead" d="M272 228 H291"/><text class="ann" x="296" y="231.5">why it's here</text>
+</svg>
+      </figure>
+      <div class="body">
+        <h2 id="a-title">Ultimate Reading Universe</h2>
+        <p class="tagline" id="a-desc">121 mind-bending books in a deliberate order, each one placed to prepare you for the next.</p>
+        <ul class="facts">
+          <li>121 books</li>
+          <li>86 sequence + 35 companions</li>
+          <li>difficulty 1–10</li>
+        </ul>
+
+        <h3>What you can do</h3>
+        <ul class="feat">
+          <li><strong>Read in order.</strong> Start at #1, <em>Flowers for Algernon</em>. A “Why here?” note explains every placement.</li>
+          <li><strong>Find your level.</strong> Every book has a 1–10 difficulty rating, so you can pick an entry point.</li>
+          <li><strong>Filter and search.</strong> By genre, reading status, bought or will-buy. Search by title or author, or press / anywhere on the page.</li>
+          <li><strong>Track your reading.</strong> Mark books Reading or Finished, keep personal notes and watch the progress bar. Sign in to sync across devices, or export your progress as JSON.</li>
+          <li><strong>Choose a look.</strong> Light, dark or a deep-ocean theme with ambient sound. Tap a cover to enlarge it, or switch to Names Only for a compact list.</li>
+        </ul>
+
+        <h3>What's inside</h3>
+        <div class="inside">
+          <p><strong>The sequence (86).</strong> Opens with accessible modern classics like <em>Flowers for Algernon</em>, <em>At the Mountains of Madness</em> and <em>Piranesi</em>, builds through <em>Cryptonomicon</em>, <em>Permutation City</em> and <em>Anathem</em>, and ends on the hardest reads: <em>Dhalgren</em>, <em>House of Leaves</em>, <em>The Sound and the Fury</em> and <em>Infinite Jest</em>.</p>
+          <p><strong>The companions (35).</strong> Side reads that pair with the sequence, including Beckett's <em>Molloy</em> trilogy, Kafka's <em>The Trial</em> and <em>The Castle</em>, <em>The Dispossessed</em>, <em>Hyperion</em> and <em>Roadside Picnic</em>.</p>
+          <ul class="chips" aria-label="Genres covered">
+            <li>Sci-Fi</li><li>Horror</li><li>Metafiction</li><li>Language</li><li>Philosophy</li><li>Constraint</li><li>Mystery</li><li>Literary</li>
+          </ul>
+        </div>
+
+        <div class="cta-wrap"><span class="cta">Open the Reading Universe <i aria-hidden="true">→</i></span></div>
+      </div>
+    </a>
+
+    <!-- ── PAGE 2: TWO PATHS THROUGH UNCERTAINTY ── -->
+    <a class="sheet" id="two-paths" href="intellectual_books.html" aria-labelledby="b-title" aria-describedby="b-desc" title="Open Two Paths Through Uncertainty — 36 books on probability, fiction and nonfiction">
+      <figure class="sketch">
+        <svg class="svg" viewBox="0 0 400 262" role="img" aria-label="Sketch of the Two Paths Through Uncertainty page: two winding paths, one for fiction and one for nonfiction, converging on a single point; below them filter pills, a search bar, a sort menu, a progress bar and a grid of book cards with star ratings.">
+  <rect class="ln" x="8" y="8" width="272" height="246" rx="9"/>
+  <text class="disp md" x="20" y="29">Two Paths Through Uncertainty</text>
+  <path d="M22 50 C80 38 150 44 205 66 C228 76 240 79 252 80" fill="none" stroke="var(--rose)" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M22 104 C80 116 150 110 205 92 C228 84 240 81 252 80" fill="none" stroke="var(--teal)" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="22" cy="50" r="4.2" fill="var(--rose)"/><circle cx="76.7" cy="44.0" r="3" fill="var(--rose)"/><circle cx="133.5" cy="47.4" r="3" fill="var(--rose)"/><circle cx="174.0" cy="55.7" r="3" fill="var(--rose)"/><circle cx="22" cy="104" r="4.2" fill="var(--teal)"/><circle cx="76.7" cy="110.1" r="3" fill="var(--teal)"/><circle cx="133.5" cy="107.5" r="3" fill="var(--teal)"/><circle cx="174.0" cy="100.5" r="3" fill="var(--teal)"/>
+  <circle cx="252" cy="80" r="6" fill="var(--gold)"/><circle cx="252" cy="80" r="11" class="ln" style="stroke:var(--gold)"/>
+  <!-- pills -->
+  <g class="ln">
+    <rect x="20" y="128" width="36" height="14" rx="7" class="amb"/><rect x="60" y="128" width="40" height="14" rx="7"/>
+    <rect x="104" y="128" width="52" height="14" rx="7"/><rect x="160" y="128" width="72" height="14" rx="7"/>
+  </g>
+  <g class="t" font-size="7" text-anchor="middle">
+    <text x="38" y="137.5">All 36</text><text x="80" y="137.5">Fiction</text><text x="130" y="137.5">Nonfiction</text><text x="196" y="137.5">★ Essential Six</text>
+  </g>
+  <rect class="ln" x="20" y="148" width="140" height="14" rx="7"/>
+  <circle class="sl" cx="31" cy="154.5" r="3"/><path class="sl" d="M33.2 156.8 L36 159.6"/>
+  <text class="t m" x="41" y="158" font-size="7">Search title or author…</text>
+  <rect class="ln" x="166" y="148" width="104" height="14" rx="3"/>
+  <text class="t" x="173" y="157.6" font-size="7">Reading order  ▾</text>
+  <text class="t m" x="20" y="176" font-size="7">0 / 36 explored</text>
+  <rect class="sl" x="88" y="172.5" width="182" height="4" rx="2"/>
+  <!-- cards -->
+  <rect class="ln" x="20" y="184" width="120" height="62" rx="4"/>
+  <text class="t" x="27" y="197" font-size="8">The Oxford Murders</text>
+  <path class="sl dim" d="M27 202 H78"/>
+  <text x="27" y="214" font-size="8" style="fill:var(--gold)">★★★★★</text>
+  <circle cx="30" cy="222" r="2.6" fill="var(--rose)"/><path class="sl dim" d="M37 222 H100"/>
+  <path class="sl dim" d="M27 231 H128"/><path class="sl dim" d="M27 238 H108"/>
+  <rect class="ln" x="150" y="184" width="120" height="62" rx="4"/>
+  <text class="t" x="157" y="197" font-size="8">The Signal and the Noise</text>
+  <path class="sl dim" d="M157 202 H206"/>
+  <text x="157" y="214" font-size="8" style="fill:var(--gold)">★★★★★</text>
+  <circle class="df" cx="210" cy="211.5" r="1.9"/><circle class="df" cx="216" cy="211.5" r="1.9"/><circle class="df" cx="222" cy="211.5" r="1.9"/><circle class="de" cx="228" cy="211.5" r="1.9"/><circle class="de" cx="234" cy="211.5" r="1.9"/>
+  <circle cx="160" cy="222" r="2.6" fill="var(--teal)"/><path class="sl dim" d="M167 222 H230"/>
+  <path class="sl dim" d="M157 231 H258"/><path class="sl dim" d="M157 238 H238"/>
+  <!-- callouts -->
+  <path class="lead" d="M181.0 55.7 H291" style="stroke:var(--rose)"/><text class="ann" x="296" y="59.2" style="fill:var(--rose)">18 novels</text>
+  <path class="lead" d="M264 80 H291" style="stroke:var(--gold)"/><text class="ann" x="296" y="83.5" style="fill:var(--gold)">one question</text>
+  <path class="lead" d="M181.0 100.5 H291" style="stroke:var(--teal)"/><text class="ann" x="296" y="104.0" style="fill:var(--teal)">18 nonfiction</text>
+  <path class="lead" d="M236 135 H291"/><text class="ann" x="296" y="138.5">filter + sort</text>
+  <path class="lead" d="M274 174.5 H291"/><text class="ann" x="296" y="178">saves progress</text>
+  <path class="lead" d="M274 215 H291"/><text class="ann" x="296" y="218.5">rating + level</text>
+</svg>
+      </figure>
+      <div class="body">
+        <h2 id="b-title">Two Paths Through Uncertainty</h2>
+        <p class="tagline" id="b-desc">36 books for a statistical mind: 18 novels where mathematics drives the plot, and 18 nonfiction books that build the toolkit for reasoning under uncertainty.</p>
+        <ul class="facts">
+          <li>36 books</li>
+          <li>18 fiction + 18 nonfiction</li>
+          <li>Essential Six starter shelf</li>
+        </ul>
+
+        <h3>What you can do</h3>
+        <ul class="feat">
+          <li><strong>Walk two paths.</strong> A five-level statistical path of nonfiction, and a nine-novel narrative path. Tap any stage to filter the catalog to those books.</li>
+          <li><strong>Start small.</strong> Tap Essential Six for a six-book starter shelf, or hit Surprise me.</li>
+          <li><strong>Search, filter and sort.</strong> Fiction, nonfiction or topic chips. Sort by reading order, highest rated, easiest first or A–Z.</li>
+          <li><strong>Read before you buy.</strong> Every book has a spoiler-free description, a star rating and a one-line reason it earns its place. Nonfiction adds a difficulty level.</li>
+          <li><strong>Tick off what you've explored.</strong> A “0 / 36 explored” counter keeps your place, saved in your browser.</li>
+        </ul>
+
+        <h3>What's inside</h3>
+        <div class="inside">
+          <p><strong>Fiction (18).</strong> Novels where a mathematician or statistician is a character, or where mathematical thinking drives the plot: <em>The Oxford Murders</em>, <em>Uncle Petros and Goldbach's Conjecture</em>, <em>The Housekeeper and the Professor</em>, <em>Contact</em> and <em>Permutation City</em>.</p>
+          <p><strong>Nonfiction (18).</strong> The toolkit itself: <em>The Drunkard's Walk</em>, <em>The Signal and the Noise</em>, <em>Thinking, Fast and Slow</em>, <em>The Book of Why</em>, <em>Fooled by Randomness</em> and Jaynes's <em>Probability Theory</em>.</p>
+          <ul class="chips" aria-label="Topics covered">
+            <li>Probability</li><li>Bayesian reasoning</li><li>Forecasting</li><li>Decision theory</li><li>Causal inference</li><li>Game theory</li>
+          </ul>
+        </div>
+
+        <div class="cta-wrap"><span class="cta">Open Two Paths Through Uncertainty <i aria-hidden="true">→</i></span></div>
+      </div>
+    </a>
+
+    <!-- ── PAGE 3: THE WHAT-IF LAB ── -->
+    <a class="sheet" id="what-if-lab" href="what-if-lab.html" aria-labelledby="c-title" aria-describedby="c-desc" title="Open the What-If Lab — 31 novels for 24 unsolved scientific mysteries">
+      <figure class="sketch">
+        <svg class="svg" viewBox="0 0 400 262" role="img" aria-label="Sketch of the What-If Lab page: a round microscope field of stained cells, one per scientific mystery; beside it a panel with the science and a what-if question; below, directness filters and a row for a novel.">
+  <rect class="ln" x="8" y="8" width="272" height="246" rx="9"/>
+  <text class="disp md" x="20" y="29">The What-If Lab</text>
+  <circle class="ln" cx="88" cy="106" r="54"/>
+  <circle cx="66" cy="84" r="8" fill="var(--rose)"/><circle cx="96" cy="76" r="5.5" fill="var(--books)"/><circle cx="116" cy="98" r="9" fill="var(--rose)"/><circle cx="74" cy="112" r="6" fill="var(--books)"/><circle cx="98" cy="122" r="8" fill="var(--books)"/><circle cx="60" cy="130" r="5" fill="var(--rose)"/><circle cx="122" cy="126" r="5.5" fill="var(--rose)"/><circle cx="88" cy="98" r="4" fill="var(--books)"/><circle cx="108" cy="140" r="4.5" fill="var(--rose)"/>
+  <circle cx="116" cy="98" r="13" class="ln" style="stroke:var(--books)"/>
+  <text class="t m" x="30" y="176" font-size="7">24 cells, 24 mysteries</text>
+  <rect class="ln" x="158" y="46" width="112" height="96" rx="4"/>
+  <text class="disp sm" x="166" y="62">Ghost hominins</text>
+  <path class="sl dim" d="M166 72 H258"/><path class="sl dim" d="M166 80 H240"/><path class="sl dim" d="M166 88 H252"/>
+  <text class="disp sm" x="166" y="108">What if…</text>
+  <path class="sl dim" d="M166 118 H250"/><path class="sl dim" d="M166 126 H222"/>
+  <g class="ln"><rect x="20" y="184" width="62" height="14" rx="7" class="amb"/><rect x="86" y="184" width="86" height="14" rx="7"/><rect x="176" y="184" width="72" height="14" rx="7"/></g>
+  <g class="t" font-size="7" text-anchor="middle"><text x="51" y="193.5">Direct hit</text><text x="129" y="193.5">Close extrapolation</text><text x="212" y="193.5">Thematic echo</text></g>
+  <rect class="ln" x="20" y="206" width="250" height="40" rx="4"/>
+  <text class="t" x="28" y="221" font-size="9">Blindsight</text><path class="sl dim" d="M28 227 H96"/>
+  <text class="t m" x="28" y="238" font-size="7">Peter Watts, 2006</text>
+  <circle cx="252" cy="226" r="4" fill="var(--books)"/>
+  <path class="lead" d="M270 94 H291"/><text class="ann" x="296" y="97.5">science + what-if</text>
+  <path class="lead" d="M248 191 H291"/><text class="ann" x="296" y="194.5">directness grade</text>
+  <path class="lead" d="M270 226 H291"/><text class="ann" x="296" y="229.5">31 novels</text>
+</svg>
+      </figure>
+      <div class="body">
+        <h2 id="c-title">The What-If Lab</h2>
+        <p class="tagline" id="c-desc">31 novels for 24 unsolved scientific mysteries: pick a stained cell under the microscope and get the books that ask what happens if it is true.</p>
+        <ul class="facts">
+          <li>31 novels</li>
+          <li>24 mysteries</li>
+          <li>graded by directness</li>
+        </ul>
+        <h3>What you can do</h3>
+        <ul class="feat">
+          <li><strong>Look through the lens.</strong> Twenty-four stained cells, one per unsolved mystery. Tap one to filter the novels.</li>
+          <li><strong>Read the science.</strong> Each mystery has a short plain explanation and the “what if” a novelist would start from.</li>
+          <li><strong>Check the grade.</strong> Every pairing is marked direct hit, close extrapolation or thematic echo.</li>
+          <li><strong>Search, sort and pull a slide.</strong> By mystery, year, length or title, or pull a random novel. Every slide lists publisher, page count and more.</li>
+          <li><strong>Track and talk.</strong> A reading log saved in your browser, a timeline from 1864 to 2022, and reader notes.</li>
+        </ul>
+        <h3>What's inside</h3>
+        <div class="inside">
+          <p><strong>Direct hits (4).</strong> <em>Blindsight</em>, <em>Hominids</em>, <em>Mexican Gothic</em> and <em>The Postmortal</em> use the exact science.</p>
+          <p><strong>The rest (27).</strong> Close extrapolations and thematic echoes, from <em>Children of Time</em> and <em>Anathem</em> to <em>Seveneves</em> and <em>Dragon's Egg</em>, plus fact-check notes on where the source pairings were loose.</p>
+          <ul class="chips" aria-label="Topics covered">
+            <li>Neuroscience</li><li>Evolution</li><li>Ageing</li><li>Cosmology</li><li>Deep Earth</li><li>Fungi and cells</li>
+          </ul>
+        </div>
+        <div class="cta-wrap"><span class="cta">Open the What-If Lab <i aria-hidden="true">→</i></span></div>
+      </div>
+    </a>
+
+  </nav>
+
+  <footer class="foot">
+    <p>contact the creator · <a href="mailto:ayan.chakraborty6174@gmail.com">ayan.chakraborty6174@gmail.com</a></p>
+    <p><a href="../ABOUT.html">✦ about stargazer</a></p>
+  </footer>
+</main>
+
+<script>
+/* ── STAR FIELD (same as the home page; static when reduced motion is on) ── */
+(function () {
+  var canvas = document.getElementById('starfield');
+  var ctx = canvas.getContext('2d');
+  var W, H, stars = [], paused = false;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resize() {
+    var dpr = window.devicePixelRatio || 1;
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function makeStar() {
+    return { x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.3 + 0.15,
+             alpha: Math.random() * 0.7 + 0.15, speed: Math.random() * 0.004 + 0.0008,
+             phase: Math.random() * Math.PI * 2, drift: (Math.random() - 0.5) * 0.04, gold: Math.random() < 0.06 };
+  }
+  function draw(dt) {
+    ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i];
+      s.phase += s.speed * (dt / 16); s.x += s.drift * (dt / 16);
+      if (s.x < -2) s.x = W + 2; if (s.x > W + 2) s.x = -2;
+      var a = (Math.sin(s.phase) * 0.45 + 0.55) * s.alpha;
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = s.gold ? 'rgba(255,220,130,' + a + ')' : 'rgba(220,225,255,' + a + ')';
+      ctx.fill();
+    }
+  }
+  var last = 0;
+  function tick(t) {
+    requestAnimationFrame(tick);
+    if (paused) return;
+    var dt = Math.min(t - last, 50); last = t; draw(dt);
+  }
+  function init() { resize(); stars = Array.from({ length: 260 }, makeStar); draw(0); }
+
+  document.addEventListener('visibilitychange', function () { paused = document.hidden; });
+  window.addEventListener('resize', function () { resize(); if (reduce) draw(0); });
+  init();
+  if (!reduce) requestAnimationFrame(tick);
+})();
+</script>
+
+<!-- shared.js handles auth, renderAuthUI, doSignOut -->
+<script>window._pageKey = 'books-hub';</script>
+<script src="/shared.js"></script>
+<button type="button" id="modeBtn" aria-label="Switch to day mode" title="Day / night">&#9728;</button>
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('modeBtn'), meta=document.getElementById('tcm');
+  function paint(day){
+    root.setAttribute('data-mode',day?'day':'night');
+    btn.innerHTML=day?'&#9790;':'&#9728;';
+    btn.setAttribute('aria-label',day?'Switch to night mode':'Switch to day mode');
+    if(meta) meta.setAttribute('content',day?'#f2ede3':'#050508');
+  }
+  window._applyDarkMode=function(isDark){ paint(!isDark); try{localStorage.setItem('stats-mode',isDark?'night':'day');}catch(e){} };
+  paint(root.getAttribute('data-mode')==='day');
+  btn.addEventListener('click',function(){
+    var toDark=root.getAttribute('data-mode')==='day';
+    window._applyDarkMode(toDark);
+    if(typeof window.sbSaveDarkMode==='function') window.sbSaveDarkMode(toDark);
+  });
+}());
+</script>
+</body>
+</html>

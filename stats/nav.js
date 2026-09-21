@@ -20,6 +20,7 @@
     '---',
     {id:'careers',            icon:'💼', label:'Careers',             href:'careers.html'},
     {id:'studyguide',         icon:'🗺️', label:'Study Guide',         href:'studyguide.html'},
+    {id:'atlas',              icon:'🧭', label:'Atlas of Statistics', href:'atlas-of-statistics.html'},
     {id:'facts',              icon:'✨', label:'Fun Facts',           href:'facts.html'},
     {id:'tools',              icon:'🛠️', label:'Tools',               href:'tools.html'},
     '---',
