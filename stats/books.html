@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<!-- Google tag (gtag.js) --> <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'],wait_for_update:500});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="../pics/logo.png">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -44,20 +45,50 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
   onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMath(document.body));}else{renderMath(document.body);}"></script>
+<style>
+/* ── status / arrange / PDF toolbar ── */
+.bk-tools{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.55rem 1.3rem;margin:.1rem auto 1.3rem;max-width:1100px}
+.bk-tgroup{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.35rem}
+.bk-tlbl{font-family:'Source Code Pro',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.bk-count{flex-basis:100%;text-align:center;font-family:'Source Code Pro',monospace;font-size:.68rem;opacity:.8}
+.bk-pdf-btn{font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:600;color:#1a1205;background:linear-gradient(135deg,#d4952a,#f0bf3c);border:0;border-radius:99px;padding:.45rem 1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(212,149,42,.35);transition:transform .15s,box-shadow .15s}
+.bk-pdf-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(212,149,42,.5)}
+.bk-pdf-btn:disabled{opacity:.65;cursor:wait;transform:none}
+.bk-empty{grid-column:1/-1;text-align:center;padding:2.5rem 1rem;opacity:.75;font-style:italic}
+/* ── per-card info: pages + depth + interest ── */
+.bk-info{margin:.55rem 0 .45rem;display:grid;gap:.45rem}
+.bk-pages{font-family:'Source Code Pro',monospace;font-size:.68rem;opacity:.85}
+.bk-meter{display:grid;grid-template-columns:1fr auto;gap:.18rem .5rem;align-items:center;font-size:.68rem}
+.bk-meter b{font-family:'Source Code Pro',monospace;font-weight:600}
+.bk-bar{grid-column:1/-1;height:6px;border-radius:99px;background:rgba(128,128,128,.28);overflow:hidden}
+.bk-bar i{display:block;height:100%;border-radius:99px}
+.bk-meter.depth .bk-bar i{background:linear-gradient(90deg,#60a5fa,#6366f1)}
+.bk-meter.fun .bk-bar i{background:linear-gradient(90deg,#fbbf24,#f59e0b)}
+/* ── finished marker (same look as the maths books page) ── */
+.bk-read-badge{display:inline-flex;align-items:center;gap:.25rem;font-size:.63rem;background:rgba(16,185,129,.2);color:#34d399;border:1px solid rgba(16,185,129,.4);padding:.12rem .42rem;border-radius:99px;font-family:'Outfit',sans-serif;font-weight:600}
+.bk-readbtn{font-family:'Outfit',sans-serif;font-size:.67rem;font-weight:600;padding:.22rem .65rem;border-radius:99px;border:1px solid rgba(16,185,129,.5);background:rgba(16,185,129,.1);color:var(--gr,#059669);cursor:pointer;transition:all .2s}
+.bk-readbtn:hover{background:rgba(16,185,129,.2)}
+.book-card.book-read{background:linear-gradient(135deg,#064e3b,#065f46)!important;border-color:#10b981!important;box-shadow:0 0 0 2px #10b981,0 8px 24px rgba(16,185,129,.3)!important;color:#ecfdf5}
+.book-card.book-read .book-title{color:#fff!important}
+.book-card.book-read .book-author,.book-card.book-read .book-year,.book-card.book-read .book-desc,.book-card.book-read .book-desc *,.book-card.book-read .bk-info,.book-card.book-read .bk-num{color:#d1fae5!important}
+.book-card.book-read .book-cat{background:rgba(255,255,255,.12)!important;color:#a7f3d0!important;border-color:rgba(167,243,208,.35)!important}
+.book-card.book-read .bk-readbtn{color:#a7f3d0;border-color:rgba(167,243,208,.5);background:rgba(255,255,255,.1)}
+.book-card.book-read .bk-bar{background:rgba(255,255,255,.22)}
+</style>
 </head>
 <body>
 
 <!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
 <div id="auth-topbar">
-  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <a href="../" class="atb-btn atb-home">🌌 Universe</a>
   <div style="flex:1"></div>
   <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
     <span id="mode-icon">☾</span>
   </button>
-  <a href="../login.html" id="loginBtn">☽ Sign In</a>
+  <a href="../login" id="loginBtn">☽ Sign In</a>
   <div id="userInfo">
     <span id="userEmailDisplay">✦ Explorer</span>
-    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login'">Sign Out</button>
   </div>
 </div>
 
@@ -98,6 +129,7 @@
       </div>
       <div id="admin-book-status" style="display:none;text-align:center;margin-bottom:1rem;font-family:'Source Code Pro',monospace;font-size:.7rem;color:var(--gd)">✦ Admin mode — PDF uploads enabled</div>
       <div class="bk-filter-wrap" id="books-filter-row"></div>
+      <div class="bk-tools" id="books-tools-row"></div>
       <div class="g3" id="books-grid"></div>
     </div>
   </section>
@@ -109,7 +141,7 @@
   <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
 </div>
 <div style="text-align:center;padding-bottom:2rem;">
-  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+  <a href="../ABOUT" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
 </div>
 
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
@@ -117,8 +149,9 @@
 window._nextPage = 'puzzles.html';
 window._prevPage = 'home.html';
 const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+const ADMIN_EMAILS = ['ayanchakrabortyall@gmail.com','officialayanimp@gmail.com','duolingo.learn1024@gmail.com'];
 
-function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+function isAdmin(){return !!(window.currentUser && ADMIN_EMAILS.includes(window.currentUser.email));}
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -255,6 +288,7 @@ const BOOKS = [
     title:'The Lady Tasting Tea',
     author:'David Salsburg',
     year:2001,
+    pages:340, depth:3, interest:9.0, order:3,
     cats:['History','Popular'],
     desc:`<p>David Salsburg's masterpiece of scientific biography narrates the birth of modern statistics through the lives of its founders. The title refers to the famous experiment devised by Sir Ronald Fisher: could a lady tell from a single cup of tea whether the milk was poured before or after? Fisher's mathematically rigorous answer to this trivial question gave science the conceptual framework it had lacked for a century. Salsburg uses this story to unfurl the entire 20th-century development of statistical reasoning.</p><p>The book is populated by remarkably human figures: Galton and his obsession with heredity and measurement; Karl Pearson, combative and brilliant, inventing the chi-square test and the correlation coefficient; "Student" (William Gosset) developing the t-distribution in secret at the Guinness brewery because his employer feared revealing that they used statistics at all; Jerzy Neyman and Egon Pearson constructing the Neyman–Pearson lemma in a bitter rivalry with Fisher. Each chapter reads like a detective story, following how each person's personal obsessions collided with the mathematical structures that became our tools for knowing.</p><p>Written for the general reader without a single equation, the book nevertheless conveys the depth of the conceptual revolution. After reading it you will understand why p-values work the way they do, why ANOVA is attributed to Fisher, and why the frequentist vs. Bayesian debate is not merely technical but philosophical and personal. Essential reading for anyone who wants to know where statistical ideas come from before they start applying them.</p>`,
     links:[
@@ -267,6 +301,7 @@ const BOOKS = [
     title:'How to Lie with Statistics',
     author:'Darrell Huff',
     year:1954,
+    pages:142, depth:2, interest:8.2, order:1,
     cats:['Popular','Literacy'],
     desc:`<p>First published in 1954 and illustrated by Irving Geis with gleeful cartoons, this slender volume remains the most widely read statistics book ever written — and the most dangerous to dishonest communicators. Darrell Huff, a journalist, set out to catalogue every weapon in the arsenal of the statistical liar: the sample with a built-in bias, the well-chosen average that conceals a distribution, the comparison of incomparable quantities, the gee-whiz graph with a truncated y-axis that makes a 1% change look like a 100% change, and the impressively precise statistic manufactured from nowhere.</p><p>What makes Huff's treatment timeless is that these deceptions are not exotic tricks used only by propagandists — they appear every day in news reports, corporate presentations, political speeches, and academic papers. "The average family income in our town is $48,000" means nothing without knowing whether it's a mean or median, whether it includes outlier billionaires, and how "family" is defined. Huff walks you through these illusions with patient wit until you can never read a statistic the same way again.</p><p>More than simply a catalogue of errors, the book builds the reader's intuition for what questions to ask of any statistic: Who says so? How do they know? What's missing? What changed? Does it make sense? These five questions, applied rigorously, immunise the reader against a majority of statistical manipulation. Seventy years on, in an era of viral charts and data journalism, the book is more essential than ever. Readable in a single afternoon; applicable for a lifetime.</p>`,
     links:[
@@ -279,6 +314,7 @@ const BOOKS = [
     title:"The Drunkard's Walk",
     author:'Leonard Mlodinow',
     year:2008,
+    pages:336, depth:3, interest:8.8, order:4,
     cats:['Popular','Probability'],
     desc:`<p>Physicist and author Leonard Mlodinow opens with a personal confession: his father survived the Holocaust partly because of random chance — being sent to one camp rather than another, encountering one guard rather than another. This frame of mortality and randomness underlies the entire book, which argues that human life is far more shaped by random processes than we acknowledge, and that our cognitive architecture actively resists seeing this truth.</p><p>Mlodinow takes the reader through the law of large numbers, the gambler's fallacy, regression to the mean, conditional probability (via a memorable treatment of the Monty Hall problem), and Bayesian reasoning — all through case studies that avoid abstraction. A Hollywood movie executive's successful run of six blockbusters is dissected to show that, given the distribution of outcomes in the film industry, we'd expect several such "geniuses" by chance alone even if no one had any predictive skill. Baseball batting averages, wine critic ratings, investment manager performance — all show the same pattern: short-run variation wildly dominates long-run underlying skill, yet we systematically attribute the variation to talent or its absence.</p><p>The cognitive science sections are particularly strong. Mlodinow draws on Kahneman and Tversky's work to explain the availability heuristic (we judge probability by how easily examples come to mind), confirmation bias, and the narrative fallacy (our compulsive need to construct causal stories from what are actually random sequences). The title itself is a metaphor: just as a drunkard stumbling in the dark cannot find a coherent path, the human brain stumbling through probability cannot find reliable intuitions without deliberate mathematical discipline.</p>`,
     links:[
@@ -291,6 +327,7 @@ const BOOKS = [
     title:'All of Statistics',
     author:'Larry Wasserman',
     year:2004,
+    pages:442, depth:9, interest:6.6, order:10,
     cats:['Graduate','Textbook'],
     desc:`<p>Larry Wasserman's "All of Statistics" is perhaps the most efficient introduction to mathematical statistics ever written. It covers, in a single slim volume, the entire scope of a two-year graduate statistics curriculum: probability, random variables, convergence, inference, estimation theory, hypothesis testing, linear models, nonparametric methods, Bayesian methods, and statistical decision theory. The title is not modesty — Wasserman genuinely covers it all.</p><p>What distinguishes the book from other graduate texts is its deliberate clarity. Each chapter states its goals, develops the theory in sequence, and provides a set of exercises calibrated to test understanding rather than punish. Wasserman writes with precision but not pedantry — every concept is illustrated with a concrete example before the abstraction is introduced. The treatment of exponential families, sufficient statistics, and the Cramér–Rao lower bound is particularly lucid, and the chapters on minimax estimation and admissibility provide some of the clearest introductions to statistical decision theory available.</p><p>The book is ideally suited to computer scientists and mathematicians entering statistics, because it assumes real analysis but not measure theory, and it bridges the gap between probabilistic thinking and statistical inference cleanly. The final chapters on bootstrap methods and the EM algorithm bring the material to practical relevance. For anyone who wants to understand statistics at a deep level before specialising, "All of Statistics" is the single best investment of time and money available.</p>`,
     links:[
@@ -303,6 +340,7 @@ const BOOKS = [
     title:'Bayesian Data Analysis',
     author:'Gelman, Carlin, Stern, Dunson, Vehtari, Rubin',
     year:2013,
+    pages:675, depth:9, interest:6.2, order:12,
     cats:['Graduate','Bayesian'],
     desc:`<p>Known universally as BDA3, this is the authoritative graduate text on Bayesian statistical methods. Written by six leading statisticians — including Andrew Gelman at Columbia and Aki Vehtari at Aalto — it covers both the theoretical foundations of Bayesian reasoning and the practical workflows of Bayesian data analysis in contemporary research. The third edition (2013, reprinted with corrections) remains the field's most comprehensive reference.</p><p>The book is structured in five parts. Part I develops Bayesian fundamentals: the prior–likelihood–posterior framework, conjugate models, hierarchical priors, and posterior predictive checks. Part II covers advanced single-parameter and multiparameter models. Part III is dedicated to computation: Markov chain Monte Carlo, the Metropolis-Hastings algorithm, Gibbs sampling, Hamiltonian Monte Carlo (the algorithm underlying the Stan library), and modern variational methods. Part IV covers a wide range of models including regression, generalised linear models, survival analysis, and mixture models. Part V addresses the philosophy of Bayesian inference, model comparison using WAIC and LOO-CV, and the practical workflow of checking and expanding models.</p><p>What elevates BDA3 above a textbook is its emphasis on the full Bayesian workflow: not just fitting a model but checking whether it fits, diagnosing convergence, and iteratively improving the model until it captures the structure of the data. The book's philosophy — that a statistical model is a story about data-generating processes, not a mathematical object to be optimised — represents a genuinely different way of thinking about inference. The third edition's PDF is available free from the authors' websites.</p>`,
     links:[
@@ -315,6 +353,7 @@ const BOOKS = [
     title:'Statistical Inference',
     author:'George Casella & Roger Berger',
     year:2001,
+    pages:660, depth:10, interest:5.0, order:11,
     cats:['Graduate','Textbook'],
     desc:`<p>Casella and Berger is the bible of classical mathematical statistics. Used in first-year PhD programmes at virtually every major statistics department in the world, it covers the theory of statistical inference with mathematical precision, starting from probability axioms and working through to the most sophisticated classical inference methods. After completing this book — truly completing it, exercises and all — a student can claim genuine fluency in the mathematical language of frequentist statistics.</p><p>The book's greatest strength is its logical organisation. It develops probability theory from measure-theoretic fundamentals, establishes the key convergence theorems (LLN, CLT), derives the major distribution families, and then builds inference systematically: sufficiency, completeness, the exponential family, UMVUEs via the Lehmann–Scheffé theorem, the Fisher information and Cramér–Rao bound, MLEs and their asymptotic properties, hypothesis testing through the Neyman–Pearson lemma and UMP tests, confidence intervals via duality with tests, and interval estimation theory. The coverage of decision theory in the final chapter connects classical inference to Bayesian methods.</p><p>The exercises are notoriously difficult and genuinely illuminating — working through them is what converts knowledge into understanding. Casella and Berger pairs naturally with Wasserman's "All of Statistics" (which is more modern and applied) and BDA3 (which provides the Bayesian counterpart). For serious students of statistics at the research level, this book is not optional.</p>`,
     links:[
@@ -326,6 +365,7 @@ const BOOKS = [
     title:'Statistical Rethinking',
     author:'Richard McElreath',
     year:2020,
+    pages:612, depth:8, interest:8.6, order:9,
     cats:['Graduate','Bayesian','Applied'],
     desc:`<p>Richard McElreath's "Statistical Rethinking" has become, since its second edition in 2020, the most beloved introduction to Bayesian data analysis for applied researchers. Where BDA3 is encyclopaedic and technical, Rethinking is pedagogically exceptional — it is the book that actually teaches you <em>how to think</em> about statistical modelling, not merely how to execute it. McElreath is a behavioural ecologist who came to Bayesian methods through practical frustration with classical approaches, and this background gives the book an unusual blend of philosophical depth and scientific grounding.</p><p>The book's distinctive approach uses causal diagrams (DAGs — directed acyclic graphs) as the scaffolding for model construction. Before fitting any model, McElreath asks: what is the data-generating process? What are we actually trying to estimate? Which variables should be included or excluded, and why? This causal-first approach cuts through the confusion that surrounds multivariate modelling and enables readers to reason about selection bias, mediation, and confounding in a principled way. The treatment of multilevel (hierarchical) models is particularly accessible and motivates why partial pooling — borrowing statistical strength across groups — is almost always preferable to either complete pooling or no pooling.</p><p>The second edition includes chapters on Hamiltonian Monte Carlo, measurement error, missing data, ordinal variables, and Gaussian processes. All code examples use the rethinking R package and Stan, but the ideas translate to any computational framework. The accompanying YouTube lecture series (free) makes this one of the most accessible graduate-level statistics courses ever produced.</p>`,
     links:[
@@ -338,6 +378,7 @@ const BOOKS = [
     title:'Think Bayes',
     author:'Allen B. Downey',
     year:2021,
+    pages:330, depth:6, interest:7.4, order:8,
     cats:['Popular','Bayesian','Python'],
     desc:`<p>Allen Downey's "Think Bayes" occupies a unique niche: it teaches Bayesian reasoning through code rather than calculus, making the ideas accessible to any programmer without requiring probability theory prerequisites. The second edition (2021) uses Python with NumPy and Pandas, walking through Bayesian inference entirely computationally — updating probability distributions with new evidence using grid approximation and MCMC rather than analytical conjugate formulas.</p><p>The book's pedagogy is elegantly simple: a probability distribution is a dictionary mapping hypotheses to probabilities. Bayes' theorem is a multiplication followed by normalisation. Every update is the same operation applied to increasingly complex models. By the time Downey introduces the full machinery of hierarchical models and MCMC via PyMC, the reader has already understood the underlying logic through dozens of toy examples — the Monty Hall problem, cookie jars, medical testing, lighthouse problems, the Lincoln index for estimating population size.</p><p>The book is available free online and on GitHub, which fits Downey's open-access philosophy. It pairs exceptionally well with McElreath's Statistical Rethinking for practitioners who want mathematical depth alongside the computational intuition. For data scientists, engineers, or anyone comfortable with Python who wants to understand Bayesian inference without a statistics degree, Think Bayes is the clearest on-ramp available.</p>`,
     links:[
@@ -350,6 +391,7 @@ const BOOKS = [
     title:'The Signal and the Noise',
     author:'Nate Silver',
     year:2012,
+    pages:534, depth:3, interest:8.0, order:6,
     cats:['Popular','Applied','Forecasting'],
     desc:`<p>Nate Silver became famous by correctly predicting 49 out of 50 states in the 2008 US presidential election using probabilistic polling aggregation, then all 50 in 2012. "The Signal and the Noise" is his account of what makes prediction work — and, crucially, what makes it fail. The book is simultaneously a popular science account of forecasting across domains and a sustained argument for Bayesian probabilistic thinking over point predictions and false certainty.</p><p>Silver examines prediction across twelve domains: weather forecasting, earthquake prediction, economics (and the failure of financial models in 2008), flu pandemics, baseball (where he developed his PECOTA batting average prediction system), chess, poker, stock markets, and politics. In each domain he identifies the same pattern: the best forecasters combine explicit probabilistic models with calibrated uncertainty, continuously update their predictions as new information arrives (the Bayesian ideal), and are brutally honest about what they do and do not know. The worst forecasters make confident point predictions, rarely update, and treat confidence and accuracy as synonyms.</p><p>The book's intellectual centre is the distinction between risk (known probability distributions over outcomes) and uncertainty (situations where the distribution itself is unknown, as Keynes and Knight emphasised). Much of what passes for statistical prediction in economics and social science is actually deep uncertainty dressed in the costume of risk — Silver argues this is systematically dangerous. The Bayesian chapters are particularly readable, making this one of the best popular introductions to probabilistic reasoning for people who don't think of themselves as mathematicians.</p>`,
     links:[
@@ -362,6 +404,7 @@ const BOOKS = [
     title:'The Art of Statistics',
     author:'David Spiegelhalter',
     year:2019,
+    pages:448, depth:5, interest:8.4, order:5,
     cats:['Popular','Literacy'],
     desc:`<p>David Spiegelhalter is one of Britain's most prominent statisticians — Winton Professor of the Public Understanding of Risk at Cambridge, knighted for services to statistics, and the author of the Royal Statistical Society's weekly COVID statistical commentaries. "The Art of Statistics" is his magnum opus of public communication: a complete tour of statistical thinking for literate non-specialists, from exploratory data analysis through to Bayesian inference and algorithmic fairness.</p><p>The book's organising principle is the PPDAC cycle — Problem, Plan, Data, Analysis, Conclusion — which Spiegelhalter uses to structure the entire practice of statistics as an iterative, question-driven discipline. Each chapter begins with a real case study (Harold Shipman's murder detection, the Titanic survivors, clinical trials for new drugs) and uses the data to introduce the concept in question: visualisation, sampling variation, regression, correlation, significance testing, Bayesian updating, and the ethics of algorithmic decision-making.</p><p>Spiegelhalter is particularly strong on the limitations and abuses of statistics, dedicating substantial space to publication bias, the replication crisis, and the multiple comparisons problem. His treatment is fair and honest: statistics doesn't fail because statisticians are fraudulent but because the incentive structures of academic publication systematically reward exciting results over true ones. The chapter on "What we can expect in the future" — covering AI, causal inference, and responsible data science — is one of the most balanced assessments of the field's direction available for a general audience.</p>`,
     links:[
@@ -374,6 +417,7 @@ const BOOKS = [
     title:'Naked Statistics',
     author:'Charles Wheelan',
     year:2013,
+    pages:320, depth:4, interest:7.8, order:2,
     cats:['Popular','Literacy'],
     desc:`<p>Charles Wheelan, an economist who teaches public policy at Dartmouth, wrote "Naked Statistics" as the statistics book he wished had existed when he was a student. It covers the essential ideas of statistical reasoning — central tendency, dispersion, the normal distribution, correlation, regression, statistical inference, and hypothesis testing — in plain English with amusing, politically eclectic examples drawn from economics, public health, sports, and pop culture.</p><p>The book is deliberately gentle with mathematics, using almost no formulas, which makes it an ideal first contact with statistical ideas for readers who are intimidated by quantitative subjects. Wheelan's gift is for analogy and narrative — he explains regression to the mean through the Sports Illustrated cover curse, conditional probability through drunk driving stops, and the central limit theorem through dice simulations described in plain prose. The result is a book that anyone with a high-school education can read cover to cover in a weekend and emerge from with genuine conceptual clarity about what statistics can and cannot tell us.</p><p>Particularly strong are the chapters on regression, which explain the concept of "holding other variables constant" with unusual clarity, and the chapter on program evaluation (how do you know if an intervention actually worked?) which provides an accessible gateway to the much harder topics of causal inference and experimental design. Naked Statistics is best read as a companion to a more technical text, providing the intuition that the technical books assume you already have.</p>`,
     links:[
@@ -386,6 +430,7 @@ const BOOKS = [
     title:'Introduction to Probability',
     author:'Blitzstein & Hwang',
     year:2019,
+    pages:634, depth:7, interest:7.6, order:7,
     cats:['Undergraduate','Textbook','Probability'],
     desc:`<p>Joseph Blitzstein's legendary Harvard course "Statistics 110: Probability" has over two million views on YouTube, and this textbook — co-authored with Jessica Hwang — captures both the rigour and the infectious enthusiasm of those lectures. The book is the definitive modern undergraduate probability text: mathematically honest (proofs are always given), computationally engaged (R simulations accompany many examples), and pedagogically exceptional (each concept is developed from multiple angles until it truly settles).</p><p>The book covers the core probability curriculum comprehensively: counting methods (with a particularly lucid treatment of the story proof approach), conditional probability and Bayes' theorem, random variables, expectation and variance, the classic named distributions with their stories and connections, joint distributions, the law of large numbers and central limit theorem, Markov chains and their long-run behaviour, and an introduction to Markov chain Monte Carlo. The "stories" approach — always asking "what is the random phenomenon that this distribution models?" — prevents the formulas from ever feeling like floating abstractions.</p><p>The exercises are exceptionally well-designed, ranging from straightforward application to genuinely challenging problems that require creative use of the symmetry and linearity arguments introduced in the chapters. The book is free in PDF form from the authors' website, and the Harvard Statistics 110 course (with Blitzstein's video lectures) is available completely free online — making this one of the most accessible high-quality undergraduate mathematics courses in the world.</p>`,
     links:[
@@ -400,6 +445,73 @@ const BOOKS = [
 
 let _booksRead = new Set(JSON.parse(localStorage.getItem('stats-books-read')||'[]'));
 
+/* ── view state: category chips + finished/unread + sort — all combine ── */
+let _bkCatFilter='all', _bkStatus='all', _bkSort='default';
+const BK_SORT_LABEL={default:'original order',interest:'most interesting → least interesting',order:'recommended reading order'};
+
+/* books passing the category chip (the pool the status counts are taken from) */
+function bkBase(){
+  return BOOKS.map((b,i)=>({b,i})).filter(e=>_bkCatFilter==='all'||(e.b.cats||[]).includes(_bkCatFilter));
+}
+/* exactly what is on screen: category + status filters, then the chosen arrangement */
+function bkView(){
+  const list=bkBase().filter(e=>{
+    const r=_booksRead.has(e.b.slug);
+    return _bkStatus==='all'||(_bkStatus==='read'?r:!r);
+  });
+  if(_bkSort==='interest') list.sort((a,c)=>(c.b.interest-a.b.interest)||(a.b.order-c.b.order));
+  else if(_bkSort==='order') list.sort((a,c)=>a.b.order-c.b.order);
+  return list;
+}
+
+function bkCard(e,pos,adm){
+  const b=e.b, isRead=_booksRead.has(b.slug);
+  return `
+    <div class="book-card${isRead?' book-read':''}" data-cats="${(b.cats||[]).join(',')}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.2rem">
+        <span class="bk-num" style="font-family:'Source Code Pro',monospace;font-size:.6rem;color:var(--text-3)">#${pos+1}</span>
+        ${isRead?'<span class="bk-read-badge">✓ Read</span>':''}
+      </div>
+      <div class="book-title">${b.title}</div>
+      <div class="book-author">${b.author}</div>
+      <div class="book-year">${b.year}</div>
+      <div class="bk-info">
+        <div class="bk-pages">📄 approx. ${b.pages} pages</div>
+        <div class="bk-meter depth"><span>Depth in statistics</span><b>${b.depth}/10</b><div class="bk-bar"><i style="width:${b.depth*10}%"></i></div></div>
+        <div class="bk-meter fun"><span>How interesting</span><b>${b.interest.toFixed(1)}/10</b><div class="bk-bar"><i style="width:${b.interest*10}%"></i></div></div>
+      </div>
+      <div class="book-desc">${b.desc}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.4rem">
+        ${(b.cats||[]).map(c=>`<span class="book-cat">${c}</span>`).join('')}
+      </div>
+      <div class="book-links" style="margin-top:.6rem">
+        ${(b.links||[]).map(l=>`<a href="${l.url}" target="_blank" rel="noopener" class="book-link book-link-${l.cls}">${l.label} ↗</a>`).join('')}
+        <a class="book-pdf-btn" id="pdfbtn-${b.slug}" style="display:none" href="#" target="_blank" rel="noopener">📄 Read PDF</a>
+      </div>
+      <div style="margin-top:.6rem;display:flex;gap:.5rem;flex-wrap:wrap">
+        <button class="bk-readbtn" onclick="toggleBookRead('${b.slug}')">${isRead?'↩ Mark Unread':'✓ Mark as Read'}</button>
+      </div>
+      ${adm?`<div class="book-upload-wrap" style="margin-top:.4rem">
+        <input type="file" accept=".pdf" class="book-upload-input" id="uinp-${b.slug}" onchange="handleBookPdfUpload('${b.slug}',this)">
+        <label for="uinp-${b.slug}" class="book-upload-label">📤 Upload PDF</label>
+      </div>`:''}
+    </div>`;
+}
+
+function renderBookTools(){
+  const el=document.getElementById('books-tools-row'); if(!el)return;
+  const base=bkBase(), nRead=base.filter(e=>_booksRead.has(e.b.slug)).length, view=bkView();
+  const sb=(k,l)=>`<button class="bk-filter${_bkStatus===k?' active':''}" onclick="setBkStatus('${k}')">${l}</button>`;
+  const ob=(k,l)=>`<button class="bk-filter${_bkSort===k?' active':''}" aria-pressed="${_bkSort===k}" title="${_bkSort===k?'Click again to go back to the original order':'Arranges only the books listed below'}" onclick="setBkSort('${k}')">${l}</button>`;
+  el.innerHTML=
+    `<div class="bk-tgroup"><span class="bk-tlbl">Status:</span>${sb('all','All ('+base.length+')')}${sb('read','✓ Finished ('+nRead+')')}${sb('unread','○ Unread ('+(base.length-nRead)+')')}</div>`+
+    `<div class="bk-tgroup"><span class="bk-tlbl">Arrange this list:</span>${ob('interest','★ Most → least interesting')}${ob('order','🧭 Recommended reading order')}</div>`+
+    `<div class="bk-tgroup"><button class="bk-pdf-btn" id="bk-pdf-btn" onclick="downloadBooksPdf()">⬇ Download this list as PDF</button></div>`+
+    `<div class="bk-count">Showing ${view.length} of ${BOOKS.length} books · ${BK_SORT_LABEL[_bkSort]}</div>`;
+}
+function setBkStatus(k){_bkStatus=k;renderBooks();}
+function setBkSort(k){_bkSort=(_bkSort===k)?'default':k;renderBooks();}
+
 function renderBooks(){
   const g=document.getElementById('books-grid');if(!g)return;
   const adm=isAdmin();
@@ -410,29 +522,12 @@ function renderBooks(){
   BOOKS.forEach(b=>(b.cats||[]).forEach(c=>allCats.add(c)));
   const fr=document.getElementById('books-filter-row');
   if(fr) fr.innerHTML=`<span class="puz-filter-lbl">Category:</span>`+
-    ['all',...allCats].map(c=>`<button class="bk-filter${c==='all'?' active':''}" onclick="filterBooks('${c}',this)">${c==='all'?'All':c}</button>`).join('');
-  g.innerHTML=BOOKS.map((b,idx)=>`
-    <div class="book-card" data-cats="${(b.cats||[]).join(',')}">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.2rem">
-        <span style="font-family:'Source Code Pro',monospace;font-size:.6rem;color:var(--text-3)">#${idx+1}</span>
-        <button class="book-read-btn${_booksRead.has(b.slug)?' read':''}" onclick="toggleBookRead('${b.slug}',this)">${_booksRead.has(b.slug)?'✓ Read':'○ Mark Read'}</button>
-      </div>
-      <div class="book-title">${b.title}</div>
-      <div class="book-author">${b.author}</div>
-      <div class="book-year">${b.year}</div>
-      <div class="book-desc">${b.desc}</div>
-      <div style="display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.4rem">
-        ${(b.cats||[]).map(c=>`<span class="book-cat">${c}</span>`).join('')}
-      </div>
-      <div class="book-links" style="margin-top:.6rem">
-        ${(b.links||[]).map(l=>`<a href="${l.url}" target="_blank" rel="noopener" class="book-link book-link-${l.cls}">${l.label} ↗</a>`).join('')}
-        <a class="book-pdf-btn" id="pdfbtn-${b.slug}" style="display:none" href="#" target="_blank" rel="noopener">📄 Read PDF</a>
-      </div>
-      ${adm?`<div class="book-upload-wrap" style="margin-top:.4rem">
-        <input type="file" accept=".pdf" class="book-upload-input" id="uinp-${b.slug}" onchange="handleBookPdfUpload('${b.slug}',this)">
-        <label for="uinp-${b.slug}" class="book-upload-label">📤 Upload PDF</label>
-      </div>`:''}
-    </div>`).join('');
+    ['all',...allCats].map(c=>`<button class="bk-filter${c===_bkCatFilter?' active':''}" onclick="filterBooks('${c}',this)">${c==='all'?'All':c}</button>`).join('');
+  const view=bkView();
+  g.innerHTML=view.length
+    ? view.map((e,pos)=>bkCard(e,pos,adm)).join('')
+    : `<div class="bk-empty">No books match this combination yet — try another category or status.</div>`;
+  renderBookTools();
   loadBookPdfs();
 }
 
@@ -474,21 +569,271 @@ async function loadBookPdfs(){
 /* ── PUZZLES (see override renderPuzzles below) ─────────────── */
 
 
-function toggleBookRead(slug,btn){
-  if(_booksRead.has(slug)){_booksRead.delete(slug);btn.textContent='○ Mark Read';btn.classList.remove('read');}
-  else{_booksRead.add(slug);btn.textContent='✓ Read';btn.classList.add('read');}
+function toggleBookRead(slug){
+  if(_booksRead.has(slug)) _booksRead.delete(slug); else _booksRead.add(slug);
   localStorage.setItem('stats-books-read',JSON.stringify([..._booksRead]));
+  renderBooks();
 }
-let _bkCatFilter='all';
 
-function filterBooks(cat,btn){
+function filterBooks(cat){
   _bkCatFilter=cat;
-  document.querySelectorAll('.bk-filter').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.book-card').forEach(card=>{
-    const cats=(card.dataset.cats||'').split(',');
-    card.style.display=(cat==='all'||cats.includes(cat))?'':'none';
+  renderBooks();
+}
+
+/* PDF of exactly what is on screen (same filters + arrangement) */
+function downloadBooksPdf(){
+  const view=bkView();
+  const bits=[];
+  bits.push(_bkCatFilter==='all'?'All categories':'Category: '+_bkCatFilter);
+  bits.push(_bkStatus==='all'?'Finished and unread':(_bkStatus==='read'?'Finished only':'Unread only'));
+  bits.push('Sorted: '+BK_SORT_LABEL[_bkSort]);
+  const name=['stargazer-statistics-books',_bkCatFilter!=='all'?bkSlug(_bkCatFilter):'',_bkStatus!=='all'?_bkStatus:'',_bkSort!=='default'?_bkSort:''].filter(Boolean).join('-')+'.pdf';
+  return bkRunPdf({
+    title:'Books to Fall in Love with Statistics',
+    viewLine:bits.join('   ·   '),
+    depthLabel:'Depth in statistics',
+    fileName:name,
+    items:view.map((e,p)=>({n:p+1,title:e.b.title,author:e.b.author,year:e.b.year,pages:e.b.pages,cats:e.b.cats||[],depth:e.b.depth,interest:e.b.interest,read:_booksRead.has(e.b.slug),blurb:bkStrip(e.b.desc)}))
   });
+}
+
+var BK_GLYPHS={"\u0100":[722,"M225 -26L225 0L10 0L10 -26L84 -39L307 -660L400 -660L632 -39L715 -26L715 0L438 0L438 -26L526 -39L461 -228L203 -228L137 -39ZM330 -590L218 -272L446 -272ZM208 -720L208 -773L514 -773L514 -720Z"],"\u0101":[444,"M227 -469Q302 -469 338 -438Q373 -408 373 -344L373 -34L430 -22L430 0L304 0L295 -46Q239 10 153 10Q35 10 35 -127Q35 -173 53 -203Q71 -233 110 -249Q149 -265 223 -266L292 -268L292 -340Q292 -387 275 -410Q257 -432 221 -432Q172 -432 132 -409L115 -352L88 -352L88 -452Q167 -469 227 -469ZM292 -234L228 -232Q163 -229 139 -207Q116 -184 116 -130Q116 -44 186 -44Q219 -44 243 -52Q268 -59 292 -71ZM74 -557L74 -610L380 -610L380 -557Z"],"\u0106":[667,"M378 10Q219 10 130 -77Q41 -164 41 -320Q41 -489 126 -575Q212 -662 380 -662Q482 -662 599 -637L602 -494L570 -494L555 -579Q521 -600 476 -612Q431 -623 384 -623Q258 -623 201 -549Q143 -476 143 -321Q143 -178 203 -103Q264 -28 379 -28Q435 -28 484 -41Q533 -55 562 -77L580 -175L612 -175L609 -21Q501 10 378 10ZM299 -709L299 -726L395 -858L499 -858L499 -840L326 -709Z"],"\u0107":[444,"M413 -28Q389 -10 347 0Q305 10 261 10Q38 10 38 -233Q38 -348 95 -409Q152 -471 258 -471Q324 -471 402 -456L402 -328L375 -328L354 -409Q313 -432 257 -432Q126 -432 126 -233Q126 -129 166 -85Q206 -41 289 -41Q360 -41 413 -57ZM179 -546L179 -562L274 -695L378 -695L378 -677L206 -546Z"],"\u010c":[667,"M378 10Q219 10 130 -77Q41 -164 41 -320Q41 -489 126 -575Q212 -662 380 -662Q482 -662 599 -637L602 -494L570 -494L555 -579Q521 -600 476 -612Q431 -623 384 -623Q258 -623 201 -549Q143 -476 143 -321Q143 -178 203 -103Q264 -28 379 -28Q435 -28 484 -41Q533 -55 562 -77L580 -175L612 -175L609 -21Q501 10 378 10ZM247 -859L377 -770L508 -859L536 -859L536 -843L430 -709L326 -709L219 -843L219 -859Z"],"\u010d":[444,"M413 -28Q389 -10 347 0Q305 10 261 10Q38 10 38 -233Q38 -348 95 -409Q152 -471 258 -471Q324 -471 402 -456L402 -328L375 -328L354 -409Q313 -432 257 -432Q126 -432 126 -233Q126 -129 166 -85Q206 -41 289 -41Q360 -41 413 -57ZM122 -696L253 -606L384 -696L411 -696L411 -680L305 -546L201 -546L95 -680L95 -696Z"],"\u0110":[722,"M308 -655Q493 -655 588 -572Q682 -489 682 -331Q682 -163 602 -80Q521 2 358 2L113 0L29 0L29 -26L113 -39L113 -307L26 -307L26 -347L113 -347L113 -616L29 -629L29 -655ZM391 -347L391 -307L207 -307L207 -46Q266 -42 346 -42Q467 -42 523 -111Q580 -179 580 -327Q580 -468 508 -540Q435 -611 286 -611L207 -611L207 -347Z"],"\u0111":[500,"M353 -34Q298 10 224 10Q36 10 36 -225Q36 -346 89 -408Q143 -471 246 -471Q299 -471 353 -460Q350 -476 350 -531L350 -543L216 -543L216 -584L350 -584L350 -660L273 -672L273 -694L431 -694L431 -584L498 -584L498 -543L431 -543L431 -34L488 -22L488 0L359 0ZM124 -225Q124 -132 155 -87Q187 -41 251 -41Q306 -41 350 -60L350 -423Q307 -431 251 -431Q124 -431 124 -225Z"],"\u0112":[611,"M29 -26L113 -39L113 -616L29 -629L29 -655L520 -655L520 -498L488 -498L472 -604Q417 -611 314 -611L207 -611L207 -355L384 -355L399 -433L430 -433L430 -232L399 -232L384 -311L207 -311L207 -44L336 -44Q462 -44 501 -52L529 -173L561 -173L552 0L29 0ZM152 -720L152 -773L458 -773L458 -720Z"],"\u0113":[444,"M127 -231L127 -222Q127 -155 142 -117Q157 -80 188 -61Q219 -41 269 -41Q295 -41 332 -45Q368 -50 391 -55L391 -28Q368 -13 327 -1Q287 10 245 10Q138 10 89 -48Q39 -105 39 -233Q39 -353 89 -412Q140 -471 233 -471Q409 -471 409 -271L409 -231ZM233 -432Q182 -432 155 -391Q128 -350 128 -270L324 -270Q324 -357 302 -395Q279 -432 233 -432ZM80 -557L80 -610L386 -610L386 -557Z"],"\u0118":[611,"M29 -26L113 -39L113 -616L29 -629L29 -655L520 -655L520 -498L488 -498L472 -604Q417 -611 314 -611L207 -611L207 -355L384 -355L399 -433L430 -433L430 -232L399 -232L384 -311L207 -311L207 -44L336 -44Q462 -44 501 -52L529 -173L561 -173L552 0L29 0ZM467 197Q413 197 384 169Q354 141 354 91Q354 65 366 39Q377 14 398 -8L452 -8Q440 8 433 34Q425 59 425 79Q425 115 443 135Q460 154 493 154Q522 154 549 143L549 174Q516 197 467 197Z"],"\u0119":[444,"M127 -231L127 -222Q127 -155 142 -117Q157 -80 188 -61Q219 -41 269 -41Q295 -41 332 -45Q368 -50 391 -55L391 -28Q368 -13 327 -1Q287 10 245 10Q138 10 89 -48Q39 -105 39 -233Q39 -353 89 -412Q140 -471 233 -471Q409 -471 409 -271L409 -231ZM233 -432Q182 -432 155 -391Q128 -350 128 -270L324 -270Q324 -357 302 -395Q279 -432 233 -432ZM317 197Q263 197 234 169Q205 141 205 91Q205 65 216 39Q228 14 249 -8L302 -8Q291 8 283 34Q275 59 275 79Q275 115 293 135Q310 154 343 154Q372 154 399 143L399 174Q366 197 317 197Z"],"\u011a":[611,"M29 -26L113 -39L113 -616L29 -629L29 -655L520 -655L520 -498L488 -498L472 -604Q417 -611 314 -611L207 -611L207 -355L384 -355L399 -433L430 -433L430 -232L399 -232L384 -311L207 -311L207 -44L336 -44Q462 -44 501 -52L529 -173L561 -173L552 0L29 0ZM179 -859L310 -770L441 -859L468 -859L468 -843L362 -709L258 -709L152 -843L152 -859Z"],"\u011b":[444,"M127 -231L127 -222Q127 -155 142 -117Q157 -80 188 -61Q219 -41 269 -41Q295 -41 332 -45Q368 -50 391 -55L391 -28Q368 -13 327 -1Q287 10 245 10Q138 10 89 -48Q39 -105 39 -233Q39 -353 89 -412Q140 -471 233 -471Q409 -471 409 -271L409 -231ZM233 -432Q182 -432 155 -391Q128 -350 128 -270L324 -270Q324 -357 302 -395Q279 -432 233 -432ZM103 -696L234 -606L365 -696L392 -696L392 -680L286 -546L182 -546L76 -680L76 -696Z"],"\u011e":[722,"M627 -34Q570 -16 509 -3Q448 10 378 10Q219 10 130 -76Q41 -162 41 -320Q41 -492 127 -577Q213 -662 380 -662Q499 -662 610 -633L610 -492L577 -492L564 -573Q530 -597 483 -610Q436 -623 384 -623Q259 -623 201 -549Q143 -474 143 -321Q143 -177 203 -102Q262 -28 379 -28Q420 -28 465 -38Q510 -47 533 -61L533 -247L449 -260L449 -286L691 -286L691 -260L627 -247ZM375 -709Q310 -709 273 -747Q237 -784 235 -846L271 -846Q279 -813 307 -796Q334 -778 375 -778Q417 -778 444 -796Q471 -813 479 -846L516 -846Q513 -782 477 -746Q440 -709 375 -709Z"],"\u011f":[500,"M425 -314Q425 -235 377 -194Q330 -154 241 -154Q201 -154 167 -161L136 -97Q138 -89 155 -82Q173 -74 199 -74L335 -74Q409 -74 445 -42Q481 -10 481 47Q481 98 452 136Q424 174 369 195Q313 216 235 216Q141 216 92 187Q43 158 43 105Q43 79 61 54Q78 29 125 -5Q97 -14 78 -37Q59 -59 59 -85L136 -172Q59 -208 59 -314Q59 -389 107 -430Q154 -471 245 -471Q263 -471 292 -468Q320 -464 335 -459L443 -513L460 -492L392 -422Q425 -385 425 -314ZM405 62Q405 34 388 19Q371 3 336 3L158 3Q138 21 125 48Q112 75 112 98Q112 140 142 158Q172 177 235 177Q316 177 361 146Q405 116 405 62ZM242 -191Q295 -191 318 -221Q340 -252 340 -314Q340 -379 317 -406Q294 -434 243 -434Q192 -434 168 -406Q144 -378 144 -314Q144 -250 167 -220Q191 -191 242 -191ZM236 -546Q171 -546 134 -584Q98 -621 96 -683L132 -683Q140 -650 168 -633Q195 -615 236 -615Q277 -615 305 -633Q332 -650 340 -683L376 -683Q374 -619 337 -583Q301 -546 236 -546Z"],"\u012a":[333,"M214 -39L298 -26L298 0L36 0L36 -26L120 -39L120 -616L36 -629L36 -655L298 -655L298 -629L214 -616ZM13 -720L13 -773L320 -773L320 -720Z"],"\u012b":[278,"M180 -34L259 -22L259 0L21 0L21 -22L99 -34L99 -425L34 -437L34 -459L180 -459ZM-14 -557L-14 -610L293 -610L293 -557Z"],"\u0130":[333,"M214 -39L298 -26L298 0L36 0L36 -26L120 -39L120 -616L36 -629L36 -655L298 -655L298 -629L214 -616ZM220 -772Q220 -750 205 -735Q189 -719 167 -719Q146 -719 130 -735Q114 -750 114 -772Q114 -794 130 -810Q146 -825 167 -825Q189 -825 205 -810Q220 -794 220 -772Z"],"\u0131":[278,"M180 -34L259 -22L259 0L21 0L21 -22L99 -34L99 -425L34 -437L34 -459L180 -459Z"],"\u0141":[611,"M21 -253L113 -306L113 -616L29 -629L29 -655L308 -655L308 -629L207 -616L207 -360L357 -447L357 -401L207 -314L207 -42L336 -42Q440 -42 489 -52L519 -188L551 -188L542 0L29 0L29 -26L113 -39L113 -260L21 -206Z"],"\u0142":[278,"M10 -253L98 -303L98 -660L20 -672L20 -694L179 -694L179 -350L273 -405L273 -359L179 -304L179 -34L258 -22L258 0L20 0L20 -22L98 -34L98 -257L10 -206Z"],"\u0143":[722,"M564 -616L476 -629L476 -655L699 -655L699 -629L615 -616L615 0L568 0L164 -589L164 -39L252 -26L252 0L29 0L29 -26L113 -39L113 -616L29 -629L29 -655L227 -655L564 -170ZM322 -709L322 -726L417 -858L521 -858L521 -840L349 -709Z"],"\u0144":[500,"M158 -422Q196 -443 238 -457Q281 -471 309 -471Q369 -471 399 -437Q429 -402 429 -336L429 -34L485 -22L485 0L287 0L287 -22L348 -34L348 -327Q348 -368 328 -391Q309 -414 267 -414Q223 -414 159 -400L159 -34L221 -22L221 0L23 0L23 -22L78 -34L78 -425L23 -437L23 -459L154 -459ZM202 -546L202 -562L297 -695L401 -695L401 -677L229 -546Z"],"\u0147":[722,"M564 -616L476 -629L476 -655L699 -655L699 -629L615 -616L615 0L568 0L164 -589L164 -39L252 -26L252 0L29 0L29 -26L113 -39L113 -616L29 -629L29 -655L227 -655L564 -170ZM230 -859L361 -770L492 -859L519 -859L519 -843L413 -709L309 -709L203 -843L203 -859Z"],"\u0148":[500,"M158 -422Q196 -443 238 -457Q281 -471 309 -471Q369 -471 399 -437Q429 -402 429 -336L429 -34L485 -22L485 0L287 0L287 -22L348 -34L348 -327Q348 -368 328 -391Q309 -414 267 -414Q223 -414 159 -400L159 -34L221 -22L221 0L23 0L23 -22L78 -34L78 -425L23 -437L23 -459L154 -459ZM120 -696L251 -606L382 -696L409 -696L409 -680L303 -546L199 -546L93 -680L93 -696Z"],"\u014c":[722,"M143 -328Q143 -170 196 -100Q249 -29 361 -29Q473 -29 526 -100Q579 -170 579 -328Q579 -485 526 -554Q473 -623 361 -623Q248 -623 196 -554Q143 -485 143 -328ZM41 -328Q41 -662 361 -662Q519 -662 600 -577Q681 -493 681 -328Q681 -161 599 -76Q517 10 361 10Q205 10 123 -75Q41 -161 41 -328ZM208 -720L208 -773L514 -773L514 -720Z"],"\u014d":[500,"M462 -232Q462 10 247 10Q144 10 91 -52Q38 -114 38 -232Q38 -348 91 -410Q144 -471 251 -471Q355 -471 409 -411Q462 -351 462 -232ZM374 -232Q374 -337 343 -385Q312 -432 247 -432Q183 -432 155 -387Q126 -341 126 -232Q126 -121 155 -75Q184 -29 247 -29Q312 -29 343 -77Q374 -125 374 -232ZM97 -557L97 -610L403 -610L403 -557Z"],"\u0150":[722,"M143 -328Q143 -170 196 -100Q249 -29 361 -29Q473 -29 526 -100Q579 -170 579 -328Q579 -485 526 -554Q473 -623 361 -623Q248 -623 196 -554Q143 -485 143 -328ZM41 -328Q41 -662 361 -662Q519 -662 600 -577Q681 -493 681 -328Q681 -161 599 -76Q517 10 361 10Q205 10 123 -75Q41 -161 41 -328ZM227 -709L227 -726L303 -858L397 -858L397 -840L254 -709ZM398 -709L398 -726L474 -858L568 -858L568 -840L425 -709Z"],"\u0151":[500,"M462 -232Q462 10 247 10Q144 10 91 -52Q38 -114 38 -232Q38 -348 91 -410Q144 -471 251 -471Q355 -471 409 -411Q462 -351 462 -232ZM374 -232Q374 -337 343 -385Q312 -432 247 -432Q183 -432 155 -387Q126 -341 126 -232Q126 -121 155 -75Q184 -29 247 -29Q312 -29 343 -77Q374 -125 374 -232ZM115 -546L115 -562L191 -695L285 -695L285 -677L142 -546ZM286 -546L286 -562L362 -695L456 -695L456 -677L313 -546Z"],"\u0158":[667,"M207 -287L207 -39L306 -26L306 0L35 0L35 -26L113 -39L113 -616L29 -629L29 -655L312 -655Q435 -655 493 -613Q552 -572 552 -480Q552 -415 516 -367Q480 -319 417 -301L595 -39L666 -26L666 0L509 0L325 -287ZM455 -473Q455 -548 418 -579Q382 -611 291 -611L207 -611L207 -331L293 -331Q381 -331 418 -364Q455 -396 455 -473ZM178 -859L309 -770L440 -859L467 -859L467 -843L361 -709L257 -709L151 -843L151 -859Z"],"\u0159":[333,"M324 -471L324 -347L303 -347L275 -401Q250 -401 217 -394Q184 -388 159 -377L159 -34L238 -22L238 0L20 0L20 -22L78 -34L78 -425L20 -437L20 -459L154 -459L158 -402Q188 -426 238 -449Q288 -471 317 -471ZM36 -696L167 -606L298 -696L325 -696L325 -680L219 -546L115 -546L9 -680L9 -696Z"],"\u015a":[556,"M68 -176L100 -176L117 -88Q135 -65 179 -47Q223 -30 266 -30Q334 -30 373 -65Q411 -100 411 -161Q411 -196 396 -219Q381 -242 357 -258Q333 -274 302 -285Q271 -296 239 -307Q207 -318 176 -332Q145 -346 121 -367Q97 -388 82 -419Q67 -450 67 -495Q67 -573 125 -618Q184 -662 288 -662Q367 -662 460 -641L460 -505L428 -505L411 -585Q361 -621 288 -621Q223 -621 186 -594Q149 -568 149 -521Q149 -489 164 -468Q179 -447 203 -432Q227 -417 258 -407Q289 -396 322 -385Q354 -373 385 -359Q416 -344 440 -322Q464 -300 479 -268Q494 -236 494 -189Q494 -94 436 -42Q378 10 269 10Q216 10 163 0Q109 -9 68 -25ZM237 -709L237 -726L333 -858L437 -858L437 -840L264 -709Z"],"\u015b":[389,"M353 -129Q353 -61 310 -25Q267 10 182 10Q148 10 107 3Q65 -4 42 -13L42 -126L64 -126L88 -62Q125 -29 183 -29Q278 -29 278 -110Q278 -169 203 -195L160 -209Q110 -225 88 -242Q65 -258 53 -282Q41 -307 41 -341Q41 -401 82 -436Q124 -471 194 -471Q244 -471 320 -456L320 -356L297 -356L276 -409Q250 -432 195 -432Q155 -432 135 -413Q114 -393 114 -360Q114 -332 133 -313Q151 -294 189 -281Q261 -257 283 -246Q305 -234 321 -218Q336 -202 344 -181Q353 -160 353 -129ZM147 -546L147 -562L243 -695L347 -695L347 -677L174 -546Z"],"\u015e":[556,"M68 -176L100 -176L117 -88Q135 -65 179 -47Q223 -30 266 -30Q334 -30 373 -65Q411 -100 411 -161Q411 -196 396 -219Q381 -242 357 -258Q333 -274 302 -285Q271 -296 239 -307Q207 -318 176 -332Q145 -346 121 -367Q97 -388 82 -419Q67 -450 67 -495Q67 -573 125 -618Q184 -662 288 -662Q367 -662 460 -641L460 -505L428 -505L411 -585Q361 -621 288 -621Q223 -621 186 -594Q149 -568 149 -521Q149 -489 164 -468Q179 -447 203 -432Q227 -417 258 -407Q289 -396 322 -385Q354 -373 385 -359Q416 -344 440 -322Q464 -300 479 -268Q494 -236 494 -189Q494 -94 436 -42Q378 10 269 10Q216 10 163 0Q109 -9 68 -25ZM365 114Q365 159 331 186Q297 213 245 213Q208 213 177 202L177 166Q188 169 207 172Q225 174 236 174Q265 174 278 159Q292 145 292 123Q292 99 272 84Q252 69 217 66L237 -9L279 -9L271 31Q315 36 340 57Q365 79 365 114Z"],"\u015f":[389,"M353 -129Q353 -61 310 -25Q267 10 182 10Q148 10 107 3Q65 -4 42 -13L42 -126L64 -126L88 -62Q125 -29 183 -29Q278 -29 278 -110Q278 -169 203 -195L160 -209Q110 -225 88 -242Q65 -258 53 -282Q41 -307 41 -341Q41 -401 82 -436Q124 -471 194 -471Q244 -471 320 -456L320 -356L297 -356L276 -409Q250 -432 195 -432Q155 -432 135 -413Q114 -393 114 -360Q114 -332 133 -313Q151 -294 189 -281Q261 -257 283 -246Q305 -234 321 -218Q336 -202 344 -181Q353 -160 353 -129ZM272 114Q272 159 239 186Q205 213 152 213Q115 213 84 202L84 166Q95 169 114 172Q132 174 143 174Q172 174 186 159Q199 145 199 123Q199 99 179 84Q160 69 125 66L145 -9L187 -9L178 31Q222 36 247 57Q272 79 272 114Z"],"\u0160":[556,"M68 -176L100 -176L117 -88Q135 -65 179 -47Q223 -30 266 -30Q334 -30 373 -65Q411 -100 411 -161Q411 -196 396 -219Q381 -242 357 -258Q333 -274 302 -285Q271 -296 239 -307Q207 -318 176 -332Q145 -346 121 -367Q97 -388 82 -419Q67 -450 67 -495Q67 -573 125 -618Q184 -662 288 -662Q367 -662 460 -641L460 -505L428 -505L411 -585Q361 -621 288 -621Q223 -621 186 -594Q149 -568 149 -521Q149 -489 164 -468Q179 -447 203 -432Q227 -417 258 -407Q289 -396 322 -385Q354 -373 385 -359Q416 -344 440 -322Q464 -300 479 -268Q494 -236 494 -189Q494 -94 436 -42Q378 10 269 10Q216 10 163 0Q109 -9 68 -25ZM162 -859L292 -770L423 -859L451 -859L451 -843L345 -709L241 -709L134 -843L134 -859Z"],"\u0161":[389,"M353 -129Q353 -61 310 -25Q267 10 182 10Q148 10 107 3Q65 -4 42 -13L42 -126L64 -126L88 -62Q125 -29 183 -29Q278 -29 278 -110Q278 -169 203 -195L160 -209Q110 -225 88 -242Q65 -258 53 -282Q41 -307 41 -341Q41 -401 82 -436Q124 -471 194 -471Q244 -471 320 -456L320 -356L297 -356L276 -409Q250 -432 195 -432Q155 -432 135 -413Q114 -393 114 -360Q114 -332 133 -313Q151 -294 189 -281Q261 -257 283 -246Q305 -234 321 -218Q336 -202 344 -181Q353 -160 353 -129ZM72 -696L203 -606L334 -696L361 -696L361 -680L255 -546L151 -546L45 -680L45 -696Z"],"\u016a":[722,"M566 -616L478 -629L478 -655L701 -655L701 -629L617 -616L617 -225Q617 -107 552 -49Q488 10 365 10Q234 10 170 -49Q105 -108 105 -216L105 -616L21 -629L21 -655L283 -655L283 -629L199 -616L199 -223Q199 -45 372 -45Q466 -45 516 -89Q566 -134 566 -221ZM222 -720L222 -773L529 -773L529 -720Z"],"\u016b":[500,"M153 -131Q153 -47 231 -47Q292 -47 344 -62L344 -425L275 -437L275 -459L425 -459L425 -34L483 -22L483 0L349 0L345 -37Q311 -18 265 -4Q220 10 189 10Q72 10 72 -125L72 -425L13 -437L13 -459L153 -459ZM97 -557L97 -610L403 -610L403 -557Z"],"\u016e":[722,"M566 -616L478 -629L478 -655L701 -655L701 -629L617 -616L617 -225Q617 -107 552 -49Q488 10 365 10Q234 10 170 -49Q105 -108 105 -216L105 -616L21 -629L21 -655L283 -655L283 -629L199 -616L199 -223Q199 -45 372 -45Q466 -45 516 -89Q566 -134 566 -221ZM483 -788Q483 -747 454 -718Q425 -689 384 -689Q343 -689 314 -718Q285 -747 285 -788Q285 -829 314 -858Q343 -887 384 -887Q425 -887 454 -858Q483 -829 483 -788ZM444 -788Q444 -813 426 -831Q409 -848 384 -848Q359 -848 341 -831Q324 -813 324 -788Q324 -763 342 -745Q360 -728 384 -728Q407 -728 426 -745Q444 -762 444 -788Z"],"\u016f":[500,"M153 -131Q153 -47 231 -47Q292 -47 344 -62L344 -425L275 -437L275 -459L425 -459L425 -34L483 -22L483 0L349 0L345 -37Q311 -18 265 -4Q220 10 189 10Q72 10 72 -125L72 -425L13 -437L13 -459L153 -459ZM349 -625Q349 -584 320 -555Q291 -526 250 -526Q209 -526 180 -555Q151 -584 151 -625Q151 -666 180 -695Q209 -724 250 -724Q291 -724 320 -695Q349 -666 349 -625ZM310 -625Q310 -650 292 -667Q275 -685 250 -685Q225 -685 208 -667Q190 -650 190 -625Q190 -600 208 -582Q226 -565 250 -565Q273 -565 292 -582Q310 -599 310 -625Z"],"\u0170":[722,"M566 -616L478 -629L478 -655L701 -655L701 -629L617 -616L617 -225Q617 -107 552 -49Q488 10 365 10Q234 10 170 -49Q105 -108 105 -216L105 -616L21 -629L21 -655L283 -655L283 -629L199 -616L199 -223Q199 -45 372 -45Q466 -45 516 -89Q566 -134 566 -221ZM248 -709L248 -726L324 -858L418 -858L418 -840L275 -709ZM419 -709L419 -726L495 -858L589 -858L589 -840L446 -709Z"],"\u0171":[500,"M153 -131Q153 -47 231 -47Q292 -47 344 -62L344 -425L275 -437L275 -459L425 -459L425 -34L483 -22L483 0L349 0L345 -37Q311 -18 265 -4Q220 10 189 10Q72 10 72 -125L72 -425L13 -437L13 -459L153 -459ZM111 -546L111 -562L187 -695L281 -695L281 -677L138 -546ZM282 -546L282 -562L358 -695L452 -695L452 -677L309 -546Z"],"\u0179":[611,"M48 -46L415 -613L293 -613Q172 -613 127 -603L112 -500L78 -500L78 -655L524 -655L524 -613L154 -41L296 -41Q353 -41 411 -46Q469 -52 493 -57L522 -182L556 -182L543 0L48 0ZM251 -709L251 -726L347 -858L451 -858L451 -840L278 -709Z"],"\u017a":[444,"M27 0L27 -22L279 -420L171 -420Q144 -420 118 -415Q93 -411 83 -403L68 -337L45 -337L45 -459L384 -459L384 -435L132 -39L266 -39Q294 -39 325 -46Q355 -52 368 -62L393 -158L416 -158L404 0ZM164 -546L164 -562L260 -695L364 -695L364 -677L191 -546Z"],"\u017b":[611,"M48 -46L415 -613L293 -613Q172 -613 127 -603L112 -500L78 -500L78 -655L524 -655L524 -613L154 -41L296 -41Q353 -41 411 -46Q469 -52 493 -57L522 -182L556 -182L543 0L48 0ZM360 -772Q360 -750 344 -735Q329 -719 307 -719Q285 -719 270 -735Q254 -750 254 -772Q254 -794 270 -810Q285 -825 307 -825Q329 -825 344 -810Q360 -794 360 -772Z"],"\u017c":[444,"M27 0L27 -22L279 -420L171 -420Q144 -420 118 -415Q93 -411 83 -403L68 -337L45 -337L45 -459L384 -459L384 -435L132 -39L266 -39Q294 -39 325 -46Q355 -52 368 -62L393 -158L416 -158L404 0ZM280 -609Q280 -587 264 -572Q249 -556 227 -556Q205 -556 189 -572Q174 -587 174 -609Q174 -631 189 -646Q205 -662 227 -662Q249 -662 264 -646Q280 -631 280 -609Z"],"\u017d":[611,"M48 -46L415 -613L293 -613Q172 -613 127 -603L112 -500L78 -500L78 -655L524 -655L524 -613L154 -41L296 -41Q353 -41 411 -46Q469 -52 493 -57L522 -182L556 -182L543 0L48 0ZM177 -859L308 -770L439 -859L466 -859L466 -843L360 -709L256 -709L150 -843L150 -859Z"],"\u017e":[444,"M27 0L27 -22L279 -420L171 -420Q144 -420 118 -415Q93 -411 83 -403L68 -337L45 -337L45 -459L384 -459L384 -435L132 -39L266 -39Q294 -39 325 -46Q355 -52 368 -62L393 -158L416 -158L404 0ZM92 -696L223 -606L354 -696L381 -696L381 -680L275 -546L171 -546L65 -680L65 -696Z"],"\u03b1":[524,"M500 -22L500 0L396 0Q378 -58 364 -134L361 -134Q326 -67 304 -41Q281 -16 254 -3Q227 10 191 10Q118 10 78 -50Q38 -110 38 -221Q38 -339 88 -406Q138 -472 229 -472Q292 -472 328 -440Q365 -409 388 -337L391 -337L425 -459L501 -459L501 -439Q490 -422 475 -387Q460 -353 416 -236Q444 -116 477 -29ZM354 -226Q341 -336 313 -385Q285 -433 236 -433Q126 -433 126 -221Q126 -131 149 -85Q172 -38 210 -38Q240 -38 263 -57Q286 -75 305 -109Q325 -144 354 -226Z"],"\u03b2":[509,"M146 213L64 213L64 -459Q64 -582 114 -643Q163 -704 265 -704Q347 -704 395 -660Q442 -616 442 -537Q442 -472 409 -428Q377 -384 324 -373L324 -368Q396 -353 431 -310Q466 -267 466 -191Q466 -96 417 -43Q367 10 275 10Q205 10 146 -16ZM359 -535Q359 -598 335 -631Q311 -665 264 -665Q200 -665 173 -615Q146 -566 146 -458L146 -52Q203 -33 270 -33Q381 -33 381 -190Q381 -269 344 -307Q308 -345 232 -348L232 -386Q298 -388 328 -423Q359 -458 359 -535Z"],"\u03b3":[442,"M-1 -437L-1 -459L105 -459Q134 -393 172 -289Q209 -185 238 -85L242 -85L325 -284Q336 -311 345 -341Q354 -372 354 -390Q354 -410 342 -422Q331 -434 319 -437L319 -459L414 -459Q419 -451 419 -422Q419 -377 376 -284L255 -9Q262 30 266 100Q270 170 270 208L192 213L169 199Q169 155 175 101Q180 47 188 4Q125 -182 103 -240Q82 -298 62 -345Q42 -393 25 -426Z"],"\u03b4":[471,"M123 -580Q123 -635 164 -667Q206 -699 275 -699Q323 -699 396 -684L396 -583L373 -583L352 -637Q326 -660 276 -660Q237 -660 216 -640Q195 -621 195 -587Q195 -561 216 -532Q237 -504 308 -447Q377 -390 406 -338Q434 -286 434 -220Q434 -112 383 -51Q332 10 237 10Q142 10 90 -43Q38 -96 38 -195Q38 -285 84 -344Q130 -404 217 -426Q164 -473 143 -508Q123 -543 123 -580ZM122 -191Q122 -113 152 -71Q182 -29 238 -29Q291 -29 320 -73Q349 -116 349 -206Q349 -264 328 -307Q307 -350 258 -391L246 -401Q179 -377 150 -325Q122 -273 122 -191Z"],"\u03b5":[420,"M391 -34Q324 10 223 10Q134 10 86 -27Q39 -64 39 -131Q39 -176 68 -206Q98 -237 148 -247L148 -250Q58 -280 58 -354Q58 -409 109 -440Q160 -471 246 -471Q315 -471 377 -454L377 -358L354 -358L326 -413Q312 -421 289 -427Q265 -433 243 -433Q194 -433 167 -411Q141 -390 141 -351Q141 -317 157 -295Q173 -272 201 -264Q220 -266 259 -268Q298 -270 311 -270L326 -270L326 -223L311 -223Q277 -223 192 -229Q158 -219 141 -195Q123 -170 123 -136Q123 -92 156 -66Q189 -41 247 -41Q281 -41 313 -46Q346 -51 391 -66Z"],"\u03b8":[479,"M437 -347Q437 -166 387 -78Q337 10 236 10Q141 10 94 -78Q47 -167 47 -347Q47 -526 94 -613Q142 -699 240 -699Q339 -699 388 -610Q437 -520 437 -347ZM236 -660Q199 -660 177 -632Q156 -604 146 -547Q136 -489 135 -366L349 -366Q346 -527 320 -594Q293 -660 236 -660ZM236 -29Q292 -29 319 -96Q346 -163 348 -323L135 -323Q136 -155 159 -92Q183 -29 236 -29Z"],"\u03bb":[485,"M268 -373Q251 -327 111 0L26 0L26 -16L236 -481L214 -549Q179 -658 129 -658Q116 -658 102 -652L82 -612L58 -612L58 -695Q92 -704 130 -704Q176 -704 204 -674Q232 -645 260 -562L423 -72Q431 -48 447 -38Q463 -27 479 -22L479 0L384 0Z"],"\u03bc":[536,"M437 -459L437 -34L495 -22L495 0L361 0L357 -42Q282 10 227 10Q188 10 162 -13L162 214L81 214L81 -459L162 -459L162 -131Q162 -47 243 -47Q295 -47 356 -69L356 -459Z"],"\u03c0":[505,"M177 -418Q152 -109 147 -65Q142 -21 137 0L47 0L47 -22Q73 -48 83 -68Q94 -88 100 -116Q106 -144 110 -188L130 -418L65 -418L42 -355L14 -355L24 -459L490 -459L490 -418L398 -418L398 -104Q398 -73 410 -57Q421 -41 440 -41Q454 -41 480 -49L480 -17Q468 -7 448 1Q427 10 404 10Q317 10 317 -96L317 -418Z"],"\u03c1":[499,"M64 -274Q64 -369 110 -419Q155 -469 237 -469Q301 -469 352 -438Q403 -406 431 -347Q458 -289 458 -211Q458 -142 434 -93Q409 -43 365 -17Q320 10 263 10Q206 10 145 -11L145 213L64 213ZM251 -29Q312 -29 342 -74Q373 -120 373 -205Q373 -274 356 -322Q340 -370 310 -395Q280 -420 240 -420Q145 -420 145 -281L145 -50Q198 -29 251 -29Z"],"\u03c3":[539,"M496 -512L524 -512L515 -418L373 -418L373 -415Q418 -375 443 -323Q467 -270 467 -214Q467 -110 409 -50Q352 10 255 10Q156 10 97 -56Q38 -122 38 -231Q38 -338 108 -398Q177 -459 298 -459L469 -459ZM260 -29Q315 -29 347 -78Q378 -127 378 -217Q378 -284 362 -336Q346 -389 317 -418Q225 -418 175 -367Q126 -317 126 -220Q126 -130 162 -79Q199 -29 260 -29Z"],"\u03c6":[577,"M314 213L263 213L263 8Q149 0 94 -58Q39 -115 39 -228Q39 -336 79 -395Q120 -454 215 -471L214 -435Q167 -417 147 -371Q127 -325 127 -230Q127 -137 160 -88Q192 -40 263 -28L263 -327Q263 -396 292 -434Q322 -472 377 -472Q454 -472 496 -413Q538 -354 538 -240Q538 -129 480 -65Q423 -1 314 8ZM451 -233Q451 -331 429 -381Q408 -432 369 -432Q314 -432 314 -327L314 -29Q384 -40 417 -89Q451 -139 451 -233Z"],"\u03c9":[658,"M531 -204Q531 -386 402 -437L402 -469Q505 -452 562 -382Q619 -312 619 -206Q619 -104 577 -47Q534 10 458 10Q368 10 333 -82L329 -82Q293 10 203 10Q127 10 83 -47Q39 -104 39 -206Q39 -313 96 -383Q154 -452 256 -469L256 -437Q193 -412 160 -353Q127 -294 127 -204Q127 -129 154 -84Q180 -40 226 -40Q255 -40 279 -68Q302 -97 310 -145L305 -171Q292 -246 292 -271L292 -297L373 -297L373 -271Q373 -245 354 -145Q363 -96 384 -69Q406 -42 435 -42Q481 -42 506 -85Q531 -128 531 -204Z"],"\u0394":[643,"M605 0L39 0L38 -39L271 -660L364 -660L605 -39ZM296 -584L101 -53L494 -53Z"],"\u0398":[722,"M143 -328Q143 -170 196 -100Q249 -29 361 -29Q473 -29 526 -100Q579 -170 579 -328Q579 -485 526 -554Q473 -623 361 -623Q248 -623 196 -554Q143 -485 143 -328ZM41 -328Q41 -662 361 -662Q519 -662 600 -577Q681 -493 681 -328Q681 -161 599 -76Q517 10 361 10Q205 10 123 -75Q41 -161 41 -328ZM272 -298L257 -229L226 -229L226 -430L257 -430L272 -361L449 -361L464 -430L496 -430L496 -229L464 -229L449 -298Z"],"\u039b":[725,"M137 -39L225 -26L225 0L10 0L10 -26L81 -39L307 -660L400 -660L632 -39L715 -26L715 0L438 0L438 -26L526 -39L333 -584Z"],"\u03a3":[582,"M331 -365L331 -340L134 -83L262 -83Q312 -83 384 -85Q456 -87 472 -91L500 -183L532 -183L522 0L39 0L39 -36L253 -315L43 -616L43 -655L493 -655L493 -498L460 -498L440 -604Q385 -611 291 -611L161 -611Z"],"\u03a0":[722,"M29 0L29 -26L113 -39L113 -616L29 -629L29 -655L693 -655L693 -629L609 -616L609 -39L693 -26L693 0L431 0L431 -26L515 -39L515 -611L207 -611L207 -39L291 -26L291 0Z"],"\u03a6":[731,"M410 -39L494 -26L494 0L237 0L237 -26L321 -39L321 -108L266 -108Q194 -108 142 -134Q90 -160 60 -213Q30 -267 30 -338Q30 -442 93 -499Q156 -555 271 -555L321 -555L321 -616L237 -629L237 -655L494 -655L494 -629L410 -616L410 -555L460 -555Q575 -555 638 -499Q701 -442 701 -338Q701 -267 671 -214Q642 -161 589 -135Q537 -108 465 -108L410 -108ZM442 -146Q521 -146 562 -195Q604 -244 604 -337Q604 -427 562 -472Q521 -518 439 -518L410 -518L410 -146ZM127 -337Q127 -244 169 -195Q210 -146 289 -146L321 -146L321 -518L292 -518Q210 -518 169 -472Q127 -427 127 -337Z"],"\u03a9":[743,"M372 -623Q261 -623 208 -568Q154 -512 154 -391Q154 -294 199 -236Q244 -178 326 -167L339 0L62 0L52 -161L84 -161L112 -91Q151 -83 251 -83L286 -83L281 -132Q176 -148 114 -218Q52 -288 52 -391Q52 -524 133 -593Q214 -662 372 -662Q529 -662 610 -593Q691 -524 691 -391Q691 -288 629 -218Q566 -148 462 -132L457 -83L492 -83Q592 -83 631 -91L659 -161L691 -161L682 0L404 0L417 -167Q500 -178 545 -236Q589 -294 589 -391Q589 -513 536 -568Q482 -623 372 -623Z"],"\u221a":[659,"M359 7L307 7L162 -398L80 -398L80 -437L212 -437L338 -77L559 -791L603 -791Z"],"\u2212":[564,"M515 -357L515 -307L50 -307L50 -357Z"],"\u222b":[274,"M8 268Q-6 268 -26 262Q-46 257 -52 252L-52 248Q-50 242 -45 219Q-40 195 -38 184L-28 184Q5 218 34 218Q60 218 77 179Q94 141 94 81L91 -247Q91 -378 98 -511Q101 -563 125 -609Q149 -655 188 -685Q228 -714 262 -714Q274 -714 296 -709Q317 -704 325 -698L325 -694L316 -662L308 -630L298 -630Q264 -664 236 -664Q210 -664 193 -626Q176 -587 176 -527L178 -264Q178 -229 176 -150Q174 -71 170 67Q167 121 142 167Q118 212 80 240Q42 268 8 268Z"],"\u221e":[713,"M675 -288Q675 -208 631 -153Q587 -99 521 -99Q418 -99 350 -228Q318 -166 278 -134Q238 -102 193 -102Q124 -102 81 -154Q38 -206 38 -291Q38 -374 81 -427Q125 -480 193 -480Q244 -480 288 -449Q331 -417 363 -354Q394 -415 432 -446Q471 -477 522 -477Q591 -477 633 -425Q675 -372 675 -288ZM531 -426Q492 -426 460 -392Q427 -357 396 -288Q425 -219 458 -185Q490 -150 532 -150Q579 -150 609 -189Q638 -228 638 -289Q638 -348 608 -387Q579 -426 531 -426ZM315 -291Q287 -359 255 -394Q222 -429 178 -429Q133 -429 104 -390Q75 -351 75 -290Q75 -229 103 -191Q132 -153 180 -153Q220 -153 252 -187Q285 -222 315 -291Z"],"\u2264":[549,"M42 -320L42 -344L507 -573L507 -523L112 -332L507 -141L507 -91ZM507 -50L507 0L42 0L42 -50Z"],"\u2265":[549,"M42 -91L42 -141L437 -332L42 -523L42 -573L507 -344L507 -320ZM506 -50L506 0L41 0L41 -50Z"],"\u2260":[549,"M392 -457L507 -457L507 -407L357 -407L252 -257L507 -257L507 -207L217 -207L120 -68L60 -68L157 -207L42 -207L42 -257L191 -257L296 -407L42 -407L42 -457L331 -457L428 -596L489 -596Z"],"\u2248":[549,"M381 -347Q329 -347 261 -406Q225 -437 201 -451Q178 -465 159 -465Q122 -465 103 -438Q83 -412 77 -347L28 -347Q37 -438 69 -477Q102 -515 159 -515Q187 -515 216 -501Q245 -487 281 -456Q323 -421 344 -409Q364 -397 381 -397Q415 -397 434 -423Q453 -448 462 -515L512 -515Q504 -452 488 -418Q473 -384 447 -366Q421 -347 381 -347ZM381 -147Q329 -147 261 -206Q225 -237 201 -251Q178 -265 159 -265Q122 -265 103 -238Q83 -211 77 -147L28 -147Q37 -238 69 -277Q102 -315 159 -315Q187 -315 216 -301Q245 -287 281 -256Q323 -221 344 -209Q364 -197 381 -197Q415 -197 434 -222Q453 -248 462 -315L512 -315Q504 -251 488 -218Q473 -184 447 -166Q421 -147 381 -147Z"],"\u2192":[1000,"M687 -187Q659 -220 629 -283L664 -283Q726 -210 796 -175L796 -157Q726 -122 664 -49L629 -49Q659 -112 687 -145L204 -145L204 -187Z"],"\u2190":[1000,"M313 -145Q341 -112 371 -49L336 -49Q274 -122 204 -157L204 -175Q274 -210 336 -283L371 -283Q341 -220 313 -187L796 -187L796 -145Z"],"\u2211":[713,"M406 -287L406 -268L134 130L351 130Q371 130 395 130Q418 129 443 129Q467 128 490 127Q513 126 532 126Q551 125 564 124Q578 123 583 122L611 11L643 11L634 213L45 213L45 177L327 -235L67 -616L67 -655L606 -655L606 -483L574 -483L554 -604Q507 -610 450 -610Q393 -610 382 -610L185 -611Z"],"\u220f":[823,"M56 213L56 187L140 174L140 -616L56 -629L56 -655L769 -655L769 -629L685 -616L685 174L769 187L769 213L507 213L507 187L591 174L591 -611L234 -611L234 174L318 187L318 213Z"],"\u2202":[494,"M453 -458Q453 -375 436 -283Q418 -190 383 -123Q348 -56 299 -21Q250 13 189 13Q115 13 74 -32Q33 -78 33 -162Q33 -238 67 -312Q102 -385 155 -422Q209 -459 275 -459Q321 -459 356 -435Q391 -411 407 -370L409 -370L411 -427Q411 -538 375 -597Q338 -656 269 -656Q217 -656 158 -615L140 -631L191 -704Q230 -721 268 -721Q357 -721 405 -654Q453 -586 453 -458ZM397 -314Q388 -359 359 -388Q329 -418 291 -418Q247 -418 210 -384Q173 -351 150 -284Q126 -217 126 -149Q126 -88 151 -55Q177 -21 220 -21Q260 -21 296 -55Q332 -90 359 -159Q386 -228 397 -314Z"]};
+/* ═══════════════════════════════════════════════════════════════
+   PDF EXPORT — builds a styled PDF of the books currently on screen.
+   Uses pdf-lib, loaded only when the button is pressed.
+   ═══════════════════════════════════════════════════════════════ */
+function bkLoadPdfLib(){
+  if(window.PDFLib) return Promise.resolve(window.PDFLib);
+  var urls=['https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
+            'https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js'];
+  return new Promise(function(resolve,reject){
+    (function next(i){
+      if(i>=urls.length){reject(new Error('Could not load the PDF library (check your connection).'));return;}
+      var s=document.createElement('script');
+      s.src=urls[i];
+      s.onload=function(){window.PDFLib?resolve(window.PDFLib):next(i+1);};
+      s.onerror=function(){next(i+1);};
+      document.head.appendChild(s);
+    })(0);
+  });
+}
+
+function bkStrip(html){
+  var d=document.createElement('div');
+  d.innerHTML=String(html||'').replace(/<sup>(.*?)<\/sup>/g,'^$1');
+  return (d.textContent||'').replace(/\s+/g,' ').trim();
+}
+
+/* PDF standard fonts only know Latin-1 (WinAnsi). Anything else that BK_GLYPHS can draw
+   (√ − → π ő …) is kept and drawn as a vector shape; the rest gets a plain stand-in. */
+function bkPdfSafe(s){
+  s=String(s==null?'':s);
+  var extra='€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ';
+  var map={'\u2248':'~','\u2713':'','\u2605':'*','\u2009':' ','\u200A':' ','\u2011':'-'};
+  var out='';
+  for(var ch of s){
+    var c=ch.codePointAt(0);
+    if((c>=32&&c<=126)||(c>=160&&c<=255)||extra.indexOf(ch)>-1||BK_GLYPHS[ch]){out+=ch;continue;}
+    if(map[ch]!==undefined){out+=map[ch];continue;}
+    if(c===9||c===10||c===13){out+=' ';continue;}
+    var d=ch.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    out+=(d&&/^[\x20-\x7e]+$/.test(d))?d:'?';
+  }
+  return out;
+}
+
+/* split a string into plain runs (drawn with the PDF font) and single vector-glyph characters */
+function bkRuns(s){
+  var runs=[],cur='';
+  for(var ch of s){
+    if(BK_GLYPHS[ch]){if(cur){runs.push({s:cur});cur='';}runs.push({g:ch});}
+    else cur+=ch;
+  }
+  if(cur)runs.push({s:cur});
+  return runs;
+}
+function bkMeasure(font,size,s){
+  var w=0;
+  bkRuns(s).forEach(function(r){w+=r.g?BK_GLYPHS[r.g][0]*size/1000:font.widthOfTextAtSize(r.s,size);});
+  return w;
+}
+/* italic = shear the outline; bold = add a thin outline stroke */
+function bkDrawGlyph(page,ch,x,y,font,size,color){
+  var g=BK_GLYPHS[ch], st=font.bkStyle||'r', d=g[1];
+  if(st==='i')d=d.replace(/(-?\d+) (-?\d+)/g,function(m,a,b){return Math.round(+a-(+b)*0.2)+' '+b;});
+  var o={x:x,y:y,scale:size/1000,color:color};
+  if(st==='b'){o.borderColor=color;o.borderWidth=size*0.035;}
+  page.drawSvgPath(d,o);
+}
+
+/* cfg = { title, viewLine, depthLabel, fileName, items:[{n,title,author,year,pages,cats,depth,interest,read,blurb}] } */
+async function bkBuildPdf(cfg){
+  var L=await bkLoadPdfLib(), rgb=L.rgb, F=L.StandardFonts;
+  var doc=await L.PDFDocument.create();
+  var fTB=await doc.embedFont(F.TimesRomanBold), fT=await doc.embedFont(F.TimesRoman),
+      fTI=await doc.embedFont(F.TimesRomanItalic), fH=await doc.embedFont(F.Helvetica),
+      fHB=await doc.embedFont(F.HelveticaBold);
+  fTB.bkStyle='b'; fHB.bkStyle='b'; fTI.bkStyle='i';
+  doc.setTitle(bkPdfSafe(cfg.title)); doc.setAuthor('Stargazer'); doc.setCreator('stargazers.co.in');
+  doc.setSubject(bkPdfSafe(cfg.viewLine));
+
+  var W=595.28,H=841.89,M=40,CW=W-2*M;
+  var NAVY=rgb(.055,.08,.16),GOLD=rgb(.82,.62,.2),CREAM=rgb(.99,.95,.84),SAND=rgb(.86,.8,.62),
+      INK=rgb(.12,.11,.1),GREY=rgb(.4,.38,.35),LGREY=rgb(.88,.86,.81),CARD=rgb(.985,.972,.94),
+      GREEN=rgb(.05,.55,.38),BLUE=rgb(.25,.38,.78),WHITE=rgb(1,1,1);
+  var page,y;
+
+  function txt(t,x,yy,font,size,color){
+    bkRuns(bkPdfSafe(t)).forEach(function(r){
+      if(r.g){bkDrawGlyph(page,r.g,x,yy,font,size,color);x+=BK_GLYPHS[r.g][0]*size/1000;}
+      else{page.drawText(r.s,{x:x,y:yy,font:font,size:size,color:color});x+=font.widthOfTextAtSize(r.s,size);}
+    });
+  }
+  function wid(t,font,size){return bkMeasure(font,size,bkPdfSafe(t));}
+  function rtxt(t,xr,yy,font,size,color){txt(t,xr-wid(t,font,size),yy,font,size,color);}
+  function ctxt(t,xc,yy,font,size,color){txt(t,xc-wid(t,font,size)/2,yy,font,size,color);}
+  function spaced(t,x,yy,font,size,color,sp){
+    t=bkPdfSafe(t);
+    for(var i=0;i<t.length;i++){page.drawText(t[i],{x:x,y:yy,font:font,size:size,color:color});x+=font.widthOfTextAtSize(t[i],size)+sp;}
+  }
+  function rect(x,yy,w,h,color,o){
+    var opt={x:x,y:yy,width:w,height:h,color:color};
+    if(o){for(var k in o)opt[k]=o[k];}
+    page.drawRectangle(opt);
+  }
+  function dot(x,yy,r,color,o){
+    var opt={x:x,y:yy,size:r,color:color};
+    if(o){for(var k in o)opt[k]=o[k];}
+    page.drawCircle(opt);
+  }
+  function pill(x,yy,w,h,color){rect(x+h/2,yy,w-h,h,color);dot(x+h/2,yy+h/2,h/2,color);dot(x+w-h/2,yy+h/2,h/2,color);}
+  function wrap(font,size,text,maxW,maxLines){
+    text=bkPdfSafe(text);
+    var words=text.split(/\s+/),lines=[],cur='';
+    for(var i=0;i<words.length;i++){
+      var t=cur?cur+' '+words[i]:words[i];
+      if(bkMeasure(font,size,t)<=maxW){cur=t;}else{if(cur)lines.push(cur);cur=words[i];}
+    }
+    if(cur)lines.push(cur);
+    if(maxLines&&lines.length>maxLines){
+      var last=lines.slice(maxLines-1).join(' ');
+      lines=lines.slice(0,maxLines);
+      while(last.length>1&&bkMeasure(font,size,last+'…')>maxW)last=last.slice(0,-1);
+      lines[maxLines-1]=last.replace(/[\s,;:\-]+$/,'')+'…';
+    }
+    return lines;
+  }
+  function meter(x,yy,w,value,color,label,valueTxt){
+    txt(label.toUpperCase(),x,yy,fHB,6.2,GREY);
+    rtxt(valueTxt,x+w,yy-.5,fHB,8,INK);
+    var gap=2,seg=(w-9*gap)/10;
+    for(var i=0;i<10;i++){
+      var sx=x+i*(seg+gap);
+      rect(sx,yy-11,seg,5,LGREY);
+      var f=Math.max(0,Math.min(1,value-i));
+      if(f>0)rect(sx,yy-11,seg*f,5,color);
+    }
+  }
+
+  var STARS=[[0.06,.2,1.1],[.14,.62,.7],[.23,.35,.9],[.31,.8,.6],[.42,.25,1],[.5,.7,.7],[.58,.4,.6],[.66,.85,1.2],[.73,.3,.8],[.8,.65,.6],[.88,.22,1],[.93,.78,.8],[.97,.45,.6]];
+
+  function newPage(first){
+    page=doc.addPage([W,H]);
+    if(first){
+      rect(0,H-150,W,150,NAVY); rect(0,H-153,W,3,GOLD);
+      STARS.forEach(function(s){dot(s[0]*W,H-150+s[1]*140,s[2],SAND,{opacity:.55});});
+      spaced('STARGAZER',M,H-38,fHB,8,GOLD,3.2);
+      rtxt(cfg.dateLabel,W-M,H-38,fH,8,SAND);
+      var tl=wrap(fTB,27,cfg.title,CW,2), ty=H-76;
+      tl.forEach(function(l){txt(l,M,ty,fTB,27,CREAM);ty-=31;});
+      var vl=wrap(fTI,11,cfg.viewLine,CW,2);
+      vl.forEach(function(l){txt(l,M,ty+4,fTI,11,SAND);ty-=14;});
+      /* stat tiles */
+      var items=cfg.items, fin=items.filter(function(i){return i.read;}).length;
+      var pg=items.reduce(function(a,i){return a+(i.pages||0);},0);
+      var tiles=[[String(items.length),'BOOKS IN THIS LIST'],[String(fin),'FINISHED'],[String(items.length-fin),'STILL UNREAD'],[pg.toLocaleString('en-US'),'PAGES IN TOTAL (APPROX.)']];
+      var tw=(CW-30)/4, tTop=H-153-16;
+      tiles.forEach(function(t,k){
+        var tx=M+k*(tw+10);
+        rect(tx,tTop-46,tw,46,CARD,{borderColor:LGREY,borderWidth:.7});
+        rect(tx,tTop-2,tw,2,k===1?GREEN:GOLD);
+        txt(t[0],tx+11,tTop-26,fTB,19,INK);
+        txt(t[1],tx+11,tTop-38,fHB,5.8,GREY);
+      });
+      y=tTop-46-18;
+    }else{
+      rect(0,H-30,W,30,NAVY); rect(0,H-32,W,2,GOLD);
+      spaced('STARGAZER',M,H-19,fHB,7,GOLD,2.8);
+      rtxt(cfg.title,W-M,H-19,fTI,10,SAND);
+      y=H-30-20;
+    }
+  }
+
+  var LW_X=M+52, RW=150, RX=W-M-12-RW, LW=RX-14-LW_X, BW=CW-26;
+  newPage(true);
+  cfg.items.forEach(function(it){
+    var tl=wrap(fTB,13,it.title,LW,2);
+    var au=wrap(fTI,10.5,it.author,LW,1)[0]||'';
+    var meta=[it.year,it.pages?'approx. '+it.pages+' pages':'',(it.cats||[]).join(' / ')].filter(Boolean).join('   ·   ');
+    var ml=wrap(fH,7.6,meta,LW,2);
+    var bl=wrap(fT,9,it.blurb,BW,2);
+    var leftH=tl.length*15+14+ml.length*10+2, topH=Math.max(leftH,66);
+    var h=12+topH+6+bl.length*11.5+11;
+    if(y-h<50)newPage(false);
+    var top=y;
+    rect(M,y-h,CW,h,CARD,{borderColor:LGREY,borderWidth:.7});
+    rect(M,y-h,4,h,it.read?GREEN:GOLD);
+    dot(M+30,top-23,11,NAVY);
+    ctxt(String(it.n),M+30,top-26.6,fTB,10.5,GOLD);
+    var ty=top-23;
+    tl.forEach(function(l){txt(l,LW_X,ty,fTB,13,INK);ty-=15;});
+    txt(au,LW_X,ty+1,fTI,10.5,GREY); ty-=13;
+    ml.forEach(function(l){txt(l,LW_X,ty,fH,7.6,GREY);ty-=10;});
+    /* right-hand column: status + two meters */
+    var pw=62; pill(RX+RW-pw,top-26,pw,14,it.read?GREEN:LGREY);
+    ctxt(it.read?'FINISHED':'UNREAD',RX+RW-pw/2,top-21.6,fHB,6.8,it.read?WHITE:GREY);
+    meter(RX,top-40,RW,it.depth,BLUE,cfg.depthLabel,it.depth+'/10');
+    meter(RX,top-64,RW,it.interest,GOLD,'Interest',it.interest.toFixed(1)+'/10');
+    /* teaser */
+    var by=top-12-topH-6-8;
+    bl.forEach(function(l){txt(l,M+14,by,fT,9,GREY);by-=11.5;});
+    y-=h+9;
+  });
+
+  var pages=doc.getPages();
+  pages.forEach(function(p,i){
+    page=p;
+    rect(M,34,CW,.6,LGREY);
+    txt('Stargazer  ·  stargazers.co.in',M,22,fH,7,GREY);
+    rtxt('Page '+(i+1)+' of '+pages.length,W-M,22,fH,7,GREY);
+  });
+  return await doc.save();
+}
+
+function bkSaveBlob(bytes,fileName){
+  var blob=new Blob([bytes],{type:'application/pdf'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob); a.download=fileName;
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},1500);
+}
+
+function bkSlug(s){return String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
+
+/* shared click-handler: cfg comes from the page; keeps the button state tidy */
+async function bkRunPdf(cfg){
+  var btn=document.getElementById('bk-pdf-btn');
+  if(!cfg.items.length){alert('There are no books in the current view to put in a PDF.');return;}
+  var old=btn?btn.textContent:'';
+  if(btn){btn.disabled=true;btn.textContent='Preparing your PDF…';}
+  try{
+    cfg.dateLabel=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+    var bytes=await bkBuildPdf(cfg);
+    bkSaveBlob(bytes,cfg.fileName);
+  }catch(err){
+    alert('Sorry, the PDF could not be created. '+(err&&err.message?err.message:''));
+  }
+  if(btn){btn.disabled=false;btn.textContent=old;}
 }
 
 (function(){

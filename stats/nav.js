@@ -6,28 +6,30 @@
 (function(){
 
   var PAGES = [
-    {id:'home',              icon:'🏠', label:'Home',                href:'home.html'},
-    {id:'books',              icon:'📚', label:'Books',               href:'books.html'},
-    {id:'puzzles',            icon:'🧩', label:'Puzzles',             href:'puzzles.html'},
-    {id:'undergrad-problems', icon:'🎓', label:'Undergrad Problems',  href:'undergrad-problems.html'},
-    {id:'school',             icon:'🏫', label:'School',              href:'school.html'},
+    {id:'home',              icon:'🏠', label:'Home',                href:'home'},
+    {id:'books',              icon:'📚', label:'Books',               href:'books'},
+    {id:'puzzles',            icon:'🧩', label:'Puzzles',             href:'puzzles'},
+    {id:'undergrad-problems', icon:'🎓', label:'Undergrad Problems',  href:'undergrad-problems'},
+    {id:'school',             icon:'🏫', label:'School',              href:'school'},
     '---',
-    {id:'inference',          icon:'🔬', label:'Inference',           href:'inference.html'},
-    {id:'distributions',      icon:'📊', label:'Distributions',       href:'distributions.html'},
-    {id:'bayesian',           icon:'∫',  label:'Bayesian',            href:'bayesian.html'},
-    {id:'openproblems',       icon:'❓', label:'Open Problems',       href:'openproblems.html'},
-    {id:'research',           icon:'🔭', label:'Research',            href:'research.html'},
+    {id:'inference',          icon:'🔬', label:'Inference',           href:'inference'},
+    {id:'distributions',      icon:'📊', label:'Distributions',       href:'distributions'},
+    {id:'bayesian',           icon:'∫',  label:'Bayesian',            href:'bayesian'},
+    {id:'time-series',        icon:'📈', label:'Time Series',         href:'time-series'},
+    {id:'openproblems',       icon:'❓', label:'Open Problems',       href:'openproblems'},
+    {id:'research',           icon:'🔭', label:'Research',            href:'research'},
     '---',
-    {id:'careers',            icon:'💼', label:'Careers',             href:'careers.html'},
-    {id:'studyguide',         icon:'🗺️', label:'Study Guide',         href:'studyguide.html'},
-    {id:'atlas',              icon:'🧭', label:'Atlas of Statistics', href:'atlas-of-statistics.html'},
-    {id:'facts',              icon:'✨', label:'Fun Facts',           href:'facts.html'},
-    {id:'tools',              icon:'🛠️', label:'Tools',               href:'tools.html'},
+    {id:'careers',            icon:'💼', label:'Careers',             href:'careers'},
+    {id:'studyguide',         icon:'🗺️', label:'Study Guide',         href:'studyguide'},
+    {id:'atlas',              icon:'🧭', label:'Atlas of Statistics', href:'atlas-of-statistics'},
+    {id:'facts',              icon:'✨', label:'Fun Facts',           href:'facts'},
+    {id:'tools',              icon:'🛠️', label:'Tools',               href:'tools'},
     '---',
-    {id:'calc',               icon:'🔢', label:'Calculator',          href:'calc.html'},
-    {id:'formulas',           icon:'📋', label:'Formulas',            href:'formulas.html'},
-    {id:'history',            icon:'⏳', label:'History',             href:'history.html'},
-    {id:'comments',           icon:'💬', label:'Discuss',             href:'comments.html'}
+    {id:'calc',               icon:'🔢', label:'Calculator',          href:'calc'},
+    {id:'data-lab',           icon:'🧪', label:'Data Lab',            href:'data-lab'},
+    {id:'formulas',           icon:'📋', label:'Formulas',            href:'formulas'},
+    {id:'history',            icon:'⏳', label:'History',             href:'history'},
+    {id:'comments',           icon:'💬', label:'Discuss',             href:'comments'}
   ];
 
   function esc(s){
@@ -50,7 +52,7 @@
     return ''
       + '<!-- ═══ NAV ═══ -->\n'
       + '<nav id="nav">\n'
-      + '  <span class="nav-brand" onclick="location.href=\'home.html\'" style="cursor:pointer;user-select:none">∑ Statistics</span>\n'
+      + '  <span class="nav-brand" onclick="location.href=\'home\'" style="cursor:pointer;user-select:none">∑ Statistics</span>\n'
       + '  <span class="nav-cur-section" id="nav-cur-lbl">'+esc(label)+'</span>\n'
       + '  <button class="nav-search-btn" onclick="openSearch()" title="Search (/)" aria-label="Search">🔍</button>\n'
       + '  <button id="hamburger-btn" onclick="toggleHamburger()" title="Sections" aria-label="Menu">☰</button>\n'

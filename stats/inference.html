@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<!-- Google tag (gtag.js) --> <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'],wait_for_update:500});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="../pics/logo.png">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -9,11 +10,11 @@
 <meta name="description" content="How statisticians turn data into evidence: confidence intervals, hypothesis tests, p-values, and the frequentist machinery behind most published research.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="The Statistics Universe">
-<link rel="canonical" href="https://stargazers.co.in/stats/inference.html">
+<link rel="canonical" href="https://stargazers.co.in/stats/inference">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Statistical Inference Explained | Stargazer">
 <meta property="og:description" content="How statisticians turn data into evidence — confidence intervals, hypothesis tests, and p-values explained.">
-<meta property="og:url" content="https://stargazers.co.in/stats/inference.html">
+<meta property="og:url" content="https://stargazers.co.in/stats/inference">
 <meta property="og:image" content="https://stargazers.co.in/pics/stats.png">
 <meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
 <meta name="application-name" content="Stargazer: Lost in the Cosmos">
@@ -31,7 +32,7 @@
   "@type": "WebPage",
   "name": "Statistical Inference Explained | Stargazer",
   "description": "How statisticians turn data into evidence — confidence intervals, hypothesis tests, and p-values explained.",
-  "url": "https://stargazers.co.in/stats/inference.html",
+  "url": "https://stargazers.co.in/stats/inference",
   "inLanguage": "en",
   "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazers.co.in/" },
   "about": { "@type": "Thing", "name": "Statistics", "sameAs": "https://en.wikipedia.org/wiki/Statistics" }
@@ -49,15 +50,15 @@
 
 <!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
 <div id="auth-topbar">
-  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <a href="../" class="atb-btn atb-home">🌌 Universe</a>
   <div style="flex:1"></div>
   <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
     <span id="mode-icon">☾</span>
   </button>
-  <a href="../login.html" id="loginBtn">☽ Sign In</a>
+  <a href="../login" id="loginBtn">☽ Sign In</a>
   <div id="userInfo">
     <span id="userEmailDisplay">✦ Explorer</span>
-    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login'">Sign Out</button>
   </div>
 </div>
 
@@ -94,8 +95,42 @@
       <div class="s-head">
         <span class="s-eyebrow" style="background:var(--gr-l);color:var(--gr);border:1px solid rgba(77,122,88,.25)">Frequentist Methods</span>
         <h2 class="s-title font-serif">Statistical Inference — The Machinery of Evidence</h2>
-        <p class="s-desc">Click any topic to expand its mathematical detail and study resources. These are the core methods that underpin all empirical science.</p>
+        <p class="s-desc">Click any topic to expand its mathematical detail and study resources. These are the core methods that underpin all empirical science. Every topic now unfolds through four levels: bachelor's, master's, research and advanced research.</p>
       </div>
+    </div>
+<!-- ═══ INTERACTIVE LAB: Confidence Interval coverage simulator (added) ═══ -->
+<div class="s-inner" style="margin-top:-1rem;margin-bottom:2.5rem">
+  <div class="dist-card" style="max-width:760px;margin:0 auto">
+    <div class="dist-cardhead">
+      <div><div class="dist-name" data-no-mathfmt>Interactive: What Does 95% Confidence Really Mean?</div>
+        <span class="dist-notation" data-no-mathfmt>Draw repeated samples from N(0,1), build a CI from each — watch how often it covers the true mean</span></div>
+      <div class="dist-tools"><button class="dist-tool" title="Reset" aria-label="Reset simulation" onclick="ciLabReset()">↺</button></div>
+    </div>
+    <div class="dist-param">Every interval is built the same, correct way — yet a fixed fraction miss the true mean by chance. That miss rate, not any single interval, is what "95% confidence" describes.</div>
+    <div class="dist-graph-wrap"><canvas class="dist-canvas" id="cilab-cv" role="img" aria-label="Confidence interval coverage plot" style="cursor:default"></canvas></div>
+    <div class="dist-readout" id="cilab-ro">Click "Run 100 trials" to draw samples and build intervals</div>
+    <div class="dist-sliders">
+      <div class="dist-slider-row"><span class="dist-slider-lbl" data-no-mathfmt>Sample size n</span>
+        <input type="range" class="dist-slider" id="cilab-n" min="3" max="50" step="1" value="10" aria-label="Sample size" oninput="document.getElementById('cilab-n-v').textContent=this.value">
+        <span class="dist-slider-val" id="cilab-n-v" data-no-mathfmt>10</span></div>
+      <div class="dist-slider-row"><span class="dist-slider-lbl" data-no-mathfmt>Confidence level</span>
+        <select id="cilab-conf" class="dist-slider-val" style="width:auto;padding:.2rem .4rem" aria-label="Confidence level" data-no-mathfmt>
+          <option value="0.90">90%</option><option value="0.95" selected>95%</option><option value="0.99">99%</option>
+        </select></div>
+    </div>
+    <div style="display:flex;gap:.6rem;justify-content:center;margin:.9rem 0">
+      <button class="dist-tool" style="width:auto;padding:.4rem .9rem" onclick="ciLabRun(100)">Run 100 trials</button>
+      <button class="dist-tool" style="width:auto;padding:.4rem .9rem" onclick="ciLabRun(1)">+1 trial</button>
+    </div>
+    <div class="dist-stats-grid">
+      <div class="dist-stat-box"><div class="dist-stat-lbl" data-no-mathfmt>Trials run</div><div class="dist-stat-val" id="cilab-n-trials" data-no-mathfmt>0</div></div>
+      <div class="dist-stat-box"><div class="dist-stat-lbl" data-no-mathfmt>Intervals covering μ=0</div><div class="dist-stat-val" id="cilab-covered" data-no-mathfmt>—</div></div>
+      <div class="dist-stat-box"><div class="dist-stat-lbl" data-no-mathfmt>Empirical coverage</div><div class="dist-stat-val" id="cilab-coverage" data-no-mathfmt>—</div></div>
+      <div class="dist-stat-box"><div class="dist-stat-lbl" data-no-mathfmt>Nominal level</div><div class="dist-stat-val" id="cilab-nominal" data-no-mathfmt>95%</div></div>
+    </div>
+  </div>
+</div>
+    <div class="s-inner">
       <div class="g2" id="inference-grid"></div>
     </div>
   </section>
@@ -107,7 +142,7 @@
   <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
 </div>
 <div style="text-align:center;padding-bottom:2rem;">
-  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+  <a href="../ABOUT" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
 </div>
 
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
@@ -115,8 +150,9 @@
 window._nextPage = 'distributions.html';
 window._prevPage = 'school.html';
 const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+const ADMIN_EMAILS = ['ayanchakrabortyall@gmail.com','officialayanimp@gmail.com','duolingo.learn1024@gmail.com'];
 
-function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+function isAdmin(){return !!(window.currentUser && ADMIN_EMAILS.includes(window.currentUser.email));}
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -186,7 +222,7 @@ function runSearch(q){
   if(!q.trim()){res.innerHTML='<div class="sr-empty">Start typing…</div>';return;}
   const lq=q.toLowerCase();
   const hits=SEARCH_INDEX.filter(x=>x.q.toLowerCase().includes(lq)).slice(0,18);
-  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q+'"</div>';return;}
+  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'"</div>';return;}
   res.innerHTML=hits.map((h,i)=>`<div class="sr-item" tabindex="0" data-idx="${i}" onclick="goSearchResult(${SEARCH_INDEX.indexOf(h)})" onkeydown="if(event.key==='Enter')goSearchResult(${SEARCH_INDEX.indexOf(h)})"><span class="sr-icon">${h.icon}</span><div><div class="sr-title">${highlight(h.title,lq)}</div><div class="sr-meta">${h.meta}</div></div><span class="sr-section">${h.section}</span></div>`).join('');
 }
 function highlight(text,q){
@@ -195,7 +231,17 @@ function highlight(text,q){
   if(idx<0)return text;
   return text.slice(0,idx)+'<mark style="background:var(--gd-l);color:var(--gd);border-radius:2px">'+text.slice(idx,idx+q.length)+'</mark>'+text.slice(idx+q.length);
 }
-function goSearchResult(idx){ closeSearch(); }
+function goSearchResult(searchIdx){
+  const hit=SEARCH_INDEX[searchIdx];
+  closeSearch();
+  if(!hit)return;
+  const card=document.getElementById('inf-card-'+hit.idx);
+  if(!card)return;
+  const d=document.getElementById('infdet-'+hit.idx),l=document.getElementById('inflbl-'+hit.idx);
+  if(d&&!d.classList.contains('show')){d.classList.add('show');if(l){l.textContent='▾ Show less';l.setAttribute('aria-expanded','true');}}
+  card.scrollIntoView({behavior:'smooth',block:'center'});
+  card.classList.remove('flash');void card.offsetWidth;card.classList.add('flash');
+}
 function searchKeyNav(e){
   if(e.key==='Escape'){closeSearch();return;}
   const items=document.querySelectorAll('.sr-item');
@@ -209,22 +255,22 @@ function searchKeyNav(e){
 
 function buildSearchIndex(){
   if(SEARCH_INDEX.length)return;
-  INFERENCE.forEach(i=>SEARCH_INDEX.push({icon:'🔬',title:i.topic,meta:i.tag,section:'Inference',page:'inference',q:i.topic+' '+i.desc+' '+i.tag}));
+  INFERENCE.forEach((item,idx)=>SEARCH_INDEX.push({icon:'🔬',title:item.topic,meta:item.tag,section:'Inference',idx,q:item.topic+' '+item.desc+' '+item.tag}));
 }
 
 
 (function initKeyboard(){
-  const PAGES=['home','precollege_placeholder'];
   document.addEventListener('keydown',e=>{
-    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
+    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)||e.target.isContentEditable)return;
+    if(e.ctrlKey||e.metaKey||e.altKey)return;   /* never hijack browser/OS shortcuts (back, dev tools, etc.) */
     if(document.getElementById('search-modal')&&document.getElementById('search-modal').classList.contains('open')){
       if(e.key==='Escape')closeSearch();
       return;
     }
     if(e.key==='/'){e.preventDefault();openSearch();return;}
-    if(e.key==='ArrowRight'){e.preventDefault();location.href=window._nextPage;}
-    if(e.key==='ArrowLeft'){e.preventDefault();location.href=window._prevPage;}
-    if(e.key==='f'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){if(typeof showRandomFact==='function')showRandomFact();}
+    if(e.key==='ArrowRight'&&window._nextPage){e.preventDefault();location.href=window._nextPage;}
+    if(e.key==='ArrowLeft'&&window._prevPage){e.preventDefault();location.href=window._prevPage;}
+    if(e.key==='f'){if(typeof showRandomFact==='function')showRandomFact();}
     if(e.key==='Escape'){
       const hmenu=document.getElementById('hamburger-menu');
       if(hmenu&&hmenu.classList.contains('open')){
@@ -241,6 +287,25 @@ function showToast(msg,bg){
   t.style.cssText=`position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);background:${bg};color:#fff;font-family:'Source Code Pro',monospace;font-size:.72rem;padding:.45rem 1.1rem;border-radius:99px;z-index:9998;animation:fadeUpIn .35s ease;white-space:nowrap;pointer-events:none`;
   document.body.appendChild(t);
   setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .35s';setTimeout(()=>t.remove(),380);},2200);
+}
+
+const FUN_FACTS=[
+  "R. A. Fisher introduced the term “maximum likelihood” in 1922, building on ideas that trace back to Gauss and Laplace.",
+  "A 95% confidence interval doesn't mean there's a 95% chance the true parameter lies in that particular interval.",
+  "The bootstrap, introduced by Bradley Efron in 1979, lets you estimate a sampling distribution using only your one sample.",
+  "Student's t-distribution is named after “Student” — the pen name William Gosset used while working at Guinness.",
+  "The p < 0.05 threshold was popularised by Fisher, but he later cautioned against treating it as a rigid cutoff.",
+  "Neyman–Pearson theory, developed in the late 1920s, is what gives hypothesis testing its formal notion of power."
+];
+function showRandomFact(){
+  const t=document.getElementById('toast');if(!t)return;
+  document.getElementById('toast-body').textContent=FUN_FACTS[Math.floor(Math.random()*FUN_FACTS.length)];
+  t.classList.add('show');
+  clearTimeout(t._factTimer);
+  t._factTimer=setTimeout(hideToast,8000);
+}
+function hideToast(){
+  const t=document.getElementById('toast');if(t)t.classList.remove('show');
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -271,22 +336,114 @@ const INFERENCE = [
   {tag:'Bayesian',topic:'Bayesian vs Frequentist Inference',
    desc:'Two competing philosophies of probability and what it means to "learn from data."',
    books:[{t:'Bayesian Data Analysis',n:'Gelman et al.'},{t:'The Theory That Would Not Die',n:'Sharon McGrayne'}],
-   detail:`<p>The frequentist defines probability as limiting relative frequency in repeated experiments. Parameters are fixed but unknown constants. Inference procedures are evaluated by their long-run behaviour (Type I error rates, coverage probabilities). The Bayesian defines probability as degree of belief, updated by evidence. Parameters have prior distributions representing initial beliefs; the posterior P(θ|x) ∝ P(x|θ)P(θ) is belief after observing data.</p><p><em>Practical differences:</em> (1) Bayesian inference provides posterior distributions on parameters — the full uncertainty in θ given data, not just point estimates. (2) Bayesian credible intervals have the natural interpretation the CI lacks: P(θ ∈ [L,U] | data) = 0.95. (3) Bayesian model comparison via Bayes factors avoids the multiple testing problem but requires specifying priors over models. (4) Bayesian analysis scales naturally to hierarchical and missing-data problems.</p><p><em>Convergence of the two views:</em> For large samples with proper priors, Bernstein-von Mises theorem states the posterior converges to N(θ₀, I(θ₀)⁻¹/n) — identical to the frequentist sampling distribution of the MLE. The distinction becomes most important in small samples, complex models, and when incorporating prior scientific knowledge.</p>`}
+   detail:`<p>The frequentist defines probability as limiting relative frequency in repeated experiments. Parameters are fixed but unknown constants. Inference procedures are evaluated by their long-run behaviour (Type I error rates, coverage probabilities). The Bayesian defines probability as degree of belief, updated by evidence. Parameters have prior distributions representing initial beliefs; the posterior P(θ|x) ∝ P(x|θ)P(θ) is belief after observing data.</p><p><em>Practical differences:</em> (1) Bayesian inference provides posterior distributions on parameters — the full uncertainty in θ given data, not just point estimates. (2) Bayesian credible intervals have the natural interpretation the CI lacks: P(θ ∈ [L,U] | data) = 0.95. (3) Bayesian model comparison via Bayes factors sidesteps the classical multiple-testing correction, since it doesn't rely on repeated Type-I-error control — though it introduces its own dependence on the priors specified over models. (4) Bayesian analysis scales naturally to hierarchical and missing-data problems.</p><p><em>Convergence of the two views:</em> For large samples with proper priors, Bernstein-von Mises theorem states the posterior converges to N(θ̂, I(θ₀)⁻¹/n) — the same spread as the frequentist sampling distribution of the MLE, but centred at θ̂ rather than the unknown θ₀. The distinction becomes most important in small samples, complex models, and when incorporating prior scientific knowledge.</p>`}
 ];
 
 /* ── DISTRIBUTIONS (expanded with MGF / skewness / kurtosis) ── */
 
+function toggleBayLevel(hdr){ if(window.event&&window.event.stopPropagation) window.event.stopPropagation(); hdr.classList.toggle('open'); var b=hdr.nextElementSibling; if(b) b.classList.toggle('show'); }
+INFERENCE.push(...[{"tag": "Estimation", "topic": "Estimators & Their Properties: Bias, MSE, Consistency, Method of Moments", "desc": "How to judge an estimator, and the two classical ways of building one.", "books": [{"t": "Statistical Inference", "n": "Casella & Berger"}, {"t": "All of Statistics", "n": "Wasserman"}], "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>An estimator is a rule that turns a sample into a guess for an unknown parameter. Its bias is E[θ̂] − θ, its variance is Var(θ̂), and its mean squared error is MSE = Var + Bias². The sample mean is unbiased for μ. The sample variance with divisor n−1 is unbiased for σ², while dividing by n gives a bias of −σ²/n. An estimator is consistent if θ̂ₙ → θ in probability as n grows, which is what the law of large numbers delivers for X̄. The method of moments equates sample moments to population moments and solves for the parameters, for example λ̂ = 1/X̄ for an Exponential(λ).</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>A biased estimator can have smaller MSE than an unbiased one, which is the bias–variance trade-off behind shrinkage. Estimators are compared through MSE or relative efficiency Var(θ̂₁)/Var(θ̂₂). Method-of-moments estimators are usually consistent and asymptotically normal by the delta method, but are often less efficient than the MLE. The generalised method of moments (Hansen) minimises gₙ(θ)′Wgₙ(θ) for moment conditions E[g(X,θ)] = 0. Its asymptotic variance is (G′WG)⁻¹G′WSWG(G′WG)⁻¹, and W = S⁻¹ is optimal.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Stein (1956) showed that for X ~ N_p(θ, I) with p ≥ 3 the sample mean X is inadmissible under squared error loss. The James–Stein estimator (1 − (p−2)/‖X‖²)X has strictly smaller risk for every θ. Unbiasedness is not always desirable, and unbiased estimators can be absurd or fail to exist, as for 1/p in a geometric model. Admissibility, minimaxity and unbiasedness are three separate optimality notions that need not agree.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Le Cam's theory of local asymptotic normality (LAN) studies estimators through local experiments. Hájek's convolution theorem says the limit law of any regular estimator is N(0, I⁻¹) convolved with an independent noise term, so N(0, I⁻¹) is the efficiency benchmark. The local asymptotic minimax theorem gives a matching lower bound over shrinking neighbourhoods. Superefficient estimators such as Hodges' can beat the bound only on a Lebesgue-null set of parameters (Le Cam).</p></div></div>"}, {"tag": "Estimation", "topic": "Sufficiency, Completeness, Rao–Blackwell & Lehmann–Scheffé", "desc": "When a statistic loses no information, and how to build best unbiased estimators from it.", "books": [{"t": "Theory of Point Estimation", "n": "Lehmann & Casella"}, {"t": "Statistical Inference", "n": "Casella & Berger"}], "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>A statistic T(X) is sufficient for θ if, once T is known, the rest of the sample carries no further information about θ. For n Bernoulli trials the number of successes is sufficient, so the order of the successes can be thrown away. Sufficiency is lossless data compression for the purpose of inferring θ.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>The Fisher–Neyman factorisation theorem says T is sufficient iff f(x|θ) = g(T(x),θ)h(x). A minimal sufficient statistic is the coarsest one. T is complete if E_θ[g(T)] = 0 for all θ implies g(T) = 0 almost surely. The Rao–Blackwell theorem says E[δ(X)|T] has MSE no larger than δ(X). The Lehmann–Scheffé theorem says an unbiased function of a complete sufficient statistic is the unique UMVUE. Basu's theorem says a complete sufficient statistic is independent of every ancillary statistic, which gives the independence of X̄ and S² for normal samples.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>For a full-rank exponential family the natural sufficient statistic is complete. The Pitman–Koopman–Darmois theorem says that, under regularity conditions, only exponential families have a sufficient statistic of fixed dimension for all n. The conditionality principle (condition on ancillary statistics) and the sufficiency principle together imply the likelihood principle (Birnbaum 1962), which conflicts with much of frequentist practice, including p-values that depend on the stopping rule.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Blackwell's comparison of experiments says experiment E is more informative than F iff every decision problem has smaller Bayes risk under E, equivalently F is a randomisation (Markov kernel) of E. Le Cam's deficiency distance extends this to approximate sufficiency. Asymptotic equivalence results such as Brown–Low (1996) show that nonparametric regression is asymptotically equivalent to the Gaussian white-noise model.</p></div></div>"}, {"tag": "Estimation", "topic": "Fisher Information, the Cramér–Rao Bound & UMVUE", "desc": "The smallest variance an unbiased estimator can achieve, and when it is attained.", "books": [{"t": "Theory of Point Estimation", "n": "Lehmann & Casella"}, {"t": "Asymptotic Statistics", "n": "van der Vaart"}], "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>Fisher information measures how sharply the data can tell nearby parameter values apart. For a Bernoulli(p) observation it is I(p) = 1/(p(1−p)), and for a normal mean with known σ it is 1/σ². The Cramér–Rao bound says any unbiased estimator from n independent observations has variance at least 1/(nI(θ)). More information means smaller attainable variance.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>Under regularity conditions I(θ) = E[(∂ log f/∂θ)²] = −E[∂² log f/∂θ²]. For an estimator with bias b(θ) the bound becomes (1 + b′(θ))²/(nI(θ)). For a parameter vector, Cov(θ̂) ⪰ (nI(θ))⁻¹ in the Loewner order. Equality holds iff the score is a linear function of the estimator, which happens exactly in exponential families. A UMVUE need not attain the bound: for σ² of a normal with unknown mean the UMVUE S² has variance 2σ⁴/(n−1) &gt; 2σ⁴/n.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>The van Trees (Bayesian Cramér–Rao) inequality E(θ̂ − θ)² ≥ 1/(E_π[nI(θ)] + I(π)) needs no unbiasedness and gives minimax lower bounds. The Hammersley–Chapman–Robbins bound needs no differentiability. Fisher information defines a Riemannian metric on the parameter space (Rao, Chentsov, Amari), the starting point of information geometry.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>In semiparametric models the efficiency bound is the norm of the efficient influence function, the projection of any influence function onto the tangent space (Bickel–Klaassen–Ritov–Wellner). Cox's partial likelihood attains this bound for the regression coefficient. Analogues exist for quantum estimation, where the quantum Fisher information gives the Helstrom bound.</p></div></div>"}, {"tag": "Asymptotics", "topic": "Asymptotic Theory: LLN, CLT, Delta Method & M-Estimators", "desc": "The large-sample toolkit behind almost every confidence interval and test.", "books": [{"t": "Asymptotic Statistics", "n": "van der Vaart"}, {"t": "Elements of Large-Sample Theory", "n": "Lehmann"}], "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>The law of large numbers says X̄ → μ. The central limit theorem says √n(X̄ − μ)/σ is approximately N(0,1) for large n whatever the shape of the data distribution, which is why normal-based confidence intervals work for means.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>Modes of convergence: almost sure ⇒ in probability ⇒ in distribution, and L^p ⇒ in probability. Slutsky's theorem and the continuous mapping theorem combine limits. The delta method says √n(g(X̄) − g(μ)) → N(0, g′(μ)²σ²). The Lindeberg–Feller theorem gives the CLT for non-identical summands. The Berry–Esseen bound says sup_x |F_n(x) − Φ(x)| ≤ C ρ/(σ³√n) with third absolute moment ρ and a universal constant C &lt; 0.48.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>An M-estimator solves Σψ(Xᵢ,θ) = 0. Under regularity its asymptotic variance is the sandwich A⁻¹BA⁻ᵀ with A = E[∂ψ/∂θ] and B = E[ψψᵀ]. When the model is misspecified the MLE converges to the Kullback–Leibler projection of the truth onto the model (White 1982), which is why Huber–White standard errors are used. Consistency comes from uniform laws of large numbers or Wald-type conditions.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Empirical process theory supplies Glivenko–Cantelli and Donsker classes (uniform LLN and CLT). The functional delta method for Hadamard-differentiable functionals extends asymptotics to statistics of the whole empirical distribution. Edgeworth expansions refine the CLT with terms in powers of n^(−1/2), and large deviation results (Cramér, Sanov) describe exponentially small tail probabilities.</p></div></div>"}, {"tag": "Testing", "topic": "Neyman–Pearson Theory: UMP Tests, LRT, Wald & Score", "desc": "The optimal-test theory behind hypothesis testing and the three classical asymptotic tests.", "books": [{"t": "Testing Statistical Hypotheses", "n": "Lehmann & Romano"}, {"t": "Statistical Inference", "n": "Casella & Berger"}], "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>A test can err in two ways: rejecting a true null (type I error, probability α) or failing to reject a false null (type II, probability β). Power is 1 − β. Fixing α (the significance level) and maximising power is the classical approach. For a one-sided z-test on a mean the required sample size is n = (z_α + z_β)²σ²/δ², where δ is the effect size worth detecting.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>The Neyman–Pearson lemma says that for simple H₀ versus simple H₁ the most powerful level-α test rejects when the likelihood ratio f₁(x)/f₀(x) exceeds a constant. A family with monotone likelihood ratio has a uniformly most powerful one-sided test (Karlin–Rubin). Two-sided problems in exponential families have UMP unbiased tests. The three classical asymptotic tests are the likelihood ratio (−2 log Λ → χ²_k, Wilks), Wald ((θ̂−θ₀)′I(θ̂)(θ̂−θ₀)) and score (Rao); they are asymptotically equivalent under H₀.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Wilks' theorem fails in nonregular problems. If the true parameter is on the boundary the limit is a mixture such as ½χ²₀ + ½χ²₁ (Chernoff 1954). If a nuisance parameter is unidentified under H₀, as in mixture-component testing, the limit is the supremum of a Gaussian process (Davies 1977). Similar tests and Neyman structure handle nuisance parameters exactly, and randomised tests give exact size in discrete problems.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Contiguity and Le Cam's third lemma give the limiting power under local alternatives θ₀ + h/√n as a noncentral χ² distribution. Pitman efficiency compares tests by sample size ratio and Bahadur efficiency by exponential rate of p-value decay. Minimax testing over nonparametric alternatives has rates governed by separation in a norm (Ingster). Sequential testing is optimal via Wald's SPRT, which minimises expected sample size among all tests with the same error probabilities (Wald–Wolfowitz).</p></div></div>"}, {"tag": "Testing", "topic": "Multiple Testing: FWER, FDR & Selective Inference", "desc": "What changes when you test many hypotheses at once.", "books": [{"t": "Large-Scale Inference", "n": "Efron"}, {"t": "Computer Age Statistical Inference", "n": "Efron & Hastie"}], "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>Running many tests inflates false positives. With 20 independent true nulls tested at α = 0.05 the chance of at least one false positive is 1 − 0.95²⁰ ≈ 64%. The Bonferroni correction tests each hypothesis at α/m so that the probability of any false positive stays at most α.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>Family-wise error rate (FWER) control includes Bonferroni, Holm's step-down (uniformly more powerful than Bonferroni), Hochberg's step-up and closed testing. The false discovery rate is FDR = E[V/max(R,1)], where V is the number of false rejections among R rejections. The Benjamini–Hochberg procedure sorts p₍₁₎ ≤ … ≤ p₍ₘ₎, finds the largest k with p₍ₖ₎ ≤ kq/m and rejects the first k. It controls FDR at q·m₀/m under independence or positive regression dependence, and Benjamini–Yekutieli controls it under any dependence at the cost of a factor Σ1/i.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Storey's method estimates the null proportion π₀ and gives q-values. Efron's local false discovery rate is an empirical-Bayes posterior null probability. E-values and the e-BH procedure (Wang–Ramdas) control FDR under arbitrary dependence. The knockoff filter (Barber–Candès) gives finite-sample FDR control in high-dimensional regression without p-values.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Selective inference makes valid statements about parameters chosen by the data. Approaches include simultaneous PoSI intervals (Berk et al.), conditioning on the selection event (Lee–Sun–Sun–Taylor) and data fission or splitting. Universal inference (Wasserman–Ramdas–Balakrishnan) gives valid tests under minimal assumptions with a split likelihood ratio. Online FDR procedures (LOND, SAFFRON, alpha-investing) handle streams of hypotheses.</p></div></div>"}, {"tag": "Resampling", "topic": "Bootstrap, Jackknife & Permutation Tests", "desc": "Estimating the sampling distribution of almost any statistic by computer.", "books": [{"t": "An Introduction to the Bootstrap", "n": "Efron & Tibshirani"}, {"t": "Bootstrap Methods and Their Application", "n": "Davison & Hinkley"}], "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>The bootstrap treats the sample as if it were the population: draw many samples of size n with replacement, recompute the statistic each time, and use the spread of those values as its standard error or to form a confidence interval. It needs no formula for the statistic's sampling distribution.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>The bootstrap replaces the unknown distribution F with the empirical distribution F̂ₙ. The percentile interval takes quantiles of the bootstrap statistics. The BCa interval corrects for bias (z₀) and skewness (acceleration a, estimated by the jackknife). The jackknife standard error is √((n−1)/n Σ(θ̂₍ᵢ₎ − θ̂₍·₎)²). Permutation tests are exact under exchangeability of the labels, and the parametric bootstrap simulates from a fitted model.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Bickel and Freedman (1981) proved bootstrap consistency for smooth functions of means. The percentile-t interval is second-order accurate (coverage error O(n⁻¹) instead of O(n^(−1/2))). The bootstrap fails for the sample maximum, for non-smooth functionals and on parameter boundaries. The m-out-of-n bootstrap and subsampling (Politis–Romano) repair many failures, and block bootstraps (Künsch) handle dependent data.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>The wild bootstrap handles heteroskedastic regression. Gaussian approximation and the multiplier bootstrap for maxima of high-dimensional means (Chernozhukov–Chetverikov–Kato) give valid inference when p ≫ n. Bootstrap validity for empirical processes and Hadamard-differentiable functionals goes back to Giné–Zinn (1990).</p></div></div>"}, {"tag": "Regression", "topic": "Generalised Linear Models & Exponential Dispersion Families", "desc": "Regression for binary, count and skewed outcomes under one framework.", "books": [{"t": "Generalized Linear Models", "n": "McCullagh & Nelder"}, {"t": "An Introduction to GLMs", "n": "Dobson & Barnett"}], "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>Linear regression assumes a continuous, roughly normal outcome. Logistic regression handles yes/no outcomes and Poisson regression handles counts. A link function connects the outcome's mean to a linear combination of the predictors, so predictions stay in a valid range such as probabilities between 0 and 1.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>A GLM has density f(y) = exp{(yθ − b(θ))/φ + c(y,φ)} with E[Y] = b′(θ) and Var(Y) = φ b″(θ). The link g(μ) = xᵀβ is canonical when it equals θ. Fitting is by iteratively reweighted least squares (Fisher scoring): β ← (XᵀWX)⁻¹XᵀWz. Model fit uses the deviance, and nested models are compared by differences of deviance (asymptotically χ²). Overdispersion is handled by quasi-likelihood or a negative binomial model.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Quasi-likelihood (Wedderburn 1974) needs only the mean–variance relation. Generalised estimating equations (Liang–Zeger) give robust sandwich standard errors for correlated data. Logistic regression has an infinite MLE under complete separation (Albert–Anderson), which Firth's penalty corrects. GLMMs require integrating out random effects by Laplace or adaptive Gauss–Hermite quadrature.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>For p proportional to n the logistic MLE exists only when n/p exceeds a sharp threshold, and beyond it coefficients are systematically inflated (Candès–Sur 2020), so classical likelihood theory fails. Penalised GLMs (lasso, elastic net) are fitted by coordinate descent. Single-index models and generalised additive models (Hastie–Tibshirani) relax linearity.</p></div></div>"}, {"tag": "Estimation", "topic": "EM Algorithm & Latent Variable Models", "desc": "Maximum likelihood when part of the data is hidden.", "books": [{"t": "Finite Mixture Models", "n": "McLachlan & Peel"}, {"t": "Pattern Recognition and Machine Learning", "n": "Bishop"}], "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>When some variables are hidden, such as which of two groups each point came from, the EM algorithm alternates between guessing the hidden values (using the current parameters) and re-estimating the parameters (as if those guesses were data). Repeating this improves the fit each round.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>The E-step computes Q(θ|θᵗ) = E_{Z|x,θᵗ}[log f(x,Z|θ)]. The M-step sets θᵗ⁺¹ = argmax_θ Q. Each iteration does not decrease the likelihood (Dempster–Laird–Rubin 1977, via Jensen's inequality), and under conditions converges to a stationary point (Wu 1983), not necessarily the global maximum, so multiple starts are used. Mixture likelihoods can be unbounded, so constraints are needed. Standard errors come from Louis' formula or supplemented EM.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>EM is coordinate ascent on the free energy F(q,θ) = E_q[log f(x,z|θ)] + H(q) (Neal–Hinton), which leads to variational and stochastic variants (ECM, MCEM, stochastic EM). The convergence rate equals the fraction of missing information. Mixtures suffer from label switching and non-identifiability, and testing the number of components is nonregular, so the ordinary likelihood ratio test does not follow χ².</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Method-of-moments and tensor-decomposition approaches (Anandkumar et al.) learn mixtures in polynomial time with guarantees. Balakrishnan–Wainwright–Yu (2017) give statistical and computational guarantees for EM on well-separated Gaussian mixtures. The nonparametric MLE of a mixing distribution (Kiefer–Wolfowitz) underlies empirical Bayes deconvolution.</p></div></div>"}, {"tag": "Robustness", "topic": "Robust Statistics: Breakdown, Influence Functions & M-Estimation", "desc": "Estimation that survives outliers and model misspecification.", "books": [{"t": "Robust Statistics", "n": "Huber & Ronchetti"}, {"t": "Robust Statistics", "n": "Maronna, Martin, Yohai"}], "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>A few extreme values can wreck the mean, but the median, which ignores how extreme the extremes are, barely moves. Trimmed and winsorised means and the median absolute deviation (MAD) are simple robust summaries.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>The breakdown point is the fraction of bad data an estimator tolerates before it can be pushed arbitrarily far: 0 for the mean, 50% for the median. The influence function IF(x;T,F) = lim_{ε→0} [T((1−ε)F + εδₓ) − T(F)]/ε measures the effect of one added point. Huber's M-estimator uses ψ(x) = max(−k, min(x,k)); k = 1.345σ gives 95% efficiency at the normal. The MAD scaled by 1.4826 estimates σ robustly. M-estimates are computed by iteratively reweighted least squares.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Hampel's approach requires a bounded influence function (finite gross-error sensitivity). MM-estimators combine 50% breakdown with 95% efficiency. S-estimators and least trimmed squares give high-breakdown regression. Multivariate robust estimators include the minimum covariance determinant and Stahel–Donoho, and Tukey depth generalises the median.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Huber's minimax theory for ε-contamination has a least favourable distribution that is normal in the centre with Laplace tails. In high dimensions, efficient robust mean estimation (Diakonikolas et al., Lai–Rao–Vempala) achieves error O(ε√log(1/ε)) for Gaussian data in polynomial time, and error Θ(√ε) is the minimax rate under only bounded covariance, while Θ(ε) is optimal for Gaussians.</p></div></div>"}, {"tag": "Causal", "topic": "Causal Inference: Potential Outcomes, Propensity Scores, IV & DAGs", "desc": "Moving from association to cause and effect.", "books": [{"t": "Causal Inference for Statistics, Social, and Biomedical Sciences", "n": "Imbens & Rubin"}, {"t": "Causality", "n": "Pearl"}], "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>Correlation is not causation, because a third factor (a confounder) can drive both variables. In a randomised experiment assignment is independent of everything else, so the average difference between groups is the average causal effect E[Y(1) − Y(0)], where Y(1) and Y(0) are the outcomes with and without treatment.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>The Rubin causal model defines effects through potential outcomes. Under ignorability, treatment is independent of potential outcomes given covariates X. The propensity score e(x) = P(T=1|X=x) is a balancing score (Rosenbaum–Rubin 1983), used in matching, stratification and inverse probability weighting, and doubly robust AIPW is consistent if either the outcome model or the propensity model is right. Instrumental variables identify the local average treatment effect (Imbens–Angrist) under monotonicity, and difference-in-differences relies on parallel trends. Pearl's framework uses DAGs, the backdoor criterion and the do-operator.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>The do-calculus has three rules and is complete for identification in causal DAGs (Shpitser–Pearl; Huang–Valtorta). Double/debiased machine learning (Chernozhukov et al. 2018) uses Neyman-orthogonal scores with cross-fitting to give √n-inference with flexible nuisance estimators. Sensitivity analysis includes Rosenbaum bounds and the E-value. Synthetic control (Abadie) and modern staggered difference-in-differences estimators (Callaway–Sant'Anna, Sun–Abraham) fix problems of two-way fixed effects.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>The semiparametric efficiency bound for the average treatment effect under unconfoundedness (Hahn 1998) is attained by estimators based on the efficient influence function. Causal discovery learns graphs from data (PC, FCI, GES, LiNGAM) up to Markov equivalence. Current work covers interference and network settings, proximal causal inference with negative controls (Miao–Geng–Tchetgen Tchetgen) and conformal counterfactual prediction.</p></div></div>"}, {"tag": "Selection", "topic": "Model Selection: AIC, BIC & Cross-Validation", "desc": "Choosing among competing models without fooling yourself.", "books": [{"t": "Model Selection and Multimodel Inference", "n": "Burnham & Anderson"}, {"t": "The Elements of Statistical Learning", "n": "Hastie, Tibshirani, Friedman"}], "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>A more complex model always fits the data at hand at least as well, but may predict new data worse (overfitting). To choose fairly we measure error on data not used for fitting, by a train/test split or k-fold cross-validation, or we penalise complexity.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>AIC = −2ℓ̂ + 2k estimates expected Kullback–Leibler loss. BIC = −2ℓ̂ + k log n approximates −2 log of the marginal likelihood (Schwarz 1978) and is consistent when the true model is in the candidate set. AICc = AIC + 2k(k+1)/(n−k−1) corrects small samples. Mallows' Cp = RSS/σ̂² − n + 2p. For linear smoothers, leave-one-out CV equals PRESS = Σ(eᵢ/(1 − hᵢᵢ))², and AIC is asymptotically equivalent to leave-one-out CV (Stone 1977).</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>AIC is asymptotically efficient for prediction but not consistent for selection, while BIC is consistent but not efficient, and Yang (2005) shows no criterion can have both. Takeuchi's TIC generalises AIC under misspecification with the penalty tr(J⁻¹K). Shao (1993) showed leave-one-out CV is inconsistent for selection and leave-out-many is needed. Selection changes the distribution of estimates, so naive post-selection inference is invalid.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>High-dimensional selection theory includes lasso selection consistency under the irrepresentable condition (Zhao–Yu; Meinshausen–Bühlmann) and oracle inequalities. The minimax rate for s-sparse regression is of order σ² s log(p/s)/n. Stability selection and model aggregation offer alternatives that avoid committing to one model.</p></div></div>"}]);
+/* ═══ CI COVERAGE LAB — numerics + simulate + draw (added) ═══ */
+const LG_C_CI=[0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];
+function ciLgamma(z){
+  if(z<0.5)return Math.log(Math.PI/Math.abs(Math.sin(Math.PI*z)))-ciLgamma(1-z);
+  z-=1;let x=LG_C_CI[0];for(let i=1;i<9;i++)x+=LG_C_CI[i]/(z+i);
+  const t=z+7.5;return 0.5*Math.log(2*Math.PI)+(z+0.5)*Math.log(t)-t+Math.log(x);
+}
+function ciBetacf(x,a,b){
+  const FP=1e-300,qab=a+b,qap=a+1,qam=a-1;
+  let c=1,d=1-qab*x/qap;if(Math.abs(d)<FP)d=FP;d=1/d;let h=d;
+  for(let m=1;m<=300;m++){
+    const m2=2*m;let aa=m*(b-m)*x/((qam+m2)*(a+m2));
+    d=1+aa*d;if(Math.abs(d)<FP)d=FP;c=1+aa/c;if(Math.abs(c)<FP)c=FP;d=1/d;h*=d*c;
+    aa=-(a+m)*(qab+m)*x/((a+m2)*(qap+m2));
+    d=1+aa*d;if(Math.abs(d)<FP)d=FP;c=1+aa/c;if(Math.abs(c)<FP)c=FP;d=1/d;
+    const del=d*c;h*=del;if(Math.abs(del-1)<1e-14)break;
+  }
+  return h;
+}
+function ciBetaInc(x,a,b){
+  if(x<=0)return 0;if(x>=1)return 1;
+  const bt=Math.exp(ciLgamma(a+b)-ciLgamma(a)-ciLgamma(b)+a*Math.log(x)+b*Math.log(1-x));
+  return x<(a+1)/(a+b+2)?bt*ciBetacf(x,a,b)/a:1-bt*ciBetacf(1-x,b,a)/b;
+}
+function ciTCdf(t,nu){
+  const x=nu/(nu+t*t),p=0.5*ciBetaInc(x,nu/2,0.5);
+  return t<0?p:1-p;
+}
+function ciTQuantile(p,nu){
+  let lo=-1e3,hi=1e3;
+  for(let i=0;i<60;i++){const mid=(lo+hi)/2;if(ciTCdf(mid,nu)<p)lo=mid;else hi=mid;}
+  return (lo+hi)/2;
+}
+function ciBoxMuller(){
+  let u=0,v=0;while(u===0)u=Math.random();while(v===0)v=Math.random();
+  return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
+}
+let CI_TRIALS=[]; // {lo,hi,mean,covered}
+function ciLabReset(){ CI_TRIALS=[]; ciLabDraw(); ciLabUpdateStats(); }
+function ciLabRun(count){
+  const n=parseInt(document.getElementById('cilab-n').value,10);
+  const conf=parseFloat(document.getElementById('cilab-conf').value);
+  document.getElementById('cilab-nominal').textContent=(conf*100).toFixed(0)+'%';
+  const alpha=1-conf,tcrit=ciTQuantile(1-alpha/2,n-1);
+  for(let k=0;k<count;k++){
+    const xs=[];for(let i=0;i<n;i++)xs.push(ciBoxMuller());
+    const mean=xs.reduce((a,b)=>a+b,0)/n;
+    const sd=Math.sqrt(xs.reduce((a,b)=>a+(b-mean)*(b-mean),0)/(n-1));
+    const half=tcrit*sd/Math.sqrt(n);
+    const lo=mean-half,hi=mean+half;
+    CI_TRIALS.push({lo,hi,mean,covered: lo<=0&&0<=hi});
+  }
+  if(CI_TRIALS.length>400)CI_TRIALS=CI_TRIALS.slice(CI_TRIALS.length-400);
+  ciLabDraw();ciLabUpdateStats();
+}
+function ciLabUpdateStats(){
+  const n=CI_TRIALS.length,cov=CI_TRIALS.filter(t=>t.covered).length;
+  document.getElementById('cilab-n-trials').textContent=n;
+  document.getElementById('cilab-covered').textContent=n?cov+' / '+n:'—';
+  document.getElementById('cilab-coverage').textContent=n?(100*cov/n).toFixed(1)+'%':'—';
+  const conf=parseFloat(document.getElementById('cilab-conf').value);
+  document.getElementById('cilab-ro').textContent=n?
+    ('After '+n+' trials, '+(100*cov/n).toFixed(1)+'% of the intervals covered the true mean μ=0 (nominal target: '+(conf*100).toFixed(0)+'%).'):
+    'Click "Run 100 trials" to draw samples and build intervals';
+}
+function ciLabDraw(){
+  const c=document.getElementById('cilab-cv');if(!c)return;const wrap=c.parentElement;const w=wrap.clientWidth;if(!w)return;
+  const rowH=Math.max(2,Math.min(4,Math.floor(280/Math.max(1,CI_TRIALS.length)))),h=Math.max(90,Math.min(280,CI_TRIALS.length*rowH+20));
+  const dpr=window.devicePixelRatio||1;
+  if(c.width!==Math.round(w*dpr)||c.height!==Math.round(h*dpr)){c.width=Math.round(w*dpr);c.height=Math.round(h*dpr);}
+  const ctx=c.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+  const cs=getComputedStyle(document.body),v=n=>cs.getPropertyValue(n).trim();
+  const gr=v('--gr')||'#3a6043',rd=v('--rd')||'#8f3a2c',axis=v('--border')||'#ccc',txt=v('--text-3')||'#666';
+  if(!CI_TRIALS.length){
+    ctx.fillStyle=txt;ctx.font="11px 'Source Code Pro',monospace";ctx.textAlign='center';
+    ctx.fillText('No trials yet',w/2,h/2);return;
+  }
+  let xMax=0.3;CI_TRIALS.forEach(t=>{xMax=Math.max(xMax,Math.abs(t.lo),Math.abs(t.hi));});xMax*=1.08;
+  const PD={l:8,r:8},CW=w-PD.l-PD.r,px=x=>PD.l+(x+xMax)/(2*xMax)*CW;
+  ctx.strokeStyle=axis;ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(px(0),0);ctx.lineTo(px(0),h);ctx.stroke();
+  CI_TRIALS.forEach((t,i)=>{
+    const y=i*rowH+rowH/2+4;
+    ctx.strokeStyle=t.covered?gr:rd;ctx.lineWidth=Math.max(1,rowH-1);ctx.globalAlpha=0.85;
+    ctx.beginPath();ctx.moveTo(px(t.lo),y);ctx.lineTo(px(t.hi),y);ctx.stroke();
+  });
+  ctx.globalAlpha=1;
+}
+window.addEventListener('resize',()=>{if(document.getElementById('cilab-cv'))ciLabDraw();});
+
 function renderInference(){
   const g=document.getElementById('inference-grid'); if(!g)return;
   g.innerHTML=INFERENCE.map((item,i)=>`
-    <div class="inf-card" onclick="toggleInf(${i})">
+    <div class="inf-card" id="inf-card-${i}" data-search="${(item.topic+' '+item.desc+' '+item.tag).toLowerCase().replace(/"/g,'')}">
       <span class="inf-tag">${item.tag}</span>
       <div class="inf-topic">${item.topic}</div>
       <div class="inf-desc">${item.desc}</div>
       ${item.books.map(b=>`<div class="inf-book"><b>${b.t}</b> <i>· ${b.n}</i></div>`).join('')}
-      <span class="inf-expand-lbl" id="inflbl-${i}">▸ Read more</span>
+      <span class="inf-expand-lbl" id="inflbl-${i}" role="button" tabindex="0" aria-expanded="false" aria-controls="infdet-${i}" onclick="toggleInf(${i})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleInf(${i})}">▸ Read more</span>
       <div class="inf-detail" id="infdet-${i}">${item.detail}</div>
     </div>`).join('');
+  if(window.renderMath){try{window.renderMath(g);}catch(e){console.warn('renderMath failed',e);}}
 }
 
 
@@ -295,6 +452,7 @@ function toggleInf(i){
   const l=document.getElementById('inflbl-'+i);
   const open=d.classList.toggle('show');
   l.textContent=open?'▾ Show less':'▸ Read more';
+  l.setAttribute('aria-expanded',open);
 }
 
 /* ── DISTRIBUTIONS ──────────────────────────────────────────── */
@@ -315,8 +473,9 @@ function toggleInf(i){
       if(window.renderAuthUI)window.renderAuthUI();
     }).catch(function(){});
   },400);
-  if('renderInference();' && document.readyState!=='loading') { renderInference(); }
-  else if('renderInference();') { document.addEventListener('DOMContentLoaded', function(){ renderInference(); }); }
+  function _initInfPage(){ renderInference(); ciLabDraw(); }
+  if(document.readyState!=='loading'){ _initInfPage(); }
+  else { document.addEventListener('DOMContentLoaded', _initInfPage); }
 })();
 </script>
 <script>window._pageKey = 'stats';</script>

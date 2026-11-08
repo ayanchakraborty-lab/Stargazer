@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<!-- Google tag (gtag.js) --> <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'],wait_for_update:500});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="../pics/logo.png">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -49,15 +50,15 @@
 
 <!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
 <div id="auth-topbar">
-  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <a href="../" class="atb-btn atb-home">🌌 Universe</a>
   <div style="flex:1"></div>
   <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
     <span id="mode-icon">☾</span>
   </button>
-  <a href="../login.html" id="loginBtn">☽ Sign In</a>
+  <a href="../login" id="loginBtn">☽ Sign In</a>
   <div id="userInfo">
     <span id="userEmailDisplay">✦ Explorer</span>
-    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login'">Sign Out</button>
   </div>
 </div>
 
@@ -94,7 +95,7 @@
       <div class="s-head">
         <span class="s-eyebrow" style="background:var(--bl-l);color:var(--bl);border:1px solid rgba(42,95,120,.25)">Quick Reference</span>
         <h2 class="s-title font-serif">Formula Sheet — The Essential Equations</h2>
-        <p class="s-desc">Every formula a statistician reaches for, organised by topic. Copy-paste ready.</p>
+        <p class="s-desc">Every formula a statistician reaches for, organised by topic. Copy-paste ready. Sections are marked from bachelor's to advanced-research level: descriptive statistics, counting, classical tests, ANOVA and regression, multivariate and time series, information theory and bounds, and Bayesian computation.</p>
       </div>
       <div id="formulas-body"></div>
     </div>
@@ -107,16 +108,17 @@
   <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
 </div>
 <div style="text-align:center;padding-bottom:2rem;">
-  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+  <a href="../ABOUT" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
 </div>
 
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
 <script>
 window._nextPage = 'history.html';
-window._prevPage = 'calc.html';
+window._prevPage = 'data-lab.html';
 const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+const ADMIN_EMAILS = ['ayanchakrabortyall@gmail.com','officialayanimp@gmail.com','duolingo.learn1024@gmail.com'];
 
-function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+function isAdmin(){return !!(window.currentUser && ADMIN_EMAILS.includes(window.currentUser.email));}
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -186,7 +188,7 @@ function runSearch(q){
   if(!q.trim()){res.innerHTML='<div class="sr-empty">Start typing…</div>';return;}
   const lq=q.toLowerCase();
   const hits=SEARCH_INDEX.filter(x=>x.q.toLowerCase().includes(lq)).slice(0,18);
-  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q+'"</div>';return;}
+  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'"</div>';return;}
   res.innerHTML=hits.map((h,i)=>`<div class="sr-item" tabindex="0" data-idx="${i}" onclick="goSearchResult(${SEARCH_INDEX.indexOf(h)})" onkeydown="if(event.key==='Enter')goSearchResult(${SEARCH_INDEX.indexOf(h)})"><span class="sr-icon">${h.icon}</span><div><div class="sr-title">${highlight(h.title,lq)}</div><div class="sr-meta">${h.meta}</div></div><span class="sr-section">${h.section}</span></div>`).join('');
 }
 function highlight(text,q){
@@ -195,7 +197,14 @@ function highlight(text,q){
   if(idx<0)return text;
   return text.slice(0,idx)+'<mark style="background:var(--gd-l);color:var(--gd);border-radius:2px">'+text.slice(idx,idx+q.length)+'</mark>'+text.slice(idx+q.length);
 }
-function goSearchResult(idx){ closeSearch(); }
+function goSearchResult(idx){
+  const hit=SEARCH_INDEX[idx];
+  closeSearch();
+  if(hit&&hit.el){
+    hit.el.scrollIntoView({behavior:'smooth',block:'center'});
+    hit.el.classList.remove('flash');void hit.el.offsetWidth;hit.el.classList.add('flash');
+  }
+}
 function searchKeyNav(e){
   if(e.key==='Escape'){closeSearch();return;}
   const items=document.querySelectorAll('.sr-item');
@@ -209,22 +218,24 @@ function searchKeyNav(e){
 
 function buildSearchIndex(){
   if(SEARCH_INDEX.length)return;
-  // no index for this page
+  document.querySelectorAll('.fml-card').forEach(c=>{
+    SEARCH_INDEX.push({icon:'📐',title:c.querySelector('.fml-name').textContent,meta:c.closest('.fml-section').querySelector('.fml-section-title').textContent,section:'Formula',el:c,q:c.getAttribute('data-search')});
+  });
 }
 
 
 (function initKeyboard(){
-  const PAGES=['home','precollege_placeholder'];
   document.addEventListener('keydown',e=>{
-    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
+    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)||e.target.isContentEditable)return;
+    if(e.ctrlKey||e.metaKey||e.altKey)return;   /* never hijack browser/OS shortcuts (back, dev tools, etc.) */
     if(document.getElementById('search-modal')&&document.getElementById('search-modal').classList.contains('open')){
       if(e.key==='Escape')closeSearch();
       return;
     }
     if(e.key==='/'){e.preventDefault();openSearch();return;}
-    if(e.key==='ArrowRight'){e.preventDefault();location.href=window._nextPage;}
-    if(e.key==='ArrowLeft'){e.preventDefault();location.href=window._prevPage;}
-    if(e.key==='f'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){if(typeof showRandomFact==='function')showRandomFact();}
+    if(e.key==='ArrowRight'&&window._nextPage){e.preventDefault();location.href=window._nextPage;}
+    if(e.key==='ArrowLeft'&&window._prevPage){e.preventDefault();location.href=window._prevPage;}
+    if(e.key==='f'){if(typeof showRandomFact==='function')showRandomFact();}
     if(e.key==='Escape'){
       const hmenu=document.getElementById('hamburger-menu');
       if(hmenu&&hmenu.classList.contains('open')){
@@ -241,6 +252,25 @@ function showToast(msg,bg){
   t.style.cssText=`position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);background:${bg};color:#fff;font-family:'Source Code Pro',monospace;font-size:.72rem;padding:.45rem 1.1rem;border-radius:99px;z-index:9998;animation:fadeUpIn .35s ease;white-space:nowrap;pointer-events:none`;
   document.body.appendChild(t);
   setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .35s';setTimeout(()=>t.remove(),380);},2200);
+}
+
+const FUN_FACTS=[
+  "Bayes' theorem was published posthumously in 1763 — Thomas Bayes never saw it in print.",
+  "The Central Limit Theorem doesn't require the underlying data to be symmetric, or even continuous.",
+  "“Correlation does not imply causation” dates back to at least Karl Pearson's writings in the 1890s.",
+  "The Normal distribution is also called “Gaussian” after Gauss, but Abraham de Moivre described it first, in 1733.",
+  "A p-value is not the probability the null hypothesis is true — that's one of the most common misreadings in statistics.",
+  "The Gamma distribution generalises both the Exponential (shape=1) and the Chi-squared (rate=1/2) as special cases."
+];
+function showRandomFact(){
+  const t=document.getElementById('toast');if(!t)return;
+  document.getElementById('toast-body').textContent=FUN_FACTS[Math.floor(Math.random()*FUN_FACTS.length)];
+  t.classList.add('show');
+  clearTimeout(t._factTimer);
+  t._factTimer=setTimeout(hideToast,8000);
+}
+function hideToast(){
+  const t=document.getElementById('toast');if(t)t.classList.remove('show');
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -271,7 +301,7 @@ const FORMULAS=[
     {name:'Cramér–Rao Lower Bound',eq:"Var(T) ≥ [∂τ/∂θ]² / I(θ)",desc:"No unbiased estimator of τ(θ) can have lower variance"},
     {name:'95% Confidence Interval (z)',eq:"x̄ ± 1.96·σ/√n",desc:"For Normal data with known σ; use 1.645 for 90%, 2.576 for 99%"},
     {name:'t Confidence Interval',eq:"x̄ ± t_{α/2,n-1}·s/√n",desc:"For Normal data with unknown σ; uses Student's t distribution"},
-    {name:'p-value (two-sided)',eq:"p = 2·P(|Z| ≥ |z_obs|)  under H₀",desc:"Probability of test statistic as extreme as observed, under the null"},
+    {name:'p-value (two-sided)',eq:"p = P(|Z| ≥ |z_obs|)  under H₀",desc:"Probability of test statistic as extreme as observed, under the null"},
     {name:'Likelihood Ratio Test',eq:"−2(ℓ₀ − ℓ₁) →ᵈ χ²(p₁−p₀)  under H₀",desc:"Wilks theorem: LRT statistic is asymptotically chi-squared"},
   ]},
   {section:'Regression',items:[
@@ -286,34 +316,48 @@ const FORMULAS=[
     {name:'Beta-Binomial Update',eq:"Beta(α,β) → Beta(α+x, β+n−x)",desc:"Conjugate update: prior pseudo-successes + observed successes"},
     {name:'Normal-Normal Update',eq:"μ|x ~ N( (μ₀/τ₀² + nx̄/σ²)/(1/τ₀²+n/σ²), (1/τ₀²+n/σ²)⁻¹ )",desc:"Conjugate update for Normal mean with Normal prior; precision-weighted average"},
     {name:'Bayes Factor',eq:"BF₁₂ = P(x|M₁) / P(x|M₂)",desc:"Ratio of marginal likelihoods; BF > 10 is strong evidence for M₁"},
-    {name:'Bernstein-von Mises',eq:"π(θ|Xⁿ) →ᵈ N(θ₀, I(θ₀)⁻¹/n)  as n→∞",desc:"Posterior concentrates around true θ₀ and matches frequentist sampling dist"},
+    {name:'Bernstein-von Mises',eq:"π(θ|Xⁿ) →ᵈ N(θ̂, I(θ₀)⁻¹/n)  as n→∞",desc:"Posterior centred at MLE θ̂ with frequentist spread; matches frequentist sampling distribution asymptotically"},
     {name:"ELBO (Variational Bayes)",eq:"ℒ(q) = E_q[log p(x,θ)] − E_q[log q(θ)]  ≤ log p(x)",desc:"Objective maximised in variational inference; equals log p(x) iff q=posterior"},
   ]},
   {section:'Key Distributions — PDF/PMF',items:[
-    {name:'Normal N(μ,σ²)',eq:"f(x) = (1/σ√2π) exp(−(x−μ)²/2σ²)",desc:"The central distribution in statistics; CLT convergence target"},
-    {name:'Poisson(λ)',eq:"P(X=k) = e⁻λ λᵏ/k!",desc:"Count of rare events; mean = variance = λ"},
-    {name:'Exponential(λ)',eq:"f(x) = λ e⁻λˣ  ,  x≥0",desc:"Waiting time until Poisson event; memoryless"},
+    {name:'Normal N(μ,σ²)',eq:"f(x) = exp(−(x−μ)²/(2σ²)) / (σ√(2π))",desc:"The central distribution in statistics; CLT convergence target"},
+    {name:'Poisson(λ)',eq:"P(X=k) = exp(−λ)·λᵏ / k!",desc:"Count of rare events; mean = variance = λ"},
+    {name:'Exponential(λ)',eq:"f(x) = λ·exp(−λx)  ,  x≥0",desc:"Waiting time until Poisson event; memoryless"},
     {name:'Binomial(n,p)',eq:"P(X=k) = C(n,k) pᵏ(1−p)ⁿ⁻ᵏ",desc:"Successes in n independent Bernoulli trials"},
-    {name:'Beta(α,β)',eq:"f(x) = xᵃ⁻¹(1−x)ᵝ⁻¹/B(α,β)  ,  x∈(0,1)",desc:"Conjugate prior for Binomial proportion"},
-    {name:'Gamma(α,β)',eq:"f(x) = βᵃ xᵃ⁻¹ e⁻ᵝˣ / Γ(α)  ,  x>0",desc:"Conjugate prior for Poisson rate; sum of α Exponential(β)"},
+    {name:'Beta(α,β)',eq:"f(x) = xᵅ⁻¹(1−x)ᵝ⁻¹/B(α,β)  ,  x∈(0,1)",desc:"Conjugate prior for Binomial proportion"},
+    {name:'Gamma(α,β)',eq:"f(x) = βᵅ xᵅ⁻¹ e⁻ᵝˣ / Γ(α)  ,  x>0",desc:"Conjugate prior for Poisson rate; sum of α Exponential(β)"},
   ]},
 ];
 
 
+FORMULAS.push(...[{"section": "🎓 Bachelor's — Descriptive Statistics", "items": [{"name": "Sample Mean", "eq": "x̄ = (1/n) Σ xᵢ", "desc": "Balance point of the data"}, {"name": "Sample Variance", "eq": "s² = Σ (xᵢ − x̄)² / (n − 1)", "desc": "Unbiased for σ²; n−1 is Bessel's correction"}, {"name": "Standard Deviation", "eq": "s = √s²", "desc": "Spread in the original units"}, {"name": "Coefficient of Variation", "eq": "CV = s / x̄", "desc": "Unit-free spread (x̄ > 0)"}, {"name": "IQR & Outlier Fences", "eq": "IQR = Q₃ − Q₁; fences Q₁ − 1.5·IQR, Q₃ + 1.5·IQR", "desc": "Tukey's rule for flagging outliers"}, {"name": "z-score", "eq": "z = (x − μ) / σ", "desc": "Distance from the mean in standard deviations"}, {"name": "Sample Covariance", "eq": "sₓᵧ = Σ (xᵢ − x̄)(yᵢ − ȳ) / (n − 1)", "desc": "Direction of joint variation"}, {"name": "Pearson Correlation", "eq": "r = sₓᵧ / (sₓ sᵧ),  −1 ≤ r ≤ 1", "desc": "Strength of linear association"}, {"name": "Spearman Rank Correlation", "eq": "ρ = 1 − 6 Σ dᵢ² / (n(n² − 1))", "desc": "dᵢ = rank differences; no ties; monotone association"}, {"name": "Sample Skewness", "eq": "g₁ = m₃ / m₂^(3/2),  mₖ = (1/n) Σ (xᵢ − x̄)ᵏ", "desc": "Asymmetry of the distribution"}, {"name": "Excess Kurtosis", "eq": "g₂ = m₄ / m₂² − 3", "desc": "Tail heaviness relative to the normal (0 for normal)"}, {"name": "Geometric & Harmonic Mean", "eq": "GM = (Π xᵢ)^(1/n);  HM = n / Σ (1/xᵢ)", "desc": "For growth rates and rates/ratios; HM ≤ GM ≤ AM"}, {"name": "Empirical CDF", "eq": "F̂ₙ(x) = (1/n) Σ 1{xᵢ ≤ x}", "desc": "Step function estimating the true CDF (DKW: P(sup|F̂ₙ − F| > ε) ≤ 2e^(−2nε²))"}]}, {"section": "🎓 Bachelor's — Counting & Probability", "items": [{"name": "Permutations", "eq": "P(n,k) = n! / (n − k)!", "desc": "Ordered selections of k from n"}, {"name": "Combinations", "eq": "C(n,k) = n! / (k!(n − k)!)", "desc": "Unordered selections of k from n"}, {"name": "Multinomial Coefficient", "eq": "n! / (k₁! k₂! … k_m!)", "desc": "Ways to split n items into groups of sizes k₁,…,k_m"}, {"name": "Inclusion–Exclusion (two events)", "eq": "P(A ∪ B) = P(A) + P(B) − P(A ∩ B)", "desc": "Generalises to any number of events"}, {"name": "Binomial Theorem", "eq": "(a + b)ⁿ = Σₖ C(n,k) aᵏ bⁿ⁻ᵏ", "desc": "Source of the binomial coefficients"}, {"name": "Stirling's Approximation", "eq": "n! ≈ √(2πn) (n/e)ⁿ", "desc": "Relative error about 1/(12n)"}, {"name": "Birthday Problem", "eq": "P(no match among k) = Π_{i=0}^{k−1} (1 − i/365) ≈ e^(−k(k−1)/730)", "desc": "About 50% at k = 23"}, {"name": "Markov Inequality", "eq": "P(X ≥ a) ≤ E[X] / a  (X ≥ 0, a > 0)", "desc": "Simplest tail bound"}, {"name": "Jensen's Inequality", "eq": "g(E[X]) ≤ E[g(X)] for convex g", "desc": "Basis of the AM–GM inequality and of EM"}]}, {"section": "📐 Master's — Sampling Distributions & Classical Tests", "items": [{"name": "Sampling Distribution of the Mean", "eq": "X̄ ~ N(μ, σ²/n);  SE = σ / √n", "desc": "Exact for normal data, approximate by CLT otherwise"}, {"name": "Distribution of S²", "eq": "(n − 1) S² / σ² ~ χ²ₙ₋₁", "desc": "Independent of X̄ for normal samples (Cochran/Basu)"}, {"name": "One-sample t", "eq": "T = (X̄ − μ₀) / (S / √n) ~ tₙ₋₁", "desc": "Mean test with unknown σ"}, {"name": "Pooled Two-sample t", "eq": "t = (x̄₁ − x̄₂) / (s_p √(1/n₁ + 1/n₂)),  s_p² = ((n₁−1)s₁² + (n₂−1)s₂²)/(n₁+n₂−2)", "desc": "df = n₁ + n₂ − 2; assumes equal variances"}, {"name": "Welch t-test", "eq": "t = (x̄₁ − x̄₂) / √(s₁²/n₁ + s₂²/n₂)", "desc": "Welch–Satterthwaite df = (a+b)²/(a²/(n₁−1) + b²/(n₂−1)), a = s₁²/n₁, b = s₂²/n₂"}, {"name": "One-proportion z", "eq": "z = (p̂ − p₀) / √(p₀(1 − p₀)/n)", "desc": "Large-sample test for a proportion"}, {"name": "Wilson Interval", "eq": "(p̂ + z²/2n ± z√(p̂(1−p̂)/n + z²/4n²)) / (1 + z²/n)", "desc": "Better small-sample coverage than the Wald interval"}, {"name": "F-test for Variances", "eq": "F = s₁² / s₂² ~ F_{n₁−1, n₂−1}", "desc": "Sensitive to non-normality"}, {"name": "Chi-square Test", "eq": "χ² = Σ (Oᵢ − Eᵢ)² / Eᵢ", "desc": "Goodness of fit df = k − 1 − (#estimated params); independence df = (r−1)(c−1)"}, {"name": "Sample Size for a Mean", "eq": "n ≥ (z_{α/2} σ / E)²", "desc": "E = desired margin of error"}, {"name": "Sample Size for a Proportion", "eq": "n ≥ z²_{α/2} p(1 − p) / E²", "desc": "Use p = 0.5 when unknown"}, {"name": "Power (one-sided z-test)", "eq": "Power = Φ(δ√n/σ − z_α)", "desc": "δ = true mean − hypothesised mean"}, {"name": "Cohen's d", "eq": "d = (x̄₁ − x̄₂) / s_p", "desc": "0.2 small, 0.5 medium, 0.8 large (rules of thumb)"}]}, {"section": "📐 Master's — ANOVA & Regression Extensions", "items": [{"name": "One-way ANOVA F", "eq": "F = [SSB/(k−1)] / [SSW/(N−k)] ~ F_{k−1,N−k}", "desc": "SST = SSB + SSW"}, {"name": "Tukey HSD", "eq": "q = (ȳᵢ − ȳⱼ) / √(MSW/n)", "desc": "Studentised range for all pairwise comparisons"}, {"name": "OLS Covariance", "eq": "Var(β̂) = σ²(XᵀX)⁻¹,  σ̂² = RSS/(n − p)", "desc": "t = β̂ⱼ / SE(β̂ⱼ)"}, {"name": "Hat Matrix & Leverage", "eq": "H = X(XᵀX)⁻¹Xᵀ,  hᵢᵢ = leverage", "desc": "ŷ = Hy; Σ hᵢᵢ = p"}, {"name": "Cook's Distance", "eq": "Dᵢ = (eᵢ² / (p s²)) · hᵢᵢ / (1 − hᵢᵢ)²", "desc": "Influence of observation i on the fit"}, {"name": "Adjusted R²", "eq": "1 − (1 − R²)(n − 1)/(n − p − 1)", "desc": "Penalises extra predictors (p = number of predictors)"}, {"name": "Prediction Interval", "eq": "ŷ₀ ± t·s·√(1 + x₀ᵀ(XᵀX)⁻¹x₀)", "desc": "Wider than the CI for the mean response"}, {"name": "Generalised Least Squares", "eq": "β̂ = (XᵀΣ⁻¹X)⁻¹ XᵀΣ⁻¹ y", "desc": "For known error covariance Σ"}, {"name": "Ridge Regression", "eq": "β̂ = (XᵀX + λI)⁻¹ Xᵀy", "desc": "Posterior mean under a N(0, σ²/λ) prior"}, {"name": "Lasso", "eq": "min ½‖y − Xβ‖² + λ‖β‖₁;  S(z,λ) = sign(z)(|z| − λ)₊", "desc": "Soft-thresholding solution in the orthonormal case"}, {"name": "Logistic Regression", "eq": "log(p/(1−p)) = xᵀβ;  ℓ(β) = Σ [yᵢ xᵢᵀβ − log(1 + e^{xᵢᵀβ})]", "desc": "Concave log-likelihood; fitted by IRLS"}, {"name": "AIC / BIC", "eq": "AIC = −2ℓ̂ + 2k;  BIC = −2ℓ̂ + k log n", "desc": "Lower is better"}, {"name": "Mallows' Cp", "eq": "Cp = RSS/σ̂² − n + 2p", "desc": "Approximately p for an adequate model"}, {"name": "PRESS", "eq": "PRESS = Σ (eᵢ / (1 − hᵢᵢ))²", "desc": "Leave-one-out prediction error for OLS"}]}, {"section": "📐 Master's — Multivariate & Time Series", "items": [{"name": "Multivariate Normal", "eq": "f(x) = (2π)^(−p/2) |Σ|^(−1/2) exp(−½(x − μ)ᵀΣ⁻¹(x − μ))", "desc": "Elliptical contours of constant density"}, {"name": "Mahalanobis Distance", "eq": "D² = (x − μ)ᵀΣ⁻¹(x − μ) ~ χ²ₚ", "desc": "For x ~ N_p(μ, Σ)"}, {"name": "Conditional Normal", "eq": "X₁|X₂=x₂ ~ N(μ₁ + Σ₁₂Σ₂₂⁻¹(x₂ − μ₂), Σ₁₁ − Σ₁₂Σ₂₂⁻¹Σ₂₁)", "desc": "Linear regression is the conditional mean"}, {"name": "PCA", "eq": "Σ = VΛVᵀ;  scores = Vᵀ(x − μ);  explained = λⱼ / Σλ", "desc": "Principal components are eigenvectors of Σ"}, {"name": "Hotelling's T²", "eq": "T² = n(x̄ − μ₀)ᵀS⁻¹(x̄ − μ₀) ~ ((n−1)p/(n−p)) F_{p,n−p}", "desc": "Multivariate analogue of the t-test"}, {"name": "AR(1) Process", "eq": "Xₜ = φXₜ₋₁ + εₜ;  ρ(h) = φ^|h|;  Var = σ²/(1 − φ²)", "desc": "Stationary iff |φ| < 1"}, {"name": "MA(1) Autocorrelation", "eq": "ρ(1) = θ / (1 + θ²),  ρ(h) = 0 for h ≥ 2", "desc": "Autocorrelation cuts off after lag q for MA(q)"}, {"name": "ARIMA(p,d,q)", "eq": "φ(B)(1 − B)ᵈ Xₜ = θ(B) εₜ", "desc": "B = backshift operator; d = differencing order"}, {"name": "Ljung–Box Test", "eq": "Q = n(n + 2) Σₖ ρ̂(k)²/(n − k) ~ χ²ₕ", "desc": "Tests for residual autocorrelation up to lag h"}, {"name": "Spectral Density", "eq": "f(ω) = (1/2π) Σₕ γ(h) e^(−iωh)", "desc": "Fourier transform of the autocovariance"}, {"name": "Exponential Smoothing", "eq": "ŷₜ₊₁ = α yₜ + (1 − α) ŷₜ", "desc": "Weights decay geometrically"}, {"name": "Kalman Filter Update", "eq": "K = P⁻Hᵀ(HP⁻Hᵀ + R)⁻¹;  x̂ = x̂⁻ + K(y − Hx̂⁻);  P = (I − KH)P⁻", "desc": "Optimal linear filter for linear-Gaussian state space"}]}, {"section": "🔬 Research — Information Theory, Divergences & Bounds", "items": [{"name": "Shannon Entropy", "eq": "H(X) = −Σ p(x) log p(x)", "desc": "Differential entropy of N(μ,σ²) is ½ log(2πeσ²)"}, {"name": "Kullback–Leibler Divergence", "eq": "D(P‖Q) = Σ p log(p/q) ≥ 0", "desc": "Zero iff P = Q; not symmetric"}, {"name": "Mutual Information", "eq": "I(X;Y) = D(P_XY ‖ P_X P_Y) = H(X) + H(Y) − H(X,Y)", "desc": "Zero iff X and Y independent"}, {"name": "Cross-Entropy", "eq": "H(p,q) = H(p) + D(p‖q)", "desc": "Log-loss in classification"}, {"name": "Total Variation & Pinsker", "eq": "TV = ½ Σ|p − q|;  TV ≤ √(D(P‖Q)/2)", "desc": "Controls the error of any test between P and Q"}, {"name": "Hellinger Distance", "eq": "H² = ½ Σ (√p − √q)²", "desc": "Bounds: H² ≤ TV ≤ H√(2 − H²)"}, {"name": "Local KL–Fisher Link", "eq": "D(P_θ ‖ P_{θ+δ}) ≈ ½ δᵀ I(θ) δ", "desc": "Fisher information is the local curvature of KL"}, {"name": "Data Processing Inequality", "eq": "I(X;Z) ≤ I(X;Y) if X → Y → Z is a Markov chain", "desc": "Processing cannot create information"}, {"name": "Fano's Inequality", "eq": "H(X|Y) ≤ h(Pₑ) + Pₑ log(|𝒳| − 1)", "desc": "Lower-bounds error probability in estimation"}, {"name": "Le Cam Two-Point Bound", "eq": "inf_θ̂ max_j E_j d(θ̂,θⱼ) ≥ (δ/2)(1 − TV(P₀,P₁)), if d(θ₀,θ₁) ≥ 2δ", "desc": "Basic minimax lower-bound technique"}, {"name": "Hoeffding Inequality", "eq": "P(|X̄ − μ| ≥ t) ≤ 2 exp(−2n t² / (b − a)²)", "desc": "Independent variables in [a,b]"}, {"name": "Bernstein Inequality", "eq": "P(Σ(Xᵢ − EXᵢ) ≥ t) ≤ exp(−(t²/2) / (Σ Var Xᵢ + bt/3))", "desc": "Uses variance; |Xᵢ − EXᵢ| ≤ b"}, {"name": "Gaussian Tail Bound", "eq": "P(Z > t) ≤ e^(−t²/2) / (t√(2π)),  t > 0", "desc": "Sharper than Chernoff for large t"}, {"name": "Wilks' Theorem", "eq": "−2 log Λ →ᵈ χ²ₖ  under H₀", "desc": "k = difference in parameter dimension (regular case)"}, {"name": "Sandwich Variance", "eq": "Var(θ̂) ≈ A⁻¹ B A⁻ᵀ / n", "desc": "A = E[∂ψ/∂θ], B = E[ψψᵀ]; robust to misspecification"}, {"name": "Local Asymptotic Normality", "eq": "log dP^n_{θ+h/√n}/dP^n_θ = hᵀΔₙ − ½ hᵀI h + o_P(1)", "desc": "Δₙ → N(0,I); foundation of asymptotic efficiency"}, {"name": "Edgeworth Expansion", "eq": "P(√n(X̄ − μ)/σ ≤ x) = Φ(x) − φ(x) γ(x² − 1)/(6√n) + O(1/n)", "desc": "γ = skewness; refines the CLT"}]}, {"section": "🔭 Advanced Research — Bayesian Computation & Model Assessment", "items": [{"name": "Jeffreys Prior", "eq": "π(θ) ∝ √det I(θ)", "desc": "Invariant under reparametrisation"}, {"name": "Posterior Predictive", "eq": "p(x̃|x) = ∫ p(x̃|θ) π(θ|x) dθ", "desc": "Averages the model over posterior uncertainty"}, {"name": "Metropolis–Hastings Acceptance", "eq": "α = min(1, π(θ′)q(θ|θ′) / (π(θ)q(θ′|θ)))", "desc": "Satisfies detailed balance; needs π only up to a constant"}, {"name": "Hamiltonian Monte Carlo", "eq": "H(q,p) = −log π(q) + ½ pᵀM⁻¹p", "desc": "Leapfrog integration with a Metropolis correction"}, {"name": "Importance Sampling", "eq": "ŵᵢ = π(θᵢ)/q(θᵢ);  ESS = (Σw)² / Σw²", "desc": "Effective sample size measures weight degeneracy"}, {"name": "MCMC Effective Sample Size", "eq": "ESS = N / (1 + 2 Σₖ ρₖ)", "desc": "ρₖ = lag-k autocorrelation of the chain"}, {"name": "Gelman–Rubin R̂", "eq": "R̂ = √(V̂/W),  V̂ = ((n−1)/n) W + B/n", "desc": "Values near 1 suggest convergence; B, W = between- and within-chain variance"}, {"name": "ELBO", "eq": "ELBO = E_q[log p(x,z)] − E_q[log q(z)] = log p(x) − KL(q ‖ p(z|x))", "desc": "Maximising it minimises KL to the posterior"}, {"name": "Laplace Approximation", "eq": "p(x) ≈ p(x|θ̂) π(θ̂) (2π)^(d/2) |H|^(−1/2)", "desc": "H = −∇² log(p(x|θ)π(θ)) at the mode"}, {"name": "Savage–Dickey Ratio", "eq": "BF₀₁ = p(θ₀|x) / π(θ₀)", "desc": "For nested point null hypotheses with compatible priors"}, {"name": "WAIC", "eq": "WAIC = −2 (lppd − p_WAIC)", "desc": "lppd = Σ log((1/S) Σₛ p(yᵢ|θˢ)); p_WAIC = Σ Var_s log p(yᵢ|θˢ)"}, {"name": "DIC", "eq": "DIC = D̄ + p_D,  p_D = D̄ − D(θ̄)", "desc": "Deviance information criterion; uses the posterior mean"}, {"name": "Bernstein–von Mises", "eq": "‖π(θ|x₁..xₙ) − N(θ̂, (nI(θ₀))⁻¹)‖_TV → 0", "desc": "Posterior is asymptotically normal, priors wash out"}, {"name": "Dirichlet Process Posterior", "eq": "G|x₁..xₙ ~ DP(α + n, (αG₀ + Σδ_{xᵢ})/(α + n))", "desc": "Conjugacy of the DP"}]}]);
 function renderFormulas(){
   const g=document.getElementById('formulas-body'); if(!g)return;
-  g.innerHTML=FORMULAS.map(sec=>`
+  g.innerHTML=FORMULAS.map((sec,si)=>`
     <div class="fml-section">
       <div class="fml-section-title">${sec.section}</div>
       <div class="fml-grid">
-        ${sec.items.map(f=>`
-          <div class="fml-card">
+        ${sec.items.map((f,ii)=>`
+          <div class="fml-card" id="fml-${si}-${ii}" data-search="${(f.name+' '+f.desc).toLowerCase().replace(/"/g,'')}">
             <div class="fml-name">${f.name}</div>
-            <div class="fml-eq">${f.eq}</div>
+            <div class="fml-eq-row">
+              <div class="fml-eq">${f.eq}</div>
+              <button class="fml-copy" onclick="copyFormula(this,'${f.eq.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')" title="Copy formula" aria-label="Copy ${f.name} formula">⧉</button>
+            </div>
             <div class="fml-desc">${f.desc}</div>
           </div>`).join('')}
       </div>
     </div>`).join('');
+}
+function copyFormula(btn,text){
+  const done=()=>{const old=btn.textContent;btn.textContent='✓';btn.classList.add('copied');setTimeout(()=>{btn.textContent=old;btn.classList.remove('copied');},1200);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,()=>fallbackCopy(text,done));}
+  else fallbackCopy(text,done);
+}
+function fallbackCopy(text,done){
+  const t=document.createElement('textarea');t.value=text;t.style.cssText='position:fixed;opacity:0';document.body.appendChild(t);t.select();
+  try{document.execCommand('copy');done();}catch(e){}
+  t.remove();
 }
 
 /* ═══════════════════════════════════════════════════════════

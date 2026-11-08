@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<!-- Google tag (gtag.js) --> <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'],wait_for_update:500});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="../pics/logo.png">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -770,10 +771,10 @@
 
 <!-- ═══ AUTH TOP BAR ═══ -->
 <div id="auth-topbar">
-  <a href="../index.html" class="atb-btn">🌌 Stargazer Home</a>
+  <a href="../" class="atb-btn">🌌 Universe</a>
   <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night"><span id="mode-icon">☾</span></button>
   <div style="flex:1"></div>
-  <a href="../login.html" id="loginBtn" class="atb-btn">☽ Sign In</a>
+  <a href="../login" id="loginBtn" class="atb-btn">☽ Sign In</a>
   <div id="userInfo" style="display:none;align-items:center;gap:0.5rem">
     <span class="atb-username" id="userEmailDisplay">✦ Explorer</span>
     <button class="atb-signout" onclick="doSignOut()">Sign Out</button>
@@ -2427,7 +2428,7 @@
   <a href="mailto:ayan.chakraborty6174@gmail.com" class="site-contact-email">ayan.chakraborty6174@gmail.com</a>
 </div>
 <div class="site-about-wrap">
-  <a href="../ABOUT.html" class="site-about-link">✦ about stargazer</a>
+  <a href="../ABOUT" class="site-about-link">✦ about stargazer</a>
 </div>
 
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
@@ -2543,6 +2544,7 @@
 <!-- ═══ ADMIN: add-your-own-problem, gated to the site owner ═══ -->
 <script>
 const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+const ADMIN_EMAILS = ['ayanchakrabortyall@gmail.com','officialayanimp@gmail.com','duolingo.learn1024@gmail.com'];
 
 function toggleMode(){
   const night = document.body.classList.toggle('night');
@@ -2664,7 +2666,7 @@ const TAG_LABELS = {
 };
 
 function isAdmin(){
-  return !!(window.currentUser && window.currentUser.email === ADMIN_EMAIL);
+  return !!(window.currentUser && ADMIN_EMAILS.includes(window.currentUser.email));
 }
 
 function escHtml(str){
@@ -2679,7 +2681,7 @@ function escHtml(str){
 var _communityLoaded = false;
 window._afterRenderAuthUI = function(user){
   document.querySelectorAll('.admin-bar').forEach(function(el){
-    el.classList.toggle('visible', !!(user && user.email === ADMIN_EMAIL));
+    el.classList.toggle('visible', !!(user && ADMIN_EMAILS.includes(user.email)));
   });
   if (!_communityLoaded){
     _communityLoaded = true;
@@ -2688,7 +2690,7 @@ window._afterRenderAuthUI = function(user){
     // Auth state changed after initial load (e.g. admin just signed in) —
     // re-render so delete buttons and the add-row become visible.
     document.querySelectorAll('article.q.is-custom .admin-bar').forEach(function(el){
-      el.classList.toggle('visible', !!(user && user.email === ADMIN_EMAIL));
+      el.classList.toggle('visible', !!(user && ADMIN_EMAILS.includes(user.email)));
     });
   }
 };

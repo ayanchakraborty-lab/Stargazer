@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<!-- Google tag (gtag.js) --> <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'],wait_for_update:500});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
 <meta charset="utf-8"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,13 +12,13 @@
 <meta content="133 films from accessible to reality-shattering — psychological, philosophical, structural. Mood filters, progress tracking. Begin your descent →" name="description"/>
 <meta content="world cinema ranked difficulty, mind-bending films list, psychological movies ranked, art cinema, Hindi films, Korean cinema, philosophical movies, reality-bending films" name="keywords"/>
 <meta content="index, follow" name="robots"/>
-<link href="https://stargazers.co.in/MOVIES.html" rel="canonical"/>
+<link href="https://stargazers.co.in/MOVIES" rel="canonical"/>
 <meta content="website" property="og:type"/>
 <meta content="133 Films That Will Change How You See the World | Stargazer" property="og:title"/>
 <meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
 <meta name="application-name" content="Stargazer: Lost in the Cosmos">
 <meta content="A curated descent through 133 world films — ranked by depth, not popularity. From The Truman Show to Funeral Parade of Roses. Filter by mood, track what you've watched. Start watching →" property="og:description"/>
-<meta content="https://stargazers.co.in/MOVIES.html" property="og:url"/>
+<meta content="https://stargazers.co.in/MOVIES" property="og:url"/>
 <meta property="og:image" content="https://stargazers.co.in/pics/movies.png">
 <meta name="twitter:image" content="https://stargazers.co.in/pics/movies.png">
 <meta property="og:locale" content="en_US">
@@ -29,7 +30,7 @@
   "@type": "CollectionPage",
   "name": "133 Films That Will Change How You See the World",
   "description": "133 world films ranked by depth — psychological, philosophical, structural — from accessible to reality-shattering. Mood filters, progress tracking.",
-  "url": "https://stargazers.co.in/MOVIES.html",
+  "url": "https://stargazers.co.in/MOVIES",
   "inLanguage": "en",
   "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazers.co.in/" }
 }
@@ -642,7 +643,7 @@ body.dawn .header-eyebrow { color:#7a5018 !important; }
   left: 0;
   width: 100%;
   height: 80px;
-  background-image: url('pics/vine.png');
+  background-image: url('pics/vine.webp');
   background-repeat: repeat-x;
   background-size: auto 100%;
   background-position: center top;
@@ -1004,7 +1005,7 @@ footer { margin-top:3rem; text-align:center; font-family:var(--mono); font-size:
   canvas { display: none; }
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 
 <script>
 /* Pause CPU-intensive CSS animations when tab is hidden */
@@ -1042,14 +1043,14 @@ footer { margin-top:3rem; text-align:center; font-family:var(--mono); font-size:
 <!-- ══ TOP NAV BAR ══ -->
 <nav id="topNav">
   <div class="nav-left">
-    <a href="index.html" class="nav-btn" id="navHome">← universe</a>
+    <a href="./" class="nav-btn" id="navHome">← universe</a>
   </div>
   <div class="nav-center">
     <button class="nav-btn" id="navSoundsBtn">🎵 Sounds</button>
   </div>
   <div class="nav-right" id="navRight">
 
-    <a href="login.html" class="nav-btn" id="navLoginBtn">Sign in</a>
+    <a href="login" class="nav-btn" id="navLoginBtn">Sign in</a>
     <!-- logged-in state -->
     <span id="navUserEmail"></span>
     <button class="nav-btn" id="navSignOutBtn" style="display:none;" onclick="typeof doSignOut==='function'?doSignOut():void 0">Sign out</button>
@@ -1106,7 +1107,7 @@ footer { margin-top:3rem; text-align:center; font-family:var(--mono); font-size:
 
 <!-- auth moved to top nav -->
 <div id="authHeader" style="display:none;">
-  <a href="login.html" id="loginBtn">Sign in</a>
+  <a href="login" id="loginBtn">Sign in</a>
   <div id="userInfo" style="display:none;">
     <span id="userEmailDisplay"></span>
     <button onclick="doSignOut()" id="signOutBtn">sign out</button>
@@ -1328,7 +1329,7 @@ footer { margin-top:3rem; text-align:center; font-family:var(--mono); font-size:
   <h3 class="comment-heading">✦ &nbsp; Thoughts &amp; Reflections</h3>
   <div id="commentLoginMsg" class="comment-login-msg" style="display:none;">
     <span>Sign in to share your thoughts</span>
-    <a href="login.html" class="comment-signin-btn">Sign in</a>
+    <a href="login" class="comment-signin-btn">Sign in</a>
   </div>
   <div id="commentFormWrap" style="display:none;">
     <div class="comment-form">
@@ -1349,7 +1350,7 @@ footer { margin-top:3rem; text-align:center; font-family:var(--mono); font-size:
 <div class="contact-section">
   <span class="contact-label">contact the creator</span>
   <a href="mailto:ayan.chakraborty6174@gmail.com" class="contact-email">ayan.chakraborty6174@gmail.com</a>
-  <a href="ABOUT.html" style="margin-top:0.4rem;font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;color:rgba(201,168,76,0.5);text-decoration:none;border:1px solid rgba(201,168,76,0.2);border-radius:20px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;align-self:center;" onmouseover="this.style.color='rgba(201,168,76,0.9)';this.style.borderColor='rgba(201,168,76,0.5)'" onmouseout="this.style.color='rgba(201,168,76,0.5)';this.style.borderColor='rgba(201,168,76,0.2)'">✦ about stargazer</a>
+  <a href="ABOUT" style="margin-top:0.4rem;font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;color:rgba(201,168,76,0.5);text-decoration:none;border:1px solid rgba(201,168,76,0.2);border-radius:20px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;align-self:center;" onmouseover="this.style.color='rgba(201,168,76,0.9)';this.style.borderColor='rgba(201,168,76,0.5)'" onmouseout="this.style.color='rgba(201,168,76,0.5)';this.style.borderColor='rgba(201,168,76,0.2)'">✦ about stargazer</a>
 </div>
 
 <!-- ── KONAMI SECRET FILM ── -->
@@ -1881,7 +1882,7 @@ document.querySelectorAll('.film-item[data-film]').forEach(item => {
     e.stopPropagation();
     const base = (location.origin && location.origin !== 'null')
       ? location.origin + location.pathname
-      : 'https://stargazers.co.in/MOVIES.html';
+      : 'https://stargazers.co.in/MOVIES';
     const url = base + '#film-' + n;
     function doCopy() {
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -1949,7 +1950,7 @@ window.abyss = {
     '@context':'https://schema.org', '@type':'ItemList',
     name:'Cinema Abyss — 133 World Films Easiest to Hardest',
     description:'A curated descent through 133 world films ranked by difficulty.',
-    url:'https://stargazers.co.in/MOVIES.html',
+    url:'https://stargazers.co.in/MOVIES',
     numberOfItems:133,
     itemListOrder:'https://schema.org/ItemListOrderAscending',
     itemListElement:items
@@ -2010,7 +2011,7 @@ window._afterProgressLoad = function() {
 </div>
 
 <!-- ── HOME LINK ── -->
-<a href="index.html" id="homeLink">← universe</a>
+<a href="./" id="homeLink">← universe</a>
 
 <!-- ── BACK TO TOP ── -->
 <script>

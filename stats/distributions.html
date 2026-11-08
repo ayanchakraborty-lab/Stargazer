@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<!-- Google tag (gtag.js) --> <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'],wait_for_update:500});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="../pics/logo.png">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -49,15 +50,15 @@
 
 <!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
 <div id="auth-topbar">
-  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <a href="../" class="atb-btn atb-home">🌌 Universe</a>
   <div style="flex:1"></div>
   <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
     <span id="mode-icon">☾</span>
   </button>
-  <a href="../login.html" id="loginBtn">☽ Sign In</a>
+  <a href="../login" id="loginBtn">☽ Sign In</a>
   <div id="userInfo">
     <span id="userEmailDisplay">✦ Explorer</span>
-    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login'">Sign Out</button>
   </div>
 </div>
 
@@ -94,16 +95,22 @@
       <div class="s-head">
         <span class="s-eyebrow" style="background:var(--rd-l);color:var(--rd);border:1px solid rgba(143,58,44,.25)">Interactive Distributions</span>
         <h2 class="s-title font-serif">The Distributions — Building Blocks of All Models</h2>
-        <p class="s-desc">Each distribution includes an interactive graph — move the sliders to see how the shape responds. Skewness, kurtosis, and moment generating functions included.</p>
+        <p class="s-desc">Each distribution includes an interactive graph — move the sliders to see how the shape responds. Skewness, kurtosis, and moment generating functions included. The Theory &amp; Relations tab adds how the distributions connect, exponential families, transformations and order statistics, limit theorems, extreme values, concentration, copulas and multivariate distributions at four levels, plus 18 further distributions.</p>
       </div>
       <div class="dist-tabs">
         <button class="dist-tab active" onclick="switchDistTab('discrete',this)">Discrete</button>
         <button class="dist-tab" onclick="switchDistTab('continuous',this)">Continuous</button>
         <button class="dist-tab" onclick="switchDistTab('special',this)">Special / Derived</button>
+    <button class="dist-tab" onclick="switchDistTab('theory',this)">Theory &amp; Relations</button>
+    <button class="dist-tab" onclick="switchDistTab('calc',this)">Calculators</button>
       </div>
+      <div class="dist-search-row"><input id="dist-filter" placeholder="Search… ( / )" oninput="filterDists(this.value)" aria-label="Search distributions and calculators"></div>
+      <span id="dist-filter-count"></span>
       <div class="dist-panel active" id="panel-discrete"><div class="g3" id="dist-discrete"></div></div>
       <div class="dist-panel" id="panel-continuous"><div class="g3" id="dist-continuous"></div></div>
       <div class="dist-panel" id="panel-special"><div class="g3" id="dist-special"></div></div>
+<div class="dist-panel" id="panel-theory"><div id="dist-theory"></div></div>
+<div class="dist-panel" id="panel-calc"><div class="g2" id="dist-calc"></div></div>
     </div>
   </section>
 </div>
@@ -114,7 +121,7 @@
   <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
 </div>
 <div style="text-align:center;padding-bottom:2rem;">
-  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+  <a href="../ABOUT" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
 </div>
 
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
@@ -122,8 +129,9 @@
 window._nextPage = 'bayesian.html';
 window._prevPage = 'inference.html';
 const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+const ADMIN_EMAILS = ['ayanchakrabortyall@gmail.com','officialayanimp@gmail.com','duolingo.learn1024@gmail.com'];
 
-function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+function isAdmin(){return !!(window.currentUser && ADMIN_EMAILS.includes(window.currentUser.email));}
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -193,7 +201,7 @@ function runSearch(q){
   if(!q.trim()){res.innerHTML='<div class="sr-empty">Start typing…</div>';return;}
   const lq=q.toLowerCase();
   const hits=SEARCH_INDEX.filter(x=>x.q.toLowerCase().includes(lq)).slice(0,18);
-  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q+'"</div>';return;}
+  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'"</div>';return;}
   res.innerHTML=hits.map((h,i)=>`<div class="sr-item" tabindex="0" data-idx="${i}" onclick="goSearchResult(${SEARCH_INDEX.indexOf(h)})" onkeydown="if(event.key==='Enter')goSearchResult(${SEARCH_INDEX.indexOf(h)})"><span class="sr-icon">${h.icon}</span><div><div class="sr-title">${highlight(h.title,lq)}</div><div class="sr-meta">${h.meta}</div></div><span class="sr-section">${h.section}</span></div>`).join('');
 }
 function highlight(text,q){
@@ -202,7 +210,16 @@ function highlight(text,q){
   if(idx<0)return text;
   return text.slice(0,idx)+'<mark style="background:var(--gd-l);color:var(--gd);border-radius:2px">'+text.slice(idx,idx+q.length)+'</mark>'+text.slice(idx+q.length);
 }
-function goSearchResult(idx){ closeSearch(); }
+function goSearchResult(idx){
+  const hit=SEARCH_INDEX[idx];
+  closeSearch();
+  if(!hit)return;
+  if(hit.calc){switchDistTab('calc');const f=document.getElementById('dist-filter');if(f){f.value='';filterDists('');}
+    const card=[...document.querySelectorAll('#dist-calc .calc-card')].find(c=>c.querySelector('.dist-name').textContent===hit.title);
+    if(card){card.scrollIntoView({behavior:'smooth',block:'center'});card.classList.remove('flash');void card.offsetWidth;card.classList.add('flash');}
+    return;}
+  if(hit.slug)openDistBySlug(hit.slug);
+}
 function searchKeyNav(e){
   if(e.key==='Escape'){closeSearch();return;}
   const items=document.querySelectorAll('.sr-item');
@@ -216,22 +233,23 @@ function searchKeyNav(e){
 
 function buildSearchIndex(){
   if(SEARCH_INDEX.length)return;
-  ['discrete','continuous','special'].forEach(t=>(DISTRIBUTIONS[t]||[]).forEach(d=>SEARCH_INDEX.push({icon:'📊',title:d.name,meta:d.notation,section:'Distributions',page:'distributions',q:d.name+' '+d.notation+' '+d.note})));
+  ['discrete','continuous','special'].forEach(t=>(DISTRIBUTIONS[t]||[]).forEach(d=>SEARCH_INDEX.push({icon:'📊',title:d.name,meta:d.notation,section:'Distributions',slug:d.slug,q:d.name+' '+d.notation+' '+d.note})));
+  CALCS.forEach(c=>SEARCH_INDEX.push({icon:'🔢',title:c.name,meta:'Calculator',section:'Calculators',calc:true,q:c.name+' '+c.desc}));
 }
 
 
 (function initKeyboard(){
-  const PAGES=['home','precollege_placeholder'];
   document.addEventListener('keydown',e=>{
-    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
+    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)||e.target.isContentEditable)return;
+    if(e.ctrlKey||e.metaKey||e.altKey)return;
     if(document.getElementById('search-modal')&&document.getElementById('search-modal').classList.contains('open')){
       if(e.key==='Escape')closeSearch();
       return;
     }
     if(e.key==='/'){e.preventDefault();openSearch();return;}
-    if(e.key==='ArrowRight'){e.preventDefault();location.href=window._nextPage;}
-    if(e.key==='ArrowLeft'){e.preventDefault();location.href=window._prevPage;}
-    if(e.key==='f'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){if(typeof showRandomFact==='function')showRandomFact();}
+    if(e.key==='ArrowRight'&&window._nextPage){e.preventDefault();location.href=window._nextPage;}
+    if(e.key==='ArrowLeft'&&window._prevPage){e.preventDefault();location.href=window._prevPage;}
+    if(e.key==='f'){if(typeof showRandomFact==='function')showRandomFact();}
     if(e.key==='Escape'){
       const hmenu=document.getElementById('hamburger-menu');
       if(hmenu&&hmenu.classList.contains('open')){
@@ -248,6 +266,25 @@ function showToast(msg,bg){
   t.style.cssText=`position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);background:${bg};color:#fff;font-family:'Source Code Pro',monospace;font-size:.72rem;padding:.45rem 1.1rem;border-radius:99px;z-index:9998;animation:fadeUpIn .35s ease;white-space:nowrap;pointer-events:none`;
   document.body.appendChild(t);
   setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .35s';setTimeout(()=>t.remove(),380);},2200);
+}
+
+const FUN_FACTS=[
+  "The Poisson distribution was introduced by Siméon Denis Poisson in 1837, originally to model criminal convictions.",
+  "The Cauchy distribution has no defined mean — its “average” never converges, no matter how large your sample.",
+  "The Beta distribution is the conjugate prior for the Binomial, which is why it turns up constantly in Bayesian statistics.",
+  "The Normal distribution is stable under addition: sum any number of independent Normals and the result is still Normal.",
+  "The Exponential distribution is memoryless — it's the only continuous distribution with that property.",
+  "Zipf's law was first proposed to describe word frequencies, but shows up in city sizes and income distributions too."
+];
+function showRandomFact(){
+  const t=document.getElementById('toast');if(!t)return;
+  document.getElementById('toast-body').textContent=FUN_FACTS[Math.floor(Math.random()*FUN_FACTS.length)];
+  t.classList.add('show');
+  clearTimeout(t._factTimer);
+  t._factTimer=setTimeout(hideToast,8000);
+}
+function hideToast(){
+  const t=document.getElementById('toast');if(t)t.classList.remove('show');
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -286,7 +323,7 @@ const DISTRIBUTIONS = {
     {name:'Negative Binomial',slug:'negbin',notation:'NB(r, p)',params:'r &gt; 0: number of successes; p ∈ (0,1): success prob',
      mean:'r(1−p)/p',variance:'r(1−p)/p²',skew:'(2−p)/√(r(1−p))',exkurt:'6/r + p²/(r(1−p))',
      mgf:'(p/(1−(1−p)eᵗ))ʳ, t &lt; −ln(1−p)',
-     note:'Models trials until r successes. Generalises Geometric (r=1). Also used as an overdispersed count model — variance > mean, unlike Poisson where variance = mean.',
+     note:'Counts the number of failures before the r-th success. Generalises Geometric (r=1). Also used as an overdispersed count model — variance > mean, unlike Poisson where variance = mean.',
      sliders:[{id:'r',label:'r',min:1,max:20,step:1,def:5},{id:'p',label:'p',min:0.1,max:0.9,step:0.05,def:0.4}],
      detail:`<p>The Negative Binomial distribution has two interpretations: (1) the waiting time for r successes in a sequence of Bernoulli(p) trials, and (2) a Poisson distribution with a Gamma-distributed rate (Poisson-Gamma mixture). This second interpretation makes it the standard model for overdispersed count data — counts where variance &gt; mean, which is extremely common in ecology (species abundance), genomics (RNA-seq read counts), insurance (claim counts), and epidemiology.</p>
      <p>In the Poisson-Gamma mixture interpretation: if Y|λ ∼ Poisson(λ) and λ ∼ Gamma(r, p/(1−p)), then marginalising over λ gives Y ∼ NB(r, p). This has two implications: (1) overdispersion arises naturally from unobserved heterogeneity in rates, and (2) Bayesian analysis of Poisson counts with Gamma priors produces NB posteriors (Gamma is conjugate to Poisson).</p>
@@ -512,443 +549,530 @@ const DISTRIBUTIONS = {
   ]
 };
 
-/* ── BAYESIAN ────────────────────────────────────────────────── */
+/* ── DISTRIBUTIONS: PLOTTING & INTERACTION ENGINE ─────────────── */
 
-function renderDistributions(){
-  ['discrete','continuous','special'].forEach(type=>{
-    const g=document.getElementById('dist-'+type); if(!g)return;
-    g.innerHTML=DISTRIBUTIONS[type].map((d,idx)=>buildDistCard(d,type,idx)).join('');
-  });
-  // Init all canvases for the visible panel
-  setTimeout(()=>initAllDistCanvases('discrete'),80);
+/* ═══════════════════════════════════════════════════════════
+   NUMERICS — accurate special functions (exact CDFs + live moments)
+   ═══════════════════════════════════════════════════════════ */
+const LG_C=[0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];
+function lgamma(z){
+  if(z<0.5)return Math.log(Math.PI/Math.abs(Math.sin(Math.PI*z)))-lgamma(1-z);
+  z-=1;let x=LG_C[0];for(let i=1;i<9;i++)x+=LG_C[i]/(z+i);
+  const t=z+7.5;return 0.5*Math.log(2*Math.PI)+(z+0.5)*Math.log(t)-t+Math.log(x);
+}
+function gammaFn(z){return z<0.5?Math.PI/(Math.sin(Math.PI*z)*gammaFn(1-z)):Math.exp(lgamma(z));}
+function lchoose(n,k){return lgamma(n+1)-lgamma(k+1)-lgamma(n-k+1);}
+function lbeta(a,b){return lgamma(a)+lgamma(b)-lgamma(a+b);}
+/* regularised lower incomplete gamma P(a,x) — series / continued fraction */
+function gammaP(a,x){
+  if(x<=0)return 0;if(!isFinite(x))return 1;
+  const gln=lgamma(a);
+  if(x<a+1){
+    let ap=a,sum=1/a,del=sum;
+    for(let n=0;n<600;n++){ap+=1;del*=x/ap;sum+=del;if(Math.abs(del)<Math.abs(sum)*1e-15)break;}
+    return sum*Math.exp(-x+a*Math.log(x)-gln);
+  }
+  let b=x+1-a,c=1e300,d=1/b,h=d;
+  for(let i=1;i<600;i++){
+    const an=-i*(i-a);b+=2;
+    d=an*d+b;if(Math.abs(d)<1e-300)d=1e-300;
+    c=b+an/c;if(Math.abs(c)<1e-300)c=1e-300;
+    d=1/d;const del=d*c;h*=del;if(Math.abs(del-1)<1e-15)break;
+  }
+  return 1-Math.exp(-x+a*Math.log(x)-gln)*h;
+}
+/* regularised incomplete beta I_x(a,b) — Lentz continued fraction */
+function betacf(x,a,b){
+  const FP=1e-300,qab=a+b,qap=a+1,qam=a-1;
+  let c=1,d=1-qab*x/qap;if(Math.abs(d)<FP)d=FP;d=1/d;let h=d;
+  for(let m=1;m<=400;m++){
+    const m2=2*m;
+    let aa=m*(b-m)*x/((qam+m2)*(a+m2));
+    d=1+aa*d;if(Math.abs(d)<FP)d=FP;c=1+aa/c;if(Math.abs(c)<FP)c=FP;d=1/d;h*=d*c;
+    aa=-(a+m)*(qab+m)*x/((a+m2)*(qap+m2));
+    d=1+aa*d;if(Math.abs(d)<FP)d=FP;c=1+aa/c;if(Math.abs(c)<FP)c=FP;d=1/d;
+    const del=d*c;h*=del;if(Math.abs(del-1)<1e-15)break;
+  }
+  return h;
+}
+function betaInc(x,a,b){
+  if(x<=0)return 0;if(x>=1)return 1;
+  const bt=Math.exp(lgamma(a+b)-lgamma(a)-lgamma(b)+a*Math.log(x)+b*Math.log(1-x));
+  return x<(a+1)/(a+b+2)?bt*betacf(x,a,b)/a:1-bt*betacf(1-x,b,a)/b;
+}
+function erf(x){return x>=0?gammaP(0.5,x*x):-gammaP(0.5,x*x);}
+function normCDF(z){return 0.5*(1+erf(z/Math.SQRT2));}
+function besselI(n,x){
+  let term=Math.pow(x/2,n)/gammaFn(n+1),sum=term;const q=x*x/4;
+  for(let k=1;k<300;k++){term*=q/(k*(k+n));sum+=term;if(term<sum*1e-16)break;}
+  return sum;
+}
+function simpson(f,a,b,n){
+  n=n||240;if(n%2)n++;const h=(b-a)/n;let s=f(a)+f(b);
+  for(let i=1;i<n;i++)s+=f(a+i*h)*(i%2?4:2);
+  return s*h/3;
+}
+function zeta(s){
+  const N=20;let sum=0;for(let k=1;k<N;k++)sum+=Math.pow(k,-s);
+  return sum+Math.pow(N,1-s)/(s-1)+0.5*Math.pow(N,-s)+s*Math.pow(N,-s-1)/12-s*(s+1)*(s+2)*Math.pow(N,-s-3)/720;
 }
 
+/* ═══════════════════════════════════════════════════════════
+   DISTRIBUTION REGISTRY — pdf/pmf, exact cdf, plot range, numeric moments
+   d:1 → discrete (pmf on integer range) · d:0 → continuous (pdf + exact cdf)
+   ═══════════════════════════════════════════════════════════ */
+const EULER_G=0.5772156649015329;
+function finiteMoments(pmf,lo,hi){
+  let m0=0,m1=0;
+  for(let k=lo;k<=hi;k++){const q=pmf(k);m0+=q;m1+=k*q;}
+  const mu=m1/m0;let m2=0,m3=0,m4=0;
+  for(let k=lo;k<=hi;k++){const q=pmf(k)/m0,d=k-mu;m2+=q*d*d;m3+=q*d*d*d;m4+=q*d*d*d*d;}
+  return{mean:mu,var:m2,skew:m2>1e-14?m3/Math.pow(m2,1.5):NaN,exkurt:m2>1e-14?m4/(m2*m2)-3:NaN};
+}
+const hyp=p=>{const N=Math.round(p.Np),K=Math.min(Math.round(p.Kp),N),n=Math.min(Math.round(p.np),N);return{N,K,n};};
+const hypPmf=(k,p)=>{const{N,K,n}=hyp(p);if(k<Math.max(0,n-(N-K))||k>Math.min(n,K))return 0;return Math.exp(lchoose(K,k)+lchoose(N-K,n-k)-lchoose(N,n));};
+const bbPmf=(k,p)=>{const n=Math.round(p.n);if(k<0||k>n)return 0;return Math.exp(lchoose(n,k)+lbeta(k+p.alpha,n-k+p.beta_p)-lbeta(p.alpha,p.beta_p));};
+const zipfPmf=(k,p)=>k<1?0:Math.pow(k,-p.s)/zeta(p.s);
+const INF=Infinity;
+const DIST={
+/* ── discrete ── */
+bernoulli:{d:1,range:p=>[0,1],pmf:(k,p)=>k===0?1-p.p:k===1?p.p:0,
+  mom:p=>{const q=1-p.p,v=p.p*q;return{mean:p.p,var:v,skew:(1-2*p.p)/Math.sqrt(v),exkurt:(1-6*v)/v};}},
+binomial:{d:1,range:p=>[0,Math.round(p.n)],
+  pmf:(k,p)=>{const n=Math.round(p.n);return k<0||k>n?0:Math.exp(lchoose(n,k)+k*Math.log(p.p)+(n-k)*Math.log(1-p.p));},
+  mom:p=>{const n=Math.round(p.n),q=1-p.p,v=n*p.p*q;return{mean:n*p.p,var:v,skew:(1-2*p.p)/Math.sqrt(v),exkurt:(1-6*p.p*q)/v};}},
+geometric:{d:1,range:p=>[1,Math.min(30,Math.ceil(10/p.p)+2)],pmf:(k,p)=>k<1?0:p.p*Math.pow(1-p.p,k-1),
+  mom:p=>{const q=1-p.p;return{mean:1/p.p,var:q/(p.p*p.p),skew:(2-p.p)/Math.sqrt(q),exkurt:6+p.p*p.p/q};}},
+negbin:{d:1,range:p=>[0,Math.min(60,Math.ceil(p.r/p.p*3)+5)],
+  pmf:(k,p)=>k<0?0:Math.exp(lgamma(k+p.r)-lgamma(p.r)-lgamma(k+1)+p.r*Math.log(p.p)+k*Math.log(1-p.p)),
+  mom:p=>{const q=1-p.p,r=p.r;return{mean:r*q/p.p,var:r*q/(p.p*p.p),skew:(2-p.p)/Math.sqrt(r*q),exkurt:6/r+p.p*p.p/(r*q)};}},
+poisson:{d:1,range:p=>[0,Math.max(15,Math.ceil(p.lambda*3+4))],
+  pmf:(k,p)=>k<0?0:Math.exp(-p.lambda+k*Math.log(p.lambda)-lgamma(k+1)),
+  mom:p=>({mean:p.lambda,var:p.lambda,skew:1/Math.sqrt(p.lambda),exkurt:1/p.lambda})},
+hypergeometric:{d:1,range:p=>{const{N,K,n}=hyp(p);return[Math.max(0,n-(N-K)),Math.min(n,K)];},pmf:hypPmf,
+  mom:p=>{const r=DIST.hypergeometric.range(p);return finiteMoments(k=>hypPmf(k,p),r[0],r[1]);}},
+zipf:{d:1,range:p=>[1,20],pmf:zipfPmf,
+  mom:p=>{const s=p.s,z=zeta(s);const m1=s>2?zeta(s-1)/z:INF;
+    return{mean:m1,var:s>3?zeta(s-2)/z-m1*m1:INF,skew:NaN,exkurt:NaN};}},
+betabin:{d:1,range:p=>[0,Math.round(p.n)],pmf:bbPmf,
+  mom:p=>finiteMoments(k=>bbPmf(k,p),0,Math.round(p.n))},
+/* ── continuous ── */
+uniform:{d:0,range:p=>[p.a-0.5,p.b+0.5],pdf:(x,p)=>x>=p.a&&x<=p.b?1/(p.b-p.a):0,
+  cdf:(x,p)=>x<=p.a?0:x>=p.b?1:(x-p.a)/(p.b-p.a),
+  mom:p=>({mean:(p.a+p.b)/2,var:Math.pow(p.b-p.a,2)/12,skew:0,exkurt:-1.2})},
+normal:{d:0,range:p=>[p.mu-4*p.sigma,p.mu+4*p.sigma],
+  pdf:(x,p)=>Math.exp(-0.5*Math.pow((x-p.mu)/p.sigma,2))/(p.sigma*Math.sqrt(2*Math.PI)),
+  cdf:(x,p)=>normCDF((x-p.mu)/p.sigma),mom:p=>({mean:p.mu,var:p.sigma*p.sigma,skew:0,exkurt:0})},
+exponential:{d:0,range:p=>[0,6/p.lambda],pdf:(x,p)=>x<0?0:p.lambda*Math.exp(-p.lambda*x),
+  cdf:(x,p)=>x<0?0:1-Math.exp(-p.lambda*x),mom:p=>({mean:1/p.lambda,var:1/(p.lambda*p.lambda),skew:2,exkurt:6})},
+gamma:{d:0,range:p=>[0,Math.max((p.alpha+4*Math.sqrt(p.alpha))/p.beta,2.5/p.beta)],
+  pdf:(x,p)=>x<=0?0:Math.exp(p.alpha*Math.log(p.beta)+(p.alpha-1)*Math.log(x)-p.beta*x-lgamma(p.alpha)),
+  cdf:(x,p)=>gammaP(p.alpha,p.beta*x),
+  mom:p=>({mean:p.alpha/p.beta,var:p.alpha/(p.beta*p.beta),skew:2/Math.sqrt(p.alpha),exkurt:6/p.alpha})},
+beta:{d:0,range:p=>[0.002,0.998],
+  pdf:(x,p)=>x<=0||x>=1?0:Math.exp((p.alpha-1)*Math.log(x)+(p.beta_p-1)*Math.log(1-x)-lbeta(p.alpha,p.beta_p)),
+  cdf:(x,p)=>betaInc(x,p.alpha,p.beta_p),
+  mom:p=>{const a=p.alpha,b=p.beta_p,s=a+b;return{mean:a/s,var:a*b/(s*s*(s+1)),
+    skew:2*(b-a)*Math.sqrt(s+1)/((s+2)*Math.sqrt(a*b)),
+    exkurt:6*(Math.pow(a-b,2)*(s+1)-a*b*(s+2))/(a*b*(s+2)*(s+3))};}},
+lognormal:{d:0,range:p=>{const m=Math.exp(p.mu+p.sigma*p.sigma/2);return[0,Math.max(Math.min(Math.exp(p.mu+3.5*p.sigma),6*m),3*Math.exp(p.mu))];},
+  pdf:(x,p)=>x<=0?0:Math.exp(-0.5*Math.pow((Math.log(x)-p.mu)/p.sigma,2))/(x*p.sigma*Math.sqrt(2*Math.PI)),
+  cdf:(x,p)=>x<=0?0:normCDF((Math.log(x)-p.mu)/p.sigma),
+  mom:p=>{const s2=p.sigma*p.sigma,e=Math.exp(s2);return{mean:Math.exp(p.mu+s2/2),var:(e-1)*Math.exp(2*p.mu+s2),
+    skew:(e+2)*Math.sqrt(e-1),exkurt:Math.exp(4*s2)+2*Math.exp(3*s2)+3*Math.exp(2*s2)-6};}},
+cauchy:{d:0,range:p=>[p.x0-6*p.gamma,p.x0+6*p.gamma],
+  pdf:(x,p)=>1/(Math.PI*p.gamma*(1+Math.pow((x-p.x0)/p.gamma,2))),
+  cdf:(x,p)=>0.5+Math.atan((x-p.x0)/p.gamma)/Math.PI,mom:p=>({mean:NaN,var:NaN,skew:NaN,exkurt:NaN})},
+laplace:{d:0,range:p=>[p.mu-6*p.b,p.mu+6*p.b],pdf:(x,p)=>Math.exp(-Math.abs(x-p.mu)/p.b)/(2*p.b),
+  cdf:(x,p)=>x<p.mu?0.5*Math.exp((x-p.mu)/p.b):1-0.5*Math.exp(-(x-p.mu)/p.b),
+  mom:p=>({mean:p.mu,var:2*p.b*p.b,skew:0,exkurt:3})},
+pareto:{d:0,range:p=>[0,p.xm*Math.min(10,Math.pow(20,1/p.alpha))],
+  pdf:(x,p)=>x<p.xm?0:p.alpha*Math.pow(p.xm,p.alpha)/Math.pow(x,p.alpha+1),
+  cdf:(x,p)=>x<p.xm?0:1-Math.pow(p.xm/x,p.alpha),
+  mom:p=>{const a=p.alpha,m=p.xm;return{mean:a>1?a*m/(a-1):INF,var:a>2?m*m*a/(Math.pow(a-1,2)*(a-2)):INF,
+    skew:a>3?2*(1+a)/(a-3)*Math.sqrt((a-2)/a):NaN,exkurt:a>4?6*(a*a*a+a*a-6*a-2)/(a*(a-3)*(a-4)):NaN};}},
+gumbel:{d:0,range:p=>[p.mu-2.5*p.beta,p.mu+8*p.beta],
+  pdf:(x,p)=>{const z=(x-p.mu)/p.beta;return Math.exp(-(z+Math.exp(-z)))/p.beta;},
+  cdf:(x,p)=>Math.exp(-Math.exp(-(x-p.mu)/p.beta)),
+  mom:p=>({mean:p.mu+EULER_G*p.beta,var:Math.PI*Math.PI*p.beta*p.beta/6,skew:1.1395470994046486,exkurt:2.4})},
+invgauss:{d:0,range:p=>[0,Math.max(2*p.mu,p.mu+4*Math.sqrt(p.mu*p.mu*p.mu/p.lambda))],
+  pdf:(x,p)=>x<=0?0:Math.sqrt(p.lambda/(2*Math.PI*x*x*x))*Math.exp(-p.lambda*Math.pow(x-p.mu,2)/(2*p.mu*p.mu*x)),
+  cdf:(x,p)=>{if(x<=0)return 0;const r=Math.sqrt(p.lambda/x);
+    return normCDF(r*(x/p.mu-1))+Math.exp(Math.min(700,2*p.lambda/p.mu)+Math.log(Math.max(1e-300,normCDF(-r*(x/p.mu+1)))));},
+  mom:p=>({mean:p.mu,var:Math.pow(p.mu,3)/p.lambda,skew:3*Math.sqrt(p.mu/p.lambda),exkurt:15*p.mu/p.lambda})},
+rayleigh:{d:0,range:p=>[0,4.5*p.sigma],pdf:(x,p)=>x<0?0:x/(p.sigma*p.sigma)*Math.exp(-x*x/(2*p.sigma*p.sigma)),
+  cdf:(x,p)=>x<0?0:1-Math.exp(-x*x/(2*p.sigma*p.sigma)),
+  mom:p=>({mean:p.sigma*Math.sqrt(Math.PI/2),var:p.sigma*p.sigma*(4-Math.PI)/2,
+    skew:2*Math.sqrt(Math.PI)*(Math.PI-3)/Math.pow(4-Math.PI,1.5),exkurt:-(6*Math.PI*Math.PI-24*Math.PI+16)/Math.pow(4-Math.PI,2)})},
+vonmises:{d:0,range:p=>[-Math.PI,Math.PI],
+  pdf:(x,p)=>Math.exp(p.kappa*Math.cos(x-p.mu))/(2*Math.PI*besselI(0,p.kappa)),
+  cdf:(x,p)=>Math.min(1,Math.max(0,simpson(t=>DIST.vonmises.pdf(t,p),-Math.PI,x,Math.max(2,Math.round(60*(x+Math.PI)/Math.PI)*2)))),
+  mom:p=>{let m=((p.mu+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI;
+    return{mean:m,var:1-besselI(1,p.kappa)/besselI(0,p.kappa),skew:NaN,exkurt:NaN};}},
+chisq:{d:0,range:p=>[0,p.k+5*Math.sqrt(2*p.k)+2],
+  pdf:(x,p)=>x<=0?0:Math.exp((p.k/2-1)*Math.log(x)-x/2-(p.k/2)*Math.LN2-lgamma(p.k/2)),
+  cdf:(x,p)=>gammaP(p.k/2,x/2),mom:p=>({mean:p.k,var:2*p.k,skew:Math.sqrt(8/p.k),exkurt:12/p.k})},
+studentt:{d:0,range:p=>[-5,5],
+  pdf:(x,p)=>Math.exp(lgamma((p.nu+1)/2)-lgamma(p.nu/2)-0.5*Math.log(p.nu*Math.PI)-(p.nu+1)/2*Math.log(1+x*x/p.nu)),
+  cdf:(x,p)=>{const i=betaInc(p.nu/(p.nu+x*x),p.nu/2,0.5);return x>0?1-i/2:i/2;},
+  mom:p=>{const v=p.nu;return{mean:v>1?0:NaN,var:v>2?v/(v-2):(v>1?INF:NaN),skew:v>3?0:NaN,exkurt:v>4?6/(v-4):(v>2?INF:NaN)};}},
+fdist:{d:0,range:p=>[0,6],
+  pdf:(x,p)=>x<=0?0:Math.exp(0.5*(p.d1*Math.log(p.d1*x)+p.d2*Math.log(p.d2)-(p.d1+p.d2)*Math.log(p.d1*x+p.d2))-Math.log(x)-lbeta(p.d1/2,p.d2/2)),
+  cdf:(x,p)=>x<=0?0:betaInc(p.d1*x/(p.d1*x+p.d2),p.d1/2,p.d2/2),
+  mom:p=>{const a=p.d1,b=p.d2;return{mean:b>2?b/(b-2):INF,
+    var:b>4?2*b*b*(a+b-2)/(a*Math.pow(b-2,2)*(b-4)):(b>2?INF:NaN),
+    skew:b>6?(2*a+b-2)*Math.sqrt(8*(b-4))/((b-6)*Math.sqrt(a*(a+b-2))):NaN,
+    exkurt:b>8?12*(a*(5*b-22)*(a+b-2)+(b-4)*Math.pow(b-2,2))/(a*(b-6)*(b-8)*(a+b-2)):NaN};}},
+weibull:{d:0,range:p=>[0,p.lambda*(3+3/p.k)],
+  pdf:(x,p)=>x<=0?0:(p.k/p.lambda)*Math.pow(x/p.lambda,p.k-1)*Math.exp(-Math.pow(x/p.lambda,p.k)),
+  cdf:(x,p)=>x<=0?0:1-Math.exp(-Math.pow(x/p.lambda,p.k)),
+  mom:p=>{const g=n=>Math.pow(p.lambda,n)*gammaFn(1+n/p.k),m1=g(1),m2=g(2),m3=g(3),m4=g(4),v=m2-m1*m1;
+    return{mean:m1,var:v,skew:(m3-3*m1*v-m1*m1*m1)/Math.pow(v,1.5),exkurt:(m4-4*m1*m3+6*m1*m1*m2-3*Math.pow(m1,4))/(v*v)-3};}},
+/* ── 2-D / simplex plots (custom drawing) ── */
+dirichlet:{plot:'dirichlet',
+  mom:p=>{const a0=p.a1+p.a2+p.a3,f=v=>fmt(v),vr=a=>a*(a0-a)/(a0*a0*(a0+1));
+    return{mean:'('+[p.a1,p.a2,p.a3].map(a=>f(a/a0)).join(', ')+')',var:'('+[p.a1,p.a2,p.a3].map(a=>f(vr(a))).join(', ')+')',skew:NaN,exkurt:NaN};}},
+mvnormal:{plot:'mvnormal',
+  mom:p=>({mean:'(0, 0)',var:'(1, 1)  ·  Cov = '+fmt(p.rho),skew:0,exkurt:0})}
+};
+function stepDecimals(el){return((String(el.step).split('.')[1])||'').length;}
+/* keep linked sliders consistent (e.g. K ≤ N, a < b) */
+function constrainSliders(cid,slug){
+  const g=id=>document.getElementById('sl-'+cid+'-'+id);
+  const sync=(el)=>{if(!el)return;const lb=document.getElementById(el.id.replace('sl-','lbl-'));
+    if(lb)lb.textContent=parseFloat(el.value).toFixed(stepDecimals(el));};
+  if(slug==='hypergeometric'){
+    const N=g('Np'),K=g('Kp'),n=g('np');
+    if(N&&K&&n){K.max=N.value;n.max=N.value;if(+K.value>+K.max)K.value=K.max;if(+n.value>+n.max)n.value=n.max;sync(K);sync(n);}
+  }else if(slug==='uniform'){
+    const a=g('a'),b=g('b');
+    if(a&&b){b.min=Math.max(0,+a.value+0.5);a.max=Math.min(0,+b.value-0.5);
+      if(+b.value<+b.min)b.value=b.min;if(+a.value>+a.max)a.value=a.max;sync(a);sync(b);}
+  }
+}
+function fmt(v){
+  if(typeof v==='string')return v;
+  if(v===undefined||v===null||Number.isNaN(v))return 'undefined';
+  if(v===Infinity)return '∞';if(v===-Infinity)return '−∞';
+  const a=Math.abs(v);let s;
+  if(a!==0&&(a<1e-3||a>=1e5))s=v.toExponential(2);else s=String(parseFloat(v.toPrecision(4)));
+  return s.replace('-','−');
+}
 
+/* ═══════════════════════════════════════════════════════════
+   PLOTTING + INTERACTION — canvases, hover/pin readout, live moments
+   ═══════════════════════════════════════════════════════════ */
+const DX={},CARDS={};
+const DIST_TYPES=['discrete','continuous','special'];
+const HINT='Hover to scrub · click or drag to pin · double-click to clear';
+function themeCols(){
+  const cs=getComputedStyle(document.body),v=n=>cs.getPropertyValue(n).trim();
+  return{txt:v('--text-3')||'#666',acc:v('--rd')||'#8f3a2c',accL:v('--rd-l')||'rgba(143,58,44,.08)',bl:v('--bl')||'#2a5f78',blL:v('--bl-l')||'rgba(42,95,120,.08)',gd:v('--gd')||'#7a5a0e',grid:v('--border-2')||'rgba(0,0,0,.05)',axis:v('--border')||'#ccc'};
+}
+function niceTicks(lo,hi,n){
+  const span=hi-lo;if(!(span>0))return{ticks:[lo],step:1};
+  const raw=span/n,mag=Math.pow(10,Math.floor(Math.log10(raw))),f=raw/mag,step=(f<1.5?1:f<3?2:f<7?5:10)*mag,out=[];
+  for(let t=Math.ceil(lo/step-1e-9)*step;t<=hi+1e-9;t+=step)out.push(Math.abs(t)<1e-12?0:+t.toPrecision(12));
+  return{ticks:out,step};
+}
+function tickTxt(t,step){const d=Math.min(4,Math.max(0,-Math.floor(Math.log10(step)+1e-9)));return t.toFixed(d).replace('-','−');}
+function yTxt(v){return v>=10?v.toFixed(1):v>=1?v.toFixed(2):v>=0.01?v.toFixed(3):v===0?'0':v.toExponential(1);}
+function getParams(cid){
+  const m=CARDS[cid],p={};
+  m.d.sliders.forEach(s=>{const el=document.getElementById('sl-'+cid+'-'+s.id);p[s.id]=el?parseFloat(el.value):s.def;});
+  return p;
+}
+function prepCanvas(cid){
+  const c=document.getElementById(cid);if(!c)return null;
+  const w=c.parentElement.clientWidth;if(!w)return null;            /* hidden panel */
+  const dpr=window.devicePixelRatio||1,h=160;
+  if(c.width!==Math.round(w*dpr)||c.height!==Math.round(h*dpr)){c.width=Math.round(w*dpr);c.height=Math.round(h*dpr);}
+  const ctx=c.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+  return{ctx,W:w,H:h};
+}
+function drawFrame(ctx,W,H,PD,T,yMax){
+  const CW=W-PD.l-PD.r,CH=H-PD.t-PD.b;
+  ctx.lineWidth=1;ctx.strokeStyle=T.grid;
+  for(let i=0;i<=4;i++){const y=PD.t+CH*i/4;ctx.beginPath();ctx.moveTo(PD.l,y);ctx.lineTo(W-PD.r,y);ctx.stroke();}
+  ctx.strokeStyle=T.axis;ctx.beginPath();ctx.moveTo(PD.l,PD.t);ctx.lineTo(PD.l,PD.t+CH);ctx.lineTo(W-PD.r,PD.t+CH);ctx.stroke();
+  ctx.fillStyle=T.txt;ctx.font="10px 'Source Code Pro',monospace";ctx.textAlign='right';ctx.textBaseline='middle';
+  [[0,yMax],[2,yMax/2],[4,0]].forEach(([i,v])=>ctx.fillText(yTxt(v),PD.l-5,PD.t+CH*i/4+(i===0?4:i===4?-2:0)));
+}
+function drawContinuous(cv,cid,P,I,T,st){
+  const{ctx,W,H}=cv,PD={t:12,r:12,b:26,l:44},CW=W-PD.l-PD.r,CH=H-PD.t-PD.b;
+  const[x0,x1]=I.range(P),span=(x1-x0)||1,N=Math.max(100,Math.min(320,Math.round(CW))),cdfMode=st.view==='cdf';
+  const xs=new Array(N+1),ys=new Array(N+1);
+  for(let i=0;i<=N;i++){const x=x0+span*i/N;xs[i]=x;const y=cdfMode?I.cdf(x,P):I.pdf(x,P);ys[i]=isFinite(y)?y:0;}
+  let yMax=1;
+  if(!cdfMode){const s=ys.slice().sort((a,b)=>a-b),mx=s[N],q=s[Math.floor(N*0.985)];yMax=(Math.min(mx,2.6*q)||mx||1)*1.08;}
+  const px=x=>PD.l+(x-x0)/span*CW,py=y=>PD.t+CH-Math.min(Math.max(y/yMax,0),1)*CH;
+  drawFrame(ctx,W,H,PD,T,yMax);
+  const col=cdfMode?T.bl:T.acc;
+  const tk=niceTicks(x0,x1,5);ctx.fillStyle=T.txt;ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.font="10px 'Source Code Pro',monospace";
+  tk.ticks.forEach(t=>ctx.fillText(tickTxt(t,tk.step),px(t),H-8));
+  ctx.beginPath();ctx.moveTo(px(xs[0]),py(0));for(let i=0;i<=N;i++)ctx.lineTo(px(xs[i]),py(ys[i]));ctx.lineTo(px(xs[N]),py(0));ctx.closePath();
+  ctx.globalAlpha=0.16;ctx.fillStyle=col;ctx.fill();ctx.globalAlpha=1;
+  ctx.beginPath();for(let i=0;i<=N;i++){i?ctx.lineTo(px(xs[i]),py(ys[i])):ctx.moveTo(px(xs[i]),py(ys[i]));}
+  ctx.strokeStyle=col;ctx.lineWidth=2;ctx.lineJoin='round';ctx.stroke();
+  const c=st.pin||st.hover;
+  if(c){
+    const xc=Math.min(x1,Math.max(x0,c.x)),yc=cdfMode?I.cdf(xc,P):I.pdf(xc,P);
+    if(!cdfMode){
+      ctx.beginPath();ctx.moveTo(px(x0),py(0));for(let i=0;i<=N&&xs[i]<=xc;i++)ctx.lineTo(px(xs[i]),py(ys[i]));
+      ctx.lineTo(px(xc),py(yc));ctx.lineTo(px(xc),py(0));ctx.closePath();ctx.globalAlpha=0.32;ctx.fillStyle=T.gd;ctx.fill();ctx.globalAlpha=1;
+    }
+    ctx.setLineDash([4,3]);ctx.strokeStyle=T.gd;ctx.lineWidth=1.2;
+    ctx.beginPath();ctx.moveTo(px(xc),PD.t);ctx.lineTo(px(xc),PD.t+CH);ctx.stroke();
+    if(cdfMode){ctx.beginPath();ctx.moveTo(PD.l,py(yc));ctx.lineTo(px(xc),py(yc));ctx.stroke();}
+    ctx.setLineDash([]);ctx.fillStyle=T.gd;ctx.beginPath();ctx.arc(px(xc),py(isFinite(yc)?yc:0),3.5,0,7);ctx.fill();
+  }
+  st.geom={kind:'1d',x0,x1,step:span/100,toData:mx=>({x:Math.min(x1,Math.max(x0,x0+(mx-PD.l)/CW*span))})};
+}
+function drawDiscrete(cv,cid,P,I,T,st){
+  const{ctx,W,H}=cv,PD={t:12,r:12,b:26,l:44},CW=W-PD.l-PD.r,CH=H-PD.t-PD.b;
+  const[k0,k1]=I.range(P),n=k1-k0+1,pm=[],cu=[],cdfMode=st.view==='cdf';let run=0;
+  for(let k=k0;k<=k1;k++){const q=Math.max(0,I.pmf(k,P))||0;pm.push(q);run+=q;cu.push(Math.min(1,run));}
+  const yMax=cdfMode?1:(Math.max.apply(null,pm)*1.12||1);
+  const px=t=>PD.l+(t-k0)/n*CW,py=y=>PD.t+CH-Math.min(Math.max(y/yMax,0),1)*CH;
+  drawFrame(ctx,W,H,PD,T,yMax);
+  const tstep=Math.max(1,Math.ceil(n/8));ctx.fillStyle=T.txt;ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.font="10px 'Source Code Pro',monospace";
+  for(let k=k0;k<=k1;k+=tstep)ctx.fillText(String(k),px(k+0.5),H-8);
+  const c=st.pin||st.hover,kc=c?Math.min(k1,Math.max(k0,Math.round(c.x))):null;
+  if(!cdfMode){
+    const bw=Math.max(2,Math.min(CW/n*0.72,26));
+    pm.forEach((q,i)=>{const k=k0+i,x=px(k+0.5),h=q/yMax*CH;
+      const sel=kc!==null&&k<=kc;ctx.globalAlpha=sel?0.85:0.55;ctx.fillStyle=sel?T.gd:T.acc;ctx.fillRect(x-bw/2,PD.t+CH-h,bw,h);
+      ctx.globalAlpha=1;ctx.strokeStyle=sel?T.gd:T.acc;ctx.lineWidth=1.2;ctx.strokeRect(x-bw/2,PD.t+CH-h,bw,h);});
+  }else{
+    ctx.beginPath();ctx.moveTo(px(k0),py(0));
+    cu.forEach((F,i)=>{ctx.lineTo(px(k0+i),py(F));ctx.lineTo(px(k0+i+1),py(F));});
+    ctx.strokeStyle=T.bl;ctx.lineWidth=2;ctx.lineJoin='round';ctx.stroke();
+    ctx.fillStyle=T.bl;cu.forEach((F,i)=>{ctx.beginPath();ctx.arc(px(k0+i),py(F),n>40?1.5:2.6,0,7);ctx.fill();});
+  }
+  if(kc!==null){
+    const i=kc-k0;ctx.setLineDash([4,3]);ctx.strokeStyle=T.gd;ctx.lineWidth=1.2;
+    ctx.beginPath();ctx.moveTo(px(kc+0.5),PD.t);ctx.lineTo(px(kc+0.5),PD.t+CH);ctx.stroke();
+    if(cdfMode){ctx.beginPath();ctx.moveTo(PD.l,py(cu[i]));ctx.lineTo(px(kc+0.5),py(cu[i]));ctx.stroke();}
+    ctx.setLineDash([]);ctx.fillStyle=T.gd;ctx.beginPath();ctx.arc(px(kc+0.5),py(cdfMode?cu[i]:pm[i]),3.5,0,7);ctx.fill();
+  }
+  st.geom={kind:'1d',disc:true,x0:k0,x1:k1,step:1,cu,pm,k0,toData:mx=>({x:Math.min(k1,Math.max(k0,Math.floor(k0+(mx-PD.l)/CW*n)))})};
+}
+/* Dirichlet(α₁,α₂,α₃) on the 2-simplex — density heat-map */
+function drawDirichlet(cv,cid,P,T,st){
+  const{ctx,W,H}=cv,a=[P.a1,P.a2,P.a3],a0=a[0]+a[1]+a[2],top=14,th=H-40,side=th/(Math.sqrt(3)/2),cx=W/2;
+  const V=[[cx-side/2,top+th],[cx+side/2,top+th],[cx,top]];
+  const d=(V[1][1]-V[2][1])*(V[0][0]-V[2][0])+(V[2][0]-V[1][0])*(V[0][1]-V[2][1]);
+  const bary=(x,y)=>{const l1=((V[1][1]-V[2][1])*(x-V[2][0])+(V[2][0]-V[1][0])*(y-V[2][1]))/d,l2=((V[2][1]-V[0][1])*(x-V[2][0])+(V[0][0]-V[2][0])*(y-V[2][1]))/d;return[l1,l2,1-l1-l2];};
+  const lc=lgamma(a0)-lgamma(a[0])-lgamma(a[1])-lgamma(a[2]);
+  const dens=l=>Math.exp(lc+(a[0]-1)*Math.log(l[0])+(a[1]-1)*Math.log(l[1])+(a[2]-1)*Math.log(l[2]));
+  const step=2,cells=[];
+  for(let y=top;y<=top+th;y+=step)for(let x=cx-side/2;x<=cx+side/2;x+=step){const l=bary(x+1,y+1);if(l[0]>0.003&&l[1]>0.003&&l[2]>0.003){const q=dens(l);if(isFinite(q))cells.push([x,y,q]);}}
+  const sorted=cells.map(c=>c[2]).sort((p,q)=>p-q),cap=sorted[Math.floor(sorted.length*0.97)]||1;
+  ctx.fillStyle=T.acc;cells.forEach(c=>{ctx.globalAlpha=0.06+0.88*Math.pow(Math.min(1,c[2]/cap),0.6);ctx.fillRect(c[0],c[1],step,step);});ctx.globalAlpha=1;
+  ctx.strokeStyle=T.axis;ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(V[0][0],V[0][1]);ctx.lineTo(V[1][0],V[1][1]);ctx.lineTo(V[2][0],V[2][1]);ctx.closePath();ctx.stroke();
+  ctx.fillStyle=T.txt;ctx.font="11px 'Source Code Pro',monospace";ctx.textBaseline='alphabetic';
+  ctx.textAlign='right';ctx.fillText('x₁ = 1',V[0][0]-6,V[0][1]+4);ctx.textAlign='left';ctx.fillText('x₂ = 1',V[1][0]+6,V[1][1]+4);ctx.textAlign='center';ctx.fillText('x₃ = 1',V[2][0],V[2][1]-4);
+  const mx=(a[0]*V[0][0]+a[1]*V[1][0]+a[2]*V[2][0])/a0,my=(a[0]*V[0][1]+a[1]*V[1][1]+a[2]*V[2][1])/a0;
+  ctx.strokeStyle=T.bl;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(mx-5,my);ctx.lineTo(mx+5,my);ctx.moveTo(mx,my-5);ctx.lineTo(mx,my+5);ctx.stroke();
+  const c=st.pin||st.hover;
+  if(c){const l=bary(c.px,c.py);if(l[0]>=0&&l[1]>=0&&l[2]>=0){ctx.fillStyle=T.gd;ctx.strokeStyle='#fff';ctx.lineWidth=1;ctx.beginPath();ctx.arc(c.px,c.py,4.5,0,7);ctx.fill();ctx.stroke();}}
+  st.geom={kind:'2d',bary,dens,toData:(x,y)=>({px:x,py:y})};
+}
+/* bivariate normal N(0, [[1,ρ],[ρ,1]]) — ellipses + a seeded sample cloud */
+const MVN_Z=(()=>{let s=20240607;const r=()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};
+  const z=[];for(let i=0;i<140;i++){const u=Math.max(1e-12,r()),v=r(),m=Math.sqrt(-2*Math.log(u));z.push([m*Math.cos(2*Math.PI*v),m*Math.sin(2*Math.PI*v)]);}return z;})();
+function drawMVN(cv,cid,P,T,st){
+  const{ctx,W,H}=cv,rho=P.rho,s=Math.sqrt(1-rho*rho),R=3.4,size=H-22,cx=W/2,cy=H/2,sc=size/(2*R);
+  const X=x=>cx+x*sc,Y=y=>cy-y*sc;
+  ctx.strokeStyle=T.grid;ctx.lineWidth=1;ctx.strokeRect(cx-size/2,cy-size/2,size,size);
+  ctx.strokeStyle=T.axis;ctx.beginPath();ctx.moveTo(cx-size/2,cy);ctx.lineTo(cx+size/2,cy);ctx.moveTo(cx,cy-size/2);ctx.lineTo(cx,cy+size/2);ctx.stroke();
+  const ell=r=>{ctx.beginPath();for(let i=0;i<=90;i++){const t=i/90*2*Math.PI,x=r*Math.cos(t),y=r*(rho*Math.cos(t)+s*Math.sin(t));i?ctx.lineTo(X(x),Y(y)):ctx.moveTo(X(x),Y(y));}ctx.closePath();};
+  [3,2,1].forEach((r,i)=>{ell(r);ctx.globalAlpha=0.07+0.09*i;ctx.fillStyle=T.acc;ctx.fill();ctx.globalAlpha=1;ctx.strokeStyle=T.acc;ctx.lineWidth=1.2;ctx.stroke();});
+  ctx.fillStyle=T.bl;ctx.globalAlpha=0.55;
+  MVN_Z.forEach(z=>{const x=z[0],y=rho*z[0]+s*z[1];if(Math.abs(x)<R&&Math.abs(y)<R){ctx.beginPath();ctx.arc(X(x),Y(y),1.6,0,7);ctx.fill();}});ctx.globalAlpha=1;
+  ctx.fillStyle=T.txt;ctx.font="10px 'Source Code Pro',monospace";ctx.textAlign='left';ctx.textBaseline='middle';ctx.fillText('x',cx+size/2+4,cy);ctx.textAlign='center';ctx.fillText('y',cx,cy-size/2-6);
+  const c=st.pin||st.hover;
+  if(c){const x=(c.px-cx)/sc,y=(cy-c.py)/sc;if(Math.abs(x)<=R&&Math.abs(y)<=R){const D=Math.sqrt(Math.max(0,(x*x-2*rho*x*y+y*y)/(1-rho*rho)));
+    ctx.setLineDash([4,3]);ell(D);ctx.strokeStyle=T.gd;ctx.lineWidth=1.3;ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle=T.gd;ctx.beginPath();ctx.arc(c.px,c.py,4.5,0,7);ctx.fill();}}
+  st.geom={kind:'2d',cx,cy,sc,rho,R,toData:(x,y)=>({px:x,py:y})};
+}
+function updateLive(cid,P,I){
+  let mo=null;try{mo=I.mom(P);}catch(e){}
+  [['mean','mean'],['var','var'],['skew','skew'],['kurt','exkurt']].forEach(([id,key])=>{
+    const el=document.getElementById(cid+'-'+id+'-n');if(!el)return;
+    const v=mo?mo[key]:undefined;
+    el.textContent=(v===undefined||(typeof v==='number'&&Number.isNaN(v)))?'':'= '+fmt(v);
+  });
+}
+function updateReadout(cid){
+  const ro=document.getElementById(cid+'-ro');if(!ro)return;
+  const st=DX[cid],m=CARDS[cid],I=DIST[m.slug],P=getParams(cid),c=st.pin||st.hover,pin=st.pin?'📌 ':'',g=st.geom;
+  if(!g){ro.textContent=HINT;return;}
+  if(I.plot==='mvnormal'){
+    if(!c){ro.innerHTML='ρ = <b>'+fmt(P.rho)+'</b> · the 1σ / 2σ / 3σ ellipses hold <b>39.3%</b> / <b>86.5%</b> / <b>98.9%</b> of the mass<br>'+HINT;return;}
+    const x=(c.px-g.cx)/g.sc,y=(g.cy-c.py)/g.sc;
+    if(Math.abs(x)>g.R||Math.abs(y)>g.R){ro.textContent=HINT;return;}
+    const D2=(x*x-2*g.rho*x*y+y*y)/(1-g.rho*g.rho),f=Math.exp(-D2/2)/(2*Math.PI*Math.sqrt(1-g.rho*g.rho));
+    ro.innerHTML=pin+'(x, y) = (<b>'+fmt(x)+'</b>, <b>'+fmt(y)+'</b>) · f = <b>'+fmt(f)+'</b><br>Mahalanobis D² = <b>'+fmt(D2)+'</b> · inside this contour: <b>'+(100*(1-Math.exp(-D2/2))).toFixed(1)+'%</b>';return;}
+  if(I.plot==='dirichlet'){
+    if(!c){ro.innerHTML='Mean point ✚ = (<b>'+[P.a1,P.a2,P.a3].map(a=>fmt(a/(P.a1+P.a2+P.a3))).join(', ')+'</b>) · '+HINT;return;}
+    const l=g.bary(c.px,c.py);
+    if(l[0]<0||l[1]<0||l[2]<0){ro.textContent=HINT;return;}
+    ro.innerHTML=pin+'(x₁, x₂, x₃) = (<b>'+l.map(v=>v.toFixed(2)).join(', ')+'</b>) · f = <b>'+fmt(g.dens(l))+'</b>';return;}
+  if(!c){ro.textContent=HINT;return;}
+  if(I.d){
+    const k=Math.min(g.x1,Math.max(g.x0,Math.round(c.x))),i=k-g.k0,F=g.cu[i];
+    ro.innerHTML=pin+'k = <b>'+k+'</b> · P(X = k) = <b>'+g.pm[i].toFixed(4)+'</b> · P(X ≤ k) = <b>'+F.toFixed(4)+'</b> · P(X > k) = <b>'+Math.max(0,1-F).toFixed(4)+'</b>';
+  }else{
+    const x=c.x,f=I.pdf(x,P),F=I.cdf(x,P);
+    ro.innerHTML=pin+'x = <b>'+fmt(x)+'</b> · f(x) = <b>'+fmt(f)+'</b> · P(X ≤ x) = <b>'+F.toFixed(4)+'</b> · P(X > x) = <b>'+Math.max(0,1-F).toFixed(4)+'</b>';
+  }
+}
+function drawDistCanvas(cid){
+  const m=CARDS[cid];if(!m)return;
+  const I=DIST[m.slug],P=getParams(cid),cv=prepCanvas(cid);if(!cv)return;
+  const st=DX[cid],T=themeCols();
+  try{
+    if(I.plot==='dirichlet')drawDirichlet(cv,cid,P,T,st);
+    else if(I.plot==='mvnormal')drawMVN(cv,cid,P,T,st);
+    else if(I.d)drawDiscrete(cv,cid,P,I,T,st);
+    else drawContinuous(cv,cid,P,I,T,st);
+  }catch(err){console.error('draw '+m.slug,err);}
+  updateLive(cid,P,I);updateReadout(cid);
+}
+function drawTab(type){(DISTRIBUTIONS[type]||[]).forEach((d,idx)=>drawDistCanvas('dc-'+type+'-'+idx));}
+function redrawActive(){const p=document.querySelector('.dist-panel.active');if(p&&p.id.indexOf('panel-')===0){const t=p.id.slice(6);if(DISTRIBUTIONS[t])drawTab(t);}}
+window.onModeChange=()=>redrawActive();
+let _rsz;window.addEventListener('resize',()=>{clearTimeout(_rsz);_rsz=setTimeout(redrawActive,120);});
+
+function wireCanvas(cid){
+  const cv=document.getElementById(cid),st=DX[cid];if(!cv)return;
+  const conv=e=>{const r=cv.getBoundingClientRect();return st.geom?st.geom.toData(e.clientX-r.left,e.clientY-r.top):null;};
+  cv.addEventListener('pointermove',e=>{const d=conv(e);if(!d)return;if(st.drag)st.pin=d;else if(!st.pin)st.hover=d;drawDistCanvas(cid);});
+  cv.addEventListener('pointerdown',e=>{const d=conv(e);if(!d)return;st.drag=true;st.pin=d;try{cv.setPointerCapture(e.pointerId);}catch(_){}drawDistCanvas(cid);});
+  const up=()=>{st.drag=false;};cv.addEventListener('pointerup',up);cv.addEventListener('pointercancel',up);
+  cv.addEventListener('pointerleave',()=>{if(!st.pin&&!st.drag){st.hover=null;drawDistCanvas(cid);}});
+  cv.addEventListener('dblclick',()=>{st.pin=null;st.hover=null;drawDistCanvas(cid);});
+  cv.addEventListener('keydown',e=>{
+    const g=st.geom;if(!g||g.kind!=='1d')return;
+    if(e.key==='ArrowLeft'||e.key==='ArrowRight'){
+      e.preventDefault();e.stopPropagation();const cur=st.pin||st.hover;let x=cur?cur.x:(g.x0+g.x1)/2;
+      x+=(e.key==='ArrowRight'?1:-1)*g.step;st.pin={x:Math.min(g.x1,Math.max(g.x0,x))};drawDistCanvas(cid);
+    }else if(e.key==='Escape'){e.stopPropagation();st.pin=null;st.hover=null;drawDistCanvas(cid);}
+  });
+}
+/* ── cards ── */
 function buildDistCard(d,type,idx){
-  const cid='dc-'+type+'-'+idx;
+  const cid='dc-'+type+'-'+idx,I=DIST[d.slug]||{};
   const sliderRows=d.sliders.map(s=>`
-    <div class="dist-slider-row">
-      <span class="dist-slider-lbl">${s.label}</span>
-      <input type="range" class="dist-slider" id="sl-${cid}-${s.id}"
-        min="${s.min}" max="${s.max}" step="${s.step}" value="${s.def}"
-        oninput="updateDistSlider('${cid}','${d.slug}',this,'lbl-${cid}-${s.id}')">
-      <span class="dist-slider-val" id="lbl-${cid}-${s.id}">${s.def}</span>
-    </div>`).join('');
-
-  return `<div class="dist-card">
-    <div class="dist-name">${d.name}</div>
-    <span class="dist-notation">${d.notation}</span>
+     <div class="dist-slider-row">
+       <span class="dist-slider-lbl" data-no-mathfmt>${s.label}</span>
+       <input type="range" class="dist-slider" id="sl-${cid}-${s.id}" min="${s.min}" max="${s.max}" step="${s.step}" value="${s.def}"
+         aria-label="${d.name}: ${s.label}" oninput="updateDistSlider('${cid}','${d.slug}',this,'lbl-${cid}-${s.id}')">
+       <span class="dist-slider-val" id="lbl-${cid}-${s.id}">${s.def}</span>
+     </div>`).join('');
+  const oneD=!I.plot;
+  const stat=(id,lbl,val,key)=>`<div class="dist-stat-box"><div class="dist-stat-lbl" data-no-mathfmt>${lbl}</div><div class="dist-stat-val" id="${cid}-${id}">${val}</div><div class="dist-live" id="${cid}-${id}-n" data-no-mathfmt></div></div>`;
+  return `<div class="dist-card" id="card-${d.slug}" data-search="${(d.name+' '+d.notation+' '+d.slug).toLowerCase().replace(/"/g,'')}">
+    <div class="dist-cardhead">
+      <div><div class="dist-name" data-no-mathfmt>${d.name}</div><span class="dist-notation" data-no-mathfmt>${d.notation}</span></div>
+      <div class="dist-tools">
+        <button class="dist-tool" title="Reset sliders" aria-label="Reset ${d.name} sliders" onclick="resetDist('${cid}')">↺</button>
+        <button class="dist-tool" title="Copy link to this distribution" aria-label="Copy link to ${d.name}" onclick="copyDistLink('${d.slug}')">🔗</button>
+      </div>
+    </div>
     <div class="dist-param">${d.params}</div>
-    <div class="dist-view-toggle">
+    <div class="dist-view-toggle"${I.plot?' style="display:none"':''}>
       <button class="dvt-btn active" id="dvt-pdf-${cid}" onclick="setDistView('${cid}','${d.slug}','pdf',this)">PDF/PMF</button>
       <button class="dvt-btn" id="dvt-cdf-${cid}" onclick="setDistView('${cid}','${d.slug}','cdf',this)">CDF</button>
     </div>
     <div class="dist-graph-wrap">
-      <canvas class="dist-canvas" id="${cid}"></canvas>
+      <canvas class="dist-canvas" id="${cid}" ${oneD?'tabindex="0" ':''}role="img" aria-label="Interactive plot of the ${d.name} distribution${oneD?'. Use the left and right arrow keys to move the probability cursor':''}"></canvas>
     </div>
+    <div class="dist-readout" id="${cid}-ro" aria-live="polite">${HINT}</div>
     <div class="dist-sliders">${sliderRows}</div>
     <div class="dist-stats-grid">
-      <div class="dist-stat-box"><div class="dist-stat-lbl">Mean (μ)</div><div class="dist-stat-val" id="${cid}-mean">${d.mean}</div></div>
-      <div class="dist-stat-box"><div class="dist-stat-lbl">Variance (σ²)</div><div class="dist-stat-val" id="${cid}-var">${d.variance}</div></div>
-      <div class="dist-stat-box"><div class="dist-stat-lbl">Skewness (γ₁)</div><div class="dist-stat-val" id="${cid}-skew">${d.skew}</div></div>
-      <div class="dist-stat-box"><div class="dist-stat-lbl">Excess Kurtosis (γ₂)</div><div class="dist-stat-val" id="${cid}-kurt">${d.exkurt}</div></div>
-      <div class="dist-stat-box dist-mgf-box" style="grid-column:1/-1"><div class="dist-stat-lbl">Moment Generating Function M(t)</div><div class="dist-stat-val" id="${cid}-mgf">${d.mgf}</div></div>
+      ${stat('mean','Mean (μ)',d.mean)}${stat('var','Variance (σ²)',d.variance)}${stat('skew','Skewness (γ₁)',d.skew)}${stat('kurt','Excess Kurtosis (γ₂)',d.exkurt)}
+      <div class="dist-stat-box dist-mgf-box" style="grid-column:1/-1"><div class="dist-stat-lbl" data-no-mathfmt>Moment Generating Function M(t)</div><div class="dist-stat-val" id="${cid}-mgf">${d.mgf}</div></div>
     </div>
     <div class="dist-note">${d.note}</div>
     ${d.detail?`
     <div class="dist-detail-wrap">
-      <span class="dist-detail-lbl" onclick="toggleDistDetail('${cid}-det')">▸ Deep Dive</span>
-      <div class="dist-detail-body" id="${cid}-det">${d.detail}</div>
+      <span class="dist-detail-lbl" role="button" tabindex="0" aria-expanded="false" onclick="toggleDistDetail('${cid}-det')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleDistDetail('${cid}-det')}">▸ Deep Dive</span>
+      <div class="dist-detail-body" id="${cid}-det" data-no-mathfmt>${d.detail}</div>
     </div>`:''}
   </div>`;
 }
-
-
+function renderDistributions(){
+  DIST_TYPES.forEach(type=>{
+    const g=document.getElementById('dist-'+type);if(!g)return;
+    DISTRIBUTIONS[type].forEach((d,idx)=>{const cid='dc-'+type+'-'+idx;CARDS[cid]={type,idx,d,slug:d.slug};DX[cid]={view:'pdf',hover:null,pin:null,drag:false,geom:null};});
+    g.innerHTML=DISTRIBUTIONS[type].map((d,idx)=>buildDistCard(d,type,idx)).join('');
+    if(window.renderMath)window.renderMath(g);
+    DISTRIBUTIONS[type].forEach((d,idx)=>wireCanvas('dc-'+type+'-'+idx));
+  });
+  drawTab('discrete');
+  window.addEventListener('hashchange',openFromHash);
+  openFromHash();
+}
 function toggleDistDetail(id){
-  const el=document.getElementById(id); if(!el)return;
-  el.classList.toggle('show');
-  const lbl=el.previousElementSibling;
-  if(lbl)lbl.textContent=el.classList.contains('show')?'▾ Show less':'▸ Deep Dive';
+  const el=document.getElementById(id);if(!el)return;
+  const open=el.classList.toggle('show'),lbl=el.previousElementSibling;
+  if(lbl){lbl.textContent=open?'▾ Show less':'▸ Deep Dive';lbl.setAttribute('aria-expanded',open);}
+  if(open&&el.hasAttribute('data-no-mathfmt')){el.removeAttribute('data-no-mathfmt');if(window.renderMath)window.renderMath(el);}
 }
-
-
 function switchDistTab(type,btn){
-  document.querySelectorAll('.dist-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.dist-tab').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-selected','false');});
   document.querySelectorAll('.dist-panel').forEach(p=>p.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('panel-'+type).classList.add('active');
-  setTimeout(()=>initAllDistCanvases(type),80);
+  if(!btn)btn=[...document.querySelectorAll('.dist-tab')].find(b=>(b.getAttribute('onclick')||'').indexOf("'"+type+"'")>-1);
+  if(btn){btn.classList.add('active');btn.setAttribute('aria-selected','true');}
+  const panel=document.getElementById('panel-'+type);if(panel)panel.classList.add('active');
+  if(DIST_TYPES.includes(type))drawTab(type);
 }
-
-
-function initAllDistCanvases(type){
-  if(!DISTRIBUTIONS[type])return;
-  DISTRIBUTIONS[type].forEach((d,idx)=>{
-    const cid='dc-'+type+'-'+idx;
-    const params={};
-    d.sliders.forEach(s=>{params[s.id]=parseFloat(document.getElementById('sl-'+cid+'-'+s.id)?.value??s.def);});
-    drawDistCanvas(cid,d.slug,params,type==='discrete'||['binomial','bernoulli','geometric','negbin','poisson','hypergeometric','multinomial'].includes(d.slug));
-  });
-}
-
-
 function updateDistSlider(cid,slug,inp,lblId){
-  document.getElementById(lblId).textContent=parseFloat(inp.value).toFixed(inp.step<0.1?2:inp.step<1?1:0);
-  // gather all slider values for this canvas
-  const params={};
-  document.querySelectorAll(`[id^="sl-${cid}-"]`).forEach(sl=>{
-    const key=sl.id.replace('sl-'+cid+'-','');
-    params[key]=parseFloat(sl.value);
-  });
-  const isDisc=['bernoulli','binomial','geometric','negbin','poisson','hypergeometric'].includes(slug);
-  drawDistCanvas(cid,slug,params,isDisc);
+  const lb=document.getElementById(lblId);if(lb)lb.textContent=parseFloat(inp.value).toFixed(stepDecimals(inp));
+  constrainSliders(cid,slug);drawDistCanvas(cid);
 }
-
-/* ── DISTRIBUTION CANVAS DRAWING ──────────────────────────── */
-
-function drawDistCanvas(cid,slug,params,isDiscrete){
-  const canvas=document.getElementById(cid); if(!canvas)return;
-  const ctx=canvas.getContext('2d');
-  // HiDPI support
-  const dpr=window.devicePixelRatio||1;
-  const cssW=canvas.offsetWidth||320, cssH=160;
-  if(canvas.width!==cssW*dpr||canvas.height!==cssH*dpr){
-    canvas.width=cssW*dpr; canvas.height=cssH*dpr;
-    canvas.style.width=cssW+'px'; canvas.style.height=cssH+'px';
-    ctx.scale(dpr,dpr);
-  }
-  const W=cssW,H=cssH;
-  const PAD={t:12,r:10,b:28,l:38};
-  const CW=W-PAD.l-PAD.r, CH=H-PAD.t-PAD.b;
-  ctx.clearRect(0,0,W,H);
-  const night=document.body.classList.contains('night');
-  const tc=night?'rgba(226,219,208,0.65)':'rgba(30,27,21,0.55)';
-  const gc=night?'rgba(255,255,255,0.05)':'rgba(0,0,0,0.05)';
-  const cc=night?'#d06050':'#8f3a2c';
-  const cc2=night?'rgba(208,96,80,0.18)':'rgba(143,58,44,0.12)';
-
-  // grid
-  for(let gi=0;gi<=4;gi++){
-    const yg=PAD.t+CH*(gi/4);
-    ctx.beginPath();ctx.moveTo(PAD.l,yg);ctx.lineTo(PAD.l+CW,yg);
-    ctx.strokeStyle=gc;ctx.lineWidth=1;ctx.stroke();
-  }
-
-  // axes
-  ctx.beginPath();
-  ctx.moveTo(PAD.l,PAD.t);ctx.lineTo(PAD.l,PAD.t+CH);
-  ctx.lineTo(PAD.l+CW,PAD.t+CH);
-  ctx.strokeStyle=tc;ctx.lineWidth=1.2;ctx.stroke();
-
-  if(isDiscrete){
-    drawPMF(ctx,cid,slug,params,PAD,CW,CH,cc,cc2,tc);
-  } else {
-    drawPDF(ctx,cid,slug,params,PAD,CW,CH,cc,cc2,tc);
-  }
-}
-
-
-function getDistRange(slug,params){
-  const p=params;
-  switch(slug){
-    case 'bernoulli': return {xMin:0,xMax:1,isDiscrete:true};
-    case 'binomial':  return {xMin:0,xMax:p.n,isDiscrete:true};
-    case 'geometric': return {xMin:1,xMax:Math.min(30,Math.ceil(10/p.p)+2),isDiscrete:true};
-    case 'negbin':    return {xMin:0,xMax:Math.min(60,Math.ceil(p.r/p.p*3)+5),isDiscrete:true};
-    case 'poisson':   return {xMin:0,xMax:Math.max(15,Math.ceil(p.lambda*3+4)),isDiscrete:true};
-    case 'hypergeometric': return {xMin:Math.max(0,p.np-(p.Np-p.Kp)),xMax:Math.min(p.np,p.Kp),isDiscrete:true};
-    case 'uniform':   return {xMin:p.a-0.5,xMax:p.b+0.5};
-    case 'normal':    return {xMin:p.mu-4*p.sigma,xMax:p.mu+4*p.sigma};
-    case 'exponential': return {xMin:0,xMax:6/p.lambda};
-    case 'gamma':     {const a=p.alpha||0.5,b=p.beta||1; return {xMin:0,xMax:Math.max((a+4*Math.sqrt(a))/b, 0.5/b+2/b)};}
-    case 'beta':      return {xMin:0.005,xMax:0.995};
-    case 'lognormal': return {xMin:0,xMax:Math.exp(p.mu+3.5*p.sigma)};
-    case 'cauchy':    return {xMin:p.x0-5*p.gamma,xMax:p.x0+5*p.gamma};
-    case 'chisq':     return {xMin:0,xMax:p.k+5*Math.sqrt(2*p.k)+2};
-    case 'studentt':  return {xMin:-5,xMax:5};
-    case 'fdist':     return {xMin:0,xMax:6};
-    case 'weibull':   return {xMin:0,xMax:p.lambda*(3+3/p.k)};
-    default:          return {xMin:-4,xMax:4};
-  }
-}
-
-
-function pdfVal(slug,x,p){
-  const lg=v=>Math.log(v),exp=Math.exp,abs=Math.abs,pi=Math.PI,sqrt=Math.sqrt;
-  const gamma_fn=n=>{ // Stirling / Lanczos approx
-    if(n<0.5)return pi/(Math.sin(pi*n)*gamma_fn(1-n));
-    n-=1;
-    const g=7;
-    const c=[0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];
-    let x2=c[0];
-    for(let i=1;i<g+2;i++)x2+=c[i]/(n+i);
-    const t=n+g+0.5;
-    return sqrt(2*pi)*Math.pow(t,n+0.5)*exp(-t)*x2;
-  };
-  const beta_fn=(a,b)=>gamma_fn(a)*gamma_fn(b)/gamma_fn(a+b);
-
-  try{
-  switch(slug){
-    case 'normal': return exp(-0.5*((x-p.mu)/p.sigma)**2)/(p.sigma*sqrt(2*pi));
-    case 'uniform': return (x>=p.a&&x<=p.b)?1/(p.b-p.a):0;
-    case 'exponential': return x>=0?p.lambda*exp(-p.lambda*x):0;
-    case 'gamma':{
-      if(x<=0)return 0;
-      const a=p.alpha,b=p.beta;
-      return Math.pow(b,a)*Math.pow(x,a-1)*exp(-b*x)/gamma_fn(a);
-    }
-    case 'beta':{
-      const a=p.alpha,b=p.beta_p||p.beta;
-      if(x<=0||x>=1)return 0;
-      return Math.pow(x,a-1)*Math.pow(1-x,b-1)/beta_fn(a,b);
-    }
-    case 'lognormal':{
-      if(x<=0)return 0;
-      return exp(-0.5*((lg(x)-p.mu)/p.sigma)**2)/(x*p.sigma*sqrt(2*pi));
-    }
-    case 'cauchy': return 1/(pi*p.gamma*(1+((x-p.x0)/p.gamma)**2));
-    case 'chisq':{
-      if(x<=0)return 0;
-      const k=p.k,k2=k/2;
-      return Math.pow(x,k2-1)*exp(-x/2)/(Math.pow(2,k2)*gamma_fn(k2));
-    }
-    case 'studentt':{
-      const v=p.nu;
-      const num=gamma_fn((v+1)/2);
-      const den=sqrt(v*pi)*gamma_fn(v/2);
-      return (num/den)*Math.pow(1+x*x/v,-(v+1)/2);
-    }
-    case 'fdist':{
-      if(x<=0)return 0;
-      const d1=p.d1,d2=p.d2;
-      const num=Math.pow(d1*x,d1)*Math.pow(d2,d2);
-      const den=Math.pow(d1*x+d2,d1+d2);
-      return sqrt(num/den)/(x*beta_fn(d1/2,d2/2));
-    }
-    case 'weibull':{
-      if(x<=0)return 0;
-      const k=p.k,lam=p.lambda;
-      return (k/lam)*Math.pow(x/lam,k-1)*exp(-Math.pow(x/lam,k));
-    }
-    default: return 0;
-  }}catch(e){return 0;}
-}
-
-
-function pmfVal(slug,k,p){
-  const C=(n,r)=>{
-    if(r<0||r>n)return 0;if(r===0||r===n)return 1;
-    r=Math.min(r,n-r); // use smaller r for efficiency
-    let logC=0;
-    for(let i=0;i<r;i++) logC+=Math.log(n-i)-Math.log(i+1);
-    const v=Math.exp(logC);return isFinite(v)?v:0;
-  };
-  const exp=Math.exp;
-  try{
-  switch(slug){
-    case 'bernoulli': return k===0?(1-p.p):k===1?p.p:0;
-    case 'binomial':{
-      const n=Math.round(p.n),pp=p.p;
-      if(k<0||k>n)return 0;
-      return C(n,k)*Math.pow(pp,k)*Math.pow(1-pp,n-k);
-    }
-    case 'geometric':{
-      if(k<1)return 0;
-      return p.p*Math.pow(1-p.p,k-1);
-    }
-    case 'negbin':{
-      const r=Math.round(p.r);
-      if(k<0)return 0;
-      return C(k+r-1,k)*Math.pow(p.p,r)*Math.pow(1-p.p,k);
-    }
-    case 'poisson':{
-      if(k<0)return 0;
-      let lv=-p.lambda;
-      for(let i=1;i<=k;i++)lv+=Math.log(p.lambda/i);
-      return exp(lv);
-    }
-    case 'hypergeometric':{
-      const N=Math.round(p.Np),K=Math.round(p.Kp),n=Math.round(p.np);
-      if(k<0||k>Math.min(n,K)||k<n-(N-K))return 0;
-      return C(K,k)*C(N-K,n-k)/C(N,n);
-    }
-    default: return 0;
-  }}catch(e){return 0;}
-}
-
-
-function drawPDF(ctx,cid,slug,params,PAD,CW,CH,cc,cc2,tc){
-  const r=getDistRange(slug,params);
-  const xMin=r.xMin,xMax=r.xMax;
-  const N=250;
-  const pts=[];
-  let maxY=0;
-  for(let i=0;i<=N;i++){
-    const x=xMin+(xMax-xMin)*i/N;
-    const y=pdfVal(slug,x,params);
-    if(isFinite(y)&&y>maxY)maxY=y;
-    pts.push({x,y:isFinite(y)?y:0});
-  }
-  if(maxY===0)return;
-  const yScale=CH/(maxY*1.12);
-
-  // fill
-  ctx.beginPath();
-  const xScale2=(xMax-xMin)||1;
-  ctx.moveTo(PAD.l,PAD.t+CH); // start at bottom-left
-  pts.forEach(pt=>{
-    const px=PAD.l+(pt.x-xMin)/xScale2*CW;
-    const py=PAD.t+CH-Math.min(pt.y*yScale,CH);
-    ctx.lineTo(px,py);
-  });
-  ctx.lineTo(PAD.l+CW,PAD.t+CH);ctx.closePath();
-  ctx.fillStyle=cc2;ctx.fill();
-
-  // curve
-  ctx.beginPath();
-  pts.forEach((pt,i)=>{
-    const px=PAD.l+(pt.x-xMin)/xScale2*CW;
-    const py=PAD.t+CH-Math.min(pt.y*yScale,CH);
-    i===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
-  });
-  ctx.strokeStyle=cc;ctx.lineWidth=2;ctx.stroke();
-
-  // x-axis labels
-  drawAxisLabels(ctx,xMin,xMax,maxY,PAD,CW,CH,tc);
-}
-
-
-function drawPMF(ctx,cid,slug,params,PAD,CW,CH,cc,cc2,tc){
-  const r=getDistRange(slug,params);
-  const kMin=Math.round(r.xMin),kMax=Math.round(r.xMax);
-  const vals=[];
-  let maxY=0;
-  for(let k=kMin;k<=kMax;k++){
-    const y=pmfVal(slug,k,params);
-    vals.push({k,y:isFinite(y)?y:0});
-    if(y>maxY)maxY=y;
-  }
-  if(maxY===0||vals.length===0)return;
-  const yScale=CH/(maxY*1.12);
-  const n=vals.length;
-  const bw=Math.max(2,Math.min(CW/Math.max(n,1)-1,18));
-  const kSpan=kMax-kMin||1; // guard div-by-zero
-
-  vals.forEach(v=>{
-    const px=PAD.l+(v.k-kMin)/kSpan*CW;
-    const barH=v.y*yScale;
-    ctx.fillStyle=cc2;
-    ctx.fillRect(px-bw/2,PAD.t+CH-barH,bw,barH);
-    ctx.strokeStyle=cc;ctx.lineWidth=1.5;
-    ctx.strokeRect(px-bw/2,PAD.t+CH-barH,bw,barH);
-  });
-
-  drawAxisLabels(ctx,kMin,kMax,maxY,PAD,CW,CH,tc);
-}
-
-
-function drawAxisLabels(ctx,xMin,xMax,maxY,PAD,CW,CH,tc){
-  ctx.fillStyle=tc;ctx.font='9px "Source Code Pro",monospace';ctx.textAlign='center';
-  const nTicks=4;
-  for(let i=0;i<=nTicks;i++){
-    const v=xMin+(xMax-xMin)*i/nTicks;
-    const px=PAD.l+CW*i/nTicks;
-    ctx.fillText(v.toFixed(Math.abs(xMax-xMin)<5?1:0),px,PAD.t+CH+11);
-  }
-  ctx.textAlign='right';
-  ctx.fillText(maxY.toFixed(2),PAD.l-3,PAD.t+10);
-  ctx.fillText('0',PAD.l-3,PAD.t+CH+4);
-}
-
-/* ── BAYESIAN ────────────────────────────────────────────────── */
-
-const distViewMode={}; // cid -> 'pdf' | 'cdf'
 function setDistView(cid,slug,mode,btn){
-  distViewMode[cid]=mode;
-  document.querySelectorAll(`#dvt-pdf-${cid},#dvt-cdf-${cid}`).forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  const params={};
-  document.querySelectorAll(`[id^="sl-${cid}-"]`).forEach(sl=>{params[sl.id.replace('sl-'+cid+'-','')]=parseFloat(sl.value);});
-  const isDisc=['bernoulli','binomial','geometric','negbin','poisson','hypergeometric'].includes(slug);
-  drawDistCanvas(cid,slug,params,isDisc);
+  DX[cid].view=mode;
+  const wrap=btn.parentElement;wrap.querySelectorAll('.dvt-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  drawDistCanvas(cid);
 }
-
-/* CDF integration wrapper */
-
-function cdfVal(slug,x,params,isDiscrete){
-  if(isDiscrete){
-    const r=getDistRange(slug,params);
-    let sum=0;
-    for(let k=Math.round(r.xMin);k<=Math.round(x);k++) sum+=pmfVal(slug,k,params);
-    return Math.min(sum,1);
-  }
-  // Numerical integration for continuous
-  const r=getDistRange(slug,params);
-  const xMin=r.xMin;
-  if(x<=xMin)return 0;
-  const N=200, dx=(x-xMin)/N;
-  let sum=0;
-  for(let i=0;i<N;i++){
-    const xa=xMin+i*dx, xb=xMin+(i+1)*dx;
-    sum+=(pdfVal(slug,xa,params)+pdfVal(slug,xb,params))*dx/2; // trapezoid
-  }
-  return Math.min(Math.max(sum,0),1);
+function resetDist(cid){
+  const m=CARDS[cid],st=DX[cid];
+  m.d.sliders.forEach(s=>{const el=document.getElementById('sl-'+cid+'-'+s.id);if(el){el.min=s.min;el.max=s.max;el.value=s.def;
+    const lb=document.getElementById('lbl-'+cid+'-'+s.id);if(lb)lb.textContent=parseFloat(s.def).toFixed(stepDecimals(el));}});
+  constrainSliders(cid,m.slug);st.pin=null;st.hover=null;drawDistCanvas(cid);
 }
-
-/* Override drawDistCanvas to respect mode */
-const _origDrawDist=drawDistCanvas;
-window.drawDistCanvas=function(cid,slug,params,isDiscrete){
-  const mode=distViewMode[cid]||'pdf';
-  if(mode==='cdf'){
-    drawCDFCanvas(cid,slug,params,isDiscrete);
-  } else {
-    _origDrawDist(cid,slug,params,isDiscrete);
+function copyDistLink(slug){
+  const url=location.href.split('#')[0]+'#'+slug;
+  const done=()=>showToast('Link copied','#3a6043');
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done,()=>{location.hash=slug;});}
+  else{const t=document.createElement('textarea');t.value=url;t.style.cssText='position:fixed;opacity:0';document.body.appendChild(t);t.select();try{document.execCommand('copy');done();}catch(e){location.hash=slug;}t.remove();}
+}
+function openDistBySlug(slug){
+  for(const type of DIST_TYPES){
+    if(DISTRIBUTIONS[type].some(d=>d.slug===slug)){
+      const filt=document.getElementById('dist-filter');if(filt&&filt.value){filt.value='';filterDists('');}
+      switchDistTab(type);
+      const card=document.getElementById('card-'+slug);
+      if(card){card.scrollIntoView({behavior:'smooth',block:'center'});card.classList.remove('flash');void card.offsetWidth;card.classList.add('flash');}
+      return true;
+    }
   }
-};
-
-
-function drawCDFCanvas(cid,slug,params,isDiscrete){
-  const canvas=document.getElementById(cid); if(!canvas)return;
-  const ctx=canvas.getContext('2d');
-  const dpr=window.devicePixelRatio||1;
-  const cssW=canvas.offsetWidth||320,cssH=160;
-  if(canvas.width!==cssW*dpr||canvas.height!==cssH*dpr){
-    canvas.width=cssW*dpr;canvas.height=cssH*dpr;
-    canvas.style.width=cssW+'px';canvas.style.height=cssH+'px';
-    ctx.scale(dpr,dpr);
-  }
-  const W=cssW,H=cssH;
-  const PAD={t:12,r:10,b:28,l:38};
-  const CW=W-PAD.l-PAD.r,CH=H-PAD.t-PAD.b;
-  ctx.clearRect(0,0,W,H);
-  const night=document.body.classList.contains('night');
-  const tc=night?'rgba(226,219,208,0.65)':'rgba(30,27,21,0.55)';
-  const gc=night?'rgba(255,255,255,0.05)':'rgba(0,0,0,0.05)';
-  const cc=night?'#5aadd0':'#2a5f78';
-  const cc2=night?'rgba(90,173,208,0.15)':'rgba(42,95,120,0.1)';
-  // grid
-  for(let gi=0;gi<=4;gi++){const yg=PAD.t+CH*(gi/4);ctx.beginPath();ctx.moveTo(PAD.l,yg);ctx.lineTo(PAD.l+CW,yg);ctx.strokeStyle=gc;ctx.lineWidth=1;ctx.stroke();}
-  ctx.beginPath();ctx.moveTo(PAD.l,PAD.t);ctx.lineTo(PAD.l,PAD.t+CH);ctx.lineTo(PAD.l+CW,PAD.t+CH);ctx.strokeStyle=tc;ctx.lineWidth=1.2;ctx.stroke();
-  const r=getDistRange(slug,params);
-  const xMin=r.xMin,xMax=r.xMax,xSpan=(xMax-xMin)||1;
-  const N=isDiscrete?Math.min(Math.round(xMax-xMin)+1,80):200;
-  const pts=[];
-  for(let i=0;i<=N;i++){
-    const x=xMin+xSpan*i/N;
-    pts.push({x,y:cdfVal(slug,isDiscrete?Math.round(x):x,params,isDiscrete)});
-  }
-  // fill
-  ctx.beginPath();ctx.moveTo(PAD.l,PAD.t+CH);
-  pts.forEach(pt=>{ctx.lineTo(PAD.l+(pt.x-xMin)/xSpan*CW,PAD.t+CH-pt.y*CH);});
-  ctx.lineTo(PAD.l+CW,PAD.t+CH);ctx.closePath();ctx.fillStyle=cc2;ctx.fill();
-  // step/curve
-  ctx.beginPath();
-  pts.forEach((pt,i)=>{
-    const px=PAD.l+(pt.x-xMin)/xSpan*CW,py=PAD.t+CH-pt.y*CH;
-    i===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
-  });
-  ctx.strokeStyle=cc;ctx.lineWidth=2;ctx.stroke();
-  drawAxisLabels(ctx,xMin,xMax,1,PAD,CW,CH,tc);
+  return false;
+}
+function openFromHash(){const h=decodeURIComponent(location.hash.replace('#',''));if(h)openDistBySlug(h);}
+function filterDists(q){
+  q=q.trim().toLowerCase();const counts={};let total=0;
+  DIST_TYPES.forEach(type=>{counts[type]=0;document.querySelectorAll('#dist-'+type+' .dist-card').forEach(c=>{
+    const hit=!q||c.getAttribute('data-search').indexOf(q)>-1;c.style.display=hit?'':'none';if(hit){counts[type]++;total++;}});});
+  counts.calc=typeof filterCalcs==='function'?filterCalcs(q):0;total+=counts.calc;
+  const active=document.querySelector('.dist-panel.active'),cur=active?active.id.slice(6):'discrete';
+  if(q&&counts[cur]===0){const next=[...DIST_TYPES,'calc'].find(t=>counts[t]>0);if(next)switchDistTab(next);}
+  const lab=document.getElementById('dist-filter-count');
+  if(lab)lab.textContent=q?(total?total+' match'+(total>1?'es':''):'No matches'):'';
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1054,6 +1178,39 @@ const CALCS=[
 
 ];
 
+/* ═══ CALCULATORS — render, compute, filter (added; content above was already written) ═══ */
+function renderCalcs(){
+  const g=document.getElementById('dist-calc'); if(!g)return;
+  g.innerHTML=CALCS.map((c,i)=>`
+    <div class="calc-card" data-search="${(c.name+' '+c.desc).toLowerCase().replace(/"/g,'')}">
+      <div class="dist-name" data-no-mathfmt>${c.name}</div>
+      <div class="calc-desc">${c.desc}</div>
+      <form onsubmit="return runCalc(${i},this)">
+        ${c.fields.map(f=>`<div class="calc-row"><span class="calc-lbl">${f.label}</span><input class="calc-inp" id="calcf-${i}-${f.id}" value="${f.def}" inputmode="decimal" aria-label="${c.name}: ${f.label}"></div>`).join('')}
+        <button type="submit" class="calc-btn">Compute</button>
+      </form>
+      <div class="calc-result" id="calc-res-${i}" style="display:none"></div>
+    </div>`).join('');
+  CALCS.forEach((c,i)=>runCalc(i));
+}
+function runCalc(i,form){
+  const c=CALCS[i],p={};
+  c.fields.forEach(f=>{const el=document.getElementById('calcf-'+i+'-'+f.id);p[f.id]=el?el.value:f.def;});
+  const res=document.getElementById('calc-res-'+i); if(!res)return false;
+  let out; try{out=c.fn(p);}catch(e){out='Error: '+e.message;}
+  res.textContent=out; res.style.display='block';
+  res.classList.toggle('error', /\bmust\b|check input|required|^enter /i.test(out));
+  if(form)return false;
+}
+function filterCalcs(q){
+  q=q.trim().toLowerCase();
+  let n=0;
+  document.querySelectorAll('#dist-calc .calc-card').forEach(c=>{
+    const hit=!q||c.getAttribute('data-search').indexOf(q)>-1; c.style.display=hit?'':'none'; if(hit)n++;
+  });
+  return n;
+}
+
 /* Statistical calculation functions */
 
 function normalCDF(x){
@@ -1116,10 +1273,10 @@ function regularisedGammaP(a,x){
 function chiSqCDF(x,k){return x<=0?0:regularisedGammaP(k/2,x/2);}
 
 function tCDF(t,nu){
+  // regularised incomplete BETA I_x(ν/2, 1/2) — the correct kernel for the t CDF
+  // (previously this called the incomplete GAMMA function by mistake, which is wrong)
   const x=nu/(nu+t*t);
-  const ibeta=regularisedGammaP(nu/2, nu/2*t*t/(nu+t*t));
-  // Use regularised incomplete beta
-  const p=0.5*regularisedGammaP(0.5, t*t/(nu+t*t));
+  const p=0.5*betaInc(x,nu/2,0.5);
   return t<0?p:1-p;
 }
 
@@ -1154,13 +1311,28 @@ function poissonCDF(lam,k){let s=0;for(let i=0;i<=k;i++)s+=poissonPMF(lam,i);ret
       if(window.renderAuthUI)window.renderAuthUI();
     }).catch(function(){});
   },400);
-  if('renderDistributions();' && document.readyState!=='loading') { renderDistributions(); }
-  else if('renderDistributions();') { document.addEventListener('DOMContentLoaded', function(){ renderDistributions(); }); }
+  function _initDistPage(){ renderDistributions(); renderCalcs(); }
+  if(document.readyState!=='loading'){ _initDistPage(); }
+  else { document.addEventListener('DOMContentLoaded', _initDistPage); }
 })();
 </script>
 <script>window._pageKey = 'stats';</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../shared.js"></script>
 
+<script>
+/* Theory & Relations tab */
+function toggleBayLevel(hdr){ if(window.event&&window.event.stopPropagation) window.event.stopPropagation(); hdr.classList.toggle('open'); var b=hdr.nextElementSibling; if(b) b.classList.toggle('show'); }
+const THEORY=[{"tag": "Relationships", "topic": "How the Distributions Connect", "desc": "The family tree: which distribution is a limit, sum, ratio or transform of which.", "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>Bernoulli trials add up to a Binomial. When n is large and p is small, Binomial(n,p) is close to Poisson(np). When n is large with p fixed, it is close to a normal (de Moivre–Laplace). Waiting times between Poisson events are Exponential, and the time to the k-th event is Gamma(k,λ).</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>Sums: independent Gamma(αᵢ,β) add to Gamma(Σαᵢ,β), and independent Poissons add to Poisson. χ²ₖ = Σ Zᵢ² = Gamma(k/2, 1/2). Ratios: t_ν = Z/√(χ²_ν/ν), F = (χ²₁/d₁)/(χ²₂/d₂), and X/(X+Y) for independent Gamma(a) and Gamma(b) is Beta(a,b). Cauchy is a ratio of two independent standard normals and is t₁. Lognormal is exp of a normal, and Weibull is a power of an exponential. Geometric and Exponential are the memoryless distributions on their supports.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Mixtures create heavy tails and overdispersion: a Poisson whose rate is Gamma is Negative Binomial, a normal whose variance is inverse-Gamma is Student-t, and a normal whose scale is exponential mixing gives Laplace. Beta-Binomial and Dirichlet-Multinomial arise from Beta and Dirichlet mixing of success probabilities.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>These identities are instances of general structures: infinite divisibility (Poisson, Gamma, normal, stable are infinitely divisible), Lévy–Khintchine representations, and the Poisson limit theorem with the Chen–Stein method giving explicit total-variation bounds. Le Cam's inequality bounds d_TV(Bin(n,p), Poisson(np)) ≤ np².</p></div></div>"}, {"tag": "Exponential Families", "topic": "Exponential Families, Natural Parameters & Conjugacy", "desc": "One form that contains the normal, Poisson, binomial, gamma and many more.", "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>Many common distributions share a single shape: f(x|η) = h(x) exp(η·T(x) − A(η)). The normal, binomial, Poisson, exponential, gamma and beta all fit. Members of this family have simple sufficient statistics and simple likelihoods.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>η is the natural parameter, T(x) the sufficient statistic and A(η) the log-partition function. Moments come from A: E[T(X)] = ∇A(η) and Cov(T(X)) = ∇²A(η), so A is convex and the family is log-concave in η. The MLE solves E_η[T] = T̄ (moment matching). Each exponential family has a conjugate prior of the form π(η) ∝ exp(η·ν − nA(η)), which explains the Beta–Binomial, Gamma–Poisson and Normal–Normal updates.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Exponential families are exactly the families with fixed-dimension sufficient statistics (Pitman–Koopman–Darmois), and they admit UMP tests for one-parameter problems. Generalised linear models use canonical links η = xᵀβ. Curved exponential families (dimension of η exceeds that of the parameter) lose completeness. Maximum entropy distributions subject to moment constraints are exponential families: the normal maximises entropy for given mean and variance.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Information geometry views an exponential family as a dually flat manifold with Fisher metric ∇²A and dual (mean) coordinates. Kullback–Leibler divergence becomes a Bregman divergence of A. Large deviations (Cramér) give tail rates through the Legendre transform A*, and variational inference in graphical models rests on the conjugate duality between A and the entropy.</p></div></div>"}, {"tag": "Transformations", "topic": "Transformations, Order Statistics & Simulation", "desc": "Distribution of functions of random variables, and how to generate them.", "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>If Y = g(X) for an increasing function g, then P(Y ≤ y) = P(X ≤ g⁻¹(y)). Applying a distribution's own CDF to a random variable gives a Uniform(0,1) variable, and running this backwards lets a computer generate samples: the inverse-transform method X = F⁻¹(U).</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>Change of variables: f_Y(y) = f_X(g⁻¹(y)) |d g⁻¹/dy|, and in several dimensions the absolute Jacobian determinant replaces the derivative. The sum of independent variables has density given by the convolution. The k-th order statistic of n iid variables has density n!/((k−1)!(n−k)!) F(x)^(k−1) (1−F(x))^(n−k) f(x). The maximum has CDF F(x)ⁿ and the minimum 1 − (1−F(x))ⁿ. For Uniform(0,1) the k-th order statistic is Beta(k, n−k+1). Box–Muller turns two uniforms into two independent normals.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Rejection sampling, ratio-of-uniforms and the alias method generate discrete and continuous variates. Gaussian vectors are simulated with a Cholesky factor. Copula methods build joint draws with specified margins. The probability integral transform underlies goodness-of-fit tests (Kolmogorov–Smirnov, Anderson–Darling) and calibration checks. Spacings and record values have exact distributions through Rényi's representation for exponentials.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Limit laws for order statistics (extreme value theory, central order statistics asymptotically normal with variance p(1−p)/(n f(ξₚ)²)) and for empirical processes (Donsker, Brownian bridge) generalise the finite-n formulas. Perfect simulation (coupling from the past) and exact algorithms for diffusions, and quasi-Monte Carlo with low-discrepancy sequences give better than 1/√N error.</p></div></div>"}, {"tag": "Limit Theorems", "topic": "Convergence, Limit Theorems & Stable Laws", "desc": "Why sums of random variables behave like normals, and when they do not.", "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>Add up many independent, small random effects and the total tends to look like a bell curve (central limit theorem). The average of many observations settles down to the true mean (law of large numbers).</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>Modes of convergence: almost surely, in probability, in L^p and in distribution, with a.s. and L^p each implying in probability, and in probability implying in distribution. The weak law needs a finite mean. Kolmogorov's strong law says X̄ → μ a.s. iff E|X| &lt; ∞. The characteristic function φ(t) = E[e^(itX)] always exists and determines the distribution, and Lévy's continuity theorem says pointwise convergence of φ to a function continuous at 0 is equivalent to convergence in distribution. Lindeberg–Feller gives the CLT for independent, non-identical summands under the Lindeberg condition.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Without finite variance the CLT changes: normalised sums converge to α-stable laws with α ∈ (0,2], characterised by index α, skewness β, scale and location, with tails ~ |x|^(−α). The normal is the α = 2 case, the Cauchy is α = 1 and the Lévy is α = 1/2. A distribution belongs to the domain of attraction of a stable law according to the regular variation of its tails. Berry–Esseen and Edgeworth expansions give finite-n corrections, and Stein's method gives explicit error bounds for normal and Poisson approximation.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Functional limit theorems (Donsker's invariance principle) make random walks converge to Brownian motion. Martingale CLTs handle dependent data, and mixing conditions handle time series. Large deviations (Cramér, Gärtner–Ellis, Sanov) give exponential rates. Free probability replaces independence by freeness, with the semicircle law as the analogue of the normal for random matrices (Wigner).</p></div></div>"}, {"tag": "Extremes", "topic": "Extreme Value Theory", "desc": "Distributions for maxima, minima and rare exceedances.", "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>Sometimes the largest value matters most: the biggest flood, the fastest sprint, the worst market day. The maximum of many observations does not follow the normal curve. It follows its own family of extreme value distributions.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>The Fisher–Tippett–Gnedenko theorem says that if normalised block maxima converge, the limit is the generalised extreme value distribution G(x) = exp{−[1 + ξ(x − μ)/σ]^(−1/ξ)}, with shape ξ: Gumbel (ξ = 0), Fréchet (ξ &gt; 0, heavy tails) or reversed Weibull (ξ &lt; 0, bounded upper end). The normal, exponential and gamma are in the Gumbel domain, the Pareto and Student-t in the Fréchet domain, and the uniform in the Weibull domain. A return level for period T is the quantile with exceedance probability 1/T.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Peaks over threshold: by the Pickands–Balkema–de Haan theorem, excesses over a high threshold u follow a generalised Pareto distribution G(y) = 1 − (1 + ξy/σ)^(−1/ξ). Estimation uses maximum likelihood, probability-weighted moments, or the Hill estimator for ξ &gt; 0. Threshold choice trades bias against variance. Dependence between extremes requires the extremal index for clustering.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Multivariate extremes are described by max-stable processes and a spectral measure, with tail dependence coefficients. Regular variation in the tail is the unifying assumption. Second-order conditions give rates of convergence and bias-corrected estimators, and extremes of non-stationary and spatial data are active areas (climate attribution, finance).</p></div></div>"}, {"tag": "Concentration", "topic": "Concentration Inequalities", "desc": "Non-asymptotic bounds on how far random quantities stray from their mean.", "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>Markov's inequality says a nonnegative variable rarely exceeds many times its mean: P(X ≥ a) ≤ E[X]/a. Chebyshev's inequality bounds the chance of being k standard deviations from the mean by 1/k². These hold for any distribution but are often loose.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>Chernoff's method applies Markov to e^(λX), giving P(X ≥ a) ≤ inf_λ e^(−λa) E[e^(λX)]. Hoeffding's inequality bounds sums of bounded variables by exp(−2t²/Σ(bᵢ − aᵢ)²). Bernstein's inequality uses variances and is tighter for rare events. Sub-Gaussian variables have MGF bounded by e^(σ²λ²/2), and sub-exponential variables have a heavier tail with a different regime. McDiarmid's inequality controls functions with bounded differences.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Gaussian concentration (Tsirelson–Ibragimov–Sudakov) says a Lipschitz function of a Gaussian vector concentrates with sub-Gaussian tails independent of dimension. The entropy method and log-Sobolev inequalities (Ledoux) and Talagrand's convex-distance inequality generalise this. Matrix Bernstein (Tropp) controls sums of random matrices, and the Dvoretzky–Kiefer–Wolfowitz inequality controls the empirical CDF uniformly.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Concentration is the basis of high-dimensional statistics and learning theory: generalisation bounds via Rademacher complexity and VC dimension, the Johnson–Lindenstrauss lemma, restricted eigenvalue conditions for the lasso, random matrix theory (Marchenko–Pastur, Tracy–Widom), and PAC-Bayes bounds. Sharper results use chaining and generic chaining (Talagrand) for suprema of stochastic processes.</p></div></div>"}, {"tag": "Dependence", "topic": "Copulas & Dependence Structures", "desc": "Separating the margins of a joint distribution from its dependence.", "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>Two variables can each have a familiar distribution while depending on each other in complicated ways. A copula describes only the dependence, after the margins have been factored out.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>Sklar's theorem: any joint CDF can be written H(x,y) = C(F(x), G(y)) for a copula C (a joint CDF on [0,1]² with uniform margins), unique when the margins are continuous. Fréchet–Hoeffding bounds: W(u,v) = max(u+v−1, 0) ≤ C(u,v) ≤ min(u,v) = M(u,v). Rank correlations depend only on the copula: Kendall's τ = 4∫C dC − 1 and Spearman's ρ_S = 12∫∫(C − uv) du dv. The Gaussian, Student-t, Clayton, Gumbel and Frank copulas are common models.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Tail dependence λ_U = lim_{u→1} P(V &gt; u | U &gt; u) distinguishes copulas: Gaussian has none (λ = 0 unless perfectly correlated), Student-t has symmetric tail dependence, Clayton has lower and Gumbel upper tail dependence. Archimedean copulas C(u,v) = ψ⁻¹(ψ(u) + ψ(v)) come from a generator ψ. Inference uses maximum likelihood, pseudo-likelihood on rank-transformed data (inference functions for margins), and goodness-of-fit tests. Vine copulas build high-dimensional dependence from bivariate pieces.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>The Gaussian copula's failure to capture tail dependence was implicated in the mispricing of credit derivatives before 2008. Current topics include nonparametric copula estimation (empirical and Bernstein copulas), copula-based time series and regression, extreme-value copulas and their spectral measures, and high-dimensional vine structure selection.</p></div></div>"}, {"tag": "Multivariate", "topic": "Multivariate & Matrix-Variate Distributions", "desc": "Random vectors and random matrices.", "detail": "<div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>A multivariate normal distribution describes several related bell-shaped variables at once through a mean vector and a covariance matrix. Uncorrelated jointly normal variables are independent, and any linear combination of them is also normal.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>For X ~ N_p(μ, Σ): AX + b ~ N(Aμ + b, AΣAᵀ), and conditionals are normal with mean μ₁ + Σ₁₂Σ₂₂⁻¹(x₂ − μ₂). The Wishart W_p(Σ, n) is the distribution of Σ Zᵢ Zᵢᵀ and is the sampling distribution of the sample covariance matrix: (n−1)S ~ W_p(Σ, n−1). Hotelling's T² has an F distribution. Cochran's theorem shows that quadratic forms of normal vectors are independent χ² variables. The multivariate t and Dirichlet-multinomial extend the univariate versions.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Elliptical distributions (multivariate normal and t among them) share the property that every linear regression is linear. Isserlis' (Wick's) theorem gives moments of Gaussian vectors as sums over pairings. The inverse-Wishart is the conjugate prior for a covariance matrix, and the matrix-variate normal and matrix t model matrix data. The Dirichlet distribution is conjugate to the multinomial.</p></div></div><div class=\"bay-level\" onclick=\"event.stopPropagation()\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Random matrix theory studies eigenvalue laws: Wigner's semicircle law, Marchenko–Pastur for sample covariance matrices when p/n → c &gt; 0, and the Tracy–Widom law for the largest eigenvalue. These results explain why sample covariance estimation fails in high dimensions and motivate shrinkage (Ledoit–Wolf), factor models and spiked covariance models, where a phase transition (BBP) separates detectable from undetectable signals.</p></div></div>"}];
+const DIST_ADD=[{"name": "Multinomial(n, p)", "eq": "P = n! / (x₁!…x_k!) Πpᵢ^xᵢ", "desc": "Mean npᵢ; Var npᵢ(1−pᵢ); Cov(Xᵢ,Xⱼ) = −npᵢpⱼ"}, {"name": "Poisson-Binomial", "eq": "Sum of independent Bernoulli(pᵢ)", "desc": "Mean Σpᵢ; Var Σpᵢ(1−pᵢ); Le Cam: d_TV to Poisson ≤ Σpᵢ²"}, {"name": "Logarithmic(p)", "eq": "P(X=k) = −pᵏ / (k ln(1−p)),  k ≥ 1", "desc": "Mean −p/((1−p)ln(1−p)); arises with Poisson compounding (negative binomial)"}, {"name": "Skellam(μ₁, μ₂)", "eq": "Difference of independent Poissons", "desc": "Mean μ₁ − μ₂; Var μ₁ + μ₂"}, {"name": "Logistic(μ, s)", "eq": "f = e^(−(x−μ)/s) / (s(1 + e^(−(x−μ)/s))²)", "desc": "Mean μ; Var s²π²/3; CDF is the logistic function"}, {"name": "Inverse-Gamma(α, β)", "eq": "f = β^α / Γ(α) · x^(−α−1) e^(−β/x)", "desc": "Mean β/(α−1) (α>1); Var β²/((α−1)²(α−2)) (α>2); conjugate prior for a normal variance"}, {"name": "Half-Normal(σ)", "eq": "f = (√2 / (σ√π)) e^(−x²/(2σ²)),  x ≥ 0", "desc": "Mean σ√(2/π); Var σ²(1 − 2/π)"}, {"name": "Skew-Normal(ξ, ω, α)", "eq": "f = (2/ω) φ((x−ξ)/ω) Φ(α(x−ξ)/ω)", "desc": "Mean ξ + ωδ√(2/π), δ = α/√(1+α²); α = 0 gives the normal"}, {"name": "Log-Logistic(α, β)", "eq": "f = (β/α)(x/α)^(β−1) / (1 + (x/α)^β)²", "desc": "Median α; used in survival analysis"}, {"name": "Triangular(a, b, c)", "eq": "Peak at c on [a,b]", "desc": "Mean (a+b+c)/3; Var (a²+b²+c²−ab−ac−bc)/18"}, {"name": "Erlang(k, λ)", "eq": "Gamma(k,λ) with integer k", "desc": "Mean k/λ; Var k/λ²; sum of k Exponential(λ)"}, {"name": "Noncentral χ²(k, λ)", "eq": "Σ (Zᵢ + μᵢ)²,  λ = Σμᵢ²", "desc": "Mean k + λ; Var 2(k + 2λ); power of χ² tests"}, {"name": "Noncentral t(ν, δ)", "eq": "(Z + δ) / √(V/ν)", "desc": "Mean δ√(ν/2)Γ((ν−1)/2)/Γ(ν/2) (ν>1); power of t-tests"}, {"name": "Beta-Prime(α, β)", "eq": "f = x^(α−1)(1+x)^(−α−β) / B(α,β)", "desc": "Mean α/(β−1) (β>1); ratio of independent Gamma variables"}, {"name": "Kumaraswamy(a, b)", "eq": "f = ab x^(a−1)(1 − x^a)^(b−1);  F = 1 − (1 − x^a)^b", "desc": "Beta-like on (0,1) with closed-form CDF"}, {"name": "Lévy(c)", "eq": "f = √(c/2π) x^(−3/2) e^(−c/(2x)),  x > 0", "desc": "Stable with α = 1/2; infinite mean"}, {"name": "Gompertz(η, b)", "eq": "f = bη e^(η + bx − ηe^(bx))", "desc": "Hazard bη e^(bx); models adult mortality"}, {"name": "Wishart W_p(Σ, n)", "eq": "Σ_{i=1}^n Zᵢ Zᵢᵀ, Zᵢ ~ N_p(0,Σ)", "desc": "Mean nΣ; conjugate for a normal precision matrix; inverse-Wishart for the covariance"}];
+function toggleTh(i){ var d=document.getElementById('thdet-'+i), l=document.getElementById('thlbl-'+i); var o=d.classList.toggle('show'); l.textContent=o?'\u25be Show less':'\u25b8 Read more (four levels)'; }
+function renderTheory(){
+  var g=document.getElementById('dist-theory'); if(!g) return;
+  g.innerHTML='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));gap:1.1rem;margin-bottom:2.5rem">'+THEORY.map(function(t,i){
+    return '<div class="inf-card" onclick="toggleTh('+i+')"><span class="inf-tag">'+t.tag+'</span><div class="inf-topic">'+t.topic+'</div><div class="inf-desc">'+t.desc+'</div><span class="inf-expand-lbl" id="thlbl-'+i+'">\u25b8 Read more (four levels)</span><div class="inf-detail" id="thdet-'+i+'">'+t.detail+'</div></div>';}).join('')+'</div>'
+   +'<div class="fml-section"><div class="fml-section-title">Further distributions: reference sheet</div><div class="fml-grid">'+DIST_ADD.map(function(f){return '<div class="fml-card"><div class="fml-name">'+f.name+'</div><div class="fml-eq">'+f.eq+'</div><div class="fml-desc">'+f.desc+'</div></div>';}).join('')+'</div></div>';
+}
+renderTheory();
+</script>
 </body>
 </html>

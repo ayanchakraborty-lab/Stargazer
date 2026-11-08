@@ -5,7 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Cartographer's Vault</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,500&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // Watchdog: the Supabase SDK below loads as a blocking script, so on a
+  // slow or flaky connection the entire page (every click handler included)
+  // can sit fully unresponsive with zero visual feedback while it's still
+  // fetching. If our own app code hasn't started running within a few
+  // seconds, say so instead of leaving the page looking dead.
+  window.__vaultAppStarted = false;
+  setTimeout(function () {
+    if (window.__vaultAppStarted) return;
+    var b = document.createElement('div');
+    b.textContent = '◈ Still loading (this can take a while on a slow connection) — nothing will respond to taps until it finishes. Reload if this sits for more than a minute.';
+    b.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#c4882f;color:#1a1610;font-weight:600;text-align:center;padding:0.6rem;font-size:0.8rem;';
+    (document.body || document.documentElement).prepend(b);
+  }, 5000);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -88,7 +103,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:va
 
 /* ── PARCHMENT GRID OVERLAY + FANTASY MAP BACKDROP ────────────────── */
 /* The map layer appears faded and softly blurred behind the parchment grid,
-   loaded from pics/cartography.png. No image present? The layer is simply
+   loaded from pics/cartography.webp. No image present? The layer is simply
    blank and nothing else changes. */
 body::before{
   content:'';position:fixed;inset:-2%;z-index:0;pointer-events:none;
@@ -98,7 +113,7 @@ body::before{
     linear-gradient(90deg,rgba(196,136,47,.018) 1px,transparent 1px),
     radial-gradient(ellipse at 18% 28%,rgba(196,136,47,.045) 0%,transparent 58%),
     radial-gradient(ellipse at 80% 72%,rgba(107,154,184,.025) 0%,transparent 55%),
-    url('pics/cartography.png');
+    url('pics/cartography.webp');
   background-size:300px 300px,72px 72px,72px 72px,100% 100%,100% 100%,cover;
   background-position:0 0,0 0,0 0,0 0,0 0,center;
   background-repeat:repeat,repeat,repeat,no-repeat,no-repeat,no-repeat;
@@ -112,7 +127,7 @@ body.day-mode::before{
     linear-gradient(90deg,rgba(120,80,30,.035) 1px,transparent 1px),
     radial-gradient(ellipse at 18% 28%,rgba(120,80,30,.06) 0%,transparent 58%),
     radial-gradient(ellipse at 80% 72%,rgba(61,111,142,.04) 0%,transparent 55%),
-    url('pics/cartography.png');
+    url('pics/cartography.webp');
   background-size:300px 300px,72px 72px,72px 72px,100% 100%,100% 100%,cover;
   background-position:0 0,0 0,0 0,0 0,0 0,center;
   background-repeat:repeat,repeat,repeat,no-repeat,no-repeat,no-repeat;
@@ -195,47 +210,96 @@ body.day-mode .cartouche-corner path,body.day-mode .cartouche-corner circle{opac
    for gloss, a dashed inner ring, and an embossed emblem — no flat CSS
    circles pretending to be wax.
    ══════════════════════════════════════════ */
-.seal-row{display:flex;justify-content:center;gap:1rem;margin:1.1rem 0 .4rem;flex-wrap:wrap;}
+.seal-row{display:flex;justify-content:center;gap:.6rem;margin:1.1rem 0 .4rem;flex-wrap:nowrap;}
 .wax-seal{
-  position:relative;width:78px;height:78px;border:none;background:none;cursor:pointer;padding:0;
-  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:.35rem;
-  transition:transform .18s ease,filter .3s ease;
+  position:relative;flex:1 1 0;min-width:0;max-width:84px;border:none;background:none;cursor:pointer;padding:0;
+  display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  transition:transform .18s ease,opacity .25s ease,filter .25s ease;-webkit-tap-highlight-color:transparent;
 }
-.wax-seal .seal-svg{
-  width:78px;height:78px;
+.wax-seal.admin{color:#c9993e;}
+.wax-seal.viewer{color:#3f9a5a;}
+.wax-seal.contributor{color:#3d73c9;}
+.wax-seal.diary{color:#c23a44;}
+.seal-art{
+  position:relative;display:block;width:100%;aspect-ratio:1/1;
   filter:drop-shadow(0 4px 5px rgba(0,0,0,.5)) drop-shadow(0 1px 0 rgba(0,0,0,.3));
-  transition:filter .25s ease;
+  transition:filter .25s ease,transform .25s ease;
 }
+.seal-art img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+  user-select:none;-webkit-user-drag:none;pointer-events:none;
+}
+/* the two halves only exist for the break animation; at rest the whole seal shows */
+.seal-art .seal-half{opacity:0;transform-origin:50% 62%;}
+.seal-art .seal-half.a{clip-path:polygon(0 0,54% 0,47% 13%,56% 28%,46% 43%,55% 58%,45% 72%,54% 86%,48% 100%,0 100%);}
+.seal-art .seal-half.b{clip-path:polygon(54% 0,100% 0,100% 100%,48% 100%,54% 86%,45% 72%,55% 58%,46% 43%,56% 28%,47% 13%);}
 .wax-seal:hover{transform:translateY(-2px) scale(1.045);}
 .wax-seal:active{transform:translateY(1px) scale(.98);}
-.wax-seal.selected .seal-svg{filter:drop-shadow(0 4px 5px rgba(0,0,0,.5)) drop-shadow(0 0 0 3px var(--bg)) drop-shadow(0 0 0 5px currentColor) brightness(1.08);}
-.wax-seal.admin{color:var(--gold);}
-.wax-seal.viewer{color:#5f9b86;}
-.wax-seal.contributor{color:var(--gold);}
-.wax-seal.diary{color:#7a1f2b;}
+.wax-seal.selected .seal-art{
+  transform:scale(1.07);
+  filter:drop-shadow(0 0 7px currentColor) drop-shadow(0 4px 5px rgba(0,0,0,.5)) brightness(1.08);
+}
+.wax-seal.selected .seal-label{color:currentColor;}
+.seal-row.has-selection .wax-seal:not(.selected){opacity:.55;}
 .seal-label{
   font-family:var(--fm);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--muted);pointer-events:none;
-}
-/* Crack overlay — a fracture pattern that reveals on a successful entry */
-.seal-crack{
-  position:absolute;top:0;left:0;width:78px;height:78px;border-radius:50%;pointer-events:none;opacity:0;
-  background:
-    linear-gradient(115deg,transparent 47%,var(--bg) 48.5%,transparent 50%),
-    linear-gradient(25deg,transparent 60%,var(--bg) 61.5%,transparent 64%),
-    linear-gradient(200deg,transparent 70%,var(--bg) 71.5%,transparent 74%);
-  clip-path:circle(0% at 50% 50%);
-}
-.wax-seal.cracking .seal-svg{animation:seal-shatter .55s ease forwards;}
-.wax-seal.cracking .seal-crack{opacity:1;clip-path:circle(72% at 50% 50%);transition:clip-path .5s cubic-bezier(.2,.8,.3,1);}
-@keyframes seal-shatter{
-  0%{transform:scale(1);}
-  30%{transform:scale(1.12) rotate(-2deg);}
-  55%{transform:scale(.96) rotate(1.5deg);}
-  100%{transform:scale(1.02) rotate(0);filter:brightness(1.2);}
+  color:var(--muted);pointer-events:none;transition:color .2s;white-space:nowrap;
 }
 .wax-seal:disabled{cursor:default;}
-.wax-seal:disabled .seal-svg{opacity:.5;filter:grayscale(.5) drop-shadow(0 3px 3px rgba(0,0,0,.35));}
+.wax-seal:disabled .seal-art{opacity:.5;filter:grayscale(.5) drop-shadow(0 3px 3px rgba(0,0,0,.35));}
+
+/* Wrong password: the seal shudders and stays whole */
+.wax-seal.denied .seal-art{animation:seal-denied .42s ease;}
+@keyframes seal-denied{
+  0%,100%{transform:translateX(0) scale(1.07);}
+  18%{transform:translateX(-6px) rotate(-3deg) scale(1.07);}
+  36%{transform:translateX(6px) rotate(3deg) scale(1.07);}
+  54%{transform:translateX(-4px) rotate(-2deg) scale(1.07);}
+  72%{transform:translateX(3px) rotate(1deg) scale(1.07);}
+}
+/* Right password: it trembles, flashes, cracks in two along a jagged line, the halves fall away, wax chips fly */
+.wax-seal.breaking{pointer-events:none;opacity:1 !important;}
+.wax-seal.breaking .seal-art{transform:scale(1.07);filter:drop-shadow(0 4px 5px rgba(0,0,0,.5));}
+.wax-seal.breaking .seal-art .seal-whole{opacity:0;transition:opacity 0s linear .2s;}
+.wax-seal.breaking .seal-art .seal-half{opacity:1;transition:opacity 0s linear .2s;}
+.wax-seal.breaking .seal-art .seal-half.a{animation:seal-split-a .95s cubic-bezier(.3,.05,.4,1) forwards;}
+.wax-seal.breaking .seal-art .seal-half.b{animation:seal-split-b .95s cubic-bezier(.3,.05,.4,1) forwards;}
+@keyframes seal-split-a{
+  0%{transform:none;opacity:1;}
+  8%{transform:translate(-1.5px,0) rotate(-1deg);}
+  16%{transform:translate(1.5px,0) rotate(1deg);}
+  22%{transform:none;}
+  34%{transform:translate(-5px,1px) rotate(-4deg);opacity:1;}
+  100%{transform:translate(-26px,44px) rotate(-24deg);opacity:0;}
+}
+@keyframes seal-split-b{
+  0%{transform:none;opacity:1;}
+  8%{transform:translate(1.5px,0) rotate(1deg);}
+  16%{transform:translate(-1.5px,0) rotate(-1deg);}
+  22%{transform:none;}
+  34%{transform:translate(5px,1px) rotate(4deg);opacity:1;}
+  100%{transform:translate(26px,48px) rotate(22deg);opacity:0;}
+}
+.wax-seal.breaking .seal-art::after{
+  content:"";position:absolute;inset:-4px;border-radius:50%;pointer-events:none;opacity:0;
+  background:radial-gradient(circle,rgba(255,246,222,.75) 0%,rgba(255,246,222,.28) 40%,transparent 68%);
+  animation:seal-flash .55s ease-out .2s;
+}
+@keyframes seal-flash{0%{opacity:0;transform:scale(.35);}30%{opacity:1;}100%{opacity:0;transform:scale(1.5);}}
+.seal-shard{
+  position:absolute;left:50%;top:50%;width:var(--s,7px);height:var(--s,7px);
+  background:currentColor;border-radius:35% 65% 45% 55%;opacity:0;pointer-events:none;
+  box-shadow:inset -1px -1px 1px rgba(0,0,0,.35);
+  animation:seal-shard .85s cubic-bezier(.2,.7,.3,1) forwards;
+}
+@keyframes seal-shard{
+  0%{opacity:1;transform:translate(-50%,-50%) rotate(0);}
+  100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--r));}
+}
+@media (prefers-reduced-motion:reduce){
+  .wax-seal.breaking .seal-art .seal-half.a,.wax-seal.breaking .seal-art .seal-half.b{animation-duration:.01s;}
+  .wax-seal.breaking .seal-art::after,.seal-shard,.wax-seal.denied .seal-art{animation:none;}
+}
 .role-banner{
   position:sticky;top:0;z-index:40;text-align:center;padding:.55rem 1rem;
   font-family:var(--fm);font-size:.66rem;letter-spacing:.08em;
@@ -247,16 +311,8 @@ body.day-mode .cartouche-corner path,body.day-mode .cartouche-corner circle{opac
 #syncStatusBtn.sync-busy{opacity:.6;}
 .sharing-modal-box{max-width:520px;}
 .seal-field-row{display:flex;align-items:center;gap:1rem;margin-bottom:1.1rem;}
-.mini-seal{
-  flex-shrink:0;width:44px;height:44px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  background:radial-gradient(circle at 32% 28%, var(--seal-hl,#fff3) 0%, transparent 45%), var(--seal-color,var(--gold));
-  box-shadow:0 2px 0 rgba(0,0,0,.4), inset 0 1px 2px rgba(255,255,255,.25), inset 0 -2px 3px rgba(0,0,0,.35);
-}
-.mini-seal .seal-emblem{width:18px;height:18px;stroke:rgba(0,0,0,.55);fill:none;}
-.mini-seal.viewer{--seal-color:#5f9b86;--seal-hl:rgba(255,255,255,.35);}
-.mini-seal.contributor{--seal-color:var(--gold);--seal-hl:rgba(255,240,210,.4);}
-.mini-seal.diary{--seal-color:#7a1f2b;--seal-hl:rgba(255,180,180,.3);}
+.mini-seal{flex-shrink:0;width:52px;height:52px;display:flex;align-items:center;justify-content:center;}
+.mini-seal img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 2px 3px rgba(0,0,0,.45));}
 
 .login-form-wrap{padding:1.9rem;}
 .form-section{display:none;}
@@ -276,21 +332,6 @@ body.day-mode .cartouche-corner path,body.day-mode .cartouche-corner circle{opac
 .login-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(196,136,47,.11);}
 .login-input::placeholder{color:rgba(232,220,200,.2);}
 body.day-mode .login-input::placeholder{color:rgba(58,46,28,.28);}
-
-.hint-row{
-  display:flex;align-items:center;gap:.45rem;margin-top:.5rem;
-  font-family:var(--fm);font-size:.62rem;letter-spacing:.08em;
-  color:rgba(232,220,200,.3);cursor:pointer;width:fit-content;
-  transition:color .18s;
-}
-body.day-mode .hint-row{color:rgba(58,46,28,.4);}
-.hint-row:hover{color:var(--gold-d);}
-.hint-row span{font-size:.75rem;}
-.hint-reveal{
-  font-family:var(--fb);font-style:italic;font-size:.8rem;
-  color:var(--ink);margin-top:.35rem;display:none;letter-spacing:.02em;
-}
-.hint-reveal.show{display:block;}
 
 .login-error{
   font-family:var(--fm);font-size:.66rem;color:var(--crimson);
@@ -314,6 +355,21 @@ body.day-mode .login-note{color:rgba(58,46,28,.4);}
 .enter-btn:hover{background:rgba(196,136,47,.22);box-shadow:0 0 24px rgba(196,136,47,.18);}
 .enter-btn:active{transform:scale(.99);}
 .enter-btn:disabled{opacity:.5;cursor:not-allowed;}
+
+/* ── FINGERPRINT UNLOCK ─────────────────────────────────────────────
+   Reuses .enter-btn (so day-mode overrides apply for free). The block
+   only appears once this device has been enrolled. */
+.fp-block{padding:1.5rem 1.9rem 1.15rem;border-bottom:1px solid var(--border);text-align:center;}
+.fp-block .fp-btn{margin-top:0;display:flex;align-items:center;justify-content:center;gap:.75rem;}
+.fp-btn svg{width:1.4rem;height:1.4rem;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.fp-btn.busy{opacity:.6;pointer-events:none;}
+.fp-or{font-family:var(--fm);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:1rem;}
+.fp-offer{position:fixed;left:50%;bottom:1.2rem;transform:translateX(-50%);z-index:9000;width:min(92vw,28rem);display:flex;flex-wrap:wrap;align-items:center;gap:.6rem .8rem;padding:.85rem 1rem;background:var(--card);border:1px solid var(--border-s);box-shadow:0 8px 30px var(--card-shadow);font-family:var(--fm);font-size:.68rem;letter-spacing:.04em;line-height:1.5;color:var(--text);}
+.fp-offer span{flex:1 1 100%;}
+.fp-offer .enter-btn{margin-top:0;width:auto;flex:1;padding:.55rem 1rem;}
+.fp-offer-no{background:none;border:none;color:var(--muted);font-family:var(--fm);font-size:.64rem;letter-spacing:.08em;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:.4rem .6rem;}
+.fp-remove{font-family:var(--fm);font-size:.58rem;letter-spacing:.08em;color:var(--muted);margin:.7rem auto 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;width:fit-content;}
+.fp-remove:hover{color:var(--crimson);}
 
 .login-theme-toggle{
   position:fixed;top:1.1rem;right:1.1rem;z-index:50;
@@ -1342,6 +1398,16 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
     <svg class="cartouche-corner bl" viewBox="0 0 60 60" fill="none"><path d="M2 30 Q2 58 30 58" stroke="rgba(196,136,47,.4)" stroke-width="1"/><path d="M2 42 Q2 42 14 42" stroke="rgba(196,136,47,.3)" stroke-width=".7"/><path d="M18 58 Q18 58 18 46" stroke="rgba(196,136,47,.3)" stroke-width=".7"/><circle cx="2" cy="30" r="1.6" fill="rgba(196,136,47,.5)"/><circle cx="30" cy="58" r="1.6" fill="rgba(196,136,47,.5)"/></svg>
     <svg class="cartouche-corner br" viewBox="0 0 60 60" fill="none"><path d="M58 30 Q58 58 30 58" stroke="rgba(196,136,47,.4)" stroke-width="1"/><path d="M58 42 Q58 42 46 42" stroke="rgba(196,136,47,.3)" stroke-width=".7"/><path d="M42 58 Q42 58 42 46" stroke="rgba(196,136,47,.3)" stroke-width=".7"/><circle cx="58" cy="30" r="1.6" fill="rgba(196,136,47,.5)"/><circle cx="30" cy="58" r="1.6" fill="rgba(196,136,47,.5)"/></svg>
 
+    <!-- Shown only on a device that has been enrolled for fingerprint unlock -->
+    <div class="fp-block" id="fpBlock" style="display:none">
+      <button type="button" class="enter-btn fp-btn" id="fpUnlockBtn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/></svg>
+        <span>Unlock with Fingerprint</span>
+      </button>
+      <div class="fp-or">or use a seal below</div>
+      <div class="fp-remove" id="fpRemove">Remove fingerprint unlock from this device</div>
+    </div>
+
     <div class="login-tabs">
       <button class="login-tab active" data-target="sealSection">◈ Wax Seal</button>
       <button class="login-tab" data-target="googleSection">◈ By Google</button>
@@ -1363,100 +1429,42 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
         <div class="seal-row">
 
           <button type="button" class="wax-seal admin" data-role="admin" aria-label="Admin seal">
-            <svg viewBox="0 0 120 120" class="seal-svg">
-              <defs>
-                <filter id="waxEdge-admin" x="-30%" y="-30%" width="160%" height="160%">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="7" result="n"/>
-                  <feDisplacementMap in="SourceGraphic" in2="n" scale="8"/>
-                </filter>
-                <filter id="blur-admin"><feGaussianBlur stdDeviation="3.2"/></filter>
-                <radialGradient id="waxGrad-admin" cx="35%" cy="28%" r="78%">
-                  <stop offset="0%" stop-color="#e8c67a"/><stop offset="50%" stop-color="#c4882f"/><stop offset="100%" stop-color="#7a5316"/>
-                </radialGradient>
-              </defs>
-              <circle cx="60" cy="60" r="46" fill="url(#waxGrad-admin)" filter="url(#waxEdge-admin)"/>
-              <circle cx="60" cy="60" r="37" fill="none" stroke="rgba(0,0,0,.28)" stroke-width="1" stroke-dasharray="1.5,3.2" filter="url(#waxEdge-admin)"/>
-              <ellipse cx="44" cy="38" rx="17" ry="9" fill="#fff" opacity=".32" filter="url(#blur-admin)" transform="rotate(-25 44 38)"/>
-              <g stroke="rgba(0,0,0,.6)" stroke-width="2.5" fill="none" transform="translate(60,60)">
-                <path d="M0,-16 L4,-4 L16,0 L4,4 L0,16 L-4,4 L-16,0 L-4,-4 Z"/>
-              </g>
-            </svg>
-            <div class="seal-crack"></div>
+            <span class="seal-art">
+              <img class="seal-whole" src="pics/gold_seal.png" alt="" draggable="false">
+              <img class="seal-half a" src="pics/gold_seal.png" alt="" draggable="false">
+              <img class="seal-half b" src="pics/gold_seal.png" alt="" draggable="false">
+            </span>
             <span class="seal-label">Admin</span>
           </button>
 
           <button type="button" class="wax-seal viewer" data-role="viewer" aria-label="Viewer seal">
-            <svg viewBox="0 0 120 120" class="seal-svg">
-              <defs>
-                <filter id="waxEdge-viewer" x="-30%" y="-30%" width="160%" height="160%">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="3" result="n"/>
-                  <feDisplacementMap in="SourceGraphic" in2="n" scale="8"/>
-                </filter>
-                <filter id="blur-viewer"><feGaussianBlur stdDeviation="3.2"/></filter>
-                <radialGradient id="waxGrad-viewer" cx="35%" cy="28%" r="78%">
-                  <stop offset="0%" stop-color="#a8d9c4"/><stop offset="50%" stop-color="#5f9b86"/><stop offset="100%" stop-color="#2c4d41"/>
-                </radialGradient>
-              </defs>
-              <circle cx="60" cy="60" r="46" fill="url(#waxGrad-viewer)" filter="url(#waxEdge-viewer)"/>
-              <circle cx="60" cy="60" r="37" fill="none" stroke="rgba(0,0,0,.28)" stroke-width="1" stroke-dasharray="1.5,3.2" filter="url(#waxEdge-viewer)"/>
-              <ellipse cx="44" cy="38" rx="17" ry="9" fill="#fff" opacity=".32" filter="url(#blur-viewer)" transform="rotate(-25 44 38)"/>
-              <g stroke="rgba(0,0,0,.6)" stroke-width="2.5" fill="none" transform="translate(60,60)">
-                <circle r="3" fill="rgba(0,0,0,.6)"/><path d="M0,-16 L0,16 M-16,0 L16,0"/>
-              </g>
-            </svg>
-            <div class="seal-crack"></div>
+            <span class="seal-art">
+              <img class="seal-whole" src="pics/green_seal.png" alt="" draggable="false">
+              <img class="seal-half a" src="pics/green_seal.png" alt="" draggable="false">
+              <img class="seal-half b" src="pics/green_seal.png" alt="" draggable="false">
+            </span>
             <span class="seal-label">View</span>
           </button>
 
           <button type="button" class="wax-seal contributor" data-role="contributor" aria-label="Contributor seal">
-            <svg viewBox="0 0 120 120" class="seal-svg">
-              <defs>
-                <filter id="waxEdge-contributor" x="-30%" y="-30%" width="160%" height="160%">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="11" result="n"/>
-                  <feDisplacementMap in="SourceGraphic" in2="n" scale="8"/>
-                </filter>
-                <filter id="blur-contributor"><feGaussianBlur stdDeviation="3.2"/></filter>
-                <radialGradient id="waxGrad-contributor" cx="35%" cy="28%" r="78%">
-                  <stop offset="0%" stop-color="#e8c67a"/><stop offset="50%" stop-color="#c4882f"/><stop offset="100%" stop-color="#7a5316"/>
-                </radialGradient>
-              </defs>
-              <circle cx="60" cy="60" r="46" fill="url(#waxGrad-contributor)" filter="url(#waxEdge-contributor)"/>
-              <circle cx="60" cy="60" r="37" fill="none" stroke="rgba(0,0,0,.28)" stroke-width="1" stroke-dasharray="1.5,3.2" filter="url(#waxEdge-contributor)"/>
-              <ellipse cx="44" cy="38" rx="17" ry="9" fill="#fff" opacity=".32" filter="url(#blur-contributor)" transform="rotate(-25 44 38)"/>
-              <g stroke="rgba(0,0,0,.6)" stroke-width="2.5" fill="none" transform="translate(60,60)">
-                <path d="M-13,13 L10,-10 L15,-5 L-8,18 L-15,15 Z"/>
-              </g>
-            </svg>
-            <div class="seal-crack"></div>
+            <span class="seal-art">
+              <img class="seal-whole" src="pics/blue_seal.png" alt="" draggable="false">
+              <img class="seal-half a" src="pics/blue_seal.png" alt="" draggable="false">
+              <img class="seal-half b" src="pics/blue_seal.png" alt="" draggable="false">
+            </span>
             <span class="seal-label">Contribute</span>
           </button>
 
           <button type="button" class="wax-seal diary" data-role="diary_reader" aria-label="Diary seal">
-            <svg viewBox="0 0 120 120" class="seal-svg">
-              <defs>
-                <filter id="waxEdge-diary" x="-30%" y="-30%" width="160%" height="160%">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="19" result="n"/>
-                  <feDisplacementMap in="SourceGraphic" in2="n" scale="8"/>
-                </filter>
-                <filter id="blur-diary"><feGaussianBlur stdDeviation="3.2"/></filter>
-                <radialGradient id="waxGrad-diary" cx="35%" cy="28%" r="78%">
-                  <stop offset="0%" stop-color="#c26575"/><stop offset="50%" stop-color="#7a1f2b"/><stop offset="100%" stop-color="#3d0f15"/>
-                </radialGradient>
-              </defs>
-              <circle cx="60" cy="60" r="46" fill="url(#waxGrad-diary)" filter="url(#waxEdge-diary)"/>
-              <circle cx="60" cy="60" r="37" fill="none" stroke="rgba(0,0,0,.28)" stroke-width="1" stroke-dasharray="1.5,3.2" filter="url(#waxEdge-diary)"/>
-              <ellipse cx="44" cy="38" rx="17" ry="9" fill="#fff" opacity=".32" filter="url(#blur-diary)" transform="rotate(-25 44 38)"/>
-              <g stroke="rgba(0,0,0,.6)" stroke-width="2.5" fill="none" transform="translate(60,60)">
-                <path d="M-13,-14 h26 v26 l-13,7 l-13,-7 Z"/>
-              </g>
-            </svg>
-            <div class="seal-crack"></div>
+            <span class="seal-art">
+              <img class="seal-whole" src="pics/red_seal.png" alt="" draggable="false">
+              <img class="seal-half a" src="pics/red_seal.png" alt="" draggable="false">
+              <img class="seal-half b" src="pics/red_seal.png" alt="" draggable="false">
+            </span>
             <span class="seal-label">Diary</span>
           </button>
 
         </div>
-        <div class="hint-row" id="hintToggle" style="display:none"><span>◎</span> Reveal cipher hint</div>
-        <div class="hint-reveal" id="hintReveal">birthday - ddmmyyyy</div>
 
         <!-- Shown only for the 3 non-admin seals, before a real session exists.
              Signing in here just establishes who you are — the seal's
@@ -1507,6 +1515,14 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
       <button class="hbtn primary" id="addDocBtn" onclick="openUploadModal()">+ Document</button>
       <button class="hbtn primary" id="addTerrBtn" onclick="openFolderModal()">+ Territory</button>
       <button class="hbtn" id="setupSharingBtn" style="display:none" onclick="openModal('sharingModal')" title="Issue or change the 3 shared wax-seal passwords">◈ Setup Sharing</button>
+      <button class="hbtn" id="recoverKeyBtn" style="display:none" onclick="exportVaultKeyForRecovery()" title="If another device can't open your content with the right password, export this device's key to fix it there">◈ Recover Key</button>
+      <button class="hbtn" id="importKeyBtn" style="display:none" onclick="promptImportVaultKey()" title="Paste a key exported from another device (via Recover Key) to fix this device's wrap">◈ Import Key</button>
+      <button class="hbtn" id="restoreBackupBtn" style="display:none" onclick="document.getElementById('restoreBackupFileInput').click()" title="Restore items from a vault-migration-backup-*.json file (downloaded automatically the one time Setup Sharing's migration ran)">◈ Restore Backup</button>
+      <input type="file" id="restoreBackupFileInput" accept="application/json,.json" style="display:none" onchange="if(this.files[0]) restoreFromMigrationBackupFile(this.files[0]); this.value='';">
+      <button class="hbtn" id="adminPwBtn" style="display:none" onclick="openModal('adminPwModal')" title="Set or change the admin password">◈ Admin Password</button>
+      <button class="hbtn" id="verifyFilesBtn" style="display:none" onclick="verifyAllFiles()" title="Download and decrypt every stored file and compare its size with what was recorded">◈ Verify Files</button>
+      <button class="hbtn" id="importR2BackupBtn" style="display:none" onclick="document.getElementById('importR2BackupFileInput').click()" title="Import a plain (unencrypted) vault-full-backup-*.json: files go to Supabase Storage or Cloudflare R2 (your choice), everything else to the database, all re-encrypted under this session's keys">◈ Import Backup</button>
+      <input type="file" id="importR2BackupFileInput" accept="application/json,.json" style="display:none" onchange="if(this.files[0]) importPlainBackup(this.files[0]); this.value='';">
       <button class="hbtn" id="syncStatusBtn" style="display:none" onclick="openSyncStatusModal()" title="Sync status — tap for details or to sync now">◈ Sync</button>
       <button class="hbtn primary" id="addBookBtn" style="display:none" onclick="openBookModal()">+ Add a Book</button>
       <button class="hbtn primary" id="addMovieBtn" style="display:none" onclick="openMovieModal()">+ Add a Movie</button>
@@ -1796,7 +1812,7 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
   <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gold);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
 </div>
 <div style="text-align:center;padding-bottom:2rem;">
-  <a href="ABOUT.html" style="font-family:var(--fm,'Space Mono',monospace);font-size:0.6rem;letter-spacing:0.14em;color:var(--gold);opacity:0.45;text-decoration:none;border:1px solid var(--gold);border-radius:2px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+  <a href="ABOUT" style="font-family:var(--fm,'Space Mono',monospace);font-size:0.6rem;letter-spacing:0.14em;color:var(--gold);opacity:0.45;text-decoration:none;border:1px solid var(--gold);border-radius:2px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
 </div>
 
 </div><!-- /mainPage -->
@@ -1838,12 +1854,12 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
       </div>
 
       <div class="fgrp" style="margin:0.6rem 0">
-        <label class="flbl">Store In</label>
-        <div style="display:flex;gap:1rem;margin-top:0.3rem">
+        <label class="flbl">Store file in <span class="flbl-opt">never in the database</span></label>
+        <div style="display:flex;gap:1rem;margin-top:0.3rem;flex-wrap:wrap">
           <label style="font-weight:400;display:inline-flex;align-items:center;gap:0.35rem;cursor:pointer">
-            <input type="radio" name="fileBackend" value="supabase" checked> Supabase</label>
+            <input type="radio" name="fileBackend" value="r2" checked> Cloudflare R2</label>
           <label style="font-weight:400;display:inline-flex;align-items:center;gap:0.35rem;cursor:pointer">
-            <input type="radio" name="fileBackend" value="r2"> Cloudflare R2</label>
+            <input type="radio" name="fileBackend" value="sbstorage"> Supabase Storage <span style="opacity:.6">(admin, up to 50 MB)</span></label>
         </div>
       </div>
 
@@ -2078,6 +2094,40 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
 <!-- ══════════════════════════════════════════
      SETUP SHARING MODAL (admin-only — issues/changes the 3 wax seals)
 ══════════════════════════════════════════ -->
+<div class="modal-overlay" id="adminPwModal">
+  <div class="modal-box sharing-modal-box">
+    <div class="modal-hdr">
+      <div>
+        <div class="modal-title">Admin Password</div>
+        <div class="modal-sub">Set or change the password that opens this vault as admin</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('adminPwModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="adminPwForm" onsubmit="return false">
+        <div class="fgrp">
+          <label class="flbl">New admin password</label>
+          <input class="fin" id="adminPwNew" type="password" placeholder="At least 12 characters" autocomplete="new-password">
+        </div>
+        <div class="fgrp">
+          <label class="flbl">Type it again</label>
+          <input class="fin" id="adminPwConfirm" type="password" autocomplete="new-password">
+        </div>
+        <div class="fgrp">
+          <label class="flbl">Diary password <span class="flbl-opt">needed the first time only</span></label>
+          <input class="fin" id="adminPwDiary" type="password" placeholder="Your existing diary password" autocomplete="off">
+        </div>
+        <div class="f-hint" style="margin-top:.8rem">Changing this never touches your content — only the lock on the key. You can change it as often as you like while you are inside; the old password stops working immediately. Google admin sign-in keeps working.</div>
+        <div class="login-error" id="adminPwError"></div>
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-g" onclick="closeModal('adminPwModal')">Cancel</button>
+      <button class="btn btn-p" id="adminPwSubmitBtn" onclick="submitAdminPassword()">Save password</button>
+    </div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="sharingModal">
   <div class="modal-box sharing-modal-box">
     <div class="modal-hdr">
@@ -2091,7 +2141,7 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
       <form id="sharingForm" onsubmit="return false">
 
         <div class="seal-field-row">
-          <div class="mini-seal viewer"><svg viewBox="0 0 100 100" class="seal-emblem"><circle cx="50" cy="50" r="3"/><path d="M50 20 L50 80 M20 50 L80 50" stroke-width="2" fill="none"/></svg></div>
+          <div class="mini-seal viewer"><img src="pics/green_seal.png" alt=""></div>
           <div class="fgrp" style="flex:1">
             <label class="flbl">Viewer Seal — read-only, everything except diary</label>
             <input class="fin" id="sharePwViewer" type="text" placeholder="Choose a password" autocomplete="off">
@@ -2099,7 +2149,7 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
         </div>
 
         <div class="seal-field-row">
-          <div class="mini-seal contributor"><svg viewBox="0 0 100 100" class="seal-emblem"><path d="M30 70 L65 35 L72 42 L37 77 L28 79 Z" stroke-width="2" fill="none"/></svg></div>
+          <div class="mini-seal contributor"><img src="pics/blue_seal.png" alt=""></div>
           <div class="fgrp" style="flex:1">
             <label class="flbl">Contributor Seal — can add entries, edit only their own</label>
             <input class="fin" id="sharePwContributor" type="text" placeholder="Choose a password" autocomplete="off">
@@ -2107,7 +2157,7 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
         </div>
 
         <div class="seal-field-row">
-          <div class="mini-seal diary"><svg viewBox="0 0 100 100" class="seal-emblem"><path d="M30 25 h40 v50 l-20 10 l-20 -10 Z" stroke-width="2" fill="none"/></svg></div>
+          <div class="mini-seal diary"><img src="pics/red_seal.png" alt=""></div>
           <div class="fgrp" style="flex:1">
             <label class="flbl">Diary Seal — read-only, diary only</label>
             <input class="fin" id="sharePwDiary" type="text" placeholder="Choose a password" autocomplete="off">
@@ -2624,38 +2674,80 @@ body.day-mode .colophon-watermark{color:rgba(120,80,30,.1);}
 </script>
 <script>
 'use strict';
+window.__vaultAppStarted = true;
 
 // ══════════════════════════════════════════════
 // CONFIG
 // ══════════════════════════════════════════════
 const VALID_EMAIL = 'ayanchakrabortyall@gmail.com';
-const ADMIN_EMAIL = VALID_EMAIL; // the one account that can use the Google bypass
+const ADMIN_EMAIL = VALID_EMAIL; // original admin account
+const ADMIN_EMAILS = ['ayanchakrabortyall@gmail.com','officialayanimp@gmail.com','duolingo.learn1024@gmail.com']; // all admin accounts that can use the Google bypass
 // Deployed Worker URL from the R2 setup (vault-storage-worker.js). Used only
 // when a document is charted with "Store In: Cloudflare R2" — Supabase-backed
 // items never touch this.
 const R2_WORKER_URL = 'https://vault-storage.ayanchakrabortyall.workers.dev';
-// The cipher key itself is never stored — only a salted hash, used to verify
-// an attempt before the same key is used to derive the encryption used below.
+// The cipher key is never stored in this file, and neither is any hash or other
+// way of checking it. The admin password is checked by the database
+// (check_admin_password): 15 wrong tries, then it refuses everything for 24 hours.
+// PW_SALT is NOT a secret — it is only the salt that turns the cipher key into the
+// encryption key, so it must never change or existing data would stop decrypting.
 const PW_SALT = 'cv_vault_v2_9f24a7';
-const PW_HASH = '081939cd6c0e4cf8941e61e9d5ab4a7df3f5f468a708596fd5304aebe34c73c3'; // NOT the live login credential anymore — this stays frozen forever as the required user_hash tag on database rows (part of an old compound key), separate from LOGIN_HASH below.
-// The actual credential checked at login — fetched from Supabase so
-// rotateAdminCipherKey() can update it live, with zero need to ever touch
-// this file again. Falls back to the frozen PW_HASH above if the fetch
-// fails (e.g. mid-outage), so a shaky connection can never fully lock you
-// out — worst case it just falls back to whatever your MOST RECENTLY
-// uploaded file's original password was.
-let LOGIN_HASH = PW_HASH;
-async function loadLoginHash() {
+// Neutral tag stamped on every vault_sync row (this used to be a hash of an old password).
+const SYNC_TAG = 'v1';
+// True only while the server has NO admin key wrap and NO login hash at all —
+// i.e. a brand-new / freshly wiped vault where no admin password exists yet.
+// In that state the password form refuses to open anything (the old, retired
+// password must not work) and the Google admin entry starts first-time setup.
+// Any fetch error counts as "not fresh", so an outage can never trigger it.
+let NO_PASSWORD_YET = false;
+let _freshVaultViaGoogle = false;
+async function isVaultFresh() {
+  // Asked of the database: the page never reads hashes or key blobs to find this out.
   try {
-    const { data, error } = await vaultClient.from('vault_config').select('value').eq('key', 'login_hash').maybeSingle();
-    if (!error && data?.value) LOGIN_HASH = data.value;
-  } catch (e) { console.warn('Could not fetch live login hash — using the fallback baked into this file.', e); }
+    const { data, error } = await vaultClient.rpc('vault_is_fresh');
+    if (error) return false;
+    return data === true;
+  } catch (e) { return false; }
+}
+async function loadVaultState() {
+  NO_PASSWORD_YET = await isVaultFresh();
 }
 
-// Secondary section lock — protects Diary & Ideas tab.
-// This is a SHA-256 of (SECTION_SALT + sectionPassword) — password not stored in plain text.
-const SECTION_SALT = 'cv_section_lock_v1';
-const SECTION_HASH = '3a755b826630d13bd7c2e9f08bd099f703ea062e2f5b50eb3bd30db347a50a73';
+// ── Helpers for the server-side password checks ──
+function userError(msg) { const e = new Error(msg); e.userFacing = true; return e; }
+function formatRetry(sec) {
+  const totalMin = Math.max(1, Math.ceil((sec || 86400) / 60));
+  const h = Math.floor(totalMin / 60), m = totalMin % 60;
+  return h ? `${h}h ${m}m` : `${m} min`;
+}
+// Does this password open the key blob already saved on THIS device? Works offline and
+// never touches the server's attempt counter. true / false, or null = nothing saved to test against.
+async function verifyPasswordAgainstLocalCache(password) {
+  const cached = localStorage.getItem('cv_vk_cache_v1');
+  if (!cached) return null;
+  let iv, wrapped;
+  try { ({ iv, wrapped } = JSON.parse(cached)); } catch (e) { return null; }
+  try {
+    const base = await deriveKey(password);
+    await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64ToBuf(iv) }, base, b64ToBuf(wrapped));
+    return true;
+  } catch (e) { return false; }
+}
+// Same idea for the diary: does this diary password open the diary key blob saved on THIS device?
+async function verifyDiaryPasswordAgainstLocalCache(password) {
+  const cached = localStorage.getItem('cv_dk_cache_v1');
+  if (!cached) return null;
+  let iv, wrapped;
+  try { ({ iv, wrapped } = JSON.parse(cached)); } catch (e) { return null; }
+  try {
+    const base = await deriveDiaryKey(password);
+    await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64ToBuf(iv) }, base, b64ToBuf(wrapped));
+    return true;
+  } catch (e) { return false; }
+}
+
+// Secondary section lock — protects the Diary & Ideas tab. Like the admin password, the diary
+// password is checked by the database (check_diary_password), never by anything stored in this file.
 
 // ══════════════════════════════════════════════
 // READ-ONLY SHARED VIEW (?view=friend)
@@ -2941,7 +3033,7 @@ const DB = {
   init() {
     if (this._db) return Promise.resolve(); // guard: already initialised
     return new Promise((res, rej) => {
-      const req = indexedDB.open('cartographers_vault', 3);
+      const req = indexedDB.open('cartographers_vault', 4);
       req.onupgradeneeded = e => {
         const db = e.target.result;
         if (db.objectStoreNames.contains('items_v2')) {
@@ -2949,6 +3041,9 @@ const DB = {
         }
         if (!db.objectStoreNames.contains('items_v3')) {
           db.createObjectStore('items_v3', { keyPath: 'id' }); // id = UUID, supplied by caller
+        }
+        if (!db.objectStoreNames.contains('cover_cache_v1')) {
+          db.createObjectStore('cover_cache_v1', { keyPath: 'id' }); // locally-cached R2 cover images, base64
         }
       };
       req.onsuccess = e => { this._db = e.target.result; res(); };
@@ -3004,6 +3099,46 @@ const DB = {
       records.forEach(r => store.put(r));
       store.transaction.oncomplete = () => res();
       store.transaction.onerror    = () => rej(store.transaction.error);
+    });
+  }
+};
+
+// Local cache for R2-backed book/movie/anime covers. Covers stored in
+// vault_sync are always available offline via the item's own encrypted
+// payload — moving them to R2 means a network fetch is needed instead,
+// which would make the shelf grid feel slow (or fail outright) on a bad
+// connection. This caches each cover's decrypted bytes (as base64) in
+// IndexedDB after the first fetch, so repeat visits are instant and
+// offline-capable again, same as before.
+const CoverCache = {
+  _store(mode = 'readonly') {
+    return DB._db.transaction(['cover_cache_v1'], mode).objectStore('cover_cache_v1');
+  },
+  get(id) {
+    return new Promise(res => {
+      try {
+        const req = this._store().get(id);
+        req.onsuccess = () => res(req.result || null);
+        req.onerror = () => res(null);
+      } catch (e) { res(null); }
+    });
+  },
+  put(id, b64, mime) {
+    return new Promise(res => {
+      try {
+        const req = this._store('readwrite').put({ id, b64, mime, cachedAt: Date.now() });
+        req.onsuccess = () => res(true);
+        req.onerror = () => res(false);
+      } catch (e) { res(false); }
+    });
+  },
+  delete(id) {
+    return new Promise(res => {
+      try {
+        const req = this._store('readwrite').delete(id);
+        req.onsuccess = () => res(true);
+        req.onerror = () => res(false);
+      } catch (e) { res(false); }
     });
   }
 };
@@ -3209,14 +3344,14 @@ async function sbUploadChunked(id, iv, ct) {
     await Promise.all(batch.map(async idx => {
       const slice = ct.slice(idx * CT_CHUNK_SIZE, (idx + 1) * CT_CHUNK_SIZE);
       const { error } = await withTimeout(vaultClient.from('vault_sync').upsert({
-        item_id: `${prefix}${idx}`, user_id: sbUserId, user_hash: PW_HASH, iv, ct: slice, updated_at: now,
+        item_id: `${prefix}${idx}`, user_id: sbUserId, user_hash: SYNC_TAG, iv, ct: slice, updated_at: now,
       }), 60000);
       if (error) throw error;
     }));
   }
 
   const { error: hdrErr } = await withTimeout(vaultClient.from('vault_sync').upsert({
-    item_id: id, user_id: sbUserId, user_hash: PW_HASH, iv, ct: `${CHUNK_MARKER}${token}:${n}`, updated_at: now,
+    item_id: id, user_id: sbUserId, user_hash: SYNC_TAG, iv, ct: `${CHUNK_MARKER}${token}:${n}`, updated_at: now,
   }), 60000);
   if (hdrErr) throw hdrErr;
 
@@ -3377,8 +3512,15 @@ async function sbUploadItem(id, iv, ct) {
       // is tuned for small rows and was aborting large uploads before they
       // ever finished, silently, leaving them stuck "pending" forever.
       const { error } = await withTimeout(vaultClient.from('vault_sync')
-        .upsert({ item_id: id, user_id: sbUserId, user_hash: PW_HASH, iv, ct, updated_at: new Date().toISOString() }), 60000);
+        .upsert({ item_id: id, user_id: sbUserId, user_hash: SYNC_TAG, iv, ct, updated_at: new Date().toISOString() }), 60000);
       if (error) throw error;
+      // If this item was previously large enough to be chunked (e.g. it had
+      // a cover/file inline that's since moved out to R2), the old chunk
+      // rows are now orphaned — nothing points to them anymore. Clean them
+      // up so they don't sit around counting against the database quota.
+      const { error: chunkErr } = await withTimeout(vaultClient.from('vault_sync')
+        .delete().eq('user_id', sbUserId).like('item_id', `${id}::chunk::%`));
+      if (chunkErr) console.warn('Stray chunk cleanup failed (non-fatal):', chunkErr);
     }
     clearPending(id); // confirmed on the cloud — no longer needs a retry push
   } catch (e) { console.warn('Cloud sync (save) failed — change is still kept on this device.', e); }
@@ -3707,7 +3849,7 @@ async function _sbPushAllItemsInner() {
       const idsChunk = normalIds.slice(i, i + CHUNK);
       const rows = idsChunk.map(id => {
         const r = byId.get(id);
-        return { item_id: r.id, user_id: sbUserId, user_hash: PW_HASH, iv: r.iv, ct: r.ct, updated_at: new Date().toISOString() };
+        return { item_id: r.id, user_id: sbUserId, user_hash: SYNC_TAG, iv: r.iv, ct: r.ct, updated_at: new Date().toISOString() };
       });
       if (rows.length) {
         const { error } = await withTimeout(vaultClient.from('vault_sync').upsert(rows), 60000);
@@ -3752,7 +3894,11 @@ async function _sbPushAllItemsInner() {
 async function r2Fetch(itemId, options = {}) {
   const { data: { session } } = await vaultClient.auth.getSession();
   if (!session) throw new Error('Not signed in — R2 storage needs an active session.');
-  return fetch(`${R2_WORKER_URL}/vault/${sbUserId}/${itemId}`, {
+  // Reads go to the folder of whoever uploaded the item (the admin) so shared-role users can fetch it;
+  // writes and deletes are always the caller's own folder.
+  const baseId = itemId.replace(/::cover$/, '');
+  const folder = (options.method || 'GET') === 'GET' ? (itemOwners[baseId] || sbUserId) : sbUserId;
+  return fetch(`${R2_WORKER_URL}/vault/${folder}/${itemId}`, {
     ...options,
     headers: { ...(options.headers || {}), 'Authorization': `Bearer ${session.access_token}` },
   });
@@ -3774,6 +3920,42 @@ async function r2GetFile(itemId, ivB64) {
   return crypto.subtle.decrypt({ name: 'AES-GCM', iv }, cryptoKey, ctBuf);
 }
 
+// ── Supabase Storage (private bucket 'vault-files') ──────────────────────────
+// Same idea as R2: bytes are encrypted in the browser first (own IV, same
+// vault key), the bucket only ever holds ciphertext, and the item itself keeps
+// just small metadata (storageBackend 'sbstorage' + fileIv). Object path is
+// <owner user id>/<item id>. Writes are admin-only (enforced by the bucket's
+// policies); anyone who can see an item's row can read its file (also policy).
+const SB_FILES_BUCKET = 'vault-files';
+const SB_STORAGE_MAX_BYTES = 50 * 1024 * 1024; // Supabase Free plan per-file limit
+function sbStoragePath(itemId) { return `${itemOwners[itemId] || sbUserId}/${itemId}`; }
+
+async function sbStoragePutFile(itemId, fileBuf) {
+  if (ROLE !== null) throw new Error('Only the admin can upload to Supabase Storage — choose Cloudflare R2.');
+  if (!sbUserId) throw new Error('Not signed in — Supabase Storage needs an active Google session.');
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ctBuf = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, cryptoKey, fileBuf);
+  if (ctBuf.byteLength > SB_STORAGE_MAX_BYTES) throw new Error('Too large for Supabase Storage (50 MB limit) — choose Cloudflare R2.');
+  const { error } = await vaultClient.storage.from(SB_FILES_BUCKET).upload(
+    `${sbUserId}/${itemId}`, new Blob([ctBuf], { type: 'application/octet-stream' }),
+    { upsert: true, contentType: 'application/octet-stream' });
+  if (error) throw new Error('Supabase Storage upload failed: ' + error.message);
+  return bufToB64(iv);
+}
+
+async function sbStorageGetFile(itemId, ivB64) {
+  const { data, error } = await vaultClient.storage.from(SB_FILES_BUCKET).download(sbStoragePath(itemId));
+  if (error || !data) throw new Error('Supabase Storage fetch failed: ' + (error ? error.message : 'no data'));
+  const ctBuf = await data.arrayBuffer();
+  const iv = new Uint8Array(b64ToBuf(ivB64));
+  return crypto.subtle.decrypt({ name: 'AES-GCM', iv }, cryptoKey, ctBuf);
+}
+
+async function sbStorageDeleteFile(itemId) {
+  try { await vaultClient.storage.from(SB_FILES_BUCKET).remove([sbStoragePath(itemId)]); }
+  catch (e) { console.warn('Supabase Storage object delete failed (metadata removed anyway):', e); }
+}
+
 async function r2DeleteFile(itemId) {
   try { await r2Fetch(itemId, { method: 'DELETE' }); }
   catch (e) { console.warn('R2 object delete failed (metadata removed anyway):', e); }
@@ -3783,8 +3965,78 @@ async function r2DeleteFile(itemId) {
 // everything downstream (viewItem, downloadItem) just calls this.
 async function getFileBytes(item) {
   if (item.storageBackend === 'r2') return await r2GetFile(item.id, item.fileIv);
+  if (item.storageBackend === 'sbstorage') return await sbStorageGetFile(item.id, item.fileIv);
   if (item.fileData) return b64ToBuf(item.fileData);
   return null;
+}
+
+// One-time cleanup: moves any "file" item still storing its bytes inline in
+// Supabase (the old default, before uploads defaulted to Cloudflare R2) over
+// to R2, shrinking that item's vault_sync row back down to plain metadata.
+// Run once from the console while the vault is unlocked: migrateFilesToR2()
+async function migrateFilesToR2() {
+  const all = await Vault.getAll();
+  const targets = all.filter(it => it.type === 'file' && it.fileData && it.storageBackend !== 'r2');
+  console.log(`migrateFilesToR2: found ${targets.length} file item(s) still stored inline in Supabase.`);
+  let done = 0, failed = 0;
+  for (const item of targets) {
+    try {
+      const buf = b64ToBuf(item.fileData);
+      const fileIv = await r2PutFile(item.id, buf);
+      const payload = { type: 'file', parentId: item.parentId, name: item.name, meta: item.meta, fileData: null, storageBackend: 'r2', fileIv };
+      const { iv, ct } = await encryptRecord(payload);
+      await DB.put({ id: item.id, iv, ct });
+      markPending(item.id);
+      await sbUploadItem(item.id, iv, ct);
+      if (getPendingIds().includes(item.id)) throw new Error('cloud save did not confirm — will retry on next sync');
+      Vault.invalidate();
+      done++;
+      console.log(`  \u2713 ${item.meta?.fileName || item.id}`);
+    } catch (e) {
+      failed++;
+      console.warn(`  \u2717 ${item.meta?.fileName || item.id}:`, e);
+    }
+  }
+  console.log(`migrateFilesToR2: done. migrated ${done}, failed ${failed}.`);
+  await render();
+  return { migrated: done, failed };
+}
+
+// One-time cleanup: moves any manually-uploaded book/movie/anime cover
+// still embedded inline in Supabase over to R2, shrinking that item's
+// vault_sync row back down to plain metadata. Auto-fetched fallback
+// covers (plain https:// URLs) are left untouched — they were never
+// embedded bytes to begin with. Run once from the console while the
+// vault is unlocked: migrateCoversToR2()
+async function migrateCoversToR2() {
+  const all = await Vault.getAll();
+  const fieldFor = t => t === 'book' ? 'cover' : (t === 'movie' || t === 'anime') ? 'poster' : null;
+  const targets = all
+    .map(it => ({ item: it, field: fieldFor(it.type) }))
+    .filter(({ item, field }) => field && typeof item.meta[field] === 'string' && item.meta[field].startsWith('data:') && item.meta.coverBackend !== 'r2');
+  console.log(`migrateCoversToR2: found ${targets.length} cover(s) still stored inline in Supabase.`);
+  let done = 0, failed = 0;
+  for (const { item, field } of targets) {
+    try {
+      const offloaded = await offloadCoverToR2(item.id, item.meta[field]);
+      const meta = { ...item.meta, [field]: offloaded.cover, coverBackend: offloaded.coverBackend, coverIv: offloaded.coverIv, coverMime: offloaded.coverMime };
+      const payload = { type: item.type, parentId: item.parentId, name: item.name, meta };
+      const { iv, ct } = await encryptRecord(payload);
+      await DB.put({ id: item.id, iv, ct });
+      markPending(item.id);
+      await sbUploadItem(item.id, iv, ct);
+      if (getPendingIds().includes(item.id)) throw new Error('cloud save did not confirm — will retry on next sync');
+      Vault.invalidate();
+      done++;
+      console.log(`  \u2713 ${item.meta.title || item.id}`);
+    } catch (e) {
+      failed++;
+      console.warn(`  \u2717 ${item.meta.title || item.id}:`, e);
+    }
+  }
+  console.log(`migrateCoversToR2: done. migrated ${done}, failed ${failed}.`);
+  await render();
+  return { migrated: done, failed };
 }
 
 const Vault = {
@@ -3793,6 +4045,7 @@ const Vault = {
   invalidate() { this._cache = null; },
 
   async add(payload, explicitId) {
+    if (payload.type === 'file' && payload.fileData) throw new Error('Files are never stored in the database — they go to Cloudflare R2.');
     const isDiary = payload.type === 'diary';
     const id = explicitId || (isDiary ? 'diary::' : '') + crypto.randomUUID();
     const { iv, ct } = await encryptRecord(payload, isDiary ? diaryKey : cryptoKey);
@@ -3804,6 +4057,7 @@ const Vault = {
     return id;
   },
   async update(id, payload) {
+    if (payload.type === 'file' && payload.fileData) throw new Error('Files are never stored in the database — they go to Cloudflare R2.');
     const isDiary = id.startsWith('diary::');
     const { iv, ct } = await encryptRecord(payload, isDiary ? diaryKey : cryptoKey);
     await DB.put({ id, iv, ct });
@@ -3843,6 +4097,8 @@ const Vault = {
   async delete(id) {
     const item = await this.get(id).catch(() => null);
     if (item && item.storageBackend === 'r2') r2DeleteFile(id); // fire-and-forget cleanup
+    if (item && item.storageBackend === 'sbstorage') sbStorageDeleteFile(id); // fire-and-forget cleanup
+    if (item && item.meta && item.meta.coverBackend === 'r2') { r2DeleteFile(`${id}::cover`); CoverCache.delete(id); } // fire-and-forget cleanup
     markPendingDelete(id);
     await DB.delete(id);
     sbDeleteItem(id);
@@ -3997,8 +4253,13 @@ async function ensureRealIdentity() {
 async function claimSharedRole(password, role) {
   const identityId = await ensureRealIdentity();
   sbUserId = identityId;
-  const { error } = await vaultClient.rpc('claim_vault_role', { pw: password, wanted_role: role });
-  if (error) throw error; // wrong password, or currently rate-limited
+  const { data: claim, error } = await vaultClient.rpc('claim_vault_role_v2', { pw: password, wanted_role: role });
+  if (error) throw error;
+  if (!claim?.ok) {
+    if (claim?.locked) throw userError('too many attempts — this seal is locked for ' + formatRetry(claim.retry_after_seconds) + '.');
+    const left = claim?.tries_left;
+    throw userError('The seal did not break — wrong password.' + (left !== undefined && left <= 5 ? ` ${left} ${left === 1 ? 'try' : 'tries'} left before a 24-hour lock.` : ''));
+  }
 
   const wrapSalt = 'cv_wax_seal_' + role + '_v1';
   const { data: wrapRow, error: wrapErr } = await vaultClient.from('vault_key_wraps')
@@ -4035,6 +4296,18 @@ function applyRoleRestrictions() {
   let banner = document.getElementById('roleBanner');
   const sharingBtn = document.getElementById('setupSharingBtn');
   if (sharingBtn) sharingBtn.style.display = (ROLE === null) ? '' : 'none';
+  const recoverBtn = document.getElementById('recoverKeyBtn');
+  if (recoverBtn) recoverBtn.style.display = (ROLE === null) ? '' : 'none';
+  const importBtn = document.getElementById('importKeyBtn');
+  if (importBtn) importBtn.style.display = (ROLE === null) ? '' : 'none';
+  const restoreBtn = document.getElementById('restoreBackupBtn');
+  if (restoreBtn) restoreBtn.style.display = (ROLE === null) ? '' : 'none';
+  const importR2Btn = document.getElementById('importR2BackupBtn');
+  if (importR2Btn) importR2Btn.style.display = (ROLE === null) ? '' : 'none';
+  const adminPwBtn = document.getElementById('adminPwBtn');
+  if (adminPwBtn) adminPwBtn.style.display = (ROLE === null) ? '' : 'none';
+  const verifyBtn = document.getElementById('verifyFilesBtn');
+  if (verifyBtn) verifyBtn.style.display = (ROLE === null) ? '' : 'none';
   const syncBtn = document.getElementById('syncStatusBtn');
   if (syncBtn) syncBtn.style.display = ''; // visible to every role — this is exactly what a phone-only viewer needs, no console required
   updateSyncStatusUI();
@@ -4054,12 +4327,44 @@ function applyRoleRestrictions() {
   } else if (banner) banner.remove();
 }
 
-async function attemptUnlock(password) {
+// The password check on its own. Split out so the seal can finish its breaking animation
+// BEFORE the vault opens, instead of the page switching under it. It never opens the vault itself.
+async function checkAdminPassword(password) {
+  if (NO_PASSWORD_YET) {
+    toast('◈ This vault is new — no password is set yet. Use the "By Google" tab (admin email) to set it up.');
+    return false;
+  }
   const wait = authThrottleMs();
   if (wait > 0) await new Promise(r => setTimeout(r, wait));
-  const hash = await sha256Hex(PW_SALT + password);
-  if (hash !== LOGIN_HASH) { failedAttempts++; return false; }
+  // Known device first: if the key blob already saved here opens with this password, the
+  // database isn't needed at all — so a lockout (even one caused by strangers) can't stop you.
+  const local = await verifyPasswordAgainstLocalCache(password);
+  if (local === true) { failedAttempts = 0; return true; }
+
+  let res;
+  try {
+    const { data, error } = await vaultClient.rpc('check_admin_password', { pw: password });
+    if (error) throw error;
+    res = data;
+  } catch (e) {
+    // Database unreachable, and this device's own blob didn't accept it (or has none).
+    if (local === false) { failedAttempts++; return false; }
+    throw userError('Could not reach the server, and this device has nothing saved to check against yet — connect and try again.');
+  }
+  if (res?.locked && !res?.ok) {
+    throw userError('too many attempts — locked for ' + formatRetry(res.retry_after_seconds) + '. Nothing typed will be checked until then.');
+  }
+  if (!res?.ok) {
+    failedAttempts++;
+    const left = res?.tries_left;
+    if (left !== undefined && left <= 5) throw userError(`The seal did not break — wrong password. ${left} ${left === 1 ? 'try' : 'tries'} left before a 24-hour lock.`);
+    return false;
+  }
   failedAttempts = 0;
+  return true;
+}
+async function attemptUnlock(password) {
+  if (!(await checkAdminPassword(password))) return false;
   ROLE = null; // this is always the admin's own cipher key — full access
   await unlockVault(password);
   return true;
@@ -4202,7 +4507,7 @@ function signOut() {
 
 function backToUniverse() {
   signOut();
-  window.location.href = 'index.html';
+  window.location.href = './';
 }
 
 // ══════════════════════════════════════════════
@@ -4237,14 +4542,14 @@ async function ensureSbUser() {
     return OWNER_USER_ID;
   }
   // Owner: cloud sync requires a real, signed-in Supabase Auth session,
-  // matched to the admin account — replacing the old PW_HASH-based
+  // matched to the admin account — replacing the old hash-based
   // scheme, which used a constant baked into this file's own source
   // as a public row key. This does NOT change how your vault content
   // is encrypted (that's still your cipher key, entered separately) —
   // it only changes who is allowed to read/write the synced rows.
   try {
     const { data: { user } } = await vaultClient.auth.getUser();
-    if (!user || (user.email || '').toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
+    if (!user || !ADMIN_EMAILS.includes((user.email || '').toLowerCase())) {
       return null; // not signed in, or signed in as someone else — sync stays off, vault still works locally
     }
     return user.id; // a real auth.uid(), checked server-side by RLS
@@ -4267,7 +4572,7 @@ async function sbSaveDarkMode(userId, isDark) {
   if (!vaultClient || !userId) return;
   try {
     const { error } = await withTimeout(vaultClient.from('vault_sync')
-      .upsert({ item_id: '__theme__', user_id: userId, user_hash: PW_HASH, iv: 'pref', ct: isDark ? '1' : '0', updated_at: new Date().toISOString() }));
+      .upsert({ item_id: '__theme__', user_id: userId, user_hash: SYNC_TAG, iv: 'pref', ct: isDark ? '1' : '0', updated_at: new Date().toISOString() }));
     if (error) throw error;
   } catch (e) { console.warn('Could not sync theme to Supabase', e); }
 }
@@ -4400,7 +4705,7 @@ async function handleGoogleCredential(response) {
   const enterBtn = document.getElementById('googleEnterBtn');
   document.getElementById('googleSignInBtn').style.display = 'none';
 
-  if (googleVerifiedEmail.toLowerCase() !== ADMIN_EMAIL.toLowerCase() || !payload.email_verified) {
+  if (!ADMIN_EMAILS.includes(googleVerifiedEmail.toLowerCase()) || !payload.email_verified) {
     statusEl.className = 'google-status mismatched';
     statusEl.innerHTML = `Signed in as <strong>${esc(googleVerifiedEmail)}</strong> — please log out of this Google account in your browser and sign back in with the administrator email to use this option.<span class="google-switch-link" onclick="retryGoogleSignIn()">Try a different account</span>`;
     statusEl.style.display = 'block';
@@ -4422,6 +4727,19 @@ async function handleGoogleCredential(response) {
     console.warn('Supabase Google sign-in threw:', e);
   }
 
+  // First-ever entry (server has no admin wrap and no login hash): start setup
+  // instead of looking for a device link that can't exist yet.
+  _freshVaultViaGoogle = await isVaultFresh();
+  if (_freshVaultViaGoogle) {
+    statusEl.className = 'google-status matched';
+    statusEl.innerHTML = `Verified as <strong>${esc(googleVerifiedEmail)}</strong>. This vault is new and empty — no password exists yet.<br>Enter to import your backup and set the admin password.`;
+    statusEl.style.display = 'block';
+    enterBtn.textContent = 'Begin — Set Up New Vault';
+    enterBtn.style.display = 'block';
+    return;
+  }
+  clearBootKeys(); // setup already finished somewhere — any leftover temporary keys are stale
+  enterBtn.textContent = 'Enter — Verified Admin';
   const wrapped = await getWrappedSecret(googleVerifiedSub);
   if (wrapped) {
     statusEl.className = 'google-status matched';
@@ -4483,7 +4801,7 @@ async function getWrappedSecret(sub) {
 }
 
 async function maybeLinkGoogleAccount(password) {
-  if (!googleVerifiedSub || googleVerifiedEmail.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) return false;
+  if (!googleVerifiedSub || !ADMIN_EMAILS.includes(googleVerifiedEmail.toLowerCase())) return false;
   const existing = await getWrappedSecret(googleVerifiedSub);
   const justLinked = !existing;
   // Always (re)store, not just on first link — otherwise rotating the
@@ -4499,9 +4817,17 @@ async function googleEnter() {
   const btn = document.getElementById('googleEnterBtn');
   btn.disabled = true;
   try {
+    if (_freshVaultViaGoogle) { await bootstrapFreshVault(); return; }
     const password = await getWrappedSecret(googleVerifiedSub);
     if (!password) { toast('◈ Could not verify this device — please use the Cipher tab.'); return; }
-    await unlockVault(password);
+    // The stored shortcut may hold an OLD password (changed since). Check it still matches before using it.
+    const staleMsg = () => { localStorage.removeItem('cv_google_wrap'); toast('◈ Your admin password was changed — enter it once on the Wax Seal tab to re-link Google on this device.'); };
+    const local = await verifyPasswordAgainstLocalCache(password);
+    if (local === false) { staleMsg(); return; }
+    if (local === true) { ROLE = null; await unlockVault(password); return; }
+    // Nothing saved on this device yet to test against — let the database confirm it.
+    const ok = await attemptUnlock(password);
+    if (!ok && !NO_PASSWORD_YET) staleMsg();
   } catch (e) {
     toast('◈ Verification failed — please use the Cipher tab.');
     console.error('Google enter error:', e);
@@ -4571,8 +4897,25 @@ function switchMainTab(tab) {
 
 async function unlockSection() {
   const pw = document.getElementById('sectionPwInput').value;
-  const hash = await sha256Hex(SECTION_SALT + pw);
-  if (hash === SECTION_HASH) {
+  let ok = false;
+  let msg = '◈ Incorrect section key.';
+  // Known device first: if the diary key blob saved here opens with it, no need to ask the
+  // database (works offline, and a lockout can never get in your way).
+  if ((await verifyDiaryPasswordAgainstLocalCache(pw)) === true) {
+    ok = true;
+  } else if (pw) {
+    // Otherwise the database decides: 15 wrong tries, then 24 hours locked.
+    try {
+      const { data, error } = await vaultClient.rpc('check_diary_password', { pw });
+      if (error) throw error;
+      if (data?.ok) ok = true;
+      else if (data?.locked) msg = '◈ Too many attempts — locked for ' + formatRetry(data.retry_after_seconds) + '.';
+      else if (data?.tries_left !== undefined && data.tries_left <= 5) msg = `◈ Incorrect section key. ${data.tries_left} ${data.tries_left === 1 ? 'try' : 'tries'} left before a 24-hour lock.`;
+    } catch (e) {
+      msg = '◈ Could not reach the server to check this key — connect and try again.';
+    }
+  }
+  if (ok) {
     diaryUnlocked = true;
     diaryKey = await deriveDiaryKey(pw); // now a real encryption key, not just a UI gate
     adminDiaryBaseKey = diaryKey; // capture before the next line potentially swaps diaryKey to the shared DK
@@ -4588,7 +4931,7 @@ async function unlockSection() {
     }
   } else {
     const err = document.getElementById('sectionPwError');
-    err.textContent = '◈ Incorrect section key.';
+    err.textContent = msg;
     err.classList.add('show');
     // brief shake on the input
     const inp = document.getElementById('sectionPwInput');
@@ -4611,10 +4954,13 @@ let allDiary          = [];
 let selFile          = null;       // File object (document upload)
 let selCoverFile     = null;       // File object (book cover) — only used if image/*
 let selCoverDataUrl  = null;       // resolved cover (uploaded or fetched online)
+let selCoverKeepExisting = false;  // editing an R2-backed cover the user hasn't touched — don't re-upload or replace it
 let selMoviePosterFile    = null;  // File object (movie poster) — only used if image/*
 let selMoviePosterDataUrl = null;  // resolved poster (uploaded)
+let selMoviePosterKeepExisting = false;
 let selAnimePosterFile    = null;  // File object (anime poster) — only used if image/*
 let selAnimePosterDataUrl = null;  // resolved poster (uploaded)
+let selAnimePosterKeepExisting = false;
 let pendingDelId     = null;
 let pendingDelType   = null;       // 'file' | 'folder' | 'book' | 'movie' | 'anime' | 'diary'
 let selColor         = '';
@@ -5069,8 +5415,7 @@ function openUploadModal() {
   document.getElementById('uploadForm').reset();
   document.getElementById('fCategoryOther').style.display = 'none';
   document.getElementById('fEditFileId').value = '';
-  const supabaseRadio = document.querySelector('input[name="fileBackend"][value="supabase"]');
-  if (supabaseRadio) supabaseRadio.checked = true;
+  document.querySelectorAll('input[name="fileBackend"]').forEach(r => r.checked = (r.value === 'r2'));
   const titleEl = document.querySelector('#uploadModal .modal-title');
   if (titleEl) titleEl.textContent = 'Chart a New Document';
   const submitBtn = document.getElementById('uploadSubmitBtn');
@@ -5086,7 +5431,7 @@ async function openEditFileModal(id) {
   // Reset then pre-fill
   openUploadModal();
   document.getElementById('fEditFileId').value = id;
-  const backendRadio = document.querySelector(`input[name="fileBackend"][value="${item.storageBackend === 'r2' ? 'r2' : 'supabase'}"]`);
+  const backendRadio = document.querySelector(`input[name="fileBackend"][value="${item.storageBackend === 'sbstorage' ? 'sbstorage' : 'r2'}"]`);
   if (backendRadio) backendRadio.checked = true;
   const titleEl = document.querySelector('#uploadModal .modal-title');
   if (titleEl) titleEl.textContent = 'Edit Document Info';
@@ -5210,17 +5555,23 @@ async function submitUpload() {
       charted:     base.charted || today(),
     };
     let fileDataB64 = null, storageBackend = null, fileIv = null;
-    const backend = (document.querySelector('input[name="fileBackend"]:checked') || {}).value || 'supabase';
+    const backendChecked = document.querySelector('input[name="fileBackend"]:checked');
+    const backend = backendChecked && backendChecked.value === 'sbstorage' ? 'sbstorage' : 'r2'; // files never go in the database table — only these two
     const oldBackend = existingItem ? existingItem.storageBackend : null;
     let itemId = editId || null;
     if (selFile) {
-      if (backend === 'r2') {
-        if (!itemId) itemId = crypto.randomUUID();
-        fileIv = await r2PutFile(itemId, await selFile.arrayBuffer());
-        storageBackend = 'r2';
+      if (!itemId) itemId = crypto.randomUUID();
+      const fileBuf = await selFile.arrayBuffer();
+      if (backend === 'sbstorage') {
+        fileIv = await sbStoragePutFile(itemId, fileBuf);
+        storageBackend = 'sbstorage';
       } else {
-        fileDataB64 = bufToB64(await selFile.arrayBuffer());
-        if (oldBackend === 'r2' && editId) r2DeleteFile(editId); // replacing an R2 file with a Supabase one — clean up the orphan
+        fileIv = await r2PutFile(itemId, fileBuf);
+        storageBackend = 'r2';
+      }
+      // Replaced a file that lived in the OTHER place — remove the orphan there
+      if (editId && oldBackend && oldBackend !== storageBackend) {
+        if (oldBackend === 'r2') r2DeleteFile(editId); else if (oldBackend === 'sbstorage') sbStorageDeleteFile(editId);
       }
     } else {
       // No new file chosen — keep whatever this item already had.
@@ -5382,6 +5733,84 @@ async function executeDelete() {
 }
 
 // ══════════════════════════════════════════════
+// COVERS — shared by Books/Movies/Anime.
+// A cover is either: (a) a plain https:// URL (auto-fetched fallback —
+// cheap, never embedded), (b) a legacy inline data: URL still embedded
+// in the record, or (c) offloaded to R2 (meta.coverBackend==='r2'),
+// with the decrypted bytes cached locally afterward — see CoverCache.
+// ══════════════════════════════════════════════
+
+// Moves a manually-picked cover (a real data: URL from a file input) to
+// R2 instead of embedding it in the encrypted record — same reasoning as
+// file uploads. Fallback covers (plain https:// URLs) and "no cover" are
+// left untouched since they're not embedding any bytes to begin with.
+async function offloadCoverToR2(id, dataUrl) {
+  if (!dataUrl || !dataUrl.startsWith('data:')) {
+    return { cover: dataUrl || null, coverBackend: null, coverIv: null, coverMime: null };
+  }
+  const [header, b64] = dataUrl.split(',');
+  const mime = (header.match(/data:([^;]+);/) || [])[1] || 'image/jpeg';
+  const coverIv = await r2PutFile(`${id}::cover`, b64ToBuf(b64));
+  return { cover: null, coverBackend: 'r2', coverIv, coverMime: mime };
+}
+
+// Resolves an item's cover/poster field to a usable <img>-src string.
+// `field` is 'cover' for books, 'poster' for movies/anime.
+async function resolveCoverSrc(item, field) {
+  const m = item.meta;
+  if (m[field]) return m[field];
+  if (m.coverBackend !== 'r2') return null;
+  const cached = await CoverCache.get(item.id);
+  if (cached) return `data:${cached.mime};base64,${cached.b64}`;
+  try {
+    const buf = await r2GetFile(`${item.id}::cover`, m.coverIv);
+    const b64 = bufToB64(buf);
+    await CoverCache.put(item.id, b64, m.coverMime || 'image/jpeg');
+    return `data:${m.coverMime || 'image/jpeg'};base64,${b64}`;
+  } catch (e) {
+    console.warn('Cover fetch failed for', item.id, e);
+    return null;
+  }
+}
+
+// Grid-thumbnail cover slot: the image directly when available, or a
+// placeholder (matching the existing fallback markup) that hydrateCovers()
+// swaps for the real image once an R2-backed cover has been fetched.
+function coverThumbHtml(item, field, altText, placeholderSvg) {
+  const m = item.meta;
+  if (m[field]) return `<img src="${esc(m[field])}" alt="${esc(altText)}" loading="lazy">`;
+  if (m.coverBackend === 'r2') return `<div class="book-cover-fallback" data-cover-id="${item.id}" data-cover-field="${field}" data-cover-alt="${esc(altText)}">${placeholderSvg}</div>`;
+  return `<div class="book-cover-fallback">${placeholderSvg}</div>`;
+}
+
+// Detail-view cover slot — no wrapping fallback div, matching the
+// existing bare-SVG markup in showBookDetail/showMovieDetail/showAnimeDetail.
+function coverDetailHtml(item, field, altText, placeholderSvg) {
+  const m = item.meta;
+  if (m[field]) return `<img src="${esc(m[field])}" alt="${esc(altText)}">`;
+  if (m.coverBackend === 'r2') return `<span data-cover-id="${item.id}" data-cover-field="${field}" data-cover-alt="${esc(altText)}">${placeholderSvg}</span>`;
+  return placeholderSvg;
+}
+
+// Call once after setting innerHTML anywhere coverThumbHtml/coverDetailHtml
+// were used. Finds every unresolved placeholder and swaps it for the real
+// <img> once fetched (fire-and-forget per element — the grid/detail view
+// doesn't wait on slow covers to finish showing everything else).
+async function hydrateCovers(root) {
+  const els = root.querySelectorAll('[data-cover-id]');
+  if (!els.length) return;
+  const items = await Vault.getAll();
+  const byId = new Map(items.map(i => [i.id, i]));
+  els.forEach(async el => {
+    const item = byId.get(el.dataset.coverId);
+    if (!item) return;
+    const src = await resolveCoverSrc(item, el.dataset.coverField);
+    if (!src || !el.isConnected) return;
+    el.outerHTML = `<img src="${esc(src)}" alt="${esc(el.dataset.coverAlt || '')}" loading="lazy">`;
+  });
+}
+
+// ══════════════════════════════════════════════
 // BOOKS — "Books I Read"
 // ══════════════════════════════════════════════
 function bookPlaceholderSvg() {
@@ -5402,6 +5831,7 @@ function setCoverPreview(src) {
 
 function pickCoverFile(file) {
   if (!file) return;
+  selCoverKeepExisting = false;
   if (!file.type.startsWith('image/')) {
     toast('◈ That file can\u2019t be shown as a cover — we\u2019ll fetch one online instead');
     selCoverFile = null;
@@ -5421,6 +5851,7 @@ function pickCoverFile(file) {
 function clearCoverSelection() {
   selCoverFile = null;
   selCoverDataUrl = null;
+  selCoverKeepExisting = false;
   document.getElementById('coverInput').value = '';
   setCoverPreview(null);
 }
@@ -5505,6 +5936,7 @@ function openBookModal(editId) {
   document.getElementById('bookForm').reset();
   selCoverFile = null;
   selCoverDataUrl = null;
+  selCoverKeepExisting = false;
   ratingTouched = false;
   setCoverPreview(null);
   document.getElementById('bRating').value = 0;
@@ -5538,7 +5970,14 @@ function openBookModal(editId) {
         document.getElementById('bRatingDiamonds').innerHTML = ratingDiamonds(m.rating);
         ratingTouched = true;
       }
-      if (m.cover) { selCoverDataUrl = m.cover; setCoverPreview(m.cover); }
+      if (m.cover) {
+        selCoverDataUrl = m.cover;
+        setCoverPreview(m.cover);
+      } else if (m.coverBackend === 'r2') {
+        selCoverKeepExisting = true;
+        document.getElementById('coverClearBtn').style.display = '';
+        resolveCoverSrc(item, 'cover').then(src => { if (selCoverKeepExisting && src) setCoverPreview(src); });
+      }
       openModal('bookModal');
     })();
     return;
@@ -5554,9 +5993,21 @@ async function submitBook() {
   const editId = document.getElementById('bEditId').value;
   const title  = g('bTitle');
   const author = g('bAuthor');
+  const itemId = editId || crypto.randomUUID();
 
-  let cover = selCoverDataUrl;
-  if (!cover) cover = await fetchFallbackCover(title, author);
+  let coverFields;
+  if (selCoverKeepExisting) {
+    const prev = editId ? await Vault.get(editId) : null;
+    coverFields = { cover: prev?.meta.cover ?? null, coverBackend: prev?.meta.coverBackend ?? null, coverIv: prev?.meta.coverIv ?? null, coverMime: prev?.meta.coverMime ?? null };
+  } else {
+    let cover = selCoverDataUrl;
+    if (!cover) cover = await fetchFallbackCover(title, author);
+    if (editId) {
+      const prev = await Vault.get(editId);
+      if (prev?.meta.coverBackend === 'r2') { try { await r2DeleteFile(`${editId}::cover`); } catch (e) { /* best-effort */ } }
+    }
+    coverFields = await offloadCoverToR2(itemId, cover);
+  }
 
   const meta = {
     title, author,
@@ -5568,7 +6019,7 @@ async function submitBook() {
     characters: g('bCharacters'),
     quotes: getQuoteInputs(),
     thoughts: g('bThoughts'),
-    cover: cover || null,
+    ...coverFields,
     posted: document.getElementById('bPostedDate').value || today(),
   };
 
@@ -5579,7 +6030,7 @@ async function submitBook() {
       await Vault.update(editId, { type:'book', parentId:null, name: title||'Untitled', meta });
       toast('◈ Entry updated');
     } else {
-      await Vault.add({ type:'book', parentId:null, name: title||'Untitled', meta });
+      await Vault.add({ type:'book', parentId:null, name: title||'Untitled', meta }, itemId);
       toast('◈ Added to your shelf');
     }
     closeModal('bookModal');
@@ -5648,7 +6099,7 @@ async function renderBooks() {
     return `
       <div class="book-card" data-action="book-detail" data-id="${b.id}">
         <div class="book-cover-wrap">
-          ${m.cover ? `<img src="${esc(m.cover)}" alt="${esc(m.title||'Cover')}" loading="lazy">` : `<div class="book-cover-fallback">${bookPlaceholderSvg()}</div>`}
+          ${coverThumbHtml(b, 'cover', m.title||'Cover', bookPlaceholderSvg())}
         </div>
         <div class="book-card-body">
           <div class="book-title">${esc(m.title||'Untitled')}</div>
@@ -5663,6 +6114,7 @@ async function renderBooks() {
         </div>
       </div>`;
   }).join('');
+  hydrateCovers(grid);
 }
 
 async function showBookDetail(id) {
@@ -5674,7 +6126,7 @@ async function showBookDetail(id) {
   document.getElementById('detailModalSub').textContent = 'Your reading, in your own words';
   document.getElementById('detailContent').innerHTML = `
     <div class="det-hero">
-      <div class="det-cover det-cover-book">${m.cover ? `<img src="${esc(m.cover)}" alt="${esc(m.title||'Cover')}">` : bookPlaceholderSvg()}</div>
+      <div class="det-cover det-cover-book">${coverDetailHtml(item, 'cover', m.title||'Cover', bookPlaceholderSvg())}</div>
       <div>
         <div class="det-title">${esc(m.title||'Untitled')}</div>
         <div class="det-meta">${esc(m.author||'Unknown author')} · Added ${fmtDate(m.posted)}</div>
@@ -5690,15 +6142,16 @@ async function showBookDetail(id) {
       ${quotesBlockHtml('Lines Worth Keeping', m.quotes)}
       ${df('What It Left You Thinking', m.thoughts, true)}
     </div>`;
+  hydrateCovers(document.getElementById('detailContent'));
 
   document.getElementById('detailOpenBtn').style.display = 'none';
   document.getElementById('detailDownloadBtn').style.display = '';
   document.getElementById('detailDownloadBtn').textContent = '🖶 Download as PDF';
-  document.getElementById('detailDownloadBtn').onclick = () => printEntryPdf({
+  document.getElementById('detailDownloadBtn').onclick = async () => printEntryPdf({
     kind: 'Book Record',
     title: m.title,
     subtitle: `${m.author || 'Unknown author'} · Added ${fmtDate(m.posted)}`,
-    cover: m.cover,
+    cover: await resolveCoverSrc(item, 'cover'),
     rating: m.rating,
     genres: m.genres,
     sections: [
@@ -5743,6 +6196,7 @@ function setMoviePosterPreview(src) {
 
 function pickMoviePosterFile(file) {
   if (!file) return;
+  selMoviePosterKeepExisting = false;
   if (!file.type.startsWith('image/')) {
     toast('◈ That file can\u2019t be shown as a poster');
     selMoviePosterFile = null;
@@ -5762,6 +6216,7 @@ function pickMoviePosterFile(file) {
 function clearMoviePosterSelection() {
   selMoviePosterFile = null;
   selMoviePosterDataUrl = null;
+  selMoviePosterKeepExisting = false;
   document.getElementById('movieInput').value = '';
   setMoviePosterPreview(null);
 }
@@ -5779,6 +6234,7 @@ function openMovieModal(editId) {
   document.getElementById('movieForm').reset();
   selMoviePosterFile = null;
   selMoviePosterDataUrl = null;
+  selMoviePosterKeepExisting = false;
   movieRatingTouched = false;
   setMoviePosterPreview(null);
   document.getElementById('mvRating').value = 0;
@@ -5812,7 +6268,14 @@ function openMovieModal(editId) {
         document.getElementById('mvRatingDiamonds').innerHTML = ratingDiamonds(m.rating);
         movieRatingTouched = true;
       }
-      if (m.poster) { selMoviePosterDataUrl = m.poster; setMoviePosterPreview(m.poster); }
+      if (m.poster) {
+        selMoviePosterDataUrl = m.poster;
+        setMoviePosterPreview(m.poster);
+      } else if (m.coverBackend === 'r2') {
+        selMoviePosterKeepExisting = true;
+        document.getElementById('movieClearBtn').style.display = '';
+        resolveCoverSrc(item, 'poster').then(src => { if (selMoviePosterKeepExisting && src) setMoviePosterPreview(src); });
+      }
       openModal('movieModal');
     })();
     return;
@@ -5828,6 +6291,20 @@ async function submitMovie() {
   const editId = document.getElementById('mvEditId').value;
   const title  = g('mvTitle');
   const director = g('mvDirector');
+  const itemId = editId || crypto.randomUUID();
+
+  let coverFields;
+  if (selMoviePosterKeepExisting) {
+    const prev = editId ? await Vault.get(editId) : null;
+    coverFields = { poster: prev?.meta.poster ?? null, coverBackend: prev?.meta.coverBackend ?? null, coverIv: prev?.meta.coverIv ?? null, coverMime: prev?.meta.coverMime ?? null };
+  } else {
+    if (editId) {
+      const prev = await Vault.get(editId);
+      if (prev?.meta.coverBackend === 'r2') { try { await r2DeleteFile(`${editId}::cover`); } catch (e) { /* best-effort */ } }
+    }
+    const offloaded = await offloadCoverToR2(itemId, selMoviePosterDataUrl || null);
+    coverFields = { poster: offloaded.cover, coverBackend: offloaded.coverBackend, coverIv: offloaded.coverIv, coverMime: offloaded.coverMime };
+  }
 
   const meta = {
     title, director,
@@ -5839,7 +6316,7 @@ async function submitMovie() {
     cast: g('mvCast'),
     quotes: getQuoteInputs('mvQuotesList'),
     thoughts: g('mvThoughts'),
-    poster: selMoviePosterDataUrl || null,
+    ...coverFields,
     posted: document.getElementById('mvPostedDate').value || today(),
   };
 
@@ -5850,7 +6327,7 @@ async function submitMovie() {
       await Vault.update(editId, { type:'movie', parentId:null, name: title||'Untitled', meta });
       toast('◈ Entry updated');
     } else {
-      await Vault.add({ type:'movie', parentId:null, name: title||'Untitled', meta });
+      await Vault.add({ type:'movie', parentId:null, name: title||'Untitled', meta }, itemId);
       toast('◈ Added to your shelf');
     }
     closeModal('movieModal');
@@ -5917,7 +6394,7 @@ async function renderMovies() {
     return `
       <div class="book-card" data-action="movie-detail" data-id="${mv.id}">
         <div class="book-cover-wrap">
-          ${m.poster ? `<img src="${esc(m.poster)}" alt="${esc(m.title||'Poster')}" loading="lazy">` : `<div class="book-cover-fallback">${moviePlaceholderSvg()}</div>`}
+          ${coverThumbHtml(mv, 'poster', m.title||'Poster', moviePlaceholderSvg())}
         </div>
         <div class="book-card-body">
           <div class="book-title">${esc(m.title||'Untitled')}</div>
@@ -5932,6 +6409,7 @@ async function renderMovies() {
         </div>
       </div>`;
   }).join('');
+  hydrateCovers(grid);
 }
 
 async function showMovieDetail(id) {
@@ -5943,7 +6421,7 @@ async function showMovieDetail(id) {
   document.getElementById('detailModalSub').textContent = 'Your watching, in your own words';
   document.getElementById('detailContent').innerHTML = `
     <div class="det-hero">
-      <div class="det-cover">${m.poster ? `<img src="${esc(m.poster)}" alt="${esc(m.title||'Poster')}">` : moviePlaceholderSvg()}</div>
+      <div class="det-cover">${coverDetailHtml(item, 'poster', m.title||'Poster', moviePlaceholderSvg())}</div>
       <div>
         <div class="det-title">${esc(m.title||'Untitled')}</div>
         <div class="det-meta">${esc(m.director||'Unknown director')} · Added ${fmtDate(m.posted)}</div>
@@ -5959,15 +6437,16 @@ async function showMovieDetail(id) {
       ${quotesBlockHtml('Lines Worth Keeping', m.quotes)}
       ${df('What It Left You Thinking', m.thoughts, true)}
     </div>`;
+  hydrateCovers(document.getElementById('detailContent'));
 
   document.getElementById('detailOpenBtn').style.display = 'none';
   document.getElementById('detailDownloadBtn').style.display = '';
   document.getElementById('detailDownloadBtn').textContent = '🖶 Download as PDF';
-  document.getElementById('detailDownloadBtn').onclick = () => printEntryPdf({
+  document.getElementById('detailDownloadBtn').onclick = async () => printEntryPdf({
     kind: 'Movie Record',
     title: m.title,
     subtitle: `${m.director || 'Unknown director'} · Added ${fmtDate(m.posted)}`,
-    cover: m.poster,
+    cover: await resolveCoverSrc(item, 'poster'),
     rating: m.rating,
     genres: m.genres,
     sections: [
@@ -6012,6 +6491,7 @@ function setAnimePosterPreview(src) {
 
 function pickAnimePosterFile(file) {
   if (!file) return;
+  selAnimePosterKeepExisting = false;
   if (!file.type.startsWith('image/')) {
     toast('◈ That file can\u2019t be shown as a poster');
     selAnimePosterFile = null;
@@ -6031,6 +6511,7 @@ function pickAnimePosterFile(file) {
 function clearAnimePosterSelection() {
   selAnimePosterFile = null;
   selAnimePosterDataUrl = null;
+  selAnimePosterKeepExisting = false;
   document.getElementById('animeInput').value = '';
   setAnimePosterPreview(null);
 }
@@ -6048,6 +6529,7 @@ function openAnimeModal(editId) {
   document.getElementById('animeForm').reset();
   selAnimePosterFile = null;
   selAnimePosterDataUrl = null;
+  selAnimePosterKeepExisting = false;
   animeRatingTouched = false;
   setAnimePosterPreview(null);
   document.getElementById('anRating').value = 0;
@@ -6081,7 +6563,14 @@ function openAnimeModal(editId) {
         document.getElementById('anRatingDiamonds').innerHTML = ratingDiamonds(m.rating);
         animeRatingTouched = true;
       }
-      if (m.poster) { selAnimePosterDataUrl = m.poster; setAnimePosterPreview(m.poster); }
+      if (m.poster) {
+        selAnimePosterDataUrl = m.poster;
+        setAnimePosterPreview(m.poster);
+      } else if (m.coverBackend === 'r2') {
+        selAnimePosterKeepExisting = true;
+        document.getElementById('animeClearBtn').style.display = '';
+        resolveCoverSrc(item, 'poster').then(src => { if (selAnimePosterKeepExisting && src) setAnimePosterPreview(src); });
+      }
       openModal('animeModal');
     })();
     return;
@@ -6097,6 +6586,20 @@ async function submitAnime() {
   const editId = document.getElementById('anEditId').value;
   const title  = g('anTitle');
   const studio = g('anStudio');
+  const itemId = editId || crypto.randomUUID();
+
+  let coverFields;
+  if (selAnimePosterKeepExisting) {
+    const prev = editId ? await Vault.get(editId) : null;
+    coverFields = { poster: prev?.meta.poster ?? null, coverBackend: prev?.meta.coverBackend ?? null, coverIv: prev?.meta.coverIv ?? null, coverMime: prev?.meta.coverMime ?? null };
+  } else {
+    if (editId) {
+      const prev = await Vault.get(editId);
+      if (prev?.meta.coverBackend === 'r2') { try { await r2DeleteFile(`${editId}::cover`); } catch (e) { /* best-effort */ } }
+    }
+    const offloaded = await offloadCoverToR2(itemId, selAnimePosterDataUrl || null);
+    coverFields = { poster: offloaded.cover, coverBackend: offloaded.coverBackend, coverIv: offloaded.coverIv, coverMime: offloaded.coverMime };
+  }
 
   const meta = {
     title, studio,
@@ -6108,7 +6611,7 @@ async function submitAnime() {
     characters: g('anCharacters'),
     quotes: getQuoteInputs('anQuotesList'),
     thoughts: g('anThoughts'),
-    poster: selAnimePosterDataUrl || null,
+    ...coverFields,
     posted: document.getElementById('anPostedDate').value || today(),
   };
 
@@ -6119,7 +6622,7 @@ async function submitAnime() {
       await Vault.update(editId, { type:'anime', parentId:null, name: title||'Untitled', meta });
       toast('◈ Entry updated');
     } else {
-      await Vault.add({ type:'anime', parentId:null, name: title||'Untitled', meta });
+      await Vault.add({ type:'anime', parentId:null, name: title||'Untitled', meta }, itemId);
       toast('◈ Added to your shelf');
     }
     closeModal('animeModal');
@@ -6186,7 +6689,7 @@ async function renderAnime() {
     return `
       <div class="book-card" data-action="anime-detail" data-id="${an.id}">
         <div class="book-cover-wrap">
-          ${m.poster ? `<img src="${esc(m.poster)}" alt="${esc(m.title||'Poster')}" loading="lazy">` : `<div class="book-cover-fallback">${animePlaceholderSvg()}</div>`}
+          ${coverThumbHtml(an, 'poster', m.title||'Poster', animePlaceholderSvg())}
         </div>
         <div class="book-card-body">
           <div class="book-title">${esc(m.title||'Untitled')}</div>
@@ -6201,6 +6704,7 @@ async function renderAnime() {
         </div>
       </div>`;
   }).join('');
+  hydrateCovers(grid);
 }
 
 async function showAnimeDetail(id) {
@@ -6212,7 +6716,7 @@ async function showAnimeDetail(id) {
   document.getElementById('detailModalSub').textContent = 'Your watching, in your own words';
   document.getElementById('detailContent').innerHTML = `
     <div class="det-hero">
-      <div class="det-cover">${m.poster ? `<img src="${esc(m.poster)}" alt="${esc(m.title||'Poster')}">` : animePlaceholderSvg()}</div>
+      <div class="det-cover">${coverDetailHtml(item, 'poster', m.title||'Poster', animePlaceholderSvg())}</div>
       <div>
         <div class="det-title">${esc(m.title||'Untitled')}</div>
         <div class="det-meta">${esc(m.studio||'Unknown studio')} · Added ${fmtDate(m.posted)}</div>
@@ -6228,15 +6732,16 @@ async function showAnimeDetail(id) {
       ${quotesBlockHtml('Lines Worth Keeping', m.quotes)}
       ${df('What It Left You Thinking', m.thoughts, true)}
     </div>`;
+  hydrateCovers(document.getElementById('detailContent'));
 
   document.getElementById('detailOpenBtn').style.display = 'none';
   document.getElementById('detailDownloadBtn').style.display = '';
   document.getElementById('detailDownloadBtn').textContent = '🖶 Download as PDF';
-  document.getElementById('detailDownloadBtn').onclick = () => printEntryPdf({
+  document.getElementById('detailDownloadBtn').onclick = async () => printEntryPdf({
     kind: 'Anime Record',
     title: m.title,
     subtitle: `${m.studio || 'Unknown studio'} · Added ${fmtDate(m.posted)}`,
-    cover: m.poster,
+    cover: await resolveCoverSrc(item, 'poster'),
     rating: m.rating,
     genres: m.genres,
     sections: [
@@ -6436,7 +6941,7 @@ async function migrateDiaryToOwnKey() {
       await DB.put({ id: newId, iv, ct }); // 1. write new row locally
 
       const { error } = await vaultClient.from('vault_sync')
-        .upsert({ item_id: newId, user_id: sbUserId, user_hash: PW_HASH, iv, ct, updated_at: new Date().toISOString() });
+        .upsert({ item_id: newId, user_id: sbUserId, user_hash: SYNC_TAG, iv, ct, updated_at: new Date().toISOString() });
       if (error) throw error; // 2. confirm it uploaded successfully
 
       // 3. only now remove the old row — new copy is confirmed safe
@@ -6577,7 +7082,7 @@ async function migrateToShareableKeys() {
       const { iv, ct } = await encryptRecord(payload, isDiary ? DK : VK);
       await DB.put({ id: raw.id, iv, ct }); // same id — only the key changes, so ids/refs elsewhere stay valid
       const { error } = await vaultClient.from('vault_sync')
-        .upsert({ item_id: raw.id, user_id: sbUserId, user_hash: PW_HASH, iv, ct, updated_at: new Date().toISOString() });
+        .upsert({ item_id: raw.id, user_id: sbUserId, user_hash: SYNC_TAG, iv, ct, updated_at: new Date().toISOString() });
       if (error) throw error;
       migrated++;
     } catch (e) {
@@ -6590,7 +7095,7 @@ async function migrateToShareableKeys() {
       // Re-upload the EXACT bytes already sitting locally — no re-encryption,
       // just guaranteeing the cloud has this same ciphertext too.
       const { error } = await vaultClient.from('vault_sync')
-        .upsert({ item_id: raw.id, user_id: sbUserId, user_hash: PW_HASH, iv: raw.iv, ct: raw.ct, updated_at: new Date().toISOString() });
+        .upsert({ item_id: raw.id, user_id: sbUserId, user_hash: SYNC_TAG, iv: raw.iv, ct: raw.ct, updated_at: new Date().toISOString() });
       if (error) throw error;
       confirmed++;
     } catch (e) {
@@ -6653,7 +7158,7 @@ async function rotateAdminCipherKey() {
   const confirm1 = prompt('Type it again to confirm:');
   if (newPw !== confirm1) { alert('Did not match — nothing was changed.'); return; }
 
-  const newHash = await sha256Hex(PW_SALT + newPw);
+  if (newPw.length < 12) { alert('Use at least 12 characters — four or five random words works well. Nothing was changed.'); return; }
   const vkRaw = await crypto.subtle.exportKey('raw', cryptoKey);
   const newBaseKey = await deriveKey(newPw);
   const iv = crypto.getRandomValues(new Uint8Array(12));
@@ -6668,19 +7173,522 @@ async function rotateAdminCipherKey() {
   // tab to keep silently using an old, rotated-out password afterward —
   // refresh the local Google-recovery shortcut (if this device has one)
   // to the new password right now, not just the server-side wrap.
-  if (googleVerifiedSub && googleVerifiedEmail?.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
+  if (googleVerifiedSub && ADMIN_EMAILS.includes(googleVerifiedEmail?.toLowerCase())) {
     await storeWrappedSecret(googleVerifiedSub, newPw);
   }
 
-  const { error: hashErr } = await vaultClient.from('vault_config')
-    .upsert({ key: 'login_hash', value: newHash });
+  const { error: hashErr } = await vaultClient.rpc('set_admin_password', { new_pw: newPw });
   if (hashErr) {
-    alert('Key rotated, but saving the new login hash failed — check console. Your OLD cipher key still works for now; try rotateAdminCipherKey() again once this is sorted.');
+    alert('Key re-sealed, but saving the new password check failed — check console. Run rotateAdminCipherKey() again right away (before closing this page) with the same new key.');
     console.error(hashErr);
     return;
   }
-  LOGIN_HASH = newHash; // takes effect immediately, this session, no reload needed
   alert('Done — your new cipher key is live immediately, everywhere, including the Google tab on this device. Nothing to paste, nothing to re-upload.');
+}
+
+// Read-only diagnostic, console-callable: diagnoseKeyForPassword('somePassword')
+// Tries a candidate password two ways — as the raw base key itself (the
+// pre-migration scheme), and unwrapped through the current stored admin
+// wrap — and reports how many of your real items actually decrypt under
+// each. Touches nothing; safe to run as many times, with as many
+// candidate passwords, as you want.
+async function diagnoseKeyForPassword(password) {
+  const baseKey = await deriveKey(password);
+  const rawAll = (await DB.getAll()).filter(r => !r.id.startsWith('diary::') && !r.id.startsWith('__'));
+  console.log(`Testing against ${rawAll.length} non-diary local record(s)...`);
+
+  let baseHits = 0;
+  for (const r of rawAll) { try { await decryptRecord(r.iv, r.ct, baseKey); baseHits++; } catch (e) {} }
+  console.log(`As the raw base key directly: ${baseHits} / ${rawAll.length} decrypt.`);
+
+  const { data, error } = await vaultClient.from('vault_key_wraps').select('wrapped_key').eq('role', 'admin').maybeSingle();
+  if (error || !data) { console.log('Could not fetch the stored admin wrap to test against.'); return; }
+  try {
+    const { iv, wrapped } = JSON.parse(data.wrapped_key);
+    const rawBytes = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64ToBuf(iv) }, baseKey, b64ToBuf(wrapped));
+    const VK = await crypto.subtle.importKey('raw', rawBytes, 'AES-GCM', true, ['encrypt', 'decrypt']);
+    let vkHits = 0;
+    for (const r of rawAll) { try { await decryptRecord(r.iv, r.ct, VK); vkHits++; } catch (e) {} }
+    console.log(`Unwrapped through the stored admin wrap: ${vkHits} / ${rawAll.length} decrypt.`);
+  } catch (e) {
+    console.log('This password does not unwrap the stored admin wrap at all.');
+  }
+}
+
+// Admin-only, button-triggered: restoreFromMigrationBackupFile(file)
+// For items that show "could not be opened" because their server-side
+// chunk data got corrupted by an old sync race condition (see the
+// comment above sbPullAllItems) — no key will ever open genuinely
+// corrupted ciphertext. This instead reads a vault-migration-backup-*.json
+// file (downloaded automatically the one time Setup Sharing's migration
+// ran, holding plain already-decrypted content from before any of this
+// happened), re-encrypts each entry fresh under THIS session's current
+// key, and re-uploads it under its original id — sidestepping the
+// corrupted chunks entirely. Existing items with the same id are
+// overwritten with the restored version.
+async function restoreFromMigrationBackupFile(file) {
+  if (!cryptoKey) { alert('Unlock the vault first.'); return; }
+  let entries;
+  try {
+    const text = await file.text();
+    entries = JSON.parse(text);
+    if (!Array.isArray(entries)) throw new Error('not an array');
+  } catch (e) { alert('Could not read that file as a backup JSON.'); console.error(e); return; }
+
+  if (!confirm(`Found ${entries.length} item(s) in this backup. Restore all of them, re-encrypted under your current key? Existing items with the same id will be overwritten.`)) return;
+
+  let done = 0, failed = 0;
+  for (const entry of entries) {
+    const { old_id, ...payload } = entry;
+    if (!old_id || !payload.type) { failed++; console.warn('Skipped a malformed backup entry:', entry); continue; }
+    if (payload.type === 'file' && payload.fileData) { failed++; console.warn('Skipped a file with inline bytes — use "Import Backup → R2" for those:', old_id); continue; }
+    try {
+      const { iv, ct } = await encryptRecord(payload, cryptoKey);
+      await DB.put({ id: old_id, iv, ct });
+      markPending(old_id);
+      await sbUploadItem(old_id, iv, ct);
+      if (getPendingIds().includes(old_id)) throw new Error('cloud save did not confirm');
+      done++;
+    } catch (e) {
+      failed++;
+      console.warn(`Restore failed for ${old_id}:`, e);
+    }
+  }
+  Vault.invalidate();
+  await renderBooks(); await renderMovies(); await renderAnime(); await render();
+  alert(`Restore complete: ${done} item(s) restored, ${failed} failed (see console for details on any failures).`);
+}
+
+// ══════════════════════════════════════════════
+// FIRST-TIME SETUP (empty vault) + ADMIN PASSWORD
+// Flow: Google (admin email) -> "Begin — Set Up New Vault" -> import the
+// backup -> "Admin Password" -> leave, then password AND Google both work.
+// While no password exists, the freshly generated vault/diary keys exist only
+// in memory plus a temporary copy in this browser, locked under your Google
+// identity (BOOT_KEYS_LS) — so closing the tab early loses nothing. That copy
+// is deleted the moment the admin password is saved (the real wraps then live
+// on the server, locked under the password).
+// ══════════════════════════════════════════════
+const BOOT_KEYS_LS = 'cv_boot_keys_v1';
+async function saveBootKeys(sub, keys) {
+  const wk = await deriveWrapKey(sub);
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const payload = JSON.stringify({
+    vk: bufToB64(await crypto.subtle.exportKey('raw', keys.vk)),
+    dk: bufToB64(await crypto.subtle.exportKey('raw', keys.dk)),
+  });
+  const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, wk, new TextEncoder().encode(payload));
+  localStorage.setItem(BOOT_KEYS_LS, JSON.stringify({ iv: bufToB64(iv), ct: bufToB64(ct) }));
+}
+async function loadBootKeys(sub) {
+  const raw = localStorage.getItem(BOOT_KEYS_LS);
+  if (!raw || !sub) return null;
+  try {
+    const { iv, ct } = JSON.parse(raw);
+    const wk = await deriveWrapKey(sub);
+    const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: new Uint8Array(b64ToBuf(iv)) }, wk, b64ToBuf(ct));
+    const { vk, dk } = JSON.parse(new TextDecoder().decode(pt));
+    const imp = b => crypto.subtle.importKey('raw', b64ToBuf(b), 'AES-GCM', true, ['encrypt', 'decrypt']);
+    return { vk: await imp(vk), dk: await imp(dk) };
+  } catch (e) { return null; }
+}
+function clearBootKeys() { localStorage.removeItem(BOOT_KEYS_LS); }
+
+// Clears this device's local copy of the vault (IndexedDB items + covers cache
+// + sync bookkeeping + stale key shortcuts). Never touches the server.
+async function wipeLocalVaultData() {
+  await DB.init();
+  await new Promise((res, rej) => {
+    const tx = DB._db.transaction(['items_v3', 'cover_cache_v1'], 'readwrite');
+    tx.objectStore('items_v3').clear();
+    tx.objectStore('cover_cache_v1').clear();
+    tx.oncomplete = res; tx.onerror = () => rej(tx.error);
+  });
+  Object.keys(localStorage)
+    .filter(k => k.startsWith('cv_') && k !== 'cv_dark' && k !== BOOT_KEYS_LS && !k.startsWith('cv_vault_auth'))
+    .forEach(k => localStorage.removeItem(k));
+  localStorage.setItem(MIGRATED_KEY, '1'); // don't re-queue the (now empty) local copy as "pending" later
+  Vault.invalidate();
+}
+
+function showSetupBanner() {
+  if (document.getElementById('setupBanner')) return;
+  const b = document.createElement('div');
+  b.id = 'setupBanner';
+  b.className = 'role-banner';
+  b.innerHTML = '◈ New vault — step 1: <button class="hbtn" onclick="document.getElementById(\'importR2BackupFileInput\').click()">Import backup</button> &nbsp; step 2: <button class="hbtn" onclick="openModal(\'adminPwModal\')">Set admin password</button>';
+  document.body.prepend(b);
+}
+
+async function bootstrapFreshVault() {
+  const uid = await ensureSbUser();
+  if (!uid) throw new Error('Google sign-in did not reach the database — reload and sign in again.');
+  if (!(await isVaultFresh())) throw new Error('This vault already has a password — use it (or Google on a linked device) instead.');
+  let keys = await loadBootKeys(googleVerifiedSub);
+  if (!keys) {
+    if (!confirm('Set up a brand-new vault?\n\nThis clears this device\'s old local copy of the vault (the server is already empty) and creates fresh encryption keys.')) return;
+    await wipeLocalVaultData();
+    keys = { vk: await generateSharedKey(), dk: await generateSharedKey() };
+    await saveBootKeys(googleVerifiedSub, keys);
+  }
+  sbUserId = uid;
+  ROLE = null;
+  cryptoKey = keys.vk; diaryKey = keys.dk;
+  adminBaseKey = null; adminDiaryBaseKey = null;
+  diaryUnlocked = true;
+  document.body.classList.add('authed');
+  await DB.init();
+  applyRoleRestrictions();
+  switchMainTab('books');
+  await renderBooks(); await renderMovies(); await renderAnime(); await render(); await renderDiary();
+  showSetupBanner();
+  toast('◈ New vault ready — import your backup, then set the admin password.');
+  syncVaultWithCloud(); // fire-and-forget, same as a normal unlock
+}
+
+// Admin-only. Sets the admin password the first time, and changes it any time
+// later — no old password needed once you are inside. Only the key wrap and the
+// login hash change; your content is never re-encrypted.
+async function submitAdminPassword() {
+  const err = document.getElementById('adminPwError');
+  const btn = document.getElementById('adminPwSubmitBtn');
+  err.classList.remove('show');
+  btn.disabled = true;
+  try {
+    if (ROLE !== null) throw new Error('Only the admin can change this.');
+    if (!cryptoKey || !cryptoKey.extractable) throw new Error('Open the vault first (password, or Google on a new vault) — then try again.');
+    const pw1 = document.getElementById('adminPwNew').value;
+    const pw2 = document.getElementById('adminPwConfirm').value;
+    const diaryPw = document.getElementById('adminPwDiary').value;
+    if (pw1.length < 12) throw new Error('Use at least 12 characters — four or five random words works well.');
+    if (pw1 !== pw2) throw new Error('The two passwords do not match.');
+
+    // The diary key is locked under the diary password. Needed once (when no
+    // diary wrap exists yet); afterwards optional.
+    let diaryWrap = null;
+    const { data: dRow, error: dErr } = await vaultClient.from('vault_key_wraps').select('role').eq('role', 'admin_diary').maybeSingle();
+    if (dErr) throw dErr;
+    if (diaryPw || !dRow) {
+      if (!diaryPw) throw new Error('Enter your diary password — needed once, so the diary can be opened later.');
+      const dchk = await vaultClient.rpc('check_diary_password', { pw: diaryPw });
+      if (dchk.error) throw dchk.error;
+      if (dchk.data?.locked && !dchk.data?.ok) throw new Error('Too many diary-password attempts — locked for ' + formatRetry(dchk.data.retry_after_seconds) + '.');
+      if (!dchk.data?.ok) throw new Error('That is not the diary password.');
+      if (!diaryKey || !diaryKey.extractable) throw new Error('Unlock the diary first (open the Diary tab), then try again.');
+      const dBase = await deriveDiaryKey(diaryPw);
+      const dIv = crypto.getRandomValues(new Uint8Array(12));
+      const dWrapped = await crypto.subtle.encrypt({ name: 'AES-GCM', iv: dIv }, dBase, await crypto.subtle.exportKey('raw', diaryKey));
+      diaryWrap = { iv: bufToB64(dIv), wrapped: bufToB64(dWrapped) };
+    }
+
+    const newBase = await deriveKey(pw1);
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const wrapped = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, newBase, await crypto.subtle.exportKey('raw', cryptoKey));
+
+    // Wraps first, password check last — a failure part-way never leaves a password that can't open the vault.
+    let r = await vaultClient.from('vault_key_wraps').upsert({ role: 'admin', wrapped_key: JSON.stringify({ iv: bufToB64(iv), wrapped: bufToB64(wrapped) }) });
+    if (r.error) throw r.error;
+    if (diaryWrap) {
+      r = await vaultClient.from('vault_key_wraps').upsert({ role: 'admin_diary', wrapped_key: JSON.stringify(diaryWrap) });
+      if (r.error) throw r.error;
+    }
+    r = await vaultClient.rpc('set_admin_password', { new_pw: pw1 });
+    if (r.error) throw new Error('The key was saved but the password check was not (' + r.error.message + '). Press Save again.');
+
+    adminBaseKey = newBase;
+    NO_PASSWORD_YET = false;
+    localStorage.removeItem('cv_vk_cache_v1');
+    if (diaryWrap) localStorage.removeItem('cv_dk_cache_v1');
+    if (googleVerifiedSub && ADMIN_EMAILS.includes(googleVerifiedEmail?.toLowerCase())) {
+      await storeWrappedSecret(googleVerifiedSub, pw1); // Google entry on this device now uses the new password
+    } else {
+      localStorage.removeItem('cv_google_wrap');         // stale shortcut holding the old password
+    }
+    clearBootKeys();
+    const sb = document.getElementById('setupBanner'); if (sb) sb.remove();
+    document.getElementById('adminPwForm').reset();
+    closeModal('adminPwModal');
+    toast('◈ Admin password saved. It works from now on — and Google still works on this device.');
+  } catch (e) {
+    console.error('Admin password save failed:', e);
+    err.textContent = '◈ ' + (e?.message || 'Something went wrong — check the console.');
+    err.classList.add('show');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+// Admin-only: proves every stored file is really there and intact. Each file is fetched from wherever it
+// lives (R2 or Supabase Storage), decrypted, and its byte length compared with the size recorded when it was added.
+async function verifyAllFiles() {
+  if (ROLE !== null) return;
+  Vault.invalidate();
+  const items = (await Vault.getAll()).filter(i => i.type === 'file');
+  if (!items.length) { alert('No file entries found in the vault.'); return; }
+  const totalMB = items.reduce((n, i) => n + (i.meta?.fileSize || 0), 0) / 1048576;
+  if (!confirm(`Check all ${items.length} files?\n\nEach one is downloaded and decrypted (about ${totalMB.toFixed(0)} MB in total) and its size compared with the recorded size. Keep this tab open.`)) return;
+  let ok = 0; const bad = [];
+  for (let n = 0; n < items.length; n++) {
+    const it = items[n];
+    const label = it.meta?.fileName || it.name || it.id;
+    toast(`◈ Verifying ${n + 1} of ${items.length}: ${label}`);
+    try {
+      const buf = await getFileBytes(it);
+      if (buf.byteLength === it.meta?.fileSize) ok++;
+      else bad.push(`${label} — got ${buf.byteLength} bytes, expected ${it.meta?.fileSize}`);
+    } catch (e) { bad.push(`${label} — ${e.message || e}`); }
+  }
+  alert(bad.length
+    ? `${ok} of ${items.length} files verified.\n\nProblems:\n${bad.slice(0, 8).join('\n')}${bad.length > 8 ? '\n…' : ''}`
+    : `All ${items.length} files verified: present, decryptable, and the exact recorded size.`);
+}
+
+// Admin-only, button-triggered: importPlainBackup(file)
+// Imports a PLAIN (already-decrypted) vault-full-backup-*.json straight into
+// the vault with the heavy bytes going to Cloudflare R2 — never into the
+// vault_sync table. For each backup entry:
+//   - type "file" with inline fileData -> bytes encrypted + uploaded to R2
+//     (r2PutFile), the item itself saved as small metadata only
+//     (storageBackend 'r2', fileIv), exactly like a normal R2 upload
+//   - everything else (folders, books, movies, diary) -> re-encrypted and
+//     saved as before; diary entries use the diary key, so unlock the diary
+//     first or they are skipped (and reported)
+// Original ids are kept, so folder/parent links stay intact. The backup is
+// read in 8 MB slices and one entry at a time, so a 250+ MB file never has
+// to sit in memory whole (safe on a phone). Re-running is safe: files that
+// are already on R2 under the same id are skipped.
+async function forEachJsonArrayEntry(file, onEntry) {
+  const SLICE = 8 * 1024 * 1024;
+  const decoder = new TextDecoder('utf-8');
+  let depth = 0, inStr = false, esc = false, carry = '';
+  for (let off = 0; off < file.size; off += SLICE) {
+    const end = Math.min(off + SLICE, file.size);
+    const text = decoder.decode(await file.slice(off, end).arrayBuffer(), { stream: end < file.size });
+    let objStart = depth > 0 ? 0 : -1;
+    for (let i = 0; i < text.length; i++) {
+      const c = text.charCodeAt(i);
+      if (inStr) {
+        if (esc) esc = false;
+        else if (c === 92) esc = true;      // backslash
+        else if (c === 34) inStr = false;   // closing quote
+        continue;
+      }
+      if (c === 34) { inStr = true; continue; }
+      if (c === 123) { if (depth === 0) objStart = i; depth++; }          // {
+      else if (c === 125) {                                                // }
+        depth--;
+        if (depth === 0) {
+          const objText = carry + text.slice(objStart, i + 1);
+          carry = ''; objStart = -1;
+          await onEntry(JSON.parse(objText));
+        }
+      }
+    }
+    if (depth > 0) carry += text.slice(objStart === -1 ? 0 : objStart);
+  }
+}
+
+// Uploads and deletes a 16-byte probe so a broken destination is reported ONCE, with the real reason + a hint,
+// instead of 21 identical failures. Returns null when the destination works.
+async function preflightFileTarget(target) {
+  const probe = new Uint8Array(16).buffer;
+  try {
+    if (target === 'sbstorage') { await sbStoragePutFile('__preflight', probe); await sbStorageDeleteFile('__preflight'); }
+    else { await r2PutFile('__preflight', probe); await r2DeleteFile('__preflight'); }
+    return null;
+  } catch (e) {
+    const m = (e && e.message) ? e.message : String(e);
+    let hint = '';
+    if (target === 'sbstorage') {
+      if (/bucket not found/i.test(m)) hint = 'The "vault-files" bucket does not exist yet — run the Supabase Storage setup SQL first.';
+      else if (/row-level security|policy|not authorized|unauthorized|403/i.test(m)) hint = 'The bucket exists but its policies reject this sign-in — re-run the policy SQL and make sure you are signed in with the admin Google account.';
+    } else {
+      if (/failed to fetch|networkerror|load failed/i.test(m)) hint = 'The browser could not reach the R2 Worker — most often its CORS allow-list does not include this site (' + location.origin + ').';
+      else if (/401|403|unauthor|forbidden|invalid/i.test(m)) hint = 'The R2 Worker rejected this sign-in.';
+    }
+    return m + (hint ? '\n\n' + hint : '');
+  }
+}
+
+async function importPlainBackup(file) {
+  if (!cryptoKey) { alert('Unlock the vault first.'); return; }
+  if (!vaultClient || !sbUserId) { alert('Sign in first (Google) — Cloudflare R2 needs an active session.'); return; }
+  const { data: { session } } = await vaultClient.auth.getSession();
+  if (!session) { alert('No active session — sign in first, R2 needs it.'); return; }
+  const choice = (prompt('Where should the FILES go?\n\n1 = Supabase Storage (files up to 50 MB)\n2 = Cloudflare R2\n\nType 1 or 2:', '1') || '').trim();
+  if (choice !== '1' && choice !== '2') { toast('◈ Import cancelled.'); return; }
+  const target = choice === '1' ? 'sbstorage' : 'r2';
+  const targetName = target === 'sbstorage' ? 'Supabase Storage' : 'Cloudflare R2';
+  if (!confirm(`Import "${file.name}" (${(file.size / 1048576).toFixed(0)} MB)?\n\nFiles and cover images go to ${targetName} (encrypted). Folders, books, movies and diary go to the database. Items with the same id are overwritten.\n\nKeep this tab open until it finishes.`)) return;
+
+  toast(`◈ Checking ${targetName}…`);
+  const probeError = await preflightFileTarget(target);
+  if (probeError) { alert(`Nothing was imported — ${targetName} is not accepting uploads:\n\n${probeError}`); return; }
+
+  const already = new Map();
+  try { (await Vault.getAll()).forEach(it => already.set(it.id, it)); } catch (e) { /* nothing readable yet — fine */ }
+
+  const stats = { files: 0, other: 0, skipped: 0, diaryLocked: 0, failed: 0 };
+  const failures = [];
+  let firstError = '';
+  let seen = 0;
+  const handle = async (entry) => {
+    seen++;
+    const { old_id, ...payload } = entry;
+    const label = payload.meta?.fileName || payload.meta?.title || payload.name || old_id;
+    try {
+      if (!old_id || !payload.type) throw new Error('malformed entry');
+      const isDiary = payload.type === 'diary' || old_id.startsWith('diary::');
+      if (isDiary && !diaryKey) { stats.diaryLocked++; return; }
+      let isFile = false;
+      if (payload.type === 'file' && payload.fileData && payload.storageBackend !== 'r2') {
+        const prev = already.get(old_id);
+        if (prev && (prev.storageBackend === 'r2' || prev.storageBackend === 'sbstorage') && prev.fileIv) { stats.skipped++; return; }
+        toast(`◈ Uploading ${label} (${seen})…`);
+        const bytes = b64ToBuf(payload.fileData);
+        const fileIv = target === 'sbstorage' ? await sbStoragePutFile(old_id, bytes) : await r2PutFile(old_id, bytes);
+        payload.fileData = null; payload.storageBackend = target; payload.fileIv = fileIv;
+        isFile = true;
+      }
+      // Cover/poster images embedded in the entry also move out of the database (covers live in R2).
+      const coverField = payload.type === 'book' ? 'cover' : (payload.type === 'movie' || payload.type === 'anime') ? 'poster' : null;
+      if (coverField && payload.meta && typeof payload.meta[coverField] === 'string' && payload.meta[coverField].startsWith('data:') && payload.meta.coverBackend !== 'r2') {
+        try {
+          const off = await offloadCoverToR2(old_id, payload.meta[coverField]);
+          payload.meta = { ...payload.meta, [coverField]: off.cover, coverBackend: off.coverBackend, coverIv: off.coverIv, coverMime: off.coverMime };
+        } catch (e) { console.warn(`Cover for ${label} stayed inline (R2 upload failed):`, e); }
+      }
+      const { iv, ct } = await encryptRecord(payload, isDiary ? diaryKey : cryptoKey);
+      await DB.put({ id: old_id, iv, ct });
+      if (sbUserId) itemOwners[old_id] = sbUserId;
+      markPending(old_id);
+      await sbUploadItem(old_id, iv, ct);
+      if (getPendingIds().includes(old_id)) throw new Error('cloud save did not confirm — will retry on next sync');
+      if (isFile) stats.files++; else stats.other++;
+    } catch (e) {
+      stats.failed++; failures.push(label);
+      if (!firstError) firstError = (e && e.message) ? e.message : String(e);
+      console.warn(`Import failed for ${label}:`, e);
+    }
+  };
+
+  try { await forEachJsonArrayEntry(file, handle); }
+  catch (e) { console.error(e); alert('Could not read that file as a backup JSON — ' + (e.message || e) + `\n\nProcessed ${seen} entries before stopping.`); }
+
+  Vault.invalidate();
+  await renderBooks(); await renderMovies(); await renderAnime(); await render();
+  alert(`Import finished.\n${stats.files} file(s) → ${targetName}\n${stats.other} other item(s) saved\n${stats.skipped} file(s) already uploaded (skipped)\n` +
+        (stats.diaryLocked ? `${stats.diaryLocked} diary entr${stats.diaryLocked === 1 ? 'y' : 'ies'} skipped — unlock the diary and run this again\n` : '') +
+        (stats.failed ? `${stats.failed} failed: ${failures.slice(0, 5).join(', ')}${failures.length > 5 ? '…' : ''}\nReason: ${firstError}\nSafe to run again.` : 'No failures.'));
+}
+
+// Admin-only, console-callable: recoverAdminKeyFromOldPassword('oldPassword')
+// For when you changed your admin password at some point and the stored
+// vault key wrap never got re-wrapped under the new one (a known past
+// bug in this app's password-rotation flow). Run this AFTER unlocking
+// normally with your CURRENT password (shelves can still be empty at
+// that point, that's fine) — it unwraps the existing key using the OLD
+// password instead, verifies it actually decrypts your real content,
+// then re-locks it under your current password so this is fixed for
+// every device from now on.
+async function recoverAdminKeyFromOldPassword(oldPassword) {
+  if (!adminBaseKey) { alert('Unlock the vault with your CURRENT password first (so there\u2019s a current base key to re-wrap with) — then run this.'); return; }
+  const { data, error } = await vaultClient.from('vault_key_wraps').select('wrapped_key').eq('role', 'admin').maybeSingle();
+  if (error || !data) { alert('Could not fetch the stored key wrap \u2014 check your connection and try again.'); console.error(error); return; }
+
+  const oldBaseKey = await deriveKey(oldPassword);
+  let rawBytes, VK;
+  try {
+    const { iv, wrapped } = JSON.parse(data.wrapped_key);
+    rawBytes = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64ToBuf(iv) }, oldBaseKey, b64ToBuf(wrapped));
+    VK = await crypto.subtle.importKey('raw', rawBytes, 'AES-GCM', true, ['encrypt', 'decrypt']);
+  } catch (e) { alert('That old password did not unwrap the stored key either \u2014 it may not be the right one, or the wrap is stale in some other way.'); return; }
+
+  // Sanity check before touching anything: this key should actually
+  // decrypt your real content.
+  const rawAll = await DB.getAll();
+  const sample = rawAll.find(r => !r.id.startsWith('diary::') && !r.id.startsWith('__'));
+  if (sample) {
+    try { await decryptRecord(sample.iv, sample.ct, VK); }
+    catch (e) { alert('That old password unwrapped something, but it does not decrypt your real content \u2014 refusing to save it. This may not be the right old password.'); return; }
+  }
+
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const wrapped = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, adminBaseKey, rawBytes);
+  const { error: upErr } = await vaultClient.from('vault_key_wraps')
+    .upsert({ role: 'admin', wrapped_key: JSON.stringify({ iv: bufToB64(iv), wrapped: bufToB64(wrapped) }) });
+  if (upErr) { alert('Found the right key, but saving the fixed wrap failed \u2014 check console and try again.'); console.error(upErr); return; }
+
+  localStorage.removeItem('cv_vk_cache_v1');
+  cryptoKey = VK;
+  Vault.invalidate();
+  await renderBooks(); await renderMovies(); await renderAnime(); await render();
+  alert('Fixed \u2014 your real content should show now, and every other device will pick up the corrected key next time they unlock too.');
+}
+
+// Admin-only, button-triggered (also console-callable): exportVaultKeyForRecovery()
+// For when THIS device's cryptoKey is genuinely the real shared vault key
+// (i.e. your shelves show your actual content here) but ANOTHER device's
+// copy of the server-side wrap has gone stale and can't be unwrapped
+// under its own current password anymore. Shows the raw key as text you
+// can copy off THIS device and hand to importVaultKeyForRecovery() on
+// the broken one (run from its browser console) to fix its wrap for
+// good. Read-only — nothing on this device or the server is touched.
+async function exportVaultKeyForRecovery() {
+  if (!cryptoKey || !cryptoKey.extractable) {
+    alert('This device\u2019s key is not the real shared vault key either \u2014 nothing safe to export from here. Try this button on a device where your shelves show your real content correctly.');
+    return;
+  }
+  const raw = await crypto.subtle.exportKey('raw', cryptoKey);
+  const b64 = bufToB64(raw);
+  prompt('Copy this exactly (tap the field, select all, copy) \u2014 then on the broken device, open its browser console and run:\nimportVaultKeyForRecovery("PASTE_HERE")', b64);
+}
+
+// Admin-only, button-triggered: promptImportVaultKey()
+// UI wrapper around importVaultKeyForRecovery() for when console access
+// isn't convenient (e.g. on a phone) — prompts for the key text exported
+// from a working device via the "Recover Key" button, then runs the
+// same import/verify/re-wrap logic.
+function promptImportVaultKey() {
+  const key = prompt('Paste the key text exported from the working device (via "Recover Key" there):');
+  if (key && key.trim()) importVaultKeyForRecovery(key.trim());
+}
+
+// Admin-only, console-callable, run on the BROKEN device:
+// importVaultKeyForRecovery('...') — takes the key exported above from a
+// working device, verifies it actually decrypts your real content first,
+// re-locks it under THIS device's current (correct) password, and
+// uploads the fixed wrap — permanently repairing every device from now
+// on, not just this one.
+async function importVaultKeyForRecovery(base64Key) {
+  if (!adminBaseKey) { alert('Unlock the vault with your password first (so the current password\u2019s base key is available to re-wrap with).'); return; }
+  let rawBytes, VK;
+  try {
+    rawBytes = b64ToBuf(base64Key);
+    VK = await crypto.subtle.importKey('raw', rawBytes, 'AES-GCM', true, ['encrypt', 'decrypt']);
+  } catch (e) { alert('That key text did not look right \u2014 check you copied it exactly, with nothing missing.'); console.error(e); return; }
+
+  // Sanity check before touching anything: this key should actually
+  // decrypt your real content. If it doesn't, refuse rather than upload
+  // a wrap for a key that turns out to be wrong too.
+  const rawAll = await DB.getAll();
+  const sample = rawAll.find(r => !r.id.startsWith('diary::') && !r.id.startsWith('__'));
+  if (sample) {
+    try { await decryptRecord(sample.iv, sample.ct, VK); }
+    catch (e) { alert('This key does not decrypt your content either \u2014 refusing to save it. Double-check you exported it from a device where your shelves actually show your real content.'); return; }
+  }
+
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const wrapped = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, adminBaseKey, rawBytes);
+  const { error } = await vaultClient.from('vault_key_wraps')
+    .upsert({ role: 'admin', wrapped_key: JSON.stringify({ iv: bufToB64(iv), wrapped: bufToB64(wrapped) }) });
+  if (error) { alert('Failed to save the fixed wrap \u2014 check console, nothing on the old wrap was changed.'); console.error(error); return; }
+
+  localStorage.removeItem('cv_vk_cache_v1'); // any old cache here was wrong too — clear it so this (and future) sessions re-fetch the corrected wrap
+  cryptoKey = VK;
+  Vault.invalidate();
+  await renderBooks(); await renderMovies(); await renderAnime(); await render();
+  alert('Fixed \u2014 this device now shows your real content, and every other device will pick up the corrected key next time they unlock too.');
 }
 
 async function setupSharing(viewerPw, contributorPw, diaryPw) {
@@ -6701,6 +7709,10 @@ async function setupSharing(viewerPw, contributorPw, diaryPw) {
     const wrap = await wrapKeyWithPassword(job.raw, job.pw, job.salt);
     const { error } = await vaultClient.from('vault_key_wraps').upsert({ role: job.role, wrapped_key: JSON.stringify(wrap) });
     if (error) throw error;
+    // claim_vault_role() checks the typed password against a bcrypt hash kept on the server. Without this
+    // step the new password locks the key but is still rejected at the door (the old hash stays in force).
+    const { error: pwErr } = await vaultClient.rpc('set_vault_role_password', { wanted_role: job.role, new_pw: job.pw });
+    if (pwErr) throw new Error(`The ${job.role} key was locked, but the server's password check could not be updated (${pwErr.message}). Press the seals again.`);
   }
   return jobs.map(j => j.role);
 }
@@ -6797,6 +7809,242 @@ function handleDiaryGridClick(e) {
 }
 
 // ══════════════════════════════════════════════
+// FINGERPRINT UNLOCK  (WebAuthn / platform authenticator)
+// The cipher key is the only thing that decrypts this vault, so a
+// fingerprint can't replace it — it can only fetch it. After the
+// DATABASE has accepted the cipher key, the page offers to save it,
+// encrypted, on THIS device. Unlocking later asks the phone / laptop for
+// a fingerprint check, recovers the key, and confirms it (against the key
+// blob saved on this device, or failing that the database) before opening.
+// The offer only ever appears after a correct key, so nobody else sees it.
+//
+// Two modes, picked automatically at setup:
+//   'prf'  — the authenticator itself derives the encryption key (WebAuthn
+//            PRF extension). The stored blob is undecryptable without a
+//            real fingerprint check. Strongest; needs browser + OS support.
+//   'gate' — fallback when PRF isn't available. The blob is encrypted with
+//            a non-extractable key kept in this browser's IndexedDB, and
+//            a fingerprint check is required before the page uses it.
+//            That is a lock on the app, not a cryptographic one.
+// Needs HTTPS (or localhost); does nothing when opened as a file://.
+// ══════════════════════════════════════════════
+const FP_LS_KEY    = 'cv_fp_wrap_v1';
+const FP_STALE_KEY = 'cv_fp_stale_v1';
+const FP_IDB_NAME  = 'cv_fp_devicekey_v1';
+const FP_PRF_SALT  = new TextEncoder().encode('cv_fingerprint_prf_salt_v1');
+let _loginHashLoaded = false;   // set in init() once the vault state has been loaded
+let _fpPlatformOK    = false;
+let _fpBusy          = false;
+
+function fpLoadRecord() {
+  try { return JSON.parse(localStorage.getItem(FP_LS_KEY) || 'null'); } catch (e) { return null; }
+}
+function fpIsEnrolled() {
+  const r = fpLoadRecord();
+  return !!(r && r.credId && r.iv && r.ct && (r.mode === 'prf' || r.mode === 'gate'));
+}
+async function fpPlatformAvailable() {
+  try {
+    if (!window.isSecureContext || !window.PublicKeyCredential || !navigator.credentials || !crypto?.subtle) return false;
+    return await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable();
+  } catch (e) { return false; }
+}
+
+// Tiny IndexedDB wrapper for the 'gate' mode device key. Separate database
+// from the vault's own, so nothing about the vault's schema is touched.
+function fpIdbOpen() {
+  return new Promise((res, rej) => {
+    const req = indexedDB.open(FP_IDB_NAME, 1);
+    req.onupgradeneeded = () => req.result.createObjectStore('keys');
+    req.onsuccess = () => res(req.result);
+    req.onerror = () => rej(req.error);
+  });
+}
+async function fpIdbRun(mode, fn) {
+  const db = await fpIdbOpen();
+  try {
+    return await new Promise((res, rej) => {
+      const tx = db.transaction('keys', mode);
+      const req = fn(tx.objectStore('keys'));
+      tx.oncomplete = () => res(req ? req.result : undefined);
+      tx.onerror = () => rej(tx.error);
+      tx.onabort = () => rej(tx.error || new Error('idb aborted'));
+    });
+  } finally { db.close(); }
+}
+const fpIdbPut    = (k, v) => fpIdbRun('readwrite', st => st.put(v, k));
+const fpIdbGet    = (k)    => fpIdbRun('readonly',  st => st.get(k));
+const fpIdbDelete = (k)    => fpIdbRun('readwrite', st => st.delete(k));
+
+// Runs a fingerprint check against the enrolled credential. The challenge is
+// local and random — this is a device-side check, not a server login.
+async function fpAssert(credIdB64, withPrf) {
+  const publicKey = {
+    challenge: crypto.getRandomValues(new Uint8Array(32)),
+    rpId: location.hostname,
+    allowCredentials: [{ type: 'public-key', id: b64ToBuf(credIdB64) }],
+    userVerification: 'required',
+    timeout: 60000,
+  };
+  if (withPrf) publicKey.extensions = { prf: { eval: { first: FP_PRF_SALT } } };
+  const cred = await navigator.credentials.get({ publicKey });
+  if (!cred) throw new Error('no-assertion');
+  return cred;
+}
+
+// Registers this device's fingerprint and stores the encrypted cipher key.
+// Always swallows its own errors — a failed/cancelled setup must never get
+// in the way of the vault, which is already open by the time this runs.
+async function fpEnroll(password) {
+  try {
+    toast('◈ Touch your fingerprint sensor to register this device…');
+    const cred = await navigator.credentials.create({ publicKey: {
+      rp: { name: "The Cartographer's Vault", id: location.hostname },
+      user: { id: crypto.getRandomValues(new Uint8Array(16)), name: ADMIN_EMAIL, displayName: 'Vault Admin' },
+      challenge: crypto.getRandomValues(new Uint8Array(32)),
+      pubKeyCredParams: [{ type: 'public-key', alg: -7 }, { type: 'public-key', alg: -257 }],
+      authenticatorSelection: { authenticatorAttachment: 'platform', userVerification: 'required', residentKey: 'preferred' },
+      attestation: 'none',
+      timeout: 60000,
+      extensions: { prf: {} },
+    }});
+    if (!cred) throw new Error('no-credential');
+    const credId = bufToB64(cred.rawId);
+
+    // Second touch: confirms the credential works and tells us whether this
+    // browser/authenticator can do PRF (strong mode) or only the gate fallback.
+    toast('◈ Touch the sensor once more to confirm…');
+    const check = await fpAssert(credId, true);
+    const prfOut = check.getClientExtensionResults?.().prf?.results?.first;
+
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const pwBytes = new TextEncoder().encode(password);
+    let mode, key;
+    if (prfOut) {
+      mode = 'prf';
+      key = await crypto.subtle.importKey('raw', prfOut, 'AES-GCM', false, ['encrypt']);
+      try { await fpIdbDelete('deviceKey'); } catch (e) {}
+    } else {
+      mode = 'gate';
+      key = await crypto.subtle.generateKey({ name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']); // non-extractable
+      await fpIdbPut('deviceKey', key);
+    }
+    const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, pwBytes);
+    localStorage.setItem(FP_LS_KEY, JSON.stringify({ v: 1, mode, credId, iv: bufToB64(iv), ct: bufToB64(ct) }));
+    localStorage.removeItem(FP_STALE_KEY);
+    console.info('[PERSONAL] Fingerprint unlock enrolled in "' + mode + '" mode.');
+    toast('◈ Fingerprint unlock is set up on this device.');
+    fpRefreshUI();
+    return true;
+  } catch (e) {
+    if (e?.name === 'NotAllowedError' || e?.name === 'AbortError') {
+      toast('◈ Fingerprint setup cancelled — you can still open the vault with your cipher key.');
+    } else {
+      console.warn('[PERSONAL] Fingerprint setup failed:', e);
+      toast('◈ Fingerprint setup failed on this browser — you can still open the vault with your cipher key.');
+    }
+    return false;
+  }
+}
+
+// Shown only AFTER the database has accepted the cipher key (see handleSealSubmit),
+// so nobody without the key ever sees it. The tap on "Set up" is the fresh user
+// gesture that WebAuthn needs on Safari. The key is dropped after a minute.
+function fpOfferEnrollment(password) {
+  if (!_fpPlatformOK || document.getElementById('fpOffer')) return;
+  if (fpIsEnrolled() && !localStorage.getItem(FP_STALE_KEY)) return;
+  const box = document.createElement('div');
+  box.id = 'fpOffer';
+  box.className = 'fp-offer';
+  const msg = document.createElement('span');
+  msg.textContent = fpIsEnrolled()
+    ? '◈ Your cipher key changed — refresh fingerprint unlock on this device?'
+    : '◈ Unlock with your fingerprint next time on this device?';
+  const yes = document.createElement('button');
+  yes.type = 'button'; yes.className = 'enter-btn'; yes.textContent = 'Set up';
+  const no = document.createElement('button');
+  no.type = 'button'; no.className = 'fp-offer-no'; no.textContent = 'Not now';
+  box.append(msg, yes, no);
+  document.body.appendChild(box);
+  let pw = password;
+  const close = () => { pw = null; clearTimeout(timer); box.remove(); };
+  const timer = setTimeout(close, 60000);
+  no.addEventListener('click', close);
+  yes.addEventListener('click', async () => {
+    const p = pw; close();
+    if (p) await fpEnroll(p);
+  });
+}
+
+function fpMarkStale() {
+  localStorage.setItem(FP_STALE_KEY, '1');
+  toast('◈ Your cipher key has changed — enter it once under the Admin seal to refresh fingerprint unlock.');
+}
+
+async function fpUnlock() {
+  if (_fpBusy) return;
+  const rec = fpLoadRecord();
+  if (!fpIsEnrolled()) { fpRefreshUI(); return; }
+  if (!_loginHashLoaded) { toast('◈ Still loading — try again in a moment.'); return; }
+  _fpBusy = true;
+  const btn = document.getElementById('fpUnlockBtn');
+  btn.classList.add('busy');
+  try {
+    const assertion = await fpAssert(rec.credId, rec.mode === 'prf');
+    let key;
+    if (rec.mode === 'prf') {
+      const out = assertion.getClientExtensionResults?.().prf?.results?.first;
+      if (!out) throw new Error('prf-missing');
+      key = await crypto.subtle.importKey('raw', out, 'AES-GCM', false, ['decrypt']);
+    } else {
+      key = await fpIdbGet('deviceKey');
+      if (!key) throw new Error('device-key-missing');
+    }
+    const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: new Uint8Array(b64ToBuf(rec.iv)) }, key, b64ToBuf(rec.ct));
+    const password = new TextDecoder().decode(pt);
+
+    // 1) Does the key blob already saved on this device open with it? Works offline
+    //    and never touches the database's attempt counter.
+    const local = await verifyPasswordAgainstLocalCache(password);
+    if (local === false) { fpMarkStale(); return; }
+    if (local === true) { failedAttempts = 0; ROLE = null; await unlockVault(password); return; }
+    // 2) Nothing saved on this device yet — the database confirms it.
+    const ok = await attemptUnlock(password);
+    if (!ok && !NO_PASSWORD_YET) fpMarkStale();
+  } catch (e) {
+    if (e?.name === 'NotAllowedError' || e?.name === 'AbortError') {
+      toast('◈ Fingerprint cancelled or timed out.');
+    } else if (e?.userFacing) {
+      toast('◈ ' + e.message);
+    } else {
+      console.warn('[PERSONAL] Fingerprint unlock failed:', e);
+      toast('◈ Fingerprint unlock didn\u2019t work here — use a seal instead, then set it up again.');
+    }
+  } finally {
+    _fpBusy = false;
+    btn.classList.remove('busy');
+  }
+}
+
+async function fpRemoveDevice() {
+  localStorage.removeItem(FP_LS_KEY);
+  localStorage.removeItem(FP_STALE_KEY);
+  try { await fpIdbDelete('deviceKey'); } catch (e) {}
+  toast('◈ Fingerprint unlock removed from this device.');
+  fpRefreshUI();
+}
+
+function fpRefreshUI() {
+  const blk = document.getElementById('fpBlock');
+  if (blk) blk.style.display = (_fpPlatformOK && fpIsEnrolled()) ? '' : 'none';
+}
+function wireFingerprint() {
+  document.getElementById('fpUnlockBtn').addEventListener('click', fpUnlock);
+  document.getElementById('fpRemove').addEventListener('click', fpRemoveDevice);
+  fpPlatformAvailable().then(ok => { _fpPlatformOK = ok; fpRefreshUI(); }); // not awaited — never delays init
+}
+
+// ══════════════════════════════════════════════
 // INIT
 // ══════════════════════════════════════════════
 function wireLoginTabs() {
@@ -6815,22 +8063,15 @@ function wireLoginTabs() {
   });
 }
 
-function wireHint() {
-  const toggle = document.getElementById('hintToggle');
-  const reveal = document.getElementById('hintReveal');
-  toggle.addEventListener('click', () => reveal.classList.toggle('show'));
-}
-
 let _selectedSealRole = null;
 function wireSealPicker() {
   document.querySelectorAll('.wax-seal').forEach(seal => {
     seal.addEventListener('click', async () => {
       document.querySelectorAll('.wax-seal').forEach(s => s.classList.remove('selected'));
       seal.classList.add('selected');
+      seal.parentElement.classList.add('has-selection');
       _selectedSealRole = seal.dataset.role;
       document.getElementById('sealPwInput').placeholder = _selectedSealRole === 'admin' ? 'Enter your cipher key' : "Press the seal with its password";
-      document.getElementById('hintToggle').style.display = (_selectedSealRole === 'admin') ? '' : 'none';
-      if (_selectedSealRole !== 'admin') document.getElementById('hintReveal').classList.remove('show');
 
       if (_selectedSealRole === 'admin') {
         document.getElementById('sealGoogleGate').style.display = 'none';
@@ -6843,7 +8084,21 @@ function wireSealPicker() {
       // The 3 shared seals need a real Google sign-in first (see
       // handleSealGoogleCredential) — skip straight to the password if
       // that's already done this session, otherwise show that step first.
-      const { data: { session } } = await vaultClient.auth.getSession();
+      // Guarded with a timeout: on a slow/unreliable connection this call
+      // could otherwise hang indefinitely with no feedback, leaving the
+      // password field stuck disabled with no way to retry.
+      let session = null;
+      try {
+        const result = await Promise.race([
+          vaultClient.auth.getSession(),
+          new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 6000)),
+        ]);
+        session = result.data.session;
+      } catch (e) {
+        const err = document.getElementById('sealError');
+        err.textContent = '◈ Could not reach the server — check your connection and press the seal again.';
+        err.classList.add('show');
+      }
       if (session?.user && !session.user.is_anonymous) {
         document.getElementById('sealGoogleGate').style.display = 'none';
         document.getElementById('sealPwInput').disabled = false;
@@ -6859,6 +8114,37 @@ function wireSealPicker() {
   });
 }
 
+// Seal animation: tremble -> flash -> the wax splits along a jagged crack, the halves fall away, chips of wax fly.
+function playSealBreak(sealEl) {
+  const art = sealEl.querySelector('.seal-art');
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  sealEl.classList.add('breaking');
+  if (art && !reduced) {
+    for (let i = 0; i < 10; i++) {
+      const sh = document.createElement('i');
+      sh.className = 'seal-shard';
+      const ang = Math.random() * Math.PI * 2, dist = 30 + Math.random() * 36;
+      sh.style.setProperty('--dx', (Math.cos(ang) * dist).toFixed(1) + 'px');
+      sh.style.setProperty('--dy', (Math.sin(ang) * dist + 16).toFixed(1) + 'px');
+      sh.style.setProperty('--r', Math.round((Math.random() - 0.5) * 540) + 'deg');
+      sh.style.setProperty('--s', (4 + Math.random() * 6).toFixed(1) + 'px');
+      sh.style.animationDelay = (200 + Math.random() * 120) + 'ms';
+      art.appendChild(sh);
+    }
+  }
+  return new Promise(r => setTimeout(r, reduced ? 150 : 1000));
+}
+function resetSeal(sealEl) {
+  if (!sealEl) return;
+  sealEl.classList.remove('breaking');
+  sealEl.querySelectorAll('.seal-shard').forEach(n => n.remove());
+}
+function denySeal(sealEl) {
+  if (!sealEl) return;
+  sealEl.classList.remove('denied'); void sealEl.offsetWidth; sealEl.classList.add('denied');
+  setTimeout(() => sealEl.classList.remove('denied'), 450);
+}
+
 async function handleSealSubmit() {
   if (_sealSubmitting || !_selectedSealRole) return;
   _sealSubmitting = true;
@@ -6870,17 +8156,20 @@ async function handleSealSubmit() {
   btn.disabled = true;
   try {
     if (_selectedSealRole === 'admin') {
-      const ok = await attemptUnlock(pw); // existing cipher-key logic — local hash check, full decrypt, optional Google-session write access
-      if (!ok) throw new Error('wrong');
-      sealEl.classList.add('cracking');
+      if (!(await checkAdminPassword(pw))) throw new Error('wrong'); // asked of the database: 15 wrong tries locks it for 24 hours
+      fpOfferEnrollment(pw);                  // only ever reached after the database accepted the key
+      await playSealBreak(sealEl);            // the seal cracks first…
+      ROLE = null;
+      await unlockVault(pw);                  // …then the vault opens
     } else {
       await claimSharedRole(pw, _selectedSealRole);
-      sealEl.classList.add('cracking');
-      await new Promise(r => setTimeout(r, 500)); // let the crack animation actually play before the page switches
+      await playSealBreak(sealEl);
       await unlockVaultAsSharedRole();
     }
   } catch (e) {
-    err.textContent = '◈ ' + (e?.message?.includes('too many attempts') ? e.message : 'The seal did not break — wrong password.');
+    resetSeal(sealEl);
+    denySeal(sealEl);
+    err.textContent = '◈ ' + ((e?.userFacing || e?.message?.includes('too many attempts')) ? e.message : 'The seal did not break — wrong password.');
     err.classList.add('show');
     btn.disabled = false;
   } finally {
@@ -6958,8 +8247,8 @@ function wireDiaryControls() {
 
 async function init() {
   wireLoginTabs();
-  wireHint();
   wireLoginSubmit();
+  wireFingerprint();
   wireDropzone();
   wireCoverInput();
   wireFilesControls();
@@ -6970,7 +8259,8 @@ async function init() {
   wireAnimeControls();
   wireDiaryControls();
   await DB.init();
-  await loadLoginHash();         // must finish before anyone can submit the cipher key form
+  await loadVaultState();        // must finish before anyone can submit the cipher key form
+  _loginHashLoaded = true;
   await initThemeForSession();   // runs before any unlock — theme isn't sensitive content
   setupViewOnlyMode();
   initGoogleSignIn();

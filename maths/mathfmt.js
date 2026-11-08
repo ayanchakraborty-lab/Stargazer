@@ -1,10 +1,15 @@
 /* ═══════════════════════════════════════════════════════════════
-   MATHFMT.JS — shared LaTeX rendering for the Maths section
+   MATHFMT.JS — shared LaTeX rendering for the Statistics section
    ═══════════════════════════════════════════════════════════════
-   Problem this solves: content across books/facts/graduate/olympiad/
-   openproblems/research/careers/precollege/undergrad/universities was
-   authored inconsistently — some already wrapped in \(...\), some in
-   raw unicode (⁴, ∫, →, ^n) that KaTeX's auto-render never touches.
+   Local copy for /stats/, mirroring the Mathematics section's
+   mathfmt.js (kept separate rather than shared across the sibling
+   section folders — see nav.js for the same convention).
+
+   Problem this solves: content across books/facts/bayesian/calc/
+   careers/comments/distributions/formulas/history/home/inference/
+   openproblems/puzzles/research/school/studyguide/tools was authored
+   inconsistently — some already wrapped in \(...\), some in raw
+   unicode (⁴, ∫, →, ^n) that KaTeX's auto-render never touches.
 
    window.renderMath(root) does two things, once, for every page:
      1. Walks the DOM under `root`, finds text that LOOKS like math but
@@ -401,7 +406,7 @@
   var BRIDGE_TOKENS = toSet(['/', '=', '×', '±', '+', '-', '·', '−', '⋅']);
   var MAX_RUN_TOKENS = 40;
 
-  function wrapSegment(segment) {
+  function wrapSegment(segment, allowDisplay) {
     var atoms = segment.match(/\S+|\s+/g) || [];
     var out = [];
     var i = 0, n = atoms.length;
@@ -431,7 +436,9 @@
           var lead = runText.slice(0, idx);
           var trail = runText.slice(idx + trimmed.length);
           var latex = latexifyRun(trimmed);
-          out.push(lead + '\\(' + latex + '\\)' + trail);
+          var useDisplay = allowDisplay && isDisplayWorthy(trimmed);
+          var od = useDisplay ? '\\[' : '\\(', cd = useDisplay ? '\\]' : '\\)';
+          out.push(lead + od + latex + cd + trail);
         } else {
           out.push(runText);
         }
@@ -444,8 +451,8 @@
     return out.join('');
   }
 
-  function convertText(text) {
-    return wrapSegment(text);
+  function convertText(text, allowDisplay) {
+    return wrapSegment(text, allowDisplay);
   }
 
   // ─────────────────────── DOM integration ───────────────────────
@@ -464,6 +471,27 @@
     return false;
   }
 
+  // Opt-in only: containers marked data-math-display hold long-form prose
+  // with embedded formulas (e.g. "Detailed Mathematics" / "Deep Context"
+  // panels). Inside those, a run that reads as a real standalone equation
+  // gets its own display line instead of staying wedged mid-sentence.
+  // Everywhere else (labels, chips, one-line descriptions) is untouched —
+  // this must never fire without the explicit opt-in.
+  function isInDisplayContext(node) {
+    var p = node.parentElement;
+    while (p) {
+      if (p.dataset && p.dataset.mathDisplay !== undefined) return true;
+      p = p.parentElement;
+    }
+    return false;
+  }
+
+  var DISPLAY_REL_RE = /[=≤≥≠≈∝⟹⟺]/;
+  var DISPLAY_MIN_LEN = 14;
+  function isDisplayWorthy(text) {
+    return DISPLAY_REL_RE.test(text) && text.length >= DISPLAY_MIN_LEN;
+  }
+
   function textHasDelimiters(s) {
     return s.indexOf('\\(') !== -1 || s.indexOf('\\[') !== -1 || s.indexOf('$') !== -1;
   }
@@ -478,13 +506,14 @@
       if (!text || !/\S/.test(text)) return;
       if (SKIP_TAGS[node.parentElement && node.parentElement.tagName]) return;
       if (alreadyInsideDelimiters(node)) return;
+      var allowDisplay = isInDisplayContext(node);
       // Split around any existing \(...\) \[...\] $...$ so we never re-wrap them
       var parts = text.split(/(\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]|\$\$[\s\S]*?\$\$|\$[^$]*?\$)/);
       var changed = false;
       var rebuilt = parts.map(function (part) {
         if (!part) return part;
         if (/^(\\\(|\\\[|\$)/.test(part)) return part; // leave existing math alone
-        var converted = convertText(part);
+        var converted = convertText(part, allowDisplay);
         if (converted !== part) changed = true;
         return converted;
       }).join('');

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<!-- Google tag (gtag.js) --> <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'],wait_for_update:500});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="../pics/logo.png">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -44,20 +45,29 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
   onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMath(document.body));}else{renderMath(document.body);}"></script>
+<style>
+.qr-card{margin-top:1.6rem;padding:1.15rem 1.25rem 1.25rem;border-radius:14px;background:var(--gd-l);border:1px solid var(--gd-l);border-left:3px solid var(--gd);display:flex;flex-direction:column;align-items:flex-start;gap:.55rem}
+@supports (color:color-mix(in srgb,red,blue)){.qr-card{border-color:color-mix(in srgb,var(--gd) 28%,transparent);border-left-color:var(--gd)}}
+.qr-card .qr-eyebrow{font-family:'Source Code Pro',monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gd)}
+.qr-card .qr-title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;line-height:1.25;color:var(--text)}
+.qr-card .qr-text{font-family:'Outfit',sans-serif;font-size:.9rem;line-height:1.65;color:var(--text-2,var(--text))}
+.qr-card .qr-btn{display:inline-flex;align-items:center;gap:.4rem;margin-top:.35rem;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:600;text-decoration:none;padding:.65rem 1.1rem;border-radius:10px;border:1px solid var(--gd);background:transparent;color:var(--gd);transition:transform .2s,background .2s,color .2s}
+.qr-card .qr-btn:hover,.qr-card .qr-btn:focus-visible{background:var(--gd);color:var(--bg,#fff);transform:translateY(-1px)}
+</style>
 </head>
 <body>
 
 <!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
 <div id="auth-topbar">
-  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <a href="../" class="atb-btn atb-home">🌌 Universe</a>
   <div style="flex:1"></div>
   <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
     <span id="mode-icon">☾</span>
   </button>
-  <a href="../login.html" id="loginBtn">☽ Sign In</a>
+  <a href="../login" id="loginBtn">☽ Sign In</a>
   <div id="userInfo">
     <span id="userEmailDisplay">✦ Explorer</span>
-    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login'">Sign Out</button>
   </div>
 </div>
 
@@ -87,7 +97,7 @@
 <!-- ═══ KEYBOARD HINT ══════════════════════════════════════════════ -->
 <div id="shortcut-hint">/ search · ← → pages</div>
 
-<!-- ═══ PAGE: CALCULATOR ═══════════════════════════════════════════ -->
+<!-- ═══ PAGE: HOME ═════════════════════════════════════════════════ -->
 <div class="page active" id="page-home">
 <section id="hero">
   <canvas id="dataCanvas"></canvas>
@@ -96,7 +106,7 @@
     <h1 class="hero-title">Statistics</h1>
     <div class="hero-eq">x̄ ± 1.96·σ/√n &nbsp;·&nbsp; P(A|B) = P(B|A)P(A)/P(B) &nbsp;·&nbsp; L(θ;x) = Πᵢ f(xᵢ|θ)</div>
     <p class="hero-sub">The science of learning from data — extracting signal from noise, quantifying uncertainty, and drawing confident inferences from the finite and imperfect.</p>
-    <button class="hero-btn" onclick="location.href='books.html'">Explore the Universe ↓</button>
+    <button class="hero-btn" onclick="scrollToPages()">Explore the Universe ↓</button>
   </div>
 </section>
 <section class="section" id="intro">
@@ -111,6 +121,12 @@
         <p>Statistics is the science of learning under uncertainty. It is the art of extracting signal from noise, of inferring from the particular to the general, of quantifying exactly how much we don't know alongside exactly what we do. In this sense, statistics is the <em style="color:var(--gr)">epistemological backbone of all empirical science</em> — the language in which the universe speaks to us through limited, imperfect, noisy observations.</p>
         <p>Consider what rests on statistical inference: every drug reaching a pharmacy was validated by statistical tests. Every economic forecast, climate projection, polling result, genome-wide association study. Statistics sits between hypothesis and certainty — the rigorous bridge that allows us to say not merely "I think this is true" but <em style="color:var(--bl)">"this is true with known confidence, and here is the precise limit of what my evidence permits."</em></p>
         <p>The founders of statistics were extraordinary polymaths. Francis Galton, Darwin's cousin, discovered regression to the mean while studying inherited heights, thereby inventing correlation. William Gosset, working at Guinness to analyse small barley samples, published the t-distribution pseudonymously as "Student." Florence Nightingale's polar area charts persuaded the British government that disease — not combat — killed soldiers. Statistics was never abstract: it always served the most urgent real questions.</p>
+        <aside class="qr-card" aria-label="B.Sc. Statistics Honours roadmap on Q-riosity">
+          <span class="qr-eyebrow">🧭 On Q-riosity</span>
+          <div class="qr-title">Doing B.Sc. Statistics (Hons) at Calcutta University?</div>
+          <div class="qr-text">A semester-by-semester reading map for the University of Calcutta's B.Sc. Statistics (Honours) syllabus under the 2022 CCF: the exact chapters to read from each reference book, plus five deep conceptual questions on every topic, with the answers blurred until you've tried them cold.</div>
+          <a class="qr-btn" href="https://q-riosity.netlify.app/bsc-stats-honours-roadmap" target="_blank" rel="noopener">Open the B.Sc. Stats Roadmap <span aria-hidden="true">↗</span></a>
+        </aside>
       </div>
       <div>
         <h3 style="font-family:'Cormorant Garamond',serif;color:var(--text);font-size:1.2rem;margin-bottom:1rem;font-weight:700">The Great Misconceptions</h3>
@@ -119,19 +135,26 @@
         <div class="myth-card"><div class="myth-label">✗ Myth: Bigger sample = better answer</div><div class="myth-truth">A random sample of 1,000 tells you more than a self-selected survey of 100,000. The 1936 Literary Digest poll of 2.4 million predicted the wrong president. Sampling design matters far more than sample size.</div></div>
         <div class="myth-card"><div class="myth-label">✗ Myth: Correlation implies causation</div><div class="myth-truth">Ice cream sales and drowning rates are correlated — both peak in summer. Causation requires experimental design. Medicine is littered with treatments that correlated with recovery while being useless or harmful.</div></div>
         <div class="myth-card"><div class="myth-label">✗ Myth: Statistical ≡ practical significance</div><div class="myth-truth">With enough data, trivially small effects become "statistically significant." A drug reducing cholesterol by 0.001 mg/dL might reach p = 0.001 in a study of millions. Statistical significance measures evidence, not effect size.</div></div>
-        <div style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:.6rem">
-          <button onclick="location.href='books.html'"         style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--gd-l);background:var(--gd-l);color:var(--gd);cursor:pointer;transition:all .2s">📚 Books</button>
-          <button onclick="location.href='puzzles.html'"       style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--tl-l);background:var(--tl-l);color:var(--tl);cursor:pointer;transition:all .2s">🎲 Puzzles</button>
-          <button onclick="location.href='undergrad-problems.html'" style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--pu-l);background:var(--pu-l);color:var(--pu);cursor:pointer;transition:all .2s">🎓 Undergrad Problems</button>
-          <button onclick="location.href='school.html'"        style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--bl-l);background:var(--bl-l);color:var(--bl);cursor:pointer;transition:all .2s">🏫 School</button>
-          <button onclick="location.href='inference.html'"     style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--gr-l);background:var(--gr-l);color:var(--gr);cursor:pointer;transition:all .2s">🔬 Inference</button>
-          <button onclick="location.href='distributions.html'" style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--rd-l);background:var(--rd-l);color:var(--rd);cursor:pointer;transition:all .2s">📊 Distributions</button>
-          <button onclick="location.href='bayesian.html'"      style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--pu-l);background:var(--pu-l);color:var(--pu);cursor:pointer;transition:all .2s">∫ Bayesian</button>
-          <button onclick="location.href='openproblems.html'"  style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--og-l);background:var(--og-l);color:var(--og);cursor:pointer;transition:all .2s">❓ Open Problems</button>
-          <button onclick="location.href='careers.html'"       style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--tl-l);background:var(--tl-l);color:var(--tl);cursor:pointer;transition:all .2s">💼 Careers</button>
-          <button onclick="location.href='studyguide.html'"    style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--gr-l);background:var(--gr-l);color:var(--gr);cursor:pointer;transition:all .2s">📖 Study Guide</button>
-          <button onclick="location.href='facts.html'"         style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--pk-l);background:var(--pk-l);color:var(--pk);cursor:pointer;transition:all .2s">✨ Fun Facts</button>
-          <button onclick="location.href='tools.html'"         style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--bl-l);background:var(--bl-l);color:var(--bl);cursor:pointer;transition:all .2s">🛠 Tools</button>
+        <div id="page-links" style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:.6rem">
+          <button onclick="location.href='atlas-of-statistics'" style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--gd-l);background:var(--gd-l);color:var(--gd);cursor:pointer;transition:all .2s;grid-column:1/-1">🗺 Atlas of Statistics</button>
+          <button onclick="location.href='books'"         style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--gd-l);background:var(--gd-l);color:var(--gd);cursor:pointer;transition:all .2s">📚 Books</button>
+          <button onclick="location.href='puzzles'"       style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--tl-l);background:var(--tl-l);color:var(--tl);cursor:pointer;transition:all .2s">🎲 Puzzles</button>
+          <button onclick="location.href='undergrad-problems'" style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--pu-l);background:var(--pu-l);color:var(--pu);cursor:pointer;transition:all .2s">🎓 Undergrad Problems</button>
+          <button onclick="location.href='school'"        style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--bl-l);background:var(--bl-l);color:var(--bl);cursor:pointer;transition:all .2s">🏫 School</button>
+          <button onclick="location.href='inference'"     style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--gr-l);background:var(--gr-l);color:var(--gr);cursor:pointer;transition:all .2s">🔬 Inference</button>
+          <button onclick="location.href='distributions'" style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--rd-l);background:var(--rd-l);color:var(--rd);cursor:pointer;transition:all .2s">📊 Distributions</button>
+          <button onclick="location.href='bayesian'"      style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--pu-l);background:var(--pu-l);color:var(--pu);cursor:pointer;transition:all .2s">∫ Bayesian</button>
+          <button onclick="location.href='openproblems'"  style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--og-l);background:var(--og-l);color:var(--og);cursor:pointer;transition:all .2s">❓ Open Problems</button>
+          <button onclick="location.href='careers'"       style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--tl-l);background:var(--tl-l);color:var(--tl);cursor:pointer;transition:all .2s">💼 Careers</button>
+          <button onclick="location.href='studyguide'"    style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--gr-l);background:var(--gr-l);color:var(--gr);cursor:pointer;transition:all .2s">📖 Study Guide</button>
+          <button onclick="location.href='facts'"         style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--pk-l);background:var(--pk-l);color:var(--pk);cursor:pointer;transition:all .2s">✨ Fun Facts</button>
+          <button onclick="location.href='tools'"         style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--bl-l);background:var(--bl-l);color:var(--bl);cursor:pointer;transition:all .2s">🛠 Tools</button>
+          <button onclick="location.href='formulas'" style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--pu-l);background:var(--pu-l);color:var(--pu);cursor:pointer;transition:all .2s">∑ Formulas</button>
+          <button onclick="location.href='calc'" style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--og-l);background:var(--og-l);color:var(--og);cursor:pointer;transition:all .2s">🧮 Calculator</button>
+          <button onclick="location.href='time-series'" style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--tl-l);background:var(--tl-l);color:var(--tl);cursor:pointer;transition:all .2s">📈 Time Series</button>
+          <button onclick="location.href='research'" style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--bl-l);background:var(--bl-l);color:var(--bl);cursor:pointer;transition:all .2s">🔭 Research</button>
+          <button onclick="location.href='history'" style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--gd-l);background:var(--gd-l);color:var(--gd);cursor:pointer;transition:all .2s">📜 History</button>
+          <button onclick="location.href='comments'" style="font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem .5rem;border-radius:10px;border:1px solid var(--pk-l);background:var(--pk-l);color:var(--pk);cursor:pointer;transition:all .2s">💬 Comments</button>
         </div>
       </div>
     </div>
@@ -144,14 +167,14 @@
 </footer>
 </div><!-- /page-home -->
 
-<!-- ═══ PAGE: CURRENT RESEARCH ══════════════════════════════ -->
+<!-- ═══ CONTACT & ABOUT ═════════════════════════════════════ -->
 <!-- ── CONTACT ── -->
 <div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
   <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);font-style:italic;font-family:'Source Code Pro',monospace;">contact the creator</span>
   <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
 </div>
 <div style="text-align:center;padding-bottom:2rem;">
-  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+  <a href="../ABOUT" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
 </div>
 
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
@@ -159,12 +182,13 @@
 window._nextPage = 'books.html';
 window._prevPage = 'comments.html';
 const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+const ADMIN_EMAILS = ['ayanchakrabortyall@gmail.com','officialayanimp@gmail.com','duolingo.learn1024@gmail.com'];
 
-function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+function isAdmin(){return !!(window.currentUser && ADMIN_EMAILS.includes(window.currentUser.email));}
 
 
 /* ═══════════════════════════════════════════════════════════════
-   OVERRIDE: renderPuzzles — index + cat badge + solved button + filters
+   DAY / NIGHT MODE & CANVAS HELPERS
    ═══════════════════════════════════════════════════════════════ */
 
 function toggleMode(){
@@ -195,6 +219,27 @@ function getSlugFromCanvas(cid){
   const type=parts[1],idx=parseInt(parts[2]);
   if(DISTRIBUTIONS[type]&&DISTRIBUTIONS[type][idx])return DISTRIBUTIONS[type][idx].slug;
   return null;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   EXPLORE THE UNIVERSE — scroll so the whole page list is on screen
+   ═══════════════════════════════════════════════════════════ */
+function scrollToPages(){
+  const grid=document.getElementById('page-links'); if(!grid)return;
+  // height of anything pinned to the top of the viewport (topbar / nav)
+  let pinned=0;
+  document.querySelectorAll('body *').forEach(el=>{
+    const cs=getComputedStyle(el);
+    if(cs.position!=='fixed'&&cs.position!=='sticky')return;
+    const t=parseFloat(cs.top); if(isNaN(t)||t>200)return;
+    const r=el.getBoundingClientRect();
+    if(r.height>0&&r.height<160&&r.width>innerWidth*.5) pinned=Math.max(pinned,t+r.height);
+  });
+  const gap=16, avail=innerHeight-pinned, h=grid.offsetHeight;
+  const gridTop=grid.getBoundingClientRect().top+scrollY;
+  // fits → centre the list in the visible area; too tall for the screen → start it just under the header
+  const y=(h+gap*2<=avail)?gridTop-pinned-(avail-h)/2:gridTop-pinned-gap;
+  scrollTo({top:Math.max(0,y),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -288,7 +333,7 @@ function showToast(msg,bg){
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   STATISTICIAN QUOTES — daily + 5-hour rotation
+   HERO CANVAS — drifting data points & shapes
    ═══════════════════════════════════════════════════════════════ */
 
 (function initHeroCanvas(){
@@ -384,8 +429,6 @@ function showToast(msg,bg){
       if(window.renderAuthUI)window.renderAuthUI();
     }).catch(function(){});
   },400);
-  if('' && document.readyState!=='loading') {  }
-  else if('') { document.addEventListener('DOMContentLoaded', function(){  }); }
 })();
 </script>
 <script>window._pageKey = 'stats';</script>

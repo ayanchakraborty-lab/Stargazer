@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<!-- Google tag (gtag.js) --> <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'],wait_for_update:500});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="../pics/logo.png">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -49,15 +50,15 @@
 
 <!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
 <div id="auth-topbar">
-  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <a href="../" class="atb-btn atb-home">🌌 Universe</a>
   <div style="flex:1"></div>
   <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
     <span id="mode-icon">☾</span>
   </button>
-  <a href="../login.html" id="loginBtn">☽ Sign In</a>
+  <a href="../login" id="loginBtn">☽ Sign In</a>
   <div id="userInfo">
     <span id="userEmailDisplay">✦ Explorer</span>
-    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login'">Sign Out</button>
   </div>
 </div>
 
@@ -94,8 +95,41 @@
       <div class="s-head">
         <span class="s-eyebrow" style="background:var(--pu-l);color:var(--pu);border:1px solid rgba(94,58,142,.25)">Bayesian Framework</span>
         <h2 class="s-title font-serif">Bayesian Statistics — Probability as Belief</h2>
-        <p class="s-desc">Each topic unfolds from high-school intuition to research frontiers. Click the coloured level tabs to expand content at your level. Admin can attach PDFs to each topic.</p>
+        <p class="s-desc">Each topic unfolds from high-school intuition to research frontiers. Click the coloured level tabs to expand content at your level. Admin can attach PDFs to each topic. New topic cards add decision theory, shrinkage priors, empirical Bayes, Bayesian nonparametrics and likelihood-free inference, each at bachelor's, master's, research and advanced-research level.</p>
       </div>
+    </div>
+<!-- ═══ INTERACTIVE LAB: Beta-Binomial live updater (added) ═══ -->
+<div class="s-inner" style="margin-top:-1rem;margin-bottom:2.5rem">
+  <div class="dist-card" style="max-width:720px;margin:0 auto">
+    <div class="dist-cardhead">
+      <div><div class="dist-name" data-no-mathfmt>Interactive: Beta–Binomial Updating</div>
+        <span class="dist-notation" data-no-mathfmt>Prior Beta(α₀,β₀) + data → Posterior Beta(α₀+s, β₀+f)</span></div>
+      <div class="dist-tools"><button class="dist-tool" title="Reset" aria-label="Reset updater" onclick="betaLabReset()">↺</button></div>
+    </div>
+    <div class="dist-param">Watch a Beta prior turn into a posterior, one observation at a time — the simplest working example of Bayesian updating.</div>
+    <div class="dist-graph-wrap"><canvas class="dist-canvas" id="betalab-cv" role="img" aria-label="Prior and posterior Beta density curves"></canvas></div>
+    <div class="dist-readout" id="betalab-ro">Prior mean = 0.500 · click Success / Failure to update, or type counts below</div>
+    <div class="dist-sliders">
+      <div class="dist-slider-row"><span class="dist-slider-lbl" data-no-mathfmt>Prior α₀</span>
+        <input type="range" class="dist-slider" id="betalab-a0" min="0.5" max="20" step="0.5" value="1" aria-label="Prior alpha" oninput="betaLabDraw()">
+        <span class="dist-slider-val" id="betalab-a0-v" data-no-mathfmt>1</span></div>
+      <div class="dist-slider-row"><span class="dist-slider-lbl" data-no-mathfmt>Prior β₀</span>
+        <input type="range" class="dist-slider" id="betalab-b0" min="0.5" max="20" step="0.5" value="1" aria-label="Prior beta" oninput="betaLabDraw()">
+        <span class="dist-slider-val" id="betalab-b0-v" data-no-mathfmt>1</span></div>
+    </div>
+    <div style="display:flex;gap:.6rem;justify-content:center;margin:.9rem 0">
+      <button class="dist-tool" style="width:auto;padding:.4rem .9rem" onclick="betaLabObserve(1)">+ Success</button>
+      <button class="dist-tool" style="width:auto;padding:.4rem .9rem" onclick="betaLabObserve(0)">+ Failure</button>
+    </div>
+    <div class="dist-stats-grid">
+      <div class="dist-stat-box"><div class="dist-stat-lbl" data-no-mathfmt>Data so far</div><div class="dist-stat-val" id="betalab-data" data-no-mathfmt>s=0, f=0</div></div>
+      <div class="dist-stat-box"><div class="dist-stat-lbl" data-no-mathfmt>Posterior mean</div><div class="dist-stat-val" id="betalab-mean" data-no-mathfmt>—</div></div>
+      <div class="dist-stat-box"><div class="dist-stat-lbl" data-no-mathfmt>Posterior mode</div><div class="dist-stat-val" id="betalab-mode" data-no-mathfmt>—</div></div>
+      <div class="dist-stat-box"><div class="dist-stat-lbl" data-no-mathfmt>95% credible interval</div><div class="dist-stat-val" id="betalab-ci" data-no-mathfmt>—</div></div>
+    </div>
+  </div>
+</div>
+    <div class="s-inner">
       <div id="admin-bay-status" style="display:none;text-align:center;margin-bottom:1rem;font-family:'Source Code Pro',monospace;font-size:.7rem;color:var(--pu)">✦ Admin mode — Bayesian PDF uploads enabled</div>
       <div class="g2" id="bayesian-grid"></div>
     </div>
@@ -109,16 +143,17 @@
   <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
 </div>
 <div style="text-align:center;padding-bottom:2rem;">
-  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+  <a href="../ABOUT" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
 </div>
 
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
 <script>
-window._nextPage = 'openproblems.html';
+window._nextPage = 'time-series.html';
 window._prevPage = 'distributions.html';
 const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+const ADMIN_EMAILS = ['ayanchakrabortyall@gmail.com','officialayanimp@gmail.com','duolingo.learn1024@gmail.com'];
 
-function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+function isAdmin(){return !!(window.currentUser && ADMIN_EMAILS.includes(window.currentUser.email));}
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -188,7 +223,7 @@ function runSearch(q){
   if(!q.trim()){res.innerHTML='<div class="sr-empty">Start typing…</div>';return;}
   const lq=q.toLowerCase();
   const hits=SEARCH_INDEX.filter(x=>x.q.toLowerCase().includes(lq)).slice(0,18);
-  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q+'"</div>';return;}
+  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'"</div>';return;}
   res.innerHTML=hits.map((h,i)=>`<div class="sr-item" tabindex="0" data-idx="${i}" onclick="goSearchResult(${SEARCH_INDEX.indexOf(h)})" onkeydown="if(event.key==='Enter')goSearchResult(${SEARCH_INDEX.indexOf(h)})"><span class="sr-icon">${h.icon}</span><div><div class="sr-title">${highlight(h.title,lq)}</div><div class="sr-meta">${h.meta}</div></div><span class="sr-section">${h.section}</span></div>`).join('');
 }
 function highlight(text,q){
@@ -197,7 +232,17 @@ function highlight(text,q){
   if(idx<0)return text;
   return text.slice(0,idx)+'<mark style="background:var(--gd-l);color:var(--gd);border-radius:2px">'+text.slice(idx,idx+q.length)+'</mark>'+text.slice(idx+q.length);
 }
-function goSearchResult(idx){ closeSearch(); }
+function goSearchResult(searchIdx){
+  const hit=SEARCH_INDEX[searchIdx];
+  closeSearch();
+  if(!hit)return;
+  const card=document.getElementById('bay-card-'+hit.idx);
+  if(!card)return;
+  const d=document.getElementById('baydet-'+hit.idx),l=document.getElementById('baylbl-'+hit.idx);
+  if(d&&!d.classList.contains('show')){d.classList.add('show');if(l){l.textContent='▾ Close';l.setAttribute('aria-expanded','true');}}
+  card.scrollIntoView({behavior:'smooth',block:'center'});
+  card.classList.remove('flash');void card.offsetWidth;card.classList.add('flash');
+}
 function searchKeyNav(e){
   if(e.key==='Escape'){closeSearch();return;}
   const items=document.querySelectorAll('.sr-item');
@@ -211,22 +256,22 @@ function searchKeyNav(e){
 
 function buildSearchIndex(){
   if(SEARCH_INDEX.length)return;
-  BAYESIAN.forEach(b=>SEARCH_INDEX.push({icon:'∫',title:b.topic,meta:b.tag,section:'Bayesian',page:'bayesian',q:b.topic+' '+b.desc+' '+b.tag}));
+  BAYESIAN.forEach((b,idx)=>SEARCH_INDEX.push({icon:'∫',title:b.topic,meta:b.tag,section:'Bayesian',idx,q:b.topic+' '+b.desc+' '+b.tag}));
 }
 
 
 (function initKeyboard(){
-  const PAGES=['home','precollege_placeholder'];
   document.addEventListener('keydown',e=>{
-    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
+    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)||e.target.isContentEditable)return;
+    if(e.ctrlKey||e.metaKey||e.altKey)return;   /* never hijack browser/OS shortcuts (back, dev tools, etc.) */
     if(document.getElementById('search-modal')&&document.getElementById('search-modal').classList.contains('open')){
       if(e.key==='Escape')closeSearch();
       return;
     }
     if(e.key==='/'){e.preventDefault();openSearch();return;}
-    if(e.key==='ArrowRight'){e.preventDefault();location.href=window._nextPage;}
-    if(e.key==='ArrowLeft'){e.preventDefault();location.href=window._prevPage;}
-    if(e.key==='f'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){if(typeof showRandomFact==='function')showRandomFact();}
+    if(e.key==='ArrowRight'&&window._nextPage){e.preventDefault();location.href=window._nextPage;}
+    if(e.key==='ArrowLeft'&&window._prevPage){e.preventDefault();location.href=window._prevPage;}
+    if(e.key==='f'){if(typeof showRandomFact==='function')showRandomFact();}
     if(e.key==='Escape'){
       const hmenu=document.getElementById('hamburger-menu');
       if(hmenu&&hmenu.classList.contains('open')){
@@ -243,6 +288,25 @@ function showToast(msg,bg){
   t.style.cssText=`position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);background:${bg};color:#fff;font-family:'Source Code Pro',monospace;font-size:.72rem;padding:.45rem 1.1rem;border-radius:99px;z-index:9998;animation:fadeUpIn .35s ease;white-space:nowrap;pointer-events:none`;
   document.body.appendChild(t);
   setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .35s';setTimeout(()=>t.remove(),380);},2200);
+}
+
+const FUN_FACTS=[
+  "Thomas Bayes' original 1763 paper concerned a billiard-table thought experiment, not medical or scientific testing.",
+  "Pierre-Simon Laplace independently rediscovered and greatly extended Bayes' rule a decade later, in 1774.",
+  "A conjugate prior is chosen so the posterior stays in the same distributional family — purely for mathematical convenience.",
+  "MCMC methods, which make most modern Bayesian computation practical, only became widely used in statistics in the 1990s.",
+  "In Bayesian statistics, a “non-informative” prior is a genuinely hard concept to define precisely — there's more than one way to try.",
+  "The Bayesian vs. frequentist divide is often overstated: many modern methods blend ideas from both schools."
+];
+function showRandomFact(){
+  const t=document.getElementById('toast');if(!t)return;
+  document.getElementById('toast-body').textContent=FUN_FACTS[Math.floor(Math.random()*FUN_FACTS.length)];
+  t.classList.add('show');
+  clearTimeout(t._factTimer);
+  t._factTimer=setTimeout(hideToast,8000);
+}
+function hideToast(){
+  const t=document.getElementById('toast');if(t)t.classList.remove('show');
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -274,14 +338,14 @@ const BAYESIAN = [
     <div class="bay-level"><div class="bay-level-hdr" onclick="toggleBayLevel(this)">🔬 Advanced Theory — Graduate Level</div>
     <div class="bay-level-body">
     <p>The Bayesian framework is formally characterised as follows. Let (Ω, F, P) be a probability space. The parameter space Θ, data space X, and a statistical model {Pθ : θ ∈ Θ} determine the likelihood. A prior measure Π on Θ combines with the likelihood to give the joint distribution on Θ×X, and the posterior Π(·|x) is the conditional distribution of θ given X=x by the Disintegration theorem (a generalisation of conditional expectation).</p>
-    <p><strong>Bernstein-von Mises theorem (BvM):</strong> Under regularity conditions, as n → ∞, the posterior Π(·|Xⁿ) converges (in total variation) to N(θ₀, I(θ₀)⁻¹/n) where θ₀ is the true parameter and I(θ₀) is the Fisher information. This means: for large samples, Bayesian and frequentist inference converge to the same answer, prior choice becomes irrelevant, and posterior credible sets are approximately valid confidence sets. The BvM fails in nonparametric settings (Diaconis-Freedman theorem) and in high-dimensional or semiparametric models.</p>
+    <p><strong>Bernstein-von Mises theorem (BvM):</strong> Under regularity conditions, as n → ∞, the posterior Π(·|Xⁿ) converges (in total variation) to N(θ̂, I(θ₀)⁻¹/n) — centred at the MLE θ̂ with spread set by the Fisher information I(θ₀) at the true parameter θ₀. This means: for large samples, Bayesian and frequentist inference converge to the same answer, prior choice becomes irrelevant, and posterior credible sets are approximately valid confidence sets. The BvM fails in nonparametric settings (Diaconis-Freedman theorem) and in high-dimensional or semiparametric models.</p>
     <p><strong>Posterior consistency:</strong> The posterior is consistent if Π(‖θ−θ₀‖ &gt; ε | Xⁿ) →ᵖ 0 for all ε &gt; 0. In finite-dimensional parametric models, consistency holds under mild identifiability conditions. In nonparametric Bayesian models (e.g., Dirichlet process priors), Schwartz's theorem gives sufficient conditions: the prior must put positive mass on Kullback-Leibler neighbourhoods of the true distribution.</p>
     <p><strong>Decision theory connection:</strong> Bayes estimators minimise the posterior expected loss: δ(x) = argmin_a ∫L(θ,a)Π(dθ|x). Under squared error loss L(θ,a) = (θ−a)², the Bayes estimator is the posterior mean. Under absolute error loss, it's the posterior median. Under 0-1 loss, it's the posterior mode (MAP estimator). The MAP estimator is the Bayesian analogue of the MLE with regularisation: argmax log P(x|θ) + log P(θ), where log P(θ) acts as a penalty.</p>
     </div></div>
     <div class="bay-level"><div class="bay-level-hdr" onclick="toggleBayLevel(this)">🔭 Research Frontiers</div>
     <div class="bay-level-body">
     <p><strong>High-dimensional Bayesian inference:</strong> The BvM theorem fails when the dimension p grows with n. In high-dimensional regression with p &gg; n, sparsity-inducing priors (horseshoe, spike-and-slab, LASSO-Bayes) achieve near-optimal minimax posterior contraction rates but the posterior geometry becomes complex. The Approximate Bayesian Computation (ABC) framework sidesteps intractable likelihoods by simulating from the generative model and accepting simulations close to observed data — applicable in population genetics, epidemiology, and cosmology.</p>
-    <p><strong>PAC-Bayes theory:</strong> Combines Bayesian thinking with frequentist guarantees. The PAC-Bayes theorem gives bounds on the generalisation error of a mixture of classifiers: E_Qφ(hθ, S) ≤ E_Qφ̂(hθ, S) + √(KL(Q||P) + log(1/δ))/(2n), where Q is the posterior over hypotheses, P the prior, and the bound holds with probability ≥ 1−δ. This is increasingly important for understanding the generalisation of neural networks.</p>
+    <p><strong>PAC-Bayes theory:</strong> Combines Bayesian thinking with frequentist guarantees. The PAC-Bayes theorem gives bounds on the generalisation error of a mixture of classifiers: E_Qφ(hθ, S) ≤ E_Qφ̂(hθ, S) + √((KL(Q||P) + log(1/δ))/(2n)), where Q is the posterior over hypotheses, P the prior, and the bound holds with probability ≥ 1−δ. This is increasingly important for understanding the generalisation of neural networks.</p>
     <p><strong>Bayesian deep learning:</strong> Neural network weights are given priors; the posterior is the distribution over networks consistent with training data. Full posterior inference is intractable (millions of parameters), motivating Laplace approximations, variational Bayes, or deep ensembles as approximations. The connection between Gaussian processes and infinitely-wide neural networks (Neal's seminal 1996 result, extended by Matthews et al. 2018) provides a Bayesian interpretation of the NTK (Neural Tangent Kernel).</p>
     </div></div>`
   },
@@ -307,7 +371,7 @@ const BAYESIAN = [
     </div></div>
     <div class="bay-level"><div class="bay-level-hdr" onclick="toggleBayLevel(this)">🔬 Advanced Theory</div>
     <div class="bay-level-body">
-    <p><strong>Admissibility and Bayes estimators:</strong> By the complete class theorem (Wald 1950, Blyth 1951), every admissible estimator is a Bayes estimator (for some proper or improper prior). This profound result means that Bayesian estimators are never dominated in terms of expected loss. The Stein paradox (inadmissibility of MLE in ℝ³) is resolved Bayesianly: the James-Stein estimator corresponds approximately to the Bayes estimator under a spherically symmetric Normal prior centred at the origin.</p>
+    <p><strong>Admissibility and Bayes estimators:</strong> By the complete class theorem (Wald 1950, Blyth 1951), every admissible estimator is a Bayes estimator (for some proper or improper prior). This profound result means that if you want an admissible estimator, a (generalised) Bayes estimator is the place to look — though not every Bayes estimator is itself admissible. The Stein paradox (inadmissibility of MLE in ℝ³) is resolved Bayesianly: the James-Stein estimator corresponds approximately to the Bayes estimator under a spherically symmetric Normal prior centred at the origin.</p>
     <p><strong>Objective Bayes:</strong> The programme of constructing "objective" priors that provide inference with good frequentist properties. Matching priors (Welch & Peers 1963): priors π such that posterior credible intervals have correct frequentist coverage to O(1/n). Probability matching priors are solutions to a PDE involving the Fisher information tensor. In one parameter, the Jeffreys prior is always a matching prior.</p>
     <p><strong>Prior robustness and sensitivity:</strong> A central practical concern is whether conclusions are robust to prior specification. Sensitivity analyses vary the prior over a class Γ and report the range of posterior quantities: [inf_{π ∈ Γ} E[θ|x], sup_{π ∈ Γ} E[θ|x]]. For ε-contamination classes (priors within ε total variation of a base prior) this reduces to computable bounds. The emerging field of robust Bayesian analysis uses posterior functionals and concentration inequalities to provide prior-free guarantees.</p>
     </div></div>
@@ -364,7 +428,7 @@ const BAYESIAN = [
     </div></div>
     <div class="bay-level"><div class="bay-level-hdr" onclick="toggleBayLevel(this)">🔬 Convergence Diagnostics & Advanced Topics</div>
     <div class="bay-level-body">
-    <p><strong>Mixing and convergence:</strong> The Markov chain must be run long enough to "forget" its starting point. Convergence diagnostics: (1) R̂ (potential scale reduction factor): run m parallel chains from overdispersed starting points; R̂ = √(var_between / var_within + 1/n) ≈ 1.00 when chains have converged (≤1.01 is the current criterion). (2) Effective sample size (ESS): autocorrelated MCMC samples carry less information than independent draws. ESS = n / (1 + 2Σ_k ρ_k) where ρ_k is the lag-k autocorrelation. Typical targets: ESS &gt; 400 per chain for posterior means; &gt; 1000 for tail quantiles.</p>
+    <p><strong>Mixing and convergence:</strong> The Markov chain must be run long enough to "forget" its starting point. Convergence diagnostics: (1) R̂ (potential scale reduction factor): run m parallel chains from overdispersed starting points; R̂ = √((n−1)/n + var_between/(n·var_within)) ≈ 1.00 when chains have converged (≤1.01 is the current criterion). (2) Effective sample size (ESS): autocorrelated MCMC samples carry less information than independent draws. ESS = n / (1 + 2Σ_k ρ_k) where ρ_k is the lag-k autocorrelation. Typical targets: ESS &gt; 400 per chain for posterior means; &gt; 1000 for tail quantiles.</p>
     <p><strong>Pathological posteriors:</strong> HMC fails on funnel-shaped posteriors (common in hierarchical models when hypervariance is near zero) and multimodal posteriors (where chains get trapped in one mode). Solutions: non-centred parameterisations (reparameterise αⱼ = μ + τ·z_j so z_j ∼ N(0,1) removes the funnel), parallel tempering (multiple chains at different temperatures), and Sequential Monte Carlo.</p>
     <p><strong>Variational inference (VI):</strong> Approximate the posterior with a tractable family Q (e.g., mean-field: q(θ) = Πᵢ qᵢ(θᵢ)) by minimising KL(q||π). This converts integration to optimisation — fast but biased (underestimates posterior variance). ADVI (Automatic Differentiation Variational Inference, Kucukelbir et al. 2017) in Stan and Pyro enables VI for broad model classes. The ELBO (Evidence Lower BOund) ℒ(q) = E_q[log p(x,θ)] − E_q[log q(θ)] is maximised rather than the intractable log p(x).</p>
     </div></div>
@@ -385,7 +449,7 @@ const BAYESIAN = [
     <div class="bay-level-body">
     <p>Imagine you want to estimate the quality of 30 restaurants, but each has only been reviewed 5 times. Three options: (1) Estimate each restaurant independently — noisy, unreliable. (2) Estimate them all as identical — ignores real differences. (3) Assume they're similar but not identical, pooling information across restaurants while allowing each to differ. Option 3 is hierarchical modelling, and it almost always beats the other two.</p>
     <p>The hierarchical model says: each restaurant j has a true quality θⱼ, but these θⱼ are not unrelated — they're drawn from a common distribution (a "population" of restaurants). The data updates our beliefs about each θⱼ, but since the θⱼ share a common distribution, information about restaurant A's quality informs (a little) our estimate of restaurant B's quality. This is called <em>partial pooling</em> or <em>shrinkage</em>.</p>
-    <p>Famous example: in 1961, Stein showed that the optimal estimator of k ≥ 3 independent normal means simultaneously shrinks each estimate toward the overall average. Andrew Gelman's schools example (8 schools study, BDA chapter 5) showed that estimates of the effect of a coaching program across 8 schools are dramatically improved by partial pooling.</p>
+    <p>Famous example: in 1956, Stein showed that for k ≥ 3 independent normal means, the ordinary (MLE) estimator is inadmissible — it can be uniformly dominated. James and Stein's 1961 shrinkage estimator, pulling each estimate toward the overall average, is one such dominating estimator (though not itself optimal). Andrew Gelman's schools example (8 schools study, BDA chapter 5) showed that estimates of the effect of a coaching program across 8 schools are dramatically improved by partial pooling.</p>
     </div></div>
     <div class="bay-level"><div class="bay-level-hdr" onclick="toggleBayLevel(this)">📐 Mathematical Structure</div>
     <div class="bay-level-body">
@@ -395,7 +459,7 @@ const BAYESIAN = [
     </div></div>
     <div class="bay-level"><div class="bay-level-hdr" onclick="toggleBayLevel(this)">🔬 Research Applications</div>
     <div class="bay-level-body">
-    <p><strong>Meta-analysis:</strong> Combine K independent studies estimating the same effect θ. Study k gives estimate ŷₖ ~ N(θₖ, σₖ²). Hierarchical model: θₖ ~ N(μ,τ²). The DerSimonian-Laird estimator is the method-of-moments solution; the Bayesian hierarchical model provides full uncertainty quantification and handles small-K settings (K &lt; 10) more reliably. STAN's brms package supports meta-analytic models directly.</p>
+    <p><strong>Meta-analysis:</strong> Combine K independent studies estimating the same effect θ. Study k gives estimate ŷₖ ~ N(θₖ, σₖ²). Hierarchical model: θₖ ~ N(μ,τ²). The DerSimonian-Laird estimator is the method-of-moments solution; the Bayesian hierarchical model provides full uncertainty quantification and handles small-K settings (K &lt; 10) more reliably. The brms R package, built on Stan, supports meta-analytic models directly.</p>
     <p><strong>Ecological models:</strong> Species abundance models (N-mixture models, occupancy models) are hierarchical: observed counts yᵢⱼ|λᵢ ~ Poisson(λᵢpᵢⱼ) where λᵢ is true abundance and pᵢⱼ is detection probability, both given priors. These cannot be estimated without the hierarchical structure because abundance and detection are separately unidentifiable from a single count.</p>
     <p><strong>Causal hierarchical models:</strong> Recent work (Schulam & Saria 2017, Pearl's do-calculus in Bayesian networks) embeds causal structure in hierarchical models. The goal is to estimate P(Y|do(X=x)) — the interventional distribution — from observational data with hierarchical confounding. This connects Bayesian statistics to the modern causal inference programme of Pearl, Rubin, and Imbens.</p>
     </div></div>`
@@ -437,7 +501,7 @@ const BAYESIAN = [
     <div class="bay-level"><div class="bay-level-hdr" onclick="toggleBayLevel(this)">📐 ELBO and Mean-Field Factorisation</div>
     <div class="bay-level-body">
     <p>Minimising KL(q||π) is equivalent to maximising the Evidence Lower BOund (ELBO): ℒ(q) = Eq[log p(x,θ)] − Eq[log q(θ)] = log p(x) − KL(q||π(·|x)). Since KL ≥ 0, ℒ(q) ≤ log p(x) (hence "lower bound"). Maximising ℒ is equivalent to minimising KL(q||π).</p>
-    <p><strong>Mean-field VI:</strong> Assume q(θ) = ΠᵢqᵢI(θᵢ) — all parameters are independent in the variational distribution. The optimal factor is q*ᵢ(θᵢ) ∝ exp(E_{q_{-i}}[log p(x,θ)]) — each factor is the exponentiated log joint, averaged over all other factors. This gives a coordinate ascent algorithm: cycle through each factor, update it given all others, repeat until convergence (CAVI algorithm).</p>
+    <p><strong>Mean-field VI:</strong> Assume q(θ) = Πᵢqᵢ(θᵢ) — all parameters are independent in the variational distribution. The optimal factor is q*ᵢ(θᵢ) ∝ exp(E_{q_{-i}}[log p(x,θ)]) — each factor is the exponentiated log joint, averaged over all other factors. This gives a coordinate ascent algorithm: cycle through each factor, update it given all others, repeat until convergence (CAVI algorithm).</p>
     <p><strong>Known biases of VI:</strong> Mean-field VI underestimates posterior variance (it "squeezes" the approximation to one mode when the posterior is multimodal). The KL(q||π) objective penalises q having mass where π has no mass (mode-seeking), as opposed to KL(π||q) (mass-covering). BBVI (Black-Box VI, Ranganath et al. 2014) and ADVI (Automatic Differentiation VI, Kucukelbir 2017) made VI applicable to general Stan-like probabilistic programs.</p>
     </div></div>
     <div class="bay-level"><div class="bay-level-hdr" onclick="toggleBayLevel(this)">🔭 Normalising Flows and Modern Approaches</div>
@@ -476,17 +540,99 @@ const BAYESIAN = [
 
 /* ── OPEN PROBLEMS ──────────────────────────────────────────── */
 
+BAYESIAN.push(...[{"tag": "Decision Theory", "topic": "Bayesian Decision Theory, Bayes Estimators & Minimaxity", "desc": "Turning a posterior into an action, and when that action is optimal.", "books": [{"t": "Statistical Decision Theory and Bayesian Analysis", "n": "Berger"}, {"t": "The Bayesian Choice", "n": "Robert"}], "detail": "<div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>To act, choose the action that minimises expected loss under the posterior. With squared-error loss the best point estimate is the posterior mean, with absolute-error loss it is the posterior median, and with 0–1 loss it is the posterior mode (MAP).</p></div></div><div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>The frequentist risk is R(θ,δ) = E_θ L(θ,δ(X)) and the Bayes risk is r(π,δ) = ∫R(θ,δ)π(dθ). A Bayes rule minimises the posterior expected loss for each x. A rule is admissible if no other rule has risk at most as large everywhere and smaller somewhere. A Bayes rule with constant risk is minimax, and a minimax rule can be found as a Bayes rule for a least favourable prior. Wald's complete class theorems say that, under conditions, Bayes rules and their limits form a complete class. Bayes estimators are generally biased.</p></div></div><div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Stein's phenomenon shows that admissibility can fail for the natural estimator, and the James–Stein estimator has a Bayesian reading as empirical Bayes shrinkage. Brown's identity connects admissibility of generalised Bayes estimators to recurrence of an associated diffusion (Brown–Hwang). Improper priors lead to generalised Bayes rules that can be admissible or not, and Lindley's paradox shows how diffuse priors distort testing.</p></div></div><div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Posterior contraction rates are compared to minimax rates (Ghosal–Ghosh–van der Vaart 2000), so a Bayes procedure can be judged by frequentist optimality. Bayesian arguments also produce minimax lower bounds through Le Cam, Assouad and Fano methods, which use priors over hypotheses.</p></div></div>", "pdfKey": "bayes-decision-theory"}, {"tag": "Regression", "topic": "Bayesian Linear Regression, Shrinkage & Sparsity Priors", "desc": "Regression with prior beliefs about the coefficients.", "books": [{"t": "Bayesian Data Analysis", "n": "Gelman et al."}, {"t": "Statistical Rethinking", "n": "McElreath"}], "detail": "<div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>In Bayesian regression we put prior beliefs on the slopes. A normal prior centred at 0 pulls coefficients toward zero and is exactly ridge regression, while a Laplace prior leads to the lasso.</p></div></div><div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>For y = Xβ + ε with ε ~ N(0,σ²I) and prior β ~ N(0,τ²I), the posterior mean is (XᵀX + λI)⁻¹Xᵀy with λ = σ²/τ², which is ridge regression. Zellner's g-prior β ~ N(0, gσ²(XᵀX)⁻¹) shrinks by the factor g/(1+g). The conjugate normal–inverse-gamma prior gives a Student-t posterior and predictive distribution. The Bayesian lasso (Park–Casella) uses a Laplace prior written as a scale mixture of normals.</p></div></div><div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Spike-and-slab priors put a point mass at zero. The horseshoe (Carvalho–Polson–Scott) sets βⱼ|λⱼ ~ N(0,λⱼ²τ²) with λⱼ ~ C⁺(0,1), which shrinks small signals strongly while leaving large ones almost untouched. These are global–local shrinkage priors. Variable selection uses stochastic search (SSVS). Mixtures of g-priors such as Zellner–Siow fix the information paradox of a fixed g.</p></div></div><div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Spike-and-slab and horseshoe posteriors contract at the minimax rate for sparse normal means (about 2s log(n/s)) (van der Pas–Kleijn–van der Vaart; Castillo–van der Vaart). Coverage of credible sets in sparse settings depends on the signal strength. Computation for large p relies on scalable MCMC for variable selection (Yang–Wainwright–Jordan), which mixes rapidly under conditions.</p></div></div>", "pdfKey": "bayes-regression-shrinkage"}, {"tag": "Empirical Bayes", "topic": "Empirical Bayes & the James–Stein Estimator", "desc": "Letting many similar problems supply their own prior.", "books": [{"t": "Large-Scale Inference", "n": "Efron"}, {"t": "Computer Age Statistical Inference", "n": "Efron & Hastie"}], "detail": "<div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>If you estimate many similar quantities, such as batting averages for many players, use all the data to decide how strongly to pull extreme values toward the overall average. Extreme observations are partly luck, so shrinking helps.</p></div></div><div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>Take Xᵢ|θᵢ ~ N(θᵢ,1) and θᵢ ~ N(0,A). The posterior mean is (1 − 1/(1+A))Xᵢ. Since 1/(1+A) is unknown, estimate it unbiasedly by (p−2)/‖X‖², giving the James–Stein estimator θ̂ = (1 − (p−2)/‖X‖²)X. For p ≥ 3 its total squared-error risk is below p for every θ, so the raw estimator X is dominated. Parametric empirical Bayes picks the hyperparameters by maximising the marginal likelihood (type-II maximum likelihood).</p></div></div><div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Robbins' formula for Poisson data is E[θ|X = x] = (x+1)f(x+1)/f(x), which uses only the marginal distribution f. Tweedie's formula is E[θ|x] = x + σ²(d/dx) log f(x). The nonparametric maximum likelihood estimator of the prior (Kiefer–Wolfowitz) gives fully nonparametric empirical Bayes, and the local false discovery rate is an empirical Bayes posterior null probability.</p></div></div><div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Compound decision theory compares empirical Bayes rules to the best separable rule with regret bounds (Jiang–Zhang, Brown–Greenshtein). Deconvolution of the prior has slow, logarithmic minimax rates for smooth noise (Fan 1991), while estimating the posterior mean directly (f-modelling) can be much faster. NPMLE attains near-parametric rates in Gaussian sequence models (Polyanskiy–Wu). Valid confidence intervals for empirical Bayes estimates are studied by Armstrong–Kolesár–Plagborg-Møller.</p></div></div>", "pdfKey": "bayes-empirical-bayes"}, {"tag": "Nonparametric", "topic": "Bayesian Nonparametrics: Dirichlet Processes, Pitman–Yor & Posterior Consistency", "desc": "Priors on distributions and functions of unbounded complexity.", "books": [{"t": "Fundamentals of Nonparametric Bayesian Inference", "n": "Ghosal & van der Vaart"}, {"t": "Bayesian Nonparametrics", "n": "Hjort et al."}], "detail": "<div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>When you do not want to fix in advance the number of clusters or the shape of a curve, use a prior over distributions or functions. Such priors let the model grow with the data.</p></div></div><div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>The Dirichlet process DP(α,G₀) (Ferguson 1973) has, for every partition A₁,…,A_k, (P(A₁),…,P(A_k)) ~ Dirichlet(αG₀(A₁),…,αG₀(A_k)). Given n observations the posterior is DP(α+n, (αG₀ + Σδ_{xᵢ})/(α+n)). Sethuraman's stick-breaking form is P = Σ wₖδ_{θₖ} with wₖ = vₖ∏_{j&lt;k}(1−vⱼ) and vₖ ~ Beta(1,α). Draws are discrete with probability one. The Chinese restaurant process describes clustering, with about α log(1 + n/α) clusters among n points. DP mixtures give flexible density estimation and clustering.</p></div></div><div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>The Pitman–Yor process, with discount d ∈ [0,1), produces power-law cluster sizes. The Indian buffet process is a prior for feature allocation, and the hierarchical DP (Teh et al.) shares clusters across groups. Posterior computation uses collapsed Gibbs samplers, slice sampling (Walker) and variational methods. Other priors include Pólya trees, dependent DPs and Gaussian process priors on functions.</p></div></div><div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Schwartz's theorem (1965) gives weak posterior consistency when the truth is in the Kullback–Leibler support of the prior. Ghosal–Ghosh–van der Vaart (2000) give contraction rates from prior mass and entropy conditions. Inconsistency can occur (Diaconis–Freedman 1986), and the Bernstein–von Mises theorem can fail in nonparametric problems (Freedman 1999) but holds for smooth functionals (Castillo–Nickl, nonparametric Bernstein–von Mises). DP mixtures of Gaussians attain near-minimax density estimation rates (Shen–Tokdar–Ghosal).</p></div></div>", "pdfKey": "bayes-nonparametrics"}, {"tag": "Computation", "topic": "Sequential Monte Carlo, ABC & Likelihood-Free Inference", "desc": "Bayesian inference when the likelihood is intractable or the model is a moving system.", "books": [{"t": "Sequential Monte Carlo Methods in Practice", "n": "Doucet et al."}, {"t": "Handbook of Approximate Bayesian Computation", "n": "Sisson et al."}], "detail": "<div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🎓 Bachelor's Level</div><div class=\"bay-level-body\"><p>When the likelihood is too complicated to write down, simulate data from the model for many candidate parameter values and keep the parameters whose simulated data look like the observed data. This is approximate Bayesian computation (ABC).</p></div></div><div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">📐 Master's Level</div><div class=\"bay-level-body\"><p>ABC rejection: draw θ ~ π, simulate x* ~ f(·|θ), accept if d(S(x*),S(x)) ≤ ε. This targets an approximation to the posterior; smaller ε is more accurate and slower, and the summary statistics S determine what information survives. Regression adjustment (Beaumont 2002), ABC-MCMC and ABC-SMC improve efficiency. Sequential Monte Carlo (particle filters) propagate N weighted particles through a state-space model, reweighting by p(yₜ|xₜ) and resampling when the effective sample size 1/Σwᵢ² becomes small.</p></div></div><div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔬 Research Level</div><div class=\"bay-level-body\"><p>Particle MCMC (Andrieu–Doucet–Holenstein 2010) uses an unbiased particle-filter likelihood estimate inside MCMC while preserving the exact posterior. SMC samplers (Del Moral–Doucet–Jasra) handle static posteriors through a sequence of tempered targets and estimate normalising constants. Theory of ABC concerns consistency and asymptotic normality of the ABC posterior (Frazier et al.), and synthetic likelihood (Wood 2010) approximates the summary distribution as Gaussian.</p></div></div><div class=\"bay-level\"><div class=\"bay-level-hdr\" onclick=\"toggleBayLevel(this)\">🔭 Advanced Research Level</div><div class=\"bay-level-body\"><p>Neural simulation-based inference learns posteriors (neural posterior estimation), likelihoods or likelihood ratios with neural networks and amortises across datasets, with open questions about misspecification. SMC theory includes central limit theorems and Feynman–Kac representations (Del Moral, Chopin), time-uniform error bounds and the curse of dimensionality: weight degeneracy makes the required particle count grow exponentially with dimension (Bengtsson–Bickel–Li).</p></div></div>", "pdfKey": "bayes-smc-abc"}]);
+/* ═══ BETA-BINOMIAL LAB — numerics + draw + interaction (added) ═══ */
+const LG_C_BL=[0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];
+function blLgamma(z){
+  if(z<0.5)return Math.log(Math.PI/Math.abs(Math.sin(Math.PI*z)))-blLgamma(1-z);
+  z-=1;let x=LG_C_BL[0];for(let i=1;i<9;i++)x+=LG_C_BL[i]/(z+i);
+  const t=z+7.5;return 0.5*Math.log(2*Math.PI)+(z+0.5)*Math.log(t)-t+Math.log(x);
+}
+function blBetacf(x,a,b){
+  const FP=1e-300,qab=a+b,qap=a+1,qam=a-1;
+  let c=1,d=1-qab*x/qap;if(Math.abs(d)<FP)d=FP;d=1/d;let h=d;
+  for(let m=1;m<=300;m++){
+    const m2=2*m;let aa=m*(b-m)*x/((qam+m2)*(a+m2));
+    d=1+aa*d;if(Math.abs(d)<FP)d=FP;c=1+aa/c;if(Math.abs(c)<FP)c=FP;d=1/d;h*=d*c;
+    aa=-(a+m)*(qab+m)*x/((a+m2)*(qap+m2));
+    d=1+aa*d;if(Math.abs(d)<FP)d=FP;c=1+aa/c;if(Math.abs(c)<FP)c=FP;d=1/d;
+    const del=d*c;h*=del;if(Math.abs(del-1)<1e-14)break;
+  }
+  return h;
+}
+function blBetaInc(x,a,b){
+  if(x<=0)return 0;if(x>=1)return 1;
+  const bt=Math.exp(blLgamma(a+b)-blLgamma(a)-blLgamma(b)+a*Math.log(x)+b*Math.log(1-x));
+  return x<(a+1)/(a+b+2)?bt*blBetacf(x,a,b)/a:1-bt*blBetacf(1-x,b,a)/b;
+}
+function blBetaQuantile(p,a,b){
+  let lo=0,hi=1;
+  for(let i=0;i<60;i++){const mid=(lo+hi)/2;if(blBetaInc(mid,a,b)<p)lo=mid;else hi=mid;}
+  return (lo+hi)/2;
+}
+function blPdf(x,a,b){
+  if(x<=0||x>=1)return 0;
+  return Math.exp((a-1)*Math.log(x)+(b-1)*Math.log(1-x)-(blLgamma(a)+blLgamma(b)-blLgamma(a+b)));
+}
+let BL_S=0,BL_F=0;
+function betaLabReset(){
+  BL_S=0;BL_F=0;
+  document.getElementById('betalab-a0').value=1;document.getElementById('betalab-b0').value=1;
+  betaLabDraw();
+}
+function betaLabObserve(success){
+  if(success)BL_S++;else BL_F++;
+  betaLabDraw();
+}
+function betaLabDraw(){
+  const a0=parseFloat(document.getElementById('betalab-a0').value),b0=parseFloat(document.getElementById('betalab-b0').value);
+  document.getElementById('betalab-a0-v').textContent=a0;document.getElementById('betalab-b0-v').textContent=b0;
+  const a1=a0+BL_S,b1=b0+BL_F;
+  document.getElementById('betalab-data').textContent='s='+BL_S+', f='+BL_F;
+  const mean=a1/(a1+b1),mode=(a1>1&&b1>1)?(a1-1)/(a1+b1-2):(a1<=1&&b1>1?0:(b1<=1&&a1>1?1:NaN));
+  document.getElementById('betalab-mean').textContent=mean.toFixed(4);
+  document.getElementById('betalab-mode').textContent=isNaN(mode)?'undefined':mode.toFixed(4);
+  const lo=blBetaQuantile(0.025,a1,b1),hi=blBetaQuantile(0.975,a1,b1);
+  document.getElementById('betalab-ci').textContent='['+lo.toFixed(3)+', '+hi.toFixed(3)+']';
+  document.getElementById('betalab-ro').textContent='Prior Beta('+a0+','+b0+') → Posterior Beta('+a1.toFixed(1)+','+b1.toFixed(1)+') after '+(BL_S+BL_F)+' observation'+(BL_S+BL_F===1?'':'s');
+
+  const c=document.getElementById('betalab-cv');const wrap=c.parentElement;const w=wrap.clientWidth;if(!w)return;
+  const dpr=window.devicePixelRatio||1,h=180;
+  if(c.width!==Math.round(w*dpr)||c.height!==Math.round(h*dpr)){c.width=Math.round(w*dpr);c.height=Math.round(h*dpr);}
+  const ctx=c.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+  const cs=getComputedStyle(document.body),v=n=>cs.getPropertyValue(n).trim();
+  const pu=v('--pu')||'#5e3a8e',puL=v('--pu-l')||'rgba(94,58,142,.08)',gr=v('--text-3')||'#666',grid=v('--border-2')||'rgba(0,0,0,.05)',axis=v('--border')||'#ccc';
+  const PD={t:10,r:10,b:22,l:36},CW=w-PD.l-PD.r,CH=h-PD.t-PD.b,N=160;
+  const priorY=[],postY=[];let yMax=0.01;
+  for(let i=0;i<=N;i++){const x=i/N;const py=blPdf(x,a0,b0),qy=blPdf(x,a1,b1);priorY.push(py);postY.push(qy);if(isFinite(qy))yMax=Math.max(yMax,Math.min(qy,50));if(isFinite(py))yMax=Math.max(yMax,Math.min(py,50));}
+  yMax*=1.1;
+  const px=i=>PD.l+i/N*CW,py2=y=>PD.t+CH-Math.min(y/yMax,1)*CH;
+  ctx.strokeStyle=grid;ctx.lineWidth=1;for(let k=0;k<=4;k++){const y=PD.t+CH*k/4;ctx.beginPath();ctx.moveTo(PD.l,y);ctx.lineTo(w-PD.r,y);ctx.stroke();}
+  ctx.strokeStyle=axis;ctx.beginPath();ctx.moveTo(PD.l,PD.t);ctx.lineTo(PD.l,PD.t+CH);ctx.lineTo(w-PD.r,PD.t+CH);ctx.stroke();
+  ctx.fillStyle=gr;ctx.font="10px 'Source Code Pro',monospace";ctx.textAlign='center';
+  [0,0.5,1].forEach(x=>ctx.fillText(x.toFixed(1),px(x*N),h-6));
+  ctx.setLineDash([4,3]);ctx.strokeStyle=gr;ctx.lineWidth=1.3;
+  ctx.beginPath();for(let i=0;i<=N;i++){const y=Math.min(priorY[i],yMax*3);i?ctx.lineTo(px(i),py2(y)):ctx.moveTo(px(i),py2(y));}ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.beginPath();for(let i=0;i<=N;i++){const y=Math.min(postY[i],yMax*3);i?ctx.lineTo(px(i),py2(y)):ctx.moveTo(px(i),py2(y));}
+  ctx.lineTo(px(N),py2(0));ctx.lineTo(px(0),py2(0));ctx.closePath();
+  ctx.globalAlpha=0.18;ctx.fillStyle=pu;ctx.fill();ctx.globalAlpha=1;
+  ctx.beginPath();for(let i=0;i<=N;i++){const y=Math.min(postY[i],yMax*3);i?ctx.lineTo(px(i),py2(y)):ctx.moveTo(px(i),py2(y));}
+  ctx.strokeStyle=pu;ctx.lineWidth=2.2;ctx.lineJoin='round';ctx.stroke();
+}
+window.addEventListener('resize',()=>{if(document.getElementById('betalab-cv'))betaLabDraw();});
+
 function renderBayesian(){
   const g=document.getElementById('bayesian-grid'); if(!g)return;
   const admin=isAdmin();
   document.getElementById('admin-bay-status').style.display=admin?'block':'none';
   g.innerHTML=BAYESIAN.map((b,i)=>`
-    <div class="bay-card">
+    <div class="bay-card" id="bay-card-${i}" data-search="${(b.topic+' '+b.desc+' '+b.tag).toLowerCase().replace(/"/g,'')}">
       <span class="bay-tag">${b.tag}</span>
       <div class="bay-topic">${b.topic}</div>
       <div class="bay-desc">${b.desc}</div>
       ${b.books.map(bk=>`<div class="bay-book"><b>${bk.t}</b> <i>· ${bk.n}</i></div>`).join('')}
-      <span class="bay-expand-lbl" id="baylbl-${i}" onclick="toggleBay(${i})">▸ Read more (all levels)</span>
+      <span class="bay-expand-lbl" id="baylbl-${i}" role="button" tabindex="0" aria-expanded="false" aria-controls="baydet-${i}" onclick="toggleBay(${i})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleBay(${i})}">▸ Read more (all levels)</span>
       <div class="bay-detail" id="baydet-${i}">${b.detail}
         <div class="bay-pdf-row">
           <a class="bay-pdf-link" id="baypdf-${b.pdfKey}" style="display:none" href="#" target="_blank" rel="noopener">📄 PDF Reference</a>
@@ -498,6 +644,7 @@ function renderBayesian(){
       </div>
     </div>`).join('');
   loadBayPdfs();
+  if(window.renderMath){try{window.renderMath(g);}catch(e){console.warn('renderMath failed',e);}}
 }
 
 
@@ -506,6 +653,7 @@ function toggleBay(i){
   const l=document.getElementById('baylbl-'+i);
   const open=d.classList.toggle('show');
   l.textContent=open?'▾ Close':'▸ Read more (all levels)';
+  l.setAttribute('aria-expanded',open);
 }
 
 
@@ -552,7 +700,14 @@ async function loadBayPdfs(){
     document.body.classList.add('night');
     const mi=document.getElementById('mode-icon'); if(mi)mi.textContent='☀';
   }
-  window._afterRenderAuthUI = function(){ renderBayesian(); };
+  window._afterRenderAuthUI = function(){
+  const openIdx=[...document.querySelectorAll('.bay-detail.show')].map(el=>el.id.replace('baydet-',''));
+  renderBayesian();
+  openIdx.forEach(i=>{
+    const d=document.getElementById('baydet-'+i),l=document.getElementById('baylbl-'+i);
+    if(d){d.classList.add('show');if(l){l.textContent='▾ Close';l.setAttribute('aria-expanded','true');}}
+  });
+};
   setTimeout(function(){
     if(window.currentUser)return;
     if(!window.sb)return;
@@ -563,8 +718,9 @@ async function loadBayPdfs(){
       if(window.renderAuthUI)window.renderAuthUI();
     }).catch(function(){});
   },400);
-  if('renderBayesian();' && document.readyState!=='loading') { renderBayesian(); }
-  else if('renderBayesian();') { document.addEventListener('DOMContentLoaded', function(){ renderBayesian(); }); }
+  function _initBayPage(){ renderBayesian(); betaLabDraw(); }
+  if(document.readyState!=='loading'){ _initBayPage(); }
+  else { document.addEventListener('DOMContentLoaded', _initBayPage); }
 })();
 </script>
 <script>window._pageKey = 'stats';</script>

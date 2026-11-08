@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="night">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Home Library | Stargazer</title>
+<meta property="og:site_name" content="Stargazer">
+<meta name="description" content="The Library: every book I own, catalogued by genre and subject, with synopses, ratings and notes.">
+<link rel="canonical" href="https://stargazers.co.in/books/library">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,400&family=Karla:wght@400;600&display=swap" rel="stylesheet">
+<!--
+SETUP: run library-setup.sql once in Supabase (SQL Editor). This page uses the tables library_books, library_genres and library_book_genres.
+Covers: covers/<title without spaces, lowercase>.jpg  (e.g. covers/darkmatter.jpg). Book text lives in library-data.js.
+LENDING: run library-lending.sql once in Supabase (adds lent_to, lent_date, lent_days to library_books).
+-->
+<style>
+:root{--bg:#0d1917;--card:#142623;--line:#2a4a43;--ink:#efe7d3;--mute:#9db3aa;--acc:#e0aa4b;--rose:#e07a8f;--r:14px}
+[data-mode=day]{--bg:#f3ecdc;--card:#fffaf0;--line:#d8cbad;--ink:#1d2a26;--mute:#5d6b64;--acc:#8a5a12;--rose:#b0405c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Karla,system-ui,sans-serif;transition:background .3s}
+body.lamp{background:radial-gradient(circle at 50% 0,#4a3512 0,var(--bg) 55%)}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;margin:0;line-height:1.15}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+header{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 0;flex-wrap:nowrap}
+header>div:first-child{min-width:0}
+.brand{font:700 1.5rem Fraunces,serif;cursor:pointer;user-select:none}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 15px;transition:.2s}
+.btn:hover,.btn[aria-expanded=true],.btn.on{border-color:var(--acc);color:var(--acc)}
+.btn.pri{background:var(--acc);color:var(--bg);border-color:var(--acc);font-weight:600}
+.btn.dng{color:var(--rose)}
+.hero{padding:26px 0 8px}
+.hero h1{font-size:clamp(2rem,6vw,3.6rem);font-weight:500;font-style:italic}
+.hero p{color:var(--mute);max-width:56ch;margin:.6rem 0 0}
+.stats{display:flex;gap:22px;margin:18px 0;flex-wrap:wrap}
+.stats b{font:700 1.7rem Fraunces,serif;color:var(--acc);display:block}
+.stats span{color:var(--mute);font-size:.85rem}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.panel{display:none;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin:8px 0}
+.panel.open{display:block;animation:dn .25s}
+@keyframes dn{from{opacity:0;transform:translateY(-6px)}}
+.panel h4{margin:0 0 8px;font:600 .95rem Karla}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:transparent;border:1px solid var(--line);border-radius:999px;padding:3px 11px;font-size:.85rem}
+.chip.on{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+input,select,textarea{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 11px;width:100%}
+.sbox{position:relative;flex:1;min-width:200px}
+.qx{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:32px;height:32px;border:0;border-radius:50%;background:transparent;color:var(--mute);font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.qx:hover,.qx:focus-visible{color:var(--acc)}
+.qx[hidden]{display:none}
+.rx{position:absolute;left:8px;bottom:8px;font-size:1.3rem;line-height:1;background:rgba(10,20,18,.62);border-radius:999px;padding:5px 7px}
+.rxbig{font-size:.8em;margin-left:6px;vertical-align:middle}
+.dts{color:var(--mute);font-size:.9rem;margin:10px 0 0}
+.dts.adm{color:inherit}
+.rxrow{margin-top:12px}
+.rxc{font-size:1.15rem;padding:2px 8px;line-height:1.3}
+.rxin{width:92px;padding:4px 10px;border-radius:999px;font-size:.9rem}
+.gp{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0}
+.gp.cur{border-color:var(--acc)}
+.gh{display:flex;gap:8px;align-items:baseline;margin-bottom:4px}
+.gh small,.gt small{color:var(--mute)}
+.gi{display:flex;align-items:center;gap:10px;padding:5px 0}
+.gi input{width:auto;flex:none}
+.gi.dn .gt{text-decoration:line-through;opacity:.6}
+.gt{flex:1;min-width:0}
+.gx{background:transparent;border:0;color:var(--mute);font-size:1.3rem;line-height:1;cursor:pointer;padding:2px 8px}
+.gx:hover{color:var(--rose)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin:16px 0 30px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.2s}
+.card:hover{transform:translateY(-3px);border-color:var(--acc)}
+.card.fin{border-color:var(--rose)}
+.cv{position:relative;aspect-ratio:2/3;background:var(--bg)}
+.cv img,.ph{width:100%;height:100%;object-fit:cover;display:block}
+.ph{display:flex;align-items:center;justify-content:center;text-align:center;padding:14px;font:700 1.1rem Fraunces,serif;background:linear-gradient(160deg,hsl(var(--h) 38% 28%),hsl(var(--h) 45% 14%));color:#f3ead2}
+.badge{position:absolute;top:8px;right:8px;background:var(--rose);color:#fff;border-radius:999px;font-size:.72rem;padding:2px 9px}
+.bd{padding:10px 12px 12px}
+.bd h3{font-size:1.02rem}
+.au{color:var(--mute);font-size:.85rem;margin:3px 0 7px}
+.tg{display:flex;flex-wrap:wrap;gap:4px}
+.tg span{font-size:.72rem;border:1px solid var(--line);border-radius:6px;padding:1px 6px;color:var(--mute)}
+.rt{margin-top:8px;display:flex;gap:2px}
+.sh{display:inline-block;width:14px;height:14px;background:var(--line);clip-path:var(--cp);transition:.2s}
+.sh.on{background:var(--acc)}
+.big .sh{width:30px;height:30px;margin:3px;animation:pop .5s both}
+.big.adm .sh{cursor:pointer}
+.big.adm .sh:hover{background:var(--rose)}
+@keyframes pop{from{opacity:0;transform:scale(.2) rotate(-90deg)}}
+.rrow{display:flex;flex-wrap:wrap;justify-content:center;margin:12px 0}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:flex-start;justify-content:center;overflow:auto;padding:24px 12px;z-index:50}
+.ov.open{display:flex}
+.md{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;max-width:760px;width:100%;position:relative}
+.md .x{position:absolute;top:10px;right:12px;background:none;border:0;font-size:1.5rem}
+.det{display:grid;grid-template-columns:170px 1fr;gap:18px}
+.det .cv{border-radius:10px;overflow:hidden}
+.syn{white-space:pre-wrap;margin:10px 0}
+.note{border-left:3px solid var(--acc);padding-left:12px;font-style:italic;margin:10px 0}
+label{display:block;font-size:.85rem;color:var(--mute);margin:9px 0 3px}
+.cm{border-top:1px solid var(--line);padding:10px 0}
+.cm small{color:var(--mute)}
+.empty{text-align:center;color:var(--mute);padding:40px 0}
+footer{text-align:center;color:var(--mute);padding:28px 0 40px;font-size:.85rem}
+#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--acc);color:var(--bg);padding:9px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:.3s;z-index:99}
+#toast.on{opacity:1}
+.adm-only{display:none}
+body.admin .adm-only{display:inline-block}
+@media(max-width:560px){.det{grid-template-columns:1fr}.det .cv{max-width:160px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{header,.tabs,.panel,.hero p,#cmts,.btn,footer{display:none!important}body{background:#fff;color:#000}.grid{grid-template-columns:repeat(3,1fr)}.card{break-inside:avoid;background:#fff}.cv{display:none}}
+.comment-section{margin:28px 0}.comment-heading{font-size:1.5rem}.comment-heading-sub{color:var(--mute);margin:.3rem 0 12px}.comment-divider{display:none}
+.comment-login-msg{display:flex;gap:10px;align-items:center;color:var(--mute)}.comment-signin-btn,.comment-submit{background:var(--acc);color:var(--bg);border:0;border-radius:999px;padding:6px 15px;text-decoration:none;font-weight:600}
+.comment-form-footer{display:flex;justify-content:space-between;align-items:center;margin-top:8px}.comment-char-count,.comment-loading,.comment-empty{color:var(--mute);font-size:.85rem}
+#authHeader{display:flex;gap:8px;align-items:center}#userInfo{display:flex;gap:8px;align-items:center;color:var(--mute);font-size:.85rem}#loginBtn,#signOutBtn{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;color:var(--ink);text-decoration:none;font-size:.9rem}
+#authHeader{flex:none;white-space:nowrap}#userEmailDisplay{display:inline-block;max-width:220px;overflow:hidden;text-overflow:ellipsis;vertical-align:bottom}
+@media(max-width:560px){#userEmailDisplay{max-width:90px}#loginBtn,#signOutBtn{padding:5px 11px;font-size:.82rem}.brand{font-size:1.2rem}}
+#universeLink,#homeLink{text-decoration:none;font-size:.8rem;padding:4px 11px}
+#jump{position:fixed;right:12px;bottom:78px;display:flex;flex-direction:column;gap:8px;z-index:40}
+#jump button{width:42px;height:42px;border-radius:50%;background:var(--card);border:1px solid var(--line);font-size:1.15rem;opacity:.92}
+#jump button:hover{border-color:var(--acc);color:var(--acc)}
+details summary{cursor:pointer;color:var(--mute);margin:8px 0}
+@media(max-width:640px){.grid{grid-template-columns:repeat(2,1fr);gap:10px}.cv{aspect-ratio:3/4}.bd{padding:8px}.bd h3{font-size:.9rem}.au{font-size:.78rem}.tg span{font-size:.65rem}.hero h1{font-size:1.9rem}}
+a{color:var(--acc)}a.btn,#universeLink,#homeLink,#loginBtn,#signOutBtn{color:var(--ink)}
+#universeLink:hover,#homeLink:hover,#loginBtn:hover,a.btn:hover{color:var(--acc)}a.btn.pri{color:var(--bg)}
+.prog{height:6px;background:var(--line);border-radius:6px;margin:4px 0 12px;overflow:hidden}.prog i{display:block;height:100%;width:0;background:var(--acc);transition:width .5s}
+.spot{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:8px 12px;margin:8px 0;cursor:pointer}.spot .cv{width:46px;flex:none;border-radius:6px;overflow:hidden}.spot small{color:var(--mute);display:block}
+.grid.names .cv,.grid.names .rt{display:none}.grid.names{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.det .cv{cursor:zoom-in}
+.cons{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px}
+.star{border-radius:50%;background:var(--bg);border:1px solid var(--acc);box-shadow:0 0 12px var(--acc);font-size:.66rem;line-height:1.1;padding:4px;animation:tw 3s ease-in-out infinite alternate}
+@keyframes tw{to{box-shadow:0 0 2px var(--acc);opacity:.75}}
+#gem{cursor:pointer;opacity:.5}
+body{background:radial-gradient(900px 520px at 8% -8%,hsl(285 65% 28%/.55),transparent 62%),radial-gradient(800px 480px at 100% 4%,hsl(190 75% 26%/.5),transparent 58%),radial-gradient(700px 420px at 50% 110%,hsl(35 80% 30%/.35),transparent 60%),var(--bg);background-attachment:fixed}
+[data-mode=day] body{background:radial-gradient(900px 520px at 8% -8%,hsl(330 90% 88%/.7),transparent 62%),radial-gradient(800px 480px at 100% 4%,hsl(190 80% 84%/.7),transparent 58%),radial-gradient(700px 420px at 50% 110%,hsl(42 95% 82%/.7),transparent 60%),var(--bg);background-attachment:fixed}
+:root{--tl:76%;--bl:58%}[data-mode=day]{--tl:28%;--bl:46%}
+.hero h1{background:linear-gradient(90deg,#ffd37a,#ff8fb1 45%,#9b8cff 80%);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
+[data-mode=day] .hero h1{background:linear-gradient(90deg,#b4590a,#c2255c 45%,#5b3fd1 80%);-webkit-background-clip:text;background-clip:text}
+.stats b{background:linear-gradient(135deg,#ffd37a,#ff8fb1);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand{background:linear-gradient(90deg,var(--acc),#ff8fb1);-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn[data-t=fiction].on{background:linear-gradient(135deg,#ff6fa5,#8b5cf6);color:#fff;border-color:transparent}
+.btn[data-t=learning].on{background:linear-gradient(135deg,#19c3b1,#3b82f6);color:#fff;border-color:transparent}
+.btn[data-t=all].on,.btn.t-series.on{background:linear-gradient(135deg,#ffb347,#ff6f61);color:#2a1300;border-color:transparent}
+.btn.t-series{border-color:#ffb347}
+.card{--h:40;border-top:4px solid hsl(var(--h) 78% 58%);background:linear-gradient(180deg,hsl(var(--h) 45% 18%/.55),var(--card) 38%)}
+[data-mode=day] .card{background:linear-gradient(180deg,hsl(var(--h) 85% 92%),var(--card) 40%)}
+.card:hover{box-shadow:0 12px 32px hsl(var(--h) 80% 55%/.35);transform:translateY(-4px) rotate(-.4deg)}
+.card.fin{border-color:var(--line);border-top-color:#ff8fb1;box-shadow:inset 0 0 0 1px #ff8fb1}
+.tg span{border-color:hsl(var(--h) 60% var(--bl)/.7);color:hsl(var(--h) 75% var(--tl));background:hsl(var(--h) 60% 50%/.1)}
+.ser{margin:0 0 3px;font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;font-weight:600;color:hsl(var(--h) 80% var(--tl))}
+.chip{--h:40;border-color:hsl(var(--h) 55% var(--bl)/.8);color:hsl(var(--h) 70% var(--tl))}
+.chip:hover{background:hsl(var(--h) 60% 50%/.18)}
+.chip.on{background:hsl(var(--h) 75% 58%);color:#14101c;border-color:transparent;font-weight:600}
+.sh.on{background:hsl(var(--h,40) 85% 58%);box-shadow:0 0 8px hsl(var(--h,40) 85% 58%/.6)}
+.det .ser{margin-bottom:6px}
+.spot{border-left:4px solid var(--acc);background:linear-gradient(90deg,hsl(40 80% 50%/.14),var(--card) 55%)}
+.panel{border-image:linear-gradient(135deg,#ff8fb1,#9b8cff,#19c3b1,#ffd37a) 1;border-width:1px;border-style:solid;border-radius:0}
+.prog{background:var(--line)}.prog i{background:linear-gradient(90deg,#19c3b1,#9b8cff,#ff8fb1,#ffd37a)}
+.ph{background:linear-gradient(160deg,hsl(var(--h) 55% 38%),hsl(calc(var(--h) + 40) 60% 16%))}
+.badge.lent{right:auto;left:8px;background:#f59e0b;color:#1a1200}
+.badge.rdg{background:#d9a21c;color:#1a1200}
+.badge.buy{top:auto;bottom:8px;right:8px;background:#4a82e0;color:#fff}
+.loan{margin:6px 0 0;font-size:.78rem;color:var(--acc);font-weight:600}.loan.od,.loanbox.od{color:var(--rose)}
+.loanbox{border:1px dashed var(--acc);border-radius:10px;padding:8px 12px;margin:10px 0}
+.ov{touch-action:pan-y pinch-zoom}
+.ov.drag{overflow-x:hidden;-webkit-user-select:none;user-select:none}
+.md.nb{pointer-events:none}
+.navbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:18px;padding-top:12px;border-top:1px solid var(--line);color:var(--mute);font-size:.85rem}
+.navbar .btn[disabled]{opacity:.35;cursor:default;pointer-events:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div><div class="row" style="margin-bottom:6px"><a href="/" id="universeLink" class="btn" title="Back to the Stargazer universe">← universe</a><a href="/books/home" id="homeLink" class="btn" title="All book lists">← books</a></div><div class="brand" id="brand" title="Double-click for a surprise">The Home Library</div></div>
+  <div class="row" style="flex:none;flex-wrap:nowrap">
+    <div id="authHeader"><a href="/login" id="loginBtn">Sign in</a><div id="userInfo" style="display:none"><span id="userEmailDisplay"></span><button onclick="doSignOut()" id="signOutBtn">sign out</button></div></div>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Every book on these shelves, in one room.</h1>
+  <p>Fiction to get lost in, and books that teach. Mark what you have finished, rate it in shapes, and keep notes only the librarian can write.</p>
+  <div class="stats" id="stats"></div>
+</section>
+
+<div class="prog" title="Finished books"><i id="progFill"></i></div>
+<div id="spots"></div>
+<nav class="tabs" id="tabs"></nav>
+<div class="row" style="margin:6px 0">
+  <div class="sbox"><input id="q" placeholder="Search title, author, genre, synopsis ( press / )" style="padding-right:38px" aria-label="Search"><button type="button" id="qx" class="qx" aria-label="Clear search" title="Clear search (Esc)" hidden>&times;</button></div>
+  <button class="btn" data-p="pf" aria-expanded="false">Filters</button>
+  <button class="btn" data-p="pg" aria-expanded="false">Genres &amp; subjects</button>
+  <button class="btn" data-p="pt" aria-expanded="false">Tools</button>
+  <button class="btn adm-only" id="goalsBtn">Reading goals</button>
+  <button class="btn pri adm-only" id="addBtn">Add book</button>
+</div>
+
+<div class="panel" id="pf">
+  <h4>Status</h4><div class="chips" id="stSeg"></div>
+  <h4 style="margin-top:12px">Order</h4><div class="chips" id="soSeg"></div>
+</div>
+<div class="panel" id="pg"><div id="chips"></div></div>
+<div class="panel" id="pt">
+  <h4>Tools</h4>
+  <div class="row">
+    <button class="btn" id="surp">Surprise me</button>
+    <button class="btn" id="clr">Clear filters</button>
+    <button class="btn" id="pdf">Print / save list as PDF</button>
+    <button class="btn" id="exp">Export JSON</button>
+    <button class="btn" id="namesBtn">Names only</button>
+    <button class="btn" id="covBtn">Check covers</button>
+    <button class="btn" id="trailBtn">Reading trails</button>
+    <button class="btn" id="starBtn">Genre constellation</button>
+    <button class="btn adm-only" id="imp">Import JSON</button><input type="file" id="impf" accept=".json,application/json" hidden>
+    <button class="btn pri adm-only" id="seed">Seed library to Supabase</button>
+    <button class="btn pri adm-only" id="sync">Sync book data</button>
+  </div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="comment-section" id="commentSection">
+  <h3 class="comment-heading">Notes from visitors</h3>
+  <p class="comment-heading-sub">recommendations, reading-order arguments and shelf envy welcome</p>
+  <div id="commentLoginMsg" class="comment-login-msg" style="display:flex"><span>Sign in to leave a note</span><a href="/login" class="comment-signin-btn">sign in</a></div>
+  <div id="commentFormWrap" style="display:none"><div class="comment-form"><textarea id="commentText" placeholder="Share a thought… (max 500 chars)" maxlength="500"></textarea><div class="comment-form-footer"><span id="commentCharCount" class="comment-char-count">0 / 500</span><button onclick="submitComment('library')" class="comment-submit">leave a note</button></div></div></div>
+  <div class="comment-list" id="commentList"><div class="comment-loading" id="commentLoading">Loading notes…</div><div class="comment-empty" id="commentEmpty" style="display:none">No notes yet. Be the first.</div></div>
+</div>
+<footer>Part of Stargazer. <span id="gem" title="✦">✦</span> Press ↑↑↓↓←→←→BA for lamplight.</footer>
+</div>
+
+<div class="ov" id="ov"><div class="md" id="md"></div></div>
+<div id="jump"><button id="modeBtn" aria-label="Toggle day or night mode" title="Switch day / night"></button><button id="upBtn" aria-label="Jump to top" title="Top of page">↑</button><button id="dnBtn" aria-label="Jump to bottom" title="Bottom of page">↓</button></div>
+<div id="toast" role="status"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="library-data.js"></script>
+<script src="book-status.js"></script>
+<script>
+const SB_URL='https://daqxabswnrhqpjyfdbwx.supabase.co',SB_KEY='sb_publishable_ClSIuk3B4361beM8n9T7iQ_PIEM-D4j',ADMIN='ayanchakrabortyall@gmail.com',ADMINS=['ayanchakrabortyall@gmail.com','officialayanimp@gmail.com','duolingo.learn1024@gmail.com'];
+const libdb=window.supabase.createClient(SB_URL,SB_KEY);
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const slug=t=>t.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]/g,'');
+const hash=t=>[...t].reduce((a,c)=>(a*31+c.charCodeAt(0))|0,7)>>>0;
+const SHAPES=['polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)','polygon(50% 0,100% 50%,50% 100%,0 50%)','polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0 50%)','circle(50%)','polygon(50% 5%,100% 95%,0 95%)','polygon(50% 0,100% 38%,82% 100%,18% 100%,0 38%)','polygon(35% 0,65% 0,65% 35%,100% 35%,100% 65%,65% 65%,65% 100%,35% 100%,35% 65%,0 65%,0 35%,35% 35%)'];
+const GN={dy:'Dystopian',fa:'Fantasy',ef:'Epic Fantasy',ya:'Young Adult',sf:'Science Fiction',hs:'Hard Sci-Fi',cp:'Cyberpunk',tt:'Time Loop & Time Travel',pt:'Psychological Thriller',wd:'Whodunit',dt:'Detective',my:'Mystery',ho:'Horror',go:'Gothic',su:'Supernatural',ch:'Cosmic Horror',mg:'Manga',mf:'Metafiction',ol:'Oulipo & Constraint Writing',lt:'Literary Fiction',cl:'Classic',ad:'Adventure',kd:"Children's",mr:'Magical Realism',ph:'Philosophical Fiction',bn:'Bengali Literature',hi:'Historical Fiction',lg:'Legal Thriller',pa:'Post-Apocalyptic',rm:'Romance',sa:'Satire',so:'Space Opera',tr:'Thriller',ep:'Epistolary & Diary',bm:'Memoir',sp:'Conspiracy & Espionage',ex:'Existential',sl:'Slice of Life',mw:'Myth & Epic',sw:'Short Stories',dr:'Drama & Plays',cr:'Crime',it:'Indian Writing',ps:'Psychological Fiction'};
+const SN={ma:'Mathematics',st:'Statistics & Probability',py:'Physics & Cosmos',ph:'Philosophy',ps:'Psychology & Thinking',bi:'Biology & Health',ln:'Language & Words',ci:'Civics & Law',pz:'Puzzles & Recreations',cs:'Computing & Technology',ap:'Applied Science'};
+const KN={g:'general',t:'textbook'};
+const F=`Wings of Fire~A. P. J. Abdul Kalam~bm,it,ph
+A Christmas Carol~Charles Dickens~cl,su,go
+Children's Omnibus~Ruskin Bond~kd,ad,it
+Flowers for Algernon~Daniel Keyes~sf,ep,ps
+Dark Matter~Blake Crouch~sf,tr,hs
+Discussions on Youth~Daisaku Ikeda~ph
+Harry Potter and the Philosopher's Stone~J.K. Rowling~fa,ya,ad~Harry Potter|1~philosophersstone
+Harry Potter and the Goblet of Fire~J.K. Rowling~fa,ya,ad~Harry Potter|4~gobletoffire
+Harry Potter and the Half-Blood Prince~J.K. Rowling~fa,ya,ad~Harry Potter|6~halfbloodprince
+Harry Potter and the Deathly Hallows~J.K. Rowling~fa,ya,ad~Harry Potter|7~deathlyhallows
+Shadow and Bone~Leigh Bardugo~fa,ya,rm~Shadow and Bone|1
+Siege and Storm~Leigh Bardugo~fa,ya,rm~Shadow and Bone|2
+Ruin and Rising~Leigh Bardugo~fa,ya,rm~Shadow and Bone|3
+The Wizard of Oz~L. Frank Baum~kd,fa,cl
+Divergent~Veronica Roth~dy,ya,sf~Divergent|1
+Insurgent~Veronica Roth~dy,ya,sf~Divergent|2
+Allegiant~Veronica Roth~dy,ya,sf~Divergent|3
+Four: A Divergent Collection~Veronica Roth~dy,ya,sf~Divergent|4~four
+The Hunger Games~Suzanne Collins~dy,ya,tr~The Hunger Games|1
+Recursion~Blake Crouch~sf,tt,tr
+Snow Crash~Neal Stephenson~cp,sf,sa
+Ready Player One~Ernest Cline~sf,ad,cp~Ready Player One|1
+The Seven Deaths of Evelyn Hardcastle~Stuart Turton~my,tt,wd
+The First Fifteen Lives of Harry August~Claire North~sf,tt,ph
+The Housemaid~Freida McFadden~pt,tr~The Housemaid|1
+Fight Club~Chuck Palahniuk~pt,sa,ex
+The Guest List~Lucy Foley~my,wd,tr
+The Silent Patient~Alex Michaelides~pt,tr,my
+You~Caroline Kepnes~pt,tr,cr
+The Girl on the Train~Paula Hawkins~pt,my,tr
+Before I Go to Sleep~S. J. Watson~pt,tr,my
+Murder on the Orient Express~Agatha Christie~wd,dt,cl~Hercule Poirot|0
+The ABC Murders~Agatha Christie~wd,dt,cl~Hercule Poirot|0
+The Mystery of the Blue Train~Agatha Christie~wd,dt,cl~Hercule Poirot|0
+Evil Under the Sun~Agatha Christie~wd,dt,cl~Hercule Poirot|0
+Lord Edgware Dies~Agatha Christie~wd,dt,cl~Hercule Poirot|0
+Inferno~Dan Brown~tr,sp,my~Robert Langdon|4
+The Da Vinci Code~Dan Brown~tr,sp,my~Robert Langdon|2
+Angels & Demons~Dan Brown~tr,sp,my~Robert Langdon|1
+The Lost Symbol~Dan Brown~tr,sp,my~Robert Langdon|3
+Origin~Dan Brown~tr,sp,sf~Robert Langdon|5
+Deception Point~Dan Brown~tr,sp
+Digital Fortress~Dan Brown~tr,cp,sp
+Treasure Island~Robert Louis Stevenson~ad,cl,kd
+Black Beauty~Anna Sewell~cl,kd
+The Diary of a Young Girl~Anne Frank~bm,ep,hi
+Around the World in Eighty Days~Jules Verne~ad,cl
+The O'Sullivan Twins~Enid Blyton~kd,ad~St Clare's|2
+The Twins at St Clare's~Enid Blyton~kd,ad~St Clare's|1
+Five Go Adventuring Again~Enid Blyton~kd,ad,my~The Famous Five|2
+Matilda~Roald Dahl~kd,fa
+Charlie and the Chocolate Factory~Roald Dahl~kd,fa~Charlie Bucket|1
+The Secret Garden~Frances Hodgson Burnett~kd,cl
+Gone Girl~Gillian Flynn~pt,tr,my
+Brave New World~Aldous Huxley~dy,cl,sf
+Frankenstein~Mary Shelley~go,cl,sf
+Goosebumps: The Haunted Mask~R. L. Stine~ho,kd~Goosebumps|0
+Goosebumps: The Horror at Camp Jellyjam~R. L. Stine~ho,kd~Goosebumps|0
+Goosebumps: Ghost in the Mirror~R. L. Stine~ho,kd,su~Goosebumps|0
+Goosebumps: Say Cheese and Die Screaming~R. L. Stine~ho,kd~Goosebumps|0
+Goosebumps: Danger Time~R. L. Stine~ho,kd,tt~Goosebumps|0
+Goosebumps: Attack of the Graveyard Ghouls~R. L. Stine~ho,kd~Goosebumps|0
+Goosebumps: Why I Quit Zombie School~R. L. Stine~ho,kd~Goosebumps|0
+Goosebumps: Escape from HorrorLand~R. L. Stine~ho,kd~Goosebumps|0
+Goosebumps: Monster Blood for Breakfast~R. L. Stine~ho,kd~Goosebumps|0
+Goosebumps: Welcome to Camp Nightmare~R. L. Stine~ho,kd~Goosebumps|0
+Goosebumps: I Am Your Evil Twin~R. L. Stine~ho,kd~Goosebumps|0
+Goosebumps: Be Careful What You Wish For~R. L. Stine~ho,kd,fa~Goosebumps|0
+Goosebumps: Invaders from the Big Screen~R. L. Stine~ho,kd~Goosebumps|0
+Goosebumps: Escape from Horror House~R. L. Stine~ho,kd~Goosebumps|0
+Goosebumps: Slappy, Birthday to You~R. L. Stine~ho,kd~Goosebumps|0
+The Doll Graveyard~Unknown~ho,su
+More Great Ghost Stories (Projapoti Publication)~Various~ho,su,sw
+The Shining~Stephen King~ho,su,go
+Pet Sematary~Stephen King~ho,su
+Insomnia~Stephen King~ho,fa,su
+It~Stephen King~ho,su
+The Stand~Stephen King~pa,ho,ef
+Skeleton Crew~Stephen King~ho,sw
+Apt Pupil~Stephen King~pt,ho
+The Merchant of Venice~William Shakespeare~dr,cl
+Chander Pahar~Bibhutibhushan Bandyopadhyay~bn,ad,cl
+A Journey to the Centre of the Earth~Jules Verne~ad,sf,cl
+The Invisible Man~H. G. Wells~sf,cl,go
+Hirer Angti~Shirshendu Mukhopadhyay~bn,ad,my
+Children of Time~Adrian Tchaikovsky~sf,hs,so~Children of Time|1
+Verity~Colleen Hoover~pt,rm,tr
+The Hobbit~J.R.R. Tolkien~fa,ef,ad~Middle-earth|1
+The Fellowship of the Ring~J.R.R. Tolkien~fa,ef,ad~Middle-earth|2
+The Two Towers~J.R.R. Tolkien~fa,ef,ad~Middle-earth|3
+The Return of the King~J.R.R. Tolkien~fa,ef,ad~Middle-earth|4
+The Three-Body Problem~Liu Cixin~sf,hs,so~Remembrance of Earth's Past|1
+The Dark Forest~Liu Cixin~sf,hs,so~Remembrance of Earth's Past|2
+Death's End~Liu Cixin~sf,hs,so~Remembrance of Earth's Past|3
+Uzumaki~Junji Ito~mg,ho,ch
+Pyre of Queens~David Hair~fa,ya,su~Return of Ravana|1
+The Writer on the Hill~Ruskin Bond~it,lt
+Sherlock Holmes~Arthur Conan Doyle~dt,my,cl~Sherlock Holmes|0
+Poor Things~Alasdair Gray~mf,sa,go
+Lincoln in the Bardo~George Saunders~lt,su,mf
+The Killings at Kingfisher Hill~Sophie Hannah~wd,dt
+The Complete Adventures of Feluda, Vol. 1~Satyajit Ray~bn,dt,my~Feluda|1
+City of Bones~Cassandra Clare~fa,ya,su~The Mortal Instruments|1
+City of Ashes~Cassandra Clare~fa,ya,su~The Mortal Instruments|2
+City of Glass~Cassandra Clare~fa,ya,su~The Mortal Instruments|3
+City of Fallen Angels~Cassandra Clare~fa,ya,su~The Mortal Instruments|4
+Alice's Adventures in Wonderland~Lewis Carroll~kd,fa,cl
+The New York Trilogy~Paul Auster~mf,dt,pt
+Labyrinths~Jorge Luis Borges~mr,mf,ph,sw
+Days at the Morisaki Bookshop~Satoshi Yagisawa~sl,lt
+The Little Prince~Antoine de Saint-Exupéry~kd,ph,cl
+A Wrinkle in Time~Madeleine L'Engle~sf,fa,kd~The Time Quintet|1
+Howl's Moving Castle~Diana Wynne Jones~fa,ya~Howl's Moving Castle|1
+Oliver Twist~Charles Dickens~cl,hi
+Baudolino~Umberto Eco~hi,mf,mr
+We Need to Talk About Kevin~Lionel Shriver~pt,lt
+1984~George Orwell~dy,cl,sp
+The Exorcist~William Peter Blatty~ho,su
+Lockwood & Co.: The Screaming Staircase~Jonathan Stroud~su,ya,my~Lockwood & Co.|1
+The Shadow of the Wind~Carlos Ruiz Zafón~my,go,hi~Cemetery of Forgotten Books|1
+50 World's Greatest Horror Stories~Various~ho,sw
+A Good Girl's Guide to Murder~Holly Jackson~my,ya,wd~A Good Girl's Guide to Murder|1
+The Ruins~Scott Smith~ho,tr
+Ringworld~Larry Niven~sf,hs~Ringworld|1
+The Ringworld Engineers~Larry Niven~sf,hs~Ringworld|2
+The Ringworld Throne~Larry Niven~sf,hs~Ringworld|3
+Shutter Island~Dennis Lehane~pt,my,tr
+Halo: The Fall of Reach~Eric Nylund~sf,so~Halo|1
+Twenty Thousand Leagues Under the Seas~Jules Verne~ad,sf,cl
+House of Leaves~Mark Z. Danielewski~ho,mf
+The Passage~Justin Cronin~pa,ho,sf~The Passage|1
+The Twelve~Justin Cronin~pa,ho,sf~The Passage|2
+The City of Mirrors~Justin Cronin~pa,ho,sf~The Passage|3
+Stories of Your Life and Others~Ted Chiang~sf,sw,ph
+The Thirteenth Tale~Diane Setterfield~go,my,lt
+The Hitchhiker's Guide to the Galaxy~Douglas Adams~sf,sa
+The Penguin Book of Oulipo~Various~ol,mf,sw
+Pale Fire~Vladimir Nabokov~mf,lt,sa
+The Anomaly~Hervé Le Tellier~sf,lt,ph
+Exercises in Style~Raymond Queneau~ol,mf,sa
+The Giver~Lois Lowry~dy,ya~The Giver Quartet|1
+The Sense of an Ending~Julian Barnes~lt,my
+The Odyssey~Homer~mw,cl,ad
+If on a Winter's Night a Traveler~Italo Calvino~mf,ol,lt
+A Void~Georges Perec~ol,mf,lt
+Jonathan Strange & Mr Norrell~Susanna Clarke~fa,hi
+Gadsby~Ernest Vincent Wright~ol,ad
+Artemis Fowl~Eoin Colfer~fa,ya,ad~Artemis Fowl|1
+Artemis Fowl: The Arctic Incident~Eoin Colfer~fa,ya,ad~Artemis Fowl|2~thearcticincident
+Satin Island~Tom McCarthy~mf,lt
+Nastik Panditer Bhite~Unknown~bn
+The Dictionary of the Khazars~Milorad Pavić~mf,mr,hi
+The Sound and the Fury~William Faulkner~lt,cl
+Riddley Walker~Russell Hoban~pa,lt
+Extremely Loud & Incredibly Close~Jonathan Safran Foer~lt,mf
+The Silent History~Eli Horowitz~sf,mf
+Foucault's Pendulum~Umberto Eco~sp,mf,hi
+The Raw Shark Texts~Steven Hall~mf,sf,ho
+Hopscotch~Julio Cortázar~mf,mr,lt
+Life: A User's Manual~Georges Perec~ol,lt,mf
+Northern Lights~Philip Pullman~fa,ya,ad~His Dark Materials|1
+The Subtle Knife~Philip Pullman~fa,ya,ad~His Dark Materials|2
+The Amber Spyglass~Philip Pullman~fa,ya,ad~His Dark Materials|3
+A Man Called Ove~Fredrik Backman~lt,sl
+Remina~Junji Ito~mg,ho,ch
+Tideline~Penny Hancock~pt,lt
+Invisible Cities~Italo Calvino~mf,mr,ph
+The Firm~John Grisham~lg,tr
+Accelerando~Charles Stross~sf,cp,hs
+Cloud Atlas~David Mitchell~mf,sf,hi
+The Horror Omnibus~H. P. Lovecraft~ch,ho,sw
+An Instance of the Fingerpost~Iain Pears~hi,my
+The Guardians~John Grisham~lg,tr
+2010: Odyssey Two~Arthur C. Clarke~sf,hs,so~Space Odyssey|2
+2061: Odyssey Three~Arthur C. Clarke~sf,hs,so~Space Odyssey|3
+3001: The Final Odyssey~Arthur C. Clarke~sf,hs,so~Space Odyssey|4
+Never Go Back~Lee Child~tr,cr
+White Nights~Fyodor Dostoevsky~cl,rm,lt
+Metamorphosis~Franz Kafka~cl,ex,sa
+Night Film~Marisha Pessl~my,pt,su
+Crime and Punishment~Fyodor Dostoevsky~cl,pt,ph
+A Portrait of the Artist as a Young Man~James Joyce~cl,lt
+The Curious Incident of the Dog in the Night-Time~Mark Haddon~lt,my,ya
+The Manuscript Found in Saragossa~Jan Potocki~mf,hi,mr
+The Westing Game~Ellen Raskin~my,kd,wd`;
+const L=`Vedic Mathematics~Jagadguru Swami Sri Bharati Krsna Tirthaji Maharaja~g~ma
+Infinite Powers~Steven Strogatz~g~ma
+Mathematical Puzzles of Sam Loyd~Sam Loyd (ed. Martin Gardner)~g~pz
+The Theory of Everything~Stephen Hawking~g~py
+Men of Mathematics~E. T. Bell~g~ma
+Surely You're Joking, Mr. Feynman!~Richard P. Feynman~g~py
+Journey Through Genius~William Dunham~g~ma
+In Search of Schrödinger's Cat~John Gribbin~g~py
+The Joy of x~Steven Strogatz~g~ma
+Philosophy and the New Physics~Jonathan H. Powers~g~py
+A Short History of Nearly Everything~Bill Bryson~g~py
+The Interpretation of Dreams~Sigmund Freud~g~ps
+The Gut (Payal Kothari)~Payal Kothari~g~bi
+An Imaginary Tale~Paul J. Nahin~g~ma
+Life's Amazing Secrets~Gaur Gopal Das~g~ps
+Relativity~Albert Einstein~g~py
+The Etymologicon~Mark Forsyth~g~ln
+The Calculus Story~David Acheson~g~ma
+The Art of Thinking Clearly~Rolf Dobelli~g~ps
+Ikigai~Héctor García & Francesc Miralles~g~ps
+Astrophysics for People in a Hurry~Neil deGrasse Tyson~g~py
+Philosophy: Who Needs It~Ayn Rand~g~ph
+A Graphic Guide to Statistics~Unknown~g~st
+Black Holes~Stephen Hawking~g~py
+Thinking, Fast and Slow~Daniel Kahneman~g~ps
+Naked Statistics~Charles Wheelan~g~st
+The Art of Statistics~David Spiegelhalter~g~st
+Statistics~Samuel Hays~t~st
+Fundamentals of Statistics, Vol. 1~Goon, Gupta & Dasgupta~t~st~fundamentalsofstatisticsvol1
+Fundamentals of Statistics, Vol. 2~Goon, Gupta & Dasgupta~t~st~fundamentalsofstatisticsvol2
+UG Mathematics~D. Chatterjee & B. K. Pal~t~ma
+Numerical Analysis~S. S. Sastry~t~ma
+Mathematical Statistics~N. G. Das~t~st
+Challenging Mathematical Problems with Elementary Solutions, Vol. 2~A. M. Yaglom & I. M. Yaglom~t~pz
+An Introduction to Probability Theory and Its Applications, Vol. 1~William Feller~t~st~anintroductiontoprobabilitytheoryanditsapplicationsvol1
+An Introduction to Probability Theory and Its Applications, Vol. 2~William Feller~t~st~anintroductiontoprobabilitytheoryanditsapplicationsvol2
+Mathematical Statistics and Data Analysis~John A. Rice~t~st
+Biostatistics~Wayne W. Daniel~t~st
+Mathematics++~Jiří Matoušek et al.~t~ma
+Linear Algebra~G. Hadley~t~ma
+The Constitution of India~Subhash C. Kashyap~t~ci
+Numerical Mathematical Analysis~James B. Scarborough~t~ma
+Fifty Challenging Problems in Probability~Frederick Mosteller~t~st
+The Gut~Giulia Enders~g~bi
+Calculus~L. V. Tarasov~t~ma
+Principles of Mathematical Analysis~Walter Rudin~t~ma
+Introduction to Real Analysis~Robert G. Bartle & Donald R. Sherbert~t~ma
+A First Course in Probability~Sheldon Ross~t~st
+Probability and Statistical Inference~Hogg, Tanis & Zimmerman~t~st
+Numerical Analysis (Gupta & Bose)~Amritabha Gupta & Subhas Chandra Bose~t~ma
+Fourier Analysis: An Introduction~Elias M. Stein & Rami Shakarchi~t~ma
+Real Analysis: Measure Theory, Integration, and Hilbert Spaces~Elias M. Stein & Rami Shakarchi~t~ma
+Introduction to Analytic Number Theory~Tom M. Apostol~t~ma
+Theory and Problems of Complex Variable~Murray R. Spiegel~t~ma
+Putnam and Beyond~Răzvan Gelca & Titu Andreescu~t~pz
+What Is Mathematics?~Richard Courant & Herbert Robbins~g~ma
+The Mammoth Book of Chess~Graham Burgess~g~pz
+Higher Algebra~S. K. Mapa~t~ma
+Problem-Solving Strategies~Arthur Engel~t~pz
+Meditations~Marcus Aurelius~g~ph
+A Brief History of Time~Stephen Hawking~g~py
+Cosmos~Carl Sagan~g~py
+The Birth of Tragedy~Friedrich Nietzsche~g~ph
+The Subtle Art of Not Giving a F*ck~Mark Manson~g~ps
+103 Trigonometry Problems~Titu Andreescu & Zuming Feng~t~pz
+My Best Mathematical and Logic Puzzles~Martin Gardner~g~pz
+Adventures in Problem Solving~Shailesh A. Shirali~t~pz
+Principles of Physics~David Halliday, Robert Resnick & Jearl Walker~t~py
+Calculus Made Easy~Silvanus P. Thompson~g~ma
+Modern Operating Systems~Andrew S. Tanenbaum~t~cs
+The Art and Craft of Problem Solving~Paul Zeitz~t~pz
+Principles of Operations Research: With Applications to Managerial Decisions~Harvey M. Wagner~t~ma
+CMI TOMATO~M. Balasundar~t~ma
+Think Like a Programmer~V. Anton Spraul~g~cs
+More Puzzles~Shakuntala Devi~g~pz
+ISC Computer Science with Java (Class 11)~Sumita Arora~t~cs
+ISC Computer Science with Java (Class 12)~Sumita Arora~t~cs
+Scientific Techniques in Criminal Investigation~Ramachandran~t~ap
+Abstract Algebra~Sen, Ghosh, Mukhopadhyay & Maity~t~ma
+Elementary Number Theory~David M. Burton~t~ma
+Strategy: An Introduction to Game Theory~Joel Watson~t~ma
+Elements of Metric Spaces~M. N. Mukherjee~t~ma
+Functional Equations~B. J. Venkatachala~t~pz
+Solving Problems in Geometry~Kim Hoo Hang & Haibin Wang~t~pz
+Principles and Techniques in Combinatorics~Chen Chuan-Chong & Koh Khee-Meng~t~ma
+An Excursion in Mathematics~Bhaskaracharya Pratishthana~g~ma
+Challenge and Thrill of Pre-College Mathematics~V. Krishnamurthy, C. R. Pranesachar, K. N. Ranganathan & B. J. Venkatachala~t~pz
+Vector Analysis~R. K. Ghosh & C. Maity~t~ma
+Elementary Topology~Dick Wick Hall & Guilford L. Spencer II~t~ma
+Fundamentals of Television~Walter H. Buchsbaum~t~cs
+An Introduction to Data Structures with Applications~Jean-Paul Tremblay & Paul G. Sorenson~t~cs
+Linear Programming~P. M. Karak~t~ma
+Problem Primer for the Olympiad~C. R. Pranesachar, B. J. Venkatachala & C. S. Yogananda~t~pz
+100 Problems in Elementary Mathematics~Hugo Steinhaus~g~pz
+536 Puzzles and Curious Problems~Henry Ernest Dudeney (ed. Martin Gardner)~g~pz
+Mathematical Olympiad Challenges~Titu Andreescu & Răzvan Gelca~t~pz
+360 Problems for Mathematical Contests~Titu Andreescu & Dorin Andrica~t~pz
+The Ultimate Mathematical Challenge~UK Mathematics Trust~g~pz
+Analytical Geometry of Two and Three Dimensions and Vector Analysis~R. M. Khan~t~ma
+Chemical and Biological War~Indu Prakash~g~ap
+Advanced Mathematical Analysis~Utpal Chatterjee~t~ma
+Linear Programming and Game Theory~Chakraborty & Ghosh~t~ma
+200 Puzzling Physics Problems~Péter Gnädig, Gyula Honyek & Ken Riley~t~py
+Test of Mathematics at 10+2 Level~Indian Statistical Institute~t~ma
+A Treatise on Special Functions for Scientists and Engineers~B. Sen~t~ma
+Lobachevskian Geometry~A. S. Smogorzhevsky~t~ma
+Complete German~Paul Coggle & Heiner Schenke~t~ln`;
+const mk=(t,a,c,k,s,g)=>({slug:slug(t),title:t,author:a,category:c,kind:k,subject:s,genres:g,synopsis:'',cover:'',pages:0,finished:false,rating:0,note:'',file_url:'',pdf_storage:'',pdf_key:'',series:'',seriesNo:0});
+const SEED=[...F.split('\n').map(l=>{const[t,a,g,sr,ck]=l.split('~');const b=mk(t,a,'fiction','','',g.split(',').map(x=>GN[x]||x));if(sr){const[n,no]=sr.split('|');b.series=n;b.seriesNo=+no||0}if(ck)b.cover=ck+'.jpg';return b}),
+ ...L.split('\n').map(l=>{const[t,a,k,s,ck]=l.split('~');const b=mk(t,a,'learning',KN[k],SN[s],[]);if(ck)b.cover=ck+'.jpg';return b})];
+
+/* Data for books that were split out of a combined entry. Same row shape as library-data.js: [title, author ("" keeps current), pages (0 = unknown), summary]. */
+const XD=[
+["Fundamentals of Statistics, Vol. 1","",0,"Contains: descriptive statistics, probability, random variables and distributions, correlation and regression, with worked examples. Teaches: the first half of the undergraduate statistics toolkit in the style of Indian university syllabi."],
+["Fundamentals of Statistics, Vol. 2","",0,"Contains: sampling, estimation, tests of hypotheses, analysis of variance and index numbers, with worked examples. Teaches: the inference half of the undergraduate statistics toolkit in the style of Indian university syllabi."],
+["An Introduction to Probability Theory and Its Applications, Vol. 1","",509,"Contains: discrete probability, combinatorics, random walks, Markov chains, laws of large numbers. Teaches: probability as a way of thinking, through hundreds of examples."],
+["An Introduction to Probability Theory and Its Applications, Vol. 2","",669,"Contains: continuous distributions, characteristic functions, limit theorems, Brownian-type processes. Teaches: probability as a way of thinking, through hundreds of examples."],
+["Artemis Fowl: The Arctic Incident","",0,"Artemis's father is held captive by the Russian mafia in the Arctic. To save him, Artemis must team up with the fairy Captain Holly Short, who is chasing a goblin conspiracy of her own."],
+["103 Trigonometry Problems","",0,"Contains: 103 carefully graded problems from the USA Mathematical Olympiad training programme, with full solutions, covering identities, triangle geometry, trigonometric equations and inequalities. Teaches: how to turn trigonometry from a bag of formulas into a flexible problem-solving tool."],
+["My Best Mathematical and Logic Puzzles","",0,"Contains: seventy of Gardner's favourite brain-teasers from his Scientific American column, spanning arithmetic, geometry, probability and pure logic, each with a clear solution. Teaches: lateral thinking and the pleasure of the aha moment, with no heavy maths required."],
+["Adventures in Problem Solving","",0,"Contains: a guided tour of competition-style problems in number theory, algebra, geometry and combinatorics, with discussion of the thinking behind each solution. Teaches: strategy and habits of mind for attacking unfamiliar problems, aimed at Olympiad aspirants."],
+["Principles of Physics","",0,"Contains: mechanics, waves, thermodynamics, electromagnetism, optics and an introduction to modern physics, with worked examples and many end-of-chapter problems. Teaches: the whole first-year university physics sequence with an emphasis on physical reasoning over memorised formulas."],
+["Calculus Made Easy","",0,"Contains: a famously friendly introduction to differentiation and integration, with plain-spoken explanations and practice exercises. Teaches: that calculus is built on a few simple ideas, so the notation stops being intimidating before the technique begins."],
+["Modern Operating Systems","",0,"Contains: processes and threads, scheduling, memory management, file systems, input/output, deadlocks, virtualisation, multiprocessor systems and security, with case studies of real operating systems. Teaches: how an operating system works internally and why it was designed that way."],
+["The Art and Craft of Problem Solving","",0,"Contains: general strategies and tactics for problem solving, illustrated with hundreds of problems from Olympiads and the Putnam competition across algebra, combinatorics, geometry and calculus. Teaches: a transferable method for approaching hard problems, from first experiments to rigorous proof."],
+["Principles of Operations Research: With Applications to Managerial Decisions","",0,"Contains: linear programming and the simplex method, duality, transportation and assignment problems, network models, dynamic programming, inventory theory, queueing and simulation. Teaches: how to build mathematical models of business problems and use them to find optimal decisions."],
+["CMI TOMATO","",0,"Contains: practice papers and solutions in the multiple-choice and written format used for the Chennai Mathematical Institute entrance test, drawn from the 10+2 mathematics syllabus. Teaches: exam technique and the core school-level topics needed for admission to top maths programmes."],
+["Think Like a Programmer","",0,"Contains: exercises and worked solutions on recursion, pointers, classes, arrays, data structures and working with unfamiliar code. Teaches: creative problem solving, the skill of breaking a hard task into pieces before writing any code."],
+["More Puzzles","",0,"Contains: a second collection of number, logic and word puzzles from the famed human computer, graded from easy to tough, with answers at the back. Teaches: quick mental arithmetic and playful reasoning through a steady stream of brain-teasers."],
+["ISC Computer Science with Java (Class 11)","",0,"Contains: Java fundamentals, values and data types, operators, input and output, conditionals, loops, arrays, strings, functions, classes and objects, plus Boolean algebra and logic gates, following the ISC Class 11 syllabus. Teaches: introductory programming in Java and the logic behind digital circuits."],
+["ISC Computer Science with Java (Class 12)","",0,"Contains: recursion, data structures such as stacks, queues and linked lists, inheritance, encapsulation, sorting and searching, and the ISC Class 12 theory topics on computer systems and Boolean logic. Teaches: object-oriented design and algorithmic thinking, prepared for the board exam and its practical component."],
+["Scientific Techniques in Criminal Investigation","",0,"Contains: the scientific methods of forensic investigation, including fingerprints, document examination, ballistics, toxicology, serology and trace evidence. Teaches: how physical evidence is collected, analysed and used to reconstruct a crime."],
+["Abstract Algebra","",0,"Contains: sets and relations, groups, subgroups, normal subgroups and quotient groups, homomorphism theorems, rings, ideals, fields and polynomial rings, with many exercises. Teaches: algebraic structure as a unifying idea, in the style of Indian university honours courses."],
+["Elementary Number Theory","",0,"Contains: divisibility, primes, congruences, Fermat's and Euler's theorems, quadratic reciprocity, number-theoretic functions, Diophantine equations and continued fractions, enlivened with historical notes. Teaches: the foundations of number theory and how to write a clear proof."],
+["Strategy: An Introduction to Game Theory","",0,"Contains: normal and extensive form games, Nash equilibrium, subgame perfection, bargaining, repeated games, incomplete information and contract theory, with applications from economics. Teaches: how rational agents reason about each other's choices, built up gradually with minimal mathematics."],
+["Elements of Metric Spaces","",0,"Contains: metric and normed spaces, open and closed sets, convergence, completeness, compactness, connectedness and continuity, with exercises. Teaches: how the ideas of real analysis generalise to abstract spaces, a bridge to topology and functional analysis."],
+["Functional Equations","",0,"Contains: Cauchy's equation and its variants, equations on the integers, reals and rationals, substitution techniques and many Olympiad problems with solutions. Teaches: the systematic art of finding every function that satisfies a given relation."],
+["Solving Problems in Geometry","",0,"Contains: Euclidean geometry for competitions, with theorems on triangles, circles, similarity, collinearity and concurrence, plus coordinate and vector methods and graded problems. Teaches: geometric insight and strategies for Olympiad-level proofs."],
+["Principles and Techniques in Combinatorics","",0,"Contains: permutations and combinations, binomial coefficients, the inclusion-exclusion principle, recurrence relations, generating functions, Polya counting and Ramsey theory, with exercises. Teaches: counting methods and combinatorial reasoning from first principles."],
+["An Excursion in Mathematics","",0,"Contains: expository articles on algebra, number theory, geometry, combinatorics and the history of mathematics, written for students preparing for the Olympiads. Teaches: how the mathematical ideas behind competition problems fit together and where to read further."],
+["Challenge and Thrill of Pre-College Mathematics","",0,"Contains: topic-wise chapters on algebra, geometry, trigonometry, number theory and combinatorics, with solved examples and challenge problems pitched beyond the school syllabus. Teaches: ways of thinking that prepare a school student for the Olympiad and the entrance exams."],
+["Vector Analysis","",0,"Contains: vector algebra, differentiation of vectors, gradient, divergence and curl, line, surface and volume integrals, and the theorems of Green, Gauss and Stokes. Teaches: the mathematical language of fields, used in physics and engineering."],
+["Elementary Topology","",0,"Contains: sets, topological spaces, bases and subspaces, continuous maps, connectedness, compactness, separation axioms and metric spaces. Teaches: the foundational concepts of point-set topology through an accessible, example-driven treatment."],
+["Fundamentals of Television","",0,"Contains: the principles of image scanning, picture tubes, cameras, synchronisation, transmission and reception of the television signal, and colour systems. Teaches: how a moving picture is captured, encoded, broadcast and displayed."],
+["An Introduction to Data Structures with Applications","",0,"Contains: arrays, stacks, queues, linked lists, trees, graphs, sorting, searching and hashing, with algorithms and applications. Teaches: how to choose and implement data structures, a classic computer-science course text."],
+["Linear Programming","",0,"Contains: formulation of linear programming problems, the graphical method, the simplex method, duality, and transportation and assignment problems, with solved examples. Teaches: how to optimise a linear objective under constraints, in the format of university syllabi."],
+["Problem Primer for the Olympiad","",0,"Contains: organised sets of problems and solutions in algebra, geometry, number theory and combinatorics, graded for the Indian Mathematical Olympiad programme. Teaches: the standard techniques every Olympiad student needs, introduced one at a time."],
+["100 Problems in Elementary Mathematics","",0,"Contains: a hundred problems from everyday life, arithmetic, geometry and probability, with hints and solutions, by the Polish master of recreational mathematics. Teaches: that elementary mathematics can still surprise and that a clean idea beats brute computation."],
+["536 Puzzles and Curious Problems","",0,"Contains: classic puzzles in arithmetic, geometry, chess, dissections, crossing problems and logic, selected from Dudeney's famous collections with solutions. Teaches: puzzle-solving craft and a sense of how recreational maths grew into serious mathematics."],
+["Mathematical Olympiad Challenges","",0,"Contains: more than 100 Olympiad problems organised by theme in geometry, trigonometry, algebra, number theory and combinatorics, each with a detailed solution. Teaches: the key ideas behind international contest problems and how to build the intuition to solve them."],
+["360 Problems for Mathematical Contests","",0,"Contains: 360 contest problems with solutions in algebra, number theory, geometry, combinatorics and inequalities. Teaches: contest-level problem solving through practice, for students aiming at national and international Olympiads."],
+["The Ultimate Mathematical Challenge","",0,"Contains: a large selection of past UK Mathematical Challenge questions with full solutions and commentary on the problem-solving strategy used. Teaches: how to make mathematical reasoning efficient under time pressure."],
+["Analytical Geometry of Two and Three Dimensions and Vector Analysis","",0,"Contains: straight lines, circles, conics, the plane, the sphere, cones and cylinders, followed by vector algebra and calculus, with exercises. Teaches: coordinate geometry in two and three dimensions and the vector tools that extend it."],
+["Chemical and Biological War","",0,"Contains: an account of chemical and biological weapons, their history, the agents involved, their effects on people and the environment, and efforts at international control. Teaches: how such weapons work in broad terms and why they are banned under international law."],
+["Advanced Mathematical Analysis","",0,"Contains: real number system, sequences and series, limits, continuity, differentiability, Riemann integration and uniform convergence, with proofs and exercises. Teaches: rigorous real analysis at the honours and postgraduate level."],
+["Linear Programming and Game Theory","",0,"Contains: linear programming models, the simplex method and duality, followed by two-person zero-sum games, saddle points, mixed strategies and solution methods. Teaches: optimisation and strategic decision making, with solved examples for university courses."],
+["200 Puzzling Physics Problems","",0,"Contains: 200 original problems on mechanics, thermodynamics, electricity, optics and modern physics, each with hints and a full solution. Teaches: physical intuition and creative problem solving that goes well beyond textbook plug-in exercises."],
+["Test of Mathematics at 10+2 Level","",0,"Contains: the ISI entrance-test question papers and sample problems on algebra, trigonometry, coordinate geometry, calculus and combinatorics, with solutions. Teaches: the standard of problem expected for admission to ISI and similar programmes, and how to prepare for it."],
+["A Treatise on Special Functions for Scientists and Engineers","",0,"Contains: the Gamma and Beta functions, Bessel, Legendre and Hermite functions, hypergeometric functions and orthogonal polynomials, with applications. Teaches: the special functions that appear when solving differential equations in physics and engineering."],
+["Lobachevskian Geometry","",0,"Contains: the history of the parallel postulate, the axioms of Lobachevskian geometry, and the properties of parallel lines, triangles and circles in the hyperbolic plane. Teaches: how a geometry without Euclid's fifth postulate is built, in a short readable treatment."],
+["Complete German","",0,"Contains: a beginner-to-intermediate Teach Yourself course in German, with dialogues, vocabulary of over 2000 words, grammar explanations, exercises, cultural notes on German-speaking countries and online audio. Teaches: reading, writing, speaking and understanding everyday German using the Discovery Method, along with strategies for learning the language more effectively."],
+];
+(window.LIB_DATA||[]).concat(XD).forEach(([t,a,p,y])=>{const b=SEED.find(x=>x.title===t);if(b){if(a)b.author=a;b.pages=p||0;b.synopsis=y||''}});
+Object.entries(window.LIB_COVERS||{}).forEach(([t,f])=>{const b=SEED.find(x=>x.title===t);if(b)b.cover=f});
+const SM=Object.fromEntries(SEED.map(x=>[x.title,x]));
+let books=[],dbEmpty=true,user=null,isAdmin=false;
+const S={cat:'all',kind:'',sub:'',g:new Set(),st:'all',q:'',so:'title',series:''};
+const toast=m=>{const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('on'),2600)};
+const find=id=>books.find(b=>b.id===id);
+/* shared buy status (Will buy / Bought) from book-status.js; only the owner sees it here */
+const bs=b=>(window.SGB&&isAdmin)?SGB.get(b.title):{r:'',b:'',tr:0,tb:0};
+const cp=b=>SHAPES[hash(b.title)%SHAPES.length];
+const shapes=(b,n,big)=>[1,2,3,4,5,6,7,8,9,10].map(i=>`<i class="sh${i<=n?' on':''}" style="--cp:${cp(b)};animation-delay:${i*70}ms"${big&&isAdmin?` onclick="setRate('${b.id}',${i})" title="${i}/10"`:''}></i>`).join('');
+function ph(el){const d=document.createElement('div');d.className='ph';d.style.setProperty('--h',hash(el.alt)%360);d.textContent=el.alt;el.replaceWith(d)}
+const COVER_BASE='../covers/',COV={};
+/* One-time cache reset: browsers that cached "not found" for a cover under the old 1-week rule never re-ask for that exact URL.
+   The ?v= suffix makes every cover URL new, so they all get fetched fresh. Bumping it is optional now that covers revalidate. */
+const CV='?v=20261101';
+const coverCands=b=>{const k=slug(b.title),n=[],st=x=>x.replace(/^(the|an|a)(?=[a-z0-9]{4,})/,''),v=[k,st(k),'the'+k];if(b.cover)n.push(b.cover);
+  if(b.title.includes(':')){const[x,...y]=b.title.split(':'),z=slug(y.join(':'));v.push(z,st(z),slug(x))}
+  v.forEach(x=>['jpg','png','jpeg','webp'].forEach(e=>n.push(x+'.'+e)));return[...new Set(n)]};
+const cover=b=>{const l=COV[b.id]=coverCands(b);return `<img loading="lazy" src="${COVER_BASE}${esc(l[0])}${CV}" data-id="${b.id}" data-i="0" alt="${esc(b.title)}" onerror="nx(this)">`};
+function nx(el){const l=COV[el.dataset.id]||[],i=+el.dataset.i+1;if(i<l.length){el.dataset.i=i;el.src=COVER_BASE+l[i]+CV}else ph(el)}
+const hue=b=>hash(b.category==='learning'?(b.subject||'x'):(b.genres[0]||b.series||b.title))%360;
+const tags=b=>b.category==='learning'?[b.subject,b.kind==='textbook'?'Textbook':'General science'].filter(Boolean):b.genres;
+
+function vis(noSt){
+  const q=S.q;let r=books.filter(b=>(S.cat==='all'||b.category===S.cat)&&(S.cat!=='learning'||!S.kind||b.kind===S.kind)&&(!S.sub||b.subject===S.sub)&&(!S.series||(S.series==='*'?!!b.series:b.series===S.series))&&(!S.g.size||[...S.g].every(g=>b.genres.includes(g)))&&(noSt||S.st==='all'||(S.st==='lent'?!!b.lentTo:S.st==='reading'?!!b.reading:(S.st==='willbuy'||S.st==='bought')?bs(b).b===S.st:(S.st==='done')===!!b.finished))&&(!q||(b.title+' '+b.author+' '+b.series+' '+b.synopsis+' '+b.genres.join(' ')+' '+b.subject).toLowerCase().includes(q)));
+  const o=S.so;r.sort((a,b)=>o==='author'?a.author.localeCompare(b.author):o==='pages'?(a.pages||9e9)-(b.pages||9e9):o==='rating'?b.rating-a.rating:o==='order'?((a.finished?1:0)-(b.finished?1:0))||((a.kind==='textbook')-(b.kind==='textbook'))||((a.pages||9e9)-(b.pages||9e9)):o==='new'?(b.created_at||'').localeCompare(a.created_at||''):a.title.localeCompare(b.title));
+  if(S.series)r.sort((a,b)=>a.series.localeCompare(b.series)||(a.seriesNo-b.seriesNo)||a.title.localeCompare(b.title));
+  return r}
+function render(){
+  const v=vis(),sc=vis(true),fin=sc.filter(b=>b.finished),rated=fin.filter(b=>b.rating);
+  $('stats').innerHTML=`<div><b>${books.length}</b><span>books</span></div><div><b>${fin.length}</b><span>finished</span></div><div><b>${sc.length-fin.length}</b><span>unread</span></div><div><b>${v.length}</b><span>showing now</span></div>`;
+  $('progFill').style.width=(sc.length?fin.length/sc.length*100:0)+'%';
+  const rds=books.filter(b=>b.reading);
+  const sp=(l,b)=>`<div class="spot" onclick="show('${b.id}')"><div class="cv">${cover(b)}</div><div><small>${l}</small><b>${esc(b.title)}</b> <small>${esc(b.author)}</small></div></div>`;
+  $('spots').innerHTML=rds.map(x=>sp('Now reading',x)).join('');
+  const T=[['all','Everything'],['fiction','Fiction'],['learning','Learning']];
+  let h=T.map(([k,n])=>`<button class="btn${S.cat===k?' on':''}" onclick="setCat('${k}')" data-t="${k}">${n}</button>`).join('');
+  if(S.cat==='learning')h+=[['','All learning'],['general','Recreational & general science'],['textbook','Textbooks']].map(([k,n])=>`<button class="btn${S.kind===k?' on':''}" onclick="setKind('${k}')">${n}</button>`).join('');
+  h+=`<button class="btn t-series${S.series?' on':''}" onclick="setSeries('*',1)">Series</button>`;$('tabs').innerHTML=h;
+  const fm={},lm={};const sm={};books.forEach(b=>{if(b.series)sm[b.series]=(sm[b.series]||0)+1;if(b.category==='fiction')b.genres.forEach(g=>fm[g]=(fm[g]||0)+1);else if(b.subject)lm[b.subject]=(lm[b.subject]||0)+1});
+  const chip=(on,fn,v,c,lab)=>`<button class="chip${on?' on':''}" style="--h:${hash(v)%360}" onclick="${fn}(this.dataset.v)" data-v="${esc(v)}">${esc(lab||v)} (${c})</button>`,ks=o=>Object.keys(o).sort();
+  $('chips').innerHTML=`<h4>Fiction genres (pick several to combine)</h4><div class="chips">${ks(fm).map(g=>chip(S.g.has(g),'setG',g,fm[g])).join('')||'<span style="color:var(--mute)">No genres yet</span>'}</div><h4 style="margin-top:14px">Learning subjects</h4><div class="chips">${ks(lm).map(x=>chip(S.sub===x,'setSub',x,lm[x])).join('')}</div><h4 style="margin-top:14px">Series</h4><div class="chips">${chip(S.series==='*','setSeries','*',books.filter(b=>b.series).length,'All series books')}${ks(sm).filter(x=>sm[x]>1).map(x=>chip(S.series===x,'setSeries',x,sm[x])).join('')}</div>`;
+  $('stSeg').innerHTML=ST.filter(([k])=>isAdmin||(k!=='willbuy'&&k!=='bought')).map(([k,n])=>`<button class="chip${S.st===k?' on':''}" onclick="S.st='${k}';render()">${n}</button>`).join('');
+  $('soSeg').innerHTML=SO.map(([k,n])=>`<button class="chip${S.so===k?' on':''}" onclick="S.so='${k}';render()">${n}</button>`).join('');
+  $('grid').innerHTML=v.length?v.map(b=>`<article class="card${b.finished?' fin':''}" style="--h:${hue(b)}" tabindex="0" onclick="show('${b.id}')" onkeydown="if(event.key==='Enter')show('${b.id}')"><div class="cv">${cover(b)}${b.emoji?`<span class="rx" title="My reaction">${b.emoji}</span>`:''}${b.finished?'<span class="badge">Finished</span>':b.reading?'<span class="badge rdg">Reading</span>':''}${b.lentTo?'<span class="badge lent">Lent out</span>':''}${bs(b).b?`<span class="badge buy">${bs(b).b==='bought'?'🛒 Bought':'🔖 Will buy'}</span>`:''}</div><div class="bd">${b.series?`<p class="ser">${esc(b.series)}${b.seriesNo?' · Book '+b.seriesNo:''}</p>`:''}<h3>${esc(b.title)}</h3><p class="au">${esc(b.author)}${b.pages?' · '+b.pages+' pages':''}</p>${loanShort(b)}<div class="tg">${tags(b).slice(0,3).map(x=>`<span>${esc(x)}</span>`).join('')}</div>${b.finished?`<div class="rt">${shapes(b,b.rating)}</div>`:''}</div></article>`).join(''):'<div class="empty" style="grid-column:1/-1">No books match these filters. Try clearing them.</div>'}
+const setSeries=(v,open)=>{S.series=S.series===v?'':v;if(S.series){S.cat='all';S.kind='';S.sub='';S.g.clear();if(open)$('pg').classList.add('open')}render()};
+const setCat=k=>{S.series='';S.cat=k;S.kind='';S.sub='';S.g.clear();render()};
+const setKind=k=>{S.kind=k;render()};
+const ST=[['all','All books'],['done','Finished'],['reading','Reading'],['todo','Not yet read'],['willbuy','Will buy'],['bought','Bought'],['lent','Lent out']],SO=[['title','Title A–Z'],['author','Author A–Z'],['pages','Fewest pages'],['rating','Most to least interesting'],['order','Suggested reading order'],['new','Recently added']];
+const setSub=s=>{S.cat='learning';S.kind='';S.g.clear();S.sub=S.sub===s?'':s;render()};
+const setG=g=>{if(S.cat!=='fiction'){S.cat='fiction';S.sub='';S.kind=''}S.g.has(g)?S.g.delete(g):S.g.add(g);render()};
+
+let _ok;function ask(m,fn){_ok=fn;ov(`<p style="margin-top:18px">${m}</p><p class="row"><button class="btn pri" onclick="closeOv();_ok()">Yes</button><button class="btn" onclick="closeOv()">Cancel</button></p>`)}
+let navIds=[],navCur='',navOn=false,navBusy=false;
+/* Clears any half-finished swipe. If the card is rebuilt while a finger is mid-swipe, the browser never sends the touch-end,
+   so the neighbouring card and the shifted position would otherwise stay stuck on screen. */
+function navReset(){ts=null;navBusy=false;const o=$('ov');o.querySelectorAll(':scope>.md.nb').forEach(e=>e.remove());o.classList.remove('drag');const m=$('md');m.style.transform='';m.style.willChange=''}
+/* Phone Back button: opening a card adds one history entry, so Back closes the card instead of leaving the page.
+   Closing the card any other way (x, Esc, tapping outside) removes that entry again so history stays tidy. */
+let ovHist=false;
+function ov(h){navReset();navOn=false;document.body.style.overflow='hidden';$('md').innerHTML=`<button class="x" onclick="closeOv()" aria-label="Close">×</button>`+h;
+  if(!$('ov').classList.contains('open')&&!ovHist){try{history.pushState({sgOv:1},'');ovHist=true}catch(e){}}
+  $('ov').classList.add('open')}
+function closeOv(fromPop){navReset();navOn=false;document.body.style.overflow='';$('ov').classList.remove('open');$('md').style.maxWidth='';
+  if(ovHist){ovHist=false;if(fromPop!==true){try{history.back()}catch(e){}}}}
+window.addEventListener('popstate',()=>{if($('ov').classList.contains('open')){ovHist=false;closeOv(true)}});
+const ext=u=>(u.split('?')[0].match(/\.[a-z0-9]{2,5}$/i)||['.pdf'])[0];
+const dl=b=>{const u=b.file_url;return u.includes('/library-file?')?u+'&dl=1':u.includes('/storage/v1/')?u+'?download='+encodeURIComponent(b.title+ext(u)):u};
+function viewFile(id){const b=find(id),u=b.file_url,ok=/\.(pdf|txt|png|jpe?g|gif|webp)(\?|$)/i.test(decodeURIComponent(u));
+  ov(`<h3>${esc(b.title)}</h3>${ok?`<iframe src="${esc(u)}" title="Book file" style="width:100%;height:72vh;margin-top:10px;border:1px solid var(--line);border-radius:10px;background:#fff"></iframe>`:'<p style="color:var(--mute)">This file type cannot be previewed in the browser. Download it to read.</p>'}<p class="row"><a class="btn pri" href="${esc(dl(b))}" download>Download</a><a class="btn" href="${esc(u)}" target="_blank" rel="noopener">Open in new tab</a></p>`);$('md').style.maxWidth='980px'}
+$('ov').addEventListener('click',e=>{if(e.target.id==='ov')closeOv()});
+let ts=null;
+$('ov').addEventListener('touchstart',e=>{ts=null;if(!navOn||navBusy||e.touches.length!==1||/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))return;
+  const t=e.touches[0];ts={x:t.clientX,y:t.clientY,mode:'',P:null,dx:0,s:[{x:t.clientX,t:e.timeStamp}]}},{passive:true});
+$('ov').addEventListener('touchmove',e=>{if(!ts||e.touches.length!==1)return;const t=e.touches[0],dx=t.clientX-ts.x,dy=t.clientY-ts.y;
+  if(!ts.mode){if(Math.abs(dx)<8&&Math.abs(dy)<8)return;
+    if(Math.abs(dx)<=Math.abs(dy)*1.2){ts.mode='v';return}
+    if(navBlocked()||(window.getSelection&&String(window.getSelection()))){ts=null;return}
+    ts.mode='h';ts.P=navPrep();navTrans(ts.P,'none')}
+  if(ts.mode!=='h')return;const P=ts.P;let x=dx;
+  if((x>0&&!P.prev)||(x<0&&!P.next))x*=.3;x=Math.max(-P.shift,Math.min(P.shift,x));
+  ts.dx=x;navPlace(P,x);ts.s.push({x:t.clientX,t:e.timeStamp});if(ts.s.length>6)ts.s.shift()},{passive:true});
+$('ov').addEventListener('touchend',e=>{if(!ts)return;const g=ts;ts=null;if(g.mode!=='h')return;
+  const P=g.P,b=g.s[g.s.length-1],a=g.s.find(q=>b.t-q.t<=100),v=(e.timeStamp-b.t>80||b.t<=a.t)?0:(b.x-a.x)/(b.t-a.t),dir=g.dx<0?1:-1,has=dir>0?P.next:P.prev;
+  const go=!!has&&Math.abs(g.dx)>16&&(Math.abs(g.dx)>P.w*.25||(Math.abs(v)>.4&&Math.sign(v)===Math.sign(g.dx)));
+  navSettle(P,go?dir:0,g.dx,v)},{passive:true});
+$('ov').addEventListener('touchcancel',()=>{if(ts&&ts.mode==='h')navSettle(ts.P,0,ts.dx,0);ts=null},{passive:true});
+document.addEventListener('keydown',e=>{if(!navOn||/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName))return;if(e.key==='ArrowRight')navBook(1);else if(e.key==='ArrowLeft')navBook(-1)});
+function zoom(id){const b=find(id);ov(`<h3>${esc(b.title)}</h3><div class="cv" style="max-width:380px;margin:14px auto 0">${cover(b)}</div>`)}
+function bookHtml(b){
+  const ni=navIds.filter(x=>find(x)),np=ni.indexOf(b.id);
+  return `<div class="det" style="--h:${hue(b)}"><div class="cv" onclick="zoom('${b.id}')" title="Enlarge cover">${cover(b)}</div><div>${b.series?`<p class="ser">${esc(b.series)}${b.seriesNo?' · Book '+b.seriesNo:''}</p>`:''}<h2>${esc(b.title)}${b.emoji?`<span class="rxbig" title="My reaction">${b.emoji}</span>`:''}</h2><p class="au">${esc(b.author)}${b.pages?' · '+b.pages+' pages':''}</p><div class="tg">${tags(b).map(x=>`<span>${esc(x)}</span>`).join('')}</div>
+  <div class="syn">${esc(b.synopsis)||'<span style="color:var(--mute)">No synopsis yet.</span>'}</div>
+  ${b.finished?`${isAdmin&&!b.rating?'<p style="color:var(--mute);font-size:.9em;margin:10px 0 0">Finished. Rate it out of 10 now or later, or just swipe on.</p>':''}<div class="rt big${isAdmin?' adm':''}" style="display:flex;flex-wrap:wrap">${shapes(b,b.rating,true)}</div>`:''}
+  ${isAdmin&&window.SGB?SGB.picker(b.title):''}
+  ${datesHtml(b)}${rxHtml(b)}${isAdmin?goalNote(b):''}
+  ${b.note&&!isAdmin?`<div class="note">${esc(b.note)}</div>`:''}
+  ${loanBox(b)}
+  ${b.file_url?`<p class="row"><button class="btn pri" onclick="viewFile('${b.id}')">View</button><a class="btn" href="${esc(dl(b))}" download>Download</a></p>`:''}
+  ${isAdmin?`<label>Personal note (only you can write this)</label><textarea id="nt" rows="3">${esc(b.note)}</textarea>
+  <div class="row" style="margin-top:10px"><button class="btn pri" onclick="saveNote('${b.id}')">Save note</button>${window.SGB?'':`<button class="btn" onclick="readNow('${b.id}')">${b.reading?'Stop reading':'Reading now'}</button><button class="btn" onclick="fin('${b.id}')">${b.finished?'Mark unfinished':'Mark finished'}</button>`}<button class="btn" onclick="lendForm('${b.id}')">${b.lentTo?'Edit loan':'Lent out'}</button>${b.lentTo?`<button class="btn" onclick="ask('Mark this book as returned?',()=>returned('${b.id}'))">Mark returned</button>`:''}<button class="btn" onclick="goalAdd('${b.id}')">Add to goals</button><button class="btn" onclick="editForm('${b.id}')">Edit</button><button class="btn dng" onclick="del('${b.id}')">Delete</button></div>`:''}
+  </div></div>${ni.length>1?`<div class="navbar"><button class="btn" onclick="navBook(-1)"${np<=0?' disabled':''}>‹ Previous</button><span>${np+1} of ${ni.length} · swipe ← →</span><button class="btn" onclick="navBook(1)"${np>=ni.length-1?' disabled':''}>Next ›</button></div>`:''}`}
+function show(id){
+  const b=find(id);if(!b)return;
+  const vv=vis().map(x=>x.id);if(vv.includes(id))navIds=vv;else if(!navIds.includes(id))navIds=[];navCur=id;
+  ov(bookHtml(b));navOn=true;
+  const{ids,i}=navList();[ids[i-1],ids[i+1]].forEach(x=>{const n=x&&find(x);if(n)tryCov(n)})}
+const NAV_GAP=16;
+function navList(){const ids=navIds.filter(x=>find(x));return{ids,i:ids.indexOf(navCur)}}
+function navBlocked(){const c=find(navCur),nt=$('nt');if(c&&nt&&nt.value!==c.note){toast('Save your note first');return true}return false}
+function nbCard(id){const b=find(id);if(!b)return null;const d=document.createElement('div');d.className='md nb';
+  d.innerHTML='<button class="x" tabindex="-1" aria-hidden="true">×</button>'+bookHtml(b).replace(/ loading="lazy"/g,'').replace(/ id="(nt|dt_s|dt_f)"/g,'');return d}
+function navPrep(){const o=$('ov'),m=$('md'),{ids,i}=navList(),w=m.offsetWidth,top=o.scrollTop+24,left=m.offsetLeft;
+  const mk=(j,side)=>{if(j<0||j>=ids.length)return null;const c=nbCard(ids[j]);if(!c)return null;
+    c.style.cssText='position:absolute;top:'+top+'px;left:'+(left+side*(w+NAV_GAP))+'px;width:'+w+'px;max-width:none;margin:0';o.appendChild(c);return c};
+  o.classList.add('drag');m.style.willChange='transform';
+  return{m,w,ids,i,cur:navCur,shift:w+NAV_GAP,prev:mk(i-1,-1),next:mk(i+1,1)}}
+function navPlace(P,x){const t='translate3d('+x+'px,0,0)';[P.m,P.prev,P.next].forEach(e=>{if(e)e.style.transform=t})}
+function navTrans(P,v){[P.m,P.prev,P.next].forEach(e=>{if(e)e.style.transition=v})}
+/* glide from the current finger position (x) to the book it should land on (dir +1 next, -1 previous, 0 back to where it was) */
+function navSettle(P,dir,x,v){
+  const target=dir>0?-P.shift:dir<0?P.shift:0,rem=Math.abs(target-x),
+    red=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    dur=red?0:Math.round(Math.min(380,Math.max(160,rem/Math.max(Math.abs(v),1.1))));
+  navBusy=true;let done=false;
+  const fin=()=>{if(done)return;done=true;
+    [P.prev,P.next].forEach(e=>e&&e.remove());
+    P.m.style.transition='none';P.m.style.transform='';P.m.style.willChange='';$('ov').classList.remove('drag');
+    if(dir&&$('ov').classList.contains('open')&&navCur===P.cur){show(P.ids[P.i+dir]);$('ov').scrollTop=0}
+    navBusy=false};
+  if(!dur){navPlace(P,target);return fin()}
+  navTrans(P,'transform '+dur+'ms cubic-bezier(.2,.9,.25,1)');navPlace(P,target);
+  P.m.addEventListener('transitionend',e=>{if(e.target===P.m&&e.propertyName==='transform')fin()});
+  setTimeout(fin,dur+60)}
+/* buttons and arrow keys: same glide, starting from rest */
+function navBook(dir){if(!navOn||navBusy||navBlocked())return;
+  const{ids,i}=navList();if(i<0)return;const j=i+dir;
+  if(j<0||j>=ids.length)return toast(dir>0?'That was the last book in this view':'That is the first book in this view');
+  const P=navPrep();navTrans(P,'none');navPlace(P,0);void P.m.offsetWidth;navSettle(P,dir,0,0)}
+
+async function upd(b,patch){
+  if(!isAdmin)return toast('Only the admin can change books');
+  if(b.local)return toast('Seed the library to Supabase first (Tools)');
+  const old={};Object.keys(patch).forEach(k=>old[k]=b[k]);Object.assign(b,patch);
+  try{const{error}=await libdb.from('library_books').update(toDb(b,patch)).eq('id',b.id);if(error)throw error;if('genres' in patch)await saveGenres(b.id,b.genres,b.category)}
+  catch(e){Object.assign(b,old);toast('Save failed: '+e.message);return false}
+  render();return true}
+/* upd() changes the book at once and saves in the background, so the card is redrawn immediately instead of after the network round trip */
+async function fin(id){const b=find(id);const on=!b.finished;const p=upd(b,{finished:on,rating:on?b.rating:0,date_finished:on?todayIso():null,...(on&&b.reading?{reading:false}:{})});show(id);if(await p){if(on&&!b.rating)toast('Marked finished. Rate it below whenever you like.')}else show(id)}
+/* ---- shared status (book-status.js): keeps this page's Supabase status and the other pages in step ---- */
+function sgbApply(b,e){
+  if(!isAdmin||!e.tr)return false;
+  const fin=e.r==='finished',rd=e.r==='reading';
+  if(!!b.finished===fin&&!!b.reading===rd)return false;
+  const patch={finished:fin,reading:rd};
+  if(!fin&&b.finished){patch.rating=0;patch.date_finished=null}
+  if(fin&&!b.finished)patch.date_finished=todayIso();
+  if(rd&&!b.date_started)patch.date_started=todayIso();
+  if(b.local)Object.assign(b,patch);else upd(b,patch);
+  return true}
+let sgbBusy=false;
+function sgbReconcile(){
+  if(!window.SGB||!isAdmin||!books.length)return;
+  sgbBusy=true;
+  try{books.forEach(b=>{const e=SGB.get(b.title);
+    if(e.tr)sgbApply(b,e);
+    else if(b.finished||b.reading)SGB.seed(b.title,{r:b.finished?'finished':'reading'})})}finally{sgbBusy=false}
+  render()}
+if(window.SGB)SGB.onChange((k,e,origin)=>{
+  if(!isAdmin||sgbBusy)return;
+  let flip=false,open=null;
+  books.forEach(b=>{if(SGB.key(b.title)!==k)return;if(sgbApply(b,e)){flip=true;open=b}});
+  if(origin==='ui'&&e.r==='finished'&&open&&!open.rating)toast('Marked finished. Rate it below whenever you like.');
+  render();
+  if(flip&&open&&navOn&&navCur===open.id&&$('ov').classList.contains('open')&&!$('md').querySelector('.nb'))show(open.id)});
+async function readNow(id){const b=find(id),o=books.find(x=>x.reading&&x.id!==id);if(o)await upd(o,{reading:false});const on=!b.reading;if(await upd(b,{reading:on,...(on&&!b.date_started?{date_started:todayIso()}:{})}))show(id)}
+async function setRate(id,n){const b=find(id);const p=upd(b,{rating:n});show(id);if(await p)toast('Rated '+n+'/10');else show(id)}
+/* ---- reading dates, reactions, reading goals ---- */
+const noonIso=s=>{const[y,m,d]=ymdParts(s);return new Date(y,m-1,d,12).toISOString()};
+const dayOf=v=>{if(!v)return '';const t=String(v);return /^\d{4}-\d{2}-\d{2}$/.test(t)?t:ymd(new Date(t))};
+const todayIso=()=>noonIso(ymd(new Date()));
+function datesHtml(b){const s=dayOf(b.date_started),f=b.finished?dayOf(b.date_finished):'';
+  if(!isAdmin)return s||f?`<p class="dts">${[s&&'Started '+fmtD(s),f&&'Finished '+fmtD(f)].filter(Boolean).map(esc).join(' · ')}</p>`:'';
+  if(!(b.reading||b.finished||s))return '';
+  const fld=(id,l,v)=>`<div style="flex:1;min-width:140px"><label>${l}</label><input id="${id}" value="${v?esc(dmy(v)):''}" placeholder="DD/MM/YYYY" inputmode="text" autocomplete="off" oninput="fmtDate(this)"></div>`;
+  return `<div class="dts adm"><div class="row">${fld('dt_s','Started',s)}${b.finished?fld('dt_f','Finished',f):''}</div><p class="row" style="margin-top:8px"><button class="btn" onclick="saveDates('${b.id}')">Save dates</button></p></div>`}
+async function saveDates(id){const b=find(id);if(!b)return;const p={};
+  const s=parseDate($('dt_s').value);if(s===null)return toast('Start date should look like 28/10/2026');
+  if(s!==dayOf(b.date_started))p.date_started=s?noonIso(s):null;
+  const ff=$('dt_f');let f='';
+  if(ff){f=parseDate(ff.value);if(f===null)return toast('Finish date should look like 28/10/2026');if(!f)return toast('Enter the day you finished');if(f!==dayOf(b.date_finished))p.date_finished=noonIso(f)}
+  if(s&&f&&s>f)return toast('The start date is after the finish date');
+  if(!Object.keys(p).length)return toast('Dates unchanged');
+  if(await upd(b,p)){toast('Dates saved');show(id)}}
+const RX=['😍','🥹','😭','😂','🤯','😱','🤔','😴','😡','🤮','👏','❤️','🔥','💔','🙏'];
+const firstEmoji=t=>{t=String(t||'').trim();if(!t)return '';const g=window.Intl&&Intl.Segmenter?[...new Intl.Segmenter(undefined,{granularity:'grapheme'}).segment(t)][0].segment:Array.from(t)[0];return /\p{Extended_Pictographic}|\p{Regional_Indicator}/u.test(g)?g:''};
+function rxHtml(b){if(!isAdmin)return '';const L=!b.emoji||RX.includes(b.emoji)?RX:[b.emoji,...RX];
+  return `<div class="rxrow"><label>My reaction${b.emoji?' (tap it again to remove)':''}</label><div class="chips">${L.map(e=>`<button type="button" class="chip rxc${b.emoji===e?' on':''}" onclick="setRx('${b.id}',this.textContent)">${e}</button>`).join('')}<input class="rxin" maxlength="12" placeholder="Other…" aria-label="Type any emoji"><button type="button" class="chip" onclick="setRx('${b.id}',this.previousElementSibling.value)">Set</button></div></div>`}
+async function setRx(id,e){const b=find(id);if(!b)return;e=String(e||'').trim();if(!e)return toast('Type or paste one emoji');
+  if(e!==b.emoji){e=firstEmoji(e);if(!e)return toast('That is not an emoji')}
+  const p=upd(b,{emoji:e===b.emoji?'':e});show(id);if(!(await p))show(id)}
+let goals=[],goalsErr='',gT='month';
+const gLabel=g=>{if(g.period_type==='year')return g.period;const[y,m]=g.period.split('-').map(Number);return new Date(y,m-1,1).toLocaleDateString('en-GB',{month:'long',year:'numeric'})};
+async function loadGoals(){if(!isAdmin)return;const{data,error}=await libdb.from('library_goals').select('*').order('created_at').range(0,1999);goalsErr=error?error.message:'';goals=error?[]:(data||[])}
+const goalNote=b=>{const a=goals.filter(g=>String(g.book_id)===String(b.id));return a.length?`<p class="dts">On your goals: ${a.map(g=>esc(gLabel(g))).join(', ')}</p>`:''};
+function gSet(t){gT=t;$('g_m').hidden=t!=='month';$('g_y').hidden=t!=='year';$('g_bm').classList.toggle('on',t==='month');$('g_by').classList.toggle('on',t==='year')}
+function gPeriodHtml(){const n=new Date(),cy=String(n.getFullYear()),cm=cy+'-'+String(n.getMonth()+1).padStart(2,'0');
+  return `<div class="chips" style="margin:8px 0"><button type="button" class="chip${gT==='month'?' on':''}" id="g_bm" onclick="gSet('month')">Month</button><button type="button" class="chip${gT==='year'?' on':''}" id="g_by" onclick="gSet('year')">Year</button></div><input id="g_m" type="month" value="${cm}"${gT==='month'?'':' hidden'}><input id="g_y" type="number" min="2000" max="2100" value="${cy}"${gT==='year'?'':' hidden'}>`}
+function gPeriod(){if(gT==='year'){const y=$('g_y').value.trim();if(/^\d{4}$/.test(y))return y;toast('Year should look like 2026');return null}
+  const m=$('g_m').value.trim();if(/^\d{4}-\d{2}$/.test(m))return m;toast('Pick a month');return null}
+function gMatch(v){const b=books.find(x=>x.title.toLowerCase()===v.trim().toLowerCase());if(b)$('g_a').value=b.author}
+async function addGoal(o){
+  if(goals.some(g=>g.period_type===o.period_type&&g.period===o.period&&(o.book_id?String(g.book_id)===String(o.book_id):g.title.toLowerCase()===o.title.toLowerCase()))){toast('Already in that goal list');return false}
+  const{data,error}=await libdb.from('library_goals').insert(o).select().single();
+  if(error){toast(error.message);return false}goals.push(data);toast('Added to '+gLabel(data));return true}
+function goalsView(){if(!isAdmin)return;
+  const n=new Date(),cy=String(n.getFullYear()),cm=cy+'-'+String(n.getMonth()+1).padStart(2,'0');
+  const st=g=>{const b=g.book_id?find(g.book_id):null;return{b,done:b?!!b.finished:!!g.done}};
+  const row=g=>{const{b,done}=st(g);return `<div class="gi${done?' dn':''}"><input type="checkbox" ${done?'checked ':''}${b?'disabled title="Follows the book\'s finished status" ':`onchange="goalToggle('${g.id}')" `}aria-label="Done"><span class="gt">${b?`<a href="#" onclick="show('${b.id}');return false">${esc(g.title)}</a>`:esc(g.title)}${g.author?` <small>${esc(g.author)}</small>`:''}</span><button class="gx" onclick="goalDel('${g.id}')" aria-label="Remove from goals">×</button></div>`};
+  const sec=(t,h)=>{const m={};goals.filter(g=>g.period_type===t).forEach(g=>(m[g.period]=m[g.period]||[]).push(g));const ks=Object.keys(m).sort();
+    return `<h4 style="margin:16px 0 4px">${h}</h4>`+(ks.length?ks.map(k=>{const a=m[k],d=a.filter(g=>st(g).done).length;return `<div class="gp${k===(t==='year'?cy:cm)?' cur':''}"><div class="gh"><b>${esc(gLabel(a[0]))}</b>${k===(t==='year'?cy:cm)?'<small>· now</small>':''}<small>${d}/${a.length} done</small></div>${a.map(row).join('')}</div>`}).join(''):'<p class="dts">Nothing yet.</p>')};
+  ov(`<h2>Reading goals</h2>${goalsErr?`<p class="dts" style="color:var(--rose)">${esc(goalsErr)}. Run library-goals.sql in Supabase first.</p>`:''}
+  ${gPeriodHtml()}
+  <label>Book title</label><input id="g_t" list="g_dl" placeholder="From your library or any other book" autocomplete="off" oninput="gMatch(this.value)"><datalist id="g_dl">${books.map(b=>`<option value="${esc(b.title)}">`).join('')}</datalist>
+  <label>Author (optional)</label><input id="g_a" placeholder="Author" autocomplete="off">
+  <p class="row" style="margin-top:12px"><button class="btn pri" onclick="goalSave()">Add goal</button></p>
+  ${sec('month','Monthly goals')}${sec('year','Yearly goals')}`)}
+async function goalSave(){const t=$('g_t').value.trim();if(!t)return toast('Write a book title');const per=gPeriod();if(!per)return;
+  const b=books.find(x=>x.title.toLowerCase()===t.toLowerCase());
+  if(await addGoal({title:b?b.title:t,author:b?b.author:$('g_a').value.trim(),book_id:b?b.id:null,period_type:gT,period:per}))goalsView()}
+async function goalToggle(id){const g=goals.find(x=>x.id===id);if(!g)return;const{error}=await libdb.from('library_goals').update({done:!g.done}).eq('id',id);if(error)return toast(error.message);g.done=!g.done;goalsView()}
+function goalDel(id){ask('Remove this from your goals?',async()=>{const{error}=await libdb.from('library_goals').delete().eq('id',id);if(error)toast(error.message);else goals=goals.filter(g=>g.id!==id);goalsView()})}
+function goalAdd(id){const b=find(id);if(!b||!isAdmin)return;
+  ov(`<h2>Add to reading goals</h2><p class="au">${esc(b.title)}</p>${goalNote(b)}${gPeriodHtml()}<p class="row" style="margin-top:12px"><button class="btn pri" onclick="goalAddSave('${id}')">Add</button><button class="btn" onclick="show('${id}')">Cancel</button><button class="btn" onclick="goalsView()">Open goals list</button></p>`)}
+async function goalAddSave(id){const b=find(id);if(!b)return;const per=gPeriod();if(!per)return;
+  if(await addGoal({title:b.title,author:b.author,book_id:b.id,period_type:gT,period:per}))show(id)}
+/* ---- lending ---- */
+const ymd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const ymdParts=s=>String(s).slice(0,10).split('-').map(Number);
+const fmtD=s=>{const[y,m,d]=ymdParts(s);return new Date(y,m-1,d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})};
+const dmy=s=>String(s).slice(0,10).split('-').reverse().join('/');
+const plural=(n,w)=>n+' '+w+(n===1?'':'s');
+function parseDate(t){t=String(t||'').trim();if(!t)return '';let m,y,mo,d;
+  if(m=t.match(/^(\d{4})[-\/.](\d{1,2})[-\/.](\d{1,2})$/)){y=+m[1];mo=+m[2];d=+m[3]}
+  else if(m=t.match(/^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{4})$/)){d=+m[1];mo=+m[2];y=+m[3]}
+  else if(m=t.match(/^(\d{2})(\d{2})(\d{4})$/)){d=+m[1];mo=+m[2];y=+m[3]}
+  else if(m=t.match(/^(\d{2})(\d{2})(\d{2})$/)){d=+m[1];mo=+m[2];y=2000+(+m[3])}
+  else return null;
+  const x=new Date(y,mo-1,d);if(x.getFullYear()!==y||x.getMonth()!==mo-1||x.getDate()!==d)return null;return ymd(x)}
+/* while typing plain digits, add the slashes automatically: 28102026 becomes 28/10/2026 */
+function fmtDate(el){if(!/^[\d\/]*$/.test(el.value))return;const v=el.value.replace(/\D/g,'').slice(0,8);el.value=v.length>4?v.slice(0,2)+'/'+v.slice(2,4)+'/'+v.slice(4):v.length>2?v.slice(0,2)+'/'+v.slice(2):v}
+function loanInfo(b){if(!b.lentTo)return null;const s=b.lentDate?String(b.lentDate).slice(0,10):'';let due='',left=null;
+  if(s&&b.lentDays){const[y,m,d]=ymdParts(s),dd=new Date(y,m-1,d+b.lentDays),t=new Date();due=ymd(dd);left=Math.round((dd-new Date(t.getFullYear(),t.getMonth(),t.getDate()))/864e5)}
+  return{s,due,left}}
+function loanText(b){const i=loanInfo(b);if(!i)return '';return 'Lent to '+b.lentTo+(i.left===null?'':i.left<0?' · '+plural(-i.left,'day')+' overdue':i.left===0?' · due today':' · '+plural(i.left,'day')+' left')}
+function loanShort(b){if(!b.lentTo||!isAdmin)return '';const i=loanInfo(b);return `<p class="loan${i.left!==null&&i.left<0?' od':''}">${esc(loanText(b))}</p>`}
+function loanBox(b){if(!b.lentTo)return '';if(!isAdmin)return '<div class="loanbox">Currently lent out</div>';const i=loanInfo(b);
+  let t='Lent to <b>'+esc(b.lentTo)+'</b>'+(i.s?' on '+esc(fmtD(i.s)):'')+(b.lentDays?' for '+plural(b.lentDays,'day'):'')+'.';
+  if(i.due)t+=' Due '+esc(fmtD(i.due))+' ('+(i.left<0?plural(-i.left,'day')+' overdue':i.left===0?'today':'in '+plural(i.left,'day'))+').';
+  return `<div class="loanbox${i.left!==null&&i.left<0?' od':''}">${t}</div>`}
+function lendForm(id){const b=find(id);if(!b||!isAdmin)return;
+  ov(`<h2>${b.lentTo?'Edit loan':'Lend this book'}</h2><p class="au">${esc(b.title)}</p>
+  <label>Lent to</label><input id="l_n" value="${esc(b.lentTo)}" placeholder="Their name">
+  <div class="row"><div style="flex:1;min-width:140px"><label>For how many days</label><input id="l_d" type="number" min="1" step="1" value="${b.lentDays||''}" placeholder="e.g. 14"></div>
+  <div style="flex:1;min-width:140px"><label>Date lent (blank = today)</label><input id="l_dt" value="${b.lentDate?esc(dmy(b.lentDate)):''}" placeholder="DD/MM/YYYY" inputmode="text" autocomplete="off" oninput="fmtDate(this)"></div></div>
+  <p class="row" style="margin-top:14px"><button class="btn pri" onclick="saveLoan('${id}')">Save</button><button class="btn" onclick="show('${id}')">Cancel</button></p>`)}
+async function saveLoan(id){const b=find(id);if(!b)return;const n=$('l_n').value.trim();if(!n)return toast('Write who you lent it to');
+  const dv=$('l_d').value.trim();if(dv&&(!/^\d+$/.test(dv)||+dv<1||+dv>3650))return toast('Days must be a whole number, 1 or more');
+  const dt=parseDate($('l_dt').value);if(dt===null)return toast('Date should look like 28/10/2026');
+  if(await upd(b,{lentTo:n,lentDate:dt||ymd(new Date()),lentDays:dv?+dv:0})){toast('Marked as lent to '+n);show(id)}}
+async function returned(id){const b=find(id);if(b&&await upd(b,{lentTo:'',lentDate:'',lentDays:0})){toast('Marked as returned');show(id)}}
+async function saveNote(id){if(await upd(find(id),{note:$('nt').value}))toast('Note saved')}
+function del(id){ask('Delete this book from the library?',async()=>{await libdb.from('library_comments').delete().eq('book_id',id);await libdb.from('library_book_genres').delete().eq('book_id',id);const{error}=await libdb.from('library_books').delete().eq('id',id);if(error)return toast(error.message);books=books.filter(b=>b.id!==id);render()})}
+
+const pick=(id,o,v)=>`<input type="hidden" id="${id}" value="${esc(v)}"><div class="chips" id="${id}_g">${o.map(([k,n])=>`<button type="button" class="chip${k===v?' on':''}" data-v="${k}" onclick="pk('${id}','${k}')">${n}</button>`).join('')}</div>`;
+function pk(id,v){$(id).value=v;document.querySelectorAll('#'+id+'_g .chip').forEach(c=>c.classList.toggle('on',c.dataset.v===v))}
+function addG(g){const i=$('f_g'),a=i.value.split(',').map(x=>x.trim()).filter(Boolean);if(!a.includes(g))a.push(g);i.value=a.join(', ')}
+function editForm(id){
+  const b=id?find(id):{title:'',author:'',category:'fiction',kind:'',subject:'',series:'',seriesNo:0,genres:[],synopsis:'',cover:'',pages:'',file_url:''};
+  ov(`<h2>${id?'Edit book':'Add a book'}</h2>
+  <label>Title</label><input id="f_t" value="${esc(b.title)}">
+  <label>Author</label><input id="f_a" value="${esc(b.author)}">
+  <label>Shelf</label>${pick('f_c',[['fiction','Fiction'],['learning','Learning']],b.category)}
+  <label>Learning type</label>${pick('f_k',[['','None'],['general','General / recreational science'],['textbook','Textbook']],b.kind)}
+  <label>Subject (learning books)</label><input id="f_s" value="${esc(b.subject)}"><div class="chips" style="margin-top:6px">${Object.values(SN).map(x=>`<button type="button" class="chip" onclick="$('f_s').value=this.textContent">${esc(x)}</button>`).join('')}</div>
+  <div class="row"><div style="flex:2"><label>Series (optional)</label><input id="f_sr" value="${esc(b.series||'')}"></div><div style="flex:1"><label>Book no.</label><input id="f_sn" type="number" min="0" value="${esc(b.seriesNo||'')}"></div></div>
+  <label>Genres (comma separated, as many as fit)</label><input id="f_g" value="${esc(b.genres.join(', '))}" placeholder="Cosmic Horror, Manga, Slice of Life"><details><summary>Pick from existing genres</summary><div class="chips">${Object.values(GN).map(x=>`<button type="button" class="chip" onclick="addG(this.textContent)">${esc(x)}</button>`).join('')}</div></details>
+  <label>Synopsis (exciting, no spoilers. For textbooks: list contents and what it teaches)</label><textarea id="f_y" rows="6">${esc(b.synopsis)}</textarea>
+  <div class="row"><div style="flex:2"><label>Cover file name (in covers/)</label><input id="f_v" value="${esc(b.cover)}" placeholder="${esc(slug(b.title||'name'))}.jpg"></div><div style="flex:1"><label>Pages</label><input id="f_p" type="number" min="0" value="${esc(b.pages)}"></div></div>
+  <label>Book file: store it in</label>${pick('f_st',[['supabase','Supabase storage'],['r2','Cloudflare R2']],'supabase')}<input id="f_f" type="file" style="margin-top:6px">${b.file_url?'<p style="color:var(--mute);font-size:.85rem">A file is attached. Upload a new one to replace it.</p>':''}
+  <p class="row" style="margin-top:14px"><button class="btn pri" onclick="saveForm('${id||''}')">Save book</button></p>`)}
+async function saveForm(id){
+  if(!isAdmin)return;const title=$('f_t').value.trim();if(!title)return toast('Title is required');
+  let pf={};const f=$('f_f').files[0];
+  if(f){const path=slug(title)+'_'+Date.now()+'_'+f.name.replace(/[^\w.-]/g,'_');toast('Uploading…');
+    if($('f_st').value==='r2'){const tk=(await libdb.auth.getSession()).data.session.access_token;const r=await fetch('/library-file?k='+encodeURIComponent(path),{method:'PUT',headers:{Authorization:'Bearer '+tk,'Content-Type':f.type||'application/octet-stream'},body:f});if(!r.ok)return toast('R2 upload failed ('+r.status+')');pf={pdf_storage:'r2',pdf_key:path}}
+    else{const{error}=await libdb.storage.from('book-files').upload(path,f);if(error)return toast('Upload failed: '+error.message);pf={pdf_storage:'supabase',pdf_key:path}}}
+  const row={title,author:$('f_a').value.trim(),category:$('f_c').value,kind:$('f_k').value,subject:$('f_s').value.trim(),series:$('f_sr').value.trim(),seriesNo:parseInt($('f_sn').value)||0,genres:$('f_g').value.split(',').map(x=>x.trim()).filter(Boolean),synopsis:$('f_y').value,cover:$('f_v').value.trim(),pages:parseInt($('f_p').value)||0,...pf};
+  if(id){const b=find(id);if(b.local)return toast('Seed the library first');if(await upd(b,row)){b.file_url=fileUrl(b);closeOv();toast('Saved')}}
+  else{const{data,error}=await libdb.from('library_books').insert(toDb(row,{...row,finished:false})).select().single();if(error)return toast(error.message);try{await saveGenres(data.id,row.genres,row.category)}catch(e){toast(e.message)}books.push(fromDb(data,{[data.id]:row.genres}));dbEmpty=false;closeOv();render();toast('Book added')}}
+
+const M={title:'title',author:'author',synopsis:'synopsis',category:'category',subject:'subject',rating:'rating',note:'admin_note',pages:'page_count',cover:'cover_filename',kind:'learning_type',series:'series',seriesNo:'series_no',lentTo:'lent_to',lentDate:'lent_date',lentDays:'lent_days',date_started:'date_started',date_finished:'date_finished',emoji:'reaction'};
+const NUL=new Set(['kind','lentTo','lentDate','lentDays','date_started','date_finished','emoji']);
+function toDb(b,p){const r={updated_at:new Date().toISOString()};for(const k in p)if(M[k])r[M[k]]=(NUL.has(k)&&!p[k])?null:p[k];
+  if('finished' in p||'reading' in p){r.status=b.finished?'finished':b.reading?'reading':'unread';r.date_finished=b.finished?(b.date_finished||new Date().toISOString()):null}
+  if('pdf_key' in p){r.pdf_storage=p.pdf_storage||null;r.pdf_key=p.pdf_key||null}return r}
+const fileUrl=r=>!r.pdf_key?'':r.pdf_storage==='r2'?'/library-file?k='+encodeURIComponent(r.pdf_key):libdb.storage.from('book-files').getPublicUrl(r.pdf_key).data.publicUrl;
+const fromDb=(r,gm)=>({id:r.id,slug:slug(r.title),title:r.title,author:r.author||'',synopsis:r.synopsis||'',cover:r.cover_filename||'',pages:r.page_count||0,category:r.category,kind:r.learning_type||'',subject:r.subject||'',series:r.series||'',seriesNo:r.series_no||0,genres:gm[r.id]||[],finished:r.status==='finished',reading:r.status==='reading',rating:r.rating||0,note:r.admin_note||'',pdf_storage:r.pdf_storage||'',pdf_key:r.pdf_key||'',file_url:fileUrl(r),date_finished:r.date_finished,date_started:r.date_started||'',emoji:r.reaction||'',created_at:r.date_added,lentTo:r.lent_to||'',lentDate:r.lent_date||'',lentDays:r.lent_days||0});
+async function ensureGenres(names,grp){const{data:ex}=await libdb.from('library_genres').select('id,name');const mp=Object.fromEntries((ex||[]).map(g=>[g.name,g.id]));const miss=[...new Set(names)].filter(n=>!mp[n]);
+  if(miss.length){const{data,error}=await libdb.from('library_genres').insert(miss.map(name=>({name,group_name:grp||'fiction'}))).select('id,name');if(error)throw error;(data||[]).forEach(g=>mp[g.name]=g.id)}return mp}
+async function saveGenres(id,names,grp){const mp=await ensureGenres(names,grp);let e=(await libdb.from('library_book_genres').delete().eq('book_id',id)).error;if(e)throw e;
+  const rows=names.filter(n=>mp[n]).map(n=>({book_id:id,genre_id:mp[n]}));if(rows.length){e=(await libdb.from('library_book_genres').insert(rows)).error;if(e)throw e}}
+async function load(){
+  let rows=null,gm={};try{const[a,g,l]=await Promise.all([libdb.from('library_books').select('*').order('title').range(0,2999),libdb.from('library_genres').select('id,name').range(0,999),libdb.from('library_book_genres').select('book_id,genre_id').range(0,9999)]);
+    if(!a.error){rows=a.data;const nm=Object.fromEntries((g.data||[]).map(x=>[x.id,x.name]));(l.data||[]).forEach(x=>{if(nm[x.genre_id])(gm[x.book_id]=gm[x.book_id]||[]).push(nm[x.genre_id])})}}catch(e){}
+  dbEmpty=!rows||!rows.length;
+  books=dbEmpty?SEED.map(b=>({...b,id:'l_'+b.slug,local:true})):rows.map(r=>fromDb(r,gm));render();sgbReconcile()}
+$('seed').onclick=()=>{if(!isAdmin)return;ask('Insert all '+SEED.length+' books into Supabase? Existing titles are kept.',async()=>{try{
+  const mp=await ensureGenres(SEED.flatMap(b=>b.genres),'fiction');
+  for(let i=0;i<SEED.length;i+=50){const part=SEED.slice(i,i+50);const{data,error}=await libdb.from('library_books').upsert(part.map(b=>({...toDb(b,{...b,finished:false}),title:b.title})),{onConflict:'title',ignoreDuplicates:true}).select('id,title');if(error)throw error;
+    const links=[];(data||[]).forEach(r=>{const b=part.find(x=>x.title===r.title);b.genres.forEach(g=>mp[g]&&links.push({book_id:r.id,genre_id:mp[g]}))});
+    if(links.length){const e2=await libdb.from('library_book_genres').insert(links);if(e2.error)throw e2.error}}
+  toast('Library seeded');load()}catch(e){toast('Seed failed: '+e.message+' (did you run library-setup.sql?)')}})};
+
+// sign-in UI and comments are handled by /shared.js; this only detects the admin
+async function authUI(){const{data}=await libdb.auth.getSession();user=data.session?data.session.user:null;isAdmin=!!user&&ADMINS.includes((user.email||'').toLowerCase());document.body.classList.toggle('admin',isAdmin);render();sgbReconcile();if(isAdmin)loadGoals()}
+libdb.auth.onAuthStateChange(()=>authUI());window._afterRenderAuthUI=authUI;
+$('sync').onclick=async()=>{
+  if(!isAdmin)return;if(dbEmpty)return toast('Seed the library first');const jobs=[];
+  books.forEach(b=>{const d=SM[b.title];if(!d)return;const p={};
+    if(d.author&&(!b.author||b.author==='Unknown')&&d.author!==b.author)p.author=d.author;
+    if(d.synopsis&&!b.synopsis)p.synopsis=d.synopsis;if(d.pages&&!b.pages)p.pages=d.pages;
+    if(Object.keys(p).length)jobs.push([b.id,p])});
+  if(!jobs.length)return toast('Already up to date');
+  for(let i=0;i<jobs.length;i+=20){const rs=await Promise.all(jobs.slice(i,i+20).map(([id,p])=>libdb.from('library_books').update(toDb({},p)).eq('id',id)));const e=rs.find(r=>r.error);if(e)return toast(e.error.message)}
+  toast(jobs.length+' books updated');load()};
+
+// controls
+document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{const p=$(b.dataset.p),o=!p.classList.contains('open');p.classList.toggle('open',o);b.setAttribute('aria-expanded',o)});
+const syncQx=()=>{$('qx').hidden=!$('q').value};
+$('q').oninput=e=>{S.q=e.target.value.toLowerCase().trim();syncQx();render()};
+$('qx').onclick=()=>{$('q').value='';S.q='';syncQx();render();$('q').focus()};
+$('addBtn').onclick=()=>editForm('');
+$('goalsBtn').onclick=async()=>{await loadGoals();goalsView()};
+$('clr').onclick=()=>{Object.assign(S,{series:'',cat:'all',kind:'',sub:'',st:'all',q:'',so:'title'});S.g.clear();$('q').value='';syncQx();render()};
+const surprise=()=>{const p=vis().filter(b=>!b.finished);if(!p.length)return toast('Nothing unread in this view');show(p[Math.floor(Math.random()*p.length)].id)};
+$('surp').onclick=surprise;$('brand').ondblclick=surprise;
+$('upBtn').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});$('dnBtn').onclick=()=>window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+$('namesBtn').onclick=()=>{const g=$('grid').classList.toggle('names');$('namesBtn').classList.toggle('on',g)};
+$('imp').onclick=()=>$('impf').click();
+$('impf').onchange=async e=>{const f=e.target.files[0];if(!f||!isAdmin)return;let a;try{a=JSON.parse(await f.text())}catch(x){return toast('That file is not valid JSON')}if(!Array.isArray(a))return toast('Expected a list of books');try{for(let i=0;i<a.length;i+=40){const part=a.filter(x=>x&&x.title).slice(i,i+40);const{data,error}=await libdb.from('library_books').upsert(part.map(x=>({...toDb(x,{...x,finished:!!x.finished,reading:false}),title:String(x.title),category:x.category||'fiction'})),{onConflict:'title'}).select('id,title');if(error)throw error;
+    for(const r of data){const x=part.find(y=>y.title===r.title);if(Array.isArray(x.genres))await saveGenres(r.id,x.genres,x.category||'fiction')}}toast('Books imported');e.target.value='';load()}catch(x){toast(x.message)}};
+const TR={'Cosmos & curiosity':['Cosmos','A Brief History of Time','Black Holes','Astrophysics for People in a Hurry','The Theory of Everything','Relativity','A Short History of Nearly Everything'],
+'Maths for the curious':['The Joy of x','Infinite Powers','Men of Mathematics','Journey Through Genius','The Calculus Story','Fifty Challenging Problems in Probability'],
+'Statistics from zero':['Naked Statistics','The Art of Statistics','A Graphic Guide to Statistics','A First Course in Probability','Probability and Statistical Inference','Mathematical Statistics and Data Analysis'],
+'The analysis ladder':['Calculus','Introduction to Real Analysis','Principles of Mathematical Analysis','Fourier Analysis: An Introduction','Real Analysis: Measure Theory, Integration, and Hilbert Spaces'],
+'Fiction that bends reality':['Flowers for Algernon','Recursion','Dark Matter','The First Fifteen Lives of Harry August','Cloud Atlas','House of Leaves'],
+'Slow dread':['The Shadow of the Wind','The Shining','Pet Sematary','The Exorcist','House of Leaves'],
+'Whodunits':['Murder on the Orient Express','The ABC Murders','Evil Under the Sun','Lord Edgware Dies','The Mystery of the Blue Train',"A Good Girl's Guide to Murder"],
+'Games with language':['Exercises in Style','A Void','Gadsby','If on a Winter\'s Night a Traveler','Invisible Cities','Life: A User\'s Manual']};
+function trails(k){const ks=Object.keys(TR);k=k||ks[0];ov(`<h2>Reading trails</h2><div class="chips" style="margin-top:8px">${ks.map(x=>`<button class="chip${x===k?' on':''}" data-k="${esc(x)}" onclick="trails(this.dataset.k)">${esc(x)}</button>`).join('')}</div><ol style="margin:14px 0 0;padding-left:22px">${TR[k].map(t=>{const b=books.find(x=>x.title===t);return b?`<li style="margin:7px 0"><a href="#" onclick="show('${b.id}');return false">${esc(t)}</a>${b.finished?' ✓':''} <small style="color:var(--mute)">${esc(b.author)}</small></li>`:''}).join('')}</ol>`)}
+function stars(){const m={};books.forEach(b=>b.genres.forEach(g=>m[g]=(m[g]||0)+1));ov(`<h2>Genre constellation</h2><p style="color:var(--mute)">Bigger stars hold more books. Tap one to explore it.</p><div class="cons">${Object.keys(m).sort().map((g,i)=>{const z=Math.min(110,46+m[g]*4);return `<button class="star" data-g="${esc(g)}" style="width:${z}px;height:${z}px;animation-delay:${(i%7)*.4}s" onclick="closeOv();setG(this.dataset.g)">${esc(g)}</button>`}).join('')}</div>`)}
+$('trailBtn').onclick=()=>trails();$('starBtn').onclick=stars;
+let gc=0;$('gem').onclick=()=>{if(++gc<7)return;gc=0;const p=books.filter(b=>!b.finished&&b.pages&&b.pages<=250).sort(()=>Math.random()-.5).slice(0,5);ov('<h2>The pocket shelf</h2><p style="color:var(--mute)">Five short unread books for a quiet evening.</p>'+(p.map(b=>`<p><a href="#" onclick="show('${b.id}');return false">${esc(b.title)}</a> <small style="color:var(--mute)">${b.pages} pages</small></p>`).join('')||'<p>Nothing short and unread. Impressive.</p>'))};
+function tryCov(b){const l=coverCands(b);return new Promise(r=>{let i=0;const t=()=>{if(i>=l.length)return r(null);const m=new Image();m.onload=()=>r(l[i]);m.onerror=()=>{i++;t()};m.src=COVER_BASE+l[i]+CV};t()})}
+$('covBtn').onclick=async()=>{ov('<h2>Cover check</h2><p id="cc" style="color:var(--mute)">Checking every cover…</p>');const q=[...books],miss=[];let ok=0;
+  await Promise.all(Array.from({length:8},async()=>{while(q.length){const b=q.shift();(await tryCov(b))?ok++:miss.push(b)}}));
+  $('cc').innerHTML=`<b>${ok}</b> found, <b>${miss.length}</b> missing in <code>covers/</code>.`+(miss.length?`<ol style="padding-left:20px">${miss.sort((a,b)=>a.title.localeCompare(b.title)).map(b=>`<li>${esc(b.title)} → <code>${esc(coverCands(b)[0])}</code></li>`).join('')}</ol>`:'')};
+$('pdf').onclick=()=>window.print();
+$('exp').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(vis().map(b=>isAdmin?b:{...b,lentTo:'',lentDate:'',lentDays:0}),null,2)],{type:'application/json'}));a.download='home-library.json';a.click()};
+const syncModeIcon=()=>{const n=document.documentElement.dataset.mode==='night';$('modeBtn').textContent=n?'☀':'☾';$('modeBtn').title=n?'Switch to day mode':'Switch to night mode'};
+const setMode=n=>{document.documentElement.dataset.mode=n;try{localStorage.setItem('lib-mode',n)}catch(e){}syncModeIcon()};
+$('modeBtn').onclick=()=>{const n=document.documentElement.dataset.mode==='night'?'day':'night';setMode(n);if(typeof window.sbSaveDarkMode==='function')window.sbSaveDarkMode(n==='night')};
+window._applyDarkMode=d=>setMode(d?'night':'day');
+try{const m=localStorage.getItem('lib-mode');if(m)document.documentElement.dataset.mode=m}catch(e){}
+syncModeIcon();
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')closeOv();
+  if(e.key==='Escape'&&document.activeElement===$('q')&&$('q').value)$('qx').click();
+  if(e.key==='/'&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){e.preventDefault();$('q').focus()}
+  const K=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  keys.push(e.key);keys=keys.slice(-10);if(keys.join()===K.join()){document.body.classList.toggle('lamp');toast('Lamplight toggled. The stacks are yours.')}});
+let keys=[];
+window._pageKey='library';
+load();authUI();
+</script>
+<script src="/shared.js"></script>
+</body>
+</html>

@@ -4,7 +4,7 @@ html{scroll-behavior:smooth}
   --bg:#f2ede3;--bg-2:#ece5d3;--surface:#faf7f0;
   --border:#d8d0c0;--border-2:rgba(0,0,0,0.05);
   --text:#1e1b15;--text-2:#4a4238;--text-3:#5a5046;
-  --gr:#41694a;--gr-l:rgba(77,122,88,0.09);--gr-b:rgba(77,122,88,0.18);
+  --gr:#3a6043;--gr-l:rgba(77,122,88,0.09);--gr-b:rgba(77,122,88,0.18);
   --rd:#8f3a2c;--rd-l:rgba(143,58,44,0.08);
   --bl:#2a5f78;--bl-l:rgba(42,95,120,0.08);
   --gd:#7a5a0e;--gd-l:rgba(122,90,14,0.09);
@@ -27,7 +27,7 @@ html{scroll-behavior:smooth}
 body.night{
   --bg:#0d0b08;--bg-2:#121008;--surface:rgba(255,255,255,0.025);
   --border:rgba(255,255,255,0.08);--border-2:rgba(255,255,255,0.05);
-  --text:#e2dbd0;--text-2:#a09080;--text-3:#8a806e;
+  --text:#e2dbd0;--text-2:#a09080;--text-3:#a1977f;
   --gr:#6aab80;--gr-l:rgba(106,171,128,0.1);--gr-b:rgba(106,171,128,0.18);
   --rd:#d06050;--rd-l:rgba(208,96,80,0.09);
   --bl:#5aadd0;--bl-l:rgba(90,173,208,0.09);
@@ -383,6 +383,19 @@ section[id]{scroll-margin-top:88px}
 .stat-res-inst{font-size:.78rem;color:var(--text-3);margin-bottom:.6rem}
 .stat-res-desc{font-size:.9rem;color:var(--text-2);line-height:1.74}
 .stat-res-detail{font-size:.88rem;color:var(--text-2);line-height:1.82;margin-top:.65rem;padding-top:.65rem;border-top:1px solid var(--border);display:none}
+/* Standalone equations inside long-form math prose (Detailed Mathematics,
+   Deep Context, puzzle statements/hints/solutions): their own line, a
+   distinct font size, set apart from the surrounding paragraph instead of
+   wedged mid-sentence. Neutral overlay tint so it reads against any of the
+   different-colored parent panels (teal/green/orange) it can land inside. */
+.stat-res-detail .katex-display,.op-extra .katex-display,
+.puz-q .katex-display,.puz-hint-inner .katex-display,.puz-ans-inner .katex-display{
+  display:block;margin:.85rem 0;padding:.7rem 1rem;
+  background:rgba(0,0,0,.05);border:1px solid var(--border);border-radius:8px;
+  font-size:1.18em;overflow-x:auto;overflow-y:hidden;
+}
+body.night .puz-q .katex-display,body.night .puz-hint-inner .katex-display,
+body.night .puz-ans-inner .katex-display{background:rgba(255,255,255,.06)}
 .stat-res-detail.show{display:block}
 .stat-res-detail p{margin-bottom:.6rem}
 .stat-res-expand{display:inline-flex;align-items:center;gap:.3rem;font-size:.64rem;font-family:'Source Code Pro',monospace;letter-spacing:.09em;text-transform:uppercase;margin-top:.65rem;cursor:pointer;color:var(--tl);transition:opacity .2s}
@@ -664,3 +677,32 @@ body.night .dist-card:hover::after,body.night .car-card:hover::after,body.night 
 body:not(.night) .nav-brand{color:#41694a}
 /* footer 'about' links were set to 45% opacity inline; keep them subtle but readable */
 a[style*="opacity:.45"],a[style*="opacity: .45"],a[style*="opacity:0.45"],a[style*="opacity: 0.45"]{opacity:1 !important}
+
+/* ═══ shared: search-result "you are here" flash (added) ═══ */
+@keyframes searchFlash{0%{box-shadow:0 0 0 4px var(--gd-l);border-color:var(--gd)}70%{box-shadow:0 0 0 4px var(--gd-l);border-color:var(--gd)}100%{box-shadow:none}}
+.flash{animation:searchFlash 1.8s ease}
+
+/* ═══ distributions: card header/tools/readout/live values (added) ═══ */
+.dist-cardhead{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;margin-bottom:.2rem}
+.dist-tools{display:flex;gap:.3rem;flex-shrink:0}
+.dist-tool{width:24px;height:24px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text-3);cursor:pointer;font-size:.75rem;line-height:1;display:flex;align-items:center;justify-content:center;transition:all .18s}
+.dist-tool:hover{border-color:var(--rd);color:var(--rd)}
+.dist-readout{font-family:'Source Code Pro',monospace;font-size:.71rem;color:var(--text-3);min-height:1.3em;margin:-.25rem 0 .6rem;line-height:1.5}
+.dist-readout b{color:var(--rd);font-weight:600}
+.dist-live{font-family:'Source Code Pro',monospace;font-size:.7rem;color:var(--text-3);margin-top:.1rem;min-height:1em}
+.dist-canvas{cursor:crosshair;touch-action:none}
+.dist-canvas:focus-visible{outline:2px solid var(--rd);outline-offset:2px}
+.dist-search-row{max-width:420px;margin:0 auto 1.4rem;position:relative}
+.dist-search-row input{width:100%;padding:.6rem 1rem .6rem 2.3rem;border-radius:99px;border:1.5px solid var(--border);background:var(--surface);color:var(--text);font-family:'Outfit',sans-serif;font-size:.85rem;box-sizing:border-box}
+.dist-search-row input:focus{border-color:var(--rd);outline:none}
+.dist-search-row::before{content:'🔍';position:absolute;left:.85rem;top:50%;transform:translateY(-50%);font-size:.85rem;opacity:.6}
+#dist-filter-count{display:block;text-align:center;font-size:.7rem;color:var(--text-3);font-family:'Source Code Pro',monospace;margin-top:.35rem;min-height:1em}
+.dist-tab[aria-selected]{outline:none}
+
+/* ═══ formulas: copy button (added) ═══ */
+.fml-eq-row{display:flex;align-items:center;gap:.4rem;margin-bottom:.3rem}
+.fml-eq-row .fml-eq{flex:1;margin-bottom:0}
+.fml-copy{flex-shrink:0;width:26px;height:26px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text-3);cursor:pointer;font-size:.8rem;line-height:1;transition:all .18s}
+.fml-copy:hover{border-color:var(--bl);color:var(--bl)}
+.fml-copy.copied{border-color:#3a6043;color:#3a6043}
+

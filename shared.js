@@ -20,6 +20,7 @@ const _SB_ROOT      = (function(){ try { var u = document.currentScript && docum
 const _SB_URL       = 'https://daqxabswnrhqpjyfdbwx.supabase.co';
 const _SB_ANON      = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhcXhhYnN3bnJocXBqeWZkYnd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1ODczMDMsImV4cCI6MjA5NTE2MzMwM30.NqHPJZkDsawSJRSjDMNS4-c5KZDxTNxWBoMF_a6bSuc';
 const _ADMIN_EMAIL  = 'ayanchakrabortyall@gmail.com';
+const _ADMIN_EMAILS = ['ayanchakrabortyall@gmail.com','officialayanimp@gmail.com','duolingo.learn1024@gmail.com'];
 
 /* ── STATE ──────────────────────────────────────────────────────── */
 let sb              = null;
@@ -82,6 +83,18 @@ let _sbPendingSave  = false;
   });
 })();
 
+/* ── DISPLAY NAME ───────────────────────────────────────────────── */
+/* display_name (Account settings) → full_name / name (Google) → tidied e-mail name.
+   Never the raw e-mail address — it is shown in headers and published with comments. */
+function _displayName(u) {
+  const m = (u && u.user_metadata) || {};
+  const n = String(m.display_name || m.full_name || m.name || '').trim();
+  if (n) return n;
+  const l = String((u && u.email) || '').split('@')[0].replace(/\d+$/, '').replace(/[._+\-]+/g, ' ').trim();
+  return l.replace(/\b\w/g, c => c.toUpperCase()) || 'Explorer';
+}
+window.sgDisplayName = _displayName;
+
 /* ── AUTH UI ────────────────────────────────────────────────────── */
 function renderAuthUI() {
   const lb = document.getElementById('loginBtn');
@@ -93,9 +106,7 @@ function renderAuthUI() {
   if (currentUser) {
     lb.style.display = 'none';
     if (ui) ui.style.display = 'flex';
-    if (ue) ue.textContent = currentUser.user_metadata?.display_name
-                           || currentUser.user_metadata?.full_name
-                           || currentUser.email;
+    if (ue) ue.textContent = _displayName(currentUser);
     if (fw) fw.style.display = 'block';
     if (lm) lm.style.display = 'none';
   } else {
@@ -106,8 +117,21 @@ function renderAuthUI() {
   }
   /* Pages can extend auth UI without overriding this function */
   if (typeof window._afterRenderAuthUI === 'function') window._afterRenderAuthUI(currentUser);
+  /* name chip + menu drawer (account-ui.js) */
+  if (window.sgAccount) window.sgAccount.paint(currentUser);
 }
 window.renderAuthUI = renderAuthUI;
+
+/* ── ACCOUNT UI (name chip · menu drawer · settings) ───────────── */
+(function loadAccountUI() {
+  try {
+    if (window.sgAccount) return;
+    const s = document.createElement('script');
+    s.src = (_SB_ROOT || '/') + 'account-ui.js';
+    s.async = true;
+    document.head.appendChild(s);
+  } catch (e) { console.warn('account-ui load failed:', e); }
+})();
 
 /* ── SIGN OUT ───────────────────────────────────────────────────── */
 window.doSignOut = async function() {
@@ -115,7 +139,7 @@ window.doSignOut = async function() {
   try { localStorage.removeItem('sb-daqxabswnrhqpjyfdbwx-auth-token'); } catch(e) {}
   currentUser = window.currentUser = null;
   renderAuthUI();
-  window.location.href = _SB_ROOT + 'login.html';
+  window.location.href = _SB_ROOT + 'login';
 };
 
 /* ── PROGRESS SYNC ──────────────────────────────────────────────── */
@@ -217,10 +241,10 @@ const SPAM_PATTERNS = [
 ];
 
 function isAbusive(text) {
-  const lower = text.toLowerCase().replace(/[^a-z0-9\s]/g, ' ');
-  for (const w of lower.split(/\s+/)) {
-    if (BLOCKED_WORDS.some(b => w === b)) return true;   /* exact-word only */
-  }
+  const lower  = text.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+  const padded = ' ' + lower + ' ';
+  /* whole words and multi-word phrases (the database trigger enforces the same list) */
+  if (BLOCKED_WORDS.some(b => padded.includes(' ' + b + ' '))) return true;
   for (const p of SPAM_PATTERNS) { if (p.test(text)) return true; }
   return false;
 }
@@ -250,7 +274,11 @@ function showCommentError(msg) {
 }
 window.showCommentError = showCommentError;
 
-async function loadComments() {
+const COMMENT_PAGE = 20;
+let _commentShown = COMMENT_PAGE;
+
+async function loadComments(opts) {
+  if (opts && opts.more) _commentShown += COMMENT_PAGE;
   const list    = document.getElementById('commentList');
   const loading = document.getElementById('commentLoading');
   const empty   = document.getElementById('commentEmpty');
@@ -268,16 +296,18 @@ async function loadComments() {
       .select('id,user_id,user_name,text,created_at')
       .eq('page', page)
       .order('created_at', { ascending: false })
-      .limit(100);
+      .range(0, _commentShown);          /* one extra row tells us whether more exist */
     if (loading) loading.style.display = 'none';
     if (error || !data || data.length === 0) {
       if (empty) empty.style.display = 'block';
-      list.querySelectorAll('.comment-item').forEach(el => el.remove());
+      list.querySelectorAll('.comment-item, .comment-more').forEach(el => el.remove());
       return;
     }
-    list.querySelectorAll('.comment-item').forEach(el => el.remove());
-    const isAdmin = currentUser?.email === _ADMIN_EMAIL;
-    data.forEach(c => {
+    list.querySelectorAll('.comment-item, .comment-more').forEach(el => el.remove());
+    const hasMore = data.length > _commentShown;
+    const rows    = hasMore ? data.slice(0, _commentShown) : data;
+    const isAdmin = _ADMIN_EMAILS.includes(currentUser?.email);
+    rows.forEach(c => {
       const div      = document.createElement('div');
       div.className  = 'comment-item';
 
@@ -317,6 +347,18 @@ async function loadComments() {
       div.appendChild(textDiv);
       list.appendChild(div);
     });
+    if (hasMore) {
+      const more = document.createElement('button');
+      more.type = 'button';
+      more.className = 'comment-more';
+      more.textContent = 'Load more comments';
+      more.style.cssText = 'display:block;margin:1.2rem auto 0;padding:.55rem 1.3rem;font:inherit;font-size:.85rem;color:inherit;'
+                         + 'background:none;border:1px solid currentColor;border-radius:999px;opacity:.75;cursor:pointer;';
+      more.onmouseenter = () => { more.style.opacity = '1'; };
+      more.onmouseleave = () => { more.style.opacity = '.75'; };
+      more.onclick = () => loadComments({ more: true });
+      list.appendChild(more);
+    }
   } catch(e) {
     if (loading) loading.style.display = 'none';
     if (empty)   empty.style.display   = 'block';
@@ -334,7 +376,7 @@ async function deleteComment(id) {
 }
 
 async function submitComment(pageKey) {
-  if (!currentUser) { window.location.href = _SB_ROOT + 'login.html'; return; }
+  if (!currentUser) { window.location.href = _SB_ROOT + 'login'; return; }
   const textEl = document.getElementById('commentText');
   const text   = (textEl?.value || '').trim();
   if (!text) return;
@@ -342,9 +384,7 @@ async function submitComment(pageKey) {
   if (text.length > 500)      { showCommentError('Too long.'); return; }
   if (isAbusive(text))        { showCommentError('Please keep it respectful.'); return; }
   if (isRateLimited(pageKey)) { showCommentError('Too many comments. Wait a few minutes.'); return; }
-  const name = currentUser.user_metadata?.display_name
-             || currentUser.user_metadata?.full_name
-             || currentUser.email;
+  const name = _displayName(currentUser);   /* never publishes the e-mail address */
   try {
     const { error } = await sb.from('comments').insert([{
       user_id: currentUser.id, user_name: name, page: pageKey, text
@@ -353,6 +393,10 @@ async function submitComment(pageKey) {
       /* P0001 = raised by the server-side rate-limit trigger */
       if (error.code === 'P0001' || /rate limit/i.test(error.message || '')) {
         showCommentError('Too many comments. Wait a few minutes.');
+      } else if (error.code === 'SG002') {            /* rejected by the database content check */
+        showCommentError('Please keep it respectful.');
+      } else if (error.code === 'SG001') {            /* length check */
+        showCommentError('Comments must be 3 to 500 characters.');
       } else {
         showCommentError('Failed. Try again.');
       }

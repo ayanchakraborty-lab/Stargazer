@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<!-- Google tag (gtag.js) --> <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'],wait_for_update:500});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="../pics/logo.png">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -44,20 +45,26 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
   onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMath(document.body));}else{renderMath(document.body);}"></script>
+<style>
+.stat-res-people{margin:.9rem 0 .4rem;font-size:.86rem;line-height:1.5}
+.stat-res-person{padding:.15rem 0}
+.stat-res-person a{text-decoration:none;margin-left:.2rem}
+.stat-res-outreach{grid-column:1/-1;padding:.9rem 1.1rem;border:1px dashed currentColor;border-radius:12px;font-size:.9rem;line-height:1.55;opacity:.9}
+</style>
 </head>
 <body>
 
 <!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
 <div id="auth-topbar">
-  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <a href="../" class="atb-btn atb-home">🌌 Universe</a>
   <div style="flex:1"></div>
   <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
     <span id="mode-icon">☾</span>
   </button>
-  <a href="../login.html" id="loginBtn">☽ Sign In</a>
+  <a href="../login" id="loginBtn">☽ Sign In</a>
   <div id="userInfo">
     <span id="userEmailDisplay">✦ Explorer</span>
-    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login'">Sign Out</button>
   </div>
 </div>
 
@@ -94,13 +101,13 @@
       <div class="s-head">
         <span class="s-eyebrow" style="background:var(--tl-l);color:var(--tl);border:1px solid var(--tl-l)">Active Frontiers</span>
         <h2 class="s-title">Where Statistics Is Being Made Right Now</h2>
-        <p class="s-desc">Active research programs, recent breakthroughs (2022–2025), and the statisticians reshaping how we understand uncertainty, causality, and data.</p>
+        <p class="s-desc">Active research programs, recent breakthroughs (2022–2026), and the statisticians reshaping how we understand uncertainty, causality, and data.</p>
       </div>
       <div class="stat-res-access">
         <strong>📖 Access Research Papers Free:</strong>
         <a href="https://arxiv.org/list/stat" target="_blank" rel="noopener">arXiv stat</a> has virtually all modern statistics preprints.
         <a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a> → look for [PDF] links or author pages.
-        <a href="https://sci-hub.se" target="_blank" rel="noopener">Sci-Hub</a> provides paywalled papers via DOI.
+        <a href="https://unpaywall.org" target="_blank" rel="noopener">Unpaywall</a> finds legal free versions of paywalled papers via DOI.
         Key journals: <em>Annals of Statistics</em>, <em>JRSS-B</em>, <em>Biometrika</em>, <em>JASA</em>.
       </div>
       <div class="g3" id="stat-research-grid"></div>
@@ -114,7 +121,7 @@
   <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
 </div>
 <div style="text-align:center;padding-bottom:2rem;">
-  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+  <a href="../ABOUT" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
 </div>
 
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
@@ -122,8 +129,9 @@
 window._nextPage = 'careers.html';
 window._prevPage = 'openproblems.html';
 const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+const ADMIN_EMAILS = ['ayanchakrabortyall@gmail.com','officialayanimp@gmail.com','duolingo.learn1024@gmail.com'];
 
-function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+function isAdmin(){return !!(window.currentUser && ADMIN_EMAILS.includes(window.currentUser.email));}
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -266,20 +274,21 @@ function showToast(msg,bg){
    CURRENT STATISTICAL RESEARCH DATA
    ═══════════════════════════════════════════════════════════ */
 const STAT_RESEARCH_DATA=[
-{badge:'breakthrough',t:'Conformal Prediction — Distribution-Free Inference',res:'Vladimir Vovk, Ryan Tibshirani, Emmanuel Candès',inst:'Royal Holloway / Carnegie Mellon / Stanford',
+{badge:'breakthrough',t:'Conformal Prediction — Distribution-Free Inference',res:'Vladimir Vovk, Ryan Tibshirani, Emmanuel Candès',inst:'Royal Holloway / UC Berkeley / Stanford',
 desc:'Conformal prediction provides provably valid prediction intervals for any machine learning model without distributional assumptions — a major breakthrough in reliable uncertainty quantification.',
 detail:`<p>Classical statistics gives exact prediction intervals only when strong assumptions hold (e.g. normal residuals). Conformal prediction achieves <em>marginal coverage</em> — P(Y ∈ Ĉ(X)) ≥ 1−α — for any model and any distribution, with only an exchangeability assumption.</p>
 <p><strong>Split conformal algorithm:</strong> (1) Split data into training D₁ and calibration D₂. (2) Fit model f̂ on D₁. (3) Compute nonconformity scores rᵢ = |yᵢ − f̂(xᵢ)| on D₂. (4) For a new point x_{n+1}: set q̂ = ⌈(1−α)(n+1)⌉/n-th quantile of {rᵢ}. (5) Ĉ(x_{n+1}) = [f̂(x_{n+1}) ± q̂].</p>
 <p>This gives exact finite-sample coverage — no asymptotics. Candès & collaborators extended it to <em>conditional coverage</em> (harder to achieve) and <em>covariate shift</em> settings. Applications: LLM hallucination detection, clinical trial design, protein structure prediction (AlphaFold uncertainty).</p>
-<p>Active 2024 frontier: <em>conformal risk control</em> (Angelopoulos et al.) — control any monotone risk functional at a user-specified level. Used to certify FDR control in multiple testing without model assumptions, and to give guaranteed image segmentation coverage in medical imaging.</p>`,
-guide:['📖 Start with Angelopoulos & Bates "A Gentle Introduction to Conformal Prediction" (arXiv:2107.07511) — 25 pages, very accessible.','📖 Tibshirani et al. "Conformal Prediction under Covariate Shift" (NeurIPS 2019) for distribution shift.','🔬 Entry project: implement split conformal on any scikit-learn model. Compare empirical coverage with 1−α on held-out data.']},
+<p>Active 2024 frontier: <em>conformal risk control</em> (Angelopoulos et al.) — control any monotone risk functional at a user-specified level. Used to certify FDR control in multiple testing without model assumptions, and to give guaranteed image segmentation coverage in medical imaging.</p>
+<p><strong>2026 update:</strong> Barber &amp; Tibshirani (arXiv:2504.02292) unify standard, weighted, nonexchangeable and randomly-localized conformal methods under one idea — reveal partial information about the data, then posit a conditional distribution given it. <em>Time-uniform conformal and PAC prediction</em> (Feb 2026) gives anytime-valid sets for streaming data where the sample size isn't fixed in advance. Vovk &amp; Wang extended <em>conformal e-prediction</em> to settings with observed confounding (Mar 2026), and Sesia &amp; Favaro published <em>Elements of Conformal Prediction for Statisticians</em> (Mar 2026), a new review.</p>`,
+guide:['📖 New in 2026: Sesia & Favaro "Elements of Conformal Prediction for Statisticians" (arXiv:2603.23923) — a statistician-friendly review.','📖 Start with Angelopoulos & Bates "A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification" (arXiv:2107.07511; also Foundations & Trends in ML, 2023) — hands-on, with Python code.','📖 Tibshirani et al. "Conformal Prediction under Covariate Shift" (NeurIPS 2019) for distribution shift.','🔬 Entry project: implement split conformal on any scikit-learn model. Compare empirical coverage with 1−α on held-out data.']},
 
-{badge:'breakthrough',t:'Causal Inference via DAGs & Potential Outcomes Unification',res:'Judea Pearl, James Robins, Donald Rubin',inst:'UCLA / Harvard / Harvard',
+{badge:'breakthrough',t:'Causal Inference via DAGs & Potential Outcomes Unification',res:'Judea Pearl, James Robins, Donald Rubin',inst:'UCLA / Harvard / Harvard (emeritus), Tsinghua & Temple',
 desc:"Pearl's do-calculus and Rubin's potential outcomes framework are being unified, enabling identification of causal effects in more complex observational settings than ever before.",
 detail:`<p>The two dominant frameworks for causal inference — Pearl's Structural Causal Models (SCMs) using DAGs, and Rubin's potential outcomes / counterfactuals — were long viewed as competing paradigms. Current work shows they are mathematically equivalent and complementary.</p>
 <p><strong>Key technical achievement:</strong> Pearl's ID algorithm decides in polynomial time whether a causal effect P(Y|do(X)) is identifiable from observational data given a DAG. The algorithm generates the minimal adjustment formula. Example: If Z is a confounder but also a mediator, naive conditioning biases the estimate — the front-door criterion gives: P(Y|do(X)) = Σ_z P(Z=z|X)·Σ_x' P(Y|X',Z)P(X'). This works even without measuring confounders.</p>
 <p>2024 active frontiers: <em>Proximal causal learning</em> (Tchetgen Tchetgen) — identification when confounders are unobserved but proxy variables exist. <em>Causal representation learning</em> — learning causal structure from high-dimensional data (images, text). Integration with LLMs: using language models as sources of causal domain knowledge to constrain DAG search.</p>`,
-guide:['📖 Pearl, Glymour, Jewell "Causal Inference in Statistics: A Primer" — the most accessible entry.','📖 Hernán & Robins "Causal Inference: What If" (free at hsph.harvard.edu/miguel-hernan) — the epidemiology gold standard.','🔬 Entry: implement backdoor adjustment and propensity score weighting on a real observational dataset using R (MatchIt package) or Python (DoWhy).']},
+guide:['📖 Pearl, Glymour, Jewell "Causal Inference in Statistics: A Primer" — the most accessible entry.','📖 Hernán & Robins "Causal Inference: What If" (free at miguelhernan.org/whatifbook) — the epidemiology gold standard.','🔬 Entry: implement backdoor adjustment and propensity score weighting on a real observational dataset using R (MatchIt package) or Python (DoWhy).']},
 
 {badge:'active',t:'Double Descent & Overparameterization in Modern Statistics',res:'Mikhail Belkin, Peter Bartlett, Andrea Montanari',inst:'UC San Diego / UC Berkeley / Stanford',
 desc:'Classical bias-variance tradeoff breaks down for modern overparameterized models — the "double descent" phenomenon reshapes statistical learning theory.',
@@ -307,7 +316,8 @@ guide:['📖 Tibshirani et al. "Exact Post-Selection Inference for Sequential Re
 desc:'Differential privacy provides rigorous mathematical guarantees that statistical analyses cannot reveal information about individuals — becoming the standard for data release.',
 detail:`<p>A randomised mechanism M satisfies (ε,δ)-differential privacy if for any two datasets D, D' differing in one individual and any output set S: P(M(D)∈S) ≤ e^ε · P(M(D')∈S) + δ. The parameter ε ("privacy budget") controls the privacy-utility tradeoff.</p>
 <p><strong>Laplace mechanism:</strong> To release a statistic f(D) with L1 sensitivity Δf = sup_{D,D'} ‖f(D)−f(D')‖₁, add Laplace(0, Δf/ε) noise. This achieves ε-DP. Example: release the mean of a bounded dataset: sensitivity = range/n; add Lap(range/(nε)) noise.</p>
-<p>The US Census Bureau uses DP (TopDown algorithm) for the 2020 Census. Apple and Google deploy DP mechanisms for telemetry. Statistical challenges: DP adds noise that biases standard estimators, inflates variances, and invalidates classical hypothesis tests. Current research: (1) Private hypothesis testing — DP analogues of t-tests, chi-squared tests. (2) Private confidence intervals — validity requires new theory. (3) Local DP — when data never leaves the user's device (stronger privacy, much worse utility). (4) DP-SGD for private machine learning.</p>`,
+<p>The US Census Bureau uses DP (TopDown algorithm) for the 2020 Census. Apple and Google deploy DP mechanisms for telemetry. Statistical challenges: DP adds noise that biases standard estimators, inflates variances, and invalidates classical hypothesis tests. Current research: (1) Private hypothesis testing — DP analogues of t-tests, chi-squared tests. (2) Private confidence intervals — validity requires new theory. (3) Local DP — when data never leaves the user's device (stronger privacy, much worse utility). (4) DP-SGD for private machine learning.</p>
+<p><strong>2026 update:</strong> Weijie Su (Wharton) received the 2026 COPSS Presidents' Award, cited in part for privacy-preserving data analysis applied to the 2020 US Census; reported results suggest his methods could cut injected noise by 15–24% at the same privacy guarantee. Valid inference on privatized data remains the central theme: <em>PRECISE</em> (Fang Liu) builds private posterior-quantile intervals that hit nominal coverage with narrower widths, and Asiaee et al. (arXiv:2603.02010) release only DP sufficient statistics for exponential families, then do noise-calibrated likelihood inference as post-processing.</p>`,
 guide:['📖 Dwork & Roth "The Algorithmic Foundations of Differential Privacy" (Foundations & Trends, free online) — the canonical reference.','📖 Vadhan "The Complexity of Differential Privacy" for the theoretical foundations.','🔬 Entry: implement the Laplace mechanism in Python. Explore the privacy-accuracy tradeoff for mean estimation as ε varies from 0.01 to 10.']},
 
 {badge:'active',t:'High-Dimensional Statistics & Compressed Sensing',res:'Emmanuel Candès, Terence Tao, David Donoho',inst:'Stanford / UCLA / Stanford',
@@ -322,8 +332,41 @@ desc:'Statistical reform in response to the replication crisis: pre-registration
 detail:`<p>Ioannidis (2005) proved that most published research findings are false when base rates are low and statistical power is limited. With α = 0.05, power = 0.80, prior probability p₀ of a true effect, the positive predictive value (PPV) = p₀ · 0.80 / (p₀ · 0.80 + (1−p₀) · 0.05). If p₀ = 0.1: PPV = 0.61. Most published significant findings are false positives.</p>
 <p>Gelman & Loken (2014): The "garden of forking paths" — multiple undisclosed researcher degrees of freedom inflate false discovery rates catastrophically. Simmons et al. (2011): p-hacking can make noise achieve p < 0.05 in >60% of experiments.</p>
 <p>Reforms: (1) Pre-registration and registered reports. (2) Effect size and confidence interval reporting. (3) Lowering α to 0.005 (Benjamin et al. 2018, 72 authors). (4) <em>E-values</em> (Grünwald, Shafer, Vovk) — betting-based test statistics that remain valid under optional stopping and arbitrary selection. An e-value E satisfies E[E|H₀] ≤ 1; reject when E > 1/α. (5) Bayesian approaches replacing p-values with Bayes factors or posterior probabilities.</p>`,
-guide:['📖 Gelman & Hill "Regression and Other Stories" — modern approach integrating causal thinking with regression.','📖 Read Ioannidis (2005) "Why Most Published Research Findings Are False" — 8,000+ citations, 8 pages.','🔬 Entry: simulate p-hacking. Show empirically how researcher degrees of freedom inflate false positive rate. Present to a statistics class.']}
+guide:['📖 Gelman, Hill & Vehtari "Regression and Other Stories" (free PDF at users.aalto.fi/~ave/ROS.pdf) — modern approach integrating causal thinking with regression.','📖 Read Ioannidis (2005) "Why Most Published Research Findings Are False" — the most-cited paper in PLoS Medicine, and a short, readable essay.','🔬 Entry: simulate p-hacking. Show empirically how researcher degrees of freedom inflate false positive rate. Present to a statistics class.']},
+  {badge:'active',t:'E-values & Anytime-Valid Inference',res:'Aaditya Ramdas, Ruodu Wang, Peter Grünwald',inst:'CMU → Stanford (Sep 2026) / Waterloo / CWI Amsterdam & Leiden',
+   desc:'Evidence you can monitor continuously: tests and confidence sequences that stay valid no matter when you stop collecting data — fixing the "peeking" problem of p-values.',
+   detail:`<p>An <em>e-value</em> is a non-negative statistic e with E[e] ≤ 1 under the null. Markov's inequality gives a valid test: reject when e ≥ 1/α. Products of independent e-values are e-values, so evidence can be accumulated like betting wealth.</p>
+<p>An <em>e-process</em> (a nonnegative supermartingale under the null) is valid at every stopping time, by Ville's inequality: P(sup Mₜ ≥ 1/α) ≤ α. That is <em>anytime-valid</em> inference — optional stopping and continuation are safe.</p>
+<p><strong>2026 state of play:</strong> Ramdas &amp; Wang's monograph <em>Hypothesis Testing with E-values</em> (Foundations &amp; Trends in Statistics, 2025) is the reference text. Active threads: e-values for multiple testing (e-BH, anytime-valid FDR control), combining dependent evidence, e-values for conformal prediction, and online LLM watermark detection.</p>`,
+   guide:['📖 Ramdas &amp; Wang, \"Hypothesis Testing with E-values\" (arXiv:2410.23614) — the full monograph.','📖 Ly, Böhm, Grünwald, Ramdas &amp; van Ravenzwaaij (2025), a practical tutorial using the R package safestats.','🔬 Entry project: simulate A/B tests with peeking. Compare the false-positive rate of repeated p-value checks against a betting e-process.']},
+  {badge:'active',t:'Prediction-Powered Inference — Valid Statistics with ML Predictions',res:'Tijana Zrnic, Stephen Bates, Michael I. Jordan, Emmanuel Candès',inst:'Stanford / MIT / UC Berkeley / Stanford',
+   desc:'Combine a small gold-standard labelled dataset with a large pool of ML-generated predictions (AlphaFold, LLM labels) and still get provably valid confidence intervals — often much tighter.',
+   detail:`<p>Setting: n labelled points (X, Y) and N ≫ n unlabelled points with an ML model f. Prediction-powered inference corrects the model's bias using the labelled data: the estimate is the average of f over the unlabelled points plus a <em>rectifier</em>, the average error Y − f(X) on the labelled points.</p>
+<p>Validity needs no assumption on f; a more accurate f only makes the interval narrower. The original method (Angelopoulos, Bates, Fannjiang, Jordan, Zrnic) appeared in <em>Science</em> 382 (2023). Cross-prediction (Zrnic &amp; Candès) removes the need for a pretrained model by fitting it on the labelled data itself.</p>
+<p><strong>Active frontier:</strong> imputed covariates and nonuniform sampling (arXiv:2601.22298, 2026), active labelling, and using LLMs as annotators with statistical guarantees.</p>`,
+   guide:['📖 Angelopoulos, Bates, Fannjiang, Jordan &amp; Zrnic, \"Prediction-Powered Inference\" (arXiv:2301.09633; Science, 2023).','💻 Official Python package: github.com/aangelopoulos/ppi_py.','🔬 Entry project: label 200 items by hand, get model predictions for 20,000 more, and compare PPI intervals with classical intervals from the 200 alone.']},
+  {badge:'active',t:'Statistical Watermarking & Foundations of Generative AI',res:'Weijie Su, Feng Ruan, Ruodu Wang',inst:'UPenn (Wharton) / Northwestern / Waterloo',
+   desc:'Treating AI-text detection as hypothesis testing: hide a statistical signal in LLM output, then detect it with controlled false-positive rates and optimal power.',
+   detail:`<p>A watermark scheme changes how the LLM samples tokens so that each generated token becomes statistically dependent on a secret pseudo-random sequence. Detection then reduces to testing independence between the text and that sequence, with the false-positive rate controlled by construction.</p>
+<p>Li, Ruan, Wang, Long &amp; Su (<em>Annals of Statistics</em>, 2025) give a framework for pivotal statistics, asymptotic detection efficiency and minimax-optimal rules. In Feb 2026, Su, Wang &amp; Zhao proposed <em>online</em> detection via e-processes, giving anytime-valid guarantees under optional stopping.</p>
+<p>Open questions: robustness to paraphrasing and editing attacks, multi-key and multi-bit watermarks, and the quality–detectability trade-off.</p>`,
+   guide:['📖 Li, Ruan, Wang, Long &amp; Su, \"A Statistical Framework of Watermarks for LLMs\" (arXiv:2404.01245).','📖 Su, Wang &amp; Zhao, \"Online LLM watermark detection via e-processes\" (arXiv:2602.14286, Feb 2026).','🔬 Entry project: simulate a Gumbel-max watermark and compare fixed-sample detection with a sequential e-process test.']}
 ];
+// Researchers to follow / approach, by card index. [name, institution, focus]. Affiliations change — confirm on the official page before writing.
+var STAT_RESEARCH_PEOPLE = {
+ 0:[['Vladimir Vovk','Royal Holloway, Univ. of London','founder of conformal prediction'],['Rina Foygel Barber','Univ. of Chicago','conformal & distribution-free inference'],['Ryan Tibshirani','UC Berkeley','distribution-free inference, forecasting'],['Aaditya Ramdas','CMU → Stanford (Sep 2026)','conformal, e-values'],['Emmanuel Candès','Stanford','conformal, selective inference']],
+ 1:[['Judea Pearl','UCLA','causal diagrams, do-calculus'],['James Robins','Harvard T.H. Chan School','g-methods, semiparametric causal inference'],['Donald Rubin','Harvard (emeritus), Tsinghua, Temple','potential outcomes'],['Eric Tchetgen Tchetgen','Wharton, UPenn','proximal causal inference'],['Elias Bareinboim','Columbia','causal AI, data fusion']],
+ 2:[['Mikhail Belkin','UC San Diego','double descent, interpolation'],['Peter Bartlett','UC Berkeley','benign overfitting'],['Andrea Montanari','Stanford','high-dim asymptotics'],['Saharon Rosset','Tel Aviv Univ.','ridgeless regression']],
+ 3:[['Marco Cuturi','Apple ML Research','computational OT, Sinkhorn'],['Philippe Rigollet','MIT','statistical OT'],['Jonathan Niles-Weed','NYU Courant','OT estimation rates'],['Gabriel Peyré','CNRS & ENS Paris','computational OT']],
+ 4:[['Ryan Tibshirani','UC Berkeley','selective & distribution-free inference'],['Jonathan Taylor','Stanford','selective inference'],['Robert Tibshirani','Stanford','lasso, selective inference'],['Will Fithian','UC Berkeley','selective inference, FDR']],
+ 5:[['Cynthia Dwork','Harvard SEAS','co-inventor of differential privacy'],['Salil Vadhan','Harvard SEAS','DP theory'],['Aaron Roth','UPenn','DP, fairness'],['Weijie Su','Wharton, UPenn','DP, 2020 Census, LLM statistics'],['Adam Smith','Boston Univ.','private statistics']],
+ 6:[['Emmanuel Candès','Stanford','compressed sensing, knockoffs'],['Terence Tao','UCLA','compressed sensing, math'],['David Donoho','Stanford','sparsity, high-dim theory'],['Martin Wainwright','MIT','high-dim statistics'],['Richard Samworth','Univ. of Cambridge','nonparametric & high-dim']],
+ 7:[['Andrew Gelman','Columbia','Bayesian workflow, reform'],['John Ioannidis','Stanford (METRICS)','meta-research'],['Daniel Lakens','TU Eindhoven','p-values, equivalence tests'],['Brian Nosek','Univ. of Virginia / Center for Open Science','reproducibility']],
+ 8:[['Aaditya Ramdas','CMU → Stanford (Sep 2026)','e-values, confidence sequences'],['Ruodu Wang','Univ. of Waterloo','e-values, risk measures'],['Peter Grünwald','CWI Amsterdam & Leiden Univ.','safe testing'],['Vladimir Vovk','Royal Holloway, Univ. of London','game-theoretic probability']],
+ 9:[['Tijana Zrnic','Stanford','AI-assisted inference'],['Stephen Bates','MIT','conformal, PPI'],['Michael I. Jordan','UC Berkeley / Inria Paris','statistics & ML'],['Emmanuel Candès','Stanford','cross-prediction']],
+ 10:[['Weijie Su','Wharton, UPenn','LLM statistics, watermarks'],['Feng Ruan','Northwestern','statistical theory'],['Xiang Li','UPenn','watermark detection'],['Ruodu Wang','Univ. of Waterloo','e-processes']]
+};
+
 
 var statResearchPDFs = {};
 
@@ -337,9 +380,14 @@ function renderStatResearch() {
     var pdfs = (statResearchPDFs[i] || []).map(function(p) {
       return '<a class="pdf-resource-link" href="'+p.url+'" target="_blank" rel="noopener">📄 '+p.name+'</a>';
     }).join('');
+    var ppl = (STAT_RESEARCH_PEOPLE[i] || []).map(function(x) {
+      var q = encodeURIComponent(x[0] + ' ' + x[1] + ' faculty');
+      return '<div class="stat-res-person"><strong>' + x[0] + '</strong> — ' + x[1] + ' · <em>' + x[2] + '</em> <a href="https://www.google.com/search?q=' + q + '" target="_blank" rel="noopener" title="Find official page">🔎</a></div>';
+    }).join('');
+    var people = ppl ? '<div class="stat-res-people"><div class="stat-res-guide-lbl">👥 Researchers to follow &amp; contact</div>' + ppl + '</div>' : '';
     var guide = r.guide ? '<div class="stat-res-guide"><div class="stat-res-guide-lbl">🚀 How to Get Started</div>' +
       r.guide.map(function(s) { return '<div class="stat-res-guide-item">'+s+'</div>'; }).join('') + '</div>' : '';
-    var detail = r.detail ? '<div class="stat-res-detail" id="sresd'+i+'">'+r.detail+'</div>' +
+    var detail = r.detail ? '<div class="stat-res-detail" id="sresd'+i+'" data-math-display>'+r.detail+'</div>' +
       '<div class="stat-res-expand" onclick="toggleStatRes('+i+')" id="sresa'+i+'"><span id="sresarr'+i+'">▼</span> Detailed Mathematics</div>' : '';
     return '<div class="stat-res-card reveal">'+
       '<span class="stat-res-badge '+badgeCls[r.badge]+'">'+badgeTxt[r.badge]+'</span>'+
@@ -347,8 +395,13 @@ function renderStatResearch() {
       '<div class="stat-res-who">👤 '+r.res+'</div>'+
       '<div class="stat-res-inst">🏛 '+r.inst+'</div>'+
       '<div class="stat-res-desc">'+r.desc+'</div>'+
-      pdfs + detail + guide + '</div>';
+      people + pdfs + detail + guide + '</div>';
   }).join('');
+  grid.insertAdjacentHTML('afterbegin','<div class="stat-res-outreach reveal">🤝 <strong>Want to collaborate?</strong> Read two or three of a researcher\'s recent papers, then send a short, specific email: who you are, what you built or replicated (link the code), and one concrete question or idea. Ask for pointers, not a job. Small contributions to their open-source packages get noticed too. Affiliations change, so confirm on the official page (🔎).</div>');
+
+  // Cards are injected after KaTeX's first pass, so render math on them now.
+  // (If KaTeX isn't loaded yet, its script onload will handle them instead.)
+  if (window.renderMath && window.renderMathInElement) renderMath(grid);
 }
 
 

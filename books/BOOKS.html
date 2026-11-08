@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<!-- Google tag (gtag.js) --> <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'],wait_for_update:500});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="../pics/logo.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1197,7 +1198,8 @@ body.ocean .chest-label { color:var(--accent);text-shadow:0 0 14px rgba(40,200,1
 .topbar #loginBtn{padding:.28rem .6rem;font-size:.66rem}
 .topbar #userEmailDisplay{max-width:64px;padding:.26rem .5rem;font-size:.64rem}.topbar #signOutBtn{padding:.26rem .5rem;font-size:.64rem}}
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="book-status.js"></script>
 </head>
 <body data-page="books">
 <canvas id="oceanCanvas" aria-hidden="true"></canvas>
@@ -1229,9 +1231,9 @@ body.ocean .chest-label { color:var(--accent);text-shadow:0 0 14px rgba(40,200,1
     </filter>
   </defs>
 </svg>
-<div class="topbar"><div class="tb-left"><a href="../index.html" id="universeLink" title="Back to the Stargazer universe" style="position:fixed;top:14px;left:16px;z-index:10000;font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;text-decoration:none;transition:all 0.25s;background:#f0ebe0;color:#3a2a10;border:1px solid #c4b89a;border-radius:30px;padding:0.3rem 0.85rem;box-shadow:0 2px 8px rgba(0,0,0,0.12);display:inline-flex;align-items:center;gap:0.35rem;" onmouseover="this.style.background='#e0d8c8';this.style.color='#1c1408'" onmouseout="this.style.background='#f0ebe0';this.style.color='#3a2a10'">← universe</a><a href="home.html" id="homeLink" title="All book lists" style="position:fixed;top:14px;left:16px;z-index:10000;font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;text-decoration:none;transition:all 0.25s;background:#f0ebe0;color:#3a2a10;border:1px solid #c4b89a;border-radius:30px;padding:0.3rem 0.85rem;box-shadow:0 2px 8px rgba(0,0,0,0.12);display:inline-flex;align-items:center;gap:0.35rem;" onmouseover="this.style.background='#e0d8c8';this.style.color='#1c1408'" onmouseout="this.style.background='#f0ebe0';this.style.color='#3a2a10'">← books</a></div>
+<div class="topbar"><div class="tb-left"><a href="../" id="universeLink" title="Back to the Stargazer universe" style="position:fixed;top:14px;left:16px;z-index:10000;font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;text-decoration:none;transition:all 0.25s;background:#f0ebe0;color:#3a2a10;border:1px solid #c4b89a;border-radius:30px;padding:0.3rem 0.85rem;box-shadow:0 2px 8px rgba(0,0,0,0.12);display:inline-flex;align-items:center;gap:0.35rem;" onmouseover="this.style.background='#e0d8c8';this.style.color='#1c1408'" onmouseout="this.style.background='#f0ebe0';this.style.color='#3a2a10'">← universe</a><a href="home" id="homeLink" title="All book lists" style="position:fixed;top:14px;left:16px;z-index:10000;font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;text-decoration:none;transition:all 0.25s;background:#f0ebe0;color:#3a2a10;border:1px solid #c4b89a;border-radius:30px;padding:0.3rem 0.85rem;box-shadow:0 2px 8px rgba(0,0,0,0.12);display:inline-flex;align-items:center;gap:0.35rem;" onmouseover="this.style.background='#e0d8c8';this.style.color='#1c1408'" onmouseout="this.style.background='#f0ebe0';this.style.color='#3a2a10'">← books</a></div>
 <div id="authHeader">
-  <a href="../login.html" id="loginBtn">Sign in</a>
+  <a href="../login" id="loginBtn">Sign in</a>
   <div id="userInfo" style="display:none;">
     <span id="userEmailDisplay"></span>
     <button onclick="doSignOut()" id="signOutBtn">sign out</button>
@@ -1995,23 +1997,23 @@ function cycleStatus(id){
   const newSt=s==='unread'?'reading':s==='reading'?'done':'unread';
   status[id]=newSt;
   if(newSt==='done')setTimeout(()=>{if(typeof spawnBubbles==='function')spawnBubbles(id);if(typeof checkTreasure==='function')checkTreasure();},60);
-  saveStatus();_patchBook(id);
+  saveStatus();_patchBook(id);if(window._sgPush)_sgPush(id,'r');
 }
 function toggleBought(id){
   if(!bought[id]){ willBuy[id]=false; saveWillBuy(); willNotBuy[id]=false; saveWillNotBuy(); }
-  bought[id]=!bought[id]; saveBought(); _patchBook(id);
+  bought[id]=!bought[id]; saveBought(); _patchBook(id); if(window._sgPush)_sgPush(id,'b');
 }
 function toggleWillBuy(id){
   if(!willBuy[id]){ bought[id]=false; saveBought(); willNotBuy[id]=false; saveWillNotBuy(); }
-  willBuy[id]=!willBuy[id]; saveWillBuy(); _patchBook(id);
+  willBuy[id]=!willBuy[id]; saveWillBuy(); _patchBook(id); if(window._sgPush)_sgPush(id,'b');
 }
 function toggleWillNotBuy(id){
   if(!willNotBuy[id]){ bought[id]=false; saveBought(); willBuy[id]=false; saveWillBuy(); }
-  willNotBuy[id]=!willNotBuy[id]; saveWillNotBuy(); _patchBook(id);
+  willNotBuy[id]=!willNotBuy[id]; saveWillNotBuy(); _patchBook(id); if(window._sgPush)_sgPush(id,'b');
 }
 function clearPurchase(id){
   bought[id]=false; willBuy[id]=false; willNotBuy[id]=false;
-  saveBought(); saveWillBuy(); saveWillNotBuy(); if (typeof sbSaveProgress === 'function') sbSaveProgress(); _patchBook(id);
+  saveBought(); saveWillBuy(); saveWillNotBuy(); if (typeof sbSaveProgress === 'function') sbSaveProgress(); _patchBook(id); if(window._sgPush)_sgPush(id,'b');
 }
 
 function updateStats(){
@@ -2073,23 +2075,30 @@ const LOCAL_COVERS = {
   'o38': '../covers/baudolino.jpg',
   'o40': '../covers/blindsight.jpg',
   'c30': '../covers/catscradle.jpg',
+  'c6':  '../covers/childrenoftime.jpg',
+  'o27': '../covers/cloudatlas.jpg',
   'o35': '../covers/cryingofthelot49.jpg',
   'o44': '../covers/cryptonomicon.jpg',
   'o49': '../covers/diaspora.jpg',
+  'o70': '../covers/dictionaryofthekhazars.jpg',
   'o22': '../covers/ellaminnowpea.jpg',
   'o46': '../covers/embasseytown.jpg',
   'o59': '../covers/exercisesinstyle.jpg',
   'o24': '../covers/extremelyloudandincrediblyclose.jpg',
   'o57': '../covers/ficciones.jpg',
   'o1':  '../covers/flowersforalgernon.jpg',
+  'o39': '../covers/focaultspendulum.jpg',
   'o74': '../covers/gadsby.jpg',
   'c17': '../covers/gravitysrainbow.jpg',
   'o63': '../covers/hopscotch.jpg',
+  'o82': '../covers/houseofleaves.jpg',
   'c10': '../covers/hyperion.jpg',
   'o64': '../covers/ifonawintersnightatraveller.jpg',
   'o86': '../covers/infinitejest.jpg',
-  'o55': '../covers/jonathanstrange.jpg',
+  'o56': '../covers/invisiblecities.jpg',
+  'o55': '../covers/jonathanstrangesndmrnorrell.jpg',
   'c22': '../covers/labyrinths.jpg',
+  'o78': '../covers/lifeausersmanual.jpg',
   'o26': '../covers/lincolninthebardo.jpg',
   'o52': '../covers/lostinthefunhouse.jpg',
   'c2':  '../covers/malonedies.jpg',
@@ -2108,17 +2117,20 @@ const LOCAL_COVERS = {
   'c33': '../covers/recursion.jpg',
   'o32': '../covers/remainder.jpg',
   'o20': '../covers/revelationspace.jpg',
+  'o77': '../covers/riddleywalker.jpg',
   'o68': '../covers/s.jpg',
   'o33': '../covers/satinisland.jpg',
+  'o16': '../covers/snowcrash.jpg',
   'o19': '../covers/solaris.jpg',
   'o11': '../covers/storiesofyourlifeandothers.jpg',
   'o23': '../covers/strangepictures.jpg',
+  'o5':  '../covers/theanomaly.jpg',
   'c5':  '../covers/thecastle.jpg',
   'o7':  '../covers/thecityandthecity.jpg',
   'c31': '../covers/thefemaleman.jpg',
   'c15': '../covers/theglassbeadgame.jpg',
   'o31': '../covers/thehearingtrumpet.jpg',
-  'o30': '../covers/themanuscriptfoundinsargossa.jpg',
+  'o30': '../covers/themanuscriptfoundinsaragossa.jpg',
   'o37': '../covers/thenameoftherose.jpg',
   'o60': '../covers/thepenguinbookofoulipo.jpg',
   'c21': '../covers/thepeopleofpaper.jpg',
@@ -2936,6 +2948,7 @@ function importProgress(e){
       Object.assign(bought,      mergedBought);
       Object.assign(willBuy,     mergedWillBuy);
       Object.assign(willNotBuy,  mergedWillNotBuy);
+      if(window._sgPushAll)_sgPushAll();
       renderAll();
       updateStorageInfo();
       alert('✓ Progress imported successfully.');
@@ -2955,6 +2968,7 @@ async function resetProgress(){
   Object.keys(bought).forEach(k=>delete bought[k]);
   Object.keys(willBuy).forEach(k=>delete willBuy[k]);
   Object.keys(willNotBuy).forEach(k=>delete willNotBuy[k]);
+  if(window._sgPushAll)_sgPushAll();
   // Remove the server-side record so next login doesn't restore wiped progress
   if (sb && currentUser) {
     try {
@@ -3101,7 +3115,7 @@ renderAll(() => {
   <h3 class="comment-heading">✦ &nbsp; Thoughts &amp; Reflections</h3>
   <div id="commentLoginMsg" class="comment-login-msg">
     <span>Sign in to share your thoughts</span>
-    <a href="../login.html" class="comment-signin-btn">Sign in</a>
+    <a href="../login" class="comment-signin-btn">Sign in</a>
   </div>
   <div id="commentFormWrap" style="display:none;">
     <div class="comment-form">
@@ -3386,6 +3400,55 @@ document.addEventListener('keydown', function(e){
 });
 </script>
 
+
+<script>
+/* ── SHARED STATUS (book-status.js) ──────────────────────────────────────
+   Reading / Finished / Bought / Will Buy are shared with the other book pages, matched by title.
+   _sgPush: you changed something here → tell the shared store (only the part you changed).
+   _sgImport: pull the shared marks into this page; anything only this page knew about is shared first. */
+(function(){
+  if(!window.SGB) return;
+  const rOf=id=>{const s=status[id]||'unread';return s==='done'?'finished':s==='reading'?'reading':''};
+  const bOf=id=>bought[id]?'bought':willBuy[id]?'willbuy':'';
+  const byKey={};booksData.forEach(b=>{(byKey[SGB.key(b.title)]=byKey[SGB.key(b.title)]||[]).push(b)});
+  const save=()=>{try{
+    localStorage.setItem('rl_status_v3',JSON.stringify(status));localStorage.setItem('rl_bought_v3',JSON.stringify(bought));
+    localStorage.setItem('rl_willbuy_v3',JSON.stringify(willBuy));localStorage.setItem('rl_willnotbuy_v3',JSON.stringify(willNotBuy));
+  }catch(e){}};
+  /* shared → this page. Returns true if anything here changed. */
+  function apply(b,e){
+    let ch=false;
+    if(e.tr){const st=e.r==='finished'?'done':e.r==='reading'?'reading':'unread';
+      if((status[b.id]||'unread')!==st){status[b.id]=st;ch=true}}
+    if(e.tb){const bo=e.b==='bought',wb=e.b==='willbuy';
+      if(!!bought[b.id]!==bo||!!willBuy[b.id]!==wb){bought[b.id]=bo;willBuy[b.id]=wb;if(bo||wb)willNotBuy[b.id]=false;ch=true}}
+    return ch}
+  let quiet=false,pend=new Set(),tm=null;
+  function flush(){
+    tm=null;const ids=[...pend];pend.clear();if(!ids.length)return;save();
+    if(ids.length>4&&typeof renderAll==='function'){const a=typeof getScrollAnchor==='function'?getScrollAnchor():null;renderAll(a&&typeof restoreScrollAnchor==='function'?()=>restoreScrollAnchor(a):undefined)}
+    else ids.forEach(id=>_patchBook(id))}
+  SGB.onChange((k,e)=>{
+    if(quiet)return;
+    (byKey[k]||[]).forEach(b=>{if(apply(b,e)){pend.add(b.id);if(!tm)tm=setTimeout(flush,40)}})});
+  window._sgPush=function(id,part){
+    const b=booksData.find(x=>x.id===id);if(!b)return;
+    const p={};if(part==='r')p.r=rOf(id);else p.b=bOf(id);
+    quiet=true;try{SGB.set(b.title,p,'books')}finally{quiet=false}};
+  window._sgPushAll=function(){
+    quiet=true;try{booksData.forEach(b=>SGB.set(b.title,{r:rOf(b.id),b:bOf(b.id)},'books'))}finally{quiet=false}};
+  window._sgImport=function(){
+    let any=false;quiet=true;
+    try{booksData.forEach(b=>{
+      const e=SGB.get(b.title),p={};
+      if(!e.tr&&rOf(b.id))p.r=rOf(b.id);
+      if(!e.tb&&bOf(b.id))p.b=bOf(b.id);
+      if(p.r||p.b)SGB.seed(b.title,p);
+      if(apply(b,SGB.get(b.title)))any=true})}finally{quiet=false}
+    if(any){save();if(typeof renderAll==='function')renderAll()}};
+  _sgImport();
+})();
+</script>
 <script>
 /* ── PAGE IDENTITY & PROGRESS CALLBACKS (read by shared.js) ── */
 window._pageKey = 'books';
@@ -3430,6 +3493,7 @@ window._applyProgressData = function(data) {
   if (data.willBuy)    { Object.assign(willBuy,     data.willBuy);    localStorage.setItem('rl_willbuy_v3',   JSON.stringify(willBuy)); }
   if (data.willNotBuy) { Object.assign(willNotBuy,  data.willNotBuy); localStorage.setItem('rl_willnotbuy_v3',JSON.stringify(willNotBuy)); }
 
+  if (window._sgImport) _sgImport();
   if (changed && typeof renderAll === 'function') {
     // This fires whenever shared.js pulls fresh data — e.g. a periodic
     // re-sync after the tab was backgrounded — which used to rebuild the
@@ -3444,7 +3508,7 @@ window._applyProgressData = function(data) {
 </script>
 
 <div style="text-align:center;padding:2rem 1rem 1.5rem;border-top:1px solid var(--border);margin-top:2.5rem;">
-  <a href="../ABOUT.html" style="font-family:var(--font-body);font-size:0.72rem;letter-spacing:0.12em;color:var(--text3);text-decoration:none;border:1px solid var(--border2);border-radius:20px;padding:0.32rem 1.1rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.45rem;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--text3)'">✦ about stargazer</a>
+  <a href="../ABOUT" style="font-family:var(--font-body);font-size:0.72rem;letter-spacing:0.12em;color:var(--text3);text-decoration:none;border:1px solid var(--border2);border-radius:20px;padding:0.32rem 1.1rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.45rem;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--text3)'">✦ about stargazer</a>
 </div>
 
 <script>

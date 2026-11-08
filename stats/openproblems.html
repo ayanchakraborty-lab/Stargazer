@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<!-- Google tag (gtag.js) --> <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'],wait_for_update:500});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="../pics/logo.png">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -44,20 +45,36 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
   onload="if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>renderMath(document.body));}else{renderMath(document.body);}"></script>
+<style>
+/* Open Problems level filter — scoped opx-* classes, no existing rule touched */
+.opx-filter,.opx-note,.opx-sec{grid-column:1/-1;flex:0 0 100%;width:100%;box-sizing:border-box}
+.opx-filter{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 .6rem}
+.opx-chip{font:inherit;font-size:.82rem;font-weight:500;line-height:1.2;padding:.55rem 1rem;border-radius:999px;border:1px solid rgba(122,62,18,.3);background:transparent;color:var(--text-3);cursor:pointer}
+.opx-chip:hover{color:var(--og)}
+.opx-chip.on{background:var(--og-l);color:var(--og);border-color:rgba(122,62,18,.45)}
+.opx-chip:focus-visible{outline:2px solid var(--og);outline-offset:2px}
+.opx-n{margin-left:.4rem;opacity:.7;font-variant-numeric:tabular-nums}
+.opx-note{margin:0 0 .4rem;font-size:.76rem;line-height:1.5;color:var(--text-3);font-style:italic}
+.opx-sec{margin:1.8rem 0 .5rem}
+.opx-note+.opx-sec{margin-top:1.1rem}
+.opx-sec-t{margin:0;font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;line-height:1.2;color:inherit}
+.opx-sec-d{margin:.25rem 0 0;max-width:60ch;font-size:.86rem;line-height:1.5;color:var(--text-3)}
+.opx-start{margin-top:.25rem;font-size:.76rem;line-height:1.4;color:var(--text-3)}
+</style>
 </head>
 <body>
 
 <!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
 <div id="auth-topbar">
-  <a href="../index.html" class="atb-btn atb-home">🌌 Stargazer Home</a>
+  <a href="../" class="atb-btn atb-home">🌌 Universe</a>
   <div style="flex:1"></div>
   <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
     <span id="mode-icon">☾</span>
   </button>
-  <a href="../login.html" id="loginBtn">☽ Sign In</a>
+  <a href="../login" id="loginBtn">☽ Sign In</a>
   <div id="userInfo">
     <span id="userEmailDisplay">✦ Explorer</span>
-    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login.html'">Sign Out</button>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login'">Sign Out</button>
   </div>
 </div>
 
@@ -107,7 +124,7 @@
   <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
 </div>
 <div style="text-align:center;padding-bottom:2rem;">
-  <a href="../ABOUT.html" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+  <a href="../ABOUT" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
 </div>
 
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
@@ -115,8 +132,9 @@
 window._nextPage = 'research.html';
 window._prevPage = 'bayesian.html';
 const ADMIN_EMAIL = 'ayanchakrabortyall@gmail.com';
+const ADMIN_EMAILS = ['ayanchakrabortyall@gmail.com','officialayanimp@gmail.com','duolingo.learn1024@gmail.com'];
 
-function isAdmin(){return !!(window.currentUser && window.currentUser.email===ADMIN_EMAIL);}
+function isAdmin(){return !!(window.currentUser && ADMIN_EMAILS.includes(window.currentUser.email));}
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -252,6 +270,7 @@ const OPEN_PROBLEMS = [
     t:'The Foundations of Statistical Inference',
     field:'Foundations · Philosophy',
     status:'Partially Resolved',
+    level:'pg',
     q:'Is there a single coherent framework for statistical inference — or are frequentism and Bayesianism fundamentally irreconcilable, each valid only for different classes of problems? What exactly does a probability statement mean in a world where experiments are never truly repeated?',
     why:'Every statistical inference rests on an implicit philosophy of probability. The choice of framework affects what questions can be asked, what counts as an answer, and how evidence is summarised. Replication crisis, p-value debates, and confidence interval controversies all trace back to unresolved foundational issues.',
     how:'Study Savage (1954) Foundations of Statistics, de Finetti (1970) Theory of Probability, and the modern synthesis in Lindley (2006) Understanding Uncertainty. Compare the frequentist, Bayesian, fiducial (Fisher), and likelihood-only (Royall) frameworks. Read Gelman and Shalizi (2013) "Philosophy and the practice of Bayesian statistics" for the anti-foundationalist perspective.',
@@ -261,6 +280,7 @@ const OPEN_PROBLEMS = [
     t:"Is There an Optimal Universal Multiple Testing Procedure?",
     field:'Multiple Testing · Decision Theory',
     status:'Open',
+    level:'pg',
     q:'Given m hypothesis tests with arbitrary and unknown dependence structure, what is the optimal procedure that controls the False Discovery Rate at level q while maximising power? Does the Benjamini-Hochberg procedure remain optimal under arbitrary dependence, and if not, what replaces it?',
     why:"The genomics revolution created a world where scientists routinely test 20,000 genes, 1,000,000 genetic variants, or millions of voxels simultaneously. The multiple testing problem is not peripheral — it is the central challenge of modern large-scale science. Incorrect solutions cause floods of false discoveries in the literature.",
     how:"Begin with Benjamini & Hochberg (1995) and Benjamini & Yekutieli (2001) for BH under dependence. Study Efron's (2010) Large-Scale Inference for empirical Bayes approaches. Read Candes, Fan, Janson & Lv (2018) Panning for Gold on knockoffs for controlled variable selection. Investigate the model-X knockoff framework for exact FDR control with unknown dependence.",
@@ -270,6 +290,7 @@ const OPEN_PROBLEMS = [
     t:'The Causal Inference Identification Problem',
     field:'Causal Inference · Observational Studies',
     status:'Active Research',
+    level:'phd',
     q:'Given observational data from an unknown causal system, under what conditions can the causal effect of an intervention P(Y|do(X=x)) be uniquely identified from the observational distribution P(X,Y,Z,...)? Is there a complete algorithm for causal identification, and how does it extend to non-parametric and non-Markovian systems?',
     why:'Establishing causation from observational data is the central challenge of epidemiology, economics, sociology, and AI. Without identifying causal effects, we cannot reliably predict the consequences of interventions. Drug trials, policy evaluations, and AI alignment all depend on solving causal identification problems.',
     how:"Read Pearl (2009) Causality — the defining reference. Study the do-calculus rules (three rules for manipulating interventional distributions). Understand the ID algorithm (Shpitser & Pearl 2006) which is complete for non-parametric identification with single hidden variables. Explore Potential Outcomes (Rubin) framework and its connection to structural causal models. Engage with Imbens & Rubin (2015) Causal Inference for Statistics, Social, and Biomedical Sciences.",
@@ -279,6 +300,7 @@ const OPEN_PROBLEMS = [
     t:'Optimal Rates in Nonparametric Function Estimation',
     field:'Nonparametric Statistics · Information Theory',
     status:'Largely Resolved (but extensions open)',
+    level:'phd',
     q:'For estimating a smooth function f in a d-dimensional space from n noisy observations, what is the minimax optimal rate of convergence? How does the curse of dimensionality interact with structural assumptions (additivity, sparsity, monotonicity) to enable faster rates?',
     why:"Nonparametric function estimation underlies machine learning (regression trees, kernels, neural networks), brain imaging analysis, genetics, and econometrics. Understanding optimal rates tells us how much data is needed, what structures help, and why high-dimensional problems are hard.",
     how:"Read Tsybakov (2009) Introduction to Nonparametric Estimation — the definitive mathematical reference. Study Pinsker's theorem (minimax rate for 1D Sobolev ellipsoid is n^{-2s/(2s+1)} for s-smooth functions). Study the Fano-Assouad lower bound technique. Explore Lepski's adaptive estimators. For modern perspectives, read Wainwright (2019) High-Dimensional Statistics.",
@@ -288,6 +310,7 @@ const OPEN_PROBLEMS = [
     t:'The P-Value and Reproducibility Crisis',
     field:'Statistical Practice · Philosophy',
     status:'Active Reform Debate',
+    level:'ug',
     q:'The scientific literature has a reproducibility crisis: a majority of published findings in psychology, medicine, and social science fail to replicate. What is the correct statistical framework for evaluating evidence? Should the significance threshold be lowered to 0.005, replaced by Bayes factors, replaced by estimation plus uncertainty, or abolished entirely?',
     why:"False findings waste resources, misguide medical practice, and erode public trust in science. The incentive structure of academic publishing rewards p &lt; 0.05 regardless of effect size, power, or replication. Finding a better system is one of the most practically important questions in applied statistics.",
     how:"Read Ioannidis (2005) 'Why Most Published Research Findings Are False' — 8,000+ citations. Study Gelman & Loken (2014) on the garden of forking paths. Read Benjamin et al. (2018) 'Redefine Statistical Significance' (72 authors proposing α = 0.005). Study Amrhein, Greenland & McShane (2019) 'Retire Statistical Significance' (Nature comment, 800+ signatories). Engage with Lakens et al.'s rebuttal and the ASA's 2019 statement on p-values.",
@@ -297,6 +320,7 @@ const OPEN_PROBLEMS = [
     t:'Differential Privacy: Statistical Costs of Privacy',
     field:'Privacy · Information Theory',
     status:'Active Research',
+    level:'phd',
     q:'An ε-differentially private algorithm guarantees that its output changes by at most a factor e^ε when any single individual\'s data is added or removed. What is the precise statistical cost of privacy? For which inference problems does differential privacy impose an irreducible cost, and for which is the cost vanishingly small?',
     why:"Massive datasets from healthcare, finance, social media, and government contain private information. Differential privacy (adopted by Apple, Google, the US Census Bureau) provides a mathematically rigorous privacy guarantee. Understanding its statistical cost determines how useful private analysis can be.",
     how:"Read Dwork & Roth (2014) 'The Algorithmic Foundations of Differential Privacy' (free PDF, the foundational reference). Study the Gaussian mechanism and Laplace mechanism for continuous and discrete queries. Study Kasiviswanathan & Smith (2014) for information-theoretic lower bounds. Read Cai, Wang & Zhang (2021) for minimax rates under privacy in parametric models. Explore Apple's and Google's implementations.",
@@ -306,6 +330,7 @@ const OPEN_PROBLEMS = [
     t:'Statistical Foundations of AI Alignment',
     field:'AI Safety · Decision Theory',
     status:'Nascent',
+    level:'phd',
     q:'How should a powerful AI system learn human preferences from limited, noisy, and potentially inconsistent feedback? Can statistical models of preference elicitation guarantee alignment with human values, and what are the fundamental limits of learning value functions from behaviour?',
     why:"Advanced AI systems that act on inferred human preferences risk catastrophic misalignment if those preferences are incorrectly specified. Understanding the statistical limits of preference learning from data determines what alignment guarantees are achievable.",
     how:"Read Christiano et al. (2017) 'Deep Reinforcement Learning from Human Preferences'. Study the inverse reinforcement learning literature (Ng & Russell 2000, Ziebart et al. 2008). Engage with Hadfield-Menell et al. (2016) 'Cooperative Inverse Reinforcement Learning'. Study the statistical theory of ranking and choice models (Bradley-Terry, Plackett-Luce). Read Koopmans & Reiter (1951) and subsequent social choice theory.",
@@ -315,6 +340,7 @@ const OPEN_PROBLEMS = [
     t:'Quantum Statistics and Quantum Fisher Information',
     field:'Quantum Mechanics · Estimation Theory',
     status:'Active Research',
+    level:'phd',
     q:'What is the optimal precision for estimating a quantum mechanical parameter θ encoded in a quantum state ρ(θ)? How do quantum entanglement and coherence enable parameter estimation precision beyond the classical Cramér-Rao bound? What are the fundamental limits of multi-parameter quantum estimation?',
     why:"Quantum sensing, quantum computing benchmarking, and quantum communication all require estimating parameters from quantum measurements. The precision limits of these measurements determine what quantum technologies can achieve beyond classical limits.",
     how:'Study Helstrom (1976) Quantum Detection and Estimation Theory. Read Braunstein & Caves (1994) Statistical Distance and the Geometry of Quantum States — the paper defining quantum Fisher information. Study Giovannetti, Lloyd & Maccone (2011) Advances in Quantum Metrology (Nature Photonics). For modern perspectives, read Liu, Mu, Li & Yuan (2020) Quantum Fisher Information Matrix and Multiparameter Estimation.',
@@ -324,6 +350,7 @@ const OPEN_PROBLEMS = [
     t:'Optimal Transport and Statistical Inference',
     field:'Optimal Transport · Nonparametric Statistics',
     status:'Active Research',
+    level:'phd',
     q:'The Wasserstein distance W_p(P,Q) between probability measures P and Q is the cost of the optimal transport map between them. How can Wasserstein distances and optimal transport maps be efficiently estimated from samples? What are the minimax rates, and when does the curse of dimensionality apply?',
     why:"Wasserstein distances provide natural metrics for comparing probability distributions with geometric meaning (unlike KL divergence, they account for the geometry of the sample space). They appear in generative modelling (Wasserstein GANs), distributional robustness, and causal inference. Statistical theory is needed to understand when sample-based estimation is reliable.",
     how:'Read Villani (2008) Optimal Transport: Old and New (free PDF) for the mathematical theory. Study Peyré & Cuturi (2019) Computational Optimal Transport for algorithms. Read Weed & Bach (2019) for minimax rates of Wasserstein estimation. Explore Chizat, Peyré, Schmitzer & Vialard (2018) on scaling algorithms for large-scale OT.',
@@ -333,23 +360,477 @@ const OPEN_PROBLEMS = [
     t:'The Reproducibility of Statistical Learning',
     field:'Machine Learning Theory · Stability',
     status:'Active Research',
+    level:'phd',
     q:'A machine learning model trained on different random subsamples of data, or with different random seeds, gives different predictions. Under what conditions does the predicted output converge as training data grows? What is the right formal stability notion for ML methods, and how does it connect to generalisation guarantees?',
     why:"Clinical decision support, credit scoring, criminal justice risk assessment, and autonomous systems rely on ML models. If the same model trained on slightly different data gives dramatically different predictions, this represents an unacceptable epistemic instability with real-world consequences.",
     how:'Read Bousquet & Elisseeff (2002) Stability and Generalisation — the foundational paper connecting uniform stability to generalisation bounds. Study Shalev-Shwartz & Ben-David (2014) Understanding Machine Learning, chapters 13-14. Read Hardt, Recht & Singer (2016) Train Faster, Generalize Better (stability of SGD). Explore Breiman (1996) on bagging as a variance-reduction technique based on stability.',
     extra:'Algorithmic stability provides generalisation bounds without relying on uniform convergence (which is vacuous for modern overparameterised networks): if an algorithm A has uniform stability β (changing one training point changes the loss by at most β), then the generalisation gap |L(A(S)) − L̂(A(S))| ≤ O(β√n + 1/√n). For SGD with step size η on L-smooth β_s-strongly convex functions, β = O(ηL²T/(n·β_s)) (Hardt et al. 2016). The deep learning regime is more subtle: overparameterised models with T = O(n) iterations have β ~ 0 (low stability from randomised data selection) but excellent generalisation — a contradiction with stability theory that remains incompletely resolved. The "double descent" phenomenon (Belkin et al. 2019) — generalisation error decreasing again after the interpolation threshold — is not explained by classical bias-variance theory and requires stability-based or margin-based explanations.'
+  },
+  {
+    t:"Which Sample Quantile Definition Is Best?",
+    field:"Descriptive Statistics · Estimation",
+    status:"No Consensus",
+    level:'ug',
+    start:"Start in Sem 1 · CC1 Unit 2 (quantiles, box plot)",
+    q:"Given n observations, \"the 25th percentile\" has no single definition. Hyndman & Fan (1996) catalogued nine in common use, and software does not agree on them: R's default is type 7, while Excel offers two different quartile functions. The same data can give different quartiles, different box-plot fences and different \"outliers\". Which definition should be used, and under what criterion is it best?",
+    why:"Every box plot, every outlier fence (Q1 − 1.5·IQR) and every percentile rank depends on this choice, and for small n the definitions visibly disagree. No definition wins on every criterion (bias, mean squared error, continuity, invariance), so \"best\" has to be defined before it can be decided.",
+    how:"Week 1: in C (SEC1) or R, implement all nine definitions from Hyndman & Fan (1996), \"Sample quantiles in statistical packages\", The American Statistician 50(4). Week 2: for n = 5, 10, 20, 50 and several distributions (normal, exponential, Cauchy), simulate 100,000 samples and estimate the bias and mean squared error of each definition at the 25th, 50th and 75th percentiles. Week 3: tabulate which definition wins for each distribution and criterion. Then read Harrell & Davis (1982) and Sheather & Marron (1990) for smooth alternatives and test whether they beat all nine.",
+    extra:"Hyndman & Fan list six desirable properties and recommend definition 8, which is approximately median-unbiased whatever the distribution; R nonetheless defaults to definition 7. The differences shrink as n grows, so they matter mostly for small samples, which is exactly where box plots are used most. A genuinely new result would be a proved optimality statement: for a stated loss and a stated class of distributions, which definition (or smooth estimator) has the smallest worst-case risk?"
+  },
+  {
+    t:"The Hot Hand and the Streak-Selection Bias",
+    field:"Probability · Sports Statistics",
+    status:"Partially Resolved",
+    level:'ug',
+    start:"Start in Sem 1 · CC1 Unit 3 (conditional probability, independence)",
+    q:"Does a basketball player who has just scored have a higher chance of scoring next? For decades psychologists called the \"hot hand\" a fallacy. Miller & Sanjurjo (2018) found a subtle bias in the standard analysis: in a short sequence of fair coin flips, the expected proportion of heads on flips that follow a head is below 1/2. After correcting for it, some data sets show a real hot hand. What is the right test for streak dependence in short sequences, and how large is the real effect?",
+    why:"It is a clean example of a selection effect hiding inside a \"natural\" estimator. The same trap appears whenever an analysis conditions on outcomes inside a finite sequence, which is common in sports, finance and clinical monitoring.",
+    how:"Do it by hand first. List the 8 sequences of 3 fair flips; for each sequence with at least one head in the first two flips, compute the proportion of heads among the flips that follow a head, then average over those sequences. You get 5/12 ≈ 0.417, not 1/2. Repeat in C for n = 4 (17/42 ≈ 0.405) and n = 10 (≈ 0.445). Then simulate a shooter with a true hot hand (P(hit after a hit) = P(hit after a miss) + 0.05) and measure how often the naive and the corrected tests detect it at n = 100 and n = 300. Read Miller & Sanjurjo (2018), Econometrica 86, and Gilovich, Vallone & Tversky (1985).",
+    extra:"The bias shrinks as n grows (0.405 at n = 4, 0.445 at n = 10, and the limit is 1/2), which is why it went unnoticed in long sequences. It comes from averaging proportions within each sequence and then across sequences, after selecting which flips to look at using the sequence's own outcomes. Open questions: powerful tests that are valid at small n (permutation tests conditioning on the number of hits are a natural start), estimating the size of the effect when shot difficulty and defence vary, and whether league-wide effects are detectable at all."
+  },
+  {
+    t:"Do Mean, Median and Skewness Really Line Up?",
+    field:"Descriptive Statistics · Distribution Theory",
+    status:"Partially Resolved",
+    level:'ug',
+    start:"Start in Sem 1 · CC1 Unit 2 (central tendency, skewness); sharpen in Sem 4 · CC6 (distributions)",
+    q:"Textbooks say that right skew means mean &gt; median, and Pearson's empirical rule says mean − mode ≈ 3 (mean − median). Both statements fail for some distributions. Exactly which classes of distributions guarantee the ordering, how large can the violations be, and how good is Pearson's approximation for realistic data?",
+    why:"These rules are taught in Sem 1 and used to read skewness off a histogram or off the gap between mean and median. Knowing when they are theorems and when they are folklore is the difference between describing data and misdescribing it.",
+    how:"Week 1: write a C or R program that draws samples from skewed families (lognormal, gamma, Weibull, binomial with p ≠ 1/2, two-component mixtures) and records the sign of (mean − median) against the sign of the skewness coefficient; hunt for counterexamples. Week 2: read von Hippel (2005), \"Mean, Median, and Skew: Correcting a Textbook Rule\", Journal of Statistics Education 13(2), and O'Cinneide (1990), \"The mean is within one standard deviation of any median\", The American Statistician 44. Week 3: state a precise conjecture for one family and try to prove it with calculus (Sem 3, Real Analysis).",
+    extra:"Proven: |mean − median| ≤ σ for every distribution with finite variance (O'Cinneide 1990). Counterexamples to the textbook rule exist, especially for discrete and multimodal distributions (von Hippel 2005). Open: sharp, checkable conditions (on the density, or on the third central moment together with unimodality) under which the mean-median-mode ordering and Pearson's 3-to-1 relation are guaranteed, or provably approximate with explicit error bounds."
+  },
+  {
+    t:"Estimating the Gini Coefficient from Small, Heavy-Tailed Samples",
+    field:"Descriptive Statistics · Inequality Measurement",
+    status:"Active Research",
+    level:'ug',
+    start:"Start in Sem 1 · CC1 Unit 2 (Lorenz curve, Gini); estimation theory from Sem 3–4",
+    q:"Every data set has a sample Gini coefficient, but it is biased in small samples, and for heavy-tailed incomes (a few huge values) the usual confidence intervals can miss the truth far more often than 5% of the time. What estimator and interval procedure behave well across realistic income distributions at small and moderate n?",
+    why:"Inequality figures drive policy, yet Gini values for small regions or groups are often published with intervals whose coverage was never checked. The problem sits exactly where descriptive statistics turns into inference.",
+    how:"Week 1: implement the sample Gini from the Lorenz curve (the Sem 1 formula) in C, in both the 1/n² and the n(n−1) versions. Week 2: simulate lognormal (σ = 0.5, 1.0, 1.5) and Pareto (tail index 1.5, 2.5, 4) samples with n = 20, 50, 200 and estimate the bias of each version. Week 3: build bootstrap and jackknife 95% intervals and measure their true coverage over 5,000 replications. Read Deltas (2003) on the small-sample bias of the Gini and Davidson (2009), \"Reliable inference for the Gini index\", Journal of Econometrics. Report where coverage collapses and relate it to the tail index.",
+    extra:"The Gini coefficient is the mean absolute difference divided by twice the mean. The numerator has an unbiased U-statistic estimator, but a ratio of estimators is not unbiased, and with a heavy right tail the sampling distribution of the Gini is itself skewed and slow to approach normality, which is what breaks Wald-type and percentile-bootstrap intervals. Open: an estimator and interval with provable, uniform finite-sample coverage over a stated class (for example, all distributions with tail index above some bound), and a practical rule for when the data are too heavy-tailed for any Gini interval to be trusted."
+  },
+  {
+    t:"Fisher's Exact Test or an Unconditional Test for 2×2 Tables?",
+    field:"Categorical Data · Hypothesis Testing",
+    status:"Active Debate",
+    level:'ug',
+    start:"Start in Sem 3 · CC4 Unit 2 (Fisher's exact test, chi-square tests); background from Sem 2 · CC2 Unit 2",
+    q:"To compare two proportions with small counts there are three families of tests: Fisher's exact test (which conditions on the table margins), unconditional exact tests (Barnard, Boschloo, Suissa–Shuster), and approximate chi-square tests with or without Yates' correction. Fisher's test is known to be conservative; unconditional tests are more powerful but costlier. Which should be the default, and does conditioning on the margins have a principled justification?",
+    why:"Clinical trials and A/B tests with small samples report these p-values every day, and the choice can flip \"significant\" into \"not significant\". It is also a clean window into the conditionality principle from the foundations of inference.",
+    how:"Week 1: for n1 = n2 = 10, 15, 20, enumerate every 2×2 table and compute Fisher's exact p-value (hypergeometric distribution). Week 2: compute the actual size (type I error) of Fisher's test, the chi-square test and the chi-square test with Yates' correction across p = 0.05 to 0.95; expect Fisher's size to sit far below 5% (about 1% at 10 per group and about 2% at 20 per group). Week 3: implement Boschloo's test (use the Fisher p-value as the test statistic, then maximise over the nuisance parameter) and compare power. Read Upton (1982), Yates (1984, with discussion) and Lydersen, Fagerland & Laake (2009), \"Recommended tests for association in 2×2 tables\", Statistics in Medicine.",
+    extra:"Boschloo (1970) showed that his unconditional test is uniformly at least as powerful as Fisher's test at the same level, but it needs a maximisation over the unknown common proportion, so computation grows with sample size. The deeper question is whether the margins carry information about the odds ratio: if they are ancillary, conditioning is justified. In a two-binomial design the group sizes are fixed but the total number of successes is not, so the conditioning argument is contested. Open: a decision rule for choosing among these tests that is justified by a clearly stated criterion (power at fixed size, Bayes risk or invariance) rather than by convention."
+  },
+  {
+    t:"There Is No Best Confidence Interval for a Binomial Proportion",
+    field:"Estimation · Discrete Distributions",
+    status:"Unsettled",
+    level:'ug',
+    start:"Start in Sem 3 · CC4 Unit 3 (confidence intervals); binomial from Sem 2 · CC2 Unit 4",
+    q:"For x successes in n trials there are at least a dozen interval methods: Wald, Wilson, Clopper–Pearson, Agresti–Coull, Jeffreys and more. Brown, Cai & DasGupta (2001) showed that the textbook Wald interval has erratic coverage even for large n. Because the binomial is discrete, coverage oscillates with p and cannot equal 95% for every p. What is the best interval under a precise criterion, such as shortest expected length subject to a minimum coverage?",
+    why:"Proportions are the most reported statistic in applied work (polls, trials, defect rates, A/B tests), and the default method in many textbooks and packages still under-covers for small n or p near 0 or 1.",
+    how:"Week 1: in C or R compute the exact coverage probability of the Wald interval for n = 20 and p on a fine grid from 0.01 to 0.99 (sum the binomial pmf over every x whose interval contains p) and plot it; you will see a sawtooth. Week 2: repeat for the Wilson, Clopper–Pearson, Agresti–Coull and Jeffreys intervals and tabulate minimum coverage and mean length. Week 3: read Brown, Cai & DasGupta (2001), Statistical Science 16, and Schilling & Doi (2014), The American Statistician, on constructing intervals that optimise length subject to a coverage guarantee, and test whether they beat Wilson on your tables.",
+    extra:"Clopper–Pearson (1934) guarantees at least 95% coverage but is conservative, with average coverage well above 95%. Wilson (1927) has average coverage near 95% but dips below it at some p. Blyth & Still (1983) and Casella (1986) refined the exact approach. Open: a theorem-backed answer to \"best\" for each common criterion, and a recommendation practitioners can apply without running a simulation study."
+  },
+  {
+    t:"How Large Must n Be for the t-Interval to Be Trustworthy?",
+    field:"Inference · Asymptotics",
+    status:"Partially Resolved",
+    level:'ug',
+    start:"Start in Sem 3 · CC4 Unit 3 and SEC3 (R simulation); sharpen in Sem 5 · CC10 (CLT)",
+    q:"Textbooks say n ≥ 30 makes the t-interval for a mean safe. For skewed or heavy-tailed data, 30 can be far too few. How large must n be, as a function of the population's skewness and kurtosis, for the actual coverage to be within 1% of the nominal 95%? And can any rule computed from the data alone certify that a given sample is large enough?",
+    why:"Almost every applied analysis uses a t-interval or t-test. A trusted sample-size rule would replace the n ≥ 30 folklore, and a negative result would tell us exactly what cannot be certified from data.",
+    how:"Week 1: in R (SEC3) simulate the actual coverage of the 95% t-interval, and of each one-sided limit, for n = 10, 30, 100, 300 under exponential, lognormal (σ = 1, 1.5, 2) and Pareto-type tails. Week 2: compare with Cochran's rule n &gt; 25 × (skewness)² and with the Edgeworth-expansion error terms. Week 3: read Boos & Hughes-Oliver (2000), \"How large does n have to be for Z and t intervals?\", The American Statistician, and Bahadur & Savage (1956) on why no distribution-free test of a mean can have power beyond its size. Then try to prove or refute a rule such as \"one-sided miscoverage error ≤ C × |skewness| / √n\".",
+    extra:"Edgeworth expansions show that each tail's error is of order skewness/√n, while for a two-sided interval these errors largely cancel, leaving an error of order 1/n that involves skewness squared and kurtosis; so a two-sided interval can look fine while both of its one-sided halves are wrong. Bahadur & Savage proved that over all distributions with a finite mean, any level-α test of \"mean = 0\" has power at most α, so no data-driven check can fully certify the t-interval without some restriction on the distribution. Open: the most general restrictions (for example, bounds on a quantile-based skewness) under which a computable sample-size rule is provably valid."
+  },
+  {
+    t:"How Many Unseen Species? Estimating Richness from a Sample",
+    field:"Estimation · Ecology · Linguistics",
+    status:"Open (identifiability)",
+    level:'ug',
+    start:"Start in Sem 4 · CC6 (Poisson, negative binomial) with CC7 (estimation)",
+    q:"You sample 1,000 animals and see 80 species, 25 of them only once. How many species exist in total? Without strong assumptions the total is not identifiable: there can always be arbitrarily many extremely rare species you never saw. Which minimal assumptions make estimation possible, and what honest confidence statements can be made?",
+    why:"The same problem appears in microbiome studies, ecology, vocabulary size (\"how many words did Shakespeare know?\") and estimating undiscovered software bugs. Reported richness estimates often hide a heavy dependence on unverifiable assumptions.",
+    how:"Week 1: simulate a community with 200 species and Zipf-like abundances; draw samples of n = 100, 1,000 and 10,000; record the observed species count and the numbers of species seen exactly once (f1) and exactly twice (f2). Week 2: implement the Chao1 lower bound (observed species + f1² / (2 f2)) and the Good–Toulmin predictor of how many new species a larger sample would reveal, and compare both with the truth. Week 3: read Efron & Thisted (1976), Bunge & Fitzpatrick (1993) and Orlitsky, Suresh & Wu (2016, PNAS), and write down which of your simulated communities make every estimator fail.",
+    extra:"Fisher, Corbet & Williams (1943) modelled abundances with a gamma-mixed Poisson; Good & Toulmin (1956) gave a nonparametric predictor that becomes unstable for long extrapolations; Chao (1984) gave a lower bound that is valid under mild assumptions. Orlitsky, Suresh & Wu (2016) show that the number of new species can be predicted accurately when the new sample is up to about log n times larger than the observed one, and not beyond that. Total richness remains non-identifiable without a model for the rare tail. Open: the weakest conditions on the abundance distribution under which a consistent richness estimator with valid confidence intervals exists."
+  },
+  {
+    t:"Three Mutually Orthogonal Latin Squares of Order 10",
+    field:"Design of Experiments · Combinatorics",
+    status:"Open",
+    level:'ug',
+    start:"Start in Sem 4 · CC8 Unit 2 (Latin square design) with CC5 (linear algebra)",
+    q:"Two Latin squares of order n are orthogonal if superimposing them shows every ordered pair of symbols exactly once. Euler believed no such pair exists at order 10; Bose, Shrikhande and Parker found one in 1959–60. Does a set of three mutually orthogonal Latin squares (MOLS) of order 10 exist?",
+    why:"Orthogonal Latin squares give designs that control two blocking factors and a treatment factor at once. Order 10 is the smallest order where the maximum number of MOLS is unknown: it lies somewhere from 2 to 7. A set of 9 is impossible because no projective plane of order 10 exists (Lam, Thiel & Swiercz 1989), and a set of 8 would extend to 9.",
+    how:"Week 1: construct a complete set of 8 MOLS of order 9 from the field GF(9) and check orthogonality in C; this is the model case. Week 2: write a program that tests whether two Latin squares of order 10 are orthogonal and enumerates transversals (sets of 10 cells with distinct rows, columns and symbols); a square has an orthogonal mate exactly when its cells split into 10 disjoint transversals. Week 3: read the partial results (Mann: a square with a 5×5 subsquare has no orthogonal mate; Parker; McKay, Meynert & Myrvold 2007) and the recent SAT-solver work (arXiv 2503.10504), and pick one structural case that has not been excluded to search by computer.",
+    extra:"MacNeish's product construction gives only one square at order 10 (N(2) = 1), which is why Parker's 1959 pair was a surprise. A set of n − 2 MOLS of order n always extends to n − 1, and n − 1 MOLS exist exactly when a projective plane of order n does; with no plane of order 10, the maximum number of MOLS of order 10 is at most 7. Searches have excluded many structured cases, but the general case is untouched. Open: find three MOLS of order 10, or prove that none exist."
+  },
+  {
+    t:"The Hadamard Conjecture",
+    field:"Design of Experiments · Linear Algebra",
+    status:"Open",
+    level:'ug',
+    start:"Start in Sem 4 · CC5 (orthogonality, determinants, Kronecker product) and CC8 (factorial designs)",
+    q:"A Hadamard matrix of order n is an n × n matrix of ±1 entries whose rows are mutually orthogonal. One can exist only for n = 1, 2 or a multiple of 4. The Hadamard conjecture says one exists for every multiple of 4. The smallest order for which none is known is 668.",
+    why:"Hadamard matrices give saturated two-level screening designs (Plackett & Burman, 1946): n runs to study n − 1 factors with perfectly uncorrelated estimates, and they achieve the largest possible determinant, so they are D-optimal. Whether they exist for every multiple of 4 decides whether such designs exist at every run size.",
+    how:"Week 1: construct orders 2, 4, 8 and 16 by the Kronecker product (Sem 4, CC5 Unit 2) and verify in C that each matrix multiplied by its transpose equals n times the identity. Week 2: implement Paley's construction using quadratic residues modulo a prime power q ≡ 3 (mod 4) to get order q + 1 (orders 12, 20, 24, 28 and so on). Week 3: use order 12 to build a Plackett–Burman design and estimate 11 main effects from simulated data. Week 4 onward: read Kharaghani & Tayfeh-Rezaie (2005), \"A Hadamard matrix of order 428\", Journal of Combinatorial Designs 13, and try the same style of search (structured circulant blocks plus a computer search) on a smaller order to see why 668 resists.",
+    extra:"Kharaghani & Tayfeh-Rezaie settled order 428 in 2005; 668 = 4 × 167 is now the smallest open case, followed by orders such as 716 and 892. Hadamard's bound says |det| ≤ n^{n/2} for any n × n matrix with entries in [−1, 1], with equality exactly for Hadamard matrices. Open: prove the conjecture, or exhibit a Hadamard matrix of order 668 by any construction."
+  },
+  {
+    t:"Design-Based or Model-Based Inference in Survey Sampling?",
+    field:"Sample Surveys · Foundations",
+    status:"Active Debate",
+    level:'ug',
+    start:"Start in Sem 4 · CC8 Units 3–4 (SRS, stratified sampling); fuller picture after Sem 6 · CC14 (regression)",
+    q:"Design-based inference treats the population values as fixed numbers and gets all its randomness from the sampling design. Model-based (prediction) inference treats the values as draws from a superpopulation model and conditions on the sample actually drawn. They can give different estimates and different standard errors from the same sample. When should each be used, and is there one framework that is safe under both?",
+    why:"Official surveys, polls and audits depend on this choice. Design-based methods are robust to model misspecification but can be inefficient; model-based methods are efficient but fail if the model is wrong.",
+    how:"Week 1: build a finite population of N = 1,000 with y = 2x + noise; draw samples by SRS and by sampling with probability proportional to x; compute the sample-mean, ratio and regression estimators and their design-based variances (CC8 formulas). Week 2: break the model (add a quadratic term, then heavy-tailed noise) and re-estimate the mean squared error under both viewpoints. Week 3: read Godambe (1955), who showed that no uniformly minimum-variance unbiased estimator exists for finite populations, and Basu's circus-elephant example (1971); then Royall (1970), Brewer (1999) and Särndal, Swensson & Wretman (1992) on model-assisted estimation.",
+    extra:"Godambe's non-existence result is why optimality in surveys is always defined relative to a model. Royall and the prediction approach argued that once the sample is drawn, the design is irrelevant; design-based statisticians answer that randomised or balanced samples protect against model failure. Model-assisted estimation, which is design-consistent whether or not the model holds, is the dominant compromise. Open: a unified inferential theory, or a decision rule, that says when the compromise itself can mislead (for example under informative sampling or non-response)."
+  },
+  {
+    t:"The Nonparametric Behrens–Fisher Problem",
+    field:"Nonparametric Statistics · Rank Tests",
+    status:"Active Research",
+    level:'ug',
+    start:"Start in Sem 5 · CC10 Unit 3 (Wilcoxon–Mann–Whitney test)",
+    q:"The Wilcoxon–Mann–Whitney test is often described as \"a test for a difference in medians\". In fact it tests whether the two distributions are equal, and when the spreads differ it can reject for reasons that have nothing to do with location. The test that targets P(X &lt; Y) = 1/2 without assuming equal shapes, the nonparametric Behrens–Fisher problem, still lacks a fully satisfactory small-sample solution. What is the best test and interval for P(X &lt; Y) when n is small and ties are present?",
+    why:"Rank tests are the standard remedy when normality fails, and unequal spread is the rule, not the exception. A test with the wrong size under unequal variances gives false confidence exactly where it is used most: small clinical and psychology samples.",
+    how:"Week 1: simulate two normal samples with equal means, standard deviations 1 and 3 and sizes n1 = 10, n2 = 40; estimate the rejection rate of the Wilcoxon–Mann–Whitney test at the nominal 5%, then swap which group is larger. Week 2: implement the Brunner–Munzel statistic with a Satterthwaite-type t approximation and the Fligner–Policello test, and compare their sizes. Week 3: read Brunner & Munzel (2000), Biometrical Journal 42, and Neubert & Brunner (2007) on the studentised permutation test, and study how all three behave with many ties.",
+    extra:"The relevant effect measure is the relative effect p = P(X &lt; Y) + ½ P(X = Y). The Brunner–Munzel test is asymptotically valid but can be liberal for very small samples; the studentised permutation version improves this, but its theory under heavy ties is incomplete. Open: an exact or provably accurate small-sample test and confidence interval for p that stays valid with ties, unequal sizes and unequal shapes."
+  },
+  {
+    t:"The Optimal Constant in the Berry–Esseen Theorem",
+    field:"Probability · Limit Theorems",
+    status:"Open",
+    level:'ug',
+    start:"Start in Sem 5 · CC10 Unit 1 (CLT), with Sem 3 · CC3 (real analysis) for the proofs",
+    q:"For i.i.d. variables with mean 0, variance σ² and third absolute moment ρ, the Berry–Esseen theorem says the largest gap between the distribution function of the standardised sum and the normal distribution function is at most C·ρ / (σ³√n). What is the smallest possible value of the constant C? It is known only to lie between 0.4097 and 0.4748.",
+    why:"This is the quantitative form of the CLT you meet in Sem 5: it says how many observations a normal approximation needs for a given accuracy. Pinning down C would settle the worst case for every sample size and every distribution.",
+    how:"Week 1: in C compute the exact gap (the largest vertical distance between the distribution function of the standardised sum and the normal curve) for sums of n Bernoulli(p) variables, for n up to 40,000 and for p = 1/2 and p = (4 − √10)/2 ≈ 0.4189. Week 2: compute gap × √n × σ³/ρ. For p = 1/2 it tends to 1/√(2π) ≈ 0.3989; for p = (4 − √10)/2 it tends to ≈ 0.4097, Esseen's value (3 + √10) / (6√(2π)). Week 3: read Esseen (1956) and Shevtsova's papers on absolute constants, and work out why characteristic functions (introduced in Sem 4, CC6) drive the proofs. Aim: understand where the lower bound comes from and what a proof of optimality would have to exclude.",
+    extra:"Esseen (1956) showed that C cannot be below (3 + √10) / (6√(2π)) ≈ 0.4097, using a two-point distribution for which the bound is asymptotically attained. The best proven upper bound for i.i.d. summands is 0.4748 (Shevtsova); for non-identically distributed summands it is 0.5600. The remaining gap is a factor of about 1.16 and has resisted decades of effort; the proofs combine smoothing inequalities with delicate estimates of characteristic functions. Open: the exact value of C, or a proof that Esseen's example is extremal."
+  },
+  {
+    t:"Can We Tell a Random Walk from a Nearly Random Walk?",
+    field:"Time Series · Hypothesis Testing",
+    status:"Active Research",
+    level:'ug',
+    start:"Start in Sem 6 · CC15 Units 3–4 (random walk, AR models); regression background from CC14",
+    q:"In 100 observations, a pure random walk (unit root) and a stationary AR(1) with coefficient 0.95 look almost identical. The Dickey–Fuller test has little power against such near-unit-root alternatives, and Faust (1993, 1996) showed that, unless the class of models is restricted, the exact size of any consistent unit-root test rises to one as n grows. How should one test, forecast and report uncertainty when persistence is genuinely ambiguous?",
+    why:"Whether GDP, prices or exchange rates have a unit root changes forecasts, policy conclusions and the validity of regressions in levels. The data often cannot decide, yet textbooks report a yes/no test.",
+    how:"Week 1: in R or C, simulate 10,000 series of length 100 from a random walk and from AR(1) with coefficients 0.99, 0.95 and 0.90; run the Dickey–Fuller regression and tabulate rejection rates; the power against 0.95 will be strikingly low. Week 2: increase n to 500 and 2,000 to see how much data it takes. Week 3: read Dickey & Fuller (1979), Cochrane (1991), Elliott, Rothenberg & Stock (1996, the DF-GLS test) and Faust (1996). Then design and evaluate your own reporting rule, for example a confidence set for the autoregressive coefficient instead of a reject/accept verdict, and compare its coverage.",
+    extra:"Under the unit-root null the Dickey–Fuller statistic has a non-normal limit (a functional of Brownian motion), so the usual t-table is wrong. Grid-bootstrap confidence sets for the autoregressive root (Stock 1991; Mikusheva 2007 for uniform validity) give honest uncertainty but are wide. Open: a forecasting and inference procedure that is uniformly valid across stationary, near-integrated and integrated processes, and a clear characterisation of which restricted model classes make unit-root tests informative at all."
+  },
+  {
+    t:"AIC or BIC: Can One Criterion Do Both Jobs?",
+    field:"Model Selection · Regression",
+    status:"Partially Resolved",
+    level:'ug',
+    start:"Start in Sem 6 · CC14 Unit 2 (AIC, Cp) and CC15 Unit 4 (AIC for time series)",
+    q:"AIC aims to pick the model that predicts best; BIC aims to pick the true model if one exists among the candidates. Yang (2005) proved a fundamental conflict: no selection rule can be both consistent in identifying the true model and minimax-rate optimal in estimating the regression function. Is there a principled compromise, and how should an analyst choose in practice?",
+    why:"Variable selection and order selection (which regressors, how many AR lags) occur in every applied regression. AIC and BIC often disagree, and the choice is usually made by habit rather than by the goal of the analysis.",
+    how:"Week 1: simulate y = β1·x1 + β2·x2 + noise with 8 candidate predictors (the true model has 2) and n = 50, 200, 1,000; compare how often AIC and BIC select exactly the true model and the average prediction error. Week 2: repeat with a truth that has many small coefficients and no sparse \"true model\"; AIC should win on prediction. Week 3: read Yang (2005), Biometrika 92, and Ding, Tarokh & Yang (2018), \"Bridging AIC and BIC\", IEEE Transactions on Information Theory, and test their bridge criterion on your simulations.",
+    extra:"AIC is asymptotically efficient when the truth is infinite-dimensional or only approximated by the candidates, while BIC is consistent when a finite true model exists (Shao 1997 gives a general theory). Yang's result shows that no single rule has both virtues in the worst case; practical hybrids adapt to whichever regime the data suggest. Open: sharp, data-checkable diagnostics of which regime applies, and criteria with provable guarantees in both regimes up to the unavoidable cost."
+  },
+  {
+    t:"The Behrens–Fisher Problem",
+    field:"Hypothesis Testing · Nuisance Parameters",
+    status:"Partially Resolved",
+    level:'pg',
+    start:"Start with STAT 405 (Advanced Parametric Inference) and STAT 103 (similar and UMPU tests)",
+    q:"Test H₀: μ₁ = μ₂ for two normal samples when the variances σ₁² and σ₂² are unknown and possibly unequal. Linnik (1968) proved that no exact fixed-level test based on the complete sufficient statistics exists, and Welch's approximate t-test is the standard workaround. Is there an exact test with good power, and how accurate are the approximations?",
+    why:"Every two-sample comparison in practice faces unequal variances. It is the simplest setting where nuisance parameters block exact inference, and it connects similar tests, ancillarity, fiducial inference and Bayesian solutions.",
+    how:"Step 1: reproduce Welch's approximation (Satterthwaite degrees of freedom) and compute its exact size over a grid of variance ratios and sample-size ratios by numerical integration. Step 2: study Scheffé's exact t-test (1943), which uses only part of the data, and measure its loss of power. Step 3: read Linnik's Statistical Problems with Nuisance Parameters (1968) and the treatment of similar tests in Lehmann & Romano, Testing Statistical Hypotheses. Step 4: compare Welch, Scheffé and a Bayesian (Jeffreys-prior) test by worst-case power over a stated parameter region.",
+    extra:"A similar test has the same rejection probability for every (σ₁², σ₂²) when μ₁ = μ₂; the difficulty is that no such test based on the sufficient statistics is available. Welch–Aspin series give expansions of the critical value, while Fisher's fiducial and Jeffreys' Bayesian solutions do not control frequentist size exactly. Open: a justified optimality criterion under which one test is best, and sharp bounds on how far from nominal the approximate tests can be."
+  },
+  {
+    t:"Valid Inference After Model Selection",
+    field:"Regression · Selective Inference",
+    status:"Active Research",
+    level:'pg',
+    start:"Start with STAT 104 (model selection, stepwise regression) and STAT 405 (shrinkage, Lasso)",
+    q:"Analysts choose variables by stepwise regression, AIC or the Lasso and then report ordinary t-tests and confidence intervals for the chosen model, as if the model had been fixed in advance. Those intervals are not valid. How can inference be made valid after data-driven selection without throwing away power?",
+    why:"Almost all applied regression involves selection before inference, so reported p-values are almost always optimistic. A clean theory would repair a large part of published empirical work.",
+    how:"Step 1: simulate 20 pure-noise predictors, pick the one with the largest |t| and record how often its naive p &lt; 0.05; the answer is about 64% (1 − 0.95 to the power 20). Step 2: implement sample splitting and measure its power loss. Step 3: study the PoSI approach of Berk, Brown, Buja, Zhang & Zhao (2013), Annals of Statistics 41, which gives simultaneous intervals over all submodels, and the conditional (selective) approach of Lee, Sun, Sun & Taylor (2016), Annals of Statistics 44, for the Lasso. Step 4: read Leeb & Pötscher (2005, 2006) on why post-selection distributions cannot be estimated uniformly.",
+    extra:"PoSI intervals are valid but conservative because they protect against every possible selection rule. Selective-inference intervals condition on the selection event and are exact for the Lasso and forward stepwise under Gaussian errors, but can be very long when the selection event is nearly borderline. Leeb and Pötscher showed that the distribution of post-selection estimators depends on parameters that cannot be learned from data. Open: procedures that are valid, computationally tractable and nearly as powerful as inference on a pre-specified model, for general selection rules and non-Gaussian errors."
+  },
+  {
+    t:"Choosing the Resample Size in the m-out-of-n Bootstrap",
+    field:"Resampling · Nonparametric Inference",
+    status:"Partially Resolved",
+    level:'pg',
+    start:"Start with STAT 402 (jackknife, bootstrap, bootstrap confidence intervals) and STAT 201 (convergence in distribution)",
+    q:"Efron's bootstrap is inconsistent for several important statistics: the sample maximum, the sample mean under infinite variance, and estimators on the boundary of the parameter space. Drawing resamples of size m much smaller than n restores consistency, but only if m grows with n at suitable rates. How should m be chosen from the data, with a guarantee?",
+    why:"The bootstrap is used far beyond the cases where it is proved to work. A data-driven m with theory would make resampling safe in extreme-value, boundary and heavy-tail problems, where the ordinary bootstrap fails silently.",
+    how:"Step 1: show by simulation that the ordinary bootstrap fails for the maximum of Uniform(0, θ) samples: the probability that the bootstrap maximum equals the sample maximum is 1 − (1 − 1/n) to the power n, which tends to 1 − 1/e ≈ 0.632. Step 2: implement the m-out-of-n bootstrap with m equal to √n, n to the power 0.7 and n to the power 0.9 and compare the coverage of the resulting intervals. Step 3: read Bickel & Freedman (1981), Bickel, Götze & van Zwet (1997), Politis & Romano (1994) on subsampling, and Bickel & Sakov (2008) on choosing m adaptively. Step 4: find a statistic for which their rule fails and explain why.",
+    extra:"The failure for the maximum comes from the bootstrap distribution having a point mass of about 63% at the observed maximum, whereas the true sampling distribution is continuous. Subsampling is valid under weaker conditions than the bootstrap but needs the convergence rate of the statistic, which is often unknown. Bickel and Sakov propose a sequence of candidate values of m with a stopping rule that works in a range of problems, but sharp finite-sample behaviour and a general theory remain open."
+  },
+  {
+    t:"Testing the Number of Components in a Finite Mixture",
+    field:"Asymptotic Inference · Mixture Models",
+    status:"Active Research",
+    level:'pg',
+    start:"Start with STAT 203 (likelihood ratio, score and Wald tests) and STAT 402 (EM algorithm)",
+    q:"Is the data a single normal population or a mixture of two? The usual chi-square limit for the likelihood ratio statistic (Wilks) fails because the parameters are not identifiable under the null and lie on the boundary of the parameter space. Hartigan (1985) showed that for normal location mixtures the likelihood ratio statistic can diverge, growing like log log n. How can the number of components be tested reliably?",
+    why:"Choosing the number of clusters or latent classes is a core step in genetics, marketing, astronomy and psychometrics. Without a valid test, the choice rests on information criteria whose behaviour is only partly understood.",
+    how:"Step 1: simulate samples of size n = 200 from a single N(0, 1), fit one- and two-component normal mixtures by EM (STAT 402), compute the likelihood ratio statistic and compare its histogram with chi-square curves with 2 and 3 degrees of freedom. Step 2: calibrate by parametric bootstrap and check the size. Step 3: implement the modified likelihood ratio test of Chen, Chen & Kalbfleisch (2001) and the EM-test of Li & Chen (2010) and compare their power. Step 4: read Ghosh & Sen (1985), Hartigan (1985) and Dacunha-Castelle & Gassiat (1999) for the theory of the limit.",
+    extra:"The modified likelihood ratio test adds a penalty that keeps the mixing proportion away from 0 and 1, which restores a tractable limit; the EM-test runs a few EM iterations from fixed starting values. Both work well for two components, but extending the theory to many components, multivariate data and unknown covariance matrices is incomplete. Open: powerful tests of k versus k + 1 components with a proved limit distribution and accurate finite-sample calibration, for general component families."
+  },
+  {
+    t:"Exact D-Optimal Designs: The Maximal Determinant Problem",
+    field:"Design of Experiments · Combinatorics",
+    status:"Open",
+    level:'pg',
+    start:"Start with STAT 205 (optimality of block designs: A-, D- and E-optimality) and STAT 104 (linear models)",
+    q:"For a saturated two-level design with n runs and n parameters, the D-optimal design is the n × n matrix of ±1 entries with the largest determinant. Hadamard (1893) proved that |det| is at most n to the power n/2, attained only when a Hadamard matrix exists. For other orders, what is the maximum determinant, and which matrices achieve it?",
+    why:"The determinant measures the volume of the information matrix, so maximising it minimises the generalised variance of the estimates (D-optimality, STAT 205). For most n the true optimum is unknown, so practitioners cannot tell how far their design is from the best.",
+    how:"Step 1: for n = 1 to 6 compute the exact maximum determinant by exhaustive search in C (fix the first row and column to +1, leaving 2 to the power (n − 1)² matrices); you should obtain 1, 2, 4, 16, 48 and 160. Step 2: for n = 7 and 8 use hill-climbing to reach 576 and 4096. Step 3: compare your values with the Barba, Ehlich and Ehlich–Wojtas upper bounds (one for each residue of n modulo 4). Step 4: read how Orrick, Brent, Osborn and Zimmermann settled the orders 15, 19 and 37 by searching over Gram matrices, then try to improve the best known determinant at an unresolved order such as 22 or 23.",
+    extra:"In the literature I checked (up to the 2011 results of Brent, Orrick, Osborn and Zimmermann), the only orders up to 30 whose exact maximum was still unknown were 22, 23, 27 and 29, and order 37 had just been settled. The case where n is a multiple of 4 and a Hadamard matrix exists is the Hadamard conjecture (see the Bachelor's list). Open: determine the maximum determinant at the smallest unresolved orders, or prove new upper bounds that match known constructions."
+  },
+  {
+    t:"Does a Projective Plane of Order 12 Exist?",
+    field:"Design of Experiments · Finite Geometry",
+    status:"Open",
+    level:'pg',
+    start:"Start with STAT 205 (balanced incomplete block designs, Fisher's and Bose's inequalities, MOLS)",
+    q:"A projective plane of order n is a symmetric block design with v = n² + n + 1 points, blocks of size n + 1, and every pair of points in exactly one block: a BIBD with λ = 1. Planes exist whenever n is a prime power, and the Bruck–Ryser theorem (1949) rules out many other orders. Order 10 was excluded by computer (Lam, Thiel & Swiercz, 1989). Order 12, a (157, 13, 1) design, is the smallest order still undecided.",
+    why:"Projective planes are the extreme case of balanced block designs and are equivalent to complete sets of n − 1 MOLS. Whether non-prime-power orders exist is one of the oldest open questions in design theory, and every partial result sharpens the theory of block designs used in experiments.",
+    how:"Step 1: check Fisher's inequality b ≥ v and the Bruck–Ryser condition by hand for n = 2 to 12 (order 6 fails; order 10 passes but was excluded by search; order 12 is not restricted by it). Step 2: build the Fano plane (order 2) and the plane of order 3 as BIBDs and check that each incidence matrix N satisfies N times its transpose = (k − 1) I + J, where J is the all-ones matrix. Step 3: study the collineation-group approach (Janko & Van Trung and later work), which rules out planes of order 12 with certain symmetry groups. Step 4: formulate a SAT or integer-programming model for the incidence matrix of a (157, 13, 1) design and see how far symmetry breaking carries it.",
+    extra:"A plane of order 12 would give 11 mutually orthogonal Latin squares of order 12, so the problem also decides whether that maximum is 11. Published results exclude only planes with particular automorphism groups, so the general case is untouched by them. The order-10 proof required a very large computer search; order 12 is expected to be much harder. Open: existence or non-existence of a projective plane of order 12."
+  },
+  {
+    t:"Honest Uncertainty for Cross-Validated Prediction Error",
+    field:"Statistical Learning · Model Assessment",
+    status:"Active Research",
+    level:'pg',
+    start:"Start with STAT 407 (cross-validation, ridge, Lasso) and STAT 402 (resampling)",
+    q:"K-fold cross-validation estimates a model's prediction error, and people report \"CV error ± standard error\" with a normal confidence interval. Bengio & Grandvalet (2004) proved that no universal unbiased estimator of the variance of the K-fold CV estimate exists, and Bates, Hastie & Tibshirani showed that CV targets the average error over training sets, not the error of the model actually fitted. How can valid confidence intervals for prediction error be built?",
+    why:"Model comparisons, benchmark leaderboards and published performance claims rely on CV intervals that often have coverage well below 95%. A trustworthy interval would make comparisons between methods meaningful.",
+    how:"Step 1: simulate regression data with n = 100 and p = 5 and 50; run 10-fold CV many times and compare the empirical variance of the CV estimate with the average naive standard error. Step 2: compute the coverage of the naive normal interval for the true prediction error of the fitted model. Step 3: implement the nested-CV interval of Bates, Hastie & Tibshirani and compare. Step 4: read Bengio & Grandvalet (2004), Journal of Machine Learning Research 5, Shao (1993) on cross-validation in linear model selection, and Lei (2020), \"Cross-validation with confidence\".",
+    extra:"The fitted models in different folds share most of their training data, so fold errors are positively correlated and the naive standard error ignores this. Leave-one-out and K-fold differ in bias and variance, and no K is best for every learner. Open: a general, theorem-backed interval for prediction error from a single data set, covering unstable learners such as trees and the Lasso, with correct coverage at moderate n."
+  },
+  {
+    t:"Conformal Prediction: How Close Can We Get to Conditional Coverage?",
+    field:"Predictive Inference · Distribution-Free Methods",
+    status:"Active Research",
+    level:'pg',
+    start:"Start with STAT 201 (exchangeability, order statistics, convergence) and STAT 407 (prediction methods)",
+    q:"Conformal prediction builds a prediction set that contains a new response with probability at least 1 − α, for any data distribution, using only exchangeability, but this holds on average over the covariates X. Barber, Candès, Ramdas & Tibshirani (2021) proved that coverage conditional on every value X = x is impossible in a distribution-free way for continuous X. Which weaker guarantees are achievable, and what are the most efficient (shortest) prediction sets?",
+    why:"Predictions in medicine and finance need uncertainty statements that hold for each patient, not just on average. Conformal methods are the main distribution-free tool, and the gap between marginal and conditional coverage defines what they can honestly promise.",
+    how:"Step 1: prove split-conformal coverage by hand: if the n calibration scores and the new score are exchangeable, the rank of the new score is uniform, so using the ceil((n+1)(1−α))-th smallest calibration score as threshold gives coverage at least 1 − α. Step 2: simulate heteroscedastic data and show that 90% marginal coverage can hide much lower coverage in the noisy region. Step 3: implement conformalised quantile regression (Romano, Patterson & Candès, 2019) and a group-conditional method and compare conditional coverage. Step 4: read Vovk (2012), Lei & Wasserman (2014), Barber et al. (2021) and Angelopoulos & Bates (2023).",
+    extra:"Exact distribution-free conditional coverage can only be achieved by prediction sets that are uninformative (essentially unbounded) in the worst case. Practical methods target weaker notions: coverage within groups, coverage conditional on a score, or asymptotic conditional coverage under smoothness. Open: tight trade-offs between interval length and conditional coverage, optimal choices of conformity score, and guarantees under distribution shift."
+  },
+  {
+    t:"Knowing When an MCMC Chain Has Converged",
+    field:"Computational Statistics · Markov Chains",
+    status:"Open",
+    level:'pg',
+    start:"Start with STAT 201 (Markov chains, stationary distributions, MCMC) and STAT 304 (Metropolis–Hastings, Gibbs sampling)",
+    q:"Bayesian computation relies on Markov chain Monte Carlo, but a finite run gives no proof that the chain has reached its stationary distribution. Diagnostics such as the Gelman–Rubin R-hat and effective sample size can detect some failures but cannot certify convergence, especially when the target has well-separated modes. Can we compute rigorous, practically sharp bounds on the distance to stationarity from a single run?",
+    why:"Every posterior summary, interval and prediction from MCMC inherits this uncertainty. Chains that looked converged but were stuck in one mode have misled published analyses.",
+    how:"Step 1: sample a one-dimensional mixture of two normals centred at −5 and +5 (σ = 1) with random-walk Metropolis and step size 0.5; start four chains on the same side and compute R-hat, which will say \"converged\" while half the mass is missed. Step 2: implement coupling-based unbiased MCMC (Jacob, O'Leary & Atchadé, 2020) and use meeting times as a convergence diagnostic (Biswas, Jacob & Vanetti, 2019). Step 3: read Cowles & Carlin (1996) on diagnostics and Propp & Wilson (1996) on exact sampling by coupling from the past. Step 4: repeat in two dimensions and record what fails.",
+    extra:"Exact sampling by coupling from the past works for monotone or otherwise structured chains, not in general. Couplings of two chains started at different points give computable upper bounds on total-variation distance in favourable cases, but designing couplings that meet quickly in high dimension is hard. Open: general-purpose, computable convergence certificates (not just heuristics) for multimodal and high-dimensional targets."
+  },
+  {
+    t:"Tests of Independence That Are Both Consistent and Powerful",
+    field:"Nonparametric Testing · Dependence",
+    status:"Active Research",
+    level:'pg',
+    start:"Start with STAT 202 (copulas, multivariate distributions) and STAT 409 (nonparametric inference)",
+    q:"Pearson correlation misses nonlinear dependence (for example Y = X²). Distance covariance, HSIC, Hoeffding's D and mutual-information tests are consistent against all alternatives, but no test is uniformly most powerful, and Janssen (2000) showed that for goodness-of-fit problems every test is blind to most directions of √n-local alternatives, which suggests the same limitation for independence testing. Which tests should be used, and what are the optimal detection rates?",
+    why:"Detecting dependence without assuming its form is basic to exploratory analysis, feature screening and causal discovery. Choosing a test by habit silently chooses which kinds of dependence you will miss.",
+    how:"Step 1: simulate dependence patterns (linear, quadratic, circle, checkerboard, sine wave) with n = 100 and compare the power of Pearson, Spearman, Kendall, Hoeffding's D, distance covariance (permutation p-value) and HSIC. Step 2: use copulas (STAT 202) to generate dependence with the same Spearman correlation but different shapes. Step 3: read Rényi (1959) on axioms for measures of dependence, Székely, Rizzo & Bakirov (2007) and Gretton et al. (2005). Step 4: read Berrett & Samworth (2019) for minimax detection rates and compare them with your simulations.",
+    extra:"Rényi's axioms are satisfied by maximal correlation, which is hard to estimate, while distance covariance is easy to compute and detects all dependence between variables with finite first moments but has low power for rapidly oscillating patterns. Power depends on the interplay between the smoothness of the dependence and the sample size, and tests that adapt to unknown smoothness lose a logarithmic factor. Open: adaptive tests with proved optimal rates in moderate and high dimensions, and a principled way to choose the kernel or bandwidth."
+  },
+  {
+    t:"How Many Clusters, and What Is a Cluster?",
+    field:"Multivariate Analysis · Unsupervised Learning",
+    status:"Active Debate",
+    level:'pg',
+    start:"Start with STAT 302 (Applied Multivariate Analysis: clustering, choosing the number of clusters)",
+    q:"Methods for choosing the number of clusters k (silhouette width, the gap statistic, BIC) often disagree. Kleinberg (2002) proved that no clustering rule can satisfy three natural axioms (scale-invariance, richness and consistency) at once. Is there a statistically principled definition of a cluster, and a test for k, that does not depend on the algorithm?",
+    why:"Clustering is used in genomics, marketing and astronomy, and the number of groups found is often reported as a discovery. Without a definition and a test, \"found 3 clusters\" can mean nothing more than \"the algorithm was asked for 3\".",
+    how:"Step 1: simulate 2-D data from (a) one normal, (b) three well-separated normals, (c) three overlapping normals and (d) a uniform square, then compute the silhouette, gap-statistic and BIC choices of k. Step 2: run the SigClust test (Liu, Hayes, Nobel & Marron, 2008) and the selective-inference test for hierarchical clustering (Gao, Bien & Witten) and compare their type I error when the truth is a single cluster. Step 3: read Kleinberg (2002), Hennig (2015), \"What are the true clusters?\", and von Luxburg, Williamson & Guyon (2012), \"Clustering: science or art?\".",
+    extra:"A \"cluster\" can be a mode of a density, a component of a mixture or a region of high connectivity, and these notions give different answers on the same data. Testing for clusters with the same data used to find them inflates false positives, which is the selective-inference problem again (see the post-selection problem on this list). Open: a coherent framework linking a definition of a cluster, a valid test of its existence and consistency of the estimated number of clusters."
+  },
+  {
+    t:"Beyond the Hazard Ratio",
+    field:"Survival Analysis · Clinical Trials",
+    status:"Active Debate",
+    level:'pg',
+    start:"Start with STAT 306 (Cox model, log-rank tests) and STAT 410 (reliability, Kaplan–Meier)",
+    q:"The Cox model summarises a treatment effect by one hazard ratio, which assumes proportional hazards. In many trials, notably in cancer immunotherapy, the effect appears late and hazards are not proportional, so the hazard ratio depends on follow-up time and on who is still at risk. Hernán (2010) also argued that it has a built-in selection bias. What should replace it: restricted mean survival time, weighted log-rank tests, or something else?",
+    why:"Regulatory approvals and treatment guidelines depend on how survival differences are summarised. A summary that changes with trial length or has no clear causal meaning can mislead.",
+    how:"Step 1: simulate a two-arm trial with a delayed effect (equal hazards for 6 months, then a 40% reduction) and compare the power of the log-rank test, Fleming–Harrington weighted log-rank tests and the max-combo test. Step 2: compute the Kaplan–Meier restricted mean survival time difference at several horizons τ. Step 3: read Hernán (2010), \"The hazards of hazard ratios\", Royston & Parmar (2013), Uno et al. (2014) and Fleming & Harrington (1981). Step 4: work out what each summary means causally for the patients who survive to time t.",
+    extra:"The log-rank test is optimal under proportional hazards but loses power with crossing or delayed curves. Differences in restricted mean survival time have a direct interpretation (extra days survived within τ) but require choosing τ. The causal critique is that even in a randomised trial the hazard ratio compares groups that differ through survival selection after time 0. Open: a default analysis plan that stays powerful and interpretable across non-proportional patterns, with a rule for choosing τ or the weights before seeing the data."
+  },
+  {
+    t:"Identification Under Missing-Not-at-Random Data",
+    field:"Missing Data · Identifiability",
+    status:"Active Research",
+    level:'pg',
+    start:"Start with STAT 402 (MCAR, MAR, MNAR, EM algorithm, imputation) and STAT 103 (likelihood)",
+    q:"When the chance that a value is missing depends on the value itself (MNAR), the full-data distribution is generally not identified from the observed data. Molenberghs et al. (2008) showed that every MNAR model has a MAR counterpart that fits the observed data equally well. Under what additional, plausible conditions can MNAR problems be identified, and how should sensitivity analyses be reported?",
+    why:"Dropout in trials, refusal in income surveys and sensor failures are often MNAR. Conclusions can hinge on untestable assumptions, so the field needs principled ways to say which assumptions matter.",
+    how:"Step 1: simulate y ~ N(0, 1) with P(missing) = logistic(−1 + 1.5y) and show that the complete-case mean is biased. Step 2: fit a selection model and a pattern-mixture model and show that they can fit the observed data equally well yet give different estimates of the mean. Step 3: read Rubin (1976), Molenberghs et al. (2008), Journal of the Royal Statistical Society B 70, and Mohan & Pearl (2021), JASA, on graphical conditions for identifiability. Step 4: study shadow-variable approaches (Miao & Tchetgen Tchetgen, 2016) and design a sensitivity analysis for your simulation.",
+    extra:"MAR means that missingness depends only on observed values, and it cannot be tested against MNAR from the observed data alone. Identification can be restored by extra structure: a shadow variable that is related to the outcome but independent of missingness given the outcome, instrument-like variables, or parametric restrictions rich enough to pin things down. Open: necessary and sufficient conditions for identification in general missingness patterns, and sensitivity analyses that non-statisticians can interpret."
+  },
+  {
+    t:"The Missing Heritability Problem",
+    field:"Statistical Genetics · Variance Components",
+    status:"Active Research",
+    level:'pg',
+    start:"Start with STAT 412 (association tests, GWAS) and STAT 104 (random-effects models)",
+    q:"Twin studies estimate that traits such as height are highly heritable, yet the individually significant GWAS variants first explained only a small fraction of it: the \"missing heritability\". Whole-genome methods (GREML) recover much of the gap, but the answers depend on assumptions about how effect sizes relate to allele frequency and linkage disequilibrium. How should SNP heritability be estimated when those assumptions are unknown?",
+    why:"Heritability estimates guide how GWAS are designed and interpreted and how far polygenic prediction can go. If an estimate depends on an unverifiable model of genetic architecture, the \"missing\" portion may partly reflect modelling choices.",
+    how:"Step 1: simulate genotypes for n = 2,000 individuals and 5,000 SNPs with true h² = 0.5 and effect sizes independent of allele frequency, then estimate h² by REML in a linear mixed model with a genomic relationship matrix (the STAT 104 variance-components machinery). Step 2: change the architecture (larger effects for rare variants, or effects concentrated in high-LD regions) and watch the estimate drift. Step 3: read Yang et al. (2010), Nature Genetics 42, Speed, Hemani, Johnson & Balding (2012), American Journal of Human Genetics 91, and Evans et al. (2018), Nature Genetics 50, on method comparison. Step 4: write down which architecture assumptions are testable from the data.",
+    extra:"GREML assumes a particular relation between each SNP's effect variance and its allele frequency; relaxing it can change the estimates substantially, and LD-score regression uses only summary statistics but has its own assumptions. Whole-genome sequence data (Wainschtein et al., 2022) reduce the dependence on tagging assumptions, but the difficulty moves to rare variants. Open: heritability estimators with provable validity under realistic, unknown dependence of effect size on frequency and LD, and diagnostics that detect model misspecification."
+  },
+  {
+    t:"The Incidental Parameter Problem",
+    field:"Likelihood Inference · Panel Data",
+    status:"Partially Resolved",
+    level:'pg',
+    start:"Start with STAT 103 (sufficiency, completeness, conditional inference), STAT 203 (MLE asymptotics) and STAT 413 (panel data)",
+    q:"In the Neyman–Scott problem, n pairs of observations, each pair drawn from N(μ, σ²) with a different mean μ for every pair, carry one nuisance mean per pair. The maximum likelihood estimator of σ² converges to σ²/2, not σ², however large n is. The same failure occurs in nonlinear panel-data models with individual effects. When can the bias be removed, and what can be consistently estimated at all?",
+    why:"Any model with one parameter per unit (individuals in a panel, schools, genes) faces this. It marks the limit of ordinary likelihood theory and motivates conditional likelihood, integrated likelihood and bias-correction methods.",
+    how:"Step 1: prove the Neyman–Scott result: the maximum likelihood estimate of σ² is the sum of squared deviations from each pair's own mean, divided by 2n, and its expectation is σ²/2; then simulate n = 10, 100 and 10,000. Step 2: fix it by conditioning on the sufficient statistics for the nuisance parameters (the pair means) and verify that estimating σ² from the within-pair differences (first minus second observation) is unbiased. Step 3: simulate a logit panel with individual effects and T = 2, 4, 8 periods and measure the bias of the maximum likelihood estimate of the slope. Step 4: read Neyman & Scott (1948), Lancaster (2000), Hahn & Newey (2004) and Chamberlain (2010) on when the common parameter of a binary-response panel can be estimated at the root-n rate.",
+    extra:"Conditional likelihood removes the nuisance parameters exactly when sufficient statistics for them exist (Andersen 1970 for the logit and Rasch models), but not in general. Analytic and jackknife bias corrections reduce the O(1/T) bias when the number of periods grows (Hahn & Newey 2004; Fernández-Val & Weidner 2016). Open: a general principle for removing incidental-parameter bias in short panels, and necessary and sufficient conditions for root-n estimability of common parameters."
+  },
+  {
+    t:"Statistical–Computational Gaps",
+    field:"High-Dimensional Statistics · Complexity",
+    status:"Open (conjectural)",
+    level:'phd',
+    start:"Prerequisites: M.Sc. probability and inference, random matrices, information theory; Wainwright's High-Dimensional Statistics",
+    q:"In several problems (finding a planted clique, detecting a sparse principal component, finding communities in a sparse random graph) the amount of data that makes the problem solvable in principle is far smaller than the amount that known polynomial-time algorithms need. Are these gaps real, meaning there is provably no efficient algorithm inside the gap, or only a failure of our algorithms?",
+    why:"It decides whether statistical optimality and computational feasibility are separate goals. If the gaps are real, there are problems where more data alone cannot buy accuracy and one must trade accuracy against running time.",
+    how:"Learn the planted-clique case first. A random graph on n vertices hides a clique of size k. Information-theoretically k ≈ 2 log₂ n suffices; spectral methods find it when k is of order √n or larger (Alon, Krivelevich & Sudakov 1998); nothing efficient is known for k = o(√n). Then read Berthet & Rigollet (2013) on reducing sparse-PCA detection to planted clique, Hopkins (2018) and Kunisky, Wein & Bandeira (2022) on the low-degree method as evidence of hardness, and Bandeira, Perry & Wein (2022) for the statistical-physics view. Then try to find a new problem whose gap reduces to planted clique, using the reduction techniques of Brennan & Bresler.",
+    extra:"In sparse stochastic block models with five or more equal communities, the information-theoretic threshold lies below the Kesten–Stigum threshold, which is conjectured to be the efficient-algorithm threshold (Decelle et al. 2011; Banks et al. 2016; Abbe & Sandon 2018). The strongest forms of the low-degree conjecture have counterexamples (Holmgren & Wein 2021), so even stating the right conjecture is active work. Related gaps appear in ranking from pairwise comparisons: for the strong stochastic transitivity model, the best known polynomial-time rate, n^{-3/4}, remains above the minimax rate, n^{-1}, up to logarithmic factors (Shah et al. 2017; Mao, Pananjady & Wainwright 2018). Open: prove hardness from a standard assumption for a natural problem, or find an efficient algorithm that closes a gap."
+  },
+  {
+    t:"Honest and Adaptive Confidence Sets in Nonparametric Problems",
+    field:"Nonparametric Inference · Bayesian Asymptotics",
+    status:"Partially Resolved",
+    level:'phd',
+    start:"Prerequisites: measure-theoretic probability, minimax theory (Tsybakov), the Gaussian white-noise model; Ghosal & van der Vaart (2017)",
+    q:"A function whose smoothness is unknown can be estimated at the optimal rate adaptively. But Low (1997) and Cai & Low (2004, 2006) showed that confidence intervals and balls cannot adapt in the same way: a set with valid coverage over a large smoothness class cannot in general also shrink at the best rate for smoother functions. Which restrictions make honest adaptive confidence sets possible, and do Bayesian credible sets have valid frequentist coverage under them?",
+    why:"This underlies every statement of uncertainty about a curve, surface or density. Bayesian nonparametric methods routinely report credible bands, but Freedman (1999) showed that the Bernstein–von Mises theorem, which links credible sets to confidence sets, can fail in infinite dimensions.",
+    how:"Learn the Gaussian sequence model first (observe Y(i) = θ(i) + ξ(i)/√n for i = 1, 2, …, with independent standard normal noise ξ(i)) (Tsybakov, Introduction to Nonparametric Estimation, ch. 3). Read Robins & van der Vaart (2006) and Hoffmann & Nickl (2011) on exactly when adaptive confidence sets exist (a self-similarity or separation condition). Read Szabó, van der Vaart & van Zanten (2015) and Castillo & Nickl (2013, 2014) for the Bayesian side. Then take a prior class not yet analysed (for example a deep Gaussian-process prior, or a spike-and-slab prior on wavelet coefficients) and decide whether its credible sets are honest.",
+    extra:"A typical result is that adaptive credible balls have valid coverage only for \"self-similar\" truths, whose small-scale roughness is visible at moderate frequencies; for other truths the coverage can fail badly. Hoffmann and Nickl characterise exactly when adaptive confidence bands exist. Open: a complete picture beyond the white-noise model (regression with random design, density estimation, high-dimensional sparse models), with computable procedures that adapt in size whenever that is possible at all."
+  },
+  {
+    t:"The Hardness of Conditional Independence Testing",
+    field:"Causal Discovery · Hypothesis Testing",
+    status:"Active Research",
+    level:'phd',
+    start:"Prerequisites: measure-theoretic probability, nonparametric regression, concentration inequalities",
+    q:"Does X depend on Y once Z is known (X independent of Y given Z)? Causal-discovery algorithms and variable-importance methods run on tests of exactly this. Shah & Peters (2020) proved that when Z is continuous, no test can control type I error uniformly over all distributions satisfying conditional independence and still have power against any alternative. Which assumptions on the null make conditional independence testable, and what are the optimal tests under them?",
+    why:"The result limits what can be learned about causal structure from observational data without strong modelling assumptions, and it explains why many conditional-independence tests silently inflate type I error.",
+    how:"Read Shah & Peters (2020), Annals of Statistics 48, in full, including the generalised covariance measure (GCM) they propose. Then read Candès, Fan, Janson & Lv (2018) on model-X knockoffs (which assume the law of X given Z is known), Berrett, Wang, Barber & Samworth (2020) on the conditional permutation test, and Neykov, Balakrishnan & Wasserman (2021) for minimax rates under smoothness. Start your own work by simulating a GCM test whose regression of X on Z is misspecified and measuring its type I error.",
+    extra:"The GCM test is valid when the regressions of X and of Y on Z are estimated well enough that the product of their errors is smaller than n^{-1/2}, which is the double-robustness structure from semiparametric theory. Model-X methods shift the burden to knowing the law of X given Z. Open: sharp minimax separation rates for conditional-independence testing over natural smoothness classes, tests that stay valid under partial misspecification of the regression or conditional-law estimate, and extensions to high-dimensional Z and functional data."
+  },
+  {
+    t:"Valid Inference in High Dimensions Beyond Ultra-Sparsity",
+    field:"High-Dimensional Inference · Regression",
+    status:"Active Research",
+    level:'phd',
+    start:"Prerequisites: Lasso theory (Bühlmann & van de Geer), concentration inequalities, random matrices",
+    q:"In a linear model with p much larger than n and s nonzero coefficients, debiased-Lasso methods give valid confidence intervals for a single coefficient when s is at most about √n / log p. Cai & Guo (2017) showed that beyond this sparsity level, adaptive confidence intervals of optimal length cannot exist without knowing the sparsity. What is the exact feasibility frontier when the design covariance is unknown, and what can be done between √n / log p and n / log p?",
+    why:"Genomics, finance and imaging routinely have more variables than observations and report effect sizes with intervals. Knowing when those intervals are trustworthy, and when no method can be, is basic.",
+    how:"Implement the debiased Lasso of Zhang & Zhang (2014), van de Geer, Bühlmann, Ritov & Dezeure (2014) and Javanmard & Montanari (2014) from scratch. Simulate n = 200, p = 500 and s = 5, 15, 40 and check the coverage of the interval for a null coefficient. Then read Cai & Guo (2017) for the lower-bound argument, and Javanmard & Montanari (2018) and Bellec & Zhang (2022) on how Gaussian designs push the feasible sample size down. Pick a non-Gaussian or correlated design and test where their corrections break.",
+    extra:"The bias of the Lasso, not its variance, drives the problem: debiasing needs the relevant row of the inverse covariance (precision) matrix to be estimated accurately enough that the remaining bias is o(n^{-1/2}). For Gaussian designs the requirement can be relaxed to roughly n of order s (log p)² or more (Javanmard & Montanari 2018), but for general designs the sharp frontier is not known. Open: the sharp sample-size and sparsity frontier for general designs with unknown covariance, honest inference without exact sparsity (for example under approximate sparsity or ridge-type structure), and practical procedures that attain it."
+  },
+  {
+    t:"Inference from Adaptively Collected Data",
+    field:"Sequential Experiments · Bandits",
+    status:"Active Research",
+    level:'phd',
+    start:"Prerequisites: martingale theory (STAT 403), stochastic approximation, bandit algorithms (Lattimore & Szepesvári)",
+    q:"When experiments assign treatments adaptively (bandits, response-adaptive trials, online A/B tests), the observations are no longer independent, and standard estimators lose their properties. Sample means become biased (Nie, Tian, Wager & Taylor 2018) and asymptotic normality can fail. How can we get valid confidence intervals and tests from adaptively collected data without sacrificing regret?",
+    why:"Companies and trials increasingly allocate patients and users adaptively to reduce harm and cost. If the resulting data cannot support valid inference, either the experiments or their conclusions lose value.",
+    how:"Simulate a two-armed Thompson-sampling experiment with two identical arms and show that the sample-mean difference is biased and non-normal at small n. Then read Deshpande, Mackey, Syrgkanis & Taddy (2018), Hadad, Hirshberg, Zhan, Wager & Athey (2021), PNAS, Zhang, Janson & Murphy (2020, 2021), and the stability literature (Kalvit & Zeevi 2021; Khamaru & Zhang 2024) on when asymptotic normality holds. Read Bubeck, Munos & Stoltz (2011) for the tension between cumulative regret and the accuracy of identifying the best arm.",
+    extra:"Bubeck, Munos and Stoltz showed that the better an algorithm is in cumulative regret, the worse it is at identifying the best arm, so regret-optimal sampling inherently starves inference. Remedies include importance-weighted and doubly robust estimators with stabilising weights (Hadad et al.), batched designs, and anytime-valid confidence sequences. Open: the exact Pareto frontier between regret and inferential accuracy, and algorithms that attain it with valid finite-sample intervals in contextual and non-stationary settings."
+  },
+  {
+    t:"Explicit RIP Matrices Beyond the Square-Root Barrier",
+    field:"Compressed Sensing · Additive Combinatorics",
+    status:"Open",
+    level:'phd',
+    start:"Prerequisites: harmonic analysis on finite groups, sparse recovery (Candès–Tao), basic additive combinatorics",
+    q:"A random Gaussian matrix with M rows satisfies the restricted isometry property (RIP) for sparsity s up to about M / log N, which guarantees recovery of sparse vectors by L1 minimisation. But no deterministic, explicitly constructed matrix is known to achieve s much larger than √M, apart from the construction of Bourgain, Dilworth, Ford, Konyagin & Kutzarova (2011), which reaches only s of about M to the power (1/2 + ε) for a tiny ε (about 4 × 10 to the power −24 in the best published analysis I found). Can explicit RIP matrices be built with s of order M to the power 0.6 or more, or even nearly linear in M?",
+    why:"Certifying that a given matrix has RIP is NP-hard (Bandeira, Dobriban, Mixon & Sawin 2013), so a random matrix is never guaranteed. Explicit constructions would give provable recovery guarantees, and the problem is tied to explicit Ramsey-type graphs (Gamarnik 2018).",
+    how:"Learn the standard route first: coherence arguments (Gershgorin) give RIP up to s ≈ √M, and finite-field constructions (DeVore 2007) reach that level. Read Bourgain et al. (2011), Duke Mathematical Journal 159, for the breakthrough past the barrier, then Mixon (2014) and Bandeira, Mixon & Moreira (2017) on the conditional construction using a conjecture about Paley graphs. Read Gamarnik (2018) for the Ramsey connection. A concrete project: identify the additive-combinatorial estimate that limits ε in Bourgain et al. and look for slack.",
+    extra:"The Welch bound shows that coherence alone cannot certify sparsity beyond about √M, so any improvement must exploit cancellation in sums over many columns; Bourgain et al. obtain this from sumset estimates and exponential sums with additive structure. Bandeira, Mixon and Moreira show that a quadratic-residue Fourier matrix would reach s ≈ M^{1/2+ε} for a much larger ε, conditional on a conjecture about Paley graphs. Open: unconditional constructions with larger ε, with s of order M^{0.6} or more, or a proof that the square-root barrier is intrinsic to explicit constructions."
+  },
+  {
+    t:"Anytime-Valid Inference: Optimal E-Processes for Composite Hypotheses",
+    field:"Sequential Inference · E-values",
+    status:"Active Research",
+    level:'phd',
+    start:"Prerequisites: martingales and optional stopping (STAT 403), sequential tests (STAT 203), measure-theoretic probability",
+    q:"A p-value is valid only if the sample size is fixed in advance; peeking at the data and stopping when p &lt; 0.05 destroys the guarantee. E-values and e-processes (nonnegative supermartingales under the null) give tests and confidence sequences that stay valid under any stopping rule. For composite null hypotheses, which e-processes are optimal, and when do they exist?",
+    why:"Online experiments, clinical trials with interim looks and continuous monitoring all violate the fixed-n assumption. E-processes offer a principled replacement for p-values that also composes well across studies, which bears directly on the reproducibility problem elsewhere on this page.",
+    how:"Start with a single simple null: the likelihood ratio is a test martingale, and Ville's inequality gives P(the process ever reaches 1/α) ≤ α. Read Shafer (2021), \"Testing by betting\", Vovk & Wang (2021) on e-values, Howard, Ramdas, McAuliffe & Sekhon (2021) on confidence sequences, Grünwald, de Heide & Koolen (2024), \"Safe testing\", on growth-rate optimality, and Wasserman, Ramdas & Balakrishnan (2020), \"Universal inference\". Simulate the fixed-n t-test under optional stopping to see the type I error inflate, then replace it with an e-process-based test and compare power.",
+    extra:"Universal inference builds valid e-values for essentially any composite null by sample splitting and a likelihood ratio, but the resulting tests are typically conservative relative to classical ones when those exist. Growth-rate-optimal e-variables can be characterised by reverse information projection for convex nulls, but general composite nulls and sequential (e-process) optimality lack a complete theory. By the law of the iterated logarithm, any confidence sequence is wider than a fixed-n interval by a factor of order √(log log n). Open: characterise optimal e-processes for non-convex or nonparametric nulls, and quantify the unavoidable price of anytime-validity relative to fixed-n tests."
+  },
+  {
+    t:"Statistical Guarantees for Variational Inference",
+    field:"Bayesian Computation · Approximation Theory",
+    status:"Active Research",
+    level:'phd',
+    start:"Prerequisites: Bayesian asymptotics (posterior contraction, Bernstein–von Mises), convex analysis, information theory",
+    q:"Variational inference replaces the posterior by the closest member of a simple family (for example a product of independent factors) in KL divergence. It is fast and scalable, but mean-field approximations are known to understate posterior uncertainty. When do variational posteriors converge at the same rate as the true posterior, and when do their credible sets have valid frequentist coverage?",
+    why:"Variational methods power large-scale Bayesian models (topic models, Bayesian neural networks, genetics) where MCMC is infeasible. Their uncertainty statements are used in decisions, yet the theory of their reliability is incomplete.",
+    how:"Fit a Bayesian linear regression with strongly correlated predictors (correlation 0.9) by exact posterior and by mean-field coordinate-ascent VI, and compare posterior standard deviations; VI will be too small. Read Blei, Kucukelbir & McAuliffe (2017), JASA, for the framework, Wang & Blei (2019), JASA 114, for frequentist consistency, Zhang & Gao (2020), Annals of Statistics 48, and Alquier & Ridgway (2020) for convergence rates, Giordano, Broderick & Jordan (2018) for covariance corrections, and Katsevich & Rigollet (2024) for the accuracy of Gaussian VI. Start your own problem by measuring the coverage of mean-field credible intervals in a simple hierarchical model.",
+    extra:"Mean-field VI recovers posterior means asymptotically in many parametric models (Wang & Blei) but underestimates variances when parameters are correlated. Convergence-rate results show that variational posteriors can contract as fast as the true posterior in nonparametric and high-dimensional problems, yet they say nothing about coverage of credible sets. Open: sharp conditions for valid frequentist coverage of variational credible sets, general-purpose corrections that restore it, and a theory for richer variational families (normalising flows, mixtures)."
+  },
+  {
+    t:"Singular Learning Theory: The Learning Coefficient of Neural Networks",
+    field:"Learning Theory · Algebraic Geometry",
+    status:"Active Research",
+    level:'phd',
+    start:"Prerequisites: Bayesian asymptotics, real analysis, basic algebraic geometry (resolution of singularities); Watanabe (2009)",
+    q:"In regular models the Bayesian free energy behaves like n·S + (d/2) log n, which is the BIC penalty. In singular models (neural networks, mixtures, hidden Markov models, reduced-rank regression), where the Fisher information is degenerate, Watanabe showed that it behaves like n·S + λ log n, where λ is the real log canonical threshold (RLCT) of the model, generally smaller than d/2. For which models can λ be computed, and what does it say about generalisation and training of deep networks?",
+    why:"Standard tools (AIC, BIC, Wilks' theorem) are invalid for singular models, which includes most modern ones. The RLCT replaces the parameter count as a measure of model complexity and may help explain why overparameterised networks generalise.",
+    how:"Compute λ by hand for the toy model y = a·b·x + noise with true parameter (0, 0): the divergence is proportional to (ab)², whose RLCT is 1/2, while d/2 = 1. Check it by estimating the free energy with MCMC at several n. Read Watanabe (2009), Algebraic Geometry and Statistical Learning Theory, Watanabe (2013) on WBIC, Aoyagi & Watanabe (2005) for reduced-rank regression, and Lau et al. (2023) on the local learning coefficient. Then take a small architecture (a two-layer tanh network with two hidden units) and try to compute or bound λ with Newton-polygon methods.",
+    extra:"Exact RLCTs are known for reduced-rank regression, some mixture models and a few small networks, but not for general deep networks. The local learning coefficient (Lau et al.) is an estimator based on stochastic-gradient Langevin sampling and has been used to study training dynamics and phase transitions. Whether the (local) RLCT predicts the generalisation of networks trained by SGD, rather than by Bayesian posterior sampling, is a conjecture, not a theorem. Open: closed-form or bounded RLCTs for deep architectures, and a rigorous bridge from Bayesian learning coefficients to SGD generalisation."
+  },
+  {
+    t:"Does EM Work for Mixtures? Global Convergence Beyond Two Components",
+    field:"Likelihood Computation · Mixture Models",
+    status:"Open",
+    level:'phd',
+    start:"Prerequisites: STAT 402 (EM algorithm), STAT 203 (asymptotic inference), nonconvex optimisation, empirical-process theory",
+    q:"The EM algorithm is the standard way to fit Gaussian mixtures. For two well-separated components, EM converges from nearly any starting point (Xu, Hsu & Maleki 2016; Daskalakis, Tzamos & Zampetakis 2017). For three or more components, Jin et al. (2016) showed that the likelihood has bad local maxima and that EM from random initialisation can converge to them with high probability. When, and from what initialisation, does EM provably find a good solution?",
+    why:"Mixture models underpin clustering, density estimation and latent-variable modelling. EM is used everywhere with ad hoc restarts, but its success is not characterised and its failures are silent.",
+    how:"Simulate a 3-component 2-D Gaussian mixture with moderate separation, run EM from 1,000 random initialisations and tabulate the final log-likelihood to see how often it reaches the global optimum. Then read Balakrishnan, Wainwright & Yu (2017), Annals of Statistics 45, for local convergence theory, Jin et al. (2016), and Dwivedi et al. (2020), Annals of Statistics 48, on slow rates when the model is over-specified. Pick a regime (known weights, equal covariances, separation Δ) and try to prove or disprove that k-means++ initialisation followed by EM converges.",
+    extra:"The local theory is largely complete: from a good initialisation, EM contracts geometrically to the truth up to statistical error. The hard question is the basin of attraction from cheap initialisations and the geometry of the sample likelihood for three or more components. Over-specification (fitting more components than exist) makes the likelihood singular and slows EM to sublinear rates, which links this problem to singular learning theory. Open: global convergence guarantees for EM or gradient EM with simple initialisation, in terms of the number of components, the dimension and the separation."
   }
 ];
 
 /* ── CAREERS ────────────────────────────────────────────────── */
 
-function renderOpenProblems(){
-  const g=document.getElementById('op-list'); if(!g)return;
-  g.innerHTML=OPEN_PROBLEMS.map((p,i)=>`
+const OP_LEVELS=[
+  {k:'ug',t:"Bachelor's level",d:"Start alongside your B.Sc. Each card names the semester and paper whose syllabus it builds on."},
+  {k:'pg',t:"Master's level",d:"Start alongside the M.Sc. Each card names the Calcutta University M.Sc. Statistics paper (2022 syllabus) it builds on."},
+  {k:'phd',t:"PhD and beyond",d:"Needs graduate probability and inference plus specialised background. Each card lists what to learn first."}
+];
+let _opFilter='all';
+
+function setOpFilter(k){
+  _opFilter=k;
+  renderOpenProblems();
+  try{ if(typeof renderMath==='function') renderMath(document.getElementById('op-list')); }catch(e){}
+}
+
+function opCardHTML(p,i){
+  return `
     <div class="op-card" id="opcard-${i}">
       <div class="op-hdr" onclick="toggleOp(${i})">
         <div>
           <div class="op-title">${p.t}</div>
           <div class="op-field">${p.field}</div>
+          ${p.start?`<div class="opx-start">${p.start}</div>`:''}
         </div>
         <div style="display:flex;align-items:center;gap:.5rem;flex-shrink:0">
           <span class="op-status">${p.status}</span>
@@ -362,9 +843,23 @@ function renderOpenProblems(){
         <div class="op-why">${p.why}</div>
         <div class="op-lbl">🗺 How to Engage</div>
         <div class="op-how">${p.how}</div>
-        ${p.extra?`<div class="op-lbl">🔭 Deep Context</div><div class="op-extra">${p.extra}</div>`:''}
+        ${p.extra?`<div class="op-lbl">🔭 Deep Context</div><div class="op-extra" data-math-display>${p.extra}</div>`:''}
       </div>
-    </div>`).join('');
+    </div>`;
+}
+
+function renderOpenProblems(){
+  const g=document.getElementById('op-list'); if(!g)return;
+  const n={all:OPEN_PROBLEMS.length};
+  OP_LEVELS.forEach(l=>{ n[l.k]=OPEN_PROBLEMS.filter(p=>p.level===l.k).length; });
+  const chip=(k,label)=>`<button type="button" class="opx-chip${_opFilter===k?' on':''}" aria-pressed="${_opFilter===k}" onclick="setOpFilter('${k}')">${label}<span class="opx-n">${n[k]}</span></button>`;
+  let html=`<div class="opx-filter" role="group" aria-label="Filter problems by level">${chip('all','All')}${OP_LEVELS.map(l=>chip(l.k,l.t)).join('')}</div>
+    <p class="opx-note">Statuses checked October 2026. Several of these areas move quickly, so check arXiv before you start.</p>`;
+  OP_LEVELS.filter(l=>_opFilter==='all'||_opFilter===l.k).forEach(l=>{
+    html+=`<div class="opx-sec"><h3 class="opx-sec-t">${l.t}</h3><p class="opx-sec-d">${l.d}</p></div>`;
+    html+=OPEN_PROBLEMS.map((p,i)=>p.level===l.k?opCardHTML(p,i):'').join('');
+  });
+  g.innerHTML=html;
 }
 
 

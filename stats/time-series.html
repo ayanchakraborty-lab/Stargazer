@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --> <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'],wait_for_update:500});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="../pics/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>The Analysis of Time Series — Interactive Guide | Stargazer</title>
+<meta name="description" content="An interactive walkthrough of time series analysis: stationarity, ARMA/ARIMA models, spectral analysis, state-space methods and forecasting, with live simulations.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Statistics Universe">
+<link rel="canonical" href="https://stargazers.co.in/stats/time-series">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Analysis of Time Series — Interactive Guide | Stargazer">
+<meta property="og:description" content="Stationarity, ARMA/ARIMA, spectral analysis, state-space methods and forecasting — explored with live, interactive simulations.">
+<meta property="og:url" content="https://stargazers.co.in/stats/time-series">
+<meta property="og:image" content="https://stargazers.co.in/pics/stats.png">
+<meta property="og:site_name" content="Stargazer: Lost in the Cosmos">
+<meta name="application-name" content="Stargazer: Lost in the Cosmos">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Analysis of Time Series — Interactive Guide | Stargazer">
+<meta name="twitter:description" content="Stationarity, ARMA/ARIMA, spectral analysis, state-space methods and forecasting — explored with live, interactive simulations.">
+<meta name="twitter:image" content="https://stargazers.co.in/pics/stats.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- ── STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "The Analysis of Time Series — Interactive Guide | Stargazer",
+  "description": "Stationarity, ARMA/ARIMA, spectral analysis, state-space methods and forecasting — explored with live, interactive simulations.",
+  "url": "https://stargazers.co.in/stats/time-series",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazers.co.in/" },
+  "about": { "@type": "Thing", "name": "Statistics", "sameAs": "https://en.wikipedia.org/wiki/Statistics" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,600&family=Outfit:wght@400;500;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<link rel="stylesheet" href="stats.css">
+<style>
+/* ═══════════════════ TIME SERIES PAGE — local styles (ts- prefix) ═══════════════════ */
+.ts-wrap{max-width:1120px;margin:0 auto;padding:0 1.5rem}
+.ts-progress{position:fixed;top:88px;left:0;height:3px;background:linear-gradient(90deg,var(--gr),var(--bl),var(--pu));z-index:998;width:0%;transition:width .1s linear}
+
+/* HERO */
+.ts-hero{padding:9.5rem 1.5rem 3.5rem;text-align:center;background:linear-gradient(160deg,var(--bg) 0%,var(--bg-2) 60%,var(--bg) 100%)}
+.ts-hero-eyebrow{font-family:'Source Code Pro',monospace;font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--tl);margin-bottom:1.1rem}
+.ts-hero-title{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(2.6rem,7vw,4.6rem);line-height:1.05;margin-bottom:1rem;background:linear-gradient(145deg,#1e1b15 0%,#2a5f78 45%,#25605f 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+body.night .ts-hero-title{background:linear-gradient(145deg,#f5f0e8 0%,#5aadd0 45%,#5abfb5 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.ts-hero-sub{font-size:1.04rem;color:var(--text-2);max-width:640px;margin:0 auto 1.4rem;line-height:1.85}
+.ts-hero-credit{font-size:.78rem;color:var(--text-3);font-style:italic;max-width:560px;margin:0 auto}
+
+/* MINI TOC GRID */
+.ts-toc{padding:1rem 1.5rem 3.5rem}
+.ts-toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.85rem}
+.ts-toc-card{display:flex;gap:.75rem;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:.9rem 1rem;cursor:pointer;transition:all .2s;text-decoration:none}
+.ts-toc-card:hover{border-color:var(--accent-c,var(--tl));transform:translateY(-2px);box-shadow:0 8px 24px var(--accent-l,var(--tl-l))}
+.ts-toc-num{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.6rem;color:var(--accent-c,var(--tl));line-height:1}
+.ts-toc-txt{flex:1}
+.ts-toc-title{font-family:'Outfit',sans-serif;font-weight:600;font-size:.86rem;color:var(--text);margin-bottom:.15rem}
+.ts-toc-sub{font-size:.72rem;color:var(--text-3);line-height:1.4}
+
+/* STICKY CHIP NAV */
+.ts-chipnav{position:sticky;top:88px;z-index:400;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:.6rem 0;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.ts-chipnav::-webkit-scrollbar{display:none}
+.ts-chipnav-inner{display:inline-flex;gap:.4rem;padding:0 1.5rem}
+.ts-chip{font-family:'Source Code Pro',monospace;font-size:.68rem;font-weight:600;padding:.32rem .7rem;border-radius:99px;border:1px solid var(--border);background:var(--surface);color:var(--text-3);cursor:pointer;transition:all .2s;flex-shrink:0}
+.ts-chip:hover{color:var(--text)}
+.ts-chip.active{background:var(--tl-l);border-color:var(--tl);color:var(--tl)}
+
+/* CHAPTER BLOCK */
+.ts-chapter{padding:4.5rem 0 1rem;border-top:1px solid var(--border-2);scroll-margin-top:150px}
+.ts-chapter:first-of-type{border-top:none}
+.ts-chapter-eyebrow{font-family:'Source Code Pro',monospace;font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent-c,var(--tl));margin-bottom:.6rem}
+.ts-chapter-title{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(1.7rem,3.5vw,2.5rem);color:var(--text);margin-bottom:1rem;line-height:1.15}
+.ts-chapter-intro{font-size:1rem;color:var(--text-2);line-height:1.85;max-width:760px;margin-bottom:2.2rem}
+
+/* TOPIC */
+.ts-topic{margin-bottom:2.1rem;padding-left:1.1rem;border-left:3px solid var(--accent-c,var(--tl))}
+.ts-topic-title{font-family:'Outfit',sans-serif;font-weight:700;font-size:1.05rem;color:var(--text);margin-bottom:.5rem}
+.ts-topic p{font-size:.92rem;color:var(--text-2);line-height:1.8;margin-bottom:.75rem}
+.ts-topic p:last-child{margin-bottom:0}
+
+/* FORMULA BOX */
+.ts-formula{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:.9rem 1.1rem;margin:.8rem 0;overflow-x:auto}
+.ts-formula .katex{font-size:1.02em}
+.ts-formula-cap{font-family:'Source Code Pro',monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-top:.5rem;text-align:right}
+
+/* EXAMPLE BOX */
+.ts-example{background:var(--accent-l,var(--tl-l));border-left:3px solid var(--accent-c,var(--tl));border-radius:0 9px 9px 0;padding:1rem 1.15rem;margin:1rem 0}
+.ts-example-lbl{font-family:'Source Code Pro',monospace;font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-c,var(--tl));margin-bottom:.45rem;display:flex;align-items:center;gap:.4rem}
+.ts-example p{font-size:.89rem;color:var(--text-2);line-height:1.75;margin-bottom:.5rem}
+.ts-example p:last-child{margin-bottom:0}
+
+/* NOTE / PITFALL */
+.ts-note{background:var(--rd-l);border-left:3px solid var(--rd);border-radius:0 9px 9px 0;padding:.85rem 1.1rem;margin:1rem 0;font-size:.87rem;color:var(--text-2);line-height:1.7}
+.ts-note b{color:var(--rd)}
+
+/* VIZ CONTAINER */
+.ts-viz{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin:1.2rem 0}
+.ts-viz-title{font-family:'Outfit',sans-serif;font-weight:600;font-size:.82rem;color:var(--text);margin-bottom:.2rem}
+.ts-viz-sub{font-size:.74rem;color:var(--text-3);margin-bottom:.85rem;line-height:1.5}
+.ts-viz canvas{width:100%;display:block;border-radius:8px;background:var(--bg-2)}
+.ts-viz-controls{margin-top:.85rem}
+.ts-slider-row{display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem}
+.ts-slider-lbl{font-family:'Source Code Pro',monospace;font-size:.7rem;color:var(--accent-c,var(--tl));min-width:110px}
+.ts-slider{flex:1;accent-color:var(--accent-c,var(--tl));cursor:pointer;height:4px}
+.ts-slider-val{font-family:'Source Code Pro',monospace;font-size:.72rem;color:var(--text-2);min-width:48px;text-align:right}
+.ts-viz-legend{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.6rem;font-size:.72rem;color:var(--text-3)}
+.ts-legend-sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:.35rem;vertical-align:middle}
+.ts-toggle-row{display:flex;gap:.4rem;margin-bottom:.7rem}
+.ts-toggle{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;padding:.3rem .75rem;border-radius:99px;border:1px solid var(--border);background:var(--bg);color:var(--text-3);cursor:pointer;transition:all .2s}
+.ts-toggle.active{background:var(--accent-l,var(--tl-l));border-color:var(--accent-c,var(--tl));color:var(--accent-c,var(--tl))}
+
+/* IDENTIFICATION TABLE */
+.ts-id-table{width:100%;border-collapse:collapse;font-size:.83rem;margin:.8rem 0}
+.ts-id-table th{font-family:'Source Code Pro',monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);text-align:left;padding:.5rem .6rem;border-bottom:2px solid var(--border)}
+.ts-id-table td{padding:.6rem;border-bottom:1px solid var(--border-2);color:var(--text-2);line-height:1.5;vertical-align:top}
+.ts-id-table td:first-child{font-weight:700;color:var(--text);white-space:nowrap}
+
+/* SVG DIAGRAM WRAP */
+.ts-diagram{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.3rem;margin:1.2rem 0;text-align:center}
+.ts-diagram svg{max-width:100%;height:auto}
+.ts-diagram-cap{font-size:.76rem;color:var(--text-3);margin-top:.7rem;line-height:1.6}
+
+/* EXERCISES */
+.ts-ex-hdr{display:flex;align-items:center;gap:.6rem;margin:2.4rem 0 1.1rem}
+.ts-ex-hdr h4{font-family:'Cormorant Garamond',serif;font-weight:700;font-style:italic;font-size:1.35rem;color:var(--text)}
+.ts-ex-hdr .line{flex:1;height:1px;background:var(--border)}
+.ts-ex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem}
+.ts-ex-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:1.1rem 1.15rem;transition:border-color .2s}
+.ts-ex-card:hover{border-color:var(--accent-c,var(--tl))}
+.ts-ex-num{font-family:'Source Code Pro',monospace;font-size:.66rem;color:var(--accent-c,var(--tl));letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
+
+/* FOOTER */
+.ts-footer{padding:3rem 1.5rem 4rem;text-align:center;border-top:1px solid var(--border);margin-top:2rem}
+.ts-footer p{font-size:.82rem;color:var(--text-3);max-width:600px;margin:0 auto;line-height:1.7}
+
+@media (max-width:640px){
+  .ts-hero{padding:8rem 1.2rem 2.5rem}
+  .ts-chipnav{top:76px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ AUTH TOPBAR ════════════════════════════════════════════ -->
+<div id="auth-topbar">
+  <a href="../" class="atb-btn atb-home">🌌 Universe</a>
+  <div style="flex:1"></div>
+  <button class="atb-btn atb-mode" onclick="toggleMode()" title="Toggle day / night" aria-label="Toggle day / night">
+    <span id="mode-icon">☾</span>
+  </button>
+  <a href="../login" id="loginBtn">☽ Sign In</a>
+  <div id="userInfo">
+    <span id="userEmailDisplay">✦ Explorer</span>
+    <button id="navSignOutBtn" onclick="if(window.doSignOut)window.doSignOut();else location.href='login'">Sign Out</button>
+  </div>
+</div>
+<script>
+/* apply saved day/night choice immediately, before the rest of the page paints */
+(function(){
+  if(localStorage.getItem('stats-mode')==='night'){
+    document.body.classList.add('night');
+    var mi=document.getElementById('mode-icon'); if(mi)mi.textContent='☀';
+  }
+})();
+</script>
+
+<script src="nav.js"></script>
+<script>renderNav('time-series')</script>
+
+<!-- ═══ SEARCH MODAL ═══════════════════════════════════════════════ -->
+<div id="search-modal" onclick="if(event.target===this)closeSearch()">
+  <div id="search-box">
+    <div id="search-input-wrap">
+      <span id="search-icon-lbl">🔍</span>
+      <input id="search-input" placeholder="Search chapters and topics…" autocomplete="off"
+        oninput="runSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <span id="search-kbd">ESC</span>
+    </div>
+    <div id="search-results"><div class="sr-empty">Start typing to search this page…</div></div>
+  </div>
+</div>
+
+<!-- ═══ TOAST ══════════════════════════════════════════════════════ -->
+<div id="toast">
+  <button id="toast-close" onclick="hideToast()" aria-label="Dismiss notification">✕</button>
+  <div class="toast-cat" id="toast-cat">Fun Fact</div>
+  <div id="toast-body"></div>
+</div>
+
+<!-- ═══ KEYBOARD HINT ══════════════════════════════════════════════ -->
+<div id="shortcut-hint">/ search · ← → pages</div>
+
+<div class="ts-progress" id="tsProgress"></div>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<header class="ts-hero">
+  <div class="ts-hero-eyebrow">Time · Series · Analysis</div>
+  <h1 class="ts-hero-title">The Analysis of<br>Time Series</h1>
+  <p class="ts-hero-sub">An interactive field guide to how we describe, model, and forecast data that unfolds through time — from a first look at trend and seasonality all the way to state-space models, spectral analysis, and chaos.</p>
+  <p class="ts-hero-credit">Structured around the 13-chapter arc of Chris Chatfield's <em>The Analysis of Time Series: An Introduction</em> (5th ed.) — explanations, examples and exercises below are original, written to teach the same ideas.</p>
+</header>
+
+<!-- ═══════════════════ MINI TOC ═══════════════════ -->
+<section class="ts-toc">
+  <div class="ts-wrap">
+    <div class="ts-toc-grid">
+      <a class="ts-toc-card" href="#ch1" style="--accent-c:var(--tl);--accent-l:var(--tl-l)"><span class="ts-toc-num">1</span><span class="ts-toc-txt"><div class="ts-toc-title">Introduction</div><div class="ts-toc-sub">Objectives &amp; terminology</div></span></a>
+      <a class="ts-toc-card" href="#ch2" style="--accent-c:var(--gr);--accent-l:var(--gr-l)"><span class="ts-toc-num">2</span><span class="ts-toc-txt"><div class="ts-toc-title">Descriptive Techniques</div><div class="ts-toc-sub">Trend, seasonality, ACF</div></span></a>
+      <a class="ts-toc-card" href="#ch3" style="--accent-c:var(--bl);--accent-l:var(--bl-l)"><span class="ts-toc-num">3</span><span class="ts-toc-txt"><div class="ts-toc-title">Probability Models</div><div class="ts-toc-sub">AR, MA, ARMA, Wold</div></span></a>
+      <a class="ts-toc-card" href="#ch4" style="--accent-c:var(--rd);--accent-l:var(--rd-l)"><span class="ts-toc-num">4</span><span class="ts-toc-txt"><div class="ts-toc-title">Estimation</div><div class="ts-toc-sub">Box–Jenkins, SARIMA</div></span></a>
+      <a class="ts-toc-card" href="#ch5" style="--accent-c:var(--gd);--accent-l:var(--gd-l)"><span class="ts-toc-num">5</span><span class="ts-toc-txt"><div class="ts-toc-title">Forecasting</div><div class="ts-toc-sub">Smoothing, prediction intervals</div></span></a>
+      <a class="ts-toc-card" href="#ch6" style="--accent-c:var(--pu);--accent-l:var(--pu-l)"><span class="ts-toc-num">6</span><span class="ts-toc-txt"><div class="ts-toc-title">Frequency Domain</div><div class="ts-toc-sub">Spectral density</div></span></a>
+      <a class="ts-toc-card" href="#ch7" style="--accent-c:var(--og);--accent-l:var(--og-l)"><span class="ts-toc-num">7</span><span class="ts-toc-txt"><div class="ts-toc-title">Spectral Analysis</div><div class="ts-toc-sub">Periodogram, smoothing</div></span></a>
+      <a class="ts-toc-card" href="#ch8" style="--accent-c:var(--pk);--accent-l:var(--pk-l)"><span class="ts-toc-num">8</span><span class="ts-toc-txt"><div class="ts-toc-title">Bivariate Processes</div><div class="ts-toc-sub">Cross-correlation, coherence</div></span></a>
+      <a class="ts-toc-card" href="#ch9" style="--accent-c:var(--tl);--accent-l:var(--tl-l)"><span class="ts-toc-num">9</span><span class="ts-toc-txt"><div class="ts-toc-title">Linear Systems</div><div class="ts-toc-sub">Transfer functions</div></span></a>
+      <a class="ts-toc-card" href="#ch10" style="--accent-c:var(--gr);--accent-l:var(--gr-l)"><span class="ts-toc-num">10</span><span class="ts-toc-txt"><div class="ts-toc-title">State-Space &amp; Kalman</div><div class="ts-toc-sub">Predict / update</div></span></a>
+      <a class="ts-toc-card" href="#ch11" style="--accent-c:var(--rd);--accent-l:var(--rd-l)"><span class="ts-toc-num">11</span><span class="ts-toc-txt"><div class="ts-toc-title">Non-Linear Models</div><div class="ts-toc-sub">ARCH/GARCH, chaos</div></span></a>
+      <a class="ts-toc-card" href="#ch12" style="--accent-c:var(--bl);--accent-l:var(--bl-l)"><span class="ts-toc-num">12</span><span class="ts-toc-txt"><div class="ts-toc-title">Multivariate Models</div><div class="ts-toc-sub">VAR, cointegration</div></span></a>
+      <a class="ts-toc-card" href="#ch13" style="--accent-c:var(--gd);--accent-l:var(--gd-l)"><span class="ts-toc-num">13</span><span class="ts-toc-txt"><div class="ts-toc-title">Other Topics</div><div class="ts-toc-sub">Unit roots, control theory</div></span></a>
+      <a class="ts-toc-card" href="#appendices" style="--accent-c:var(--pu);--accent-l:var(--pu-l)"><span class="ts-toc-num">A–D</span><span class="ts-toc-txt"><div class="ts-toc-title">Appendices</div><div class="ts-toc-sub">Transforms, covariance</div></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ STICKY CHIP NAV ═══════════════════ -->
+<nav class="ts-chipnav">
+  <div class="ts-chipnav-inner" id="tsChipNav">
+    <button class="ts-chip" data-target="ch1">1 · Intro</button>
+    <button class="ts-chip" data-target="ch2">2 · Descriptive</button>
+    <button class="ts-chip" data-target="ch3">3 · Probability</button>
+    <button class="ts-chip" data-target="ch4">4 · Estimation</button>
+    <button class="ts-chip" data-target="ch5">5 · Forecasting</button>
+    <button class="ts-chip" data-target="ch6">6 · Frequency</button>
+    <button class="ts-chip" data-target="ch7">7 · Spectral</button>
+    <button class="ts-chip" data-target="ch8">8 · Bivariate</button>
+    <button class="ts-chip" data-target="ch9">9 · Linear Sys</button>
+    <button class="ts-chip" data-target="ch10">10 · Kalman</button>
+    <button class="ts-chip" data-target="ch11">11 · Non-Linear</button>
+    <button class="ts-chip" data-target="ch12">12 · Multivariate</button>
+    <button class="ts-chip" data-target="ch13">13 · Other</button>
+    <button class="ts-chip" data-target="appendices">Appendices</button>
+  </div>
+</nav>
+
+<main class="ts-wrap">
+
+<!-- ══════════════════════════════════════════════════════════════
+     CHAPTER 1 — INTRODUCTION
+     ══════════════════════════════════════════════════════════════ -->
+<section class="ts-chapter" id="ch1" style="--accent-c:var(--tl);--accent-l:var(--tl-l)">
+  <div class="ts-chapter-eyebrow">Chapter 1</div>
+  <h2 class="ts-chapter-title">Introduction</h2>
+  <p class="ts-chapter-intro">A time series is a sequence of observations taken sequentially in time. What makes it different from an ordinary sample is the one thing classical statistics usually assumes away: <b>order matters</b>, and neighbouring observations are typically dependent on one another.</p>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">1.1 &nbsp;What a time series looks like</div>
+    <p>Every time series analysis starts the same way: <b>plot the data</b>. A time plot — observation on the vertical axis, time on the horizontal — instantly reveals features no summary statistic will: trend (a long-term drift up or down), seasonality (a pattern that repeats at fixed intervals, like a calendar quarter), sudden level shifts, outliers, and changing variability. Skipping this step is the single most common beginner mistake in the whole subject.</p>
+    <p>Series are usually classified as <b>discrete</b> (observed at fixed intervals, e.g. monthly unemployment) or <b>continuous</b> (recorded constantly, e.g. an ECG trace, though in practice almost everything gets digitised into a discrete series before analysis). A discrete series can arise by <b>sampling</b> a continuous process at intervals, or by <b>aggregating</b> it — e.g. summing daily rainfall into monthly totals.</p>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">1.2 &nbsp;Deterministic vs. stochastic</div>
+    <p>If a series can be predicted exactly from its past, it is <b>deterministic</b> — genuinely rare outside of physics. Almost every real series is <b>stochastic</b>: the future is only partly determined by the past, so instead of a single predicted number we can only describe a <b>probability distribution</b> for the next value, conditioned on what has already happened. This is the conceptual leap the whole subject is built on: a time series model is a statement about a distribution, not a formula.</p>
+    <div class="ts-example">
+      <div class="ts-example-lbl">✎ Worked example</div>
+      <p>A reservoir's daily inflow depends on rainfall, snowmelt and upstream releases — no formula predicts it exactly, so it's modelled stochastically: today's inflow is drawn from a distribution whose mean and spread depend on recent history (was it a wet week? is it spring thaw?). Contrast this with the position of a pendulum: given its current position and velocity, physics predicts its position at any future time exactly — deterministic.</p>
+    </div>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">1.3 &nbsp;Objectives of time-series analysis</div>
+    <p>Four goals recur, and most projects are really pursuing one of them:</p>
+    <p><b>Description</b> — summarise the main features (trend, seasonality, turning points) as a first pass, often before any formal model is fitted.<br>
+    <b>Explanation</b> — when two or more series are observed together, use variation in one to explain variation in another (e.g. does advertising spend explain sales?).<br>
+    <b>Prediction / forecasting</b> — arguably the most common use in practice: given the observed past, forecast future values, usually with some measure of uncertainty attached.<br>
+    <b>Control</b> — when a series measures a process we can intervene in (e.g. a chemical plant's output), use the model to keep the process on target.</p>
+  </div>
+
+  <div class="ts-viz">
+    <div class="ts-viz-title">👀 Four series, four "shapes" — before any model is fitted</div>
+    <div class="ts-viz-sub">The very first diagnostic in the whole subject: what does the time plot look like? Each of these needs a completely different kind of model.</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.9rem">
+      <div><canvas id="ts-shapes-trend" height="110"></canvas><div class="ts-viz-title" style="font-size:.72rem;text-align:center;margin-top:.3rem">Trend + noise</div></div>
+      <div><canvas id="ts-shapes-seasonal" height="110"></canvas><div class="ts-viz-title" style="font-size:.72rem;text-align:center;margin-top:.3rem">Seasonal + noise</div></div>
+      <div><canvas id="ts-shapes-stationary" height="110"></canvas><div class="ts-viz-title" style="font-size:.72rem;text-align:center;margin-top:.3rem">Stationary noise</div></div>
+      <div><canvas id="ts-shapes-randomwalk" height="110"></canvas><div class="ts-viz-title" style="font-size:.72rem;text-align:center;margin-top:.3rem">Random walk</div></div>
+    </div>
+  </div>
+
+  <div class="ts-ex-hdr"><h4>Exercises</h4><div class="line"></div></div>
+  <div class="ts-ex-grid">
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">1.1</div>
+      <div class="puz-q">A city's monthly electricity demand is recorded for 20 years. You're told "just fit a straight line through it and extrapolate." Explain, in terms of the four objectives above, why this instruction conflates two different goals — and why doing only one of them well can still produce a bad forecast.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">Fitting a straight line is <em>description</em> — a compact summary of the dominant trend. <em>Forecasting</em> is a separate objective with its own requirement: a good description of the past doesn't guarantee a good model of the mechanism generating the future. Electricity demand has strong seasonality (heating/cooling load) that a trend line ignores entirely; extrapolating the trend alone will systematically mis-forecast every summer and winter. A good forecast needs a model that captures trend <em>and</em> seasonality <em>and</em> the correlation structure of what's left over — description is only the first step, not a substitute for the rest.</div>
+      </div>
+    </div>
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">1.2</div>
+      <div class="puz-q">Two series are <em>sampled</em> and <em>aggregated</em> versions of the same underlying continuous rainfall process: one is "rainfall intensity at midnight each day," the other is "total rainfall each day." Which one would you expect to look "smoother," and why does the answer matter for choosing a model?</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">The aggregated (daily total) series is smoother. Sampling a single instant captures whatever noise happens to be present at that moment, while aggregating averages out high-frequency fluctuation over the interval — the same reason a moving average smooths a plot. This matters because aggregation changes the correlation structure: a process that looks like independent noise when sampled can look strongly autocorrelated once aggregated, purely as an artefact of the aggregation window overlapping between consecutive totals. Choosing a model without knowing which one you have risks fitting structure that is really a measurement artefact.</div>
+      </div>
+    </div>
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">1.3</div>
+      <div class="puz-q">"If a process is stochastic, nothing about its future can be known." Give a precise, one-sentence correction to this statement using the language of Section 1.2.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">A stochastic process's future is not known <em>exactly</em>, but it is known as a <em>conditional probability distribution</em> given the past — so quantities like the mean, variance, and prediction intervals of the future value are entirely knowable, even though the single realised value is not.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ══════════════════════════════════════════════════════════════
+     CHAPTER 2 — SIMPLE DESCRIPTIVE TECHNIQUES
+     ══════════════════════════════════════════════════════════════ -->
+<section class="ts-chapter" id="ch2" style="--accent-c:var(--gr);--accent-l:var(--gr-l)">
+  <div class="ts-chapter-eyebrow">Chapter 2</div>
+  <h2 class="ts-chapter-title">Simple Descriptive Techniques</h2>
+  <p class="ts-chapter-intro">Before any model touches the data, description does the heavy lifting: separate a series into the parts that are easy to explain (trend, seasonality) and the part that isn't (the residual) — and check whether that leftover part still has structure worth modelling.</p>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">2.1–2.2 &nbsp;Types of variation, and what "stationary" means (informally)</div>
+    <p>A series' variation is usually decomposed into: <b>trend</b> (a slow, long-term change in level), <b>seasonal variation</b> (a pattern that repeats with a fixed, known period), <b>cyclic variation</b> (rises and falls with no fixed period, like a business cycle), and everything left over, the <b>residual</b> or <b>irregular</b> component.</p>
+    <p>A series is (informally, for now) called <b>stationary</b> if it has no trend or seasonality — it fluctuates around a constant mean with roughly constant variability forever. This is a working, descriptive idea here; Chapter 3 gives it a precise probabilistic definition. Almost all time-series theory is built for stationary series, which is exactly why so much of the descriptive toolkit exists to <em>strip away</em> trend and seasonality until what's left behaves like one.</p>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">2.4 &nbsp;Transformations</div>
+    <p>When the amount of variability grows as the level of the series grows (a shop's monthly sales swing by more, in absolute terms, in December than in February — but proportionally similarly), a <b>variance-stabilising transformation</b> is applied before anything else, most commonly the <b>logarithm</b> — turning multiplicative seasonal effects into additive ones — or, more generally, a <b>Box–Cox transformation</b>.</p>
+    <div class="ts-formula">
+      \[ y_t^{(\lambda)} = \begin{cases} \dfrac{y_t^{\lambda}-1}{\lambda} & \lambda \ne 0 \\[4pt] \ln y_t & \lambda = 0 \end{cases} \]
+      <div class="ts-formula-cap">Box–Cox transformation</div>
+    </div>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">2.5–2.6 &nbsp;Estimating trend and seasonal variation</div>
+    <p>The classical approach is a <b>moving average</b>: replace each observation with the (weighted) average of itself and its neighbours, which cancels out the seasonal and irregular components and leaves an estimate of trend. For monthly data a 12-point centred moving average is standard, since it exactly spans one full seasonal cycle.</p>
+    <div class="ts-formula">
+      \[ \hat{m}_t = \frac{1}{12}\left(\tfrac{1}{2}x_{t-6} + x_{t-5} + \cdots + x_{t+5} + \tfrac{1}{2}x_{t+6}\right) \]
+      <div class="ts-formula-cap">Centred 12-point moving average (monthly trend estimate)</div>
+    </div>
+    <p>Once trend is removed (subtracted, if additive; divided out, if multiplicative), the <b>seasonal index</b> for each calendar month is estimated by averaging the detrended values for that month across all years — then, whatever remains is the irregular component.</p>
+  </div>
+
+  <div class="ts-viz">
+    <div class="ts-viz-title">📈 Interactive: classical decomposition</div>
+    <div class="ts-viz-sub">A synthetic monthly series with trend + seasonality + noise, decomposed live by a centred moving average. Drag the window to see how it trades off smoothness against how much seasonal shape leaks through.</div>
+    <canvas id="ts-decomp-canvas" height="260"></canvas>
+    <div class="ts-viz-controls">
+      <div class="ts-slider-row">
+        <span class="ts-slider-lbl">MA window</span>
+        <input type="range" class="ts-slider" id="ts-decomp-window" min="3" max="23" step="2" value="13">
+        <span class="ts-slider-val" id="ts-decomp-window-val">13</span>
+      </div>
+    </div>
+    <div class="ts-viz-legend">
+      <span><span class="ts-legend-sw" style="background:#8a8375"></span>raw series</span>
+      <span><span class="ts-legend-sw" style="background:#8f3a2c"></span>moving-average trend</span>
+      <span><span class="ts-legend-sw" style="background:#41694a"></span>detrended residual</span>
+    </div>
+  </div>
+
+  <div class="ts-note"><b>Common pitfall —</b> an odd-length window (13, not 12) is used above deliberately: with an <em>even</em> seasonal period you need a 2×12 "centred" average (average of two adjacent 12-point averages) to land the window back on an integer time point. Using a plain 12-point average for monthly data silently shifts trend by half a month.</div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">2.7–2.8 &nbsp;Autocorrelation and tests of randomness</div>
+    <p>The single most important descriptive tool in the whole subject is the <b>sample autocorrelation function</b> (ACF, sometimes called the correlogram): the correlation of the series with itself, lagged by <i>k</i> time steps, for <i>k</i> = 1, 2, 3, ….</p>
+    <div class="ts-formula">
+      \[ r_k = \frac{\sum_{t=1}^{n-k}(x_t-\bar{x})(x_{t+k}-\bar{x})}{\sum_{t=1}^{n}(x_t-\bar{x})^2} \]
+      <div class="ts-formula-cap">Sample autocorrelation coefficient at lag k</div>
+    </div>
+    <p>Plotted against <i>k</i>, this is the fingerprint used throughout the rest of the book to identify what kind of model a series needs — pure noise gives an ACF that's essentially zero everywhere except lag 0; trend gives an ACF that dies away very slowly; seasonality gives an ACF with spikes at the seasonal lag and its multiples. A formal check that a series is indistinguishable from white noise is the <b>Ljung–Box test</b>:</p>
+    <div class="ts-formula">
+      \[ Q = n(n+2)\sum_{k=1}^{K}\frac{r_k^2}{n-k} \ \sim\ \chi^2_{K} \text{ under } H_0 \]
+      <div class="ts-formula-cap">Ljung–Box portmanteau statistic (degrees of freedom reduced by any fitted parameters)</div>
+    </div>
+    <div class="ts-example">
+      <div class="ts-example-lbl">✎ Worked example</div>
+      <p>A café records daily footfall for a year and computes the ACF. It shows a strong spike at lag 7 (and a weaker one at lag 14) but is otherwise flat — the classic signature of a weekly seasonal pattern (Saturdays are busy every single week) sitting on top of essentially random day-to-day noise. No spike at lag 1 tells you today's footfall, once you know the day of the week, tells you almost nothing extra about tomorrow's.</p>
+    </div>
+  </div>
+
+  <div class="ts-ex-hdr"><h4>Exercises</h4><div class="line"></div></div>
+  <div class="ts-ex-grid">
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">2.1</div>
+      <div class="puz-q">You detrend a series by subtracting a 12-month moving average, then compute the ACF of the residual and find a strong negative spike at lag 1 that wasn't obviously there before. Is this evidence the residual is <em>not</em> random noise, or could the detrending procedure itself have introduced it? Explain the mechanism either way.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">It can easily be an artefact of the detrending, not a real feature of the underlying noise. A moving average is itself a smoothing filter that induces correlation between adjacent residuals: subtracting a smooth estimate of trend from a noisy series tends to make consecutive residuals swing in opposite directions (if the trend estimate slightly overshoots at one point it tends to undershoot at the next), producing a spurious negative lag-1 autocorrelation. This is exactly why "eyeball a spike in the ACF" isn't sufficient — you have to reason about what your own preprocessing could have manufactured before concluding the data itself has structure.</div>
+      </div>
+    </div>
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">2.2</div>
+      <div class="puz-q">Two shops report monthly revenue. Shop A's seasonal swing is roughly ±$2,000 every December regardless of overall sales level; Shop B's swing is roughly ±15% of that month's trend level. Which transformation, if any, would you apply before decomposing each — and why would applying Shop B's transformation to Shop A's data be a mistake?</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">Shop A has an <em>additive</em> seasonal effect (constant absolute size) — decompose directly, no transform needed. Shop B has a <em>multiplicative</em> effect (size scales with level) — take logs first, which converts a multiplicative seasonal effect into an additive one on the log scale, then decompose additively. Log-transforming Shop A's data would be a mistake because its seasonal swing genuinely doesn't scale with level; the log transform would make the December effect look like it shrinks as trend grows (since a fixed $2,000 is a shrinking percentage of a rising trend), inventing a change in seasonal structure that isn't really there.</div>
+      </div>
+    </div>
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">2.3</div>
+      <div class="puz-q">Sketch (in words) what the sample ACF of a series consisting of pure linear trend plus a tiny amount of noise would look like out to lag 20, and explain why this shape makes the ACF a poor tool for spotting subtle autocorrelation structure until trend has been removed.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">The ACF would start near 1 at lag 1 and decay only very slowly and almost linearly out to lag 20, staying large and positive throughout — because a trending series is highly correlated with a lagged copy of itself at essentially every lag (both are dominated by the same upward drift). This shape swamps everything else: any genuine short-range dependence in the noise component is completely masked by the trend-induced correlation, which is why trend must be removed <em>before</em> the ACF is used diagnostically — otherwise the ACF just tells you "there's a trend," which you already knew from the time plot.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CHAPTER 3 — PROBABILITY MODELS FOR TIME SERIES
+     ══════════════════════════════════════════════════════════════ -->
+<section class="ts-chapter" id="ch3" style="--accent-c:var(--bl);--accent-l:var(--bl-l)">
+  <div class="ts-chapter-eyebrow">Chapter 3</div>
+  <h2 class="ts-chapter-title">Probability Models for Time Series</h2>
+  <p class="ts-chapter-intro">Chapter 2 described one observed series. This chapter builds the machinery to talk about the <b>process</b> that could have generated it — the entire population of series it might have been, of which we only ever see one draw.</p>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">3.1 &nbsp;Stochastic processes</div>
+    <p>A stochastic process is a family of random variables \(\{X_t\}\) indexed by time. The observed data \(x_1, x_2, \ldots, x_n\) is treated as one <b>realisation</b> from this process — the same way a single coin flip is one realisation of a Bernoulli random variable. The catch that makes time series hard: with ordinary i.i.d. sampling you can draw as many independent realisations as you like; with time series you typically get exactly <b>one</b> realisation, of finite length, and have to infer the properties of the whole process from it. This is only possible if the process has enough regularity — which is precisely what stationarity provides.</p>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">3.2 &nbsp;Stationary processes (the precise version)</div>
+    <p>A process is <b>strictly stationary</b> if the joint distribution of any collection of observations is unchanged by shifting all their time indices by the same amount. This is usually too strong to check in practice, so we instead use <b>second-order (weak) stationarity</b>: constant mean, and an autocovariance that depends only on the lag \(k\), not on absolute time \(t\).</p>
+    <div class="ts-formula">
+      \[ E[X_t] = \mu \ \ \text{(constant)}, \qquad \gamma_k = \operatorname{Cov}(X_t, X_{t+k}) \ \ \text{(depends only on } k \text{)} \]
+      <div class="ts-formula-cap">Conditions for second-order stationarity</div>
+    </div>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">3.3 &nbsp;The autocorrelation function</div>
+    <p>For a stationary process, the theoretical autocorrelation function is \(\rho_k = \gamma_k / \gamma_0\) — the population version of the sample \(r_k\) from Chapter 2. Every model below is really just a different way of specifying what \(\rho_k\) looks like.</p>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">3.4 &nbsp;Some useful stochastic processes</div>
+    <p><b>White noise</b> — a sequence of uncorrelated random variables with constant mean (usually 0) and variance \(\sigma^2\): the building block every other model is constructed from. \(\rho_k = 0\) for all \(k \ne 0\).</p>
+    <p><b>Random walk</b> — \(X_t = X_{t-1} + Z_t\), a running sum of white noise. It is <em>not</em> stationary (its variance grows with \(t\)), but its first difference, \(X_t - X_{t-1} = Z_t\), is just white noise — the single most important fact about non-stationary series in the entire book, since it justifies differencing as a cure.</p>
+    <p><b>Moving average, MA(q)</b> — the current value is a finite linear combination of the current and past \(q\) noise terms:</p>
+    <div class="ts-formula">\[ X_t = Z_t + \theta_1 Z_{t-1} + \cdots + \theta_q Z_{t-q} \]</div>
+    <p>MA(\(q\)) has a sharp signature: \(\rho_k = 0\) for every \(k > q\) — the ACF "cuts off" abruptly.</p>
+    <p><b>Autoregressive, AR(p)</b> — the current value is a linear combination of its own past values plus fresh noise:</p>
+    <div class="ts-formula">\[ X_t = \phi_1 X_{t-1} + \cdots + \phi_p X_{t-p} + Z_t \]</div>
+    <p>Unlike MA, AR's ACF never cuts off exactly to zero — it decays gradually (geometrically, or as a damped sine wave for higher orders). For AR(1) specifically, \(\rho_k = \phi^k\), and the process is stationary only if \(|\phi| < 1\).</p>
+    <p><b>ARMA(p,q)</b> combines both: \(X_t = \phi_1 X_{t-1}+\cdots+\phi_p X_{t-p} + Z_t + \theta_1 Z_{t-1} + \cdots + \theta_q Z_{t-q}\) — often achieving a good fit with far fewer parameters than a pure AR or MA model would need. <b>ARIMA(p,d,q)</b> extends this to non-stationary series: difference \(d\) times until stationary, then fit ARMA(p,q) to the result.</p>
+  </div>
+
+  <div class="ts-viz">
+    <div class="ts-viz-title">🎛️ Interactive: the AR(1) / MA(1) model explorer</div>
+    <div class="ts-viz-sub">Same underlying noise sequence, reshaped by each model. Watch how the ACF and PACF signatures swap: AR decays smoothly and its PACF cuts off; MA cuts off and its PACF decays.</div>
+    <div class="ts-toggle-row">
+      <button class="ts-toggle active" data-model="ar" id="ts-me-ar-btn">AR(1): φ</button>
+      <button class="ts-toggle" data-model="ma" id="ts-me-ma-btn">MA(1): θ</button>
+    </div>
+    <canvas id="ts-me-path" height="130"></canvas>
+    <div class="ts-viz-controls">
+      <div class="ts-slider-row">
+        <span class="ts-slider-lbl" id="ts-me-param-lbl">φ (phi)</span>
+        <input type="range" class="ts-slider" id="ts-me-param" min="-95" max="95" step="5" value="70">
+        <span class="ts-slider-val" id="ts-me-param-val">0.70</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem">
+      <div>
+        <div class="ts-viz-title" style="font-size:.74rem">ACF (theoretical)</div>
+        <canvas id="ts-me-acf" height="120"></canvas>
+      </div>
+      <div>
+        <div class="ts-viz-title" style="font-size:.74rem">PACF (Durbin–Levinson)</div>
+        <canvas id="ts-me-pacf" height="120"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <table class="ts-id-table">
+    <tr><th>Process</th><th>ACF</th><th>PACF</th></tr>
+    <tr><td>AR(p)</td><td>Decays gradually (geometric or damped sine)</td><td>Cuts off after lag p</td></tr>
+    <tr><td>MA(q)</td><td>Cuts off after lag q</td><td>Decays gradually</td></tr>
+    <tr><td>ARMA(p,q)</td><td>Decays gradually after lag q</td><td>Decays gradually after lag p</td></tr>
+  </table>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">3.5 &nbsp;The Wold decomposition theorem</div>
+    <p>A remarkable unifying result: <em>any</em> discrete stationary process (with no purely deterministic component) can be written as an infinite-order moving average of white noise, \(X_t = \sum_{j=0}^{\infty}\psi_j Z_{t-j}\). This is why MA, AR and ARMA models are not just three arbitrary choices among many — a stationary AR(p) process, for instance, is itself expressible as an MA(∞); fitting a finite AR or ARMA model is really just finding a parsimonious way to approximate this infinite representation.</p>
+  </div>
+
+  <div class="ts-ex-hdr"><h4>Exercises</h4><div class="line"></div></div>
+  <div class="ts-ex-grid">
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">3.1</div>
+      <div class="puz-q">A colleague says "I fitted an AR(1) with φ = 1.2 because it gave the best in-sample fit." Explain precisely what goes wrong with this model, and why a good in-sample fit doesn't rescue it.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">|φ| < 1 is the stationarity condition for AR(1); with φ = 1.2 the process is explosive — its variance grows without bound as t increases, and it isn't a valid stationary model at all. It can still fit the observed in-sample stretch reasonably well, because over a short enough window an explosive process can resemble a well-behaved one, but it is a statement about instability, not about a genuine mean-reverting dependence structure, and it will produce forecasts and prediction intervals that blow up unrealistically out of sample.</div>
+      </div>
+    </div>
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">3.2</div>
+      <div class="puz-q">You are shown a sample ACF that is essentially zero at every lag except a single significant spike at lag 1. A colleague immediately says "AR(1)." Explain why "MA(1)" is at least as good a guess from this evidence alone, and describe the one additional plot that would let you choose between them.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">An MA(1)'s ACF is <em>exactly</em> zero beyond lag 1 by construction — an ACF with one clean spike and nothing afterwards is precisely the MA(1) signature, not merely consistent with it. An AR(1) can also produce an ACF that looks like this if φ is small (it decays so fast that lags beyond 1 are negligible), so the ACF alone is genuinely ambiguous here. The PACF resolves it: AR(1)'s PACF cuts off sharply after lag 1, while MA(1)'s PACF decays gradually — so plotting the PACF is the missing diagnostic.</div>
+      </div>
+    </div>
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">3.3</div>
+      <div class="puz-q">Using the Wold decomposition, explain why "just use a very high-order AR model for everything" is a defensible (if inefficient) strategy, while "just use a very high-order MA model for everything" is not equally defensible as a universal substitute.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">Wold's theorem guarantees every stationary process has an MA(∞) representation — so in principle a high-order MA model is the more directly justified universal approximation, not the AR one. In practice, though, a finite-order AR model is often a far more <em>parsimonious</em> approximation of that same MA(∞) representation, because inverting the AR polynomial produces an infinite MA expansion with rapidly decaying coefficients — so a low-order AR model implicitly represents a long MA memory with very few parameters, which is exactly why "throw a large AR order at it" tends to work reasonably well in practice, while forcing a pure high-order MA fit is typically far less efficient, requiring many more estimated parameters to capture the same structure.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CHAPTER 4 — ESTIMATION IN THE TIME DOMAIN
+     ══════════════════════════════════════════════════════════════ -->
+<section class="ts-chapter" id="ch4" style="--accent-c:var(--rd);--accent-l:var(--rd-l)">
+  <div class="ts-chapter-eyebrow">Chapter 4</div>
+  <h2 class="ts-chapter-title">Estimation in the Time Domain</h2>
+  <p class="ts-chapter-intro">Chapter 3 gave us a menu of models. This chapter is about the practical business of taking one real, finite series and turning that menu into a single fitted model — the classical <b>Box–Jenkins</b> methodology.</p>
+
+  <div class="ts-diagram">
+    <svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrBJ" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--rd)"/></marker></defs>
+      <g font-family="Outfit,sans-serif" font-size="13" font-weight="600">
+        <rect x="20" y="80" width="130" height="55" rx="10" fill="var(--rd-l)" stroke="var(--rd)"/>
+        <text x="85" y="103" text-anchor="middle" fill="var(--text)">Identification</text>
+        <text x="85" y="120" text-anchor="middle" fill="var(--text-3)" font-size="10" font-weight="400">ACF / PACF → p,d,q</text>
+
+        <rect x="185" y="20" width="130" height="55" rx="10" fill="var(--rd-l)" stroke="var(--rd)"/>
+        <text x="250" y="43" text-anchor="middle" fill="var(--text)">Estimation</text>
+        <text x="250" y="60" text-anchor="middle" fill="var(--text-3)" font-size="10" font-weight="400">fit φ, θ (MLE)</text>
+
+        <rect x="350" y="80" width="130" height="55" rx="10" fill="var(--rd-l)" stroke="var(--rd)"/>
+        <text x="415" y="103" text-anchor="middle" fill="var(--text)">Diagnostic check</text>
+        <text x="415" y="120" text-anchor="middle" fill="var(--text-3)" font-size="10" font-weight="400">residuals ≈ white noise?</text>
+
+        <rect x="185" y="140" width="130" height="55" rx="10" fill="var(--gr-l)" stroke="var(--gr)"/>
+        <text x="250" y="163" text-anchor="middle" fill="var(--text)">Forecast</text>
+        <text x="250" y="180" text-anchor="middle" fill="var(--text-3)" font-size="10" font-weight="400">use the model</text>
+
+        <path d="M150,95 L250,75" stroke="var(--rd)" stroke-width="2" fill="none" marker-end="url(#arrBJ)"/>
+        <path d="M315,50 L410,80" stroke="var(--rd)" stroke-width="2" fill="none" marker-end="url(#arrBJ)"/>
+        <path d="M415,135 L260,145" stroke="var(--rd)" stroke-width="2" fill="none" marker-end="url(#arrBJ)"/>
+        <path d="M185,160 L100,135" stroke="var(--rd)" stroke-width="2" stroke-dasharray="4 3" fill="none" marker-end="url(#arrBJ)"/>
+        <text x="140" y="163" fill="var(--text-3)" font-size="9" font-weight="400">residuals fail? re-identify</text>
+      </g>
+    </svg>
+    <div class="ts-diagram-cap">The Box–Jenkins cycle: identify → estimate → check → (loop until residuals look like white noise) → forecast.</div>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">4.1–4.3 &nbsp;Identification: estimating the ACF and fitting AR / MA</div>
+    <p>Section 3.4's ACF/PACF signatures become, in practice, a lookup table: plot the sample \(r_k\) and partial autocorrelations, compare their shape to the table in Chapter 3, and read off candidate orders \(p\) and \(q\). For a pure AR(p), the parameters can be estimated by solving the <b>Yule–Walker equations</b> — a linear system relating the \(\phi_i\) to the theoretical \(\rho_k\), with the sample \(r_k\) substituted in:</p>
+    <div class="ts-formula">\[ \rho_k = \phi_1\rho_{k-1} + \phi_2\rho_{k-2} + \cdots + \phi_p \rho_{k-p}, \quad k = 1,\ldots,p \]</div>
+    <p>MA parameters have no such closed-form shortcut — fitting an MA(q) already requires iterative numerical methods, because the MA likelihood is nonlinear in \(\theta\).</p>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">4.4–4.6 &nbsp;Fitting ARMA, ARIMA, and seasonal (SARIMA) models</div>
+    <p>Full ARMA(p,q) fitting is done by <b>maximum likelihood</b> (or close approximations to it), since neither Yule–Walker nor simple regression handles the moving-average part. ARIMA(p,d,q) simply differences the series \(d\) times first, then fits ARMA(p,q) to the result. When seasonality is also present, the model extends to <b>SARIMA(p,d,q)(P,D,Q)\(_s\)</b>: a second, seasonal AR/I/MA structure operating at lag \(s\) (e.g. \(s=12\) for monthly data) layered on top of the ordinary one — this single model class, refined in the 1970s, is still a default first choice in applied forecasting today.</p>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">4.7–4.8 &nbsp;Residual analysis and general remarks on model building</div>
+    <p>A fitted model is only trustworthy if its residuals are indistinguishable from white noise — checked by plotting the residual ACF and running a Ljung–Box test on it (Chapter 2). If the residuals still show structure, the model is misspecified and identification must be revisited.</p>
+    <p>Among competing models that pass this check, prefer the more <b>parsimonious</b> one (fewer parameters) — formalised by information criteria such as</p>
+    <div class="ts-formula">\[ \text{AIC} = -2\ln(\hat{L}) + 2k \]</div>
+    <p>where \(\hat L\) is the maximised likelihood and \(k\) the number of fitted parameters: a penalty for complexity that stops you from "fitting the noise" with an unnecessarily large model.</p>
+    <div class="ts-note"><b>Common pitfall — overfitting.</b> Adding more AR or MA terms will (almost) always improve the in-sample fit. That is not evidence the extra terms are real; it's exactly why AIC penalises parameter count instead of judging on fit alone, and why residual whiteness, not R², is the acceptance criterion.</div>
+  </div>
+
+  <div class="ts-ex-hdr"><h4>Exercises</h4><div class="line"></div></div>
+  <div class="ts-ex-grid">
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">4.1</div>
+      <div class="puz-q">A fitted ARIMA(2,1,1) model has residuals that pass the Ljung–Box test comfortably. Does this prove the model is "correct"? Give a concrete example of a way the model could still be wrong despite passing this check.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">No — passing Ljung–Box only shows the residuals are uncorrelated (consistent with white noise), which is necessary but not sufficient for correctness. It says nothing about, for example, whether the residual variance changes over time (conditional heteroscedasticity, addressed by ARCH/GARCH models in Chapter 11) — a residual series can be perfectly uncorrelated at every lag while still having volatility clustering, meaning large residuals bunch together in time even though they don't correlate linearly. The model would sail through Ljung–Box while still badly understating risk during volatile periods.</div>
+      </div>
+    </div>
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">4.2</div>
+      <div class="puz-q">Two models fit the same series: Model A has a lower AIC but slightly worse in-sample sum of squared errors than Model B. Which one should you generally prefer, and what does this tell you about what AIC is actually trading off?</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">Prefer Model A. AIC is explicitly trading off fit against complexity (via the \(2k\) penalty term) — a lower AIC despite a worse raw fit means Model A achieves nearly as good a fit with fewer parameters, which is exactly the parsimony principle in Section 4.8. Model B's better in-sample error likely reflects it fitting sample-specific noise rather than genuine structure, which typically costs it more than it gains once you look at out-of-sample forecasting performance.</div>
+      </div>
+    </div>
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">4.3</div>
+      <div class="puz-q">Why can't the Yule–Walker equations be used, unmodified, to estimate the parameters of a pure MA(q) model?</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">The Yule–Walker equations exploit a <em>linear</em> relationship between the ACF and the AR coefficients — the ACF at lag k is literally a linear combination of the AR parameters and lower-lag ACF values. An MA(q) process's ACF is a <em>nonlinear</em> function of the θ parameters (e.g. for MA(1), \(\rho_1 = \theta/(1+\theta^2)\) — θ appears in both numerator and a nonlinear denominator), so there is no equivalent linear system to invert; the θ's must instead be found by nonlinear optimisation of the likelihood.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CHAPTER 5 — FORECASTING
+     ══════════════════════════════════════════════════════════════ -->
+<section class="ts-chapter" id="ch5" style="--accent-c:var(--gd);--accent-l:var(--gd-l)">
+  <div class="ts-chapter-eyebrow">Chapter 5</div>
+  <h2 class="ts-chapter-title">Forecasting</h2>
+  <p class="ts-chapter-intro">For most practitioners, forecasting <em>is</em> time series analysis — everything in Chapters 1–4 exists to produce a defensible number (and a defensible margin of error) for what happens next.</p>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">5.2 &nbsp;Univariate procedures</div>
+    <p><b>Simple exponential smoothing</b> forecasts the next value as a weighted average of all past observations, with weights decaying geometrically into the past — recent data matters more, but nothing is ever fully discarded:</p>
+    <div class="ts-formula">\[ \hat{x}_{t+1} = \alpha x_t + (1-\alpha)\hat{x}_t, \qquad 0 < \alpha < 1 \]</div>
+    <p>A high \(\alpha\) tracks recent changes closely but is noisy; a low \(\alpha\) is smooth but slow to react — this single dial is the entire trade-off. Plain exponential smoothing assumes no trend or seasonality; <b>Holt's linear method</b> adds a second smoothed component for trend, and <b>Holt–Winters</b> adds a third for seasonality, each with its own smoothing constant (\(\alpha, \beta, \gamma\)):</p>
+    <div class="ts-formula">
+      \[ \begin{aligned} \ell_t &= \alpha x_t + (1-\alpha)(\ell_{t-1}+b_{t-1}) \\ b_t &= \beta(\ell_t-\ell_{t-1}) + (1-\beta)b_{t-1} \\ \hat{x}_{t+h} &= \ell_t + h\,b_t \end{aligned} \]
+      <div class="ts-formula-cap">Holt's linear trend method</div>
+    </div>
+    <p>The alternative is <b>Box–Jenkins forecasting</b>: once an ARIMA model is fitted (Chapter 4), the minimum mean square error forecast is simply its conditional expectation given the observed past — exponential smoothing turns out to be a special case, exactly equivalent to the forecast from an ARIMA(0,1,1) model.</p>
+  </div>
+
+  <div class="ts-viz">
+    <div class="ts-viz-title">🎚️ Interactive: exponential smoothing</div>
+    <div class="ts-viz-sub">A noisy series with a slow drift. Drag α and watch the smoothed line switch between "hugs the noise" and "ignores real changes."</div>
+    <canvas id="ts-es-canvas" height="220"></canvas>
+    <div class="ts-viz-controls">
+      <div class="ts-slider-row">
+        <span class="ts-slider-lbl">α (alpha)</span>
+        <input type="range" class="ts-slider" id="ts-es-alpha" min="5" max="95" step="5" value="30">
+        <span class="ts-slider-val" id="ts-es-alpha-val">0.30</span>
+      </div>
+    </div>
+    <div class="ts-viz-legend">
+      <span><span class="ts-legend-sw" style="background:#8a8375"></span>observed</span>
+      <span><span class="ts-legend-sw" style="background:#7a5a0e"></span>smoothed</span>
+      <span><span class="ts-legend-sw" style="background:#8f3a2c"></span>1-step forecast</span>
+    </div>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">5.3–5.4 &nbsp;Multivariate procedures, and comparing methods</div>
+    <p>When related series are available (e.g. leading indicators), <b>multivariate</b> approaches — regression with time-series errors, transfer-function models (Chapter 9), or full vector models (Chapter 12) — can forecast a series using information beyond its own past. In practice, no single method dominates: large forecasting competitions repeatedly find that simple methods (exponential smoothing variants) are highly competitive against sophisticated ones, especially at short lead times and on noisy series — sophistication buys the most when the series is long, clean, and has real dynamic structure to exploit.</p>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">5.6 &nbsp;Prediction theory and prediction intervals</div>
+    <p>The minimum mean square error forecast of \(X_{t+h}\) given data up to time \(t\) is always the conditional expectation \(E[X_{t+h}\mid X_t, X_{t-1}, \ldots]\) — this is the theoretical justification for every specific forecasting formula above. A point forecast alone is incomplete without a measure of uncertainty; for a model with 1-step-ahead forecast error variance \(\sigma^2\), an approximate 95% prediction interval is</p>
+    <div class="ts-formula">\[ \hat{x}_{t+h} \pm 1.96\,\sigma_h \]</div>
+    <p>where \(\sigma_h\) (the \(h\)-step forecast standard error) typically <em>grows</em> with the lead time \(h\) — which is exactly why credible forecasts widen into a cone the further out they look.</p>
+    <div class="ts-note"><b>Common pitfall —</b> reporting a point forecast with no interval implies a confidence that essentially never exists in practice. A forecast "<span>$</span>1.2M in Q3" is close to meaningless without also stating something like "<span>$</span>1.0M–<span>$</span>1.4M."</div>
+  </div>
+
+  <div class="ts-ex-hdr"><h4>Exercises</h4><div class="line"></div></div>
+  <div class="ts-ex-grid">
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">5.1</div>
+      <div class="puz-q">A retailer uses simple exponential smoothing (no trend, no seasonal term) to forecast monthly sales of a product whose popularity is genuinely, steadily rising. Explain precisely why every one of their forecasts will be a systematic underestimate, using the recursive formula.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">Simple exponential smoothing's forecast for every future period is just the current smoothed level — a flat line — because the recursion has no mechanism for extrapolating a slope. If the true process has a genuine upward trend, the smoothed level \(\hat x_{t+1}\) is a weighted average of past values, which are systematically <em>below</em> the current true level whenever there's real upward drift, so the forecast lags the trend and is biased low at every horizon — this is precisely the gap Holt's method closes by adding an explicit trend term \(b_t\).</div>
+      </div>
+    </div>
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">5.2</div>
+      <div class="puz-q">Why does a sensible prediction interval almost always widen as the forecast horizon h increases, even for a perfectly well-specified model?</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">Each additional step ahead introduces one more, as-yet-unobserved noise term into the forecast — an h-step-ahead forecast error is a sum of h (weighted) future shocks, none of which are known at the time the forecast is made, so its variance accumulates with h. Even with the true model and true parameters, uncertainty about outcomes further in the future is fundamentally greater than uncertainty about the very next observation, because there is simply more unrealised randomness standing between "now" and "then."</div>
+      </div>
+    </div>
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">5.3</div>
+      <div class="puz-q">A forecasting competition finds that on very short, noisy monthly series, simple exponential smoothing beats a carefully fitted SARIMA model out-of-sample, even though the SARIMA model had a lower AIC in-sample. Reconcile these two facts.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">AIC measures in-sample fit penalised for parameter count, evaluated on the same data used to estimate the model — it is not a direct measure of genuine out-of-sample forecasting accuracy, especially with a short series, where a more flexible model can fit sample-specific noise that a lower-AIC choice still partly captures. A short series simply doesn't contain enough information to reliably estimate the extra SARIMA parameters, so the estimation error in those parameters can outweigh the theoretical advantage of a "more correct" model structure — the simpler method's very inflexibility becomes a virtue when data is scarce.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CHAPTER 6 — STATIONARY PROCESSES IN THE FREQUENCY DOMAIN
+     ══════════════════════════════════════════════════════════════ -->
+<section class="ts-chapter" id="ch6" style="--accent-c:var(--pu);--accent-l:var(--pu-l)">
+  <div class="ts-chapter-eyebrow">Chapter 6</div>
+  <h2 class="ts-chapter-title">Stationary Processes in the Frequency Domain</h2>
+  <p class="ts-chapter-intro">Everything so far has described a series in the <b>time domain</b>: how does \(X_t\) relate to \(X_{t-1}, X_{t-2}, \ldots\)? The <b>frequency domain</b> asks a completely different but equivalent question: how much of the series' variance is contributed by cyclical behaviour at each possible frequency?</p>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">6.2–6.3 &nbsp;The spectral distribution and density functions</div>
+    <p>Just as the ACF is the time-domain fingerprint of a process, the <b>spectral density function</b> \(f(\omega)\) is its frequency-domain fingerprint — and the two are, remarkably, just Fourier transforms of one another:</p>
+    <div class="ts-formula">\[ f(\omega) = \frac{1}{2\pi}\sum_{k=-\infty}^{\infty}\gamma_k e^{-i\omega k} = \frac{1}{2\pi}\left[\gamma_0 + 2\sum_{k=1}^{\infty}\gamma_k\cos(\omega k)\right], \quad 0\le \omega \le \pi \]</div>
+    <p>Every autocovariance sequence has a spectral density and vice versa — no information is lost moving between the two domains; some structure is simply far easier to see in one than the other. A sharp peak in \(f(\omega)\) at some frequency \(\omega_0\) means the series behaves as though it contains a strong cyclical component with period \(2\pi/\omega_0\) — exactly the kind of thing that is easy to miss on a time plot but obvious in the spectrum.</p>
+  </div>
+
+  <div class="ts-viz">
+    <div class="ts-viz-title">📡 Interactive: the spectral density of an AR(1) process</div>
+    <div class="ts-viz-sub">\(f(\omega)=\dfrac{\sigma^2}{2\pi(1-2\phi\cos\omega+\phi^2)}\). Positive φ concentrates power at low frequencies (smooth, trend-like behaviour); negative φ concentrates it at high frequencies (rapid oscillation).</div>
+    <canvas id="ts-spec-canvas" height="200"></canvas>
+    <div class="ts-viz-controls">
+      <div class="ts-slider-row">
+        <span class="ts-slider-lbl">φ (phi)</span>
+        <input type="range" class="ts-slider" id="ts-spec-phi" min="-90" max="90" step="5" value="60">
+        <span class="ts-slider-val" id="ts-spec-phi-val">0.60</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">6.4–6.5 &nbsp;Continuous processes and selected spectra</div>
+    <p>White noise, having a flat ACF, has a perfectly flat spectral density — every frequency contributes equally, which is exactly the origin of the name "white" (by analogy with white light containing all frequencies equally). At the opposite extreme, a process dominated by trend concentrates almost all its power near \(\omega = 0\). These two textbook cases anchor the intuition for reading any spectrum: <em>where</em> the power sits tells you the character of the dependence.</p>
+  </div>
+
+  <div class="ts-ex-hdr"><h4>Exercises</h4><div class="line"></div></div>
+  <div class="ts-ex-grid">
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">6.1</div>
+      <div class="puz-q">A sound engineer says "a flat spectrum means the signal is meaningless noise." A statistician says "a flat spectrum is exactly the definition of white noise, one of the most useful building blocks in the subject." Reconcile the apparent disagreement.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">They're not really disagreeing about the mathematics, only about what "meaningless" means. A flat spectrum says there is no <em>linear, cyclical</em> structure left to extract — every frequency contributes equally, so there's nothing more to model. That is exactly why white noise is the target residual in Chapter 4: it signals the model has extracted everything extractable. Whether the engineer calls that "meaningless" is a statement about what's useful to a listener, not about whether the mathematics is informative — to the statistician, "nothing more to explain" is itself a highly informative, desirable conclusion.</div>
+      </div>
+    </div>
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">6.2</div>
+      <div class="puz-q">Without doing any calculation, sketch how the spectral density of an AR(1) process with φ close to +1 should look, and connect this shape to the fact that such a process is "close to" a (non-stationary) random walk.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">As φ → 1, the spectral density develops an increasingly sharp peak at ω = 0 and drops toward zero everywhere else — nearly all the variance is concentrated in the lowest ("slowest") frequency. This matches intuition: φ close to 1 means very strong persistence, so the series drifts slowly rather than oscillating, which is a low-frequency-dominated pattern. A true random walk (φ = 1 exactly) is non-stationary, so technically it has no well-defined spectral density in this framework at all — the AR(1) spectrum "blowing up" at ω = 0 as φ → 1 is the frequency-domain shadow of that same boundary case.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CHAPTER 7 — SPECTRAL ANALYSIS
+     ══════════════════════════════════════════════════════════════ -->
+<section class="ts-chapter" id="ch7" style="--accent-c:var(--og);--accent-l:var(--og-l)">
+  <div class="ts-chapter-eyebrow">Chapter 7</div>
+  <h2 class="ts-chapter-title">Spectral Analysis</h2>
+  <p class="ts-chapter-intro">Chapter 6 defined the theoretical spectrum of a process. This chapter is about <em>estimating</em> it from one observed, finite series — which turns out to be surprisingly treacherous.</p>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">7.3 &nbsp;The periodogram</div>
+    <p>The natural first estimator is the <b>periodogram</b>, built directly from a discrete Fourier transform of the data:</p>
+    <div class="ts-formula">\[ I(\omega_j) = \frac{1}{n}\left|\sum_{t=1}^{n} x_t\, e^{-i\omega_j t}\right|^2, \qquad \omega_j = \frac{2\pi j}{n} \]</div>
+    <p>Naively, you might expect the periodogram to converge nicely to the true spectrum \(f(\omega)\) as \(n\) grows — but it doesn't. \(I(\omega_j)\) is an <b>inconsistent</b> estimator: its variance does not shrink as more data is collected, so the raw periodogram stays jumpy and unreliable at any sample size.</p>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">7.4–7.6 &nbsp;Consistent estimation, confidence intervals, and comparing procedures</div>
+    <p>The fix is <b>smoothing</b>: average periodogram values over a small window of neighbouring frequencies (or equivalently, apply a lag window to the sample autocovariances before transforming). This trades a controlled amount of frequency resolution for a large reduction in variance — the same bias–variance trade-off that appears throughout statistics, here governed by the width of the smoothing window. Confidence intervals for the smoothed spectral estimate follow from the fact that (approximately) \(2\nu \hat f(\omega)/f(\omega)\) is chi-squared, with \(\nu\) (the equivalent degrees of freedom) increasing with window width.</p>
+    <div class="ts-note"><b>Common pitfall — spectral leakage.</b> A finite data record is implicitly like multiplying an infinite series by a rectangular window, which smears power from a true peak into neighbouring frequencies. Tapering the data at its ends (rather than cutting it off abruptly) reduces this leakage and is standard practice before computing a periodogram.</div>
+  </div>
+
+  <div class="ts-ex-hdr"><h4>Exercises</h4><div class="line"></div></div>
+  <div class="ts-ex-grid">
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">7.1</div>
+      <div class="puz-q">"I collected ten times more data, so my periodogram should be ten times smoother." Correct this statement.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">More data does not, by itself, smooth the periodogram at all — it's inconsistent, meaning its variance at each frequency stays roughly constant regardless of n; what more data buys you is a finer <em>grid</em> of frequencies (\(\omega_j = 2\pi j/n\)), not lower variance at any one of them. Smoothness only improves by explicitly averaging over neighbouring frequencies (or an equivalent lag-window operation) — a deliberate modelling choice, not a free consequence of sample size.</div>
+      </div>
+    </div>
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">7.2</div>
+      <div class="puz-q">Explain the bias–variance trade-off involved in choosing the width of a spectral smoothing window, using the specific language of resolution and equivalent degrees of freedom.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">A wide window averages over many neighbouring frequencies, which raises the equivalent degrees of freedom ν and shrinks the variance of the estimate — but it also blurs together frequencies that may have genuinely different power, biasing the estimate at any point toward the local average and losing the ability to resolve two closely-spaced peaks (poor resolution). A narrow window preserves resolution and has lower bias but leaves ν small, so the estimate stays noisy. There is no window width that is best for every purpose — it depends on whether the priority is detecting fine spectral structure or getting a stable overall picture.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CHAPTER 8 — BIVARIATE PROCESSES
+     ══════════════════════════════════════════════════════════════ -->
+<section class="ts-chapter" id="ch8" style="--accent-c:var(--pk);--accent-l:var(--pk-l)">
+  <div class="ts-chapter-eyebrow">Chapter 8</div>
+  <h2 class="ts-chapter-title">Bivariate Processes</h2>
+  <p class="ts-chapter-intro">Everything so far studied one series in isolation. Two series observed together raise a new question the ACF can't answer alone: does one lead, lag, or move in step with the other?</p>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">8.1 &nbsp;Cross-covariance and cross-correlation</div>
+    <p>The <b>cross-correlation function</b> (CCF) generalises the ACF to two series, and — critically — is <em>not</em> symmetric in the lag: \(\rho_{xy}(k)\) for positive \(k\) measures whether \(X\) leads \(Y\), while negative \(k\) measures whether \(Y\) leads \(X\).</p>
+    <div class="ts-formula">\[ \rho_{xy}(k) = \frac{\operatorname{Cov}(X_t, Y_{t+k})}{\sqrt{\operatorname{Var}(X_t)\operatorname{Var}(Y_t)}} \]</div>
+  </div>
+
+  <div class="ts-diagram">
+    <svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg">
+      <g font-family="Source Code Pro,monospace" font-size="10" fill="var(--text-3)">
+        <path d="M40,50 Q70,20 100,50 T160,50 T220,50 T280,50 T340,50" stroke="var(--pk)" stroke-width="2.5" fill="none"/>
+        <text x="20" y="54" text-anchor="end" fill="var(--text)">X</text>
+        <path d="M90,120 Q120,90 150,120 T210,120 T270,120 T330,120 T390,120" stroke="var(--bl)" stroke-width="2.5" fill="none"/>
+        <text x="20" y="124" text-anchor="end" fill="var(--text)">Y</text>
+        <path d="M100,50 L100,110" stroke="var(--text-3)" stroke-dasharray="3 3"/>
+        <path d="M150,50 L150,110" stroke="var(--text-3)" stroke-dasharray="3 3"/>
+        <g font-family="Outfit,sans-serif">
+          <path d="M105,70 L145,70" stroke="var(--rd)" stroke-width="2" marker-end="url(#arrCC)"/>
+          <text x="125" y="65" text-anchor="middle" fill="var(--rd)" font-size="11" font-weight="600">lag k</text>
+        </g>
+        <defs><marker id="arrCC" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="var(--rd)"/></marker></defs>
+      </g>
+    </svg>
+    <div class="ts-diagram-cap">X's peaks arrive k steps before Y's — a positive cross-correlation at lag k, read as "X leads Y by k periods."</div>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">8.2 &nbsp;The cross-spectrum</div>
+    <p>Just as the ACF has a frequency-domain counterpart, so does the CCF: the (complex-valued) <b>cross-spectrum</b>. Its normalised modulus, the <b>coherence</b>, plays the role of a frequency-specific correlation coefficient:</p>
+    <div class="ts-formula">\[ \text{coherence}(\omega) = \frac{|f_{xy}(\omega)|^2}{f_x(\omega)f_y(\omega)} \in [0,1] \]</div>
+    <p>High coherence at a given frequency means the two series are strongly linearly related <em>at that particular cycle length</em> — even if their overall (unconditional) correlation is weak, because the relationship at other frequencies is washing it out.</p>
+    <div class="ts-example">
+      <div class="ts-example-lbl">✎ Worked example</div>
+      <p>Ice-cream sales and average daily temperature might show a strong annual cycle in both, high coherence near the "once-per-year" frequency — but very low overall correlation once you also account for a day-to-day promotional-pricing series that moves independently of temperature. Coherence isolates <em>which</em> cycle length is actually shared.</p>
+    </div>
+  </div>
+
+  <div class="ts-ex-hdr"><h4>Exercises</h4><div class="line"></div></div>
+  <div class="ts-ex-grid">
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">8.1</div>
+      <div class="puz-q">An analyst finds \(\rho_{xy}(3) = 0.6\) and concludes "X causes Y with a 3-period delay." What is wrong with this conclusion, and what alternative explanation would produce exactly the same cross-correlation pattern?</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">Correlation, cross-lagged or not, never establishes causation on its own. A high \(\rho_{xy}(3)\) is equally consistent with a common third factor driving both series with different delays (e.g. a seasonal cause that affects X three periods before it affects Y), with no direct causal link between X and Y at all. Genuine causal identification needs either a controlled intervention, a structural/economic argument ruling out common causes, or techniques (like Granger causality tests, which only test predictive precedence, not true causation) applied with those limitations explicitly acknowledged.</div>
+      </div>
+    </div>
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">8.2</div>
+      <div class="puz-q">Two series have an overall (lag-0) correlation close to zero, yet a spectral analysis shows coherence close to 1 at the seasonal frequency. Is this a contradiction? Explain what's happening.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">No contradiction — overall correlation is a single number averaging the relationship across <em>every</em> frequency, while coherence is frequency-specific. The two series can move in near-lockstep at the seasonal cycle (high coherence there) while moving essentially independently at every other frequency; when averaged together, the strong seasonal relationship gets diluted by the lack of relationship elsewhere, producing an unremarkable overall correlation. This is exactly the kind of structure a single correlation coefficient is blind to and a coherence plot reveals immediately.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CHAPTER 9 — LINEAR SYSTEMS
+     ══════════════════════════════════════════════════════════════ -->
+<section class="ts-chapter" id="ch9" style="--accent-c:var(--tl);--accent-l:var(--tl-l)">
+  <div class="ts-chapter-eyebrow">Chapter 9</div>
+  <h2 class="ts-chapter-title">Linear Systems</h2>
+  <p class="ts-chapter-intro">A linear system is a black box that turns an input series into an output series by a fixed, linear rule — a general framework that includes moving averages, differencing, and physical systems (a thermostat, a suspension bridge) as special cases.</p>
+
+  <div class="ts-diagram">
+    <svg viewBox="0 0 500 130" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrLS" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--tl)"/></marker></defs>
+      <text x="70" y="40" text-anchor="middle" font-family="Outfit,sans-serif" font-size="13" font-weight="600" fill="var(--text)">Input Xₜ</text>
+      <path d="M10,55 Q40,40 70,55 T130,55" stroke="var(--tl)" stroke-width="2" fill="none"/>
+      <path d="M140,60 L200,60" stroke="var(--tl)" stroke-width="2" marker-end="url(#arrLS)"/>
+      <rect x="205" y="30" width="130" height="60" rx="10" fill="var(--tl-l)" stroke="var(--tl)"/>
+      <text x="270" y="58" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="700" fill="var(--text)">System</text>
+      <text x="270" y="75" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="11" fill="var(--text-3)">h(t) / H(ω)</text>
+      <path d="M340,60 L400,60" stroke="var(--tl)" stroke-width="2" marker-end="url(#arrLS)"/>
+      <text x="440" y="40" text-anchor="middle" font-family="Outfit,sans-serif" font-size="13" font-weight="600" fill="var(--text)">Output Yₜ</text>
+      <path d="M405,55 Q425,30 445,55 T480,45" stroke="var(--rd)" stroke-width="2" fill="none"/>
+      <path d="M270,95 L270,110" stroke="var(--text-3)" stroke-dasharray="3 3"/>
+      <text x="270" y="122" text-anchor="middle" font-family="Outfit,sans-serif" font-size="10" fill="var(--text-3)">+ noise Nₜ</text>
+    </svg>
+    <div class="ts-diagram-cap">A linear system reshapes the input's frequency content according to the transfer function H(ω), then noise is added.</div>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">9.2 &nbsp;Linear systems in the time domain</div>
+    <p>In the time domain, the output is a weighted sum of current and past inputs, \(Y_t = \sum_{j=0}^{\infty} h_j X_{t-j} + N_t\), where \(\{h_j\}\) is the system's <b>impulse response</b> — literally, what the output looks like if the input were a single unit spike at time 0. Everything about a linear, time-invariant system is encoded in this one sequence.</p>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">9.3–9.4 &nbsp;The frequency domain, and identifying a system</div>
+    <p>Taking the Fourier transform of the impulse response gives the <b>transfer function</b> \(H(\omega)\) — a complex number, at each frequency, whose modulus tells you how much the system amplifies or attenuates that frequency, and whose phase tells you how much it delays it. Given input and output data, \(H(\omega)\) can be estimated from the ratio of the cross-spectrum to the input's own spectrum, \(\hat H(\omega) = \hat f_{xy}(\omega)/\hat f_{x}(\omega)\) — identifying the system's behaviour without ever writing down its internal mechanism explicitly.</p>
+  </div>
+
+  <div class="ts-ex-hdr"><h4>Exercises</h4><div class="line"></div></div>
+  <div class="ts-ex-grid">
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">9.1</div>
+      <div class="puz-q">A 12-month centred moving average (Chapter 2) can be described as a linear system with a specific impulse response. What is \(h_j\) for this system, and what does its transfer function do to the annual seasonal frequency by design?</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">The impulse response is the moving-average weights themselves: \(h_j = 1/12\) for \(j=-5,\ldots,5\), \(h_{\pm6}=1/24\), and 0 elsewhere (a finite, symmetric window). By design, its transfer function has a near-zero response exactly at the annual seasonal frequency (and its harmonics) — that's precisely why a 12-point average removes the yearly seasonal cycle from monthly data while passing the slower trend frequencies through largely unchanged. The whole "trend extraction" operation from Chapter 2 is just a specific low-pass linear filter.</div>
+      </div>
+    </div>
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">9.2</div>
+      <div class="puz-q">Explain why the phase of a transfer function matters for forecasting even when its modulus (amplitude response) is identical to another system's.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">The modulus tells you how much a frequency component's <em>amplitude</em> is scaled, but the phase tells you how much it is <em>shifted in time</em> — two systems with identical amplitude responses but different phase responses will produce outputs that look similarly "shaped" in the frequency domain but arrive at different times relative to the input. For forecasting and control, that timing (lead/lag) information is often the entire point — knowing a shock's effect is delayed by two periods rather than arriving immediately changes exactly when you'd expect to see, and act on, its consequences.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CHAPTER 10 — STATE-SPACE MODELS AND THE KALMAN FILTER
+     ══════════════════════════════════════════════════════════════ -->
+<section class="ts-chapter" id="ch10" style="--accent-c:var(--gr);--accent-l:var(--gr-l)">
+  <div class="ts-chapter-eyebrow">Chapter 10</div>
+  <h2 class="ts-chapter-title">State-Space Models and the Kalman Filter</h2>
+  <p class="ts-chapter-intro">A different, often more flexible way to represent a time series: instead of writing one equation directly for the observed data, posit an unobserved (<b>latent</b>) state that evolves over time, and a separate equation for how the state is imperfectly observed.</p>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">10.1 &nbsp;State-space models</div>
+    <div class="ts-formula">
+      \[ \begin{aligned} \text{State (transition):} \quad & \alpha_t = T_t\,\alpha_{t-1} + R_t\,\eta_t \\ \text{Observation:} \quad & x_t = Z_t\,\alpha_t + \varepsilon_t \end{aligned} \]
+    </div>
+    <p>This looks abstract, but it's extremely general: ARMA models, models with trend and seasonal components estimated simultaneously, and models with missing or irregularly-spaced data can all be written in this form. The "state" \(\alpha_t\) is whatever you believe is truly driving the series (e.g. its underlying level and trend) — you never observe it directly, only \(x_t\), a noisy measurement of it.</p>
+  </div>
+
+  <div class="ts-diagram">
+    <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrKF" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--gr)"/></marker></defs>
+      <circle cx="200" cy="70" r="55" fill="var(--gr-l)" stroke="var(--gr)" stroke-width="2"/>
+      <text x="200" y="65" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="700" font-size="13" fill="var(--text)">Predict</text>
+      <text x="200" y="82" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="9.5" fill="var(--text-3)">project state forward</text>
+      <circle cx="200" cy="190" r="55" fill="var(--bl-l)" stroke="var(--bl)" stroke-width="2"/>
+      <text x="200" y="185" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="700" font-size="13" fill="var(--text)">Update</text>
+      <text x="200" y="202" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="9.5" fill="var(--text-3)">correct with x_t</text>
+      <path d="M230,110 Q260,130 230,150" stroke="var(--gr)" stroke-width="2.5" fill="none" marker-end="url(#arrKF)"/>
+      <path d="M170,150 Q140,130 170,110" stroke="var(--bl)" stroke-width="2.5" fill="none" marker-end="url(#arrKF)"/>
+      <text x="272" y="133" font-family="Outfit,sans-serif" font-size="10" fill="var(--text-3)">new obs. x_t</text>
+      <text x="90" y="133" text-anchor="end" font-family="Outfit,sans-serif" font-size="10" fill="var(--text-3)">next t</text>
+    </svg>
+    <div class="ts-diagram-cap">The Kalman filter loop: predict the state forward one step, then update that prediction once the next observation arrives — repeated for every new data point.</div>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">10.2 &nbsp;The Kalman filter</div>
+    <p>The Kalman filter is the algorithm that runs this predict/update cycle optimally (in the minimum mean square error sense, for linear-Gaussian models): it keeps a running estimate of the state and its uncertainty, and each new observation is blended with the prediction in proportion to their relative reliabilities — trust the new data more when the prediction is very uncertain, trust the existing estimate more when the new observation is noisy. This makes it naturally suited to <b>real-time, online</b> forecasting and to handling missing observations gracefully (simply skip the update step and use the predicted state as-is).</p>
+    <div class="ts-example">
+      <div class="ts-example-lbl">✎ Worked example</div>
+      <p>A GPS receiver's raw position fix is noisy from one instant to the next, but the underlying trajectory (a car driving down a road) evolves smoothly. A Kalman filter treats "true position and velocity" as the hidden state and each GPS ping as a noisy observation of it — blending the physically-plausible predicted trajectory with each new noisy fix produces a far smoother, more accurate track than trusting any single GPS reading alone.</p>
+    </div>
+  </div>
+
+  <div class="ts-ex-hdr"><h4>Exercises</h4><div class="line"></div></div>
+  <div class="ts-ex-grid">
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">10.1</div>
+      <div class="puz-q">A sensor occasionally drops out entirely for several consecutive time points. Explain, structurally, why a state-space/Kalman-filter formulation handles this far more gracefully than a standard ARIMA model fitted by the Box–Jenkins method.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">In the state-space formulation, missing data simply means the update step is skipped for that time point — the predict step still runs, propagating the state (and its growing uncertainty) forward using the model dynamics alone, and the filter resumes normally the moment an observation reappears. Standard Box–Jenkins ARIMA fitting, by contrast, is built around a complete, evenly-spaced series; gaps have to be patched by imputation or otherwise worked around before the standard estimation machinery even applies, which is a structural retrofit rather than something the method handles natively.</div>
+      </div>
+    </div>
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">10.2</div>
+      <div class="puz-q">Why does the Kalman filter weight a new observation more heavily precisely when its current state estimate is highly uncertain?</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">The update step is a precision-weighted average of the predicted state and the new observation, where "precision" is the inverse of variance — so whichever source is currently more reliable (lower variance) naturally dominates the blend. When the predicted state is highly uncertain (e.g. after several skipped observations), its precision is low, so the new observation, however noisy in absolute terms, still carries more relative information and is weighted more heavily — this is simply optimal information-combining, not a special rule bolted onto the algorithm.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CHAPTER 11 — NON-LINEAR MODELS
+     ══════════════════════════════════════════════════════════════ -->
+<section class="ts-chapter" id="ch11" style="--accent-c:var(--rd);--accent-l:var(--rd-l)">
+  <div class="ts-chapter-eyebrow">Chapter 11</div>
+  <h2 class="ts-chapter-title">Non-Linear Models</h2>
+  <p class="ts-chapter-intro">Every model so far has been <b>linear</b>: the current value is a linear combination of past values and past shocks. Many real phenomena — financial volatility, ecological populations, physiological signals — need more.</p>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">11.1–11.2 &nbsp;Why non-linear, and some models with non-linear structure</div>
+    <p>A linear model's ACF/PACF fully describes it; non-linear dependence can be completely invisible to the ACF while still being real and exploitable. A classic example is the <b>threshold autoregressive (TAR)</b> model, where the AR coefficients themselves switch depending on whether a past value crosses a threshold — letting a series behave differently in "regimes" (e.g. an economy's dynamics differing in recession vs. expansion) — something no single linear AR model can represent.</p>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">11.3 &nbsp;Models for changing variance</div>
+    <p>Financial returns are the textbook motivating case: they're often nearly uncorrelated (passing a Ljung–Box test easily) yet exhibit <b>volatility clustering</b> — large moves of either sign tend to be followed by more large moves. The <b>ARCH</b> model captures this by letting the <em>conditional variance</em>, not the mean, depend on the past:</p>
+    <div class="ts-formula">\[ \varepsilon_t = \sigma_t z_t, \qquad \sigma_t^2 = \alpha_0 + \alpha_1\varepsilon_{t-1}^2, \qquad z_t \sim \text{i.i.d.}(0,1) \]</div>
+    <p>A large \(\varepsilon_{t-1}^2\) inflates \(\sigma_t^2\), making a large \(\varepsilon_t\) more likely too — clustering, without any autocorrelation in \(\varepsilon_t\) itself. <b>GARCH</b> generalises this by also feeding back \(\sigma_{t-1}^2\) itself, giving longer volatility memory with fewer parameters — exactly analogous to how ARMA improves on pure AR or MA.</p>
+    <div class="ts-note"><b>Remember Exercise 4.1:</b> this is precisely the structure that can lurk in "white noise" residuals that pass Ljung–Box — a linear model can be correctly specified for the mean and still miss all of this.</div>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">11.4 &nbsp;Neural networks</div>
+    <p>A feedforward neural network applied to lagged values (a "nonlinear AR") can, in principle, approximate essentially any smooth nonlinear relationship between past and present, at the cost of far weaker interpretability and a real risk of overfitting given typically modest time-series sample sizes — the same bias–variance story as everywhere else in the book, just with a much more flexible model class on the "low bias, high variance" end.</p>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">11.5 &nbsp;Chaos</div>
+    <p>Perhaps the most conceptually striking topic in the book: a completely <em>deterministic</em> nonlinear system can generate output that looks, statistically, indistinguishable from randomness. The canonical illustration is the <b>logistic map</b>:</p>
+    <div class="ts-formula">\[ x_{n+1} = r\,x_n(1-x_n) \]</div>
+    <p>For small \(r\) this settles to a fixed point; as \(r\) increases it begins oscillating between 2, then 4, then 8 values (period-doubling); beyond \(r \approx 3.57\) it becomes <b>chaotic</b> — aperiodic, and exquisitely sensitive to the starting value, even though the rule generating it is a single, simple, fully deterministic equation with no randomness anywhere in it.</p>
+  </div>
+
+  <div class="ts-viz">
+    <div class="ts-viz-title">🦋 Interactive: the logistic map</div>
+    <div class="ts-viz-sub">Drag r from calm (a fixed point) through period-doubling into full chaos — nothing here is random.</div>
+    <canvas id="ts-chaos-canvas" height="200"></canvas>
+    <div class="ts-viz-controls">
+      <div class="ts-slider-row">
+        <span class="ts-slider-lbl">r</span>
+        <input type="range" class="ts-slider" id="ts-chaos-r" min="240" max="400" step="1" value="290">
+        <span class="ts-slider-val" id="ts-chaos-r-val">2.90</span>
+      </div>
+    </div>
+    <div id="ts-chaos-regime" style="font-family:'Source Code Pro',monospace;font-size:.72rem;color:var(--rd);text-align:center;margin-top:.4rem"></div>
+  </div>
+
+  <div class="ts-ex-hdr"><h4>Exercises</h4><div class="line"></div></div>
+  <div class="ts-ex-grid">
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">11.1</div>
+      <div class="puz-q">A residual series from a well-fitted ARMA model passes the Ljung–Box test comfortably, yet its <em>squared</em> residuals show a strong, significant ACF. Name the phenomenon and the natural next modelling step.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">This is the signature of ARCH-type conditional heteroscedasticity — uncorrelated residuals whose <em>magnitudes</em> are autocorrelated (volatility clustering). Applying the Ljung–Box test to the squared (or absolute) residuals directly, rather than the raw residuals, is the standard diagnostic for exactly this; the natural next step is to fit an ARCH or GARCH model to the conditional variance on top of the existing mean model, rather than concluding (wrongly) from the first test alone that the model is fully adequate.</div>
+      </div>
+    </div>
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">11.2</div>
+      <div class="puz-q">Two analysts look at the same chaotic logistic-map output. One says "this is clearly a random process — no deterministic pattern could look this irregular." The other says "this is fully deterministic — given x₀ and r exactly, the entire future is determined." Both are working from the same numbers. What does this tell you about trying to distinguish "truly stochastic" from "deterministic but chaotic" using only statistical tests on observed data?</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">Standard statistical tests (ACF, Ljung–Box, spectral flatness) are built to detect <em>linear</em> dependence, and a chaotic deterministic series can pass all of them and look statistically identical to genuine randomness, because the nonlinear dependence it contains doesn't show up in linear diagnostics. The two analysts are both technically right about their own claim (it is deterministic; it does look statistically like noise) — the lesson is that "looks random by standard tests" and "is generated by a random mechanism" are not the same statement, and distinguishing them typically requires specialised nonlinear diagnostics (e.g. testing sensitivity to initial conditions), not the tools built in earlier chapters.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CHAPTER 12 — MULTIVARIATE TIME-SERIES MODELLING
+     ══════════════════════════════════════════════════════════════ -->
+<section class="ts-chapter" id="ch12" style="--accent-c:var(--bl);--accent-l:var(--bl-l)">
+  <div class="ts-chapter-eyebrow">Chapter 12</div>
+  <h2 class="ts-chapter-title">Multivariate Time-Series Modelling</h2>
+  <p class="ts-chapter-intro">Chapter 8 looked at two series descriptively. Here, several series are modelled jointly, letting each one's past help explain and forecast <em>all</em> of them simultaneously.</p>
+
+  <div class="ts-diagram">
+    <svg viewBox="0 0 380 170" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrVAR" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="var(--bl)"/></marker></defs>
+      <circle cx="110" cy="85" r="45" fill="var(--bl-l)" stroke="var(--bl)" stroke-width="2"/>
+      <text x="110" y="90" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="700" fill="var(--text)">Xₜ</text>
+      <circle cx="270" cy="85" r="45" fill="var(--gr-l)" stroke="var(--gr)" stroke-width="2"/>
+      <text x="270" y="90" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="700" fill="var(--text)">Yₜ</text>
+      <path d="M152,72 Q210,50 228,72" stroke="var(--bl)" stroke-width="2" fill="none" marker-end="url(#arrVAR)"/>
+      <path d="M228,98 Q210,120 152,98" stroke="var(--gr)" stroke-width="2" fill="none" marker-end="url(#arrVAR)"/>
+      <path d="M75,55 A40,40 0 1 1 74,50" stroke="var(--bl)" stroke-width="1.5" fill="none" marker-end="url(#arrVAR)" opacity=".6"/>
+      <path d="M305,55 A40,40 0 1 0 306,50" stroke="var(--gr)" stroke-width="1.5" fill="none" marker-end="url(#arrVAR)" opacity=".6"/>
+      <text x="190" y="42" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="9" fill="var(--text-3)">X's past → Y</text>
+      <text x="190" y="140" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="9" fill="var(--text-3)">Y's past → X</text>
+    </svg>
+    <div class="ts-diagram-cap">A VAR model: each series depends on its own past (self-loops) <em>and</em> the other series' past (cross-arrows) — bidirectional feedback that single-equation models can't represent.</div>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">12.2–12.4 &nbsp;Single equation, VAR, and VARMA models</div>
+    <p>A <b>single-equation</b> model (e.g. regression with an ARMA error term) treats one series as the response and others as predictors — asymmetric, and only appropriate when the direction of influence is genuinely one-way. A <b>vector autoregression, VAR(p)</b>, treats every series symmetrically: each one is regressed on lagged values of <em>all</em> the series, including itself.</p>
+    <div class="ts-formula">\[ \mathbf{X}_t = \mathbf{A}_1\mathbf{X}_{t-1} + \cdots + \mathbf{A}_p\mathbf{X}_{t-p} + \boldsymbol{\varepsilon}_t \]</div>
+    <p>where \(\mathbf{X}_t\) is now a vector and each \(\mathbf{A}_i\) a matrix — off-diagonal entries capture exactly the cross-series, cross-lag feedback the diagram above illustrates. <b>VARMA</b> adds vector moving-average terms, at the cost of harder identification, which is why VAR alone remains the default workhorse for most applied multivariate work.</p>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">12.6 &nbsp;Co-integration</div>
+    <p>Two individually non-stationary (\(I(1)\)) series are <b>cointegrated</b> if some linear combination of them is stationary — meaning they share a common stochastic trend and never drift arbitrarily far apart, even though each one individually wanders without bound. This is the formal statistical language behind ideas like "prices of the same good in two connected markets track each other long-run" — modelling each series' differences separately would throw away exactly this long-run equilibrium relationship, which is why cointegrated series are instead modelled with a dedicated <b>error-correction model</b>.</p>
+  </div>
+
+  <div class="ts-ex-hdr"><h4>Exercises</h4><div class="line"></div></div>
+  <div class="ts-ex-grid">
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">12.1</div>
+      <div class="puz-q">A researcher fits two separate univariate ARIMA models to two series that, in reality, feed back into one another (each one's past genuinely helps predict the other). Explain concretely what forecasting information this approach discards.</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">Separate univariate models discard all cross-series predictive information — each model's forecast for its own series uses only that series' own past, completely ignoring the fact that the other series' recent movements might already contain an early signal about what's coming next. A VAR model captures exactly this by construction (the off-diagonal terms in each matrix \(\mathbf A_i\)), typically producing materially better forecasts whenever genuine bidirectional feedback exists — the whole point of modelling jointly rather than separately.</div>
+      </div>
+    </div>
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">12.2</div>
+      <div class="puz-q">Two stock prices are each individually well-described as random walks (non-stationary), yet their difference (the "spread") appears to be stationary, hovering around a fixed level. What term describes this relationship, and why would naively differencing both series separately before modelling throw away useful information?</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">This is cointegration — the two I(1) series share a common stochastic trend, and the stationary spread is the cointegrating relationship. Differencing both series separately would model only their period-to-period <em>changes</em>, which by construction discards the long-run <em>level</em> relationship between them (the fact that the spread itself is mean-reverting) — exactly the information that would let you predict, say, that an unusually wide spread is likely to narrow again. An error-correction model is built specifically to retain and exploit that mean-reverting relationship, which plain differencing throws away.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CHAPTER 13 — SOME OTHER TOPICS
+     ══════════════════════════════════════════════════════════════ -->
+<section class="ts-chapter" id="ch13" style="--accent-c:var(--gd);--accent-l:var(--gd-l)">
+  <div class="ts-chapter-eyebrow">Chapter 13</div>
+  <h2 class="ts-chapter-title">Some Other Topics</h2>
+  <p class="ts-chapter-intro">A closing survey of practical concerns that don't fit neatly into earlier chapters but matter enormously in real applied work.</p>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">13.1–13.2 &nbsp;Model identification tools, and non-stationary series</div>
+    <p>Beyond the ACF/PACF, formal <b>unit-root tests</b> (e.g. the augmented Dickey–Fuller test) check statistically whether a series needs differencing rather than relying on visual judgement alone — important because over- or under-differencing both distort the subsequent model. Non-stationarity itself comes in different flavours worth telling apart: a stochastic trend (needs differencing) versus a deterministic trend (better modelled by regressing on time directly) look similar on a time plot but require different remedies.</p>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">13.3 &nbsp;The effect of model uncertainty</div>
+    <p>A subtle but important point: once a model's <em>order</em> is chosen by looking at the same data used to fit it, the usual formulas for forecast standard errors are slightly too optimistic — they don't account for the extra uncertainty introduced by the model-selection step itself. In practice this is usually a second-order concern, but it's a reminder that "the model" is itself an estimated quantity, not a known fact handed down before the data was seen.</p>
+  </div>
+
+  <div class="ts-topic">
+    <div class="ts-topic-title">13.4 &nbsp;Control theory</div>
+    <p>When a series is a process you can actively intervene in (Chapter 1's fourth objective), the natural next question becomes "what input should I apply now to keep the output on target?" This connects time series directly to <b>control theory</b> and feedback control systems — the same predict/adjust logic as the Kalman filter (Chapter 10), but now used to steer the process rather than merely track it.</p>
+  </div>
+
+  <div class="ts-ex-hdr"><h4>Exercises</h4><div class="line"></div></div>
+  <div class="ts-ex-grid">
+    <div class="ts-ex-card">
+      <div class="ts-ex-num">13.1</div>
+      <div class="puz-q">Two series both show a rising time plot. One is best modelled by regressing on calendar time directly (deterministic trend); the other needs differencing (stochastic trend). Describe one diagnostic difference you could look for in the data to tell them apart, beyond just "the plot goes up."</div>
+      <div class="puz-spoiler">
+        <div class="puz-spoiler-overlay"><span class="puz-spoiler-lbl">🔒 Reveal answer</span></div>
+        <div class="puz-spoiler-inner puz-ans-inner">A useful diagnostic is how the series' variance around its trend behaves as the horizon grows, or equivalently a formal unit-root test: a series with a genuine stochastic trend (like a random walk with drift) has a variance around any fitted deterministic line that grows without bound as more data is added, and shocks to it are permanent (they shift the whole future path). A series with a purely deterministic trend has stationary deviations around that trend line — shocks are transient and the series reverts back toward the fitted trend. An augmented Dickey–Fuller test formalises exactly this distinction rather than relying on eyeballing the time plot.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     APPENDICES — CONDENSED REFERENCE
+     ══════════════════════════════════════════════════════════════ -->
+<section class="ts-chapter" id="appendices" style="--accent-c:var(--pu);--accent-l:var(--pu-l)">
+  <div class="ts-chapter-eyebrow">Appendices A–D</div>
+  <h2 class="ts-chapter-title">Mathematical Toolbox</h2>
+  <p class="ts-chapter-intro">Four compact reference appendices supply the mathematical machinery leaned on throughout — condensed here as quick-reference cards rather than full chapters.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem">
+    <div class="ts-example" style="margin:0">
+      <div class="ts-example-lbl">A · Fourier, Laplace &amp; Z transforms</div>
+      <p>Three related ways of re-expressing a signal in terms of frequency content. The Fourier transform underlies the spectral density (Ch. 6–7); the Z-transform is its discrete-time cousin, central to expressing AR/MA models compactly via the backshift operator \(B\), where \(BX_t = X_{t-1}\).</p>
+    </div>
+    <div class="ts-example" style="margin:0">
+      <div class="ts-example-lbl">B · The Dirac delta function</div>
+      <p>An idealised "infinitely tall, infinitely narrow spike" with unit area, \(\int \delta(t)\,dt = 1\). It's the continuous-time idealisation of a single impulse — the natural input for probing a linear system's impulse response (Ch. 9).</p>
+    </div>
+    <div class="ts-example" style="margin:0">
+      <div class="ts-example-lbl">C · Covariance</div>
+      <p>A refresher on \(\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]\) and its algebra — bilinearity, the relationship to correlation, and the variance-of-a-sum identity \(\operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)+2\operatorname{Cov}(X,Y)\) — the identity that makes autocovariance-based reasoning throughout the book work.</p>
+    </div>
+    <div class="ts-example" style="margin:0">
+      <div class="ts-example-lbl">D · Worked examples</div>
+      <p>Full, "warts and all" walkthroughs of real analyses end-to-end — deliberately including the messy judgement calls (which transformation? how many differences? which of two similar-AIC models?) that a chapter presenting only clean theory tends to hide.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="ts-footer">
+  <p>Built for the Statistics section of Stargazer. Every explanation, example and exercise here is original — written to teach the same 13-chapter arc as Chatfield's <em>The Analysis of Time Series</em>, not to reproduce it.</p>
+</footer>
+
+</main>
+
+<!-- ── CONTACT ── -->
+<div style="text-align:center;padding:2.5rem 1rem 0.8rem;display:flex;flex-direction:column;gap:0.35rem;">
+  <span style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);font-style:italic;font-family:'Source Code Pro',monospace;">contact the creator</span>
+  <a href="mailto:ayan.chakraborty6174@gmail.com" style="font-size:0.85rem;color:var(--gr);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">ayan.chakraborty6174@gmail.com</a>
+</div>
+<div style="text-align:center;padding-bottom:2rem;">
+  <a href="../ABOUT" style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--gr);opacity:0.45;text-decoration:none;border:1px solid var(--gr);border-radius:3px;padding:0.28rem 0.9rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">✦ about stargazer</a>
+</div>
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script src="mathfmt.js"></script>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ═════════════════════ small utilities ═════════════════════ */
+  function seededRandom(seed){
+    return function(){
+      seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+      var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function gaussianSeries(n, rng){
+    var out = [];
+    for (var i = 0; i < n; i++){
+      var u1 = Math.max(rng(), 1e-9), u2 = rng();
+      out.push(Math.sqrt(-2*Math.log(u1)) * Math.cos(2*Math.PI*u2));
+    }
+    return out;
+  }
+  function computeMA(data, win){
+    var half = Math.floor(win/2);
+    var out = new Array(data.length).fill(null);
+    for (var t = half; t < data.length - half; t++){
+      var sum = 0;
+      for (var j = -half; j <= half; j++) sum += data[t+j];
+      out[t] = sum/win;
+    }
+    return out;
+  }
+
+  /* ═════════════════════ generic canvas drawing ═════════════════════ */
+  function drawMultiSeries(canvasId, seriesArr){
+    var c = document.getElementById(canvasId); if (!c) return;
+    var w = c.clientWidth || 600; c.width = w; var h = c.height;
+    var ctx = c.getContext('2d'); ctx.clearRect(0,0,w,h);
+    var pad = 10;
+    var allVals = [];
+    seriesArr.forEach(function(s){ s.data.forEach(function(v){ if (v !== null && v !== undefined && isFinite(v)) allVals.push(v); }); });
+    if (!allVals.length) return;
+    var min = Math.min.apply(null, allVals), max = Math.max.apply(null, allVals);
+    var range = (max - min) || 1;
+    var maxLen = Math.max.apply(null, seriesArr.map(function(s){ return s.data.length; }));
+    // zero line if zero falls within range
+    if (min < 0 && max > 0){
+      var zy = h - pad - (0 - min)/range*(h - 2*pad);
+      ctx.strokeStyle = 'rgba(128,120,100,0.22)'; ctx.beginPath(); ctx.moveTo(pad, zy); ctx.lineTo(w - pad, zy); ctx.stroke();
+    }
+    seriesArr.forEach(function(s){
+      ctx.strokeStyle = s.color; ctx.lineWidth = s.lineWidth || 1.6; ctx.beginPath();
+      var started = false;
+      s.data.forEach(function(v, i){
+        if (v === null || v === undefined || !isFinite(v)) { started = false; return; }
+        var x = pad + i*(w - 2*pad)/(maxLen - 1);
+        var y = h - pad - (v - min)/range*(h - 2*pad);
+        if (!started){ ctx.moveTo(x,y); started = true; } else { ctx.lineTo(x,y); }
+      });
+      ctx.stroke();
+    });
+  }
+
+  function drawBars(canvasId, values, color){
+    var c = document.getElementById(canvasId); if (!c) return;
+    var w = c.clientWidth || 280; c.width = w; var h = c.height;
+    var ctx = c.getContext('2d'); ctx.clearRect(0,0,w,h);
+    var pad = 6;
+    var n = values.length;
+    var barW = (w - 2*pad)/n;
+    var zeroY = h/2;
+    ctx.strokeStyle = 'rgba(128,120,100,0.3)'; ctx.beginPath(); ctx.moveTo(pad, zeroY); ctx.lineTo(w - pad, zeroY); ctx.stroke();
+    values.forEach(function(v, i){
+      var x = pad + i*barW + barW*0.18;
+      var bw = barW*0.64;
+      var bh = Math.min(Math.abs(v), 1) * (h/2 - 10);
+      var y = v >= 0 ? zeroY - bh : zeroY;
+      ctx.fillStyle = color;
+      ctx.fillRect(x, y, bw, Math.max(bh,1));
+    });
+  }
+
+  /* ═════════════════════ Chapter 1 — four shapes ═════════════════════ */
+  function renderShapes(){
+    var n = 80;
+    var trend = gaussianSeries(n, seededRandom(42)).map(function(z,i){ return i*0.6 + z*3; });
+    var seasonal = gaussianSeries(n, seededRandom(7)).map(function(z,i){ return 10*Math.sin(2*Math.PI*i/12) + z*2; });
+    var stationary = gaussianSeries(n, seededRandom(99));
+    var rwNoise = gaussianSeries(n, seededRandom(123));
+    var rw = [0]; for (var i=1;i<n;i++) rw.push(rw[i-1] + rwNoise[i]);
+    drawMultiSeries('ts-shapes-trend', [{data:trend, color:'#8f3a2c', lineWidth:1.8}]);
+    drawMultiSeries('ts-shapes-seasonal', [{data:seasonal, color:'#41694a', lineWidth:1.8}]);
+    drawMultiSeries('ts-shapes-stationary', [{data:stationary, color:'#2a5f78', lineWidth:1.4}]);
+    drawMultiSeries('ts-shapes-randomwalk', [{data:rw, color:'#5e3a8e', lineWidth:1.8}]);
+  }
+
+  /* ═════════════════════ Chapter 2 — decomposition ═════════════════════ */
+  var decompSeries = (function(){
+    var noise = gaussianSeries(96, seededRandom(2024));
+    var out = [];
+    for (var t=0;t<96;t++){
+      var trend = 50 + t*0.35;
+      var seasonal = 8*Math.sin(2*Math.PI*t/12) + 3*Math.sin(4*Math.PI*t/12);
+      out.push(trend + seasonal + noise[t]*2.2);
+    }
+    return out;
+  })();
+  function drawDecomp(){
+    var winInput = document.getElementById('ts-decomp-window'); if (!winInput) return;
+    var win = parseInt(winInput.value, 10);
+    document.getElementById('ts-decomp-window-val').textContent = win;
+    var ma = computeMA(decompSeries, win);
+    var resid = decompSeries.map(function(v,i){ return ma[i] === null ? null : v - ma[i]; });
+
+    var c = document.getElementById('ts-decomp-canvas'); if (!c) return;
+    var w = c.clientWidth || 600; c.width = w; var h = c.height;
+    var ctx = c.getContext('2d'); ctx.clearRect(0,0,w,h);
+    var pad = 10, topH = h*0.6, botTop = h*0.72, botH = h - botTop - pad;
+
+    var min = Math.min.apply(null, decompSeries), max = Math.max.apply(null, decompSeries);
+    var range = (max-min) || 1;
+    function topXY(i,v){ return [pad + i*(w-2*pad)/(decompSeries.length-1), topH - pad - (v-min)/range*(topH-2*pad)]; }
+
+    ctx.strokeStyle = '#8a8375'; ctx.lineWidth = 1.3; ctx.beginPath();
+    decompSeries.forEach(function(v,i){ var p = topXY(i,v); i===0 ? ctx.moveTo(p[0],p[1]) : ctx.lineTo(p[0],p[1]); });
+    ctx.stroke();
+
+    ctx.strokeStyle = '#8f3a2c'; ctx.lineWidth = 2.4; ctx.beginPath();
+    var started = false;
+    ma.forEach(function(v,i){ if (v===null) return; var p = topXY(i,v); if (!started){ ctx.moveTo(p[0],p[1]); started=true; } else ctx.lineTo(p[0],p[1]); });
+    ctx.stroke();
+
+    var residVals = resid.filter(function(v){ return v!==null; });
+    var rmax = Math.max.apply(null, residVals.map(Math.abs)) || 1;
+    var midY = botTop + botH/2;
+    ctx.strokeStyle = 'rgba(128,120,100,0.25)'; ctx.beginPath(); ctx.moveTo(pad, midY); ctx.lineTo(w-pad, midY); ctx.stroke();
+    ctx.strokeStyle = '#41694a'; ctx.lineWidth = 1.3; ctx.beginPath();
+    var started2 = false;
+    resid.forEach(function(v,i){
+      if (v===null){ started2=false; return; }
+      var x = pad + i*(w-2*pad)/(decompSeries.length-1);
+      var y = midY - (v/rmax)*(botH/2 - 4);
+      if (!started2){ ctx.moveTo(x,y); started2=true; } else ctx.lineTo(x,y);
+    });
+    ctx.stroke();
+  }
+
+  /* ═════════════════════ Chapter 3 — AR/MA model explorer ═════════════════════ */
+  var meState = { model:'ar', param:0.70 };
+  var meZ = gaussianSeries(90, seededRandom(555));
+
+  function computeARMASeries(model, param, Z){
+    var X = new Array(Z.length).fill(0);
+    if (model === 'ar'){ for (var t=1;t<Z.length;t++) X[t] = param*X[t-1] + Z[t]; }
+    else { for (var t=1;t<Z.length;t++) X[t] = Z[t] + param*Z[t-1]; }
+    return X;
+  }
+  function theoreticalACF(model, param, K){
+    var rho = [1];
+    if (model === 'ar'){ for (var k=1;k<=K;k++) rho.push(Math.pow(param,k)); }
+    else { var rho1 = param/(1+param*param); for (var k=1;k<=K;k++) rho.push(k===1 ? rho1 : 0); }
+    return rho;
+  }
+  function durbinLevinsonPACF(rho, K){
+    var pacf = [];
+    var phiPrev = [rho[1]];
+    pacf.push(rho[1]);
+    for (var k=2;k<=K;k++){
+      var num = rho[k];
+      for (var j=1;j<=k-1;j++) num -= phiPrev[j-1]*rho[k-j];
+      var den = 1;
+      for (var j=1;j<=k-1;j++) den -= phiPrev[j-1]*rho[j];
+      var phikk = den !== 0 ? num/den : 0;
+      var newArr = new Array(k);
+      for (var j=1;j<=k-1;j++) newArr[j-1] = phiPrev[j-1] - phikk*phiPrev[k-1-j];
+      newArr[k-1] = phikk;
+      phiPrev = newArr;
+      pacf.push(phikk);
+    }
+    return pacf;
+  }
+  function renderModelExplorer(){
+    var lbl = document.getElementById('ts-me-param-lbl'); if (!lbl) return;
+    lbl.textContent = meState.model === 'ar' ? 'φ (phi)' : 'θ (theta)';
+    document.getElementById('ts-me-param-val').textContent = meState.param.toFixed(2);
+    var X = computeARMASeries(meState.model, meState.param, meZ);
+    drawMultiSeries('ts-me-path', [{data:X, color: meState.model==='ar' ? '#2a5f78' : '#7a3e12', lineWidth:1.6}]);
+    var K = 15;
+    var rho = theoreticalACF(meState.model, meState.param, K);
+    drawBars('ts-me-acf', rho.slice(1), '#2a5f78');
+    drawBars('ts-me-pacf', durbinLevinsonPACF(rho, K), '#7a3e12');
+  }
+
+  /* ═════════════════════ Chapter 5 — exponential smoothing ═════════════════════ */
+  var esObserved = (function(){
+    var noise = gaussianSeries(60, seededRandom(777));
+    var out = [];
+    for (var t=0;t<60;t++) out.push(40 + 0.15*t + 6*Math.sin(t/6) + noise[t]*3.5);
+    return out;
+  })();
+  function computeExpSmooth(data, alpha){
+    var L = [data[0]];
+    for (var t=1;t<data.length;t++) L.push(alpha*data[t] + (1-alpha)*L[t-1]);
+    return L;
+  }
+  function renderES(){
+    var slider = document.getElementById('ts-es-alpha'); if (!slider) return;
+    var alpha = parseInt(slider.value,10)/100;
+    document.getElementById('ts-es-alpha-val').textContent = alpha.toFixed(2);
+    var L = computeExpSmooth(esObserved, alpha);
+    var n = esObserved.length;
+    var forecastLine = new Array(n+1).fill(null);
+    forecastLine[n-1] = L[n-1]; forecastLine[n] = L[n-1];
+    drawMultiSeries('ts-es-canvas', [
+      {data: esObserved, color:'#8a8375', lineWidth:1.3},
+      {data: L, color:'#7a5a0e', lineWidth:2.2},
+      {data: forecastLine, color:'#8f3a2c', lineWidth:2.4}
+    ]);
+  }
+
+  /* ═════════════════════ Chapter 6 — spectral density ═════════════════════ */
+  function renderSpectral(){
+    var slider = document.getElementById('ts-spec-phi'); if (!slider) return;
+    var phi = parseInt(slider.value,10)/100;
+    document.getElementById('ts-spec-phi-val').textContent = phi.toFixed(2);
+    var n = 120, data = [];
+    for (var i=0;i<n;i++){
+      var omega = Math.PI*i/(n-1);
+      data.push(1/(2*Math.PI*(1 - 2*phi*Math.cos(omega) + phi*phi)));
+    }
+    drawMultiSeries('ts-spec-canvas', [{data:data, color:'#5e3a8e', lineWidth:2}]);
+  }
+
+  /* ═════════════════════ Chapter 11 — logistic map chaos ═════════════════════ */
+  function renderChaos(){
+    var slider = document.getElementById('ts-chaos-r'); if (!slider) return;
+    var r = parseInt(slider.value,10)/100;
+    document.getElementById('ts-chaos-r-val').textContent = r.toFixed(2);
+    var n = 80, x = 0.4, data = [x];
+    for (var i=1;i<n;i++){ x = r*x*(1-x); data.push(x); }
+    drawMultiSeries('ts-chaos-canvas', [{data:data, color:'#8f3a2c', lineWidth:1.8}]);
+    var regime;
+    if (r < 3) regime = 'Fixed point — settles to a single stable value.';
+    else if (r < 3.45) regime = 'Period-2 oscillation — alternates between two values.';
+    else if (r < 3.54) regime = 'Period-4 oscillation — period-doubling has occurred again.';
+    else if (r < 3.57) regime = 'Higher-order periodic — further period-doubling.';
+    else regime = 'Chaotic — aperiodic, sensitive to initial conditions (yet fully deterministic).';
+    document.getElementById('ts-chaos-regime').textContent = regime;
+  }
+
+  /* ═════════════════════ wire up all controls ═════════════════════ */
+  function initControls(){
+    var decompWin = document.getElementById('ts-decomp-window');
+    if (decompWin) decompWin.addEventListener('input', drawDecomp);
+
+    var arBtn = document.getElementById('ts-me-ar-btn'), maBtn = document.getElementById('ts-me-ma-btn'), meParam = document.getElementById('ts-me-param');
+    if (arBtn && maBtn && meParam){
+      arBtn.addEventListener('click', function(){ meState.model='ar'; arBtn.classList.add('active'); maBtn.classList.remove('active'); renderModelExplorer(); });
+      maBtn.addEventListener('click', function(){ meState.model='ma'; maBtn.classList.add('active'); arBtn.classList.remove('active'); renderModelExplorer(); });
+      meParam.addEventListener('input', function(){ meState.param = parseInt(meParam.value,10)/100; renderModelExplorer(); });
+    }
+
+    var esAlpha = document.getElementById('ts-es-alpha');
+    if (esAlpha) esAlpha.addEventListener('input', renderES);
+
+    var specPhi = document.getElementById('ts-spec-phi');
+    if (specPhi) specPhi.addEventListener('input', renderSpectral);
+
+    var chaosR = document.getElementById('ts-chaos-r');
+    if (chaosR) chaosR.addEventListener('input', renderChaos);
+  }
+
+  function renderAll(){
+    renderShapes(); drawDecomp(); renderModelExplorer(); renderES(); renderSpectral(); renderChaos();
+  }
+
+  /* ═════════════════════ progress bar, spoilers, chip nav ═════════════════════ */
+  function initChrome(){
+    var progress = document.getElementById('tsProgress');
+    function updateProgress(){
+      var el = document.documentElement;
+      var frac = el.scrollTop / (el.scrollHeight - el.clientHeight || 1);
+      progress.style.width = Math.max(0, Math.min(1, frac))*100 + '%';
+    }
+    window.addEventListener('scroll', updateProgress); updateProgress();
+
+    document.addEventListener('click', function(e){
+      var sp = e.target.closest('.puz-spoiler');
+      if (sp) sp.classList.toggle('revealed');
+    });
+
+    var chips = Array.prototype.slice.call(document.querySelectorAll('.ts-chip'));
+    chips.forEach(function(c){
+      c.addEventListener('click', function(){
+        var t = document.getElementById(c.dataset.target);
+        if (t) t.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+    var sections = document.querySelectorAll('.ts-chapter');
+    if ('IntersectionObserver' in window){
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){
+            chips.forEach(function(c){ c.classList.toggle('active', c.dataset.target === entry.target.id); });
+          }
+        });
+      }, {rootMargin:'-160px 0px -70% 0px'});
+      sections.forEach(function(s){ obs.observe(s); });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    initChrome();
+    initControls();
+    renderAll();
+    window.addEventListener('resize', renderAll);
+    if (window.renderMath) { try { window.renderMath(document.body); } catch(e){ console.warn('renderMath failed', e); } }
+  });
+})();
+</script>
+
+<!-- ═══ TOP BAR RUNTIME — day/night, page search, auth (same wiring as the other stats pages) ═══ -->
+<script>
+function toggleMode(){
+  const night=document.body.classList.toggle('night');
+  document.getElementById('mode-icon').textContent=night?'☀':'☾';
+  localStorage.setItem('stats-mode',night?'night':'day');
+}
+
+/* ── page search: chapters + topics ── */
+let SEARCH_INDEX=[];
+/* visible text only — drops KaTeX's hidden MathML copy so rendered math isn't doubled */
+function plainText(el){
+  if(!el)return '';
+  const c=el.cloneNode(true);
+  c.querySelectorAll('.katex-mathml').forEach(n=>n.remove());
+  return c.textContent.replace(/\\\(|\\\)/g,'').replace(/\u00a0/g,' ').replace(/\s+/g,' ').trim();
+}
+function buildSearchIndex(){
+  if(SEARCH_INDEX.length)return;
+  document.querySelectorAll('.ts-chapter').forEach(ch=>{
+    const eb=plainText(ch.querySelector('.ts-chapter-eyebrow'));
+    const ct=plainText(ch.querySelector('.ts-chapter-title'));
+    const ci=plainText(ch.querySelector('.ts-chapter-intro'));
+    SEARCH_INDEX.push({icon:'📖',title:ct,meta:eb,section:'Chapter',el:ch,q:ct+' '+eb+' '+ci});
+    ch.querySelectorAll('.ts-topic').forEach(tp=>{
+      const tt=plainText(tp.querySelector('.ts-topic-title'));
+      const body=Array.from(tp.querySelectorAll('p')).map(plainText).join(' ');
+      SEARCH_INDEX.push({icon:'📈',title:tt,meta:ct,section:'Topic',el:tp,q:tt+' '+ct+' '+body});
+    });
+  });
+}
+function openSearch(){
+  buildSearchIndex();
+  document.getElementById('search-modal').classList.add('open');
+  setTimeout(()=>document.getElementById('search-input').focus(),80);
+}
+function closeSearch(){
+  document.getElementById('search-modal').classList.remove('open');
+  const inp=document.getElementById('search-input');
+  inp.value=''; inp.blur();   /* so "/" can reopen immediately */
+  document.getElementById('search-results').innerHTML='<div class="sr-empty">Start typing to search this page…</div>';
+}
+function runSearch(q){
+  const res=document.getElementById('search-results');
+  if(!q.trim()){res.innerHTML='<div class="sr-empty">Start typing…</div>';return;}
+  const lq=q.toLowerCase();
+  const hits=SEARCH_INDEX.filter(x=>x.q.toLowerCase().includes(lq)).slice(0,18);
+  if(!hits.length){res.innerHTML='<div class="sr-empty">No results for "'+q.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'"</div>';return;}
+  res.innerHTML=hits.map(h=>`<div class="sr-item" tabindex="0" onclick="goSearchResult(${SEARCH_INDEX.indexOf(h)})" onkeydown="if(event.key==='Enter')goSearchResult(${SEARCH_INDEX.indexOf(h)})"><span class="sr-icon">${h.icon}</span><div><div class="sr-title">${highlight(h.title,lq)}</div><div class="sr-meta">${h.meta}</div></div><span class="sr-section">${h.section}</span></div>`).join('');
+}
+function highlight(text,q){
+  if(!q)return text;
+  const idx=text.toLowerCase().indexOf(q);
+  if(idx<0)return text;
+  return text.slice(0,idx)+'<mark style="background:var(--gd-l);color:var(--gd);border-radius:2px">'+text.slice(idx,idx+q.length)+'</mark>'+text.slice(idx+q.length);
+}
+function goSearchResult(idx){
+  const hit=SEARCH_INDEX[idx];
+  closeSearch();
+  if(hit&&hit.el){
+    hit.el.style.scrollMarginTop='150px';   /* clear the fixed bars + chip nav */
+    hit.el.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+}
+function searchKeyNav(e){
+  if(e.key==='Escape'){closeSearch();return;}
+  const items=document.querySelectorAll('.sr-item');
+  const curIdx=[...items].indexOf(document.activeElement);
+  if(e.key==='ArrowDown'){e.preventDefault();(items[curIdx+1]||items[0])?.focus();}
+  if(e.key==='ArrowUp'){e.preventDefault();(items[curIdx-1]||items[items.length-1])?.focus();}
+  if(e.key==='Enter'&&curIdx>=0){items[curIdx].click();}
+}
+
+/* ── keyboard: "/" opens search, ←/→ go prev/next page, Esc closes the hamburger menu ── */
+window._nextPage = 'openproblems.html';
+window._prevPage = 'bayesian.html';
+document.addEventListener('keydown',e=>{
+  if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)||e.target.isContentEditable)return;
+  if(e.ctrlKey||e.metaKey||e.altKey)return;
+  const sm=document.getElementById('search-modal');
+  if(sm&&sm.classList.contains('open')){ if(e.key==='Escape')closeSearch(); return; }
+  if(e.key==='/'){e.preventDefault();openSearch();return;}
+  if(e.key==='ArrowRight'&&window._nextPage){e.preventDefault();location.href=window._nextPage;}
+  if(e.key==='ArrowLeft'&&window._prevPage){e.preventDefault();location.href=window._prevPage;}
+  if(e.key==='f'){if(typeof showRandomFact==='function')showRandomFact();}
+  if(e.key==='Escape'){
+    const hm=document.getElementById('hamburger-menu');
+    if(hm&&hm.classList.contains('open')){
+      hm.classList.remove('open');
+      document.getElementById('hamburger-btn')?.classList.remove('open');
+    }
+  }
+});
+
+function showToast(msg,bg){
+  const t=document.createElement('div');
+  t.textContent=msg;
+  t.style.cssText=`position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);background:${bg};color:#fff;font-family:'Source Code Pro',monospace;font-size:.72rem;padding:.45rem 1.1rem;border-radius:99px;z-index:9998;animation:fadeUpIn .35s ease;white-space:nowrap;pointer-events:none`;
+  document.body.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .35s';setTimeout(()=>t.remove(),380);},2200);
+}
+
+/* ── back-to-top button visibility ── */
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  if(btt)btt.classList.toggle('show',window.scrollY>300);
+},{passive:true});
+
+/* ── fun-fact toast ("f" key) ── */
+const FUN_FACTS=[
+  "Udny Yule's 1927 study of sunspot numbers introduced the autoregressive model — one of the first uses of AR for real data.",
+  "Arthur Schuster introduced the periodogram in 1898 to search for hidden periodicities in data.",
+  "Box and Jenkins popularised ARIMA modelling in their 1970 book Time Series Analysis: Forecasting and Control.",
+  "Robert Engle introduced ARCH models in 1982 to describe volatility that changes over time.",
+  "Engle and Granger shared the 2003 Nobel Memorial Prize in Economic Sciences for ARCH and cointegration respectively.",
+  "The Kalman filter, a cornerstone of state-space time series methods, was used in navigation for the Apollo programme."
+];
+function showRandomFact(){
+  const t=document.getElementById('toast');if(!t)return;
+  document.getElementById('toast-body').textContent=FUN_FACTS[Math.floor(Math.random()*FUN_FACTS.length)];
+  t.classList.add('show');
+  clearTimeout(t._factTimer);
+  t._factTimer=setTimeout(hideToast,8000);
+}
+function hideToast(){
+  const t=document.getElementById('toast');if(t)t.classList.remove('show');
+}
+
+/* ── restore an existing session on this page (shared.js renders the Sign In / user chip) ── */
+setTimeout(function(){
+  if(window.currentUser)return;
+  if(!window.sb)return;
+  window.sb.auth.getSession().then(function(r){
+    if(window.currentUser)return;
+    var u=r&&r.data&&r.data.session&&r.data.session.user;
+    if(!u)return;
+    if(window.renderAuthUI)window.renderAuthUI();
+  }).catch(function(){});
+},400);
+</script>
+<script>window._pageKey = 'stats';</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../shared.js"></script>
+
+</body>
+</html>

@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
+<!-- Google tag (gtag.js) --> <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'],wait_for_update:500});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR47NKLHT2"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WR47NKLHT2'); </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — Stargazer: Ten Territories Through a Curious Mind</title>
-<meta name="description" content="Stargazer is ten curated territories — 133 films, 121 books, 88 anime, all of mathematics, tantra texts, a complete chess history, statistics, German, Japanese, and a private vault. Discover what each contains and how they connect.">
-<link rel="canonical" href="https://stargazers.co.in/ABOUT.html"/>
+<meta name="description" content="Stargazer is ten curated territories: 133 films, 121 books, 88 anime, mathematics, tantra, chess, statistics, German, Japanese and a private vault.">
+<link rel="canonical" href="https://stargazers.co.in/ABOUT"/>
 <link rel="icon" type="image/png" href="pics/logo.png">
 <meta property="og:title" content="About Stargazer — Ten Territories Through Everything"/>
 <meta property="og:description" content="Ten curated territories: film, books, anime, mathematics, tantra, chess, statistics, German, Japanese, and a private vault. One cosmos. Begin exploring →"/>
-<meta property="og:url" content="https://stargazers.co.in/ABOUT.html"/>
+<meta property="og:url" content="https://stargazers.co.in/ABOUT"/>
 <meta property="og:type" content="website"/>
 <meta property="og:image" content="https://stargazers.co.in/pics/preview.jpg"/>
 <meta name="twitter:card" content="summary_large_image"/>
@@ -22,7 +23,7 @@
   "@context": "https://schema.org",
   "@type": "AboutPage",
   "name": "About Stargazer",
-  "url": "https://stargazers.co.in/ABOUT.html",
+  "url": "https://stargazers.co.in/ABOUT",
   "description": "Ten territories through one mind: films, books, anime, mathematics, tantra, chess, statistics, German, Japanese, and a personal vault.",
   "isPartOf": { "@type": "WebSite", "name": "Stargazer: Lost in the Cosmos", "url": "https://stargazers.co.in/" }
 }
@@ -56,7 +57,7 @@ body {
   line-height: 1.8;
   color: var(--text);
   background-color: #04020c;
-  background-image: url('pics/about.png');
+  background-image: url('pics/about.webp');
   background-size: cover;
   background-position: center top;
   background-attachment: fixed;
@@ -395,22 +396,22 @@ main { position: relative; z-index: 1; padding-top: 52px; }
   }
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 </head>
 
 <body>
 
 <!-- Required by shared.js -->
-<a id="loginBtn" href="login.html" aria-hidden="true" tabindex="-1"
+<a id="loginBtn" href="login" aria-hidden="true" tabindex="-1"
    style="position:absolute;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none;"></a>
 
 <!-- ── TOP NAV ── -->
 <nav id="topNav">
   <div class="nav-left">
-    <a href="index.html" class="nav-btn">← universe</a>
+    <a href="./" class="nav-btn">← universe</a>
   </div>
   <div class="nav-right">
-    <a href="login.html" class="nav-btn" id="navLoginBtn">Sign in</a>
+    <a href="login" class="nav-btn" id="navLoginBtn">Sign in</a>
     <span id="navUserEmail"></span>
     <button class="nav-btn" id="navSignOutBtn"
       onclick="typeof doSignOut==='function'?doSignOut():void 0">Sign out</button>
@@ -470,7 +471,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
             font-family="serif" font-size="12" fill="#c9a84c">✦</text>
 
       <!-- ── 01 FILMS  (top, -90°)  ── -->
-      <a href="MOVIES.html">
+      <a href="MOVIES">
         <g class="orrery-node">
           <circle cx="280" cy="90" r="23" fill="rgba(224,85,85,0.13)" stroke="#e05555" stroke-width="1.4"/>
           <text x="280" y="91" text-anchor="middle" dominant-baseline="middle"
@@ -481,7 +482,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
       </a>
 
       <!-- ── 02 BOOKS  (upper-right, -54°) ── -->
-      <a href="BOOKS.html">
+      <a href="BOOKS">
         <g class="orrery-node">
           <circle cx="380" cy="122" r="23" fill="rgba(212,149,42,0.13)" stroke="#d4952a" stroke-width="1.4"/>
           <text x="380" y="123" text-anchor="middle" dominant-baseline="middle"
@@ -492,7 +493,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
       </a>
 
       <!-- ── 03 ANIME  (right, -18°) ── -->
-      <a href="ANIME.html">
+      <a href="ANIME">
         <g class="orrery-node">
           <circle cx="442" cy="208" r="23" fill="rgba(232,127,212,0.13)" stroke="#e87fd4" stroke-width="1.4"/>
           <text x="442" y="209" text-anchor="middle" dominant-baseline="middle"
@@ -503,7 +504,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
       </a>
 
       <!-- ── 04 MATHS  (lower-right, 18°) ── -->
-      <a href="maths/home.html">
+      <a href="maths/home">
         <g class="orrery-node">
           <circle cx="442" cy="312" r="23" fill="rgba(45,212,191,0.13)" stroke="#2dd4bf" stroke-width="1.4"/>
           <text x="442" y="313" text-anchor="middle" dominant-baseline="middle"
@@ -514,7 +515,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
       </a>
 
       <!-- ── 05 TANTRA  (lower-right, 54°) ── -->
-      <a href="TANTRA.html">
+      <a href="TANTRA">
         <g class="orrery-node">
           <circle cx="380" cy="398" r="23" fill="rgba(155,114,207,0.13)" stroke="#9b72cf" stroke-width="1.4"/>
           <text x="380" y="399" text-anchor="middle" dominant-baseline="middle"
@@ -525,7 +526,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
       </a>
 
       <!-- ── 06 CHESS  (bottom, 90°) ── -->
-      <a href="CHESS.html">
+      <a href="CHESS">
         <g class="orrery-node">
           <circle cx="280" cy="430" r="23" fill="rgba(96,165,250,0.13)" stroke="#60a5fa" stroke-width="1.4"/>
           <text x="280" y="431" text-anchor="middle" dominant-baseline="middle"
@@ -536,7 +537,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
       </a>
 
       <!-- ── 07 STATS  (lower-left, 126°) ── -->
-      <a href="stats/home.html">
+      <a href="stats/home">
         <g class="orrery-node">
           <circle cx="180" cy="398" r="23" fill="rgba(74,222,128,0.13)" stroke="#4ade80" stroke-width="1.4"/>
           <text x="180" y="399" text-anchor="middle" dominant-baseline="middle"
@@ -547,7 +548,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
       </a>
 
       <!-- ── 08 GERMAN  (left, 162°) ── -->
-      <a href="german/home.html">
+      <a href="german/home">
         <g class="orrery-node">
           <circle cx="118" cy="312" r="23" fill="rgba(251,146,60,0.13)" stroke="#fb923c" stroke-width="1.4"/>
           <text x="118" y="313" text-anchor="middle" dominant-baseline="middle"
@@ -558,7 +559,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
       </a>
 
       <!-- ── 09 JAPANESE  (upper-left, 198°) ── -->
-      <a href="japanese/home.html">
+      <a href="japanese/home">
         <g class="orrery-node">
           <circle cx="118" cy="208" r="23" fill="rgba(251,113,133,0.13)" stroke="#fb7185" stroke-width="1.4"/>
           <text x="118" y="209" text-anchor="middle" dominant-baseline="middle"
@@ -569,7 +570,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
       </a>
 
       <!-- ── 10 PERSONAL  (upper-left, 234°) ── -->
-      <a href="PERSONAL.html">
+      <a href="PERSONAL">
         <g class="orrery-node">
           <circle cx="180" cy="122" r="23" fill="rgba(148,163,184,0.13)" stroke="#94a3b8" stroke-width="1.4"/>
           <text x="180" y="123" text-anchor="middle" dominant-baseline="middle"
@@ -586,16 +587,16 @@ main { position: relative; z-index: 1; padding-top: 52px; }
 
 <!-- ── STATS STRIP ── -->
 <div class="stats-strip">
-  <a href="MOVIES.html"   class="stat-item"><div class="stat-num">133</div><div class="stat-lbl">films</div></a>
-  <a href="BOOKS.html"    class="stat-item"><div class="stat-num">121</div><div class="stat-lbl">books</div></a>
-  <a href="ANIME.html"    class="stat-item"><div class="stat-num">88</div> <div class="stat-lbl">anime</div></a>
-  <a href="maths/home.html"    class="stat-item"><div class="stat-num">🧮</div>  <div class="stat-lbl">maths</div></a>
-  <a href="TANTRA.html"   class="stat-item"><div class="stat-num">20</div>  <div class="stat-lbl">tantra</div></a>
-  <a href="CHESS.html"    class="stat-item"><div class="stat-num">♟</div>  <div class="stat-lbl">chess</div></a>
-  <a href="stats/home.html"    class="stat-item"><div class="stat-num">📊</div>  <div class="stat-lbl">stats</div></a>
-  <a href="german/home.html"   class="stat-item"><div class="stat-num">18</div> <div class="stat-lbl">words</div></a>
-  <a href="japanese/home.html" class="stat-item"><div class="stat-num">⛩</div>  <div class="stat-lbl">日本語</div></a>
-  <a href="PERSONAL.html" class="stat-item"><div class="stat-num">?</div>  <div class="stat-lbl">vault</div></a>
+  <a href="MOVIES"   class="stat-item"><div class="stat-num">133</div><div class="stat-lbl">films</div></a>
+  <a href="BOOKS"    class="stat-item"><div class="stat-num">121</div><div class="stat-lbl">books</div></a>
+  <a href="ANIME"    class="stat-item"><div class="stat-num">88</div> <div class="stat-lbl">anime</div></a>
+  <a href="maths/home"    class="stat-item"><div class="stat-num">🧮</div>  <div class="stat-lbl">maths</div></a>
+  <a href="TANTRA"   class="stat-item"><div class="stat-num">20</div>  <div class="stat-lbl">tantra</div></a>
+  <a href="CHESS"    class="stat-item"><div class="stat-num">♟</div>  <div class="stat-lbl">chess</div></a>
+  <a href="stats/home"    class="stat-item"><div class="stat-num">📊</div>  <div class="stat-lbl">stats</div></a>
+  <a href="german/home"   class="stat-item"><div class="stat-num">18</div> <div class="stat-lbl">words</div></a>
+  <a href="japanese/home" class="stat-item"><div class="stat-num">⛩</div>  <div class="stat-lbl">日本語</div></a>
+  <a href="PERSONAL" class="stat-item"><div class="stat-num">?</div>  <div class="stat-lbl">vault</div></a>
 </div>
 
 
@@ -690,7 +691,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
           </div>
         </div>
         <p class="d-body">133 world films arranged not by genre but by what they demand — from the gently unsettling to the irreversibly strange. Night and dawn mode toggle, mood filters, watch-state tracking. Each film carries not a review but a placement note: why it belongs exactly here, and what capacity it builds in the viewer for what comes next. The Cinema Abyss begins with films that require nothing and ends with films that require everything the earlier ones have built.</p>
-        <a href="MOVIES.html" class="d-link">enter cinema abyss →</a>
+        <a href="MOVIES" class="d-link">enter cinema abyss →</a>
       </article>
 
       <!-- 02 BOOKS -->
@@ -704,7 +705,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
           </div>
         </div>
         <p class="d-body">121 books placed in a deliberate order: 86 in the main reading sequence and 35 companion volumes. Fiction, science fiction, philosophy, horror, strange corners of literature. Difficulty-rated. Each entry explains not what the book is about, but why it belongs at exactly this point in the sequence and what it builds in the reader for what follows. The sequence is the argument — begin at one and resist the urge to skip.</p>
-        <a href="BOOKS.html" class="d-link">enter reading universe →</a>
+        <a href="BOOKS" class="d-link">enter reading universe →</a>
       </article>
 
       <!-- 03 ANIME -->
@@ -718,7 +719,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
           </div>
         </div>
         <p class="d-body">88 anime ranked from clever to consciousness-shattering. Serial Experiments Lain, Neon Genesis Evangelion, the films of Satoshi Kon and Masaaki Yuasa, and beyond. Each placed for a specific reason within a specific sequence. Filter by depth and mood, track your descent, and follow the path that was built to take you somewhere you have not been before.</p>
-        <a href="ANIME.html" class="d-link">enter anime abyss →</a>
+        <a href="ANIME" class="d-link">enter anime abyss →</a>
       </article>
 
       <!-- 04 MATHEMATICS -->
@@ -732,7 +733,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
           </div>
         </div>
         <p class="d-body">Everything: school arithmetic through Millennium Prize Problems, olympiad training, recreational puzzles, beautiful theorems, great expository texts — Men of Mathematics, Gödel Escher Bach, A Mathematician's Apology — career paths through the infinite, and the open problems that remain unsolved. The territory that never ends. Every other path here connects to it somehow, from somewhere unexpected.</p>
-        <a href="maths/home.html" class="d-link">enter the infinite path →</a>
+        <a href="maths/home" class="d-link">enter the infinite path →</a>
       </article>
 
       <!-- 05 TANTRA -->
@@ -746,7 +747,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
           </div>
         </div>
         <p class="d-body">A curated library of Tantric texts, Puranas, Shakti traditions, and Bengali occult literature. The Sixty-Four Yoginis. Cremation-ground sadhana. Texts chosen not for scholarly completeness but for what they do to the person who reads them carefully — which is not the same as merely reading them. The library is hidden because not everything should be found too easily.</p>
-        <a href="TANTRA.html" class="d-link">enter the hidden library →</a>
+        <a href="TANTRA" class="d-link">enter the hidden library →</a>
       </article>
 
       <!-- 06 CHESS -->
@@ -760,7 +761,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
           </div>
         </div>
         <p class="d-body">The complete history of chess from its origins in ancient India through every era: Romantic brilliancies and the age of attack, the Classical school of Steinitz, Soviet dominance, the Fischer era, Kasparov's two-decade reign, and into the age of artificial intelligence. Annotated immortal games, world champion profiles, opening theory, endgame studies, tactical puzzles, and the silent philosophy of the board.</p>
-        <a href="CHESS.html" class="d-link">enter chess history →</a>
+        <a href="CHESS" class="d-link">enter chess history →</a>
       </article>
 
       <!-- 07 STATISTICS -->
@@ -774,7 +775,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
           </div>
         </div>
         <p class="d-body">Statistics from school probability to Bayesian inference — the Monty Hall problem, Simpson's Paradox, distributions, hypothesis testing, the Central Limit Theorem, p-values, open research problems, and 12 essential textbooks. The art of drawing meaning from noise, and of not lying to yourself about what the data is telling you. Statistics is not calculation; it is the discipline of honest inference.</p>
-        <a href="stats/home.html" class="d-link">enter the uncertainty atlas →</a>
+        <a href="stats/home" class="d-link">enter the uncertainty atlas →</a>
       </article>
 
       <!-- 08 GERMAN -->
@@ -788,7 +789,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
           </div>
         </div>
         <p class="d-body">18 German words that English cannot translate: Sehnsucht, Waldeinsamkeit, Weltschmerz, Schadenfreude, Verschlimmbessern, and more — each a concept entire civilisations have needed and found no single name for. Grammar deep-dives, leveled short stories, idioms, tongue twisters, and the architecture of thought in one of history's most philosophically precise languages. The word is not the concept; the language is the thinking.</p>
-        <a href="german/home.html" class="d-link">enter the german cosmos →</a>
+        <a href="german/home" class="d-link">enter the german cosmos →</a>
       </article>
 
       <!-- 09 JAPANESE -->
@@ -802,7 +803,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
           </div>
         </div>
         <p class="d-body">Japan through two lenses: the historical — ink-and-paper civilisation, ancient courts, the Meiji transformation — and the contemporary — neon-lit, algorithm-dense, quietly poetic. From kana to kanji, immersion methods, grammar paths, and the extraordinary richness hidden inside the act of writing in Japanese itself. Two eras, three writing systems, one endlessly layered people.</p>
-        <a href="japanese/home.html" class="d-link">enter the japan cosmos →</a>
+        <a href="japanese/home" class="d-link">enter the japan cosmos →</a>
       </article>
 
       <!-- 10 PERSONAL -->
@@ -816,7 +817,7 @@ main { position: relative; z-index: 1; padding-top: 52px; }
           </div>
         </div>
         <p class="d-body">The private territory behind the ten territories. The creator's vault — notes, maps, and reflections that don't fit anywhere else in the cosmos. Personal, partial, not fully public. A door that is there and visible. Whether to open it, and what you do with what you find behind it, is entirely your decision. Some rooms aren't described in advance.</p>
-        <a href="PERSONAL.html" class="d-link">approach the vault →</a>
+        <a href="PERSONAL" class="d-link">approach the vault →</a>
       </article>
 
     </div><!-- /domains-grid -->
@@ -857,16 +858,16 @@ main { position: relative; z-index: 1; padding-top: 52px; }
 <nav class="full-nav reveal" aria-label="All territories">
   <div class="full-nav-label">explore the cosmos</div>
   <div class="full-nav-grid">
-    <a href="MOVIES.html"   class="fnl"><span class="fnl-icon">🎬</span><span class="fnl-name">Films</span>      <span class="fnl-sub">133 entries</span></a>
-    <a href="BOOKS.html"    class="fnl"><span class="fnl-icon">📚</span><span class="fnl-name">Books</span>      <span class="fnl-sub">121 volumes</span></a>
-    <a href="ANIME.html"    class="fnl"><span class="fnl-icon">📡</span><span class="fnl-name">Anime</span>      <span class="fnl-sub">88 transmissions</span></a>
-    <a href="maths/home.html"    class="fnl"><span class="fnl-icon" style="font-family:serif;font-size:1.2rem;">∞</span><span class="fnl-name">Mathematics</span><span class="fnl-sub">the infinite path</span></a>
-    <a href="TANTRA.html"   class="fnl"><span class="fnl-icon">🜂</span><span class="fnl-name">Tantra</span>     <span class="fnl-sub">hidden library</span></a>
-    <a href="CHESS.html"    class="fnl"><span class="fnl-icon">♟</span><span class="fnl-name">Chess</span>      <span class="fnl-sub">complete history</span></a>
-    <a href="stats/home.html"    class="fnl"><span class="fnl-icon">📊</span><span class="fnl-name">Statistics</span> <span class="fnl-sub">atlas of uncertainty</span></a>
-    <a href="german/home.html"   class="fnl"><span class="fnl-icon">🏰</span><span class="fnl-name">German</span>     <span class="fnl-sub">18 untranslatable words</span></a>
-    <a href="japanese/home.html" class="fnl"><span class="fnl-icon">⛩️</span><span class="fnl-name">Japanese</span>   <span class="fnl-sub">日本 · Japan</span></a>
-    <a href="PERSONAL.html" class="fnl"><span class="fnl-icon">🗝️</span><span class="fnl-name">Personal</span>   <span class="fnl-sub">the vault</span></a>
+    <a href="MOVIES"   class="fnl"><span class="fnl-icon">🎬</span><span class="fnl-name">Films</span>      <span class="fnl-sub">133 entries</span></a>
+    <a href="BOOKS"    class="fnl"><span class="fnl-icon">📚</span><span class="fnl-name">Books</span>      <span class="fnl-sub">121 volumes</span></a>
+    <a href="ANIME"    class="fnl"><span class="fnl-icon">📡</span><span class="fnl-name">Anime</span>      <span class="fnl-sub">88 transmissions</span></a>
+    <a href="maths/home"    class="fnl"><span class="fnl-icon" style="font-family:serif;font-size:1.2rem;">∞</span><span class="fnl-name">Mathematics</span><span class="fnl-sub">the infinite path</span></a>
+    <a href="TANTRA"   class="fnl"><span class="fnl-icon">🜂</span><span class="fnl-name">Tantra</span>     <span class="fnl-sub">hidden library</span></a>
+    <a href="CHESS"    class="fnl"><span class="fnl-icon">♟</span><span class="fnl-name">Chess</span>      <span class="fnl-sub">complete history</span></a>
+    <a href="stats/home"    class="fnl"><span class="fnl-icon">📊</span><span class="fnl-name">Statistics</span> <span class="fnl-sub">atlas of uncertainty</span></a>
+    <a href="german/home"   class="fnl"><span class="fnl-icon">🏰</span><span class="fnl-name">German</span>     <span class="fnl-sub">18 untranslatable words</span></a>
+    <a href="japanese/home" class="fnl"><span class="fnl-icon">⛩️</span><span class="fnl-name">Japanese</span>   <span class="fnl-sub">日本 · Japan</span></a>
+    <a href="PERSONAL" class="fnl"><span class="fnl-icon">🗝️</span><span class="fnl-name">Personal</span>   <span class="fnl-sub">the vault</span></a>
   </div>
 </nav>
 
@@ -925,9 +926,9 @@ window._afterRenderAuthUI = function(user) {
     login.style.display   = 'none';
     signout.style.display = 'flex';
     if (email) {
-      email.textContent = user.user_metadata?.display_name
-                       || user.user_metadata?.full_name
-                       || user.email;
+      email.textContent = window.sgDisplayName
+        ? window.sgDisplayName(user)
+        : (user.user_metadata?.display_name || user.user_metadata?.full_name || '');
       email.style.display = 'block';
     }
   } else {

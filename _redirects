@@ -1,3 +1,7 @@
+/functions/*      /  301
+/pics/unused/*    /  301
+/video/unused/*   /  301
+
 /CHESS              /chess/home   301
 /CHESS.html         /chess/home   301
 /CHESS/*            /chess/home   301
@@ -32,6 +36,28 @@
 # What-If Lab: fiction matched to unsolved science; it lives in /books/
 /what-if-lab        /books/what-if-lab   301
 /what-if-lab.html   /books/what-if-lab   301
+
+# LOTR escape books page; it lives in /books/
+/lotr-escape-books        /books/lotr-escape-books   301
+/lotr-escape-books.html   /books/lotr-escape-books   301
+
+# The Library (every book I own); it lives in /books/
+/library        /books/library  301
+/library.html   /books/library  301
+/LIBRARY        /books/library  301
+/LIBRARY.html   /books/library  301
+
+# Lowercase section roots have no index page, so send them to each home
+/chess        /chess/home       301
+/chess/       /chess/home       301
+/german       /german/home      301
+/german/      /german/home      301
+/japanese     /japanese/home    301
+/japanese/    /japanese/home    301
+/maths        /maths/home       301
+/maths/       /maths/home       301
+/stats        /stats/home       301
+/stats/       /stats/home       301
 
 # Catch-all: strip .html from every remaining URL (top-level pages
 # like ANIME/MOVIES/TANTRA/ABOUT, and every subpage inside

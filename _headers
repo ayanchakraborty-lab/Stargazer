@@ -1,0 +1,20 @@
+# Security headers for every page
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Strict-Transport-Security: max-age=31536000
+  Content-Security-Policy: base-uri 'self'; object-src 'none'; frame-ancestors 'self'
+
+# Media rarely changes: let browsers keep it for a week instead of re-checking on every visit
+# (covers are the exception: they must revalidate so newly added covers show up for everyone;
+#  unchanged covers still cost only a tiny 304 reply, not a re-download)
+/pics/*
+  Cache-Control: public, max-age=604800
+/covers/*
+  Cache-Control: public, max-age=0, must-revalidate
+/sounds/*
+  Cache-Control: public, max-age=604800
+/video/*
+  Cache-Control: public, max-age=604800
