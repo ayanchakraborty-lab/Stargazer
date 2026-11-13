@@ -135,7 +135,9 @@ window.renderAuthUI = renderAuthUI;
 
 /* ── SIGN OUT ───────────────────────────────────────────────────── */
 window.doSignOut = async function() {
-  try { if (sb) await sb.auth.signOut(); } catch(e) { console.warn('signOut error:', e); }
+  // scope:'local' = sign out of THIS device only. (The default ends every session of the account on every device — including
+  // a vault sign-in on the same account — which is more than "Sign out" on this page should do.)
+  try { if (sb) await sb.auth.signOut({ scope: 'local' }); } catch(e) { console.warn('signOut error:', e); }
   try { localStorage.removeItem('sb-daqxabswnrhqpjyfdbwx-auth-token'); } catch(e) {}
   currentUser = window.currentUser = null;
   renderAuthUI();
@@ -252,11 +254,14 @@ function isAbusive(text) {
 function isRateLimited(pk) {
   const now = Date.now();
   const key = 'sg_rate_' + pk;
-  const s   = JSON.parse(localStorage.getItem(key) || '[]');
-  const r   = s.filter(t => now - t < 5 * 60 * 1000);
+  // Browser storage can be blocked (private browsing), full, or hold damaged data — none of that may stop a comment
+  // from being posted, so every storage access is guarded and the saved list is checked before use.
+  let s = [];
+  try { const v = JSON.parse(localStorage.getItem(key) || '[]'); if (Array.isArray(v)) s = v; } catch (e) { /* start fresh */ }
+  const r   = s.filter(t => typeof t === 'number' && now - t < 5 * 60 * 1000);
   if (r.length >= 3) return true;
   r.push(now);
-  localStorage.setItem(key, JSON.stringify(r));
+  try { localStorage.setItem(key, JSON.stringify(r)); } catch (e) { /* can't remember this one — fine */ }
   return false;
 }
 

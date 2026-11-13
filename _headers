@@ -18,3 +18,17 @@
   Cache-Control: public, max-age=604800
 /video/*
   Cache-Control: public, max-age=604800
+
+# ─────────────────────────────────────────────────────────────────────────────────────────────────────────
+# ADDED: a REPORT-ONLY content policy for the vault page. It never blocks anything — the browser just notes, in its
+# console, what it WOULD block. Your enforced policy above (base-uri / object-src / frame-ancestors) is untouched and
+# keeps working; this adds the "which sites may scripts load from / the page talk to" rules on top, for the vault page only.
+#
+# If your vault page is at a different address than /PERSONAL, change the two path lines below.
+# To read results: open the vault, press F12 → Console, look for lines starting "[Report Only] Refused to …".
+# After about a week with none (or only browser-extension noise), change "Content-Security-Policy-Report-Only" to
+# "Content-Security-Policy" on both lines to switch it on. If you see a real site of yours listed, tell me and I'll add it.
+/PERSONAL
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://accounts.google.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://covers.openlibrary.org https://*.googleusercontent.com; media-src 'self' blob: data:; connect-src 'self' https://daqxabswnrhqpjyfdbwx.supabase.co wss://daqxabswnrhqpjyfdbwx.supabase.co https://vault-storage.ayanchakrabortyall.workers.dev https://accounts.google.com https://challenges.cloudflare.com https://openlibrary.org; frame-src https://accounts.google.com https://challenges.cloudflare.com; form-action 'self'
+/PERSONAL.html
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://accounts.google.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://covers.openlibrary.org https://*.googleusercontent.com; media-src 'self' blob: data:; connect-src 'self' https://daqxabswnrhqpjyfdbwx.supabase.co wss://daqxabswnrhqpjyfdbwx.supabase.co https://vault-storage.ayanchakrabortyall.workers.dev https://accounts.google.com https://challenges.cloudflare.com https://openlibrary.org; frame-src https://accounts.google.com https://challenges.cloudflare.com; form-action 'self'
