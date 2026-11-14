@@ -2937,8 +2937,19 @@ function unmarkOwned(id) {
   if (!set.delete(id)) return;
   try { localStorage.setItem(OWNED_KEY + sbUserId, JSON.stringify([...set])); } catch (e) {}
 }
+// Item ids must be unique across the whole cloud table. If a row with the same id appears more than once (the database
+// should forbid it — see vault_fix_item_id_unique.sql), nobody can tell which one is real, so NONE of them is pulled or
+// trusted for ownership: a planted look-alike can never replace an entry or make someone its "owner".
+function findDuplicateIds(manifest) {
+  const seen = new Set(), dup = new Set();
+  for (const row of manifest) { if (seen.has(row.item_id)) dup.add(row.item_id); else seen.add(row.item_id); }
+  return dup;
+}
 function ownsEntry(entryId) {
   if (ROLE !== 'contributor' || !sbUserId) return false;
+  // Every entry is owned by the admin account. Someone who enters the contributor seal with that same account (e.g. to test
+  // it) would otherwise "own" everything. In that case only what was created in this contributor session counts as theirs.
+  if (SHARED_AS_ADMIN) return _ownedIds().has(entryId);
   const owner = itemOwners[entryId];
   if (owner) return owner === sbUserId;          // the server's word wins
   return _ownedIds().has(entryId);               // not in the manifest yet: only what THIS identity created here
@@ -3969,6 +3980,7 @@ async function sbPullAllItems() {
   if (!vaultClient || !sbUserId) return;
   _syncStatus.inProgress = true; _syncStatus.fatalError = null; updateSyncStatusUI();
   let manifest;
+  let dupIds = new Set();
   try {
     // No .eq('user_id', sbUserId) here on purpose: that made sense back when
     // "my rows" and "the whole vault" were the same thing (only one identity
@@ -3982,7 +3994,10 @@ async function sbPullAllItems() {
       vaultClient.from('vault_sync').select('item_id, updated_at, user_id'), 20000);
     if (error) throw error;
     manifest = data || [];
-    manifest.forEach(row => { if (row.user_id) itemOwners[row.item_id] = row.user_id; });
+    dupIds = findDuplicateIds(manifest);
+    _syncStatus.duplicateIds = [...dupIds];
+    if (dupIds.size) toast(`◈ ${dupIds.size} entr${dupIds.size === 1 ? 'y has' : 'ies have'} a look-alike copy in the cloud — those were NOT pulled. Ask the archivist to run the database fix (vault_fix_item_id_unique.sql).`);
+    manifest.forEach(row => { if (row.user_id && !dupIds.has(row.item_id)) itemOwners[row.item_id] = row.user_id; });
   } catch (e) {
     console.warn('Cloud sync (pull manifest) failed — showing what is cached on this device.', e);
     _syncStatus.fatalError = e?.message || String(e);
@@ -4034,6 +4049,7 @@ async function sbPullAllItems() {
   const pendingPushIds = new Set(getPendingIds());
   const outdated = manifest.filter(row =>
     !row.item_id.startsWith('__') &&        // skip reserved preference rows (theme has its own sync path)
+    !dupIds.has(row.item_id) &&             // look-alike rows exist for this id — never pull any of them
     !pendingPushIds.has(row.item_id) &&     // edited here and not uploaded yet — pulling would overwrite that edit with the older cloud copy
     !isChunkFragment(row.item_id) &&        // skip chunk fragments — pulled via their header row instead
     !pendingDeletes.has(row.item_id) &&     // deleted locally — don't resurrect it while the cloud delete retries
@@ -4691,6 +4707,7 @@ async function claimSharedRole(password, role) {
   ROLE = role;
   if (role === 'diary_reader') diaryKey = importedKey;
   else cryptoKey = importedKey;
+  try { const { data: eff } = await vaultClient.rpc('vault_my_role'); SHARED_AS_ADMIN = (eff === 'admin'); } catch (e) { SHARED_AS_ADMIN = false; }
 }
 
 // Replaces the old URL-only setupViewOnlyMode() with a real role-aware
@@ -4748,7 +4765,7 @@ function applyRoleRestrictions() {
       contributor: '◈ Contributor access — you may add new entries and edit only your own.',
       diary_reader: '◈ Diary — read-only. Only the archivist may write here.'
     };
-    banner.textContent = labels[ROLE];
+    banner.textContent = labels[ROLE] + (SHARED_AS_ADMIN ? ' — NOTE: you are signed in with an admin account, so the database still treats you as the vault owner. This only SHOWS what a contributor sees; to test the real thing, use a different Google account.' : '');
   } else if (TEMP_ADMIN) {
     if (!banner) {
       banner = document.createElement('div');
@@ -5882,6 +5899,7 @@ function signOut() {
   // load would inherit the previous session's decrypted records, diary key and permissions.
   Vault.invalidate();
   diaryKey = null; adminBaseKey = null; adminDiaryBaseKey = null;
+  SHARED_AS_ADMIN = false;
   ROLE = 'locked'; // nobody is signed in: no write/modify check passes until a seal is broken again
   for (const k of Object.keys(itemOwners)) delete itemOwners[k];
   allItems = [];
@@ -5927,6 +5945,7 @@ async function backToUniverse() {
 // ══════════════════════════════════════════════
 let sbUserId = null;
 let ownerUid = null;    // see ownerId()
+let SHARED_AS_ADMIN = false; // a shared seal entered with an account the database treats as an admin (see ownsEntry)
 let TEMP_ADMIN = null;  // { userId, owner, expiresAt } while this device holds a password-only admin session
 let _lastSbSignInError = null; // set whenever attemptUnlock's cloud sign-in fails, so the
                                  // "not synced" toast can show the real reason instead of
